@@ -6,9 +6,16 @@ import { connect } from 'react-redux';
 
 export default class Game extends React.Component {
   render() {
+    let cardStyle = {
+      width: '62px',
+      height: '62px',
+      background: 'url("/assets/cards.png")'
+    }
+
     return (
       <div id="game">
         Hello world
+        <div style={cardStyle}></div>
       </div>
     );
   }
