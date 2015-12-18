@@ -10,10 +10,12 @@ export default class Deck extends React.Component {
       display: 'inline'
     }
 
+    game.deck = game.deck || [];
+
     let cards = game.deck.map((card, index) => {
       return (
         <div key={index} style={cardStyle}>
-          <img src={`assets/${card.name}.jpg`} alt={card.name} />
+          <img src={`assets/images/${card.name}.jpg`} alt={card.name} />
         </div>
       )
     });
