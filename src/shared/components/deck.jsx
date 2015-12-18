@@ -1,29 +1,20 @@
 import React from 'react';
+import CardsView from './cards';
+
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
+@connect(state => ({ store: state }))
 
 export default class Deck extends React.Component {
   render() {
-    let game = this.props.game;
-
-    let cardStyle = {
-      width: '100px',
-      height: '127px',
-      display: 'inline'
-    }
-
-    game.deck = game.deck || [];
-
-    let cards = game.deck.map((card, index) => {
-      return (
-        <div key={index} style={cardStyle}>
-          <img src={`assets/images/${card.name}.jpg`} alt={card.name} />
-        </div>
-      )
-    });
+    let cards = this.props.store.game.deck;
 
     return (
-      <div id="deck">
-        {cards}
-      </div>
+        <div id="deck">
+          <CardsView cards={cards} />
+        </div>
     );
   }
 }
+

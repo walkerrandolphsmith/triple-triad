@@ -1,5 +1,4 @@
 import React from 'react';
-import Deck from './deck';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -12,7 +11,7 @@ export default class Game extends React.Component {
 
     return (
       <div id="game">
-        <Deck game={game} />
+
       </div>
     );
   }
