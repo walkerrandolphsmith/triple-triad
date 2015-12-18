@@ -1,4 +1,4 @@
-export default deck = [
+const DECK = [
   {
     name: "Aeris",
     level: 7,
@@ -120,4 +120,6 @@ export default deck = [
       bottom: 7
     }
   },
-]
+];
+
+export default DECK;
