@@ -4,11 +4,10 @@
   "description": "implementation of final fantasy 8's card game for the web",
   "main": "index.js",
   "scripts": {
-     "start": "./node_modules/.bin/babel-node ./runner.js",
-     "dev": "npm run assets & npm run start & webpack-dev-server --progress --color",
-     "build": "NODE_ENV=production webpack --progress --color -p --config webpack.config.js",
-     "assets": "cp -r ./src/assets/ ./dist/assets/",
-     "deploy": "git push heroku master"
+    "start": "./node_modules/.bin/babel-node ./runner.js",
+    "dev": "npm run start & webpack-dev-server --progress --color",
+    "build": "NODE_ENV=production webpack --progress --color -p --config webpack.config.js",
+    "deploy": "git push heroku master"
   },
   "repository": {
     "type": "git",
