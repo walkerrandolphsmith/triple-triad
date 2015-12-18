@@ -55,7 +55,7 @@ app.use((request, response) => {
             <link rel="apple-touch-icon" sizes="72x72" href="apple-icon-72x72.png" />
             <link rel="apple-touch-icon" sizes="114x114" href="apple-icon-114x114.png" />
             <link rel="apple-touch-icon" sizes="144x144" href="apple-icon-144x144.png" />
-            <link rel="stylesheet" type="text/css" href="assets/deck.css">
+            <link rel="stylesheet" type="text/css" href="assets/stylesheets/navigation.css">
           </head>
           <body>
             <div id="app">${componentHTML}</div>
