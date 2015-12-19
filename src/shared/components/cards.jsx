@@ -15,7 +15,7 @@ export default class Cards extends React.Component {
         let cardsMarkup = cards.map((card, index) => {
             return (
                 <div key={index} style={cardStyle}>
-                    <img src={`assets/images/${card.name}.jpg`} alt={card.name} />
+                    <img src={`assets/images/${card.name}.png`} alt={card.name} />
                 </div>
             )
         });
