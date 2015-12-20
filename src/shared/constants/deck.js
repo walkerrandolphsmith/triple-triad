@@ -32,7 +32,7 @@ const DECK = [
       bottom: 5
     }
   },
-  {
+  /*{
     name: "Cid",
     level: 7,
     element: null,
@@ -53,7 +53,7 @@ const DECK = [
       right: 7,
       bottom: 6
     }
-  },
+  },*/
   {
     name: "Nanaki",
     level: 7,
@@ -76,7 +76,7 @@ const DECK = [
       bottom: 7
     }
   },
-  {
+  /*{
     name: "Sephiroth",
     level: 7,
     element: null,
@@ -86,7 +86,7 @@ const DECK = [
       right: 10,
       bottom: 3
     }
-  },
+  },*/
   {
     name: "Tifa",
     level: 7,
@@ -98,7 +98,7 @@ const DECK = [
       bottom: 10
     }
   },
-  {
+  /*{
     name: "Vincent",
     level: 7,
     element: null,
@@ -108,7 +108,7 @@ const DECK = [
       right: 9,
       bottom: 7
     }
-  },
+  },*/
   {
     name: "Yuffie",
     level: 7,
@@ -142,7 +142,7 @@ const DECK = [
       bottom: 6
     }
   },
-  {
+  /*{
     name: "Laguna",
     level: 8,
     element: null,
@@ -152,7 +152,7 @@ const DECK = [
       right: 10,
       bottom: 3
     }
-  },
+  },*/
   {
     name: "Selphie",
     level: 8,
@@ -197,7 +197,7 @@ const DECK = [
       bottom: 10
     }
   },
-  {
+  /*{
     name: "Rinoa",
     level: 8,
     element: null,
@@ -207,7 +207,7 @@ const DECK = [
       right: 10,
       bottom: 2
     }
-  },
+  },*/
   {
     name: "Edea",
     level: 8,
@@ -252,7 +252,7 @@ const DECK = [
       bottom: 4
     }
   },
-  {
+  /*{
     name: "Eiko",
     level: 9,
     element: null,
@@ -262,7 +262,7 @@ const DECK = [
       right: 8,
       bottom: 10
     }
-  },
+  },*/
   {
     name: "Freya",
     level: 9,
@@ -373,7 +373,7 @@ const DECK = [
       bottom: 5
     }
   },
-  {
+  /*{
     name: "Lulu",
     level: 10,
     element: null,
@@ -394,7 +394,7 @@ const DECK = [
       right: 4,
       bottom: 10
     }
-  },
+  },*/
   {
     name: "Seymour",
     level: 10,
@@ -428,7 +428,7 @@ const DECK = [
       bottom: 10
     }
   },
-  {
+  /*{
     name: "Wakka",
     level: 10,
     element: null,
@@ -449,7 +449,7 @@ const DECK = [
       right: 6,
       bottom: 4
     }
-  },
+  },*/
 ];
 
 export default DECK;
