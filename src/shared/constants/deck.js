@@ -42,7 +42,7 @@ const DECK = [
       right: 10,
       bottom: 5
     }
-  },
+  },*/
   {
     name: "Cloud",
     level: 7,
@@ -53,7 +53,7 @@ const DECK = [
       right: 7,
       bottom: 6
     }
-  },*/
+  },
   {
     name: "Nanaki",
     level: 7,
@@ -76,7 +76,7 @@ const DECK = [
       bottom: 7
     }
   },
-  /*{
+  {
     name: "Sephiroth",
     level: 7,
     element: null,
@@ -86,7 +86,7 @@ const DECK = [
       right: 10,
       bottom: 3
     }
-  },*/
+  },
   {
     name: "Tifa",
     level: 7,
