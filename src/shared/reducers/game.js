@@ -13,6 +13,7 @@ const INITIAL_STATE = new Immutable.Map({
   },
   availableDeck: deck,
   hand: [],
+  opponentHand: selectRandomHand({availableDeck: deck, hand: []})[1],
   handSelected: false
 });
 
@@ -34,12 +35,14 @@ function nextStep(state) {
     state.hand = decks[1];
     state.step++;
   }
+
   return {
     step: state.step + 1,
     deck : state.deck,
     settings: state.settings,
     availableDeck: state.availableDeck,
     hand: state.hand,
+    opponentHand: state.opponentHand,
     handSelected: state.handSelected
   };
 }
@@ -50,6 +53,7 @@ function selectRandomHand(state){
   availableDeck = _.difference(availableDeck, sample);
   return [availableDeck, sample];
 }
+
 function updateSettings(state, payload){
   let {setting, isChecked} = payload;
 
@@ -61,6 +65,7 @@ function updateSettings(state, payload){
     settings: state.settings,
     availableDeck: state.availableDeck,
     hand: state.hand,
+    opponentHand: state.opponentHand,
     handSelected: state.handSelected
   }
 }
@@ -74,6 +79,7 @@ function addCard(state, payload){
     settings: state.settings,
     availableDeck: state.availableDeck,
     hand: hand,
+    opponentHand: state.opponentHand,
     handSelected: hand.length >=5
   }
 }
@@ -87,6 +93,7 @@ function removeCard(state, payload){
     settings: state.settings,
     availableDeck: availableDeck,
     hand: state.hand,
+    opponentHand: state.opponentHand,
     handSelected: false
   }
 }
