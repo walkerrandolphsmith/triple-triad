@@ -1,4 +1,5 @@
 import React from 'react';
+import SettingsSelection from './steps/settingsSelection';
 import CardSelection from './steps/cardSelection';
 
 import { bindActionCreators } from 'redux';
@@ -16,7 +17,8 @@ export default class Game extends React.Component {
     let currentGameStep = null;
 
     switch(game.step){
-      case 0: currentGameStep = (<CardSelection game={game} {...bindActionCreators(StepActions, dispatch)} />); break;
+      case 0: currentGameStep = (<SettingsSelection game={game} {...bindActionCreators(StepActions, dispatch)} />); break;
+      case 1: currentGameStep = (<CardSelection game={game} {...bindActionCreators(StepActions, dispatch)} />); break;
       default: console.log("default"); break;
     }
 
