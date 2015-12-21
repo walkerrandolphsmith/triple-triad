@@ -27,6 +27,13 @@ export default function reducer(state = INITIAL_STATE, action) {
 }
 
 function nextStep(state) {
+
+  if(state.step === 0 && state.settings.randomHand){
+    let decks = selectRandomHand(state);
+    state.availableDeck = decks[0];
+    state.hand = decks[1];
+    state.step++;
+  }
   return {
     step: state.step + 1,
     deck : state.deck,
@@ -37,6 +44,12 @@ function nextStep(state) {
   };
 }
 
+function selectRandomHand(state){
+  let {availableDeck, hand} = state;
+  let sample = _.sample(availableDeck, 5);
+  availableDeck = _.difference(availableDeck, sample);
+  return [availableDeck, sample];
+}
 function updateSettings(state, payload){
   let {setting, isChecked} = payload;
 
