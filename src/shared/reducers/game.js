@@ -8,7 +8,8 @@ const INITIAL_STATE = new Immutable.Map({
   step: 0,
   deck: deck,
   availableDeck: deck,
-  hand: []
+  hand: [],
+  handSelected: false
 });
 
 export default function reducer(state = INITIAL_STATE, action) {
@@ -25,7 +26,8 @@ function nextStep(state) {
     step: state.step + 1,
     deck : state.deck,
     availableDeck: state.availableDeck,
-    hand: state.hand
+    hand: state.hand,
+    handSelected: state.handSelected
   };
 }
 
@@ -36,7 +38,8 @@ function addCard(state, payload){
     step: state.step,
     deck: state.deck,
     availableDeck: state.availableDeck,
-    hand: hand
+    hand: hand,
+    handSelected: hand.length >=5
   }
 }
 
@@ -47,6 +50,7 @@ function removeCard(state, payload){
     step: state.step,
     deck: state.deck,
     availableDeck: availableDeck,
-    hand: state.hand
+    hand: state.hand,
+    handSelected: false
   }
 }
