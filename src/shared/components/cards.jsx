@@ -4,10 +4,11 @@ import Card from './card';
 export default class Cards extends React.Component {
     render() {
         let cards = this.props.cards || [];
+        let clickAction = this.props.clickAction;
 
         let cardsMarkup = cards.map((card, index) => {
             return (
-                <Card key={index} name={card.name} owner={0} />
+                <Card key={index} name={card.name} owner={0} clickAction={clickAction} />
             )
         });
 

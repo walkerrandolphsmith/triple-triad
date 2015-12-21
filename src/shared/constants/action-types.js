@@ -1,1 +1,3 @@
 export const NEXTSTEP = 'NextStep';
+export const ADDCARD = 'AddCard';
+export const REMOVECARD = 'RemoveCard';

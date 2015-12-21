@@ -5,3 +5,15 @@ export function nextStep() {
         type: types.NEXTSTEP
     }
 }
+
+export function addCard() {
+    return {
+        type: types.ADDCARD
+    }
+}
+
+export function removeCard() {
+    return {
+        type: types.REMOVECARD
+    }
+}
