@@ -23,3 +23,13 @@ export function removeCard(index) {
         }
     }
 }
+
+export function updateSettings(setting, isChecked) {
+    return {
+        type: types.UPDATESETTINGS,
+        payload: {
+            setting: setting,
+            isChecked: isChecked
+        }
+    }
+}
