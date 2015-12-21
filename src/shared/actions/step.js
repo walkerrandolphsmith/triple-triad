@@ -6,14 +6,20 @@ export function nextStep() {
     }
 }
 
-export function addCard() {
+export function addCard(index) {
     return {
-        type: types.ADDCARD
+        type: types.ADDCARD,
+        payload: {
+            index: index
+        }
     }
 }
 
-export function removeCard() {
+export function removeCard(index) {
     return {
-        type: types.REMOVECARD
+        type: types.REMOVECARD,
+        payload: {
+            index: index
+        }
     }
 }

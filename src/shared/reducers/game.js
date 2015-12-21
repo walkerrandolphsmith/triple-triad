@@ -14,8 +14,8 @@ const INITIAL_STATE = new Immutable.Map({
 export default function reducer(state = INITIAL_STATE, action) {
   switch(action.type){
     case types.NEXTSTEP: return nextStep(state);
-    case types.ADDCARD: return addCard(state);
-    case types.REMOVECARD: return removeCard(state);
+    case types.ADDCARD: return addCard(state, action.payload);
+    case types.REMOVECARD: return removeCard(state, action.payload);
   }
   return state;
 }
@@ -29,9 +29,8 @@ function nextStep(state) {
   };
 }
 
-function addCard(state){
-
-  let hand = _.union(state.hand, state.availableDeck.splice(0,1));
+function addCard(state, payload){
+  let hand = _.union(state.hand, state.availableDeck.splice(payload.index,1));
 
   return {
     step: state.step,
@@ -41,9 +40,8 @@ function addCard(state){
   }
 }
 
-function removeCard(state){
-
-  let availableDeck = _.union(state.availableDeck, state.hand.splice(0,1));
+function removeCard(state, payload){
+  let availableDeck = _.union(state.availableDeck, state.hand.splice(payload.index,1));
 
   return {
     step: state.step,
