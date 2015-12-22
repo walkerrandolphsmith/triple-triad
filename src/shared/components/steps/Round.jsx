@@ -1,4 +1,5 @@
 import React from 'react';
+import Board from './../board';
 import Cards from './../cards';
 
 export default class Round extends React.Component {
@@ -9,8 +10,15 @@ export default class Round extends React.Component {
 
         return (
             <div id="step-2">
-                <Cards cards={hand} />
-                <Cards cards={opponentHand} owner={1} />
+                <div id="hand">
+                    <Cards cards={hand} />
+                </div>
+
+                <Board />
+
+                <div id="opponent-hand">
+                    <Cards cards={opponentHand} owner={1} />
+                </div>
             </div>
         );
     }
