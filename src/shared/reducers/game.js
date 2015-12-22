@@ -108,10 +108,63 @@ function selectPiece(state, payload) {
   newState.turn.validPieces = _.difference(newState.turn.validPieces, [payload.index]);
   newState.turn.canSelectPiece = false;
 
-  var cardToPlaceOnBoard = newState.hand.splice(newState.turn.selectedCard, 1);
+  let theHand = newState.turn.currentPlayer === 1 ? 'opponentHand' : 'hand';
+  var cardToPlaceOnBoard = newState[theHand].splice(newState.turn.selectedCard, 1);
   newState.selectedCard = -1;
 
   newState.board[payload.index] = _.assign(cardToPlaceOnBoard[0], {owner: newState.turn.currentPlayer});
 
+  newState.board = applyRules(newState.board, payload.index);
+
+  if(newState.turn.currentPlayer === 0)
+    newState = AI(newState);
+
   return newState;
+}
+
+function applyRules(board, i) {
+
+  const row = i / 3;
+  const column = 1 % 3;
+
+  let card = board[i];
+
+  if(row > 0)
+    flipCard(card, board[i-3], 'top', 'bottom');
+  if(row < 2)
+    flipCard(card, board[i+3], 'bottom', 'top');
+  if(column > 0)
+    flipCard(card, board[i-1], 'left', 'right');
+  if(column < 2)
+    flipCard(card, board[i+1], 'right', 'left');
+
+  return board;
+}
+
+function flipCard(card, otherCard, attackDirection, defenseDirection){
+  if(otherCard && card.owner !== otherCard.owner){
+    if(card.rank[attackDirection] > otherCard.rank[defenseDirection]){
+      otherCard.owner = card.owner;
+    }else if(card.rank[attackDirection] < otherCard.rank[defenseDirection]){
+      card.owner = otherCard.owner;
+    }else{
+      //no-op
+    }
+  }
+}
+
+function AI(state){
+
+  state.turn.currentPlayer = 1;
+
+  let selectedCard = 0;
+  state = selectCard(state, {index: selectedCard});
+
+  let selectedPiece = _.sample(state.turn.validPieces);
+  state.turn.validPieces = _.difference(state.turn.validPieces, [selectedPiece]);
+
+  state = selectPiece(state, {index: selectedPiece});
+
+  state.turn.currentPlayer = 0;
+  return state;
 }
