@@ -64,3 +64,10 @@
   display: block;
   padding-bottom: 2px;
 }
+
+.score {
+  font-size: 36px;
+  color: rgb(51,51,51);
+  text-align: center;
+
+}

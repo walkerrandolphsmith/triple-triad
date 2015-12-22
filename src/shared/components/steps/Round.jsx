@@ -13,14 +13,15 @@ export default class Round extends React.Component {
 
                 <div id="hand">
                     <Cards cards={hand} showBack={false} owner={0} clickAction={selectCard}/>
+                    <div className="score">{score.blue}</div>
                 </div>
 
                 <Board board={board} validPieces={turn.validPieces} canSelectPiece={turn.canSelectPiece} selectPiece={selectPiece}/>
 
                 <div id="opponent-hand">
                     <Cards cards={opponentHand} showBack={showFront} owner={1}  />
+                    <div className="score">{score.red}</div>
                 </div>
-            blue: {score.blue} red {score.red}
             </div>
         );
     }
