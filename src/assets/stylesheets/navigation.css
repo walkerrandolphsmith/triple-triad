@@ -45,4 +45,22 @@
 .deck .card.opponent img {
  background-color: red;
 }
+
+#hand, #opponent-hand {
+  position: absolute;
+  top: 65px;
+  display: inline;
+}
+
+#hand {
+  left: 25px;
+}
+
+#opponent-hand {
+  right: 25px;
+}
+
+#hand .deck .card, #opponent-hand .deck .card {
+  display: block;
+  padding-bottom: 2px;
 }
