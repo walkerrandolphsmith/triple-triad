@@ -16,6 +16,7 @@ const INITIAL_STATE = new Immutable.Map({
   opponentHand: selectRandomHand(deck),
   handSelected: false,
   turn: {
+    currentPlayer: 0,
     selectedCard: -1, //index of hand
     canSelectPiece: false,
     validPieces: [0,1,2,3,4,5,6,7,8]
@@ -24,14 +25,18 @@ const INITIAL_STATE = new Immutable.Map({
 });
 
 export default function reducer(state = INITIAL_STATE, action) {
-  switch(action.type){
+
+  let {type, payload} = action;
+
+  switch(type){
     case types.NEXTSTEP: return nextStep(state);
-    case types.UPDATESETTINGS: return updateSettings(state, action.payload);
-    case types.ADDCARD: return addCard(state, action.payload);
-    case types.REMOVECARD: return removeCard(state, action.payload);
-    case types.SELECTCARD: return selectCard(state, action.payload);
-    case types.SELECTPIECE: return selectPiece(state, action.payload);
+    case types.UPDATESETTINGS: return updateSettings(state, payload);
+    case types.ADDCARD: return addCard(state, payload);
+    case types.REMOVECARD: return removeCard(state, payload);
+    case types.SELECTCARD: return selectCard(state, payload);
+    case types.SELECTPIECE: return selectPiece(state, payload);
   }
+
   return state;
 }
 
@@ -106,7 +111,7 @@ function selectPiece(state, payload) {
   var cardToPlaceOnBoard = newState.hand.splice(newState.turn.selectedCard, 1);
   newState.selectedCard = -1;
 
-  newState.board[payload.index] = cardToPlaceOnBoard[0];
+  newState.board[payload.index] = _.assign(cardToPlaceOnBoard[0], {owner: newState.turn.currentPlayer});
 
   return newState;
 }
