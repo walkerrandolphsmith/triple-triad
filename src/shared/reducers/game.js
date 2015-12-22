@@ -13,7 +13,7 @@ const INITIAL_STATE = new Immutable.Map({
   },
   availableDeck: deck,
   hand: [],
-  opponentHand: selectRandomHand({availableDeck: deck, hand: []})[1],
+  opponentHand: selectRandomHand(deck),
   handSelected: false
 });
 
@@ -29,71 +29,50 @@ export default function reducer(state = INITIAL_STATE, action) {
 
 function nextStep(state) {
 
-  if(state.step === 0 && state.settings.randomHand){
-    let decks = selectRandomHand(state);
-    state.availableDeck = decks[0];
-    state.hand = decks[1];
-    state.step++;
+  var newState = _.cloneDeep(state);
+
+  if(newState.step === 0 && newState.settings.randomHand){
+    let hand = selectRandomHand(newState.availableDeck);
+    newState.availableDeck = _.difference(newState.availableDeck, hand);
+    newState.hand = hand;
+    newState.step++;
   }
 
-  return {
-    step: state.step + 1,
-    deck : state.deck,
-    settings: state.settings,
-    availableDeck: state.availableDeck,
-    hand: state.hand,
-    opponentHand: state.opponentHand,
-    handSelected: state.handSelected
-  };
+  newState.step++;
+
+  return newState;
 }
 
-function selectRandomHand(state){
-  let {availableDeck, hand} = state;
-  let sample = _.sample(availableDeck, 5);
-  availableDeck = _.difference(availableDeck, sample);
-  return [availableDeck, sample];
+function selectRandomHand(deck){
+  return _.sample(deck, 5)
 }
 
 function updateSettings(state, payload){
-  let {setting, isChecked} = payload;
 
-  state.settings[setting] = isChecked;
+  var newState = _.cloneDeep(state);
 
-  return {
-    step: state.step,
-    deck: state.deck,
-    settings: state.settings,
-    availableDeck: state.availableDeck,
-    hand: state.hand,
-    opponentHand: state.opponentHand,
-    handSelected: state.handSelected
-  }
+  newState.settings[payload.setting] = payload.isChecked;
+
+  return newState;
 }
 
 function addCard(state, payload){
-  let hand = _.union(state.hand, state.availableDeck.splice(payload.index,1));
 
-  return {
-    step: state.step,
-    deck: state.deck,
-    settings: state.settings,
-    availableDeck: state.availableDeck,
-    hand: hand,
-    opponentHand: state.opponentHand,
-    handSelected: hand.length >=5
-  }
+  var newState = _.cloneDeep(state);
+
+  let hand = _.union(newState.hand, newState.availableDeck.splice(payload.index,1));
+  newState.hand = hand;
+  newState.handSelected = hand.length >= 5;
+
+  return newState;
 }
 
 function removeCard(state, payload){
-  let availableDeck = _.union(state.availableDeck, state.hand.splice(payload.index,1));
 
-  return {
-    step: state.step,
-    deck: state.deck,
-    settings: state.settings,
-    availableDeck: availableDeck,
-    hand: state.hand,
-    opponentHand: state.opponentHand,
-    handSelected: false
-  }
+  var newState = _.cloneDeep(state);
+
+  let availableDeck = _.union(newState.availableDeck, newState.hand.splice(payload.index,1));
+  newState.availableDeck = availableDeck;
+
+  return newState;
 }
