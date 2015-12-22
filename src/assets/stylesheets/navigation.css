@@ -32,16 +32,17 @@
 }
 
 
-#deck .card {
+.deck .card {
   width: 100px;
   height: 127px;
   display: inline;
 }
 
-#deck .card img {
+.deck .card img {
   background-color: blue;
 }
 
-#deck .card.opponent img {
+.deck .card.opponent img {
  background-color: red;
+}
 }
