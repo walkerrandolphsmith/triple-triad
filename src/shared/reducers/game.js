@@ -154,7 +154,7 @@ function flipCard(card, otherCard, attackDirection, defenseDirection){
 }
 
 function AI(state){
-
+  //selected card and selected piece should be determined more inteligently
   state.turn.currentPlayer = 1;
 
   let selectedCard = 0;
