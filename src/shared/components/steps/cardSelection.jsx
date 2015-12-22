@@ -11,8 +11,8 @@ export default class CardSelection extends React.Component {
 
         return (
             <div id="step-1">
-                <Cards cards={cards} clickAction={addCardHandler} />
-                <Cards cards={hand} clickAction={this.props.removeCard} />
+                <Cards cards={cards} showBack={false} owner={0} clickAction={addCardHandler} />
+                <Cards cards={hand} showBack={false} owner={0} clickAction={this.props.removeCard} />
                 <button disabled={!handSelected} onClick={this.props.nextStep}> Next step</button>
             </div>
         );

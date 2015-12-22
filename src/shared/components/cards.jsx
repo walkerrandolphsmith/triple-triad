@@ -3,13 +3,11 @@ import Card from './card';
 
 export default class Cards extends React.Component {
     render() {
-        let cards = this.props.cards || [];
-        let owner = this.props.owner || 0;
-        let clickAction = this.props.clickAction;
+        let {cards, owner, showBack, clickAction} = this.props;
 
         let cardsMarkup = cards.map((card, index) => {
             return (
-                <Card index={index} name={card.name} owner={owner} clickAction={clickAction} />
+                <Card index={index} name={card.name} owner={owner} showBack={showBack} clickAction={clickAction} />
             )
         });
 

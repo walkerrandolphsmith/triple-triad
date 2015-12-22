@@ -12,7 +12,7 @@ export default class Deck extends React.Component {
 
     return (
         <div id="deck">
-          <CardsView cards={cards} />
+          <CardsView cards={cards} showBack={false} owner={0} />
         </div>
     );
   }
