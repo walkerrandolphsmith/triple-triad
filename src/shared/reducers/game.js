@@ -28,6 +28,7 @@ export default function reducer(state = INITIAL_STATE, action) {
     case types.ADDCARD: return addCard(state, action.payload);
     case types.REMOVECARD: return removeCard(state, action.payload);
     case types.SELECTCARD: return selectCard(state, action.payload);
+    case types.SELECTPIECE: return selectPiece(state, action.payload);
   }
   return state;
 }
@@ -88,7 +89,18 @@ function selectCard(state, payload) {
   var newState = _.cloneDeep(state);
 
   newState.turn.selectedCard = payload.index;
-  newState.turn.validPieces = [0,1,2,3,4,5,6,7,8];
+
+  if(newState.turn.validPieces.length === 0)
+    newState.turn.validPieces = [0,1,2,3,4,5,6,7,8];
+
+  return newState;
+}
+
+function selectPiece(state, payload) {
+
+  let newState = _.cloneDeep(state);
+
+  newState.turn.validPieces = _.difference(newState.turn.validPieces, [payload.index]);
 
   return newState;
 }

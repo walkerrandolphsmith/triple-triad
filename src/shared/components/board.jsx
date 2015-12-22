@@ -4,7 +4,7 @@ import _ from 'lodash';
 export default class Board extends React.Component {
 
     click = (index) => {
-        debugger;
+        this.props.selectPiece(index);
     };
 
     render() {

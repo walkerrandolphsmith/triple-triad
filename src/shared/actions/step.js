@@ -42,3 +42,12 @@ export function selectCard(index) {
         }
     }
 }
+
+export function selectPiece(index) {
+    return {
+        type: types.SELECTPIECE,
+        payload: {
+            index: index
+        }
+    }
+}
