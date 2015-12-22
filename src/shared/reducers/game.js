@@ -19,7 +19,8 @@ const INITIAL_STATE = new Immutable.Map({
     selectedCard: -1, //index of hand
     canSelectPiece: false,
     validPieces: [0,1,2,3,4,5,6,7,8]
-  }
+  },
+  board: [null, null, null, null, null, null, null, null, null]
 });
 
 export default function reducer(state = INITIAL_STATE, action) {
@@ -102,8 +103,10 @@ function selectPiece(state, payload) {
   newState.turn.validPieces = _.difference(newState.turn.validPieces, [payload.index]);
   newState.turn.canSelectPiece = false;
 
-  newState.hand.splice(newState.turn.selectedCard, 1);
+  var cardToPlaceOnBoard = newState.hand.splice(newState.turn.selectedCard, 1);
   newState.selectedCard = -1;
+
+  newState.board[payload.index] = cardToPlaceOnBoard[0];
 
   return newState;
 }

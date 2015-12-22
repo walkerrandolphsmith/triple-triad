@@ -1,4 +1,5 @@
 import React from 'react';
+import Card from './card';
 import _ from 'lodash';
 
 export default class Board extends React.Component {
@@ -9,7 +10,7 @@ export default class Board extends React.Component {
 
     render() {
 
-        let {validPieces, canSelectPiece} = this.props;
+        let {validPieces, canSelectPiece, board} = this.props;
 
         let boardStyle = {
             display: 'flex',
@@ -30,7 +31,6 @@ export default class Board extends React.Component {
             fontSize: '5em',
             flex: '1',
             display: 'flex',
-            alignItems: 'center',
             justifyContent: 'center',
             borderTopWidth: '1px',
             borderLeftWidth: '1px',
@@ -42,15 +42,17 @@ export default class Board extends React.Component {
 
         let pieces = [];
         for(var i = 0; i < 9; i++){
+            let cardAtPiece = board[i];
+            let card = cardAtPiece ? (<Card index={i} name={cardAtPiece.name} />) : (<div></div>);
 
             if(canSelectPiece && _.contains(validPieces, i)){
                 let validPieceStyle = _.assign(_.clone(pieceStyle), { cursor: 'pointer' });
                 pieces.push(
-                    <div key={i} id={i} onClick={this.click.bind(this, i)} style={validPieceStyle}></div>
+                    <div key={i} id={i} onClick={this.click.bind(this, i)} style={validPieceStyle}>{card}</div>
                 )
             }else{
                 pieces.push(
-                    <div key={i} id={i} style={pieceStyle}></div>
+                    <div key={i} id={i} style={pieceStyle}>{card}</div>
                 )
             }
 
