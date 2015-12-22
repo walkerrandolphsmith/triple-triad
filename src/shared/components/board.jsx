@@ -43,18 +43,17 @@ export default class Board extends React.Component {
         let pieces = [];
         for(var i = 0; i < 9; i++){
 
-            let clickAction = null;
-
             if(_.contains(validPieces, i)){
-                clickAction = this.click;
-                pieceStyle["cursor"] = 'pointer';
+                let validPieceStyle = _.assign(_.clone(pieceStyle), { cursor: 'pointer' });
+                pieces.push(
+                    <div key={i} id={i} onClick={this.click.bind(this, i)} style={validPieceStyle}></div>
+                )
             }else{
-                clickAction = function(){};
+                pieces.push(
+                    <div key={i} id={i} style={pieceStyle}></div>
+                )
             }
 
-            pieces.push(
-                <div key={i} id={i} onClick={clickAction.bind(this, i)} style={pieceStyle}></div>
-            )
         }
 
         let rows = _.chunk(pieces, 3).map((group, i)=> {
