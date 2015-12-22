@@ -21,7 +21,12 @@ const INITIAL_STATE = new Immutable.Map({
     canSelectPiece: false,
     validPieces: [0,1,2,3,4,5,6,7,8]
   },
-  board: [null, null, null, null, null, null, null, null, null]
+  board: [null, null, null, null, null, null, null, null, null],
+  score: {
+    blue: 5,
+    red: 5,
+    winner: false
+  }
 });
 
 export default function reducer(state = INITIAL_STATE, action) {
@@ -119,6 +124,8 @@ function selectPiece(state, payload) {
   if(newState.turn.currentPlayer === 0 && newState.turn.validPieces.length > 0)
     newState = AI(newState);
 
+  newState = calculateScore(newState);
+
   return newState;
 }
 
@@ -166,5 +173,25 @@ function AI(state){
   state = selectPiece(state, {index: selectedPiece});
 
   state.turn.currentPlayer = 0;
+  return state;
+}
+
+function calculateScore(state){
+
+
+  let blueScore = 0;
+  let redScore = 0;
+
+  for(var i = 0; i < state.board.length; i ++){
+    if(state.board[i] === null) continue;
+    state.board[i].owner === 0 ? blueScore++ : redScore++;
+  }
+
+  blueScore += state.hand.length;
+  redScore += state.opponentHand.length;
+
+  state.score.blue = blueScore;
+  state.score.red = redScore;
+
   return state;
 }

@@ -5,11 +5,12 @@ import Cards from './../cards';
 export default class Round extends React.Component {
     render() {
         let {selectCard, selectPiece} = this.props;
-        let {hand, opponentHand, turn, board} = this.props.game;
+        let {hand, opponentHand, turn, board, score} = this.props.game;
         let showFront = this.props.game.settings.visibleHand;
 
         return (
             <div id="step-2">
+
                 <div id="hand">
                     <Cards cards={hand} showBack={false} owner={0} clickAction={selectCard}/>
                 </div>
@@ -19,6 +20,7 @@ export default class Round extends React.Component {
                 <div id="opponent-hand">
                     <Cards cards={opponentHand} showBack={showFront} owner={1}  />
                 </div>
+            blue: {score.blue} red {score.red}
             </div>
         );
     }
