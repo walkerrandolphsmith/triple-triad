@@ -73,6 +73,7 @@ function removeCard(state, payload){
 
   let availableDeck = _.union(newState.availableDeck, newState.hand.splice(payload.index,1));
   newState.availableDeck = availableDeck;
+  newState.handSelected = newState.hand.length >= 5;
 
   return newState;
 }
