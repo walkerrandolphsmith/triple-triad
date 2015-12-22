@@ -9,7 +9,7 @@ export default class Board extends React.Component {
 
     render() {
 
-        let {validPieces} = this.props;
+        let {validPieces, canSelectPiece} = this.props;
 
         let boardStyle = {
             display: 'flex',
@@ -43,7 +43,7 @@ export default class Board extends React.Component {
         let pieces = [];
         for(var i = 0; i < 9; i++){
 
-            if(_.contains(validPieces, i)){
+            if(canSelectPiece && _.contains(validPieces, i)){
                 let validPieceStyle = _.assign(_.clone(pieceStyle), { cursor: 'pointer' });
                 pieces.push(
                     <div key={i} id={i} onClick={this.click.bind(this, i)} style={validPieceStyle}></div>

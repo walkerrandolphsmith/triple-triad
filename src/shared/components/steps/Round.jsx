@@ -14,7 +14,7 @@ export default class Round extends React.Component {
                     <Cards cards={hand} showBack={false} owner={0} clickAction={selectCard}/>
                 </div>
 
-                <Board validPieces={turn.validPieces} selectPiece={selectPiece}/>
+                <Board validPieces={turn.validPieces} canSelectPiece={turn.canSelectPiece} selectPiece={selectPiece}/>
 
                 <div id="opponent-hand">
                     <Cards cards={opponentHand} showBack={showFront} owner={1}  />
