@@ -4,7 +4,7 @@ import Cards from './../cards';
 
 export default class Round extends React.Component {
     render() {
-        let {hand, opponentHand} = this.props.game;
+        let {hand, opponentHand, turn} = this.props.game;
         let showFront = this.props.game.settings.visibleHand;
 
         return (
@@ -13,7 +13,7 @@ export default class Round extends React.Component {
                     <Cards cards={hand} showBack={false} owner={0} clickAction={this.props.selectCard}/>
                 </div>
 
-                <Board />
+                <Board validPieces={turn.validPieces} />
 
                 <div id="opponent-hand">
                     <Cards cards={opponentHand} showBack={showFront} owner={1}  />
