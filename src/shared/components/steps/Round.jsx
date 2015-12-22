@@ -10,7 +10,7 @@ export default class Round extends React.Component {
         return (
             <div id="step-2">
                 <div id="hand">
-                    <Cards cards={hand} showBack={false} owner={0} />
+                    <Cards cards={hand} showBack={false} owner={0} clickAction={this.props.selectCard}/>
                 </div>
 
                 <Board />

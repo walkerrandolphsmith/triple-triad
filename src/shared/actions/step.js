@@ -33,3 +33,12 @@ export function updateSettings(setting, isChecked) {
         }
     }
 }
+
+export function selectCard(index) {
+    return {
+        type: types.SELECTCARD,
+        payload: {
+            index: index
+        }
+    }
+}
