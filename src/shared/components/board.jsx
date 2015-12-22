@@ -53,7 +53,7 @@ export default class Board extends React.Component {
             }
 
             pieces.push(
-                <div key={i} id={i} onClick={clickAction.bind(i)} style={pieceStyle}></div>
+                <div key={i} id={i} onClick={clickAction.bind(this, i)} style={pieceStyle}></div>
             )
         }
 
