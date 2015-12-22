@@ -116,7 +116,7 @@ function selectPiece(state, payload) {
 
   newState.board = applyRules(newState.board, payload.index);
 
-  if(newState.turn.currentPlayer === 0)
+  if(newState.turn.currentPlayer === 0 && newState.turn.validPieces.length > 0)
     newState = AI(newState);
 
   return newState;
