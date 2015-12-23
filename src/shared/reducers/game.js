@@ -132,7 +132,7 @@ function selectPiece(state, payload) {
 function applyRules(board, i) {
 
   const row = i / 3;
-  const column = 1 % 3;
+  const column = i % 3;
 
   let card = board[i];
 
