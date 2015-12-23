@@ -136,23 +136,39 @@ function applyRules(board, i) {
 
   let card = board[i];
 
-  if(row > 0)
-    basicRule(card, board[i-3], 'top', 'bottom');
-  if(row < 2)
-    basicRule(card, board[i+3], 'bottom', 'top');
-  if(column > 0)
-    basicRule(card, board[i-1], 'left', 'right');
-  if(column < 2)
-    basicRule(card, board[i+1], 'right', 'left');
+  let cardAbove = board[i-3];
+  let cardBelow = board[i+3];
+  let cardAtLeft = board[i-1];
+  let cardAtRight = board[i+1];
 
-  if(row > 0)
-    basicRule(board[i-3], card, 'bottom', 'top');
-  if(row < 2)
-    basicRule(board[i+3], card, 'top', 'bottom');
-  if(column > 0)
-    basicRule(board[i-1], card, 'right', 'left');
-  if(column < 2)
-    basicRule(board[i+1], card, 'left', 'right');
+  let isNotFirstRow = row > 0;
+  let isNotLastRow = row < 2;
+  let isNotFirstColumn = column > 0;
+  let isNotLastColumn = column < 2;
+
+  if(isNotFirstRow && basicRule(card, cardAbove, 'top', 'bottom'))
+    cardAbove.owner = card.owner;
+
+  if(isNotLastRow && basicRule(card, cardBelow, 'bottom', 'top'))
+    cardBelow.owner = card.owner;
+
+  if(isNotFirstColumn && basicRule(card, cardAtLeft, 'left', 'right'))
+    cardAtLeft.owner = card.owner;
+
+  if(isNotLastColumn && basicRule(card, cardAtRight, 'right', 'left'))
+    cardAtRight.owner = card.owner;
+
+  if(isNotFirstRow && basicRule(cardAbove, card, 'bottom', 'top'))
+    card.owner = cardAbove.owner;
+
+  if(isNotLastRow && basicRule(cardBelow, card, 'top', 'bottom'))
+    card.owner = cardBelow.owner
+
+  if(isNotFirstColumn && basicRule(cardAtLeft, card, 'right', 'left'))
+    card.owner = cardAtLeft.owner;
+
+  if(isNotLastColumn && basicRule(cardAtRight, card, 'left', 'right'))
+    card.owner = cardAtRight.owner;
 
   return board;
 }
@@ -161,8 +177,9 @@ function basicRule(card, otherCard, attackDirection, defenseDirection){
   if(card && otherCard
       && card.owner !== otherCard.owner
       && card.rank[attackDirection] > otherCard.rank[defenseDirection]) {
-      otherCard.owner = card.owner;
+      return true;//otherCard.owner = card.owner;
   }
+  return false;
 }
 
 function AI(state){
