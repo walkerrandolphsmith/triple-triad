@@ -137,26 +137,31 @@ function applyRules(board, i) {
   let card = board[i];
 
   if(row > 0)
-    flipCard(card, board[i-3], 'top', 'bottom');
+    basicRule(card, board[i-3], 'top', 'bottom');
   if(row < 2)
-    flipCard(card, board[i+3], 'bottom', 'top');
+    basicRule(card, board[i+3], 'bottom', 'top');
   if(column > 0)
-    flipCard(card, board[i-1], 'left', 'right');
+    basicRule(card, board[i-1], 'left', 'right');
   if(column < 2)
-    flipCard(card, board[i+1], 'right', 'left');
+    basicRule(card, board[i+1], 'right', 'left');
+
+  if(row > 0)
+    basicRule(board[i-3], card, 'bottom', 'top');
+  if(row < 2)
+    basicRule(board[i+3], card, 'top', 'bottom');
+  if(column > 0)
+    basicRule(board[i-1], card, 'right', 'left');
+  if(column < 2)
+    basicRule(board[i+1], card, 'left', 'right');
 
   return board;
 }
 
-function flipCard(card, otherCard, attackDirection, defenseDirection){
-  if(otherCard && card.owner !== otherCard.owner){
-    if(card.rank[attackDirection] > otherCard.rank[defenseDirection]){
+function basicRule(card, otherCard, attackDirection, defenseDirection){
+  if(card && otherCard
+      && card.owner !== otherCard.owner
+      && card.rank[attackDirection] > otherCard.rank[defenseDirection]) {
       otherCard.owner = card.owner;
-    }else if(card.rank[attackDirection] < otherCard.rank[defenseDirection]){
-      card.owner = otherCard.owner;
-    }else{
-      //no-op
-    }
   }
 }
 
@@ -177,8 +182,6 @@ function AI(state){
 }
 
 function calculateScore(state){
-
-
   let blueScore = 0;
   let redScore = 0;
 
