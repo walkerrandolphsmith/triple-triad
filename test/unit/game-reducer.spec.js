@@ -129,4 +129,28 @@ describe("Game reducer", () => {
         })).toEqual(state)
     });
 
+    it('should handle SELECT_PIECE', () => {
+        let index = 0;
+
+        let cardToPlace = deck[0];
+        cardToPlace.owner = 0;
+
+        initialSate.hand = [cardToPlace];
+
+        let state = _.cloneDeep(initialSate);
+
+        state.turn.validPieces = [1,2,3,4,5,6,7,8];
+        state.turn.canSelectPiece = false;
+        state.hand = [];
+        state.selectedCard = -1;
+        state.board[index]  = cardToPlace;
+
+        expect(reducer(initialSate, {
+            type: types.SELECT_PIECE,
+            payload: {
+                index: index
+            }
+        })).toEqual(state)
+    });
+
 });
