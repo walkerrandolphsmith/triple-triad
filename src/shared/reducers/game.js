@@ -50,9 +50,7 @@ function nextStep(state) {
   var newState = _.cloneDeep(state);
 
   if(newState.step === 0 && newState.settings.randomHand){
-    let hand = selectRandomHand(newState.availableDeck);
-    newState.availableDeck = _.difference(newState.availableDeck, hand);
-    newState.hand = hand;
+    newState.hand = selectRandomHand(newState.availableDeck);
     newState.step++;
   }
 
