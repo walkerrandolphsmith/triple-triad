@@ -40,6 +40,7 @@ describe('actions', () => {
         };
         expect(actions.updateSettings("multiplayer", true)).toEqual(expectedAction)
     });
+
     it('should create an action to select a card', () => {
         const expectedAction = {
             type: types.SELECTCARD,
@@ -48,5 +49,15 @@ describe('actions', () => {
             }
         };
         expect(actions.selectCard(0)).toEqual(expectedAction)
+    });
+
+    it('should create an action to select a piece on the board', () => {
+        const expectedAction = {
+            type: types.SELECTPIECE,
+            payload: {
+                index: 0
+            }
+        };
+        expect(actions.selectPiece(0)).toEqual(expectedAction)
     });
 });
