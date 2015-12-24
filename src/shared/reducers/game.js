@@ -13,7 +13,7 @@ const INITIAL_STATE = new Immutable.Map({
   },
   availableDeck: deck,
   hand: [],
-  opponentHand: selectRandomHand(deck),
+  opponentHand: [],
   handSelected: false,
   turn: {
     currentPlayer: 0,
@@ -52,6 +52,10 @@ function nextStep(state) {
   if(newState.step === 0 && newState.settings.randomHand){
     newState.hand = selectRandomHand(newState.availableDeck);
     newState.step++;
+  }
+
+  if(newState.step === 1){
+    newState.opponentHand = selectRandomHand(newState.availableDeck);
   }
 
   newState.step++;
