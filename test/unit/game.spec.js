@@ -5,8 +5,10 @@ import * as types from './../../src/shared/constants/action-types';
 import deck from './../../src/shared/constants/deck';
 
 describe("Game reducer", () => {
-    it('should return the intial state', () => {
-        expect(reducer(undefined, {}).toJS()).toEqual({
+
+    let initialSate;
+    beforeEach(() => {
+        initialSate = {
             step: 0,
             deck: deck,
             settings: {
@@ -30,7 +32,56 @@ describe("Game reducer", () => {
                 red: 5,
                 winner: false
             }
-        })
-    })
+        }
+    });
+
+    it('should return the initial state', () => {
+        expect(reducer(undefined, {}).toJS()).toEqual(initialSate)
+    });
+
+    it('should handle UPDATE_SETTINGS random hand', () => {
+
+        let state = _.cloneDeep(initialSate);
+
+        state.settings.randomHand = true;
+
+        expect(reducer(initialSate, {
+            type: types.UPDATESETTINGS,
+            payload: {
+                setting: "randomHand",
+                isChecked: true
+            }
+        })).toEqual(state)
+    });
+
+    it('should handle UPDATE_SETTINGS multiplayer', () => {
+
+        let state = _.cloneDeep(initialSate);
+
+        state.settings.multiplayer = true;
+
+        expect(reducer(initialSate, {
+            type: types.UPDATESETTINGS,
+            payload: {
+                setting: "multiplayer",
+                isChecked: true
+            }
+        })).toEqual(state)
+    });
+
+    it('should handle UPDATE_SETTINGS opponent hand is visible', () => {
+
+        let state = _.cloneDeep(initialSate);
+
+        state.settings.visibleHand = true;
+
+        expect(reducer(initialSate, {
+            type: types.UPDATESETTINGS,
+            payload: {
+                setting: "visibleHand",
+                isChecked: true
+            }
+        })).toEqual(state)
+    });
 
 });
