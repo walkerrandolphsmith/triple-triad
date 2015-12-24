@@ -69,3 +69,12 @@ export function aiTurn(index) {
         }
     }
 }
+
+export function calculateScore(index) {
+    return {
+        type: types.CALCULATE_SCORE,
+        payload: {
+            index: index
+        }
+    }
+}

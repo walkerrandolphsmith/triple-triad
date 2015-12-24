@@ -8,6 +8,7 @@ export default class Board extends React.Component {
         this.props.selectPiece(index);
         this.props.applyRules(index);
         this.props.aiTurn();
+        this.props.calculateScore();
     };
 
     render() {

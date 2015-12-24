@@ -42,6 +42,7 @@ export default function reducer(state = INITIAL_STATE, action) {
     case types.SELECT_PIECE: return selectPiece(state, payload);
     case types.APPLY_RULES: return applyRules(state, payload);
     case types.AI_TURN: return aiTurn(state, payload);
+    case types.CALCULATE_SCORE: return calculateScore(state);
   }
 
   return state;
@@ -212,19 +213,22 @@ function aiTurn(state, payload) {
 }
 
 function calculateScore(state){
+
+  let newState = _.cloneDeep(state);
+
   let blueScore = 0;
   let redScore = 0;
 
-  for(var i = 0; i < state.board.length; i ++){
-    if(state.board[i] === null) continue;
-    state.board[i].owner === 0 ? blueScore++ : redScore++;
+  for(var i = 0; i < newState.board.length; i ++){
+    if(newState.board[i] === null) continue;
+    newState.board[i].owner === 0 ? blueScore++ : redScore++;
   }
 
-  blueScore += state.hand.length;
-  redScore += state.opponentHand.length;
+  blueScore += newState.hand.length;
+  redScore += newState.opponentHand.length;
 
-  state.score.blue = blueScore;
-  state.score.red = redScore;
+  newState.score.blue = blueScore;
+  newState.score.red = redScore;
 
-  return state;
+  return newState;
 }

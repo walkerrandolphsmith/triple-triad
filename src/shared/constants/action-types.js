@@ -6,3 +6,4 @@ export const SELECT_CARD = 'SelectCard';
 export const SELECT_PIECE = 'SelectPiece';
 export const APPLY_RULES = 'ApplyRules';
 export const AI_TURN = 'AITurn';
+export const CALCULATE_SCORE = 'CalculateScore';

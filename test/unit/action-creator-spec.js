@@ -80,4 +80,14 @@ describe('actions', () => {
         };
         expect(actions.aiTurn(0)).toEqual(expectedAction)
     });
+
+    it('should create an action to calculate the score', () => {
+        const expectedAction = {
+            type: types.CALCULATE_SCORE,
+            payload: {
+                index: 0
+            }
+        };
+        expect(actions.calculateScore(0)).toEqual(expectedAction)
+    });
 });
