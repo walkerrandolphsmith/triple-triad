@@ -29,4 +29,15 @@ describe('actions', () => {
         };
         expect(actions.removeCard(0)).toEqual(expectedAction)
     });
+
+    it('should create an action to update a game setting', () => {
+        const expectedAction = {
+            type: types.UPDATESETTINGS,
+            payload: {
+                setting: "multiplayer",
+                isChecked: true
+            }
+        };
+        expect(actions.updateSettings("multiplayer", true)).toEqual(expectedAction)
+    });
 });
