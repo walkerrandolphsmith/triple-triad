@@ -60,3 +60,12 @@ export function applyRules(index) {
         }
     }
 }
+
+export function aiTurn(index) {
+    return {
+        type: types.AI_Turn,
+        payload: {
+            index: index
+        }
+    }
+}

@@ -7,6 +7,7 @@ export default class Board extends React.Component {
     click = (index) => {
         this.props.selectPiece(index);
         this.props.applyRules(index);
+        this.props.aiTurn();
     };
 
     render() {

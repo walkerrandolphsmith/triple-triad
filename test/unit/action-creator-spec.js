@@ -70,4 +70,14 @@ describe('actions', () => {
         };
         expect(actions.applyRules(0)).toEqual(expectedAction)
     });
+
+    it('should create an action to apply the AI opponents turn', () => {
+        const expectedAction = {
+            type: types.AI_Turn,
+            payload: {
+                index: 0
+            }
+        };
+        expect(actions.aiTurn(0)).toEqual(expectedAction)
+    });
 });

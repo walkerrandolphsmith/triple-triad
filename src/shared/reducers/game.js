@@ -41,6 +41,7 @@ export default function reducer(state = INITIAL_STATE, action) {
     case types.SELECT_CARD: return selectCard(state, payload);
     case types.SELECT_PIECE: return selectPiece(state, payload);
     case types.APPLY_RULES: return applyRules(state, payload);
+    case types.AI_TURN: return aiTurn(state, payload);
   }
 
   return state;
@@ -131,11 +132,6 @@ function applyRules(state, payload){
 
   newState.board = applyBasicRule(newState.board, payload.index);
 
-  if(newState.turn.currentPlayer === 0 && newState.turn.validPieces.length > 0)
-    newState = AI(newState);
-
-  newState = calculateScore(newState);
-
   return newState;
 }
 
@@ -192,20 +188,27 @@ function basicRule(card, otherCard, attackDirection, defenseDirection){
   return false;
 }
 
-function AI(state){
-  //selected card and selected piece should be determined more inteligently
-  state.turn.currentPlayer = 1;
+function aiTurn(state, payload) {
 
-  let selectedCard = 0;
-  state = selectCard(state, {index: selectedCard});
+  let newState = _.cloneDeep(state);
 
-  let selectedPiece = _.sample(state.turn.validPieces);
-  state.turn.validPieces = _.difference(state.turn.validPieces, [selectedPiece]);
+  if(newState.turn.currentPlayer === 0 && newState.turn.validPieces.length > 0){
+    newState.turn.currentPlayer = 1;
 
-  state = selectPiece(state, {index: selectedPiece});
+    let selectedCard = 0;
+    newState = selectCard(newState, {index: selectedCard});
 
-  state.turn.currentPlayer = 0;
-  return state;
+    let selectedPiece = _.sample(newState.turn.validPieces);
+    newState.turn.validPieces = _.difference(newState.turn.validPieces, [selectedPiece]);
+
+    newState = selectPiece(newState, {index: selectedPiece});
+
+    newState.turn.currentPlayer = 0;
+  }
+
+  newState = calculateScore(newState);
+
+  return newState;
 }
 
 function calculateScore(state){
