@@ -113,4 +113,20 @@ describe("Game reducer", () => {
         expect(state.hand.length - 1).toEqual(newState.hand.length);
     });
 
+    it('should handle SELECT_CARD', () => {
+        let index = 0;
+
+        let state = _.cloneDeep(initialSate);
+
+        state.turn.selectedCard = index;
+        state.turn.canSelectPiece = true;
+
+        expect(reducer(initialSate, {
+            type: types.SELECTCARD,
+            payload: {
+                index: index
+            }
+        })).toEqual(state)
+    });
+
 });
