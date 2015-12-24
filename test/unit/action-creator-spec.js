@@ -73,7 +73,7 @@ describe('actions', () => {
 
     it('should create an action to apply the AI opponents turn', () => {
         const expectedAction = {
-            type: types.AI_Turn,
+            type: types.AI_TURN,
             payload: {
                 index: 0
             }
