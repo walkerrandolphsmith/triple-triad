@@ -40,6 +40,7 @@ export default function reducer(state = INITIAL_STATE, action) {
     case types.REMOVE_CARD: return removeCard(state, payload);
     case types.SELECT_CARD: return selectCard(state, payload);
     case types.SELECT_PIECE: return selectPiece(state, payload);
+    case types.APPLY_RULES: return applyRules(state, payload);
   }
 
   return state;
@@ -121,7 +122,14 @@ function selectPiece(state, payload) {
 
   newState.board[payload.index] = _.assign(cardToPlaceOnBoard[0], {owner: newState.turn.currentPlayer});
 
-  newState.board = applyRules(newState.board, payload.index);
+  return newState;
+}
+
+function applyRules(state, payload){
+
+  let newState = _.cloneDeep(state);
+
+  newState.board = applyBasicRule(newState.board, payload.index);
 
   if(newState.turn.currentPlayer === 0 && newState.turn.validPieces.length > 0)
     newState = AI(newState);
@@ -131,7 +139,7 @@ function selectPiece(state, payload) {
   return newState;
 }
 
-function applyRules(board, i) {
+function applyBasicRule(board, i) {
 
   const row = i / 3;
   const column = i % 3;

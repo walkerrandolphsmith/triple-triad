@@ -60,4 +60,14 @@ describe('actions', () => {
         };
         expect(actions.selectPiece(0)).toEqual(expectedAction)
     });
+
+    it('should create an action to apply the rules to flip cards', () => {
+        const expectedAction = {
+            type: types.APPLY_RULES,
+            payload: {
+                index: 0
+            }
+        };
+        expect(actions.applyRules(0)).toEqual(expectedAction)
+    });
 });

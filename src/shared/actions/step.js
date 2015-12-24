@@ -51,3 +51,12 @@ export function selectPiece(index) {
         }
     }
 }
+
+export function applyRules(index) {
+    return {
+        type: types.APPLY_RULES,
+        payload: {
+            index: index
+        }
+    }
+}
