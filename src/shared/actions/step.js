@@ -2,13 +2,13 @@ import * as types from './../constants/action-types';
 
 export function nextStep() {
     return {
-        type: types.NEXTSTEP
+        type: types.NEXT_STEP
     }
 }
 
 export function addCard(index) {
     return {
-        type: types.ADDCARD,
+        type: types.ADD_CARD,
         payload: {
             index: index
         }
@@ -17,7 +17,7 @@ export function addCard(index) {
 
 export function removeCard(index) {
     return {
-        type: types.REMOVECARD,
+        type: types.REMOVE_CARD,
         payload: {
             index: index
         }
@@ -26,7 +26,7 @@ export function removeCard(index) {
 
 export function updateSettings(setting, isChecked) {
     return {
-        type: types.UPDATESETTINGS,
+        type: types.UPDATE_SETTINGS,
         payload: {
             setting: setting,
             isChecked: isChecked
@@ -36,7 +36,7 @@ export function updateSettings(setting, isChecked) {
 
 export function selectCard(index) {
     return {
-        type: types.SELECTCARD,
+        type: types.SELECT_CARD,
         payload: {
             index: index
         }
@@ -45,7 +45,7 @@ export function selectCard(index) {
 
 export function selectPiece(index) {
     return {
-        type: types.SELECTPIECE,
+        type: types.SELECT_PIECE,
         payload: {
             index: index
         }

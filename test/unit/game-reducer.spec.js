@@ -46,7 +46,7 @@ describe("Game reducer", () => {
         state.settings.randomHand = true;
 
         expect(reducer(initialSate, {
-            type: types.UPDATESETTINGS,
+            type: types.UPDATE_SETTINGS,
             payload: {
                 setting: "randomHand",
                 isChecked: true
@@ -61,7 +61,7 @@ describe("Game reducer", () => {
         state.settings.multiplayer = true;
 
         expect(reducer(initialSate, {
-            type: types.UPDATESETTINGS,
+            type: types.UPDATE_SETTINGS,
             payload: {
                 setting: "multiplayer",
                 isChecked: true
@@ -76,7 +76,7 @@ describe("Game reducer", () => {
         state.settings.visibleHand = true;
 
         expect(reducer(initialSate, {
-            type: types.UPDATESETTINGS,
+            type: types.UPDATE_SETTINGS,
             payload: {
                 setting: "visibleHand",
                 isChecked: true
@@ -87,7 +87,7 @@ describe("Game reducer", () => {
     it('should handle ADD_CARD by removing a card from the available deck', () => {
 
         let newState = reducer(initialSate, {
-            type: types.ADDCARD,
+            type: types.ADD_CARD,
             payload: {
                 index: 0
             }
@@ -103,7 +103,7 @@ describe("Game reducer", () => {
         state.hand = [deck[0]];
 
         let newState = reducer(state, {
-            type: types.REMOVECARD,
+            type: types.REMOVE_CARD,
             payload: {
                 index: 0
             }
@@ -122,7 +122,7 @@ describe("Game reducer", () => {
         state.turn.canSelectPiece = true;
 
         expect(reducer(initialSate, {
-            type: types.SELECTCARD,
+            type: types.SELECT_CARD,
             payload: {
                 index: index
             }

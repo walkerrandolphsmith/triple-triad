@@ -34,12 +34,12 @@ export default function reducer(state = INITIAL_STATE, action) {
   let {type, payload} = action;
 
   switch(type){
-    case types.NEXTSTEP: return nextStep(state);
-    case types.UPDATESETTINGS: return updateSettings(state, payload);
-    case types.ADDCARD: return addCard(state, payload);
-    case types.REMOVECARD: return removeCard(state, payload);
-    case types.SELECTCARD: return selectCard(state, payload);
-    case types.SELECTPIECE: return selectPiece(state, payload);
+    case types.NEXT_STEP: return nextStep(state);
+    case types.UPDATE_SETTINGS: return updateSettings(state, payload);
+    case types.ADD_CARD: return addCard(state, payload);
+    case types.REMOVE_CARD: return removeCard(state, payload);
+    case types.SELECT_CARD: return selectCard(state, payload);
+    case types.SELECT_PIECE: return selectPiece(state, payload);
   }
 
   return state;
