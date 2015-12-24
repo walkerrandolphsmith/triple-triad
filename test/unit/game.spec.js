@@ -84,4 +84,31 @@ describe("Game reducer", () => {
         })).toEqual(state)
     });
 
+    it('should handle ADD_CARD by removing a card from the available deck', () => {
+
+        let newState = reducer(initialSate, {
+            type: types.ADDCARD,
+            payload: {
+                index: 0
+            }
+        });
+
+        expect(initialSate.availableDeck.length - 1).toEqual(newState.availableDeck.length);
+    });
+
+    it('should handle REMOVE_CARD by adding a card to the available deck', () => {
+
+        let state = _.cloneDeep(initialSate);
+        state.hand = [deck[0]];
+
+        let newState = reducer(state, {
+            type: types.REMOVECARD,
+            payload: {
+                index: 0
+            }
+        });
+
+        expect(initialSate.availableDeck.length + 1).toEqual(newState.availableDeck.length);
+    });
+
 });
