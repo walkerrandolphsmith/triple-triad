@@ -7,7 +7,18 @@
     "start": "./node_modules/.bin/babel-node ./runner.js",
     "dev": "npm run start & webpack-dev-server --progress --color",
     "build": "NODE_ENV=production webpack --progress --color -p --config webpack.config.js",
-    "deploy": "git push heroku master"
+    "deploy": "git push heroku master",
+    "test": "jest"
+  },
+  "jest": {
+    "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
+    "testFileExtensions": [
+      "js"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "json"
+    ]
   },
   "repository": {
     "type": "git",
@@ -31,10 +42,12 @@
     "redux": "^3.0.4"
   },
   "devDependencies": {
-    "babel": "^5.8.23",
+    "babel": "5.8.23",
     "babel-core": "5.2.9",
+    "babel-jest": "5.0.0",
     "babel-loader": "5.0.0",
     "babel-runtime": "5.2.9",
+    "jest-cli": "0.8.2",
     "less": "^2.5.3",
     "less-loader": "^2.2.2",
     "raw-loader": "^0.5.1",
