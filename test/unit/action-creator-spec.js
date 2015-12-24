@@ -40,4 +40,13 @@ describe('actions', () => {
         };
         expect(actions.updateSettings("multiplayer", true)).toEqual(expectedAction)
     });
+    it('should create an action to select a card', () => {
+        const expectedAction = {
+            type: types.SELECTCARD,
+            payload: {
+                index: 0
+            }
+        };
+        expect(actions.selectCard(0)).toEqual(expectedAction)
+    });
 });
