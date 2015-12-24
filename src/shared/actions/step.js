@@ -63,7 +63,7 @@ export function applyRules(index) {
 
 export function aiTurn(index) {
     return {
-        type: types.AI_Turn,
+        type: types.AI_TURN,
         payload: {
             index: index
         }
