@@ -94,6 +94,7 @@ describe("Game reducer", () => {
         });
 
         expect(initialSate.availableDeck.length - 1).toEqual(newState.availableDeck.length);
+        expect(initialSate.hand.length + 1).toEqual(newState.hand.length);
     });
 
     it('should handle REMOVE_CARD by adding a card to the available deck', () => {
@@ -108,7 +109,8 @@ describe("Game reducer", () => {
             }
         });
 
-        expect(initialSate.availableDeck.length + 1).toEqual(newState.availableDeck.length);
+        expect(state.availableDeck.length + 1).toEqual(newState.availableDeck.length);
+        expect(state.hand.length - 1).toEqual(newState.hand.length);
     });
 
 });
