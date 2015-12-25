@@ -486,11 +486,58 @@ describe("Selecting a piece", () => {
     });
 });
 
+describe("calculating the score", () => {
+
+    let initialSate;
+    let opponentCard
+    beforeEach(() => {
+        opponentCard = deck[7];
+        opponentCard.owner = 1;
+
+        initialSate = {
+            step: 2,
+            deck: deck,
+            settings: {
+                randomHand: false,
+                multiplayer: false,
+                visibleHand: false
+            },
+            availableDeck: deck,
+            hand: [deck[0]],
+            opponentHand: [opponentCard],
+            handSelected: false,
+            turn: {
+                currentPlayer: 0,
+                selectedCard: -1, //index of hand
+                canSelectPiece: false,
+                validPieces: []
+            },
+            board: [deck[1], deck[2], deck[3], deck[4], deck[5], deck[6], opponentCard, null, null],
+            score: {
+                blue: 7,
+                red: 2,
+                winner: false
+            }
+        }
+    });
+
+    it('should handle CALCULATE_SCORE by counting the cards owner by each player', () => {
+
+        let state = _.cloneDeep(initialSate);
+
+        expect(reducer(initialSate, {
+            type: types.CALCULATE_SCORE
+        })).toEqual(state)
+    });
+});
+
 describe("A completed game", () => {
 
     let initialSate;
+    let opponentCard;
     beforeEach(() => {
-
+        opponentCard = deck[0];
+        opponentCard.owner = 1;
         initialSate = {
             step: 2,
             deck: deck,
