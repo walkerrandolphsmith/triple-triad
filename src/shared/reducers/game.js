@@ -198,15 +198,14 @@ function basicRule(card, otherCard, attackDirection, defenseDirection){
 function startAITurn(state){
   let newState = _.cloneDeep(state);
 
-  if(newState.turn.validPieces.length > 0)
-    newState.turn.currentPlayer = 1;
+  newState.turn.currentPlayer = 1;
 
   return newState;
 }
 
 function aiTurn(state, payload) {
 
-  if(state.turn.currentPlayer !== 1) {
+  if(state.turn.validPieces.length <= 0) {
     return state;
   }
 
