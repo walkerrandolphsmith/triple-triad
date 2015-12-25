@@ -572,6 +572,106 @@ describe("Selecting a piece", () => {
     });
 });
 
+describe('opponent turn in progress game', () => {
+
+    let initialSate;
+    let expectedState;
+    let hand;
+    let opponentHand;
+
+    beforeEach(() => {
+        hand = _.sample(deck, 5);
+        opponentHand = _.sample(deck, 5);
+        opponentHand.forEach(card => { card.owner = 1; });
+
+        initialSate = {
+            step: 0,
+            deck: deck,
+            settings: {
+                randomHand: false,
+                multiplayer: false,
+                visibleHand: false
+            },
+            availableDeck: deck,
+            hand: hand,
+            opponentHand: opponentHand,
+            handSelected: false,
+            turn: {
+                currentPlayer: 0,
+                selectedCard: -1, //index of hand
+                canSelectPiece: false,
+                validPieces: [0,1,2,3,4,5,6,7,8]
+            },
+            board: [null, null, null, null, null, null, null, null, null],
+            score: {
+                blue: 5,
+                red: 5,
+                winner: false
+            }
+        };
+    });
+
+    it('hand START_AI_TURN by setting the currentPlayer to the opponent', () => {
+        let newState = reducer(initialSate, {
+            type: types.START_AI_TURN
+        });
+        expect(newState.turn.currentPlayer).toEqual(1);
+    });
+
+    it('should hand END_AI_TURN by setting the currentPlayer to the player', () => {
+        let newState = reducer(initialSate, {
+            type: types.END_AI_TURN
+        });
+        expect(newState.turn.currentPlayer).toEqual(0);
+    });
+});
+
+describe('opponent turn in ended game', () => {
+
+    let initialSate;
+    let hand;
+    let opponentHand;
+
+    beforeEach(() => {
+        hand = _.sample(deck, 5);
+        opponentHand = _.sample(deck, 5);
+        opponentHand.forEach(card => { card.owner = 1; });
+
+        initialSate = {
+            step: 0,
+            deck: deck,
+            settings: {
+                randomHand: false,
+                multiplayer: false,
+                visibleHand: false
+            },
+            availableDeck: deck,
+            hand: [],
+            opponentHand: [opponentHand[4]],
+            handSelected: false,
+            turn: {
+                currentPlayer: 0,
+                selectedCard: -1, //index of hand
+                canSelectPiece: false,
+                validPieces: []
+            },
+            board: [hand[0], hand[1], hand[2], hand[3], hand[4], opponentHand[0], opponentHand[1], opponentHand[2],opponentHand[3]],
+            score: {
+                blue: 5,
+                red: 5,
+                winner: false
+            }
+        };
+    });
+
+    it('should hand START_AI_TURN by doing nothing', () => {
+        let newState = reducer(initialSate, {
+            type: types.END_AI_TURN
+        });
+        expect(initialSate).toEqual(newState);
+    });
+});
+
 describe("calculating the score", () => {
 
     let initialSate;
