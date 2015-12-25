@@ -10,6 +10,13 @@ describe('actions', () => {
         expect(actions.nextStep()).toEqual(expectedAction)
     });
 
+    it('should create an action to set the hands of the players', () => {
+       const expectedAction = {
+           type: types.SET_HANDS
+       };
+        expect(actions.setHands()).toEqual(expectedAction);
+    });
+
     it('should create an action to add a card to a players hand', () => {
         const expectedAction = {
             type: types.ADD_CARD,
