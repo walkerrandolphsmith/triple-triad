@@ -193,7 +193,7 @@ function aiTurn(state, payload) {
 
   let newState = _.cloneDeep(state);
 
-  if(newState.turn.currentPlayer === 0 && newState.turn.validPieces.length > 0){
+  if(newState.turn.validPieces.length > 0){
     newState.turn.currentPlayer = 1;
 
     let selectedCard = 0;
