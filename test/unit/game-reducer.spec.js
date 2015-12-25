@@ -39,36 +39,6 @@ describe("Game reducer", () => {
         expect(reducer(undefined, {}).toJS()).toEqual(initialSate)
     });
 
-    it('should handle UPDATE_SETTINGS multiplayer', () => {
-
-        let state = _.cloneDeep(initialSate);
-
-        state.settings.multiplayer = true;
-
-        expect(reducer(initialSate, {
-            type: types.UPDATE_SETTINGS,
-            payload: {
-                setting: "multiplayer",
-                isChecked: true
-            }
-        })).toEqual(state)
-    });
-
-    it('should handle UPDATE_SETTINGS opponent hand is visible', () => {
-
-        let state = _.cloneDeep(initialSate);
-
-        state.settings.visibleHand = true;
-
-        expect(reducer(initialSate, {
-            type: types.UPDATE_SETTINGS,
-            payload: {
-                setting: "visibleHand",
-                isChecked: true
-            }
-        })).toEqual(state)
-    });
-
     it('should handle ADD_CARD by removing a card from the available deck', () => {
 
         let newState = reducer(initialSate, {
@@ -202,6 +172,144 @@ describe("A game with a random hand", () => {
             type: types.UPDATE_SETTINGS,
             payload: {
                 setting: "randomHand",
+                isChecked: true
+            }
+        })).toEqual(expectedState)
+    });
+});
+
+describe("handle UPDATE_SETTINGS multiplayer", () => {
+
+    let initialSate;
+    let expectedState;
+    beforeEach(() => {
+        initialSate = {
+            step: 0,
+            deck: deck,
+            settings: {
+                randomHand: false,
+                multiplayer: false,
+                visibleHand: false
+            },
+            availableDeck: deck,
+            hand: [],
+            opponentHand: [],
+            handSelected: false,
+            turn: {
+                currentPlayer: 0,
+                selectedCard: -1, //index of hand
+                canSelectPiece: false,
+                validPieces: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+            },
+            board: [null, null, null, null, null, null, null, null, null],
+            score: {
+                blue: 5,
+                red: 5,
+                winner: false
+            }
+        };
+
+        expectedState = {
+            step: 0,
+            deck: deck,
+            settings: {
+                randomHand: false,
+                multiplayer: true,
+                visibleHand: false
+            },
+            availableDeck: deck,
+            hand: [],
+            opponentHand: [],
+            handSelected: false,
+            turn: {
+                currentPlayer: 0,
+                selectedCard: -1, //index of hand
+                canSelectPiece: false,
+                validPieces: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+            },
+            board: [null, null, null, null, null, null, null, null, null],
+            score: {
+                blue: 5,
+                red: 5,
+                winner: false
+            }
+        };
+    });
+
+    it('should handle UPDATE_SETTINGS multiplayer', () => {
+        expect(reducer(initialSate, {
+            type: types.UPDATE_SETTINGS,
+            payload: {
+                setting: "multiplayer",
+                isChecked: true
+            }
+        })).toEqual(expectedState)
+    });
+});
+
+describe("handle UPDATE_SETTINGS visible hand", () => {
+
+    let initialSate;
+    let expectedState;
+    beforeEach(() => {
+        initialSate = {
+            step: 0,
+            deck: deck,
+            settings: {
+                randomHand: false,
+                multiplayer: false,
+                visibleHand: false
+            },
+            availableDeck: deck,
+            hand: [],
+            opponentHand: [],
+            handSelected: false,
+            turn: {
+                currentPlayer: 0,
+                selectedCard: -1, //index of hand
+                canSelectPiece: false,
+                validPieces: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+            },
+            board: [null, null, null, null, null, null, null, null, null],
+            score: {
+                blue: 5,
+                red: 5,
+                winner: false
+            }
+        };
+
+        expectedState = {
+            step: 0,
+            deck: deck,
+            settings: {
+                randomHand: false,
+                multiplayer: false,
+                visibleHand: true
+            },
+            availableDeck: deck,
+            hand: [],
+            opponentHand: [],
+            handSelected: false,
+            turn: {
+                currentPlayer: 0,
+                selectedCard: -1, //index of hand
+                canSelectPiece: false,
+                validPieces: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+            },
+            board: [null, null, null, null, null, null, null, null, null],
+            score: {
+                blue: 5,
+                red: 5,
+                winner: false
+            }
+        };
+    });
+
+    it('should handle UPDATE_SETTINGS visible hand', () => {
+        expect(reducer(initialSate, {
+            type: types.UPDATE_SETTINGS,
+            payload: {
+                setting: "visibleHand",
                 isChecked: true
             }
         })).toEqual(expectedState)
