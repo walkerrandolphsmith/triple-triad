@@ -42,7 +42,9 @@ export default function reducer(state = INITIAL_STATE, action) {
     case types.SELECT_CARD: return selectCard(state, payload);
     case types.SELECT_PIECE: return selectPiece(state, payload);
     case types.APPLY_RULES: return applyRules(state, payload);
+    case types.START_AI_TURN: return startAITurn(state);
     case types.AI_TURN: return aiTurn(state, payload);
+    case types.END_AI_TURN: return endAiTurn(state);
     case types.CALCULATE_SCORE: return calculateScore(state);
   }
 
@@ -193,25 +195,40 @@ function basicRule(card, otherCard, attackDirection, defenseDirection){
   return false;
 }
 
+function startAITurn(state){
+  let newState = _.cloneDeep(state);
+
+  if(newState.turn.validPieces.length > 0)
+    newState.turn.currentPlayer = 1;
+
+  return newState;
+}
+
 function aiTurn(state, payload) {
+
+  if(state.turn.currentPlayer !== 1) {
+    return state;
+  }
 
   let newState = _.cloneDeep(state);
 
-  if(newState.turn.validPieces.length > 0){
-    newState.turn.currentPlayer = 1;
+  let selectedCard = 0;
+  newState = selectCard(newState, {index: selectedCard});
 
-    let selectedCard = 0;
-    newState = selectCard(newState, {index: selectedCard});
+  let selectedPiece = _.sample(newState.turn.validPieces);
+  newState.turn.validPieces = _.difference(newState.turn.validPieces, [selectedPiece]);
 
-    let selectedPiece = _.sample(newState.turn.validPieces);
-    newState.turn.validPieces = _.difference(newState.turn.validPieces, [selectedPiece]);
-
-    newState = selectPiece(newState, {index: selectedPiece});
-
-    newState.turn.currentPlayer = 0;
-  }
+  newState = selectPiece(newState, {index: selectedPiece});
 
   newState = calculateScore(newState);
+
+  return newState;
+}
+
+function endAiTurn(state) {
+  let newState = _.cloneDeep(state);
+
+  newState.turn.currentPlayer = 0;
 
   return newState;
 }
