@@ -152,5 +152,52 @@ describe("Game reducer", () => {
             }
         })).toEqual(state)
     });
+});
 
+describe("A completed game", () => {
+
+    let initialSate;
+    beforeEach(() => {
+
+        let cards = [];
+        for(var i = 0; i < 9; i++){
+            let card = _.assign(deck[i], { owner: 0 });
+            cards.push(card);
+        }
+
+        initialSate = {
+            step: 2,
+            deck: deck,
+            settings: {
+                randomHand: false,
+                multiplayer: false,
+                visibleHand: false
+            },
+            availableDeck: deck,
+            hand: [],
+            opponentHand: [deck[0]],
+            handSelected: false,
+            turn: {
+                currentPlayer: 0,
+                selectedCard: -1, //index of hand
+                canSelectPiece: false,
+                validPieces: []
+            },
+            board: cards,
+            score: {
+                blue: 9,
+                red: 1,
+                winner: false
+            }
+        }
+    });
+
+    it('should handle AI_TURN by doing nothing when all the pieces have cards on them', () => {
+
+        let state = _.cloneDeep(initialSate);
+
+        expect(reducer(initialSate, {
+            type: types.AI_TURN
+        })).toEqual(state)
+    });
 });
