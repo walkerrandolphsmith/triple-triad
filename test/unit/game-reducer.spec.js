@@ -134,6 +134,92 @@ describe("Going to the next step of the game wizard", () => {
     });
 });
 
+describe('setting oppoents hand', () => {
+
+    let newState;
+
+    beforeEach(() => {
+        let initialSate = {
+            step: 0,
+            deck: deck,
+            settings: {
+                randomHand: false,
+                multiplayer: false,
+                visibleHand: false
+            },
+            availableDeck: deck,
+            hand: [],
+            opponentHand: [],
+            handSelected: false,
+            turn: {
+                currentPlayer: 0,
+                selectedCard: -1, //index of hand
+                canSelectPiece: false,
+                validPieces: [0,1,2,3,4,5,6,7,8]
+            },
+            board: [null, null, null, null, null, null, null, null, null],
+            score: {
+                blue: 5,
+                red: 5,
+                winner: false
+            }
+        };
+
+        newState = reducer(initialSate, {
+            type: types.SET_HANDS
+        })
+    });
+
+    it('should not populate the players hand if the setting randHand is false', () => {
+       expect(newState.hand.length).toEqual(0);
+    });
+
+    it('should populate the opponets hand with five cards', () => {
+        expect(newState.opponentHand.length).toEqual(5);
+    });
+});
+
+describe("setting players hand randomly", () => {
+
+    let newState;
+
+    beforeEach(() => {
+        let initialSate = {
+            step: 0,
+            deck: deck,
+            settings: {
+                randomHand: true,
+                multiplayer: false,
+                visibleHand: false
+            },
+            availableDeck: deck,
+            hand: [],
+            opponentHand: [],
+            handSelected: false,
+            turn: {
+                currentPlayer: 0,
+                selectedCard: -1, //index of hand
+                canSelectPiece: false,
+                validPieces: [0,1,2,3,4,5,6,7,8]
+            },
+            board: [null, null, null, null, null, null, null, null, null],
+            score: {
+                blue: 5,
+                red: 5,
+                winner: false
+            }
+        };
+
+        newState = reducer(initialSate, {
+            type: types.SET_HANDS
+        })
+    });
+
+    it('should not populate the players hand with five cards', () => {
+        expect(newState.hand.length).toEqual(5);
+    });
+});
+
 describe("handle UPDATE_SETTINGS random hand", () => {
 
     let initialSate;
