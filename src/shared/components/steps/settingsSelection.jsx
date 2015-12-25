@@ -15,6 +15,11 @@ export default class SettingsSelection extends React.Component {
         this.props.updateSettings("visibleHand", event.target.checked);
     };
 
+    click = () => {
+        this.props.nextStep();
+        this.props.setHands();
+    };
+
     render() {
         return (
             <div id="step-0">
@@ -30,7 +35,7 @@ export default class SettingsSelection extends React.Component {
                     <input type="checkbox" id="hidden-hand" onChange={this.visibleHand}></input>
                     Hide opponent's hand
                 </label>
-                <button onClick={this.props.nextStep}> Next step</button>
+                <button onClick={this.click}> Next step</button>
             </div>
         );
     }

@@ -35,6 +35,7 @@ export default function reducer(state = INITIAL_STATE, action) {
 
   switch(type){
     case types.NEXT_STEP: return nextStep(state);
+    case types.SET_HANDS: return setHands(state);
     case types.UPDATE_SETTINGS: return updateSettings(state, payload);
     case types.ADD_CARD: return addCard(state, payload);
     case types.REMOVE_CARD: return removeCard(state, payload);
@@ -52,16 +53,20 @@ function nextStep(state) {
 
   var newState = _.cloneDeep(state);
 
-  if(newState.step === 0 && newState.settings.randomHand){
+  newState.step++;
+
+  return newState;
+}
+
+function setHands(state){
+  var newState = _.cloneDeep(state);
+
+  if(newState.settings.randomHand){
     newState.hand = selectRandomHand(newState.availableDeck);
     newState.step++;
   }
 
-  if(newState.step === 1){
-    newState.opponentHand = selectRandomHand(newState.availableDeck);
-  }
-
-  newState.step++;
+  newState.opponentHand = selectRandomHand(newState.availableDeck);
 
   return newState;
 }
