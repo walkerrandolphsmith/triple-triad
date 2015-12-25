@@ -67,30 +67,6 @@ describe("Game reducer", () => {
         expect(state.availableDeck.length + 1).toEqual(newState.availableDeck.length);
         expect(state.hand.length - 1).toEqual(newState.hand.length);
     });
-
-    it('should handle SELECT_PIECE', () => {
-        let index = 0;
-
-        let cardToPlace = deck[0];
-        cardToPlace.owner = 0;
-
-        initialSate.hand = [cardToPlace];
-
-        let state = _.cloneDeep(initialSate);
-
-        state.turn.validPieces = [1,2,3,4,5,6,7,8];
-        state.turn.canSelectPiece = false;
-        state.hand = [];
-        state.selectedCard = -1;
-        state.board[index]  = cardToPlace;
-
-        expect(reducer(initialSate, {
-            type: types.SELECT_PIECE,
-            payload: {
-                index: index
-            }
-        })).toEqual(state)
-    });
 });
 
 describe("handle UPDATE_SETTINGS random hand", () => {
@@ -300,7 +276,7 @@ describe("handle UPDATE_SETTINGS visible hand", () => {
     });
 });
 
-describe("Selecting a piece", () => {
+describe("Selecting a card", () => {
 
     let initialSate;
     let expectedState;
@@ -364,6 +340,81 @@ describe("Selecting a piece", () => {
     it('should handle SELECT_CARD', () => {
         expect(reducer(initialSate, {
             type: types.SELECT_CARD,
+            payload: {
+                index: index
+            }
+        })).toEqual(expectedState)
+    });
+});
+
+describe("Selecting a piece", () => {
+
+    let initialSate;
+    let expectedState;
+    let index;
+    let cardToPlace;
+
+    beforeEach(() => {
+        cardToPlace = deck[0];
+        cardToPlace.owner = 0;
+        index = 0;
+
+        initialSate = {
+            step: 2,
+            deck: deck,
+            settings: {
+                randomHand: false,
+                multiplayer: false,
+                visibleHand: false
+            },
+            availableDeck: deck,
+            hand: [cardToPlace],
+            opponentHand: [],
+            handSelected: false,
+            turn: {
+                currentPlayer: 0,
+                selectedCard: -1,
+                canSelectPiece: false,
+                validPieces: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+            },
+            board: [null, null, null, null, null, null, null, null, null],
+            score: {
+                blue: 5,
+                red: 5,
+                winner: false
+            }
+        };
+
+        expectedState = {
+            step: 2,
+            deck: deck,
+            settings: {
+                randomHand: false,
+                multiplayer: false,
+                visibleHand: false
+            },
+            availableDeck: deck,
+            hand: [],
+            opponentHand: [],
+            handSelected: false,
+            turn: {
+                currentPlayer: 0,
+                selectedCard: -1,
+                canSelectPiece: false,
+                validPieces: [1, 2, 3, 4, 5, 6, 7, 8]
+            },
+            board: [cardToPlace, null, null, null, null, null, null, null, null],
+            score: {
+                blue: 5,
+                red: 5,
+                winner: false
+            }
+        };
+    });
+
+    it('should handle SELECT_PIECE', () => {
+        expect(reducer(initialSate, {
+            type: types.SELECT_PIECE,
             payload: {
                 index: index
             }

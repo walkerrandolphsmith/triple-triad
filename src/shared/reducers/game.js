@@ -120,7 +120,7 @@ function selectPiece(state, payload) {
 
   let theHand = newState.turn.currentPlayer === 1 ? 'opponentHand' : 'hand';
   var cardToPlaceOnBoard = newState[theHand].splice(newState.turn.selectedCard, 1);
-  newState.selectedCard = -1;
+  newState.turn.selectedCard = -1;
 
   newState.board[payload.index] = _.assign(cardToPlaceOnBoard[0], {owner: newState.turn.currentPlayer});
 
