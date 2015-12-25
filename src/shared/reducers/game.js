@@ -67,6 +67,9 @@ function setHands(state){
   }
 
   newState.opponentHand = _.sample(newState.availableDeck, 5);
+  newState.opponentHand.forEach(card => {
+    card.owner = 1;
+  });
 
   return newState;
 }
@@ -217,19 +220,12 @@ function calculateScore(state){
 
   let newState = _.cloneDeep(state);
 
-  let blueScore = 0;
-  let redScore = 0;
+  let cards = _.compact(newState.board.concat(newState.hand.concat(newState.opponentHand)));
 
-  for(var i = 0; i < newState.board.length; i ++){
-    if(newState.board[i] === null) continue;
-    newState.board[i].owner === 0 ? blueScore++ : redScore++;
-  }
-
-  blueScore += newState.hand.length;
-  redScore += newState.opponentHand.length;
-
-  newState.score.blue = blueScore;
-  newState.score.red = redScore;
+  newState.score = cards.reduce((x,y) => {
+    y.owner === 0 ? x.blue++ : x.red++;
+    return x;
+  }, {blue: 0, red: 0, winner: false});
 
   return newState;
 }
