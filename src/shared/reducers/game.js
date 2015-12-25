@@ -62,17 +62,13 @@ function setHands(state){
   var newState = _.cloneDeep(state);
 
   if(newState.settings.randomHand){
-    newState.hand = selectRandomHand(newState.availableDeck);
+    newState.hand = _.sample(newState.availableDeck, 5);
     newState.step++;
   }
 
-  newState.opponentHand = selectRandomHand(newState.availableDeck);
+  newState.opponentHand = _.sample(newState.availableDeck, 5);
 
   return newState;
-}
-
-function selectRandomHand(deck){
-  return _.sample(deck, 5)
 }
 
 function updateSettings(state, payload){
