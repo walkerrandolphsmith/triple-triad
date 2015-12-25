@@ -491,12 +491,6 @@ describe("A completed game", () => {
     let initialSate;
     beforeEach(() => {
 
-        let cards = [];
-        for(var i = 0; i < 9; i++){
-            let card = deck[i];
-            cards.push(card);
-        }
-
         initialSate = {
             step: 2,
             deck: deck,
@@ -515,7 +509,7 @@ describe("A completed game", () => {
                 canSelectPiece: false,
                 validPieces: []
             },
-            board: cards,
+            board: _.sample(deck, 9),
             score: {
                 blue: 9,
                 red: 1,
