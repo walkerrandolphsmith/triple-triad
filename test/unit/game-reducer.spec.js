@@ -575,10 +575,28 @@ describe("Selecting a piece", () => {
 describe("calculating the score", () => {
 
     let initialSate;
-    let opponentCard
+    let opponentCard;
+    let c0, c1, c2, c3, c4, c5, c6;
+
     beforeEach(() => {
         opponentCard = deck[7];
         opponentCard.owner = 1;
+
+        c0 = deck[0];
+        c1 = deck[1];
+        c2 = deck[2];
+        c3 = deck[3];
+        c4 = deck[4];
+        c5 = deck[5];
+        c6 = deck[6];
+
+        c0.owner = 0;
+        c1.owner = 0;
+        c2.owner = 0;
+        c3.owner = 0;
+        c4.owner = 0;
+        c5.owner = 0;
+        c6.owner = 0;
 
         initialSate = {
             step: 2,
@@ -589,7 +607,7 @@ describe("calculating the score", () => {
                 visibleHand: false
             },
             availableDeck: deck,
-            hand: [deck[0]],
+            hand: [c0],
             opponentHand: [opponentCard],
             handSelected: false,
             turn: {
@@ -598,7 +616,7 @@ describe("calculating the score", () => {
                 canSelectPiece: false,
                 validPieces: []
             },
-            board: [deck[1], deck[2], deck[3], deck[4], deck[5], deck[6], opponentCard, null, null],
+            board: [c1, c2, c3, c4, c5, c6, opponentCard, null, null],
             score: {
                 blue: 7,
                 red: 2,
