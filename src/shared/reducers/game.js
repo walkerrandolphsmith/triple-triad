@@ -123,7 +123,7 @@ function selectPiece(state, payload) {
   var cardToPlaceOnBoard = newState[theHand].splice(newState.turn.selectedCard, 1);
   newState.turn.selectedCard = -1;
 
-  newState.board[payload.index] = _.assign(cardToPlaceOnBoard[0], {owner: newState.turn.currentPlayer});
+  newState.board[payload.index] = cardToPlaceOnBoard[0];
 
   return newState;
 }

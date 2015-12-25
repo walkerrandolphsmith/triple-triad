@@ -421,7 +421,6 @@ describe("Selecting a piece", () => {
 
     beforeEach(() => {
         cardToPlace = deck[0];
-        cardToPlace.owner = 0;
         index = 0;
 
         initialSate = {
@@ -494,7 +493,7 @@ describe("A completed game", () => {
 
         let cards = [];
         for(var i = 0; i < 9; i++){
-            let card = _.assign(deck[i], { owner: 0 });
+            let card = deck[i];
             cards.push(card);
         }
 
