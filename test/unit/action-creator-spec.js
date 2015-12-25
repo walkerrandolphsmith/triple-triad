@@ -78,6 +78,13 @@ describe('actions', () => {
         expect(actions.applyRules(0)).toEqual(expectedAction)
     });
 
+    it('should create an action to initiate the AI oppoents turn', () => {
+       const expectedAction = {
+           type: types.START_AI_TURN
+       };
+       expect(actions.startAiTurn()).toEqual(expectedAction);
+    });
+
     it('should create an action to apply the AI opponents turn', () => {
         const expectedAction = {
             type: types.AI_TURN,
@@ -86,6 +93,13 @@ describe('actions', () => {
             }
         };
         expect(actions.aiTurn(0)).toEqual(expectedAction)
+    });
+
+    it('should create an action to end the AI oppoents turn', () => {
+        const expectedAction = {
+            type: types.END_AI_TURN
+        };
+        expect(actions.endAiTurn()).toEqual(expectedAction);
     });
 
     it('should create an action to calculate the score', () => {
