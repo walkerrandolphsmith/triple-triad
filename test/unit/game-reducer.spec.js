@@ -21,7 +21,7 @@ describe("Game reducer", () => {
             opponentHand: [],
             handSelected: false,
             turn: {
-                currentPlayer: 0,
+                isOpponentTurn: false,
                 selectedCard: -1, //index of hand
                 canSelectPiece: false,
                 validPieces: [0,1,2,3,4,5,6,7,8]
@@ -87,7 +87,7 @@ describe("Going to the next step of the game wizard", () => {
             opponentHand: [],
             handSelected: false,
             turn: {
-                currentPlayer: 0,
+                isOpponentTurn: false,
                 selectedCard: -1,
                 canSelectPiece: false,
                 validPieces: [0, 1, 2, 3, 4, 5, 6, 7, 8]
@@ -113,7 +113,7 @@ describe("Going to the next step of the game wizard", () => {
             opponentHand: [],
             handSelected: false,
             turn: {
-                currentPlayer: 0,
+                isOpponentTurn: false,
                 selectedCard: -1,
                 canSelectPiece: false,
                 validPieces: [0, 1, 2, 3, 4, 5, 6, 7, 8]
@@ -152,7 +152,7 @@ describe('setting oppoents hand', () => {
             opponentHand: [],
             handSelected: false,
             turn: {
-                currentPlayer: 0,
+                isOpponentTurn: false,
                 selectedCard: -1, //index of hand
                 canSelectPiece: false,
                 validPieces: [0,1,2,3,4,5,6,7,8]
@@ -197,7 +197,7 @@ describe("setting players hand randomly", () => {
             opponentHand: [],
             handSelected: false,
             turn: {
-                currentPlayer: 0,
+                isOpponentTurn: false,
                 selectedCard: -1, //index of hand
                 canSelectPiece: false,
                 validPieces: [0,1,2,3,4,5,6,7,8]
@@ -238,7 +238,7 @@ describe("handle UPDATE_SETTINGS random hand", () => {
             opponentHand: [],
             handSelected: false,
             turn: {
-                currentPlayer: 0,
+                isOpponentTurn: false,
                 selectedCard: -1, //index of hand
                 canSelectPiece: false,
                 validPieces: [0, 1, 2, 3, 4, 5, 6, 7, 8]
@@ -264,7 +264,7 @@ describe("handle UPDATE_SETTINGS random hand", () => {
             opponentHand: [],
             handSelected: false,
             turn: {
-                currentPlayer: 0,
+                isOpponentTurn: false,
                 selectedCard: -1, //index of hand
                 canSelectPiece: false,
                 validPieces: [0, 1, 2, 3, 4, 5, 6, 7, 8]
@@ -307,7 +307,7 @@ describe("handle UPDATE_SETTINGS multiplayer", () => {
             opponentHand: [],
             handSelected: false,
             turn: {
-                currentPlayer: 0,
+                isOpponentTurn: false,
                 selectedCard: -1, //index of hand
                 canSelectPiece: false,
                 validPieces: [0, 1, 2, 3, 4, 5, 6, 7, 8]
@@ -333,7 +333,7 @@ describe("handle UPDATE_SETTINGS multiplayer", () => {
             opponentHand: [],
             handSelected: false,
             turn: {
-                currentPlayer: 0,
+                isOpponentTurn: false,
                 selectedCard: -1, //index of hand
                 canSelectPiece: false,
                 validPieces: [0, 1, 2, 3, 4, 5, 6, 7, 8]
@@ -376,7 +376,7 @@ describe("handle UPDATE_SETTINGS visible hand", () => {
             opponentHand: [],
             handSelected: false,
             turn: {
-                currentPlayer: 0,
+                isOpponentTurn: false,
                 selectedCard: -1, //index of hand
                 canSelectPiece: false,
                 validPieces: [0, 1, 2, 3, 4, 5, 6, 7, 8]
@@ -402,7 +402,7 @@ describe("handle UPDATE_SETTINGS visible hand", () => {
             opponentHand: [],
             handSelected: false,
             turn: {
-                currentPlayer: 0,
+                isOpponentTurn: false,
                 selectedCard: -1, //index of hand
                 canSelectPiece: false,
                 validPieces: [0, 1, 2, 3, 4, 5, 6, 7, 8]
@@ -448,7 +448,7 @@ describe("Selecting a card", () => {
             opponentHand: [],
             handSelected: false,
             turn: {
-                currentPlayer: 0,
+                isOpponentTurn: false,
                 selectedCard: -1, //index of hand
                 canSelectPiece: false,
                 validPieces: [0, 1, 2, 3, 4, 5, 6, 7, 8]
@@ -474,7 +474,7 @@ describe("Selecting a card", () => {
             opponentHand: [],
             handSelected: false,
             turn: {
-                currentPlayer: 0,
+                isOpponentTurn: false,
                 selectedCard: index, //index of hand
                 canSelectPiece: true,
                 validPieces: [0, 1, 2, 3, 4, 5, 6, 7, 8]
@@ -522,7 +522,7 @@ describe("Selecting a piece", () => {
             opponentHand: [],
             handSelected: false,
             turn: {
-                currentPlayer: 0,
+                isOpponentTurn: false,
                 selectedCard: -1,
                 canSelectPiece: false,
                 validPieces: [0, 1, 2, 3, 4, 5, 6, 7, 8]
@@ -548,7 +548,7 @@ describe("Selecting a piece", () => {
             opponentHand: [],
             handSelected: false,
             turn: {
-                currentPlayer: 0,
+                isOpponentTurn: false,
                 selectedCard: -1,
                 canSelectPiece: false,
                 validPieces: [1, 2, 3, 4, 5, 6, 7, 8]
@@ -596,7 +596,7 @@ describe('opponent turn in progress game', () => {
             opponentHand: opponentHand,
             handSelected: false,
             turn: {
-                currentPlayer: 0,
+                isOpponentTurn: false,
                 selectedCard: -1, //index of hand
                 canSelectPiece: false,
                 validPieces: [0,1,2,3,4,5,6,7,8]
@@ -610,18 +610,18 @@ describe('opponent turn in progress game', () => {
         };
     });
 
-    it('hand START_AI_TURN by setting the currentPlayer to the opponent', () => {
+    it('hand START_AI_TURN by setting current turn to the opponent', () => {
         let newState = reducer(initialSate, {
             type: types.START_AI_TURN
         });
-        expect(newState.turn.currentPlayer).toEqual(1);
+        expect(newState.turn.isOpponentTurn).toEqual(true);
     });
 
-    it('should hand END_AI_TURN by setting the currentPlayer to the player', () => {
+    it('should handle END_AI_TURN by setting the current turn to the player', () => {
         let newState = reducer(initialSate, {
             type: types.END_AI_TURN
         });
-        expect(newState.turn.currentPlayer).toEqual(0);
+        expect(newState.turn.isOpponentTurn).toEqual(false);
     });
 });
 
@@ -664,7 +664,7 @@ describe("calculating the score", () => {
             opponentHand: [opponentCard],
             handSelected: false,
             turn: {
-                currentPlayer: 0,
+                isOpponentTurn: false,
                 selectedCard: -1, //index of hand
                 canSelectPiece: false,
                 validPieces: []
@@ -708,7 +708,7 @@ describe("A completed game", () => {
             opponentHand: [deck[0]],
             handSelected: false,
             turn: {
-                currentPlayer: 0,
+                isOpponentTurn: false,
                 selectedCard: -1, //index of hand
                 canSelectPiece: false,
                 validPieces: []
