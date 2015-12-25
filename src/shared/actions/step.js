@@ -6,6 +6,12 @@ export function nextStep() {
     }
 }
 
+export function setHands() {
+    return {
+        type: types.SET_HANDS
+    }
+}
+
 export function addCard(index) {
     return {
         type: types.ADD_CARD,

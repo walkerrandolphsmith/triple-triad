@@ -1,4 +1,5 @@
 export const NEXT_STEP = 'NextStep';
+export const SET_HANDS = 'SetHands';
 export const ADD_CARD = 'AddCard';
 export const REMOVE_CARD = 'RemoveCard';
 export const UPDATE_SETTINGS = 'UpdateSettings';
