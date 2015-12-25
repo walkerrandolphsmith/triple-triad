@@ -67,12 +67,24 @@ export function applyRules(index) {
     }
 }
 
+export function startAiTurn() {
+    return {
+        type: types.START_AI_TURN
+    }
+}
+
 export function aiTurn(index) {
     return {
         type: types.AI_TURN,
         payload: {
             index: index
         }
+    }
+}
+
+export function endAiTurn() {
+    return {
+        type: types.END_AI_TURN
     }
 }
 
