@@ -1,10 +1,10 @@
 import React from 'react';
-import Navigation from './navigation';
+import Game from './game';
 
 export default class App extends React.Component {
   render(){
     return (<div>
-        <Navigation />
+        <Game />
       {this.props.children}
     </div>);
   }
