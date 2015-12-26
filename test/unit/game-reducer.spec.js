@@ -485,10 +485,10 @@ describe("Selecting a card", () => {
     });
 });
 
-describe("Selecting a piece", () => {
+describe("Selecting a piece by the player", () => {
 
-    let initialSate;
-    let expectedState;
+    let initialSate, newState;
+
     let index;
     let cardToPlace;
 
@@ -520,8 +520,35 @@ describe("Selecting a piece", () => {
                 winner: false
             }
         };
+    });
 
-        expectedState = {
+    it('should handle SELECT_PIECE', () => {
+
+        newState = reducer(initialSate, {
+            type: types.SELECT_PIECE,
+            payload: {
+                index: index
+            }
+        });
+
+        expect(_.contains(newState.turn.validPieces, index)).toEqual(false);
+        expect(_.contains(newState.hand, cardToPlace)).toEqual(false);
+        expect(newState.board[index]).toEqual(cardToPlace);
+    });
+});
+
+describe("Selecting a piece by the opponent", () => {
+
+    let initialSate, newState;
+
+    let index;
+    let cardToPlace;
+
+    beforeEach(() => {
+        cardToPlace = deck[0];
+        index = 0;
+
+        initialSate = {
             step: 2,
             deck: deck,
             settings: {
@@ -530,15 +557,15 @@ describe("Selecting a piece", () => {
                 visibleHand: false
             },
             hand: [],
-            opponentHand: [],
+            opponentHand: [cardToPlace],
             handSelected: false,
             turn: {
-                isOpponentTurn: false,
+                isOpponentTurn: true,
                 selectedCard: -1,
                 canSelectPiece: false,
-                validPieces: [1, 2, 3, 4, 5, 6, 7, 8]
+                validPieces: [0, 1, 2, 3, 4, 5, 6, 7, 8]
             },
-            board: [cardToPlace, null, null, null, null, null, null, null, null],
+            board: [null, null, null, null, null, null, null, null, null],
             score: {
                 blue: 5,
                 red: 5,
@@ -548,12 +575,17 @@ describe("Selecting a piece", () => {
     });
 
     it('should handle SELECT_PIECE', () => {
-        expect(reducer(initialSate, {
+
+        newState = reducer(initialSate, {
             type: types.SELECT_PIECE,
             payload: {
                 index: index
             }
-        })).toEqual(expectedState)
+        });
+
+        expect(_.contains(newState.turn.validPieces, index)).toEqual(false);
+        expect(_.contains(newState.opponentHand, cardToPlace)).toEqual(false);
+        expect(newState.board[index]).toEqual(cardToPlace);
     });
 });
 
