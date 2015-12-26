@@ -3,7 +3,7 @@ import Cards from './../cards';
 
 export default class CardSelection extends React.Component {
     render() {
-        let cards = this.props.game.availableDeck || [];
+        let cards = this.props.game.deck || [];
         let hand = this.props.game.hand || [];
         let handSelected = this.props.game.handSelected;
 

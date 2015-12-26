@@ -16,7 +16,6 @@ describe("Game reducer", () => {
                 multiplayer: false,
                 visibleHand: false
             },
-            availableDeck: deck,
             hand: [],
             opponentHand: [],
             handSelected: false,
@@ -48,7 +47,7 @@ describe("Game reducer", () => {
             }
         });
 
-        expect(initialSate.availableDeck.length - 1).toEqual(newState.availableDeck.length);
+        expect(initialSate.deck.length - 1).toEqual(newState.deck.length);
         expect(initialSate.hand.length + 1).toEqual(newState.hand.length);
     });
 
@@ -64,7 +63,7 @@ describe("Game reducer", () => {
             }
         });
 
-        expect(state.availableDeck.length + 1).toEqual(newState.availableDeck.length);
+        expect(state.deck.length + 1).toEqual(newState.deck.length);
         expect(state.hand.length - 1).toEqual(newState.hand.length);
     });
 });
@@ -82,7 +81,6 @@ describe("Going to the next step of the game wizard", () => {
                 multiplayer: false,
                 visibleHand: false
             },
-            availableDeck: deck,
             hand: [],
             opponentHand: [],
             handSelected: false,
@@ -108,7 +106,6 @@ describe("Going to the next step of the game wizard", () => {
                 multiplayer: false,
                 visibleHand: false
             },
-            availableDeck: deck,
             hand: [],
             opponentHand: [],
             handSelected: false,
@@ -147,7 +144,6 @@ describe('setting oppoents hand', () => {
                 multiplayer: false,
                 visibleHand: false
             },
-            availableDeck: deck,
             hand: [],
             opponentHand: [],
             handSelected: false,
@@ -192,7 +188,6 @@ describe("setting players hand randomly", () => {
                 multiplayer: false,
                 visibleHand: false
             },
-            availableDeck: deck,
             hand: [],
             opponentHand: [],
             handSelected: false,
@@ -233,7 +228,6 @@ describe("handle UPDATE_SETTINGS random hand", () => {
                 multiplayer: false,
                 visibleHand: false
             },
-            availableDeck: deck,
             hand: [],
             opponentHand: [],
             handSelected: false,
@@ -259,7 +253,6 @@ describe("handle UPDATE_SETTINGS random hand", () => {
                 multiplayer: false,
                 visibleHand: false
             },
-            availableDeck: deck,
             hand: [],
             opponentHand: [],
             handSelected: false,
@@ -302,7 +295,6 @@ describe("handle UPDATE_SETTINGS multiplayer", () => {
                 multiplayer: false,
                 visibleHand: false
             },
-            availableDeck: deck,
             hand: [],
             opponentHand: [],
             handSelected: false,
@@ -328,7 +320,6 @@ describe("handle UPDATE_SETTINGS multiplayer", () => {
                 multiplayer: true,
                 visibleHand: false
             },
-            availableDeck: deck,
             hand: [],
             opponentHand: [],
             handSelected: false,
@@ -371,7 +362,6 @@ describe("handle UPDATE_SETTINGS visible hand", () => {
                 multiplayer: false,
                 visibleHand: false
             },
-            availableDeck: deck,
             hand: [],
             opponentHand: [],
             handSelected: false,
@@ -397,7 +387,6 @@ describe("handle UPDATE_SETTINGS visible hand", () => {
                 multiplayer: false,
                 visibleHand: true
             },
-            availableDeck: deck,
             hand: [],
             opponentHand: [],
             handSelected: false,
@@ -443,7 +432,6 @@ describe("Selecting a card", () => {
                 multiplayer: false,
                 visibleHand: false
             },
-            availableDeck: deck,
             hand: [],
             opponentHand: [],
             handSelected: false,
@@ -469,7 +457,6 @@ describe("Selecting a card", () => {
                 multiplayer: false,
                 visibleHand: false
             },
-            availableDeck: deck,
             hand: [],
             opponentHand: [],
             handSelected: false,
@@ -517,7 +504,6 @@ describe("Selecting a piece", () => {
                 multiplayer: false,
                 visibleHand: false
             },
-            availableDeck: deck,
             hand: [cardToPlace],
             opponentHand: [],
             handSelected: false,
@@ -543,7 +529,6 @@ describe("Selecting a piece", () => {
                 multiplayer: false,
                 visibleHand: false
             },
-            availableDeck: deck,
             hand: [],
             opponentHand: [],
             handSelected: false,
@@ -591,7 +576,6 @@ describe('opponent turn in progress game', () => {
                 multiplayer: false,
                 visibleHand: false
             },
-            availableDeck: deck,
             hand: hand,
             opponentHand: opponentHand,
             handSelected: false,
@@ -659,7 +643,6 @@ describe("calculating the score", () => {
                 multiplayer: false,
                 visibleHand: false
             },
-            availableDeck: deck,
             hand: [c0],
             opponentHand: [opponentCard],
             handSelected: false,
@@ -703,7 +686,6 @@ describe("A completed game", () => {
                 multiplayer: false,
                 visibleHand: false
             },
-            availableDeck: deck,
             hand: [],
             opponentHand: [deck[0]],
             handSelected: false,

@@ -11,7 +11,6 @@ const INITIAL_STATE = new Immutable.Map({
     multiplayer: false,
     visibleHand: false
   },
-  availableDeck: deck,
   hand: [],
   opponentHand: [],
   handSelected: false,
@@ -64,11 +63,11 @@ function setHands(state){
   var newState = _.cloneDeep(state);
 
   if(newState.settings.randomHand){
-    newState.hand = _.sample(newState.availableDeck, 5);
+    newState.hand = _.sample(newState.deck, 5);
     newState.step++;
   }
 
-  newState.opponentHand = _.sample(newState.availableDeck, 5);
+  newState.opponentHand = _.sample(newState.deck, 5);
   newState.opponentHand.forEach(card => {
     card.owner = 1;
   });
@@ -89,7 +88,7 @@ function addCard(state, payload){
 
   var newState = _.cloneDeep(state);
 
-  let hand = _.union(newState.hand, newState.availableDeck.splice(payload.index,1));
+  let hand = _.union(newState.hand, newState.deck.splice(payload.index,1));
   newState.hand = hand;
   newState.handSelected = hand.length >= 5;
 
@@ -100,8 +99,8 @@ function removeCard(state, payload){
 
   var newState = _.cloneDeep(state);
 
-  let availableDeck = _.union(newState.availableDeck, newState.hand.splice(payload.index,1));
-  newState.availableDeck = availableDeck;
+  let deck = _.union(newState.deck, newState.hand.splice(payload.index,1));
+  newState.deck = deck;
   newState.handSelected = newState.hand.length >= 5;
 
   return newState;
