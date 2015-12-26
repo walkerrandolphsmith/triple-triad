@@ -70,36 +70,12 @@ describe("Game reducer", () => {
 
 describe("Going to the next step of the game wizard", () => {
 
-    let initialSate;
-    let expectedState;
+    let initialSate, newState;
+    let step = 0;
+
     beforeEach(() => {
         initialSate = {
-            step: 0,
-            deck: deck,
-            settings: {
-                randomHand: false,
-                multiplayer: false,
-                visibleHand: false
-            },
-            hand: [],
-            opponentHand: [],
-            handSelected: false,
-            turn: {
-                isOpponentTurn: false,
-                selectedCard: -1,
-                canSelectPiece: false,
-                validPieces: [0, 1, 2, 3, 4, 5, 6, 7, 8]
-            },
-            board: [null, null, null, null, null, null, null, null, null],
-            score: {
-                blue: 5,
-                red: 5,
-                winner: false
-            }
-        };
-
-        expectedState = {
-            step: 1,
+            step: step,
             deck: deck,
             settings: {
                 randomHand: false,
@@ -125,9 +101,12 @@ describe("Going to the next step of the game wizard", () => {
     });
 
     it('should handle NEXT_STEP by incrementing the step counter', () => {
-        expect(reducer(initialSate, {
+
+        let newState = reducer(initialSate, {
             type: types.NEXT_STEP
-        })).toEqual(expectedState)
+        });
+
+        expect(newState.step).toEqual(step + 1);
     });
 });
 
