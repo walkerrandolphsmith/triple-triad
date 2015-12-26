@@ -9,4 +9,3 @@ export const APPLY_RULES = 'ApplyRules';
 export const START_AI_TURN = 'StartAITurn';
 export const AI_TURN = 'AITurn';
 export const END_AI_TURN = 'EndAITurn';
-export const CALCULATE_SCORE = 'CalculateScore';

@@ -20,12 +20,7 @@ const INITIAL_STATE = new Immutable.Map({
     canSelectPiece: false,
     validPieces: [0,1,2,3,4,5,6,7,8]
   },
-  board: [null, null, null, null, null, null, null, null, null],
-  score: {
-    blue: 5,
-    red: 5,
-    winner: false
-  }
+  board: [null, null, null, null, null, null, null, null, null]
 });
 
 export default function reducer(state = INITIAL_STATE, action) {
@@ -44,7 +39,6 @@ export default function reducer(state = INITIAL_STATE, action) {
     case types.START_AI_TURN: return startAITurn(state);
     case types.AI_TURN: return aiTurn(state);
     case types.END_AI_TURN: return endAiTurn(state);
-    case types.CALCULATE_SCORE: return calculateScore(state);
   }
 
   return state;
@@ -231,8 +225,6 @@ function aiTurn(state) {
 
   newState = selectPiece(newState, {index: selectedPiece});
 
-  newState = calculateScore(newState);
-
   return newState;
 }
 
@@ -240,20 +232,6 @@ function endAiTurn(state) {
   let newState = _.cloneDeep(state);
 
   newState.turn.isOpponentTurn = false;
-
-  return newState;
-}
-
-function calculateScore(state){
-
-  let newState = _.cloneDeep(state);
-
-  let cards = _.compact(newState.board.concat(newState.hand.concat(newState.opponentHand)));
-
-  newState.score = cards.reduce((x,y) => {
-    y.owner === 0 ? x.blue++ : x.red++;
-    return x;
-  }, {blue: 0, red: 0, winner: false});
 
   return newState;
 }

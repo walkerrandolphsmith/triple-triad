@@ -10,7 +10,6 @@ export default class Board extends React.Component {
         this.props.startAiTurn();
         this.props.aiTurn();
         this.props.endAiTurn();
-        this.props.calculateScore();
     };
 
     render() {

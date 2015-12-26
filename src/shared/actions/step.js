@@ -84,12 +84,3 @@ export function endAiTurn() {
         type: types.END_AI_TURN
     }
 }
-
-export function calculateScore(index) {
-    return {
-        type: types.CALCULATE_SCORE,
-        payload: {
-            index: index
-        }
-    }
-}

@@ -4,8 +4,8 @@ import Cards from './../cards';
 
 export default class Round extends React.Component {
     render() {
-        let {selectCard, selectPiece, applyRules, startAiTurn, aiTurn, endAiTurn, calculateScore} = this.props;
-        let {hand, opponentHand, turn, board, score} = this.props.game;
+        let {selectCard, selectPiece, applyRules, startAiTurn, aiTurn, endAiTurn, score} = this.props;
+        let {hand, opponentHand, turn, board} = this.props.game;
         let showFront = this.props.game.settings.visibleHand;
 
         return (
@@ -24,7 +24,6 @@ export default class Round extends React.Component {
                     startAiTurn={startAiTurn}
                     aiTurn={aiTurn}
                     endAiTurn={endAiTurn}
-                    caclculateScore={calculateScore}
                 />
 
                 <div id="opponent-hand">

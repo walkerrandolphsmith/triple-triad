@@ -25,12 +25,7 @@ describe("Game reducer", () => {
                 canSelectPiece: false,
                 validPieces: [0,1,2,3,4,5,6,7,8]
             },
-            board: [null, null, null, null, null, null, null, null, null],
-            score: {
-                blue: 5,
-                red: 5,
-                winner: false
-            }
+            board: [null, null, null, null, null, null, null, null, null]
         }
     });
 
@@ -63,12 +58,7 @@ describe('Adding a card to the hand', () => {
                 canSelectPiece: false,
                 validPieces: [0,1,2,3,4,5,6,7,8]
             },
-            board: [null, null, null, null, null, null, null, null, null],
-            score: {
-                blue: 5,
-                red: 5,
-                winner: false
-            }
+            board: [null, null, null, null, null, null, null, null, null]
         };
 
 
@@ -112,12 +102,7 @@ describe('Removing a card from the hand', () => {
                 canSelectPiece: false,
                 validPieces: [0,1,2,3,4,5,6,7,8]
             },
-            board: [null, null, null, null, null, null, null, null, null],
-            score: {
-                blue: 5,
-                red: 5,
-                winner: false
-            }
+            board: [null, null, null, null, null, null, null, null, null]
         };
 
 
@@ -159,12 +144,7 @@ describe("Going to the next step of the game wizard", () => {
                 canSelectPiece: false,
                 validPieces: [0, 1, 2, 3, 4, 5, 6, 7, 8]
             },
-            board: [null, null, null, null, null, null, null, null, null],
-            score: {
-                blue: 5,
-                red: 5,
-                winner: false
-            }
+            board: [null, null, null, null, null, null, null, null, null]
         };
 
         newState = reducer(initialState, {
@@ -199,12 +179,7 @@ describe('setting opponents hand', () => {
                 canSelectPiece: false,
                 validPieces: [0,1,2,3,4,5,6,7,8]
             },
-            board: [null, null, null, null, null, null, null, null, null],
-            score: {
-                blue: 5,
-                red: 5,
-                winner: false
-            }
+            board: [null, null, null, null, null, null, null, null, null]
         };
 
         newState = reducer(initialSate, {
@@ -243,12 +218,7 @@ describe("setting players hand randomly", () => {
                 canSelectPiece: false,
                 validPieces: [0,1,2,3,4,5,6,7,8]
             },
-            board: [null, null, null, null, null, null, null, null, null],
-            score: {
-                blue: 5,
-                red: 5,
-                winner: false
-            }
+            board: [null, null, null, null, null, null, null, null, null]
         };
 
         newState = reducer(initialSate, {
@@ -282,12 +252,7 @@ describe("When updating the random hand setting", () => {
                 canSelectPiece: false,
                 validPieces: [0, 1, 2, 3, 4, 5, 6, 7, 8]
             },
-            board: [null, null, null, null, null, null, null, null, null],
-            score: {
-                blue: 5,
-                red: 5,
-                winner: false
-            }
+            board: [null, null, null, null, null, null, null, null, null]
         };
 
         newState = reducer(initialState, {
@@ -326,12 +291,7 @@ describe("when updating the multiplayer settings", () => {
                 canSelectPiece: false,
                 validPieces: [0, 1, 2, 3, 4, 5, 6, 7, 8]
             },
-            board: [null, null, null, null, null, null, null, null, null],
-            score: {
-                blue: 5,
-                red: 5,
-                winner: false
-            }
+            board: [null, null, null, null, null, null, null, null, null]
         };
 
         newState = reducer(initialState, {
@@ -369,12 +329,7 @@ describe("when updating the visible hand settings", () => {
                 canSelectPiece: false,
                 validPieces: [0, 1, 2, 3, 4, 5, 6, 7, 8]
             },
-            board: [null, null, null, null, null, null, null, null, null],
-            score: {
-                blue: 5,
-                red: 5,
-                winner: false
-            }
+            board: [null, null, null, null, null, null, null, null, null]
         };
 
         newState = reducer(initialState, {
@@ -415,12 +370,7 @@ describe("Selecting a card", () => {
                 canSelectPiece: false,
                 validPieces: [0, 1, 2, 3, 4, 5, 6, 7, 8]
             },
-            board: [null, null, null, null, null, null, null, null, null],
-            score: {
-                blue: 5,
-                red: 5,
-                winner: false
-            }
+            board: [null, null, null, null, null, null, null, null, null]
         };
 
         newState = reducer(initialState, {
@@ -462,12 +412,7 @@ describe("Selecting a piece by the player", () => {
                 canSelectPiece: false,
                 validPieces: [0, 1, 2, 3, 4, 5, 6, 7, 8]
             },
-            board: [null, null, null, null, null, null, null, null, null],
-            score: {
-                blue: 5,
-                red: 5,
-                winner: false
-            }
+            board: [null, null, null, null, null, null, null, null, null]
         };
 
         newState = reducer(initialState, {
@@ -510,12 +455,7 @@ describe("Selecting a piece by the opponent", () => {
                 canSelectPiece: false,
                 validPieces: [0, 1, 2, 3, 4, 5, 6, 7, 8]
             },
-            board: [null, null, null, null, null, null, null, null, null],
-            score: {
-                blue: 5,
-                red: 5,
-                winner: false
-            }
+            board: [null, null, null, null, null, null, null, null, null]
         };
 
         newState = reducer(initialState, {
@@ -559,12 +499,7 @@ describe('opponent turn in progress game', () => {
                 canSelectPiece: false,
                 validPieces: [0,1,2,3,4,5,6,7,8]
             },
-            board: [null, null, null, null, null, null, null, null, null],
-            score: {
-                blue: 5,
-                red: 5,
-                winner: false
-            }
+            board: [null, null, null, null, null, null, null, null, null]
         };
     });
 
@@ -580,66 +515,6 @@ describe('opponent turn in progress game', () => {
             type: types.END_AI_TURN
         });
         expect(newState.turn.isOpponentTurn).toEqual(false);
-    });
-});
-
-describe("calculating the score", () => {
-
-    let newState;
-    beforeEach(() => {
-        let c0, c1, c2, c3, c4, c5, c6;
-        let opponentCard = deck[7];
-        opponentCard.owner = 1;
-
-        c0 = deck[0];
-        c1 = deck[1];
-        c2 = deck[2];
-        c3 = deck[3];
-        c4 = deck[4];
-        c5 = deck[5];
-        c6 = deck[6];
-
-        c0.owner = 0;
-        c1.owner = 0;
-        c2.owner = 0;
-        c3.owner = 0;
-        c4.owner = 0;
-        c5.owner = 0;
-        c6.owner = 0;
-
-        let initialState = {
-            step: 2,
-            deck: deck,
-            settings: {
-                randomHand: false,
-                multiplayer: false,
-                visibleHand: false
-            },
-            hand: [c0],
-            opponentHand: [opponentCard],
-            handSelected: false,
-            turn: {
-                isOpponentTurn: false,
-                selectedCard: -1,
-                canSelectPiece: false,
-                validPieces: []
-            },
-            board: [c1, c2, c3, c4, c5, c6, opponentCard, null, null],
-            score: {
-                blue: 7,
-                red: 2,
-                winner: false
-            }
-        };
-
-        newState = reducer(initialState, {
-            type: types.CALCULATE_SCORE
-        });
-    });
-
-    it('should handle CALCULATE_SCORE by counting the cards owned by each player', () => {
-        expect(newState.score.blue).toEqual(7)
-        expect(newState.score.red).toEqual(2)
     });
 });
 
@@ -667,12 +542,7 @@ describe("A completed game", () => {
                 canSelectPiece: false,
                 validPieces: []
             },
-            board: _.sample(deck, 9),
-            score: {
-                blue: 9,
-                red: 1,
-                winner: false
-            }
+            board: _.sample(deck, 9)
         }
     });
 
