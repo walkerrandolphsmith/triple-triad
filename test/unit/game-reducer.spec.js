@@ -70,11 +70,11 @@ describe("Game reducer", () => {
 
 describe("Going to the next step of the game wizard", () => {
 
-    let initialSate, newState;
+    let newState;
     let step = 0;
 
     beforeEach(() => {
-        initialSate = {
+        let initialState = {
             step: step,
             deck: deck,
             settings: {
@@ -99,8 +99,7 @@ describe("Going to the next step of the game wizard", () => {
             }
         };
 
-
-        newState = reducer(initialSate, {
+        newState = reducer(initialState, {
             type: types.NEXT_STEP
         });
     });
@@ -142,7 +141,7 @@ describe('setting opponents hand', () => {
 
         newState = reducer(initialSate, {
             type: types.SET_HANDS
-        })
+        });
     });
 
     it('should handle SET_CARDS by not populating the players hand if the setting randHand is false', () => {
@@ -466,16 +465,13 @@ describe("Selecting a card", () => {
 
 describe("Selecting a piece by the player", () => {
 
-    let initialSate, newState;
-
-    let index;
-    let cardToPlace;
-
+    let newState;
+    let cardToPlace, index;
     beforeEach(() => {
         cardToPlace = deck[0];
         index = 0;
 
-        initialSate = {
+        let initialState = {
             step: 2,
             deck: deck,
             settings: {
@@ -500,7 +496,7 @@ describe("Selecting a piece by the player", () => {
             }
         };
 
-        newState = reducer(initialSate, {
+        newState = reducer(initialState, {
             type: types.SELECT_PIECE,
             payload: {
                 index: index
@@ -517,16 +513,13 @@ describe("Selecting a piece by the player", () => {
 
 describe("Selecting a piece by the opponent", () => {
 
-    let initialSate, newState;
-
-    let index;
-    let cardToPlace;
-
+    let newState;
+    let cardToPlace, index;
     beforeEach(() => {
         cardToPlace = deck[0];
         index = 0;
 
-        initialSate = {
+        let initialState = {
             step: 2,
             deck: deck,
             settings: {
@@ -551,7 +544,7 @@ describe("Selecting a piece by the opponent", () => {
             }
         };
 
-        newState = reducer(initialSate, {
+        newState = reducer(initialState, {
             type: types.SELECT_PIECE,
             payload: {
                 index: index
@@ -569,12 +562,10 @@ describe("Selecting a piece by the opponent", () => {
 describe('opponent turn in progress game', () => {
 
     let initialSate;
-    let hand;
-    let opponentHand;
 
     beforeEach(() => {
-        hand = _.sample(deck, 5);
-        opponentHand = _.sample(deck, 5);
+        let hand = _.sample(deck, 5);
+        let opponentHand = _.sample(deck, 5);
         opponentHand.forEach(card => { card.owner = 1; });
 
         initialSate = {
