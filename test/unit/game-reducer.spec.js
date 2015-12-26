@@ -124,14 +124,14 @@ describe("Going to the next step of the game wizard", () => {
         };
     });
 
-    it('should return the increment the step counter', () => {
+    it('should handle NEXT_STEP by incrementing the step counter', () => {
         expect(reducer(initialSate, {
             type: types.NEXT_STEP
         })).toEqual(expectedState)
     });
 });
 
-describe('setting oppoents hand', () => {
+describe('setting opponents hand', () => {
 
     let newState;
 
@@ -166,11 +166,11 @@ describe('setting oppoents hand', () => {
         })
     });
 
-    it('should not populate the players hand if the setting randHand is false', () => {
+    it('should handle SET_CARDS by not populating the players hand if the setting randHand is false', () => {
        expect(newState.hand.length).toEqual(0);
     });
 
-    it('should populate the opponets hand with five cards', () => {
+    it('should handle SET_CARDS by populating the opponets hand with five cards', () => {
         expect(newState.opponentHand.length).toEqual(5);
     });
 });
@@ -210,12 +210,12 @@ describe("setting players hand randomly", () => {
         })
     });
 
-    it('should not populate the players hand with five cards', () => {
+    it('should handle SET_CARDS by not populating the players hand with five cards', () => {
         expect(newState.hand.length).toEqual(5);
     });
 });
 
-describe("handle UPDATE_SETTINGS random hand", () => {
+describe("When updating the random hand setting", () => {
 
     let initialSate;
     let expectedState;
@@ -282,7 +282,7 @@ describe("handle UPDATE_SETTINGS random hand", () => {
     });
 });
 
-describe("handle UPDATE_SETTINGS multiplayer", () => {
+describe("when updating the multiplayer settings", () => {
 
     let initialSate;
     let expectedState;
@@ -349,7 +349,7 @@ describe("handle UPDATE_SETTINGS multiplayer", () => {
     });
 });
 
-describe("handle UPDATE_SETTINGS visible hand", () => {
+describe("when updating the visible hand settings", () => {
 
     let initialSate;
     let expectedState;
@@ -594,7 +594,7 @@ describe('opponent turn in progress game', () => {
         };
     });
 
-    it('hand START_AI_TURN by setting current turn to the opponent', () => {
+    it('should handle START_AI_TURN by setting current turn to the opponent', () => {
         let newState = reducer(initialSate, {
             type: types.START_AI_TURN
         });
@@ -661,7 +661,7 @@ describe("calculating the score", () => {
         }
     });
 
-    it('should handle CALCULATE_SCORE by counting the cards owner by each player', () => {
+    it('should handle CALCULATE_SCORE by counting the cards owned by each player', () => {
 
         let state = _.cloneDeep(initialSate);
 
