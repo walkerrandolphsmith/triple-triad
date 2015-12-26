@@ -98,14 +98,14 @@ describe("Going to the next step of the game wizard", () => {
                 winner: false
             }
         };
+
+
+        newState = reducer(initialSate, {
+            type: types.NEXT_STEP
+        });
     });
 
     it('should handle NEXT_STEP by incrementing the step counter', () => {
-
-        let newState = reducer(initialSate, {
-            type: types.NEXT_STEP
-        });
-
         expect(newState.step).toEqual(step + 1);
     });
 });
@@ -499,9 +499,6 @@ describe("Selecting a piece by the player", () => {
                 winner: false
             }
         };
-    });
-
-    it('should handle SELECT_PIECE', () => {
 
         newState = reducer(initialSate, {
             type: types.SELECT_PIECE,
@@ -509,7 +506,9 @@ describe("Selecting a piece by the player", () => {
                 index: index
             }
         });
+    });
 
+    it('should handle SELECT_PIECE', () => {
         expect(_.contains(newState.turn.validPieces, index)).toEqual(false);
         expect(_.contains(newState.hand, cardToPlace)).toEqual(false);
         expect(newState.board[index]).toEqual(cardToPlace);
@@ -551,9 +550,6 @@ describe("Selecting a piece by the opponent", () => {
                 winner: false
             }
         };
-    });
-
-    it('should handle SELECT_PIECE', () => {
 
         newState = reducer(initialSate, {
             type: types.SELECT_PIECE,
@@ -561,7 +557,9 @@ describe("Selecting a piece by the opponent", () => {
                 index: index
             }
         });
+    });
 
+    it('should handle SELECT_PIECE', () => {
         expect(_.contains(newState.turn.validPieces, index)).toEqual(false);
         expect(_.contains(newState.opponentHand, cardToPlace)).toEqual(false);
         expect(newState.board[index]).toEqual(cardToPlace);
