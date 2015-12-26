@@ -517,12 +517,10 @@ describe('opponent turn in progress game', () => {
 
 describe("calculating the score", () => {
 
-    let initialSate;
-    let opponentCard;
-    let c0, c1, c2, c3, c4, c5, c6;
-
+    let newState;
     beforeEach(() => {
-        opponentCard = deck[7];
+        let c0, c1, c2, c3, c4, c5, c6;
+        let opponentCard = deck[7];
         opponentCard.owner = 1;
 
         c0 = deck[0];
@@ -541,7 +539,7 @@ describe("calculating the score", () => {
         c5.owner = 0;
         c6.owner = 0;
 
-        initialSate = {
+        let initialState = {
             step: 2,
             deck: deck,
             settings: {
@@ -554,7 +552,7 @@ describe("calculating the score", () => {
             handSelected: false,
             turn: {
                 isOpponentTurn: false,
-                selectedCard: -1, //index of hand
+                selectedCard: -1,
                 canSelectPiece: false,
                 validPieces: []
             },
@@ -564,16 +562,16 @@ describe("calculating the score", () => {
                 red: 2,
                 winner: false
             }
-        }
+        };
+
+        newState = reducer(initialState, {
+            type: types.CALCULATE_SCORE
+        });
     });
 
     it('should handle CALCULATE_SCORE by counting the cards owned by each player', () => {
-
-        let state = _.cloneDeep(initialSate);
-
-        expect(reducer(initialSate, {
-            type: types.CALCULATE_SCORE
-        })).toEqual(state)
+        expect(newState.score.blue).toEqual(7)
+        expect(newState.score.red).toEqual(2)
     });
 });
 
