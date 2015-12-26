@@ -37,34 +37,102 @@ describe("Game reducer", () => {
     it('should return the initial state', () => {
         expect(reducer(undefined, {}).toJS()).toEqual(initialSate)
     });
+});
 
-    it('should handle ADD_CARD by removing a card from the available deck', () => {
+describe('Adding a card to the hand', () => {
+    let newState;
+    let cardFromDeck, index;
+    beforeEach(() => {
+        index = 0;
+        cardFromDeck = deck[index];
 
-        let newState = reducer(initialSate, {
+        let initialState = {
+            step: 0,
+            deck: deck,
+            settings: {
+                randomHand: false,
+                multiplayer: false,
+                visibleHand: false
+            },
+            hand: [],
+            opponentHand: [],
+            handSelected: false,
+            turn: {
+                isOpponentTurn: false,
+                selectedCard: -1,
+                canSelectPiece: false,
+                validPieces: [0,1,2,3,4,5,6,7,8]
+            },
+            board: [null, null, null, null, null, null, null, null, null],
+            score: {
+                blue: 5,
+                red: 5,
+                winner: false
+            }
+        };
+
+
+        newState = reducer(initialState, {
             type: types.ADD_CARD,
             payload: {
-                index: 0
+                index: index
             }
         });
+    });
 
-        expect(initialSate.deck.length - 1).toEqual(newState.deck.length);
-        expect(initialSate.hand.length + 1).toEqual(newState.hand.length);
+    it('should handle ADD_CARD by removing a card from the available deck', () => {
+        let lastCard = newState.hand[newState.hand.length -1];
+        expect(_.contains(newState.deck, lastCard)).toEqual(false);
+        expect(lastCard).toEqual(cardFromDeck);
+    });
+});
+
+describe('Removing a card from the hand', () => {
+    let newState;
+    let cardFromHand, index;
+    beforeEach(() => {
+        index = 0;
+        let hand = [deck[0]];
+        cardFromHand = hand[index];
+
+        let initialState = {
+            step: 0,
+            deck: deck,
+            settings: {
+                randomHand: false,
+                multiplayer: false,
+                visibleHand: false
+            },
+            hand: hand,
+            opponentHand: [],
+            handSelected: false,
+            turn: {
+                isOpponentTurn: false,
+                selectedCard: -1,
+                canSelectPiece: false,
+                validPieces: [0,1,2,3,4,5,6,7,8]
+            },
+            board: [null, null, null, null, null, null, null, null, null],
+            score: {
+                blue: 5,
+                red: 5,
+                winner: false
+            }
+        };
+
+
+        newState = reducer(initialState, {
+            type: types.REMOVE_CARD,
+            payload: {
+                index: index
+            }
+        });
     });
 
     it('should handle REMOVE_CARD by adding a card to the available deck', () => {
-
-        let state = _.cloneDeep(initialSate);
-        state.hand = [deck[0]];
-
-        let newState = reducer(state, {
-            type: types.REMOVE_CARD,
-            payload: {
-                index: 0
-            }
-        });
-
-        expect(state.deck.length + 1).toEqual(newState.deck.length);
-        expect(state.hand.length - 1).toEqual(newState.hand.length);
+        let lastCard = newState.deck[newState.deck.length - 1];
+        expect(_.contains(newState.hand, lastCard)).toEqual(false);
+        expect(_.contains(newState.deck, lastCard)).toEqual(true);
     });
 });
 
