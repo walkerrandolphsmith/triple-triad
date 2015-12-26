@@ -73,12 +73,9 @@ export function startAiTurn() {
     }
 }
 
-export function aiTurn(index) {
+export function aiTurn() {
     return {
-        type: types.AI_TURN,
-        payload: {
-            index: index
-        }
+        type: types.AI_TURN
     }
 }
 
