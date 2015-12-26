@@ -325,13 +325,12 @@ describe("when updating the visible hand settings", () => {
 
 describe("Selecting a card", () => {
 
-    let initialSate;
-    let expectedState;
+    let newState;
     let index;
     beforeEach(() => {
         index = 0;
 
-        initialSate = {
+        let initialState = {
             step: 0,
             deck: deck,
             settings: {
@@ -344,7 +343,7 @@ describe("Selecting a card", () => {
             handSelected: false,
             turn: {
                 isOpponentTurn: false,
-                selectedCard: -1, //index of hand
+                selectedCard: -1,
                 canSelectPiece: false,
                 validPieces: [0, 1, 2, 3, 4, 5, 6, 7, 8]
             },
@@ -356,39 +355,17 @@ describe("Selecting a card", () => {
             }
         };
 
-        expectedState = {
-            step: 0,
-            deck: deck,
-            settings: {
-                randomHand: false,
-                multiplayer: false,
-                visibleHand: false
-            },
-            hand: [],
-            opponentHand: [],
-            handSelected: false,
-            turn: {
-                isOpponentTurn: false,
-                selectedCard: index, //index of hand
-                canSelectPiece: true,
-                validPieces: [0, 1, 2, 3, 4, 5, 6, 7, 8]
-            },
-            board: [null, null, null, null, null, null, null, null, null],
-            score: {
-                blue: 5,
-                red: 5,
-                winner: false
-            }
-        };
-    });
-
-    it('should handle SELECT_CARD', () => {
-        expect(reducer(initialSate, {
+        newState = reducer(initialState, {
             type: types.SELECT_CARD,
             payload: {
                 index: index
             }
-        })).toEqual(expectedState)
+        });
+    });
+
+    it('should handle SELECT_CARD', () => {
+        expect(newState.turn.selectedCard).toEqual(index);
+        expect(newState.turn.canSelectPiece).toEqual(true);
     });
 });
 
