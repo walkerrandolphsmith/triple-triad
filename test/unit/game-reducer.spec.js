@@ -609,11 +609,8 @@ describe("A completed game", () => {
     });
 
     it('should handle AI_TURN by doing nothing when all the pieces have cards on them', () => {
-
-        let state = _.cloneDeep(initialSate);
-
         expect(reducer(initialSate, {
             type: types.AI_TURN
-        })).toEqual(state)
+        })).toEqual(initialSate)
     });
 });
