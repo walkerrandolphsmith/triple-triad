@@ -88,9 +88,16 @@ function addCard(state, payload){
 
   var newState = _.cloneDeep(state);
 
-  let hand = _.union(newState.hand, newState.deck.splice(payload.index,1));
-  newState.hand = hand;
-  newState.handSelected = hand.length >= 5;
+
+  let cardToAdd = newState.deck[payload.index];
+
+  newState.deck = newState.deck.filter(card => {
+    return card !== cardToAdd;
+  });
+
+  newState.hand = _.union(newState.hand, [cardToAdd]);
+
+  newState.handSelected = newState.hand.length >= 5;
 
   return newState;
 }
@@ -99,8 +106,14 @@ function removeCard(state, payload){
 
   var newState = _.cloneDeep(state);
 
-  let deck = _.union(newState.deck, newState.hand.splice(payload.index,1));
-  newState.deck = deck;
+  let cardToRemove = newState.hand[payload.index];
+
+  newState.hand = newState.hand.filter(card => {
+    return card !== cardToRemove;
+  });
+
+  newState.deck = _.union(newState.deck, [cardToRemove]);
+
   newState.handSelected = newState.hand.length >= 5;
 
   return newState;
