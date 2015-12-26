@@ -127,7 +127,7 @@ describe('setting opponents hand', () => {
             handSelected: false,
             turn: {
                 isOpponentTurn: false,
-                selectedCard: -1, //index of hand
+                selectedCard: -1,
                 canSelectPiece: false,
                 validPieces: [0,1,2,3,4,5,6,7,8]
             },
@@ -195,10 +195,9 @@ describe("setting players hand randomly", () => {
 
 describe("When updating the random hand setting", () => {
 
-    let initialSate;
-    let expectedState;
+    let newState;
     beforeEach(() => {
-        initialSate = {
+        let initialState = {
             step: 0,
             deck: deck,
             settings: {
@@ -223,49 +222,26 @@ describe("When updating the random hand setting", () => {
             }
         };
 
-        expectedState = {
-            step: 0,
-            deck: deck,
-            settings: {
-                randomHand: true,
-                multiplayer: false,
-                visibleHand: false
-            },
-            hand: [],
-            opponentHand: [],
-            handSelected: false,
-            turn: {
-                isOpponentTurn: false,
-                selectedCard: -1, //index of hand
-                canSelectPiece: false,
-                validPieces: [0, 1, 2, 3, 4, 5, 6, 7, 8]
-            },
-            board: [null, null, null, null, null, null, null, null, null],
-            score: {
-                blue: 5,
-                red: 5,
-                winner: false
-            }
-        };
-    });
-
-    it('should handle UPDATE_SETTINGS random hand', () => {
-        expect(reducer(initialSate, {
+        newState = reducer(initialState, {
             type: types.UPDATE_SETTINGS,
             payload: {
                 setting: "randomHand",
                 isChecked: true
             }
-        })).toEqual(expectedState)
+        });
+
+    });
+
+    it('should handle UPDATE_SETTINGS random hand', () => {
+        expect(newState.settings.randomHand).toEqual(true)
     });
 });
 
 describe("when updating the multiplayer settings", () => {
 
-    let initialSate;
-    let expectedState;
+    let newState;
     beforeEach(() => {
-        initialSate = {
+        let initialState = {
             step: 0,
             deck: deck,
             settings: {
@@ -278,7 +254,7 @@ describe("when updating the multiplayer settings", () => {
             handSelected: false,
             turn: {
                 isOpponentTurn: false,
-                selectedCard: -1, //index of hand
+                selectedCard: -1,
                 canSelectPiece: false,
                 validPieces: [0, 1, 2, 3, 4, 5, 6, 7, 8]
             },
@@ -290,49 +266,25 @@ describe("when updating the multiplayer settings", () => {
             }
         };
 
-        expectedState = {
-            step: 0,
-            deck: deck,
-            settings: {
-                randomHand: false,
-                multiplayer: true,
-                visibleHand: false
-            },
-            hand: [],
-            opponentHand: [],
-            handSelected: false,
-            turn: {
-                isOpponentTurn: false,
-                selectedCard: -1, //index of hand
-                canSelectPiece: false,
-                validPieces: [0, 1, 2, 3, 4, 5, 6, 7, 8]
-            },
-            board: [null, null, null, null, null, null, null, null, null],
-            score: {
-                blue: 5,
-                red: 5,
-                winner: false
-            }
-        };
-    });
-
-    it('should handle UPDATE_SETTINGS multiplayer', () => {
-        expect(reducer(initialSate, {
+        newState = reducer(initialState, {
             type: types.UPDATE_SETTINGS,
             payload: {
                 setting: "multiplayer",
                 isChecked: true
             }
-        })).toEqual(expectedState)
+        });
+    });
+
+    it('should handle UPDATE_SETTINGS multiplayer', () => {
+        expect(newState.settings.multiplayer).toEqual(true)
     });
 });
 
 describe("when updating the visible hand settings", () => {
 
-    let initialSate;
-    let expectedState;
+    let newState;
     beforeEach(() => {
-        initialSate = {
+        let initialState = {
             step: 0,
             deck: deck,
             settings: {
@@ -345,7 +297,7 @@ describe("when updating the visible hand settings", () => {
             handSelected: false,
             turn: {
                 isOpponentTurn: false,
-                selectedCard: -1, //index of hand
+                selectedCard: -1,
                 canSelectPiece: false,
                 validPieces: [0, 1, 2, 3, 4, 5, 6, 7, 8]
             },
@@ -357,40 +309,17 @@ describe("when updating the visible hand settings", () => {
             }
         };
 
-        expectedState = {
-            step: 0,
-            deck: deck,
-            settings: {
-                randomHand: false,
-                multiplayer: false,
-                visibleHand: true
-            },
-            hand: [],
-            opponentHand: [],
-            handSelected: false,
-            turn: {
-                isOpponentTurn: false,
-                selectedCard: -1, //index of hand
-                canSelectPiece: false,
-                validPieces: [0, 1, 2, 3, 4, 5, 6, 7, 8]
-            },
-            board: [null, null, null, null, null, null, null, null, null],
-            score: {
-                blue: 5,
-                red: 5,
-                winner: false
-            }
-        };
-    });
-
-    it('should handle UPDATE_SETTINGS visible hand', () => {
-        expect(reducer(initialSate, {
+        newState = reducer(initialState, {
             type: types.UPDATE_SETTINGS,
             payload: {
                 setting: "visibleHand",
                 isChecked: true
             }
-        })).toEqual(expectedState)
+        });
+    });
+
+    it('should handle UPDATE_SETTINGS visible hand', () => {
+        expect(newState.settings.visibleHand).toEqual(true)
     });
 });
 
