@@ -87,9 +87,12 @@ describe('actions', () => {
 
     it('should create an action to apply the AI opponents turn', () => {
         const expectedAction = {
-            type: types.AI_TURN
+            type: types.AI_TURN,
+            payload: {
+                validPieces: [0,1,2,3,4,5,6,7,8]
+            }
         };
-        expect(actions.aiTurn()).toEqual(expectedAction)
+        expect(actions.aiTurn([0,1,2,3,4,5,6,7,8])).toEqual(expectedAction)
     });
 
     it('should create an action to end the AI oppoents turn', () => {
