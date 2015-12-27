@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { scoreSelector } from './../../../src/shared/selectors/scoreSelector';
+import { scoreSelectorCreator } from './../../../src/shared/selectors/';
 import deck from './../../../src/shared/constants/deck';
 import _ from 'lodash';
 
@@ -32,7 +32,7 @@ describe("Score selector", () => {
         });
 
         it('should have a default score of 5 v 5', () => {
-            expect(scoreSelector(game)).toEqual({
+            expect(scoreSelectorCreator(game)).toEqual({
                 blue: 5,
                 red: 5
             })
@@ -52,7 +52,7 @@ describe("Score selector", () => {
         });
 
         it('should have a score of 5 v 5', () => {
-            expect(scoreSelector(game)).toEqual({
+            expect(scoreSelectorCreator(game)).toEqual({
                 blue: 5,
                 red: 5
             })
@@ -75,7 +75,7 @@ describe("Score selector", () => {
         });
 
         it('should have a score of 6 v 4', () => {
-            expect(scoreSelector(game)).toEqual({
+            expect(scoreSelectorCreator(game)).toEqual({
                 blue: 6,
                 red: 4
             })
@@ -105,7 +105,7 @@ describe("Score selector", () => {
         });
 
         it('should have a score of 5 v 5', () => {
-            expect(scoreSelector(game)).toEqual({
+            expect(scoreSelectorCreator(game)).toEqual({
                 blue: 5,
                 red: 5
             })
@@ -137,7 +137,7 @@ describe("Score selector", () => {
         });
 
         it('should have a score of 9 v 1', () => {
-            expect(scoreSelector(game)).toEqual({
+            expect(scoreSelectorCreator(game)).toEqual({
                 blue: 9,
                 red: 1
             })

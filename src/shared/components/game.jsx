@@ -5,18 +5,17 @@ import Round from './steps/round';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { scoreSelector, validPiecesSelector, winnerSelector } from './../selectors/scoreSelector';
-import { stepCompleteSelector } from './../selectors/stepCompleteSelector';
+import { scoreSelectorCreator, validPiecesSelectorCreator, winnerSelectorCreator, stepCompleteSelectorCreator } from './../selectors/index';
 
 import * as StepActions from './../action-creators/step';
 
 @connect((state) => ({
   game: state.game,
   settings: state.settings,
-  score: scoreSelector(state.game),
-  handSelected:stepCompleteSelector(state.game),
-  validPieces: validPiecesSelector(state.game),
-  winner: winnerSelector(state.game)
+  score: scoreSelectorCreator(state.game),
+  handSelected: stepCompleteSelectorCreator(state.game),
+  validPieces: validPiecesSelectorCreator(state.game),
+  winner: winnerSelectorCreator(state.game)
 }))
 
 export default class Game extends React.Component {
