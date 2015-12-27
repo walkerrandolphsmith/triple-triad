@@ -518,7 +518,10 @@ describe("A completed game", () => {
 
     it('should handle AI_TURN by doing nothing when all the pieces have cards on them', () => {
         expect(reducer(initialSate, {
-            type: types.AI_TURN
+            type: types.AI_TURN,
+            payload: {
+                validPieces: []
+            }
         })).toEqual(initialSate)
     });
 });
