@@ -17,7 +17,6 @@ const INITIAL_STATE = new Immutable.Map({
     isOpponentTurn: false,
     selectedCard: -1, //index of hand
     canSelectPiece: false,
-    validPieces: [0,1,2,3,4,5,6,7,8]
   },
   board: [null, null, null, null, null, null, null, null, null]
 });
@@ -122,7 +121,6 @@ function selectPiece(state, payload) {
 
   let newState = _.cloneDeep(state);
 
-  newState.turn.validPieces = _.difference(newState.turn.validPieces, [payload.index]);
   newState.turn.canSelectPiece = false;
 
   let theHand = newState.turn.isOpponentTurn ? 'opponentHand' : 'hand';
@@ -206,7 +204,9 @@ function startAITurn(state){
 
 function aiTurn(state) {
 
-  if(state.turn.validPieces.length <= 0) {
+  let validPieces = state.board.reduce((validPieces, piece, index) => { if(!piece) validPieces.push(index); return validPieces }, []);
+
+  if(validPieces.length <= 0) {
     return state;
   }
 
@@ -215,8 +215,7 @@ function aiTurn(state) {
   let selectedCard = 0;
   newState = selectCard(newState, {index: selectedCard});
 
-  let selectedPiece = _.sample(newState.turn.validPieces);
-  newState.turn.validPieces = _.difference(newState.turn.validPieces, [selectedPiece]);
+  let selectedPiece = _.sample(validPieces);
 
   newState = selectPiece(newState, {index: selectedPiece});
 

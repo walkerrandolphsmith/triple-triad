@@ -4,7 +4,7 @@ import Cards from './../cards';
 
 export default class Round extends React.Component {
     render() {
-        let {selectCard, selectPiece, applyRules, startAiTurn, aiTurn, endAiTurn, score} = this.props;
+        let {validPieces, selectCard, selectPiece, applyRules, startAiTurn, aiTurn, endAiTurn, score} = this.props;
         let {hand, opponentHand, turn, board} = this.props.game;
         let showFront = this.props.game.settings.visibleHand;
 
@@ -17,7 +17,7 @@ export default class Round extends React.Component {
                 </div>
 
                 <Board board={board}
-                    validPieces={turn.validPieces}
+                    validPieces={validPieces}
                     canSelectPiece={turn.canSelectPiece}
                     selectPiece={selectPiece}
                     applyRules={applyRules}

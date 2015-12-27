@@ -21,8 +21,7 @@ describe("Game reducer", () => {
             turn: {
                 isOpponentTurn: false,
                 selectedCard: -1, //index of hand
-                canSelectPiece: false,
-                validPieces: [0,1,2,3,4,5,6,7,8]
+                canSelectPiece: false
             },
             board: [null, null, null, null, null, null, null, null, null]
         }
@@ -53,8 +52,7 @@ describe('Adding a card to the hand', () => {
             turn: {
                 isOpponentTurn: false,
                 selectedCard: -1,
-                canSelectPiece: false,
-                validPieces: [0,1,2,3,4,5,6,7,8]
+                canSelectPiece: false
             },
             board: [null, null, null, null, null, null, null, null, null]
         };
@@ -96,8 +94,7 @@ describe('Removing a card from the hand', () => {
             turn: {
                 isOpponentTurn: false,
                 selectedCard: -1,
-                canSelectPiece: false,
-                validPieces: [0,1,2,3,4,5,6,7,8]
+                canSelectPiece: false
             },
             board: [null, null, null, null, null, null, null, null, null]
         };
@@ -137,8 +134,7 @@ describe("Going to the next step of the game wizard", () => {
             turn: {
                 isOpponentTurn: false,
                 selectedCard: -1,
-                canSelectPiece: false,
-                validPieces: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+                canSelectPiece: false
             },
             board: [null, null, null, null, null, null, null, null, null]
         };
@@ -171,8 +167,7 @@ describe('setting opponents hand', () => {
             turn: {
                 isOpponentTurn: false,
                 selectedCard: -1,
-                canSelectPiece: false,
-                validPieces: [0,1,2,3,4,5,6,7,8]
+                canSelectPiece: false
             },
             board: [null, null, null, null, null, null, null, null, null]
         };
@@ -208,9 +203,8 @@ describe("setting players hand randomly", () => {
             opponentHand: [],
             turn: {
                 isOpponentTurn: false,
-                selectedCard: -1, //index of hand
-                canSelectPiece: false,
-                validPieces: [0,1,2,3,4,5,6,7,8]
+                selectedCard: -1,
+                canSelectPiece: false
             },
             board: [null, null, null, null, null, null, null, null, null]
         };
@@ -241,9 +235,8 @@ describe("When updating the random hand setting", () => {
             opponentHand: [],
             turn: {
                 isOpponentTurn: false,
-                selectedCard: -1, //index of hand
-                canSelectPiece: false,
-                validPieces: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+                selectedCard: -1,
+                canSelectPiece: false
             },
             board: [null, null, null, null, null, null, null, null, null]
         };
@@ -280,8 +273,7 @@ describe("when updating the multiplayer settings", () => {
             turn: {
                 isOpponentTurn: false,
                 selectedCard: -1,
-                canSelectPiece: false,
-                validPieces: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+                canSelectPiece: false
             },
             board: [null, null, null, null, null, null, null, null, null]
         };
@@ -317,8 +309,7 @@ describe("when updating the visible hand settings", () => {
             turn: {
                 isOpponentTurn: false,
                 selectedCard: -1,
-                canSelectPiece: false,
-                validPieces: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+                canSelectPiece: false
             },
             board: [null, null, null, null, null, null, null, null, null]
         };
@@ -357,8 +348,7 @@ describe("Selecting a card", () => {
             turn: {
                 isOpponentTurn: false,
                 selectedCard: -1,
-                canSelectPiece: false,
-                validPieces: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+                canSelectPiece: false
             },
             board: [null, null, null, null, null, null, null, null, null]
         };
@@ -398,8 +388,7 @@ describe("Selecting a piece by the player", () => {
             turn: {
                 isOpponentTurn: false,
                 selectedCard: -1,
-                canSelectPiece: false,
-                validPieces: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+                canSelectPiece: false
             },
             board: [null, null, null, null, null, null, null, null, null]
         };
@@ -413,7 +402,6 @@ describe("Selecting a piece by the player", () => {
     });
 
     it('should handle SELECT_PIECE', () => {
-        expect(_.contains(newState.turn.validPieces, index)).toEqual(false);
         expect(_.contains(newState.hand, cardToPlace)).toEqual(false);
         expect(newState.board[index]).toEqual(cardToPlace);
     });
@@ -440,8 +428,7 @@ describe("Selecting a piece by the opponent", () => {
             turn: {
                 isOpponentTurn: true,
                 selectedCard: -1,
-                canSelectPiece: false,
-                validPieces: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+                canSelectPiece: false
             },
             board: [null, null, null, null, null, null, null, null, null]
         };
@@ -455,7 +442,6 @@ describe("Selecting a piece by the opponent", () => {
     });
 
     it('should handle SELECT_PIECE', () => {
-        expect(_.contains(newState.turn.validPieces, index)).toEqual(false);
         expect(_.contains(newState.opponentHand, cardToPlace)).toEqual(false);
         expect(newState.board[index]).toEqual(cardToPlace);
     });
@@ -482,9 +468,8 @@ describe('opponent turn in progress game', () => {
             opponentHand: opponentHand,
             turn: {
                 isOpponentTurn: false,
-                selectedCard: -1, //index of hand
-                canSelectPiece: false,
-                validPieces: [0,1,2,3,4,5,6,7,8]
+                selectedCard: -1,
+                canSelectPiece: false
             },
             board: [null, null, null, null, null, null, null, null, null]
         };
@@ -524,9 +509,8 @@ describe("A completed game", () => {
             opponentHand: [deck[0]],
             turn: {
                 isOpponentTurn: false,
-                selectedCard: -1, //index of hand
-                canSelectPiece: false,
-                validPieces: []
+                selectedCard: -1,
+                canSelectPiece: false
             },
             board: _.sample(deck, 9)
         }
