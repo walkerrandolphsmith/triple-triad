@@ -11,11 +11,6 @@ describe("Game reducer", () => {
         initialSate = {
             step: 0,
             deck: deck,
-            settings: {
-                randomHand: false,
-                multiplayer: false,
-                visibleHand: false
-            },
             hand: [],
             opponentHand: [],
             turn: {
@@ -41,11 +36,6 @@ describe('Adding a card to the hand', () => {
         let initialState = {
             step: 0,
             deck: deck,
-            settings: {
-                randomHand: false,
-                multiplayer: false,
-                visibleHand: false
-            },
             hand: [],
             opponentHand: [],
             turn: {
@@ -82,11 +72,6 @@ describe('Removing a card from the hand', () => {
         let initialState = {
             step: 0,
             deck: deck,
-            settings: {
-                randomHand: false,
-                multiplayer: false,
-                visibleHand: false
-            },
             hand: hand,
             opponentHand: [],
             turn: {
@@ -121,11 +106,6 @@ describe("Going to the next step of the game wizard", () => {
         let initialState = {
             step: step,
             deck: deck,
-            settings: {
-                randomHand: false,
-                multiplayer: false,
-                visibleHand: false
-            },
             hand: [],
             opponentHand: [],
             turn: {
@@ -153,11 +133,6 @@ describe('setting hands randomly', () => {
         let initialSate = {
             step: 0,
             deck: deck,
-            settings: {
-                randomHand: false,
-                multiplayer: false,
-                visibleHand: false
-            },
             hand: [],
             opponentHand: [],
             turn: {
@@ -192,11 +167,6 @@ describe("setting players hand randomly", () => {
         let initialSate = {
             step: 0,
             deck: deck,
-            settings: {
-                randomHand: true,
-                multiplayer: false,
-                visibleHand: false
-            },
             hand: [],
             opponentHand: [],
             turn: {
@@ -229,11 +199,6 @@ describe("Selecting a card", () => {
         let initialState = {
             step: 0,
             deck: deck,
-            settings: {
-                randomHand: false,
-                multiplayer: false,
-                visibleHand: false
-            },
             hand: [],
             opponentHand: [],
             turn: {
@@ -267,11 +232,6 @@ describe("Selecting a piece by the player", () => {
         let initialState = {
             step: 2,
             deck: deck,
-            settings: {
-                randomHand: false,
-                multiplayer: false,
-                visibleHand: false
-            },
             hand: [cardToPlace],
             opponentHand: [],
             turn: {
@@ -306,11 +266,6 @@ describe("Selecting a piece by the opponent", () => {
         let initialState = {
             step: 2,
             deck: deck,
-            settings: {
-                randomHand: false,
-                multiplayer: false,
-                visibleHand: false
-            },
             hand: [],
             opponentHand: [cardToPlace],
             turn: {
@@ -346,11 +301,6 @@ describe('opponent turn in progress game', () => {
         initialSate = {
             step: 0,
             deck: deck,
-            settings: {
-                randomHand: false,
-                multiplayer: false,
-                visibleHand: false
-            },
             hand: hand,
             opponentHand: opponentHand,
             turn: {
@@ -386,11 +336,6 @@ describe("A completed game", () => {
         initialSate = {
             step: 2,
             deck: deck,
-            settings: {
-                randomHand: false,
-                multiplayer: false,
-                visibleHand: false
-            },
             hand: [],
             opponentHand: [deck[0]],
             turn: {

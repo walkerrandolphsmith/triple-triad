@@ -6,11 +6,6 @@ import * as types from './../constants/action-types';
 const INITIAL_STATE = new Immutable.Map({
   step: 0,
   deck: deck,
-  settings: {
-    randomHand: false,
-    multiplayer: false,
-    visibleHand: false
-  },
   hand: [],
   opponentHand: [],
   turn: {
@@ -27,7 +22,6 @@ export default function reducer(state = INITIAL_STATE, action) {
   switch(type){
     case types.NEXT_STEP: return nextStep(state);
     case types.SET_HANDS: return setHands(state, payload);
-    case types.UPDATE_SETTINGS: return updateSettings(state, payload);
     case types.ADD_CARD: return addCard(state, payload);
     case types.REMOVE_CARD: return removeCard(state, payload);
     case types.SELECT_CARD: return selectCard(state, payload);
@@ -62,15 +56,6 @@ function setHands(state, payload){
   newState.opponentHand.forEach(card => {
     card.owner = 1;
   });
-
-  return newState;
-}
-
-function updateSettings(state, payload){
-
-  var newState = _.cloneDeep(state);
-
-  newState.settings[payload.setting] = payload.isChecked;
 
   return newState;
 }
