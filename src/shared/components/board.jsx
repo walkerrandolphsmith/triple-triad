@@ -8,7 +8,7 @@ export default class Board extends React.Component {
         this.props.selectPiece(index);
         this.props.applyRules(index);
         this.props.startAiTurn();
-        this.props.aiTurn(this.props.validPieces);
+        this.props.aiTurn();
         this.props.endAiTurn();
     };
 

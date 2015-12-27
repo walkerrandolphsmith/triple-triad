@@ -73,12 +73,9 @@ export function startAiTurn() {
     }
 }
 
-export function aiTurn(validPieces) {
+export function aiTurn() {
     return {
-        type: types.AI_TURN,
-        payload: {
-            validPieces: validPieces
-        }
+        type: types.AI_TURN
     }
 }
 

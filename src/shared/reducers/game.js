@@ -198,11 +198,9 @@ function startAITurn(state){
   return newState;
 }
 
-function aiTurn(state, payload) {
+function aiTurn(state) {
 
-  let { validPieces } = payload;
-
-  console.log(validPieces);
+  let validPieces = state.board.reduce((validPieces, piece, index) => { if(!piece) validPieces.push(index); return validPieces }, []);
 
   if(validPieces.length <= 0) {
     return state;
