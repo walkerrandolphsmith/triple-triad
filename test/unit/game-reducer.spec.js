@@ -18,7 +18,6 @@ describe("Game reducer", () => {
             },
             hand: [],
             opponentHand: [],
-            handSelected: false,
             turn: {
                 isOpponentTurn: false,
                 selectedCard: -1, //index of hand
@@ -51,7 +50,6 @@ describe('Adding a card to the hand', () => {
             },
             hand: [],
             opponentHand: [],
-            handSelected: false,
             turn: {
                 isOpponentTurn: false,
                 selectedCard: -1,
@@ -95,7 +93,6 @@ describe('Removing a card from the hand', () => {
             },
             hand: hand,
             opponentHand: [],
-            handSelected: false,
             turn: {
                 isOpponentTurn: false,
                 selectedCard: -1,
@@ -137,7 +134,6 @@ describe("Going to the next step of the game wizard", () => {
             },
             hand: [],
             opponentHand: [],
-            handSelected: false,
             turn: {
                 isOpponentTurn: false,
                 selectedCard: -1,
@@ -172,7 +168,6 @@ describe('setting opponents hand', () => {
             },
             hand: [],
             opponentHand: [],
-            handSelected: false,
             turn: {
                 isOpponentTurn: false,
                 selectedCard: -1,
@@ -211,7 +206,6 @@ describe("setting players hand randomly", () => {
             },
             hand: [],
             opponentHand: [],
-            handSelected: false,
             turn: {
                 isOpponentTurn: false,
                 selectedCard: -1, //index of hand
@@ -245,7 +239,6 @@ describe("When updating the random hand setting", () => {
             },
             hand: [],
             opponentHand: [],
-            handSelected: false,
             turn: {
                 isOpponentTurn: false,
                 selectedCard: -1, //index of hand
@@ -284,7 +277,6 @@ describe("when updating the multiplayer settings", () => {
             },
             hand: [],
             opponentHand: [],
-            handSelected: false,
             turn: {
                 isOpponentTurn: false,
                 selectedCard: -1,
@@ -322,7 +314,6 @@ describe("when updating the visible hand settings", () => {
             },
             hand: [],
             opponentHand: [],
-            handSelected: false,
             turn: {
                 isOpponentTurn: false,
                 selectedCard: -1,
@@ -363,7 +354,6 @@ describe("Selecting a card", () => {
             },
             hand: [],
             opponentHand: [],
-            handSelected: false,
             turn: {
                 isOpponentTurn: false,
                 selectedCard: -1,
@@ -405,7 +395,6 @@ describe("Selecting a piece by the player", () => {
             },
             hand: [cardToPlace],
             opponentHand: [],
-            handSelected: false,
             turn: {
                 isOpponentTurn: false,
                 selectedCard: -1,
@@ -448,7 +437,6 @@ describe("Selecting a piece by the opponent", () => {
             },
             hand: [],
             opponentHand: [cardToPlace],
-            handSelected: false,
             turn: {
                 isOpponentTurn: true,
                 selectedCard: -1,
@@ -492,7 +480,6 @@ describe('opponent turn in progress game', () => {
             },
             hand: hand,
             opponentHand: opponentHand,
-            handSelected: false,
             turn: {
                 isOpponentTurn: false,
                 selectedCard: -1, //index of hand
@@ -535,7 +522,6 @@ describe("A completed game", () => {
             },
             hand: [],
             opponentHand: [deck[0]],
-            handSelected: false,
             turn: {
                 isOpponentTurn: false,
                 selectedCard: -1, //index of hand
