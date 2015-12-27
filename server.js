@@ -13,9 +13,9 @@ import { RoutingContext, match } from 'react-router';
 import createLocation from 'history/lib/createLocation';
 import routes from './src/shared/routes';
 
-import {createStore, combineReducers} from 'redux';
+import {createStore} from 'redux';
 import {Provider} from 'react-redux';
-import * as reducers from './src/shared/reducers'
+import reducers from './src/shared/reducers/index'
 
 let app = express();
 const port = process.env.PORT || 3000;
@@ -29,8 +29,7 @@ app.use(express.static(path.join(__dirname, 'src')));
 
 app.use((request, response) => {
   const location = createLocation(request.url);
-  const reducer = combineReducers(reducers);
-  const store = createStore(reducer);
+  const store = createStore(reducers);
 
   match({routes, location}, (err, redirectLocation, renderProps) => {
     if(err) return response.status(500).end('Internal server error.');

@@ -3,9 +3,9 @@ import ReactDom from 'react-dom';
 import { Router } from 'react-router';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 import routes from './../shared/routes';
-import {createStore, combineReducers} from 'redux';
+import {createStore} from 'redux';
 import { Provider } from 'react-redux';
-import * as reducers from './../shared/reducers';
+import reducers from './../shared/reducers/index';
 import { fromJS } from 'immutable';
 
 const history = createBrowserHistory();
@@ -17,8 +17,8 @@ let initialState = window.__INITIAL_STATE__;
     initialState[key] = fromJS(initialState[key]);
   });
 */
-const reducer = combineReducers(reducers);
-const store = createStore(reducer, initialState);
+
+const store = createStore(reducers, initialState);
 
 const mountNode = document.getElementById('app');
 ReactDom.render(

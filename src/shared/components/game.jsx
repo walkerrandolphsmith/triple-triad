@@ -12,6 +12,7 @@ import * as StepActions from './../actions/step';
 
 @connect((state) => ({
   game: state.game,
+  settings: state.settings.settings,
   score: scoreSelector(state.game),
   handSelected:stepCompleteSelector(state.game),
   validPieces: validPiecesSelector(state.game)
@@ -19,14 +20,14 @@ import * as StepActions from './../actions/step';
 
 export default class Game extends React.Component {
   render() {
-    let {game, score, handSelected, validPieces, dispatch} = this.props;
+    let {game, settings, score, handSelected, validPieces, dispatch} = this.props;
 
     let currentGameStep = null;
 
     switch(game.step){
       case 0: currentGameStep = (<SettingsSelection settings={game.settings} {...bindActionCreators(StepActions, dispatch)} />); break;
       case 1: currentGameStep = (<CardSelection game={game} handSelected={handSelected} {...bindActionCreators(StepActions, dispatch)} />); break;
-      case 2: currentGameStep = (<Round game={game} score={score} validPieces={validPieces} {...bindActionCreators(StepActions, dispatch)} />); break;
+      case 2: currentGameStep = (<Round game={game} settings={settings} score={score} validPieces={validPieces} {...bindActionCreators(StepActions, dispatch)} />); break;
       default: console.log("default"); break;
     }
 
