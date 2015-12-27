@@ -4,8 +4,7 @@ import Cards from './../cards';
 export default class CardSelection extends React.Component {
     render() {
 
-        let {game, handSelected, removeCard, addCard, nextStep} = this.props;
-        let {deck, hand } = game;
+        let {deck, hand, handSelected, removeCard, addCard, nextStep} = this.props;
         let addCardHandler = handSelected ? function(){} : addCard;
 
         return (
