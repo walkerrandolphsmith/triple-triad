@@ -16,7 +16,7 @@ describe("Settings reducer", () => {
     });
 
 
-    describe("Settings reducer", () => {
+    describe("Given no state", () => {
         it('should return the initial state', () => {
             expect(reducer(undefined, {}).toJS()).toEqual(initialState)
         });
