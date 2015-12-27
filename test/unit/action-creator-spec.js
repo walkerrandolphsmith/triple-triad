@@ -12,9 +12,12 @@ describe('actions', () => {
 
     it('should create an action to set the hands of the players', () => {
        const expectedAction = {
-           type: types.SET_HANDS
+           type: types.SET_HANDS,
+           payload: {
+               randomHand: true
+           }
        };
-        expect(actions.setHands()).toEqual(expectedAction);
+        expect(actions.setHands(true)).toEqual(expectedAction);
     });
 
     it('should create an action to add a card to a players hand', () => {

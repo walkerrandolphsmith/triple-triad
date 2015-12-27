@@ -145,7 +145,7 @@ describe("Going to the next step of the game wizard", () => {
     });
 });
 
-describe('setting opponents hand', () => {
+describe('setting hands randomly', () => {
 
     let newState;
 
@@ -168,7 +168,10 @@ describe('setting opponents hand', () => {
         };
 
         newState = reducer(initialSate, {
-            type: types.SET_HANDS
+            type: types.SET_HANDS,
+            payload: {
+                randomHand: false
+            }
         });
     });
 
@@ -204,7 +207,10 @@ describe("setting players hand randomly", () => {
         };
 
         newState = reducer(initialSate, {
-            type: types.SET_HANDS
+            type: types.SET_HANDS,
+            payload: {
+                randomHand: true
+            }
         })
     });
 
