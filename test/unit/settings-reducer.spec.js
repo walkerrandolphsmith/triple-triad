@@ -1,5 +1,5 @@
 import expect from 'expect';
-import reducer from './../../src/shared/reducers/game';
+import reducer from './../../src/shared/reducers/settings';
 import * as types from './../../src/shared/constants/action-types';
 import deck from './../../src/shared/constants/deck';
 
@@ -8,20 +8,11 @@ describe("When updating the random hand setting", () => {
     let newState;
     beforeEach(() => {
         let initialState = {
-            step: 0,
-            deck: deck,
             settings: {
                 randomHand: false,
                 multiplayer: false,
                 visibleHand: false
-            },
-            hand: [],
-            opponentHand: [],
-            turn: {
-                isOpponentTurn: false,
-                selectedCard: -1
-            },
-            board: [null, null, null, null, null, null, null, null, null]
+            }
         };
 
         newState = reducer(initialState, {
@@ -44,20 +35,11 @@ describe("when updating the multiplayer settings", () => {
     let newState;
     beforeEach(() => {
         let initialState = {
-            step: 0,
-            deck: deck,
             settings: {
                 randomHand: false,
                 multiplayer: false,
                 visibleHand: false
-            },
-            hand: [],
-            opponentHand: [],
-            turn: {
-                isOpponentTurn: false,
-                selectedCard: -1
-            },
-            board: [null, null, null, null, null, null, null, null, null]
+            }
         };
 
         newState = reducer(initialState, {
@@ -79,20 +61,11 @@ describe("when updating the visible hand settings", () => {
     let newState;
     beforeEach(() => {
         let initialState = {
-            step: 0,
-            deck: deck,
             settings: {
                 randomHand: false,
                 multiplayer: false,
                 visibleHand: false
-            },
-            hand: [],
-            opponentHand: [],
-            turn: {
-                isOpponentTurn: false,
-                selectedCard: -1
-            },
-            board: [null, null, null, null, null, null, null, null, null]
+            }
         };
 
         newState = reducer(initialState, {
