@@ -1,7 +1,25 @@
 import expect from 'expect';
 import reducer from './../../src/shared/reducers/settings';
 import * as types from './../../src/shared/constants/action-types';
-import deck from './../../src/shared/constants/deck';
+
+describe("Settings reducer", () => {
+
+    let initialState;
+    beforeEach(() => {
+        initialState = {
+            settings: {
+                randomHand: false,
+                multiplayer: false,
+                visibleHand: false
+            }
+        };
+    });
+
+    it('should return the initial state', () => {
+        expect(reducer(undefined, {}).toJS()).toEqual(initialState)
+    });
+});
+
 
 describe("When updating the random hand setting", () => {
 
