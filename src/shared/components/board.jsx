@@ -14,7 +14,7 @@ export default class Board extends React.Component {
 
     render() {
 
-        let {validPieces, canSelectPiece, board} = this.props;
+        let {validPieces, cardHasBeenSelected, board} = this.props;
 
         let boardStyle = {
             display: 'flex',
@@ -49,7 +49,7 @@ export default class Board extends React.Component {
             let cardAtPiece = board[i];
             let card = cardAtPiece ? (<Card index={i} name={cardAtPiece.name} owner={cardAtPiece.owner} />) : (<div></div>);
 
-            if(canSelectPiece && _.contains(validPieces, i)){
+            if(cardHasBeenSelected && _.contains(validPieces, i)){
                 let validPieceStyle = _.assign(_.clone(pieceStyle), { cursor: 'pointer' });
                 pieces.push(
                     <div key={i} id={i} onClick={this.click.bind(this, i)} style={validPieceStyle}>{card}</div>
