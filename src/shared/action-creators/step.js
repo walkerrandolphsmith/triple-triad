@@ -76,14 +76,31 @@ export function startAiTurn() {
     }
 }
 
-export function aiTurn() {
-    return {
-        type: types.AI_TURN
-    }
-}
-
 export function endAiTurn() {
     return {
         type: types.END_AI_TURN
+    }
+}
+
+export function playerTakesTurn(selectedPiece) {
+    return function(dispatch, getState) {
+
+        dispatch(selectPiece(selectedPiece));
+        dispatch(applyRules(selectedPiece));
+
+        dispatch(startAiTurn());
+
+        dispatch(selectCard(0));
+
+        const state = getState();
+        let validPieces = state.game.board.reduce((validPieces, piece, index) => { if(!piece) validPieces.push(index); return validPieces }, []);
+
+        if(validPieces.length > 0) {
+            let validPiece = _.sample(validPieces);
+            dispatch(selectPiece(validPiece));
+            dispatch(applyRules(validPiece));
+        }
+
+        dispatch(endAiTurn());
     }
 }

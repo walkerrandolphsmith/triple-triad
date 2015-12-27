@@ -13,7 +13,8 @@ import { RoutingContext, match } from 'react-router';
 import createLocation from 'history/lib/createLocation';
 import routes from './src/shared/routes';
 
-import {createStore} from 'redux';
+import {createStore, applyMiddleware} from 'redux';
+import thunk from 'redux-thunk';
 import {Provider} from 'react-redux';
 import reducers from './src/shared/reducers/index'
 
@@ -29,7 +30,10 @@ app.use(express.static(path.join(__dirname, 'src')));
 
 app.use((request, response) => {
   const location = createLocation(request.url);
-  const store = createStore(reducers);
+
+  const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
+  const store = createStoreWithMiddleware(reducers);
+  //const store = createStore(reducers);
 
   match({routes, location}, (err, redirectLocation, renderProps) => {
     if(err) return response.status(500).end('Internal server error.');

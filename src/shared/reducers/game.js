@@ -28,7 +28,6 @@ export default function reducer(state = INITIAL_STATE, action) {
     case types.SELECT_PIECE: return selectPiece(state, payload);
     case types.APPLY_RULES: return applyRules(state, payload);
     case types.START_AI_TURN: return startAITurn(state);
-    case types.AI_TURN: return aiTurn(state, payload);
     case types.END_AI_TURN: return endAiTurn(state);
   }
 
@@ -179,26 +178,6 @@ function startAITurn(state){
   let newState = _.cloneDeep(state);
 
   newState.turn.isOpponentTurn = true;
-
-  return newState;
-}
-
-function aiTurn(state) {
-
-  let validPieces = state.board.reduce((validPieces, piece, index) => { if(!piece) validPieces.push(index); return validPieces }, []);
-
-  if(validPieces.length <= 0) {
-    return state;
-  }
-
-  let newState = _.cloneDeep(state);
-
-  let selectedCard = 0;
-  newState = selectCard(newState, {index: selectedCard});
-
-  let selectedPiece = _.sample(validPieces);
-
-  newState = selectPiece(newState, {index: selectedPiece});
 
   return newState;
 }
