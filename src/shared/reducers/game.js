@@ -35,7 +35,7 @@ export default function reducer(state = INITIAL_STATE, action) {
     case types.SELECT_PIECE: return selectPiece(state, payload);
     case types.APPLY_RULES: return applyRules(state, payload);
     case types.START_AI_TURN: return startAITurn(state);
-    case types.AI_TURN: return aiTurn(state);
+    case types.AI_TURN: return aiTurn(state, payload);
     case types.END_AI_TURN: return endAiTurn(state);
   }
 
@@ -202,9 +202,9 @@ function startAITurn(state){
   return newState;
 }
 
-function aiTurn(state) {
+function aiTurn(state, payload) {
 
-  let validPieces = state.board.reduce((validPieces, piece, index) => { if(!piece) validPieces.push(index); return validPieces }, []);
+  let { validPieces } = payload;
 
   if(validPieces.length <= 0) {
     return state;
