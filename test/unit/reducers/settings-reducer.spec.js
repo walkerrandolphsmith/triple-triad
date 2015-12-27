@@ -15,87 +15,66 @@ describe("Settings reducer", () => {
         };
     });
 
-    it('should return the initial state', () => {
-        expect(reducer(undefined, {}).toJS()).toEqual(initialState)
-    });
-});
 
-
-describe("When updating the random hand setting", () => {
-
-    let newState;
-    beforeEach(() => {
-        let initialState = {
-            settings: {
-                randomHand: false,
-                multiplayer: false,
-                visibleHand: false
-            }
-        };
-
-        newState = reducer(initialState, {
-            type: types.UPDATE_SETTINGS,
-            payload: {
-                setting: "randomHand",
-                isChecked: true
-            }
-        });
-
-    });
-
-    it('should handle UPDATE_SETTINGS random hand', () => {
-        expect(newState.settings.randomHand).toEqual(true)
-    });
-});
-
-describe("when updating the multiplayer settings", () => {
-
-    let newState;
-    beforeEach(() => {
-        let initialState = {
-            settings: {
-                randomHand: false,
-                multiplayer: false,
-                visibleHand: false
-            }
-        };
-
-        newState = reducer(initialState, {
-            type: types.UPDATE_SETTINGS,
-            payload: {
-                setting: "multiplayer",
-                isChecked: true
-            }
+    describe("Settings reducer", () => {
+        it('should return the initial state', () => {
+            expect(reducer(undefined, {}).toJS()).toEqual(initialState)
         });
     });
 
-    it('should handle UPDATE_SETTINGS multiplayer', () => {
-        expect(newState.settings.multiplayer).toEqual(true)
-    });
-});
 
-describe("when updating the visible hand settings", () => {
+    describe("When updating the random hand setting", () => {
 
-    let newState;
-    beforeEach(() => {
-        let initialState = {
-            settings: {
-                randomHand: false,
-                multiplayer: false,
-                visibleHand: false
-            }
-        };
+        let newState;
+        beforeEach(() => {
+            newState = reducer(initialState, {
+                type: types.UPDATE_SETTINGS,
+                payload: {
+                    setting: "randomHand",
+                    isChecked: true
+                }
+            });
+        });
 
-        newState = reducer(initialState, {
-            type: types.UPDATE_SETTINGS,
-            payload: {
-                setting: "visibleHand",
-                isChecked: true
-            }
+        it('should handle UPDATE_SETTINGS random hand', () => {
+            expect(newState.settings.randomHand).toEqual(true)
         });
     });
 
-    it('should handle UPDATE_SETTINGS visible hand', () => {
-        expect(newState.settings.visibleHand).toEqual(true)
+    describe("when updating the multiplayer settings", () => {
+
+        let newState;
+        beforeEach(() => {
+            newState = reducer(initialState, {
+                type: types.UPDATE_SETTINGS,
+                payload: {
+                    setting: "multiplayer",
+                    isChecked: true
+                }
+            });
+        });
+
+        it('should handle UPDATE_SETTINGS multiplayer', () => {
+            expect(newState.settings.multiplayer).toEqual(true)
+        });
     });
+
+    describe("when updating the visible hand settings", () => {
+
+        let newState;
+        beforeEach(() => {
+            newState = reducer(initialState, {
+                type: types.UPDATE_SETTINGS,
+                payload: {
+                    setting: "visibleHand",
+                    isChecked: true
+                }
+            });
+        });
+
+        it('should handle UPDATE_SETTINGS visible hand', () => {
+            expect(newState.settings.visibleHand).toEqual(true)
+        });
+    });
+
 });
