@@ -1,6 +1,6 @@
 import expect from 'expect';
-import * as actions from '../../src/shared/actions/step';
-import * as types from '../../src/shared/constants/action-types';
+import * as actions from './../../../src/shared/action-creators/step';
+import * as types from '../../../src/shared/constants/action-types';
 
 describe('actions', () => {
     it('should create an action to trigger the next step of the wizard', () => {

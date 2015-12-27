@@ -1,6 +1,6 @@
 import expect from 'expect';
-import reducer from './../../src/shared/reducers/settings';
-import * as types from './../../src/shared/constants/action-types';
+import reducer from './../../../src/shared/reducers/settings';
+import * as types from './../../../src/shared/constants/action-types';
 
 describe("Settings reducer", () => {
 

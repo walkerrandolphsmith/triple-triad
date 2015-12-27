@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { scoreSelector, validPiecesSelector } from './../selectors/scoreSelector';
 import { stepCompleteSelector } from './../selectors/stepCompleteSelector';
 
-import * as StepActions from './../actions/step';
+import * as StepActions from './../action-creators/step';
 
 @connect((state) => ({
   game: state.game,
