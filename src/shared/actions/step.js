@@ -6,9 +6,12 @@ export function nextStep() {
     }
 }
 
-export function setHands() {
+export function setHands(randomHand) {
     return {
-        type: types.SET_HANDS
+        type: types.SET_HANDS,
+        payload: {
+            randomHand: randomHand
+        }
     }
 }
 

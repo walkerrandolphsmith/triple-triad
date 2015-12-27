@@ -17,7 +17,7 @@ export default class SettingsSelection extends React.Component {
 
     click = () => {
         this.props.nextStep();
-        this.props.setHands();
+        this.props.setHands(this.props.settings.randomHand);
     };
 
     render() {
