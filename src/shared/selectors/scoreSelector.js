@@ -1,5 +1,6 @@
 import { createSelector } from 'reselect';
 import _ from 'lodash';
+import WINNER from './../constants/winner';
 
 const handSelector = state => state.hand
 const opponentHandSelector = state => state.opponentHand
@@ -25,7 +26,17 @@ export const validPiecesSelector = createSelector(
     board => { return board.reduce((validPieces, piece, index) => { if(!piece) validPieces.push(index); return validPieces }, []); }
 );
 
-/*const winnerSelector = createSelector(
-    [scoreSelector, gameOverSelector],
-    (score, gameOver) => { gameOver ? score : undefined }
-);*/
+export const winnerSelector = createSelector(
+    [scoreSelector, validPiecesSelector],
+    (score, validPieces) => {
+        let winner = WINNER.NONE;
+        if(validPieces.length <= 0){
+            if(score.blue === score.red){
+                winner = WINNER.TIE
+            }else{
+                winner = score.blue > score.red ? WINNER.BLUE : WINNER.RED
+            }
+        }
+        return winner;
+    }
+);

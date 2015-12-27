@@ -1,15 +1,18 @@
 import React from 'react';
 import Board from './../board';
 import Cards from './../cards';
+import GameOverBanner from './../gameOverBanner';
 
 export default class Round extends React.Component {
     render() {
-        let {game, settings, validPieces, selectCard, selectPiece, applyRules, startAiTurn, aiTurn, endAiTurn, score} = this.props;
+        let {game, settings,score, validPieces, winner, selectCard, selectPiece, applyRules, startAiTurn, aiTurn, endAiTurn} = this.props;
         let {hand, opponentHand, turn, board} = game;
         let showFront = settings.visibleHand;
 
         return (
             <div id="step-2">
+
+                <GameOverBanner winner={winner} score={score} />
 
                 <div id="hand">
                     <Cards cards={hand} showBack={false} owner={0} clickAction={selectCard}/>
