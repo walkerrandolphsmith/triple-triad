@@ -7,11 +7,9 @@ describe("Settings reducer", () => {
     let initialState;
     beforeEach(() => {
         initialState = {
-            settings: {
-                randomHand: false,
-                multiplayer: false,
-                visibleHand: false
-            }
+            randomHand: false,
+            multiplayer: false,
+            visibleHand: false
         };
     });
 
@@ -37,7 +35,7 @@ describe("Settings reducer", () => {
         });
 
         it('should handle UPDATE_SETTINGS random hand', () => {
-            expect(newState.settings.randomHand).toEqual(true)
+            expect(newState.randomHand).toEqual(true)
         });
     });
 
@@ -55,7 +53,7 @@ describe("Settings reducer", () => {
         });
 
         it('should handle UPDATE_SETTINGS multiplayer', () => {
-            expect(newState.settings.multiplayer).toEqual(true)
+            expect(newState.multiplayer).toEqual(true)
         });
     });
 
@@ -73,7 +71,7 @@ describe("Settings reducer", () => {
         });
 
         it('should handle UPDATE_SETTINGS visible hand', () => {
-            expect(newState.settings.visibleHand).toEqual(true)
+            expect(newState.visibleHand).toEqual(true)
         });
     });
 

@@ -12,7 +12,7 @@ import * as StepActions from './../action-creators/step';
 
 @connect((state) => ({
   game: state.game,
-  settings: state.settings.settings,
+  settings: state.settings,
   score: scoreSelector(state.game),
   handSelected:stepCompleteSelector(state.game),
   validPieces: validPiecesSelector(state.game)
