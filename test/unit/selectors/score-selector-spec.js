@@ -1,10 +1,9 @@
 import expect from 'expect';
-import { scoreSelectorCreator } from './../../../src/shared/selectors/';
+import { blueScoreSelector } from './../../../src/shared/selectors/scoreSelector';
 import deck from './../../../src/shared/constants/deck';
 import _ from 'lodash';
 
-
-describe("Score selector", () => {
+describe("Blue Score selector", () => {
 
     let playerOneCards, playerTwoCards;
     beforeEach(() => {
@@ -19,128 +18,42 @@ describe("Score selector", () => {
         });
     });
 
-    describe("Score selector of a not started game", () => {
+    describe("given a new game", () => {
 
-        let game;
+        let board, hand;
         beforeEach(() => {
-
-            game = {
-                hand: [playerOneCards[0], playerOneCards[1], playerOneCards[2], playerOneCards[3], playerOneCards[4]],
-                opponentHand: [playerTwoCards[0], playerTwoCards[1], playerTwoCards[2], playerTwoCards[3], playerTwoCards[4]],
-                board: [null, null, null, null, null, null, null, null, null]
-            }
+            hand = [playerOneCards[0], playerOneCards[1], playerOneCards[2], playerOneCards[3], playerOneCards[4]],
+            board = [null, null, null, null, null, null, null, null, null]
         });
 
-        it('should have a default score of 5 v 5', () => {
-            expect(scoreSelectorCreator(game)).toEqual({
-                blue: 5,
-                red: 5
-            })
+        it('should have a default score of 5', () => {
+            expect(blueScoreSelector(hand, board)).toEqual(5)
         });
     });
 
-    describe("Score selector given player one takes first move", () => {
+    describe("given a game in which the player placed one card", () => {
 
-        let game;
+        let board, hand;
         beforeEach(() => {
-
-            game = {
-                hand: [playerOneCards[0], playerOneCards[1], playerOneCards[2], playerOneCards[3]],
-                opponentHand: [playerTwoCards[0], playerTwoCards[1], playerTwoCards[2], playerTwoCards[3], playerTwoCards[4]],
-                board: [playerOneCards[4], null, null, null, null, null, null, null, null]
-            }
+            hand = [playerOneCards[0], playerOneCards[1], playerOneCards[2], playerOneCards[3]];
+                board = [playerOneCards[4], null, null, null, null, null, null, null, null]
         });
 
-        it('should have a score of 5 v 5', () => {
-            expect(scoreSelectorCreator(game)).toEqual({
-                blue: 5,
-                red: 5
-            })
+        it('should have a score of 5', () => {
+            expect(blueScoreSelector(hand, board)).toEqual(5)
         });
     });
 
-    describe("Score selector given player one flipped player two card", () => {
+    describe("given a game in which the player and opponent have placed one card", () => {
 
-        let game;
+        let board, hand;
         beforeEach(() => {
-
-            let playerTwoFlippedCard = playerTwoCards[4];
-            playerTwoFlippedCard.owner = 0;
-
-            game = {
-                hand: [playerOneCards[0], playerOneCards[1], playerOneCards[2]],
-                opponentHand: [playerTwoCards[0], playerTwoCards[1], playerTwoCards[2], playerTwoCards[3]],
-                board: [playerOneCards[3], playerOneCards[4], playerTwoFlippedCard, null, null, null, null, null, null]
-            }
+            hand = [playerOneCards[0], playerOneCards[1], playerOneCards[2], playerOneCards[3]];
+            board = [playerOneCards[4], playerTwoCards[0], null, null, null, null, null, null, null]
         });
 
-        it('should have a score of 6 v 4', () => {
-            expect(scoreSelectorCreator(game)).toEqual({
-                blue: 6,
-                red: 4
-            })
-        });
-    });
-
-    describe("Score selector given a full board with no flipped cards", () => {
-
-        let game;
-        beforeEach(() => {
-
-            game = {
-                hand: [],
-                opponentHand: [playerTwoCards[4]],
-                board: [
-                    playerOneCards[0],
-                    playerOneCards[1],
-                    playerOneCards[2],
-                    playerOneCards[3],
-                    playerOneCards[4],
-                    playerTwoCards[0],
-                    playerTwoCards[1],
-                    playerTwoCards[2],
-                    playerTwoCards[3]
-                ]
-            }
-        });
-
-        it('should have a score of 5 v 5', () => {
-            expect(scoreSelectorCreator(game)).toEqual({
-                blue: 5,
-                red: 5
-            })
-        });
-    });
-
-    describe("Score selector given player one owns every card on board ", () => {
-
-        let game;
-        beforeEach(() => {
-
-
-
-            game = {
-                hand: [],
-                opponentHand: [playerTwoCards[4]],
-                board: [
-                    playerOneCards[0],
-                    playerOneCards[1],
-                    playerOneCards[2],
-                    playerOneCards[3],
-                    playerOneCards[4],
-                    playerOneCards[0],
-                    playerOneCards[1],
-                    playerOneCards[2],
-                    playerOneCards[3],
-                ]
-            }
-        });
-
-        it('should have a score of 9 v 1', () => {
-            expect(scoreSelectorCreator(game)).toEqual({
-                blue: 9,
-                red: 1
-            })
+        it('should have a score of 5', () => {
+            expect(blueScoreSelector(hand, board)).toEqual(5)
         });
     });
 
