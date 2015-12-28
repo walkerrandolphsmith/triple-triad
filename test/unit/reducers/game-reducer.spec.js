@@ -14,7 +14,6 @@ describe("Game reducer", () => {
             hand: [],
             opponentHand: [],
             turn: {
-                isOpponentTurn: false,
                 selectedCard: -1
             },
             board: [null, null, null, null, null, null, null, null, null]
@@ -64,7 +63,6 @@ describe("Game reducer", () => {
                 hand: hand,
                 opponentHand: [],
                 turn: {
-                    isOpponentTurn: false,
                     selectedCard: -1
                 },
                 board: [null, null, null, null, null, null, null, null, null]
@@ -173,7 +171,6 @@ describe("Game reducer", () => {
                 hand: [cardToPlace],
                 opponentHand: [],
                 turn: {
-                    isOpponentTurn: false,
                     selectedCard: -1
                 },
                 board: [null, null, null, null, null, null, null, null, null]
@@ -182,7 +179,8 @@ describe("Game reducer", () => {
             newState = reducer(initialState, {
                 type: types.SELECT_PIECE,
                 payload: {
-                    index: index
+                    index: index,
+                    isPlayer: true
                 }
             });
         });
@@ -207,7 +205,6 @@ describe("Game reducer", () => {
                 hand: [],
                 opponentHand: [cardToPlace],
                 turn: {
-                    isOpponentTurn: true,
                     selectedCard: -1
                 },
                 board: [null, null, null, null, null, null, null, null, null]
@@ -216,7 +213,8 @@ describe("Game reducer", () => {
             newState = reducer(initialState, {
                 type: types.SELECT_PIECE,
                 payload: {
-                    index: index
+                    index: index,
+                    isPlayer: false
                 }
             });
         });
@@ -244,7 +242,6 @@ describe("Game reducer", () => {
                 hand: hand,
                 opponentHand: opponentHand,
                 turn: {
-                    isOpponentTurn: false,
                     selectedCard: -1
                 },
                 board: [null, null, null, null, null, null, null, null, null]
@@ -255,14 +252,14 @@ describe("Game reducer", () => {
             let newState = reducer(initialSate, {
                 type: types.START_AI_TURN
             });
-            expect(newState.turn.isOpponentTurn).toEqual(true);
+            expect(newState).toEqual(initialSate);
         });
 
         it('should handle END_AI_TURN by setting the current turn to the player', () => {
             let newState = reducer(initialSate, {
                 type: types.END_AI_TURN
             });
-            expect(newState.turn.isOpponentTurn).toEqual(false);
+            expect(newState).toEqual(initialSate);
         });
     });
 
@@ -279,7 +276,6 @@ describe("Game reducer", () => {
                 hand: [],
                 opponentHand: [deck[0]],
                 turn: {
-                    isOpponentTurn: false,
                     selectedCard: -1
                 },
                 board: _.sample(deck, 9)

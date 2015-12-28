@@ -52,11 +52,12 @@ export function selectCard(index) {
     }
 }
 
-export function selectPiece(index) {
+export function selectPiece(index, isPlayer) {
     return {
         type: types.SELECT_PIECE,
         payload: {
-            index: index
+            index: index,
+            isPlayer: isPlayer
         }
     }
 }
@@ -85,7 +86,7 @@ export function endAiTurn() {
 export function playerTakesTurn(selectedPiece) {
     return function(dispatch, getState) {
 
-        dispatch(selectPiece(selectedPiece));
+        dispatch(selectPiece(selectedPiece, true));
         dispatch(applyRules(selectedPiece));
 
         dispatch(startAiTurn());
@@ -97,7 +98,7 @@ export function playerTakesTurn(selectedPiece) {
 
         if(validPieces.length > 0) {
             let validPiece = _.sample(validPieces);
-            dispatch(selectPiece(validPiece));
+            dispatch(selectPiece(validPiece, false));
             dispatch(applyRules(validPiece));
         }
 

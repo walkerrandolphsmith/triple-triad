@@ -65,10 +65,11 @@ describe('actions', () => {
         const expectedAction = {
             type: types.SELECT_PIECE,
             payload: {
-                index: 0
+                index: 0,
+                isPlayer: true
             }
         };
-        expect(actions.selectPiece(0)).toEqual(expectedAction)
+        expect(actions.selectPiece(0, true)).toEqual(expectedAction)
     });
 
     it('should create an action to apply the rules to flip cards', () => {
