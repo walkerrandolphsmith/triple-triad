@@ -8,12 +8,12 @@ describe("Blue Score selector", () => {
     let playerOneCards, playerTwoCards;
     beforeEach(() => {
         playerOneCards = [deck[0], deck[1], deck[2], deck[3], deck[4]].map(card => {
-            card.owner = 0;
+            card.owner = 1;
             return card;
         });
 
         playerTwoCards = [deck[5], deck[6], deck[7], deck[8], deck[9]].map(card => {
-            card.owner = 1;
+            card.owner = 2;
             return card;
         });
     });

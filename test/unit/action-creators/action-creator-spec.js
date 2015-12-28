@@ -14,18 +14,17 @@ describe('actions', () => {
        const expectedAction = {
            type: types.SET_HAND,
            payload: {
-               hand: 'hand',
                owner: 0
            }
        };
-        expect(actions.setHand('hand', 0)).toEqual(expectedAction);
+        expect(actions.setHand(0)).toEqual(expectedAction);
     });
 
     it('should create an action to add a card to a players hand', () => {
         const expectedAction = {
             type: types.ADD_CARD,
             payload: {
-                index: 0
+                id: 0
             }
         };
         expect(actions.addCard(0)).toEqual(expectedAction)
@@ -35,7 +34,7 @@ describe('actions', () => {
         const expectedAction = {
             type: types.REMOVE_CARD,
             payload: {
-                index: 0
+                id: 0
             }
         };
         expect(actions.removeCard(0)).toEqual(expectedAction)
@@ -56,7 +55,7 @@ describe('actions', () => {
         const expectedAction = {
             type: types.SELECT_CARD,
             payload: {
-                index: 0
+                id: 0
             }
         };
         expect(actions.selectCard(0)).toEqual(expectedAction)
@@ -66,11 +65,10 @@ describe('actions', () => {
         const expectedAction = {
             type: types.SELECT_PIECE,
             payload: {
-                index: 0,
-                isPlayer: true
+                index: 0
             }
         };
-        expect(actions.selectPiece(0, true)).toEqual(expectedAction)
+        expect(actions.selectPiece(0)).toEqual(expectedAction)
     });
 
     it('should create an action to update the board when a card is placed', () => {

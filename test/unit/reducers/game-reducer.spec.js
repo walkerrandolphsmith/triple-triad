@@ -11,8 +11,8 @@ describe("Game reducer", () => {
         initialState = {
             step: 0,
             deck: deck,
-            hand: [],
-            opponentHand: [],
+            player: 1,
+            opponent: 2,
             selectedCard: -1,
             board: [null, null, null, null, null, null, null, null, null]
         }
@@ -24,42 +24,39 @@ describe("Game reducer", () => {
         });
     });
 
-    describe('Adding a card to the hand', () => {
+    describe('When adding a card by id to the hand', () => {
         let newState;
-        let cardFromDeck, index;
+        let cardFromDeck, id;
         beforeEach(() => {
-            index = 0;
-            cardFromDeck = deck[index];
+            id = 0;
+            cardFromDeck = _.find(deck, {id: id});
 
             newState = reducer(initialState, {
                 type: types.ADD_CARD,
                 payload: {
-                    index: index
+                    id: id
                 }
             });
         });
 
-        it('should handle ADD_CARD by removing a card from the available deck', () => {
-            let lastCard = newState.hand[newState.hand.length - 1];
-            expect(_.contains(newState.deck, lastCard)).toEqual(false);
-            expect(lastCard).toEqual(cardFromDeck);
+        it('should handle ADD_CARD by updating card in deck with new owner', () => {
+            expect(_.find(newState.deck, {id: id}).owner).toEqual(1);
         });
     });
 
-    describe('Removing a card from the hand', () => {
+    describe('When removing a card by id from the hand', () => {
 
         let newState;
-        let cardFromHand, index;
+        let cardFromDeck, id;
         beforeEach(() => {
-            index = 0;
-            let hand = [deck[0]];
-            cardFromHand = hand[index];
+            id = 0;
+            cardFromDeck = _.find(deck, {id: id});
 
             let initialState = {
                 step: 0,
                 deck: deck,
-                hand: hand,
-                opponentHand: [],
+                player: 1,
+                opponent: 2,
                 selectedCard: -1,
                 board: [null, null, null, null, null, null, null, null, null]
             };
@@ -68,15 +65,13 @@ describe("Game reducer", () => {
             newState = reducer(initialState, {
                 type: types.REMOVE_CARD,
                 payload: {
-                    index: index
+                    id: id
                 }
             });
         });
 
-        it('should handle REMOVE_CARD by adding a card to the available deck', () => {
-            let lastCard = newState.deck[newState.deck.length - 1];
-            expect(_.contains(newState.hand, lastCard)).toEqual(false);
-            expect(_.contains(newState.deck, lastCard)).toEqual(true);
+        it('should handle REMOVE_CARD by updating the card in deck with no owner', () => {
+            expect(_.find(newState.deck, {id: id}).owner).toEqual(0);
         });
     });
 
@@ -97,121 +92,87 @@ describe("Game reducer", () => {
 
     describe('setting players hand randomly', () => {
 
-        let newState;
+        let newState, owner;
         beforeEach(() => {
+            let owner = 1;
             newState = reducer(initialState, {
                 type: types.SET_HAND,
                 payload: {
-                    hand: 'hand',
-                    owner: 0
+                    owner: owner
                 }
             });
         });
 
-        it('should handle SET_CARDS by not populating the players hand with five cards', () => {
-            expect(newState.hand.length).toEqual(5);
+        it('should handle SET_HANDS by populating the players hand with five cards', () => {
+            let hand = _.filter(newState.deck, card => { return card.owner === 1});
+            expect(hand.length).toEqual(5);
         });
     });
 
     describe("setting opponents hand randomly", () => {
 
-        let newState;
+        let newState, owner;
         beforeEach(() => {
+            let owner = 2;
             newState = reducer(initialState, {
                 type: types.SET_HAND,
                 payload: {
-                    hand: 'opponentHand',
-                    owner: 1
+                    owner: owner
                 }
             })
         });
 
-        it('should handle SET_CARDS by populating the opponents hand with five cards', () => {
-            expect(newState.opponentHand.length).toEqual(5);
+        it('should handle SET_HANDS by populating the opponents hand with five cards', () => {
+            let hand = _.filter(newState.deck, card => { return card.owner === 2});
+            expect(hand.length).toEqual(5);
         });
     });
 
     describe("Selecting a card", () => {
 
-        let newState;
-        let index;
+        let id, newState;
         beforeEach(() => {
-            index = 0;
+            id = 0;
 
             newState = reducer(initialState, {
                 type: types.SELECT_CARD,
+                payload: {
+                    id: id
+                }
+            });
+        });
+
+        it('should handle SELECT_CARD', () => {
+            expect(newState.selectedCard).toEqual(id);
+        });
+    });
+
+    describe("Selecting a piece by the player", () => {
+
+        let index, selectedCard, newState;
+        beforeEach(() => {
+            index = 0;
+            selectedCard = 0;
+
+            let initialState = {
+                step: 2,
+                deck: deck,
+                player: 1,
+                opponent: 2,
+                selectedCard: selectedCard,
+                board: [null, null, null, null, null, null, null, null, null]
+            };
+
+            newState = reducer(initialState, {
+                type: types.SELECT_PIECE,
                 payload: {
                     index: index
                 }
             });
         });
 
-        it('should handle SELECT_CARD', () => {
-            expect(newState.selectedCard).toEqual(index);
-        });
-    });
-
-    describe("Selecting a piece by the player", () => {
-
-        let newState;
-        let cardToPlace, index;
-        beforeEach(() => {
-            cardToPlace = deck[0];
-            index = 0;
-
-            let initialState = {
-                step: 2,
-                deck: deck,
-                hand: [cardToPlace],
-                opponentHand: [],
-                selectedCard: -1,
-                board: [null, null, null, null, null, null, null, null, null]
-            };
-
-            newState = reducer(initialState, {
-                type: types.SELECT_PIECE,
-                payload: {
-                    index: index,
-                    isPlayer: true
-                }
-            });
-        });
-
         it('should handle SELECT_PIECE', () => {
-            expect(_.contains(newState.hand, cardToPlace)).toEqual(false);
-            expect(newState.board[index]).toEqual(cardToPlace);
-        });
-    });
-
-    describe("Selecting a piece by the opponent", () => {
-
-        let newState;
-        let cardToPlace, index;
-        beforeEach(() => {
-            cardToPlace = deck[0];
-            index = 0;
-
-            let initialState = {
-                step: 2,
-                deck: deck,
-                hand: [],
-                opponentHand: [cardToPlace],
-                selectedCard: -1,
-                board: [null, null, null, null, null, null, null, null, null]
-            };
-
-            newState = reducer(initialState, {
-                type: types.SELECT_PIECE,
-                payload: {
-                    index: index,
-                    isPlayer: false
-                }
-            });
-        });
-
-        it('should handle SELECT_PIECE', () => {
-            expect(_.contains(newState.opponentHand, cardToPlace)).toEqual(false);
-            expect(newState.board[index]).toEqual(cardToPlace);
+            expect(newState.board[index]).toEqual(_.find(newState.deck, {id: selectedCard}));
         });
     });
 
