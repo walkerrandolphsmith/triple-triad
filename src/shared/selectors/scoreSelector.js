@@ -5,5 +5,3 @@ export const getBlueScore = (hand, board) => { return _.compact(hand.concat(boar
 export const getRedScore = (hand, board) => { return _.compact(hand.concat(board)).reduce((x, y) => { return y.owner === 1 ? x + 1 : x; }, 0)}
 
 export const getScore = (blue, red) => ({ blue: blue, red: red })
-
-export const getValidPieces = board => { return board.reduce((validPieces, piece, index) => { if(!piece) validPieces.push(index); return validPieces }, []); }

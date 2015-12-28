@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { getValidPieces } from './../../../src/shared/selectors/scoreSelector';
+import { getValidPieces } from './../../../src/shared/selectors/validPiecesSelector';
 import deck from './../../../src/shared/constants/deck';
 
 describe("validPieces selector", () => {

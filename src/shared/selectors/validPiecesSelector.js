@@ -1,0 +1,1 @@
+export const getValidPieces = board => { return board.reduce((validPieces, piece, index) => { if(!piece) validPieces.push(index); return validPieces }, []); }

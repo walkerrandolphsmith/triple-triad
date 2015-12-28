@@ -1,8 +1,9 @@
 import { createSelector } from 'reselect';
 
-import { getBlueScore, getRedScore, getScore, getValidPieces } from './scoreSelector';
+import { getBlueScore, getRedScore, getScore } from './scoreSelector';
 import { getStepComplete } from './stepCompleteSelector';
 import { getWinner } from './winnerSelector';
+import { getValidPieces } from './validPiecesSelector';
 
 const handSelector = state => state.hand
 const opponentHandSelector = state => state.opponentHand
