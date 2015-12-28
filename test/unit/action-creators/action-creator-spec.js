@@ -73,6 +73,17 @@ describe('actions', () => {
         expect(actions.selectPiece(0, true)).toEqual(expectedAction)
     });
 
+    it('should create an action to update the board when a card is placed', () => {
+        const expectedAction = {
+            type: types.UPDATE_BOARD,
+            payload: {
+                index: 0,
+                owner: 0
+            }
+        };
+        expect(actions.updateBoard(0, 0)).toEqual(expectedAction)
+    });
+
     it('should create an action to apply the rules to flip cards', () => {
         const expectedAction = {
             type: types.APPLY_RULES,
