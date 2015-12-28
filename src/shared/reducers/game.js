@@ -8,9 +8,7 @@ const INITIAL_STATE = new Immutable.Map({
   deck: deck,
   hand: [],
   opponentHand: [],
-  turn: {
-    selectedCard: -1 //index of hand
-  },
+  selectedCard: -1, //index of hand
   board: [null, null, null, null, null, null, null, null, null]
 });
 
@@ -93,7 +91,7 @@ function selectCard(state, payload) {
 
   var newState = _.cloneDeep(state);
 
-  newState.turn.selectedCard = payload.index;
+  newState.selectedCard = payload.index;
 
   return newState;
 }
@@ -103,8 +101,8 @@ function selectPiece(state, payload) {
   let newState = _.cloneDeep(state);
 
   let theHand = payload.isPlayer ? 'hand' : 'opponentHand';
-  var cardToPlaceOnBoard = newState[theHand].splice(newState.turn.selectedCard, 1);
-  newState.turn.selectedCard = -1;
+  var cardToPlaceOnBoard = newState[theHand].splice(newState.selectedCard, 1);
+  newState.selectedCard = -1;
 
   newState.board[payload.index] = cardToPlaceOnBoard[0];
 

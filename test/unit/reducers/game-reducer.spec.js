@@ -13,9 +13,7 @@ describe("Game reducer", () => {
             deck: deck,
             hand: [],
             opponentHand: [],
-            turn: {
-                selectedCard: -1
-            },
+            selectedCard: -1,
             board: [null, null, null, null, null, null, null, null, null]
         }
     });
@@ -62,9 +60,7 @@ describe("Game reducer", () => {
                 deck: deck,
                 hand: hand,
                 opponentHand: [],
-                turn: {
-                    selectedCard: -1
-                },
+                selectedCard: -1,
                 board: [null, null, null, null, null, null, null, null, null]
             };
 
@@ -153,7 +149,7 @@ describe("Game reducer", () => {
         });
 
         it('should handle SELECT_CARD', () => {
-            expect(newState.turn.selectedCard).toEqual(index);
+            expect(newState.selectedCard).toEqual(index);
         });
     });
 
@@ -170,9 +166,7 @@ describe("Game reducer", () => {
                 deck: deck,
                 hand: [cardToPlace],
                 opponentHand: [],
-                turn: {
-                    selectedCard: -1
-                },
+                selectedCard: -1,
                 board: [null, null, null, null, null, null, null, null, null]
             };
 
@@ -204,9 +198,7 @@ describe("Game reducer", () => {
                 deck: deck,
                 hand: [],
                 opponentHand: [cardToPlace],
-                turn: {
-                    selectedCard: -1
-                },
+                selectedCard: -1,
                 board: [null, null, null, null, null, null, null, null, null]
             };
 
@@ -241,9 +233,7 @@ describe("Game reducer", () => {
                 deck: deck,
                 hand: hand,
                 opponentHand: opponentHand,
-                turn: {
-                    selectedCard: -1
-                },
+                selectedCard: -1,
                 board: [null, null, null, null, null, null, null, null, null]
             };
         });
@@ -275,9 +265,7 @@ describe("Game reducer", () => {
                 deck: deck,
                 hand: [],
                 opponentHand: [deck[0]],
-                turn: {
-                    selectedCard: -1
-                },
+                selectedCard: -1,
                 board: _.sample(deck, 9)
             }
         });

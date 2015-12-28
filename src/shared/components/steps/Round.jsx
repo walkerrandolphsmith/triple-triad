@@ -6,7 +6,7 @@ import GameOverBanner from './../gameOverBanner';
 export default class Round extends React.Component {
     render() {
         let {game, settings,score, validPieces, winner, selectCard, playerTakesTurn} = this.props;
-        let {hand, opponentHand, turn, board} = game;
+        let {hand, opponentHand, selectedCard, board} = game;
         let showFront = settings.visibleHand;
 
         return (
@@ -21,7 +21,7 @@ export default class Round extends React.Component {
 
                 <Board board={board}
                     validPieces={validPieces}
-                    cardHasBeenSelected={turn.selectedCard !== -1}
+                    cardHasBeenSelected={selectedCard !== -1}
                     playerTakesTurn={playerTakesTurn}
                 />
 
