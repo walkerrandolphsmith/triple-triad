@@ -43,7 +43,7 @@ export default class Board extends React.Component {
         let pieces = [];
         for(var i = 0; i < 9; i++){
             let cardAtPiece = board[i];
-            let card = cardAtPiece ? (<Card index={i} name={cardAtPiece.name} owner={cardAtPiece.owner} />) : (<div></div>);
+            let card = cardAtPiece ? (<Card id={cardAtPiece.id} name={cardAtPiece.name} owner={cardAtPiece.owner} />) : (<div></div>);
 
             if(cardHasBeenSelected && _.contains(validPieces, i)){
                 let validPieceStyle = _.assign(_.clone(pieceStyle), { cursor: 'pointer' });

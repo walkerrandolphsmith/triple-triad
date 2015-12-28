@@ -10,7 +10,7 @@ export default class CardSelection extends React.Component {
         return (
             <div id="step-1">
                 <Cards cards={deck} showBack={false} owner={0} clickAction={addCardHandler} />
-                <Cards cards={hand} showBack={false} owner={0} clickAction={removeCard} />
+                <Cards cards={hand} showBack={false} owner={1} clickAction={removeCard} />
                 <button disabled={!handSelected} onClick={nextStep}> Next step</button>
             </div>
         );

@@ -5,13 +5,15 @@ import Round from './steps/round';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { scoreSelector, validPiecesSelector, winnerSelector, stepCompleteSelector } from './../selectors/index';
+import { handSelector, opponentHandSelector, scoreSelector, validPiecesSelector, winnerSelector, stepCompleteSelector } from './../selectors/index';
 
 import * as StepActions from './../action-creators/step';
 
 @connect((state) => ({
   game: state.game,
   settings: state.settings,
+  hand: handSelector(state.game),
+  opponentHand: opponentHandSelector(state.game),
   score: scoreSelector(state.game),
   handSelected: stepCompleteSelector(state.game),
   validPieces: validPiecesSelector(state.game),
@@ -20,14 +22,14 @@ import * as StepActions from './../action-creators/step';
 
 export default class Game extends React.Component {
   render() {
-    let {game, settings, score, handSelected, validPieces, winner, dispatch} = this.props;
+    let {game, hand, opponentHand, settings, score, handSelected, validPieces, winner, dispatch} = this.props;
 
     let currentGameStep = null;
 
     switch(game.step){
       case 0: currentGameStep = (<SettingsSelection settings={settings} {...bindActionCreators(StepActions, dispatch)} />); break;
-      case 1: currentGameStep = (<CardSelection deck={game.deck} hand={game.hand} handSelected={handSelected} {...bindActionCreators(StepActions, dispatch)} />); break;
-      case 2: currentGameStep = (<Round game={game} settings={settings} score={score} validPieces={validPieces} winner={winner} {...bindActionCreators(StepActions, dispatch)} />); break;
+      case 1: currentGameStep = (<CardSelection deck={game.deck} hand={hand} handSelected={handSelected} {...bindActionCreators(StepActions, dispatch)} />); break;
+      case 2: currentGameStep = (<Round game={game} hand={hand} opponentHand={opponentHand} settings={settings} score={score} validPieces={validPieces} winner={winner} {...bindActionCreators(StepActions, dispatch)} />); break;
       default: console.log("default"); break;
     }
 

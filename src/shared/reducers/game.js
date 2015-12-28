@@ -6,9 +6,9 @@ import * as types from './../constants/action-types';
 const INITIAL_STATE = new Immutable.Map({
   step: 0,
   deck: deck,
-  hand: [],
-  opponentHand: [],
-  selectedCard: -1, //index of hand
+  player: 1,
+  opponent: 2,
+  selectedCard: -1,
   board: [null, null, null, null, null, null, null, null, null]
 });
 
@@ -43,11 +43,15 @@ function nextStep(state) {
 function setHands(state, payload){
   var newState = _.cloneDeep(state);
 
-  let cards = _.cloneDeep(_.sample(newState.deck, 5));
-  cards.forEach(card => {
+  let unownedCards = _.filter(newState.deck, card => {
+    return card.owner === 0;
+  });
+
+  let randomHand = _.sample(unownedCards, 5);
+
+  randomHand.forEach(card => {
     card.owner = payload.owner
   });
-  newState[payload.hand] = cards;
 
   return newState;
 }
@@ -56,14 +60,9 @@ function addCard(state, payload){
 
   var newState = _.cloneDeep(state);
 
+  let cardToAdd = _.find(newState.deck, {id: payload.id});
 
-  let cardToAdd = newState.deck[payload.index];
-
-  newState.deck = newState.deck.filter(card => {
-    return card !== cardToAdd;
-  });
-
-  newState.hand = _.union(newState.hand, [cardToAdd]);
+  cardToAdd.owner = newState.player;
 
   return newState;
 }
@@ -72,13 +71,9 @@ function removeCard(state, payload){
 
   var newState = _.cloneDeep(state);
 
-  let cardToRemove = newState.hand[payload.index];
+  let cardToAdd = _.find(newState.deck, {id: payload.id});
 
-  newState.hand = newState.hand.filter(card => {
-    return card !== cardToRemove;
-  });
-
-  newState.deck = _.union(newState.deck, [cardToRemove]);
+  cardToAdd.owner = 0;
 
   return newState;
 }
@@ -87,7 +82,7 @@ function selectCard(state, payload) {
 
   var newState = _.cloneDeep(state);
 
-  newState.selectedCard = payload.index;
+  newState.selectedCard = payload.id;
 
   return newState;
 }
@@ -96,11 +91,15 @@ function selectPiece(state, payload) {
 
   let newState = _.cloneDeep(state);
 
-  let theHand = payload.isPlayer ? 'hand' : 'opponentHand';
-  var cardToPlaceOnBoard = newState[theHand].splice(newState.selectedCard, 1);
-  newState.selectedCard = -1;
+  let card = _.find(newState.deck, {id: newState.selectedCard});
 
-  newState.board[payload.index] = cardToPlaceOnBoard[0];
+  console.log(newState.selectedCard, card);
+
+  card.isOnBoard = true;
+
+  newState.board[payload.index] = card;
+
+  newState.selectedCard = -1;
 
   return newState;
 }

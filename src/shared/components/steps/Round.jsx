@@ -5,8 +5,8 @@ import GameOverBanner from './../gameOverBanner';
 
 export default class Round extends React.Component {
     render() {
-        let {game, settings,score, validPieces, winner, selectCard, playerTakesTurn} = this.props;
-        let {hand, opponentHand, selectedCard, board} = game;
+        let {game, hand, opponentHand, settings,score, validPieces, winner, selectCard, playerTakesTurn} = this.props;
+        let {selectedCard, board} = game;
         let showFront = settings.visibleHand;
 
         return (
@@ -15,7 +15,7 @@ export default class Round extends React.Component {
                 <GameOverBanner winner={winner} score={score} />
 
                 <div id="hand">
-                    <Cards cards={hand} showBack={false} owner={0} clickAction={selectCard}/>
+                    <Cards cards={hand} showBack={false} owner={1} clickAction={selectCard}/>
                     <div className="score">{score.blue}</div>
                 </div>
 
@@ -26,7 +26,7 @@ export default class Round extends React.Component {
                 />
 
                 <div id="opponent-hand">
-                    <Cards cards={opponentHand} showBack={showFront} owner={1}  />
+                    <Cards cards={opponentHand} showBack={showFront} owner={2}  />
                     <div className="score">{score.red}</div>
                 </div>
             </div>

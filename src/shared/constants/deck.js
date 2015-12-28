@@ -1,9 +1,10 @@
-const DECK = [
+import _ from 'lodash';
+
+const CARD_TYPES = [
   {
     name: "Aeris",
     level: 7,
     element: null, 
-    owner: 0,
     rank: {
       left: 3,
       top: 8,
@@ -27,7 +28,6 @@ const DECK = [
     name: "CaitSith",
     level: 7,
     element: null, 
-    owner: 0,
     rank: {
       left: 10,
       top: 8,
@@ -39,7 +39,6 @@ const DECK = [
     name: "Cid",
     level: 7,
     element: null, 
-    owner: 0,
     rank: {
       left: 9,
       top: 5,
@@ -51,7 +50,6 @@ const DECK = [
     name: "Cloud",
     level: 7,
     element: null,
-    owner: 0,
     rank: {
       left: 6,
       top: 10,
@@ -63,7 +61,6 @@ const DECK = [
     name: "Nanaki",
     level: 7,
     element: null, 
-    owner: 0,
     rank: {
       left: 7,
       top: 6,
@@ -75,7 +72,6 @@ const DECK = [
     name: "Rufus",
     level: 7,
     element: null, 
-    owner: 0,
     rank: {
       left: 10,
       top: 5,
@@ -87,7 +83,6 @@ const DECK = [
     name: "Sephiroth",
     level: 7,
     element: null, 
-    owner: 0,
     rank: {
       left: 8,
       top: 8,
@@ -99,7 +94,6 @@ const DECK = [
     name: "Tifa",
     level: 7,
     element: null, 
-    owner: 0,
     rank: {
       left: 5,
       top: 6,
@@ -111,7 +105,6 @@ const DECK = [
     name: "Vincent",
     level: 7,
     element: null, 
-    owner: 0,
     rank: {
       left: 10,
       top: 1,
@@ -123,7 +116,6 @@ const DECK = [
     name: "Yuffie",
     level: 7,
     element: null, 
-    owner: 0,
     rank: {
       left: 2,
       top: 8,
@@ -135,7 +127,6 @@ const DECK = [
     name: "Ward",
     level: 8,
     element: null, 
-    owner: 0,
     rank: {
       left: 8,
       top: 10,
@@ -147,7 +138,6 @@ const DECK = [
     name: "Kiros",
     level: 8,
     element: null, 
-    owner: 0,
     rank: {
       left: 10,
       top: 6,
@@ -159,7 +149,6 @@ const DECK = [
     name: "Laguna",
     level: 8,
     element: null, 
-    owner: 0,
     rank: {
       left: 9,
       top: 5,
@@ -171,7 +160,6 @@ const DECK = [
     name: "Selphie",
     level: 8,
     element: null, 
-    owner: 0,
     rank: {
       left: 4,
       top: 10,
@@ -183,7 +171,6 @@ const DECK = [
     name: "Quistis",
     level: 8,
     element: null, 
-    owner: 0,
     rank: {
       left: 2,
       top: 9,
@@ -195,7 +182,6 @@ const DECK = [
     name: "Irvine",
     level: 8,
     element: null, 
-    owner: 0,
     rank: {
       left: 10,
       top: 2,
@@ -207,7 +193,6 @@ const DECK = [
     name: "Zell",
     level: 8,
     element: null, 
-    owner: 0,
     rank: {
       left: 6,
       top: 8,
@@ -219,7 +204,6 @@ const DECK = [
     name: "Rinoa",
     level: 8,
     element: null, 
-    owner: 0,
     rank: {
       left: 10,
       top: 4,
@@ -231,7 +215,6 @@ const DECK = [
     name: "Edea",
     level: 8,
     element: null, 
-    owner: 0,
     rank: {
       left: 3,
       top: 10,
@@ -243,7 +226,6 @@ const DECK = [
     name: "Seifer",
     level: 8,
     element: null, 
-    owner: 0,
     rank: {
       left: 4,
       top: 6,
@@ -255,7 +237,6 @@ const DECK = [
     name: "Squall",
     level: 8,
     element: null, 
-    owner: 0,
     rank: {
       left: 9,
       top: 10,
@@ -267,7 +248,6 @@ const DECK = [
     name: "Amarant",
     level: 9,
     element: null, 
-    owner: 0,
     rank: {
       left: 7,
       top: 10,
@@ -279,7 +259,6 @@ const DECK = [
     name: "Eiko",
     level: 9,
     element: null, 
-    owner: 0,
     rank: {
       left: 7,
       top: 3,
@@ -291,7 +270,6 @@ const DECK = [
     name: "Freya",
     level: 9,
     element: null, 
-    owner: 0,
     rank: {
       left: 8,
       top: 6,
@@ -303,7 +281,6 @@ const DECK = [
     name: "Garnet",
     level: 9,
     element: null, 
-    owner: 0,
     rank: {
       left: 6,
       top: 10,
@@ -315,7 +292,6 @@ const DECK = [
     name: "Kuja",
     level: 9,
     element: null, 
-    owner: 0,
     rank: {
       left: 6,
       top: 6,
@@ -327,7 +303,6 @@ const DECK = [
     name: "Quina",
     level: 9,
     element: null, 
-    owner: 0,
     rank: {
       left: 10,
       top: 7,
@@ -339,7 +314,6 @@ const DECK = [
     name: "Steiner",
     level: 9,
     element: null, 
-    owner: 0,
     rank: {
       left: 10,
       top: 9,
@@ -351,7 +325,6 @@ const DECK = [
     name: "Vivi",
     level: 9,
     element: null, 
-    owner: 0,
     rank: {
       left: 10,
       top: 10,
@@ -363,7 +336,6 @@ const DECK = [
     name: "Zidane",
     level: 9,
     element: null, 
-    owner: 0,
     rank: {
       left: 9,
       top: 5,
@@ -375,7 +347,6 @@ const DECK = [
     name: "Auron",
     level: 10,
     element: null, 
-    owner: 0,
     rank: {
       left: 7,
       top: 10,
@@ -387,7 +358,6 @@ const DECK = [
     name: "Jecht",
     level: 10,
     element: null, 
-    owner: 0,
     rank: {
       left: 8,
       top: 1,
@@ -399,7 +369,6 @@ const DECK = [
     name: "Kimahri",
     level: 10,
     element: null, 
-    owner: 0,
     rank: {
       left: 10,
       top: 5,
@@ -411,7 +380,6 @@ const DECK = [
     name: "Lulu",
     level: 10,
     element: null, 
-    owner: 0,
     rank: {
       left: 6,
       top: 8,
@@ -423,7 +391,6 @@ const DECK = [
     name: "Rikku",
     level: 10,
     element: null, 
-    owner: 0,
     rank: {
       left: 7,
       top: 7,
@@ -435,7 +402,6 @@ const DECK = [
     name: "Seymour",
     level: 10,
     element: null, 
-    owner: 0,
     rank: {
       left: 9,
       top: 9,
@@ -447,7 +413,6 @@ const DECK = [
     name: "Sin",
     level: 10,
     element: null, 
-    owner: 0,
     rank: {
       left: 9,
       top: 6,
@@ -459,7 +424,6 @@ const DECK = [
     name: "Tidus",
     level: 10,
     element: null, 
-    owner: 0,
     rank: {
       left: 8,
       top: 6,
@@ -471,7 +435,6 @@ const DECK = [
     name: "Wakka",
     level: 10,
     element: null, 
-    owner: 0,
     rank: {
       left: 8,
       top: 6,
@@ -483,7 +446,6 @@ const DECK = [
     name: "Yuna",
     level: 10,
     element: null, 
-    owner: 0,
     rank: {
       left: 10,
       top: 9,
@@ -493,4 +455,12 @@ const DECK = [
   },*/
 ];
 
+
+const CARDS = _.cloneDeep(CARD_TYPES).concat(CARD_TYPES);
+
+const DECK = CARDS.map((card, index) => {
+  return _.assign(card, {id: index, owner: 0, isOnBoard: false })
+});
+
 export default DECK;
+

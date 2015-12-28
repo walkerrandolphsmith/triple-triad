@@ -10,37 +10,36 @@ export function setHands() {
     return function (dispatch, getState) {
         const state = getState();
         if(state.settings.randomHand) {
-            dispatch(setHand('hand', 0));
+            dispatch(setHand(1));
             dispatch(nextStep());
         }
-        dispatch(setHand('opponentHand', 1));
+        dispatch(setHand(2));
     }
 }
 
-export function setHand(hand, owner) {
+export function setHand(owner) {
     return {
         type: types.SET_HAND,
         payload: {
-            hand: hand,
             owner: owner
         }
     }
 }
 
-export function addCard(index) {
+export function addCard(id) {
     return {
         type: types.ADD_CARD,
         payload: {
-            index: index
+            id: id
         }
     }
 }
 
-export function removeCard(index) {
+export function removeCard(id) {
     return {
         type: types.REMOVE_CARD,
         payload: {
-            index: index
+            id: id
         }
     }
 }
@@ -55,21 +54,20 @@ export function updateSettings(setting, isChecked) {
     }
 }
 
-export function selectCard(index) {
+export function selectCard(id) {
     return {
         type: types.SELECT_CARD,
         payload: {
-            index: index
+            id: id
         }
     }
 }
 
-export function selectPiece(index, isPlayer) {
+export function selectPiece(index) {
     return {
         type: types.SELECT_PIECE,
         payload: {
-            index: index,
-            isPlayer: isPlayer
+            index: index
         }
     }
 }
@@ -99,23 +97,29 @@ export function endAiTurn() {
 export function playerTakesTurn(selectedPiece) {
     return function(dispatch, getState) {
 
-        dispatch(selectPiece(selectedPiece, true));
+        dispatch(selectPiece(selectedPiece));
 
         const originalState = getState();
 
-        basicRule(dispatch, selectedPiece, originalState.game.board);
+        basicRule(dispatch, selectedPiece, originalState.game.board)
 
         dispatch(startAiTurn());
 
-        dispatch(selectCard(0));
+        let opponentHand = originalState.game.deck.filter(card => {
+            return card.owner === 2 && !card.isOnBoard;
+        });
+
+        let selectedCard = _.sample(opponentHand);
+
+        dispatch(selectCard(selectedCard.id));
 
         const state = getState();
         let validPieces = state.game.board.reduce((validPieces, piece, index) => { if(!piece) validPieces.push(index); return validPieces }, []);
 
         if(validPieces.length > 0) {
             let validPiece = _.sample(validPieces);
-            dispatch(selectPiece(validPiece, false));
-            basicRule(dispatch, selectedPiece, state.game.board);
+            dispatch(selectPiece(validPiece));
+            basicRule(dispatch, validPiece, state.game.board)
         }
 
         dispatch(endAiTurn());

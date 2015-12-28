@@ -3,20 +3,20 @@ import React from 'react';
 export default class Card extends React.Component {
 
     click = () => {
-        let {clickAction, index} = this.props;
-        clickAction(index);
+        let {clickAction, id} = this.props;
+        clickAction(id);
     };
 
     render() {
-        let {index, name, owner, showBack} = this.props;
+        let {id, name, owner, showBack} = this.props;
 
-        const opponentClass = owner === 1 ? 'opponent' : '';
+        const opponentClass = owner === 2 ? 'opponent' : '';
         const cardClass = `card ${opponentClass}`;
 
         name = showBack ? 'back' : name;
 
         return (
-            <div key={index} className={cardClass} onClick={this.click}>
+            <div key={id} className={cardClass} onClick={this.click}>
                 <img src={`assets/images/${name}.png`} alt={name} />
             </div>
         )
