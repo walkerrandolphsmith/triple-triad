@@ -23,6 +23,7 @@ export default function reducer(state = INITIAL_STATE, action) {
     case types.REMOVE_CARD: return removeCard(state, payload);
     case types.SELECT_CARD: return selectCard(state, payload);
     case types.SELECT_PIECE: return selectPiece(state, payload);
+    case types.UPDATE_BOARD: return updateBoard(state, payload);
     case types.START_AI_TURN: return startAITurn(state);
     case types.END_AI_TURN: return endAiTurn(state);
   }
@@ -104,10 +105,14 @@ function selectPiece(state, payload) {
   return newState;
 }
 
+function updateBoard(state, payload) {
   let newState = _.cloneDeep(state);
 
+  let {index, owner} = payload;
 
+  newState.board[index].owner = owner;
 
+  return newState;
 }
 
 function startAITurn(state){
