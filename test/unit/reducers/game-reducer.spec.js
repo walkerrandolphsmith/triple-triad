@@ -215,6 +215,42 @@ describe("Game reducer", () => {
         });
     });
 
+    describe("updating the board when a card is flipped", () => {
+
+        let newState, flippedCard, index, oldPlayer, newPlayer;
+        beforeEach(() => {
+            oldPlayer = 0;
+            newPlayer = 1;
+
+            flippedCard = deck[0];
+            flippedCard.owner = 0;
+
+            index = 0;
+
+            let initialState = {
+                step: 2,
+                deck: deck,
+                hand: [],
+                opponentHand: [],
+                selectedCard: -1,
+                board: [flippedCard, null, null, null, null, null, null, null, null]
+            };
+
+            newState = reducer(initialState, {
+                type: types.UPDATE_BOARD,
+                payload: {
+                    index: index,
+                    owner: newPlayer
+                }
+            });
+        });
+
+        it('should handle SELECT_PIECE', () => {
+            expect(newState.board[index].owner).toEqual(newPlayer);
+        });
+    });
+
+
     describe('opponent turn in progress game', () => {
 
         let initialSate;
