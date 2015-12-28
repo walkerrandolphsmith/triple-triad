@@ -1,38 +1,38 @@
 import { createSelector } from 'reselect';
 
-import { blueScoreSelector, redScoreSelector, scoreSelector, validPiecesSelector, winnerSelector } from './scoreSelector';
-import { stepCompleteSelector } from './stepCompleteSelector';
+import { getBlueScore, getRedScore, getScore, getValidPieces, getWinner } from './scoreSelector';
+import { getStepComplete } from './stepCompleteSelector';
 
 const handSelector = state => state.hand
 const opponentHandSelector = state => state.opponentHand
 const boardSelector = state => state.board
 
-const blueScoreSelectorCreator = createSelector(
+const blueScoreSelector = createSelector(
     [handSelector, boardSelector],
-    blueScoreSelector
+    getBlueScore
 );
 
-const redScoreSelectorCreator = createSelector(
+const redScoreSelector = createSelector(
     [opponentHandSelector, boardSelector],
-    redScoreSelector
+    getRedScore
 );
 
-export const scoreSelectorCreator = createSelector(
-    [blueScoreSelectorCreator, redScoreSelectorCreator],
-    scoreSelector
+export const scoreSelector = createSelector(
+    [blueScoreSelector, redScoreSelector],
+    getScore
 );
 
-export const validPiecesSelectorCreator = createSelector(
+export const validPiecesSelector = createSelector(
     [boardSelector],
-    validPiecesSelector
+    getValidPieces
 );
 
-export const winnerSelectorCreator = createSelector(
-    [scoreSelectorCreator, validPiecesSelectorCreator],
-    winnerSelector
+export const winnerSelector = createSelector(
+    [scoreSelector, validPiecesSelector],
+    getWinner
 );
 
-export const stepCompleteSelectorCreator = createSelector(
+export const stepCompleteSelector = createSelector(
     [handSelector],
-    stepCompleteSelector
+    getStepComplete
 );

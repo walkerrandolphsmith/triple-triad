@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { blueScoreSelector } from './../../../src/shared/selectors/scoreSelector';
+import { getBlueScore } from './../../../src/shared/selectors/scoreSelector';
 import deck from './../../../src/shared/constants/deck';
 import _ from 'lodash';
 
@@ -27,7 +27,7 @@ describe("Blue Score selector", () => {
         });
 
         it('should have a default score of 5', () => {
-            expect(blueScoreSelector(hand, board)).toEqual(5)
+            expect(getBlueScore(hand, board)).toEqual(5)
         });
     });
 
@@ -40,7 +40,7 @@ describe("Blue Score selector", () => {
         });
 
         it('should have a score of 5', () => {
-            expect(blueScoreSelector(hand, board)).toEqual(5)
+            expect(getBlueScore(hand, board)).toEqual(5)
         });
     });
 
@@ -53,7 +53,7 @@ describe("Blue Score selector", () => {
         });
 
         it('should have a score of 5', () => {
-            expect(blueScoreSelector(hand, board)).toEqual(5)
+            expect(getBlueScore(hand, board)).toEqual(5)
         });
     });
 
