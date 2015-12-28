@@ -83,6 +83,16 @@ export function applyRules(index) {
     }
 }
 
+export function updateBoard(index, owner){
+    return {
+        type: types.UPDATE_BOARD,
+        payload: {
+            index: index,
+            owner: owner
+        }
+    }
+}
+
 export function startAiTurn() {
     return {
         type: types.START_AI_TURN
