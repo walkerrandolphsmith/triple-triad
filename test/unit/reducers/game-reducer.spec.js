@@ -95,41 +95,39 @@ describe("Game reducer", () => {
         });
     });
 
-    describe('setting hands randomly', () => {
+    describe('setting players hand randomly', () => {
 
         let newState;
         beforeEach(() => {
             newState = reducer(initialState, {
-                type: types.SET_HANDS,
+                type: types.SET_HAND,
                 payload: {
-                    randomHand: false
+                    hand: 'hand',
+                    owner: 0
                 }
             });
         });
 
-        it('should handle SET_CARDS by not populating the players hand if the setting randHand is false', () => {
-            expect(newState.hand.length).toEqual(0);
-        });
-
-        it('should handle SET_CARDS by populating the opponets hand with five cards', () => {
-            expect(newState.opponentHand.length).toEqual(5);
+        it('should handle SET_CARDS by not populating the players hand with five cards', () => {
+            expect(newState.hand.length).toEqual(5);
         });
     });
 
-    describe("setting players hand randomly", () => {
+    describe("setting opponents hand randomly", () => {
 
         let newState;
         beforeEach(() => {
             newState = reducer(initialState, {
-                type: types.SET_HANDS,
+                type: types.SET_HAND,
                 payload: {
-                    randomHand: true
+                    hand: 'opponentHand',
+                    owner: 1
                 }
             })
         });
 
-        it('should handle SET_CARDS by not populating the players hand with five cards', () => {
-            expect(newState.hand.length).toEqual(5);
+        it('should handle SET_CARDS by populating the opponents hand with five cards', () => {
+            expect(newState.opponentHand.length).toEqual(5);
         });
     });
 

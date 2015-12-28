@@ -18,7 +18,7 @@ export default function reducer(state = INITIAL_STATE, action) {
 
   switch(type){
     case types.NEXT_STEP: return nextStep(state);
-    case types.SET_HANDS: return setHands(state, payload);
+    case types.SET_HAND: return setHands(state, payload);
     case types.ADD_CARD: return addCard(state, payload);
     case types.REMOVE_CARD: return removeCard(state, payload);
     case types.SELECT_CARD: return selectCard(state, payload);
@@ -43,15 +43,11 @@ function nextStep(state) {
 function setHands(state, payload){
   var newState = _.cloneDeep(state);
 
-  if(payload.randomHand){
-    newState.hand = _.cloneDeep(_.sample(newState.deck, 5));
-    newState.step++;
-  }
-
-  newState.opponentHand = _.cloneDeep(_.sample(newState.deck, 5));
-  newState.opponentHand.forEach(card => {
-    card.owner = 1;
+  let cards = _.cloneDeep(_.sample(newState.deck, 5));
+  cards.forEach(card => {
+    card.owner = payload.owner
   });
+  newState[payload.hand] = cards;
 
   return newState;
 }

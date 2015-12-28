@@ -6,11 +6,23 @@ export function nextStep() {
     }
 }
 
-export function setHands(randomHand) {
+export function setHands() {
+    return function (dispatch, getState) {
+        const state = getState();
+        if(state.settings.randomHand) {
+            dispatch(setHand('hand', 0));
+            dispatch(nextStep());
+        }
+        dispatch(setHand('opponentHand', 1));
+    }
+}
+
+export function setHand(hand, owner) {
     return {
-        type: types.SET_HANDS,
+        type: types.SET_HAND,
         payload: {
-            randomHand: randomHand
+            hand: hand,
+            owner: owner
         }
     }
 }
