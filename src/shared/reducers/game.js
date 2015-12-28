@@ -23,7 +23,6 @@ export default function reducer(state = INITIAL_STATE, action) {
     case types.REMOVE_CARD: return removeCard(state, payload);
     case types.SELECT_CARD: return selectCard(state, payload);
     case types.SELECT_PIECE: return selectPiece(state, payload);
-    case types.APPLY_RULES: return applyRules(state, payload);
     case types.START_AI_TURN: return startAITurn(state);
     case types.END_AI_TURN: return endAiTurn(state);
   }
@@ -105,66 +104,10 @@ function selectPiece(state, payload) {
   return newState;
 }
 
-function applyRules(state, payload){
-
   let newState = _.cloneDeep(state);
 
-  newState.board = applyBasicRule(newState.board, payload.index);
 
-  return newState;
-}
 
-function applyBasicRule(board, i) {
-
-  const row = i / 3;
-  const column = i % 3;
-
-  let card = board[i];
-
-  let cardAbove = board[i-3];
-  let cardBelow = board[i+3];
-  let cardAtLeft = board[i-1];
-  let cardAtRight = board[i+1];
-
-  let isNotFirstRow = row > 0;
-  let isNotLastRow = row < 2;
-  let isNotFirstColumn = column > 0;
-  let isNotLastColumn = column < 2;
-
-  if(isNotFirstRow && basicRule(card, cardAbove, 'top', 'bottom'))
-    cardAbove.owner = card.owner;
-
-  if(isNotLastRow && basicRule(card, cardBelow, 'bottom', 'top'))
-    cardBelow.owner = card.owner;
-
-  if(isNotFirstColumn && basicRule(card, cardAtLeft, 'left', 'right'))
-    cardAtLeft.owner = card.owner;
-
-  if(isNotLastColumn && basicRule(card, cardAtRight, 'right', 'left'))
-    cardAtRight.owner = card.owner;
-
-  if(isNotFirstRow && basicRule(cardAbove, card, 'bottom', 'top'))
-    card.owner = cardAbove.owner;
-
-  if(isNotLastRow && basicRule(cardBelow, card, 'top', 'bottom'))
-    card.owner = cardBelow.owner
-
-  if(isNotFirstColumn && basicRule(cardAtLeft, card, 'right', 'left'))
-    card.owner = cardAtLeft.owner;
-
-  if(isNotLastColumn && basicRule(cardAtRight, card, 'left', 'right'))
-    card.owner = cardAtRight.owner;
-
-  return board;
-}
-
-function basicRule(card, otherCard, attackDirection, defenseDirection){
-  if(card && otherCard
-      && card.owner !== otherCard.owner
-      && card.rank[attackDirection] > otherCard.rank[defenseDirection]) {
-      return true;//otherCard.owner = card.owner;
-  }
-  return false;
 }
 
 function startAITurn(state){

@@ -84,16 +84,6 @@ describe('actions', () => {
         expect(actions.updateBoard(0, 0)).toEqual(expectedAction)
     });
 
-    it('should create an action to apply the rules to flip cards', () => {
-        const expectedAction = {
-            type: types.APPLY_RULES,
-            payload: {
-                index: 0
-            }
-        };
-        expect(actions.applyRules(0)).toEqual(expectedAction)
-    });
-
     it('should create an action to initiate the AI oppoents turn', () => {
        const expectedAction = {
            type: types.START_AI_TURN

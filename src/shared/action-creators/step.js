@@ -74,15 +74,6 @@ export function selectPiece(index, isPlayer) {
     }
 }
 
-export function applyRules(index) {
-    return {
-        type: types.APPLY_RULES,
-        payload: {
-            index: index
-        }
-    }
-}
-
 export function updateBoard(index, owner){
     return {
         type: types.UPDATE_BOARD,
@@ -109,7 +100,6 @@ export function playerTakesTurn(selectedPiece) {
     return function(dispatch, getState) {
 
         dispatch(selectPiece(selectedPiece, true));
-        dispatch(applyRules(selectedPiece));
 
         dispatch(startAiTurn());
 
@@ -121,7 +111,6 @@ export function playerTakesTurn(selectedPiece) {
         if(validPieces.length > 0) {
             let validPiece = _.sample(validPieces);
             dispatch(selectPiece(validPiece, false));
-            dispatch(applyRules(validPiece));
         }
 
         dispatch(endAiTurn());
