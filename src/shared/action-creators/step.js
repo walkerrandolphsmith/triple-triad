@@ -10,10 +10,10 @@ export function setHands() {
     return function (dispatch, getState) {
         const state = getState();
         if(state.settings.randomHand) {
-            dispatch(setHand(1));
+            dispatch(setHand(state.game.ownerType.player));
             dispatch(nextStep());
         }
-        dispatch(setHand(2));
+        dispatch(setHand(state.game.ownerType.opponent));
     }
 }
 
