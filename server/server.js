@@ -4,26 +4,29 @@ import path from 'path';
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
-var config = require('./webpack.config');
+var config = require('./../webpack.config');
 
 import React from 'react';
 import ReactDom from 'react-dom/server';
-
 import { RoutingContext, match } from 'react-router';
-import createLocation from 'history/lib/createLocation';
-import routes from './src/shared/routes';
 import {Provider} from 'react-redux';
-import configureStore from './src/shared/store/store';
+import createLocation from 'history/lib/createLocation';
+
+import routes from './../src/shared/routes';
+import configureStore from './../src/shared/store/store';
 
 let app = express();
 const port = process.env.PORT || 3000;
 
-var compiler = webpack(config);
-app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }));
-app.use(webpackHotMiddleware(compiler));
-
-//app.use(express.static(path.join(__dirname, 'dist')));
-app.use(express.static(path.join(__dirname, 'src')));
+if(process.env.NODE_ENV !== 'production'){
+  const compiler = webpack(config);
+  app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }));
+  app.use(webpackHotMiddleware(compiler));
+}else{
+  app.use(express.static(path.join(__dirname, './../../../dist')));
+}
+console.log(path.join(__dirname, './../src'));
+app.use(express.static(path.join(__dirname, './../src')));
 
 app.use((request, response) => {
   const location = createLocation(request.url);
