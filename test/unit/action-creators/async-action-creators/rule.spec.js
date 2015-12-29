@@ -167,7 +167,7 @@ describe('RULE async action creator', () => {
             expect(dispatch).toHaveBeenCalledWith({ type: 'UpdateBoard', payload: {index: index, owner: opponent} });
         });
 
-        it('should dispatch UPDATE_BOARD action with a payload of index of second card to flip and player owner', () => {
+        it('should dispatch UPDATE_BOARD action with a payload of index of card to flip and player owner', () => {
             rule(index)(dispatch, getState);
             expect(dispatch).toHaveBeenCalledWith({ type: 'UpdateBoard', payload: {index: 5, owner: player} });
         });
