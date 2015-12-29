@@ -96,10 +96,6 @@ function selectPiece(state, payload) {
 
   let card = _.find(newState.deck, {id: newState.selectedCard});
 
-  console.log(newState.selectedCard, card);
-
-  card.isOnBoard = true;
-
   newState.board[payload.index] = card;
 
   newState.selectedCard = -1;

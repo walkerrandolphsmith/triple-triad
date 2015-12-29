@@ -459,7 +459,7 @@ const CARD_TYPES = [
 const CARDS = _.cloneDeep(CARD_TYPES).concat(CARD_TYPES);
 
 const DECK = CARDS.map((card, index) => {
-  return _.assign(card, {id: index, owner: 0, isOnBoard: false })
+  return _.assign(card, {id: index, owner: 0 })
 });
 
 export default DECK;

@@ -13,12 +13,12 @@ const opponentSelector = state => state.ownerType ? state.ownerType.opponent : -
 const boardSelector = state => state.board
 
 export const handSelector = createSelector(
-    [deckSelector, playerSelector],
+    [deckSelector, boardSelector, playerSelector],
     getHand
 );
 
 export const opponentHandSelector = createSelector(
-    [deckSelector, opponentSelector],
+    [deckSelector, boardSelector, opponentSelector],
     getHand
 );
 

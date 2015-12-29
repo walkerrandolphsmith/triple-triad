@@ -106,7 +106,7 @@ export function playerTakesTurn(selectedPiece) {
         dispatch(startAiTurn());
 
         let opponentHand = originalState.game.deck.filter(card => {
-            return card.owner === 2 && !card.isOnBoard;
+            return card.owner === 2 && !_.contains(originalState.game.board, card);
         });
 
         let selectedCard = _.sample(opponentHand);
