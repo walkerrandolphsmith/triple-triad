@@ -82,6 +82,31 @@ export function updateBoard(index, owner){
     }
 }
 
+export function aiTurn() {
+    return function(dispatch, getState){
+        dispatch(startAiTurn());
+
+        const state = getState();
+
+        let opponentHand = state.game.deck.filter(card => {
+            return card.owner === 2 && !_.contains(state.game.board, card);
+        });
+
+        let selectedCard = _.sample(opponentHand);
+
+        dispatch(selectCard(selectedCard.id));
+
+        let validPieces = state.game.board.reduce((validPieces, piece, index) => { if(!piece) validPieces.push(index); return validPieces }, []);
+
+        if(validPieces.length > 0) {
+            let validPiece = _.sample(validPieces);
+            dispatch(playerTakesTurn(validPiece, false));
+        }
+
+        dispatch(endAiTurn());
+    }
+}
+
 export function startAiTurn() {
     return {
         type: types.START_AI_TURN
@@ -94,34 +119,16 @@ export function endAiTurn() {
     }
 }
 
-export function playerTakesTurn(selectedPiece) {
+export function playerTakesTurn(selectedPiece, isPlayer) {
     return function(dispatch, getState) {
 
         dispatch(selectPiece(selectedPiece));
         dispatch(rule(selectedPiece));
 
-        dispatch(startAiTurn());
-
-        const originalState = getState();
-
-        let opponentHand = originalState.game.deck.filter(card => {
-            return card.owner === 2 && !_.contains(originalState.game.board, card);
-        });
-
-        let selectedCard = _.sample(opponentHand);
-
-        dispatch(selectCard(selectedCard.id));
-
-        const state = getState();
-        let validPieces = state.game.board.reduce((validPieces, piece, index) => { if(!piece) validPieces.push(index); return validPieces }, []);
-
-        if(validPieces.length > 0) {
-            let validPiece = _.sample(validPieces);
-            dispatch(selectPiece(validPiece));
-            dispatch(rule(validPiece));
+        if(isPlayer){
+            dispatch(aiTurn());
         }
 
-        dispatch(endAiTurn());
     }
 }
 
