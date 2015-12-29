@@ -11,8 +11,11 @@ describe("Game reducer", () => {
         initialState = {
             step: 0,
             deck: deck,
-            player: 1,
-            opponent: 2,
+            ownerType: {
+                none: 0,
+                player: 1,
+                opponent: 2
+            },
             selectedCard: -1,
             board: [null, null, null, null, null, null, null, null, null]
         }
@@ -40,7 +43,7 @@ describe("Game reducer", () => {
         });
 
         it('should handle ADD_CARD by updating card in deck with new owner', () => {
-            expect(_.find(newState.deck, {id: id}).owner).toEqual(1);
+            expect(_.find(newState.deck, {id: id}).owner).toEqual(newState.ownerType.player);
         });
     });
 
@@ -55,8 +58,11 @@ describe("Game reducer", () => {
             let initialState = {
                 step: 0,
                 deck: deck,
-                player: 1,
-                opponent: 2,
+                ownerType: {
+                    none: 0,
+                    player: 1,
+                    opponent: 2
+                },
                 selectedCard: -1,
                 board: [null, null, null, null, null, null, null, null, null]
             };
@@ -71,7 +77,7 @@ describe("Game reducer", () => {
         });
 
         it('should handle REMOVE_CARD by updating the card in deck with no owner', () => {
-            expect(_.find(newState.deck, {id: id}).owner).toEqual(0);
+            expect(_.find(newState.deck, {id: id}).owner).toEqual(newState.ownerType.none);
         });
     });
 
@@ -92,38 +98,36 @@ describe("Game reducer", () => {
 
     describe('setting players hand randomly', () => {
 
-        let newState, owner;
+        let newState;
         beforeEach(() => {
-            let owner = 1;
             newState = reducer(initialState, {
                 type: types.SET_HAND,
                 payload: {
-                    owner: owner
+                    owner: initialState.ownerType.player
                 }
             });
         });
 
         it('should handle SET_HANDS by populating the players hand with five cards', () => {
-            let hand = _.filter(newState.deck, card => { return card.owner === 1});
+            let hand = _.filter(newState.deck, card => { return card.owner === newState.ownerType.player});
             expect(hand.length).toEqual(5);
         });
     });
 
     describe("setting opponents hand randomly", () => {
 
-        let newState, owner;
+        let newState;
         beforeEach(() => {
-            let owner = 2;
             newState = reducer(initialState, {
                 type: types.SET_HAND,
                 payload: {
-                    owner: owner
+                    owner: initialState.ownerType.opponent
                 }
             })
         });
 
         it('should handle SET_HANDS by populating the opponents hand with five cards', () => {
-            let hand = _.filter(newState.deck, card => { return card.owner === 2});
+            let hand = _.filter(newState.deck, card => { return card.owner === newState.ownerType.opponent});
             expect(hand.length).toEqual(5);
         });
     });
@@ -157,8 +161,6 @@ describe("Game reducer", () => {
             let initialState = {
                 step: 2,
                 deck: deck,
-                player: 1,
-                opponent: 2,
                 selectedCard: selectedCard,
                 board: [null, null, null, null, null, null, null, null, null]
             };
@@ -178,21 +180,24 @@ describe("Game reducer", () => {
 
     describe("updating the board when a card is flipped", () => {
 
-        let newState, flippedCard, index, oldPlayer, newPlayer;
+        let newState, flippedCard, index;
         beforeEach(() => {
-            oldPlayer = 0;
-            newPlayer = 1;
+
+            let ownerType = {
+                none: 0,
+                player: 1,
+                opponent: 2
+            };
 
             flippedCard = deck[0];
-            flippedCard.owner = 0;
+            flippedCard.owner = ownerType.player;
 
             index = 0;
 
             let initialState = {
                 step: 2,
                 deck: deck,
-                hand: [],
-                opponentHand: [],
+                ownerType: ownerType,
                 selectedCard: -1,
                 board: [flippedCard, null, null, null, null, null, null, null, null]
             };
@@ -201,13 +206,13 @@ describe("Game reducer", () => {
                 type: types.UPDATE_BOARD,
                 payload: {
                     index: index,
-                    owner: newPlayer
+                    owner: ownerType.opponent
                 }
             });
         });
 
-        it('should handle SELECT_PIECE', () => {
-            expect(newState.board[index].owner).toEqual(newPlayer);
+        it('should handle UPDATE_BOARD', () => {
+            expect(newState.board[index].owner).toEqual(newState.ownerType.opponent);
         });
     });
 
@@ -217,17 +222,10 @@ describe("Game reducer", () => {
         let initialSate;
 
         beforeEach(() => {
-            let hand = _.sample(deck, 5);
-            let opponentHand = _.sample(deck, 5);
-            opponentHand.forEach(card => {
-                card.owner = 1;
-            });
 
             initialSate = {
                 step: 0,
                 deck: deck,
-                hand: hand,
-                opponentHand: opponentHand,
                 selectedCard: -1,
                 board: [null, null, null, null, null, null, null, null, null]
             };
@@ -245,30 +243,6 @@ describe("Game reducer", () => {
                 type: types.END_AI_TURN
             });
             expect(newState).toEqual(initialSate);
-        });
-    });
-
-    describe("A completed game", () => {
-
-        let initialSate;
-        let opponentCard;
-        beforeEach(() => {
-            opponentCard = deck[0];
-            opponentCard.owner = 1;
-            initialSate = {
-                step: 2,
-                deck: deck,
-                hand: [],
-                opponentHand: [deck[0]],
-                selectedCard: -1,
-                board: _.sample(deck, 9)
-            }
-        });
-
-        it('should handle AI_TURN by doing nothing when all the pieces have cards on them', () => {
-            expect(reducer(initialSate, {
-                type: types.AI_TURN
-            })).toEqual(initialSate)
         });
     });
 
