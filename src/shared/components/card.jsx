@@ -16,7 +16,7 @@ export default class Card extends React.Component {
         name = showBack ? 'back' : name;
 
         return (
-            <div key={id} className={cardClass} onClick={this.click}>
+            <div key={id} className={cardClass} onClick={this.click.bind(this)}>
                 <img src={`assets/images/${name}.png`} alt={name} />
             </div>
         )
