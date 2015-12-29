@@ -4,41 +4,43 @@ import deck from './../../../src/shared/constants/deck';
 
 describe("Hand selector", () => {
 
-    let hand;
-    let owner;
+    let owner, board, expectedHand;
     beforeEach(() => {
         deck.forEach(card => {
             card.owner = 0;
         });
-        hand = [deck[0]];
+        expectedHand = [deck[0]];
     });
 
-    describe("given five cards are selected by player", () => {
+    describe("given player owns one card not on board", () => {
 
         beforeEach(() => {
             owner = 1;
-            hand.forEach(card => {
+            expectedHand.forEach(card => {
                 card.owner = owner;
             });
+            board = [];
 
         });
 
-        it('should contain five cards', () => {
-            expect(getHand(deck, owner)).toEqual(hand)
+        it('should contain one cards', () => {
+            expect(getHand(deck, board, owner)).toEqual(expectedHand)
         });
     });
 
-    describe("given five cards are selected by player", () => {
+    describe("given player owns five cards, four in hand and one on board", () => {
 
         beforeEach(() => {
             owner = 2;
-            hand.forEach(card => {
+            expectedHand.forEach(card => {
                 card.owner = owner;
             });
+            deck[1].owner = owner;
+            board = [deck[1]];
         });
 
-        it('should contain five cards', () => {
-            expect(getHand(deck, owner)).toEqual(hand)
+        it('should contain four cards', () => {
+            expect(getHand(deck, board, owner)).toEqual(expectedHand)
         });
     });
 });
