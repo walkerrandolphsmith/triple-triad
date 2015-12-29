@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "clean": "rm -rf dist",
-    "start": "NODE_ENV=development node server/index.js --progress --colors --profile",
-    "start-prod": "NODE_ENV=production node server/index.js --progress --colors --profile",
+    "start": "NODE_ENV=development node src/server/index.js --progress --colors --profile",
+    "start-prod": "NODE_ENV=production node src/server/index.js --progress --colors --profile",
     "build": "npm run clean && NODE_ENV=production webpack -p --progress --colors --profile",
-    "test" : "NODE_ENV=test mocha --compilers js:babel-core/register --recursive",
+    "test": "NODE_ENV=test mocha --compilers js:babel-core/register --recursive",
     "test:watch": "npm test -- --watch",
     "deploy": "git push heroku master"
   },

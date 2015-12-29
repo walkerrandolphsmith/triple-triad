@@ -1,7 +1,7 @@
 import { applyMiddleware, createStore, compose } from 'redux'
 import thunk from 'redux-thunk';
 import rootReducer from '../reducers'
-import DevTools from './../../../server/devtools';
+import DevTools from './../../dev-tools/devtools';
 
 let createStoreWithMiddleware;
 
