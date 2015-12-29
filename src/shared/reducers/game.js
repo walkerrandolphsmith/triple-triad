@@ -6,8 +6,11 @@ import * as types from './../constants/action-types';
 const INITIAL_STATE = new Immutable.Map({
   step: 0,
   deck: deck,
-  player: 1,
-  opponent: 2,
+  ownerType: {
+    none: 0,
+    player: 1,
+    opponent: 2
+  },
   selectedCard: -1,
   board: [null, null, null, null, null, null, null, null, null]
 });
@@ -62,7 +65,7 @@ function addCard(state, payload){
 
   let cardToAdd = _.find(newState.deck, {id: payload.id});
 
-  cardToAdd.owner = newState.player;
+  cardToAdd.owner = newState.ownerType.player;
 
   return newState;
 }
@@ -73,7 +76,7 @@ function removeCard(state, payload){
 
   let cardToAdd = _.find(newState.deck, {id: payload.id});
 
-  cardToAdd.owner = 0;
+  cardToAdd.owner = newState.ownerType.none;
 
   return newState;
 }
