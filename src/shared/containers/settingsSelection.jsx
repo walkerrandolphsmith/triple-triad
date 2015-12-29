@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as StepActions from './../action-creators/step';
+import * as Actions from './../action-creators/';
 
 import React from 'react';
 import Cards from './../components/cards';
@@ -52,7 +52,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators(StepActions,dispatch);
+    return bindActionCreators(Actions,dispatch);
 }
 
 

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { handSelector, opponentHandSelector, scoreSelector, validPiecesSelector, winnerSelector, stepCompleteSelector } from './../selectors/index';
-import * as StepActions from './../action-creators/step';
+import * as Actions from './../action-creators/';
 
 import React from 'react';
 import Board from './../components/board';
@@ -54,7 +54,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators(StepActions,dispatch);
+    return bindActionCreators(Actions,dispatch);
 }
 
 
