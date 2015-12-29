@@ -212,6 +212,157 @@ describe('RULE async action creator', () => {
         });
     });
 
+    describe('Given three adjacent cards where you flip one', () => {
+
+        let getState;
+        beforeEach(() => {
+            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 4, bottom: 5} };
+            let adjacentCardTwo = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
+            let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
+            getState = () => ({
+                game: {
+                    board: [null, adjacentCardThree, null, adjacentCardOne, card, adjacentCardTwo, null, null, null]
+                }
+            });
+        });
+
+        it('should dispatch UPDATE_BOARD action with a payload of index of card to flip and player owner', () => {
+            rule(index)(dispatch, getState);
+            expect(dispatch).toHaveBeenCalledWith({ type: 'UpdateBoard', payload: {index: 3, owner: player} });
+        });
+    });
+
+    describe('Given three adjacent cards where you flip two', () => {
+
+        let getState;
+        beforeEach(() => {
+            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 4, bottom: 5} };
+            let adjacentCardTwo = { owner: opponent, rank: { left: 4, top: 5, right: 5, bottom: 5} };
+            let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
+            getState = () => ({
+                game: {
+                    board: [null, adjacentCardThree, null, adjacentCardOne, card, adjacentCardTwo, null, null, null]
+                }
+            });
+        });
+
+        it('should dispatch UPDATE_BOARD action with a payload of index of first card to flip and player owner', () => {
+            rule(index)(dispatch, getState);
+            expect(dispatch).toHaveBeenCalledWith({ type: 'UpdateBoard', payload: {index: 3, owner: player} });
+        });
+
+        it('should dispatch UPDATE_BOARD action with a payload of index of second card to flip and player owner', () => {
+            rule(index)(dispatch, getState);
+            expect(dispatch).toHaveBeenCalledWith({ type: 'UpdateBoard', payload: {index: 5, owner: player} });
+        });
+    });
+
+
+    describe('Given three adjacent cards where you flip three', () => {
+
+        let getState;
+        beforeEach(() => {
+            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 4, bottom: 5} };
+            let adjacentCardTwo = { owner: opponent, rank: { left: 4, top: 5, right: 5, bottom: 5} };
+            let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 4} };
+            getState = () => ({
+                game: {
+                    board: [null, adjacentCardThree, null, adjacentCardOne, card, adjacentCardTwo, null, null, null]
+                }
+            });
+        });
+
+        it('should dispatch UPDATE_BOARD action with a payload of index of first card to flip and player owner', () => {
+            rule(index)(dispatch, getState);
+            expect(dispatch).toHaveBeenCalledWith({ type: 'UpdateBoard', payload: {index: 3, owner: player} });
+        });
+
+        it('should dispatch UPDATE_BOARD action with a payload of index of second card to flip and player owner', () => {
+            rule(index)(dispatch, getState);
+            expect(dispatch).toHaveBeenCalledWith({ type: 'UpdateBoard', payload: {index: 5, owner: player} });
+        });
+
+        it('should dispatch UPDATE_BOARD action with a payload of index of third card to flip and player owner', () => {
+            rule(index)(dispatch, getState);
+            expect(dispatch).toHaveBeenCalledWith({ type: 'UpdateBoard', payload: {index: 1, owner: player} });
+        });
+    });
+
+    describe('Given three adjacent cards where you flip one and you get flipped', () => {
+
+        let getState;
+        beforeEach(() => {
+            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 4, bottom: 5} };
+            let adjacentCardTwo = { owner: opponent, rank: { left: 6, top: 5, right: 5, bottom: 5} };
+            let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
+            getState = () => ({
+                game: {
+                    board: [null, adjacentCardThree, null, adjacentCardOne, card, adjacentCardTwo, null, null, null]
+                }
+            });
+        });
+
+        it('should dispatch UPDATE_BOARD action with a payload of index of card to flip and player owner', () => {
+            rule(index)(dispatch, getState);
+            expect(dispatch).toHaveBeenCalledWith({ type: 'UpdateBoard', payload: {index: 3, owner: player} });
+        });
+
+        it('should dispatch UPDATE_BOARD action with a payload of index of your card and opponent owner', () => {
+            rule(index)(dispatch, getState);
+            expect(dispatch).toHaveBeenCalledWith({ type: 'UpdateBoard', payload: {index: index, owner: opponent} });
+        });
+    });
+
+    describe('Given three adjacent cards where you flip two and you get flipped', () => {
+
+        let getState;
+        beforeEach(() => {
+            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 4, bottom: 5} };
+            let adjacentCardTwo = { owner: opponent, rank: { left: 4, top: 5, right: 5, bottom: 5} };
+            let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 6} };
+            getState = () => ({
+                game: {
+                    board: [null, adjacentCardThree, null, adjacentCardOne, card, adjacentCardTwo, null, null, null]
+                }
+            });
+        });
+
+        it('should dispatch UPDATE_BOARD action with a payload of index of first card to flip and player owner', () => {
+            rule(index)(dispatch, getState);
+            expect(dispatch).toHaveBeenCalledWith({ type: 'UpdateBoard', payload: {index: 3, owner: player} });
+        });
+
+        it('should dispatch UPDATE_BOARD action with a payload of index of second card to flip and player owner', () => {
+            rule(index)(dispatch, getState);
+            expect(dispatch).toHaveBeenCalledWith({ type: 'UpdateBoard', payload: {index: 5, owner: player} });
+        });
+
+        it('should dispatch UPDATE_BOARD action with a payload of index of your card and opponent owner', () => {
+            rule(index)(dispatch, getState);
+            expect(dispatch).toHaveBeenCalledWith({ type: 'UpdateBoard', payload: {index: index, owner: opponent} });
+        });
+    });
+
+    describe('Given three adjacent cards where you only get flipped', () => {
+
+        let getState;
+        beforeEach(() => {
+            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
+            let adjacentCardTwo = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
+            let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 6} };
+            getState = () => ({
+                game: {
+                    board: [null, adjacentCardThree, null, adjacentCardOne, card, adjacentCardTwo, null, null, null]
+                }
+            });
+        });
+
+        it('should dispatch UPDATE_BOARD action with a payload of index of your card and opponent owner', () => {
+            rule(index)(dispatch, getState);
+            expect(dispatch).toHaveBeenCalledWith({ type: 'UpdateBoard', payload: {index: index, owner: opponent} });
+        });
+    });
+
     describe('Given four adjacent cards with no flips', () => {
 
         let getState;
