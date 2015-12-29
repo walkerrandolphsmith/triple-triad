@@ -3,18 +3,12 @@ import ReactDom from 'react-dom';
 import { Router } from 'react-router';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 import routes from './../shared/routes';
-import {createStore, applyMiddleware} from 'redux';
-import thunk from 'redux-thunk';
+import configureStore from './../shared/store/store';
 import { Provider } from 'react-redux';
-import reducers from './../shared/reducers/index';
 import { fromJS } from 'immutable';
 
 const history = createBrowserHistory();
-
-let initialState = window.__INITIAL_STATE__;
-
-const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
-const store = createStoreWithMiddleware(reducers, initialState);
+const store = configureStore(window.__INITIAL_STATE__);
 
 const mountNode = document.getElementById('app');
 ReactDom.render(

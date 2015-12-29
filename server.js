@@ -12,18 +12,15 @@ import ReactDom from 'react-dom/server';
 import { RoutingContext, match } from 'react-router';
 import createLocation from 'history/lib/createLocation';
 import routes from './src/shared/routes';
-
-import {createStore, applyMiddleware} from 'redux';
-import thunk from 'redux-thunk';
 import {Provider} from 'react-redux';
-import reducers from './src/shared/reducers/index'
+import configureStore from './src/shared/store/store';
 
 let app = express();
 const port = process.env.PORT || 3000;
 
-var compiler = webpack(config)
-app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }))
-app.use(webpackHotMiddleware(compiler))
+var compiler = webpack(config);
+app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }));
+app.use(webpackHotMiddleware(compiler));
 
 //app.use(express.static(path.join(__dirname, 'dist')));
 app.use(express.static(path.join(__dirname, 'src')));
@@ -31,13 +28,12 @@ app.use(express.static(path.join(__dirname, 'src')));
 app.use((request, response) => {
   const location = createLocation(request.url);
 
-  const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
-  const store = createStoreWithMiddleware(reducers);
-  //const store = createStore(reducers);
+  const store = configureStore();
 
   match({routes, location}, (err, redirectLocation, renderProps) => {
     if(err) return response.status(500).end('Internal server error.');
     if(!renderProps) return response.status(404).end('Not found.');
+
     const InitialComponent = (
       <Provider store={store}>
         <RoutingContext {...renderProps} />
