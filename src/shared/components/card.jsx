@@ -10,14 +10,22 @@ export default class Card extends React.Component {
     render() {
         let {id, name, owner, showBack} = this.props;
 
-        const opponentClass = owner === 2 ? 'opponent' : '';
-        const cardClass = `card ${opponentClass}`;
-
         name = showBack ? 'back' : name;
 
+        const cardWrapperStyle = {
+            display: 'inline'
+        };
+
+        const cardStyle = {
+            backgroundImage: `url(assets/images/${name}.png)`,
+            backgroundColor: owner === 2 ? 'red' : 'blue',
+            width: '100px',
+            height: '127px'
+        };
+
         return (
-            <div key={id} className={cardClass} onClick={this.click.bind(this)}>
-                <img src={`assets/images/${name}.png`} alt={name} />
+            <div key={id} style={cardWrapperStyle} onClick={this.click.bind(this)}>
+                <div style={cardStyle}></div>
             </div>
         )
     }

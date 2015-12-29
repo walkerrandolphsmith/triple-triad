@@ -2,22 +2,6 @@
   padding-top: 65px;
 }
 
-
-
-.card {
-  width: 100px;
-  height: 127px;
-  display: inline;
-}
-
-.card img {
-  background-color: blue;
-}
-
-.card.opponent img {
- background-color: red;
-}
-
 #hand, #opponent-hand {
   position: absolute;
   top: 65px;
