@@ -28,7 +28,7 @@ export default class Game extends React.Component {
 
     switch(game.step){
       case 0: currentGameStep = (<SettingsSelection settings={settings} {...bindActionCreators(StepActions, dispatch)} />); break;
-      case 1: currentGameStep = (<CardSelection deck={game.deck} hand={hand} handSelected={handSelected} {...bindActionCreators(StepActions, dispatch)} />); break;
+      case 1: currentGameStep = (<CardSelection deck={game.deck} hand={hand} ownerType={game.ownerType} handSelected={handSelected} {...bindActionCreators(StepActions, dispatch)} />); break;
       case 2: currentGameStep = (<Round game={game} hand={hand} opponentHand={opponentHand} settings={settings} score={score} validPieces={validPieces} winner={winner} {...bindActionCreators(StepActions, dispatch)} />); break;
       default: console.log("default"); break;
     }
