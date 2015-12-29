@@ -1,5 +1,5 @@
 import expect from 'expect';
-import * as actions from './../../../src/shared/action-creators/step';
+import * as actions from './../../../src/shared/action-creators/actionCreators';
 import * as types from '../../../src/shared/constants/action-types';
 
 describe('actions', () => {
