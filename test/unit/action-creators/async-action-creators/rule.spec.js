@@ -63,7 +63,7 @@ describe('RULE async action creator', () => {
             });
         });
 
-        it('should not dispatch UPDATE_BOARD action', () => {
+        it('should dispatch UPDATE_BOARD action with payload of index of card to flip and player owner', () => {
             rule(index)(dispatch, getState);
             expect(dispatch).toHaveBeenCalledWith({ type: 'UpdateBoard', payload: {index: 3, owner: player} });
         });
