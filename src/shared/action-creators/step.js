@@ -98,12 +98,11 @@ export function playerTakesTurn(selectedPiece) {
     return function(dispatch, getState) {
 
         dispatch(selectPiece(selectedPiece));
-
-        const originalState = getState();
-
-        basicRule(dispatch, selectedPiece, originalState.game.board)
+        dispatch(rule(selectedPiece));
 
         dispatch(startAiTurn());
+
+        const originalState = getState();
 
         let opponentHand = originalState.game.deck.filter(card => {
             return card.owner === 2 && !_.contains(originalState.game.board, card);
@@ -119,59 +118,64 @@ export function playerTakesTurn(selectedPiece) {
         if(validPieces.length > 0) {
             let validPiece = _.sample(validPieces);
             dispatch(selectPiece(validPiece));
-            basicRule(dispatch, validPiece, state.game.board)
+            dispatch(rule(validPiece));
         }
 
         dispatch(endAiTurn());
     }
 }
 
-export function basicRule(dispatch, i, board){
-    const row = i / 3;
-    const column = i % 3;
+export function rule(i){
+    return function(dispatch, getState) {
+        const state = getState();
 
-    let card = board[i];
+        const board = state.game.board;
 
-    let above = i-3;
-    let below = i+3;
-    let left = i-1;
-    let right = i+1;
+        const row = i / 3;
+        const column = i % 3;
 
-    let cardAbove = board[above];
-    let cardBelow = board[below];
-    let cardAtLeft = board[left];
-    let cardAtRight = board[right];
+        const card = board[i];
 
-    let isNotFirstRow = row > 0;
-    let isNotLastRow = row < 2;
-    let isNotFirstColumn = column > 0;
-    let isNotLastColumn = column < 2;
+        const above = i-3;
+        const below = i+3;
+        const left = i-1;
+        const right = i+1;
 
-    if(isNotFirstRow && shouldFLip(card, cardAbove, 'top', 'bottom'))
-        dispatch(updateBoard(above, card.owner));
+        const cardAbove = board[above];
+        const cardBelow = board[below];
+        const cardAtLeft = board[left];
+        const cardAtRight = board[right];
 
-    if(isNotLastRow && shouldFLip(card, cardBelow, 'bottom', 'top'))
-        dispatch(updateBoard(below, card.owner));
+        const isNotFirstRow = row > 0;
+        const isNotLastRow = row < 2;
+        const isNotFirstColumn = column > 0;
+        const isNotLastColumn = column < 2;
 
-    if(isNotFirstColumn && shouldFLip(card, cardAtLeft, 'left', 'right'))
-        dispatch(updateBoard(left, card.owner));
+        if(isNotFirstRow && shouldFLip(card, cardAbove, 'top', 'bottom'))
+            dispatch(updateBoard(above, card.owner));
 
-    if(isNotLastColumn && shouldFLip(card, cardAtRight, 'right', 'left'))
-        dispatch(updateBoard(right, card.owner));
+        if(isNotLastRow && shouldFLip(card, cardBelow, 'bottom', 'top'))
+            dispatch(updateBoard(below, card.owner));
 
-    if(isNotFirstRow && shouldFLip(cardAbove, card, 'bottom', 'top'))
-        dispatch(updateBoard(i, cardAbove.owner));
+        if(isNotFirstColumn && shouldFLip(card, cardAtLeft, 'left', 'right'))
+            dispatch(updateBoard(left, card.owner));
 
-    if(isNotLastRow && shouldFLip(cardBelow, card, 'top', 'bottom'))
-        dispatch(updateBoard(i, cardBelow.owner));
+        if(isNotLastColumn && shouldFLip(card, cardAtRight, 'right', 'left'))
+            dispatch(updateBoard(right, card.owner));
 
-    if(isNotFirstColumn && shouldFLip(cardAtLeft, card, 'right', 'left'))
-        dispatch(updateBoard(i, cardAtLeft.owner));
+        if(isNotFirstRow && shouldFLip(cardAbove, card, 'bottom', 'top'))
+            dispatch(updateBoard(i, cardAbove.owner));
 
-    if(isNotLastColumn && shouldFLip(cardAtRight, card, 'left', 'right'))
-        dispatch(updateBoard(i, cardAtRight.owner));
+        if(isNotLastRow && shouldFLip(cardBelow, card, 'top', 'bottom'))
+            dispatch(updateBoard(i, cardBelow.owner));
+
+        if(isNotFirstColumn && shouldFLip(cardAtLeft, card, 'right', 'left'))
+            dispatch(updateBoard(i, cardAtLeft.owner));
+
+        if(isNotLastColumn && shouldFLip(cardAtRight, card, 'left', 'right'))
+            dispatch(updateBoard(i, cardAtRight.owner));
+    }
 }
-
 
 function shouldFLip(card, otherCard, attackDirection, defenseDirection){
     if(card && otherCard
