@@ -69,6 +69,24 @@ describe('RULE async action creator', () => {
         });
     });
 
+    describe('Given one adjacent card where you get flipped', () => {
+
+        let getState;
+        beforeEach(() => {
+            let adjacentCard = { owner: opponent, rank: { left: 5, top: 5, right: 6, bottom: 5} };
+            getState = () => ({
+                game: {
+                    board: [null, null, null, adjacentCard, card, null, null, null, null]
+                }
+            });
+        });
+
+        it('should dispatch UPDATE_BOARD action with a payload of index of your card and opponent owner', () => {
+            rule(index)(dispatch, getState);
+            expect(dispatch).toHaveBeenCalledWith({ type: 'UpdateBoard', payload: {index: index, owner: opponent} });
+        });
+    });
+
     describe('Given two adjacent cards with no flips', () => {
 
         let getState;
