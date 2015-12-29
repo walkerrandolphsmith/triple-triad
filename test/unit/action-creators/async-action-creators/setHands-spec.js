@@ -1,9 +1,9 @@
 import expect from 'expect';
-import * as Actions from './../../../src/shared/action-creators/asyncActionCreators';
+import {setHands} from './../../../../src/shared/action-creators/asyncActionCreators';
 
-describe('SET_HANDS action creator', () => {
+describe('SET_HANDS async action creator', () => {
    it('should be a function', () => {
-       expect(Actions.setHands()).toBeA('function');
+       expect(setHands()).toBeA('function');
    });
 
     describe('Given random hand is disabled', () => {
@@ -23,7 +23,7 @@ describe('SET_HANDS action creator', () => {
 
 
             const dispatch = expect.createSpy();
-            Actions.setHands()(dispatch, getState);
+            setHands()(dispatch, getState);
             expect(dispatch).toHaveBeenCalledWith({type: 'SetHand', payload: {owner: ownerTypeOppoent}})
         });
 
@@ -51,17 +51,17 @@ describe('SET_HANDS action creator', () => {
         });
 
         it('should dispatch SET_HAND action given the player ownerType in the payload', () => {
-            Actions.setHands()(dispatch, getState);
+            setHands()(dispatch, getState);
             expect(dispatch).toHaveBeenCalledWith({type: 'SetHand', payload: {owner: playerOwnerType}})
         });
 
         it('should dispatch SET_HAND action given the opponent ownerType in the payload', () => {
-            Actions.setHands()(dispatch, getState);
+            setHands()(dispatch, getState);
             expect(dispatch).toHaveBeenCalledWith({type: 'SetHand', payload: {owner: opponentOwnerType}})
         });
 
         it('should dispatch NEXT_STEP', () => {
-            Actions.setHands()(dispatch, getState);
+            setHands()(dispatch, getState);
             expect(dispatch).toHaveBeenCalledWith({type: 'NextStep'})
         });
 
