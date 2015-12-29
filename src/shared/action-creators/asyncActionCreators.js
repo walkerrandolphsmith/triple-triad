@@ -92,10 +92,10 @@ export const rule = (i) => (dispatch, getState) => {
 };
 
 function shouldFLip(card, otherCard, attackDirection, defenseDirection){
-    if(card && otherCard
+    return (
+        card
+        && otherCard
         && card.owner !== otherCard.owner
-        && card.rank[attackDirection] > otherCard.rank[defenseDirection]) {
-        return true;
-    }
-    return false;
+        && card.rank[attackDirection] > otherCard.rank[defenseDirection]
+    )
 }
