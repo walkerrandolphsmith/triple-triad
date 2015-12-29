@@ -23,22 +23,26 @@ export default class Round extends React.Component {
             top: '25%',
             display: 'block',
             width: '100%',
-            fontSize: '6em',
-            textTransform: 'uppercase'
+            font: 'bold 6em Impact, sans-serif',
+            letterSpacing: '8px',
+            textTransform: 'uppercase',
+            textShadow: '2px 2px 0 white, 4px 4px 0 black'
         };
 
         let blueScoreStyle = {
             position: 'absolute',
             left: '10px',
             top: '25%',
-            fontSize: '6em'
+            font: 'bold 6em Impact, sans-serif',
+            textShadow: '2px 2px 0 white, 4px 4px 0 black'
         };
 
         let redScoreStyle = {
             position: 'absolute',
             right: '15px',
             top: '25%',
-            fontSize: '6em'
+            font: 'bold 6em Impact, sans-serif',
+            textShadow: '2px 2px 0 white, 4px 4px 0 black'
         };
 
         switch(winner){
@@ -54,7 +58,7 @@ export default class Round extends React.Component {
                 break;
             case WINNER.RED:
                 phrase = "Player 2";
-                bannerStyle.background = 'repeating-linear-gradient(45deg, red, red 10px, #465298 10px, #465298 20px)';
+                bannerStyle.background = 'repeating-linear-gradient(45deg, red, red 10px, #FF2850 10px, #FF2850 20px)';
                 break;
         }
 
