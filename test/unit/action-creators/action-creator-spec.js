@@ -31,21 +31,23 @@ describe('actions', () => {
         expect(actions.resetSettings()).toEqual(expectedAction)
     });
 
-    it('should create an action to set the hands of the players', () => {
-       const expectedAction = {
-           type: types.SET_HAND,
-           payload: {
-               owner: 0
-           }
-       };
-        expect(actions.setHand(0)).toEqual(expectedAction);
-    });
-
-    it('should create an action to add a card to a players hand', () => {
+    it('should create an action to add a card to a owners hand', () => {
         const expectedAction = {
             type: types.ADD_CARD,
             payload: {
-                id: 0
+                id: 0,
+                owner: 2
+            }
+        };
+        expect(actions.addCard(0, 2)).toEqual(expectedAction)
+    });
+
+    it('should create an action to add a card to a players hand if there is no owner', () => {
+        const expectedAction = {
+            type: types.ADD_CARD,
+            payload: {
+                id: 0,
+                owner: 1
             }
         };
         expect(actions.addCard(0)).toEqual(expectedAction)

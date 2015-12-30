@@ -1,6 +1,6 @@
 import expect from 'expect';
 import { fromJS } from 'immutable';
-import {setHands} from './../../../../src/shared/action-creators/';
+import {setHands, setHand} from './../../../../src/shared/action-creators/';
 
 describe('SET_HANDS async action creator', () => {
 
@@ -34,7 +34,7 @@ describe('SET_HANDS async action creator', () => {
 
         it('should dispatch SET_HAND action', () => {
             setHands()(dispatch, getState);
-            expect(dispatch).toHaveBeenCalledWith({type: 'SetHand', payload: {owner: opponent}})
+            expect(dispatch).toHaveBeenCalledWith(setHand(opponent))
         });
 
     });
@@ -52,12 +52,12 @@ describe('SET_HANDS async action creator', () => {
 
         it('should dispatch SET_HAND action given the player ownerType in the payload', () => {
             setHands()(dispatch, getState);
-            expect(dispatch).toHaveBeenCalledWith({type: 'SetHand', payload: {owner: player}})
+            expect(dispatch).toHaveBeenCalledWith(setHand(player))
         });
 
         it('should dispatch SET_HAND action given the opponent ownerType in the payload', () => {
             setHands()(dispatch, getState);
-            expect(dispatch).toHaveBeenCalledWith({type: 'SetHand', payload: {owner: player}})
+            expect(dispatch).toHaveBeenCalledWith(setHand(player))
         });
 
         it('should dispatch NEXT_STEP', () => {

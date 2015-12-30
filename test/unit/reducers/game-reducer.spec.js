@@ -26,23 +26,25 @@ describe("Game reducer", () => {
         });
     });
 
-    describe('When adding a card by id to the hand', () => {
+    describe('When adding a card by id to the owners hand', () => {
         let newState;
-        let cardFromDeck, id;
+        let cardFromDeck, id, owner;
         beforeEach(() => {
             id = 0;
+            owner = 2;
             cardFromDeck = _.find(deck, {id: id});
 
             newState = reducer(initialState, {
                 type: types.ADD_CARD,
                 payload: {
-                    id: id
+                    id: id,
+                    owner: owner
                 }
             });
         });
 
         it('should handle ADD_CARD by updating card in deck with new owner', () => {
-            expect(_.find(newState.deck, {id: id}).owner).toEqual(newState.ownerType.player);
+            expect(_.find(newState.deck, {id: id}).owner).toEqual(owner);
         });
     });
 
@@ -76,42 +78,6 @@ describe("Game reducer", () => {
 
         it('should handle REMOVE_CARD by updating the card in deck with no owner', () => {
             expect(_.find(newState.deck, {id: id}).owner).toEqual(newState.ownerType.none);
-        });
-    });
-
-    describe('setting players hand randomly', () => {
-
-        let newState;
-        beforeEach(() => {
-            newState = reducer(initialState, {
-                type: types.SET_HAND,
-                payload: {
-                    owner: initialState.ownerType.player
-                }
-            });
-        });
-
-        it('should handle SET_HANDS by populating the players hand with five cards', () => {
-            let hand = _.filter(newState.deck, card => { return card.owner === newState.ownerType.player});
-            expect(hand.length).toEqual(5);
-        });
-    });
-
-    describe("setting opponents hand randomly", () => {
-
-        let newState;
-        beforeEach(() => {
-            newState = reducer(initialState, {
-                type: types.SET_HAND,
-                payload: {
-                    owner: initialState.ownerType.opponent
-                }
-            })
-        });
-
-        it('should handle SET_HANDS by populating the opponents hand with five cards', () => {
-            let hand = _.filter(newState.deck, card => { return card.owner === newState.ownerType.opponent});
-            expect(hand.length).toEqual(5);
         });
     });
 
