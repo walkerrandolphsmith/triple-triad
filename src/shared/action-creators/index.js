@@ -101,6 +101,11 @@ export function endAiTurn() {
     }
 }
 
+export const newGame = () => (dispatch, getState) => {
+    dispatch(resetStep());
+    dispatch(resetGame());
+    dispatch(resetSettings());
+};
 
 export const setHands = () => (dispatch, getState) => {
     const state = getState();
@@ -200,10 +205,4 @@ function shouldFLip(card, otherCard, attackDirection, defenseDirection){
     && card.owner !== otherCard.owner
     && card.rank[attackDirection] > otherCard.rank[defenseDirection]
     )
-}
-
-export const newGame = () => (dispatch, getState) => {
-    dispatch(resetStep());
-    dispatch(resetGame());
-    dispatch(resetSettings());
 }
