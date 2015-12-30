@@ -38,6 +38,7 @@
     "babel-core": "5.2.9",
     "babel-loader": "5.0.0",
     "babel-runtime": "5.2.9",
+    "expect": "^1.13.4",
     "file-loader": "^0.8.5",
     "less": "^2.5.3",
     "less-loader": "^2.2.2",
