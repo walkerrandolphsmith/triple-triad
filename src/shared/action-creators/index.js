@@ -6,6 +6,12 @@ export function nextStep() {
     }
 }
 
+export function resetStep() {
+    return {
+        type: types.RESET_STEP
+    }
+}
+
 export function setHand(owner) {
     return {
         type: types.SET_HAND,
