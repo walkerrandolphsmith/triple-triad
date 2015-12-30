@@ -2,8 +2,13 @@ import React from 'react';
 import WINNER from './../constants/winner';
 
 export default class Round extends React.Component {
+
+    click() {
+        this.props.resetStep();
+    }
+
     render() {
-        let {winner, score} = this.props;
+        let {winner, score, resetStep} = this.props;
 
         let phrase = "";
         let bannerStyle = {
@@ -45,6 +50,18 @@ export default class Round extends React.Component {
             textShadow: '2px 2px 0 white, 4px 4px 0 black'
         };
 
+        let buttonStyle = {
+            width: '280px',
+            textAlign: 'center',
+            margin: '0px auto',
+            fontSize: '25px',
+            padding: '20px',
+            borderRadius: '9px',
+            color: 'white',
+            top: '200px',
+            position: 'relative'
+        };
+
         switch(winner){
             case WINNER.NONE:
                 bannerStyle.display = 'none';
@@ -67,6 +84,8 @@ export default class Round extends React.Component {
                 <span style={blueScoreStyle}>{score.blue}</span>
                 <span style={phraseStyle}>{phrase}</span>
                 <span style={redScoreStyle}>{score.red}</span>
+
+                <button style={buttonStyle} onClick={this.click.bind(this)}>Play again</button>
             </div>
         );
     }
