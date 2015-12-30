@@ -1,6 +1,7 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as Actions from './../action-creators/';
+import { toJS } from 'immutable';
 
 import React from 'react';
 import SettingsSelection from './settingsSelection';
@@ -28,8 +29,9 @@ class Game extends React.Component {
 }
 
 function mapStateToProps(state) {
+
     return {
-        step: state.step
+        step: state.step.toJS()
     }
 }
 

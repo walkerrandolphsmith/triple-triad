@@ -9,7 +9,11 @@ import configureStore from './../shared/store/store';
 
 
 const history = createBrowserHistory();
-const store = configureStore(window.__INITIAL_STATE__);
+
+let initialState = window.__INITIAL_STATE__;
+Object.keys(initialState).forEach(key => { if(key === "step") initialState[key] = fromJS(initialState[key]);  });
+
+const store = configureStore(initialState);
 
 const mountNode = document.getElementById('app');
 ReactDom.render(

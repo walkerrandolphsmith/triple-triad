@@ -9,22 +9,9 @@ const INITIAL_STATE = new Immutable.Map({
 export default function reducer(state = INITIAL_STATE, action) {
 
     switch(action.type){
-        case types.NEXT_STEP: return nextStep(state);
-        case types.RESET_STEP: return resetStep(state);
+        case types.NEXT_STEP: return state.set('current', state.get('current')+1);
+        case types.RESET_STEP: return INITIAL_STATE;
     }
 
     return state;
-}
-
-function nextStep(state) {
-
-    var newState = _.cloneDeep(state);
-
-    newState.current++;
-
-    return newState;
-}
-
-function resetStep(state) {
-    return INITIAL_STATE.toJS();
 }
