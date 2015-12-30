@@ -26,9 +26,5 @@ function nextStep(state) {
 }
 
 function resetStep(state) {
-    let newState = _.cloneDeep(state);
-
-    newState.current = 0;
-
-    return newState;
+    return INITIAL_STATE;
 }

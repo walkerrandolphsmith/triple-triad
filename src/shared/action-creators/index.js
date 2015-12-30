@@ -12,6 +12,18 @@ export function resetStep() {
     }
 }
 
+export function resetGame() {
+    return {
+        type: types.RESET_GAME
+    }
+}
+
+export function resetSettings() {
+    return {
+        type: types.RESET_SETTINGS
+    }
+}
+
 export function setHand(owner) {
     return {
         type: types.SET_HAND,
@@ -188,4 +200,10 @@ function shouldFLip(card, otherCard, attackDirection, defenseDirection){
     && card.owner !== otherCard.owner
     && card.rank[attackDirection] > otherCard.rank[defenseDirection]
     )
+}
+
+export const newGame = () => (dispatch, getState) => {
+    dispatch(resetStep());
+    dispatch(resetGame());
+    dispatch(resetSettings());
 }

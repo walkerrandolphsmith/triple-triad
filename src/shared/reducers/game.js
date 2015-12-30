@@ -27,6 +27,7 @@ export default function reducer(state = INITIAL_STATE, action) {
     case types.UPDATE_BOARD: return updateBoard(state, payload);
     case types.START_AI_TURN: return startAITurn(state);
     case types.END_AI_TURN: return endAiTurn(state);
+    case types.RESET_GAME: return resetGame(state);
   }
 
   return state;
@@ -108,4 +109,8 @@ function startAITurn(state){
 
 function endAiTurn(state) {
   return state;
+}
+
+function resetGame(state) {
+  return INITIAL_STATE;
 }

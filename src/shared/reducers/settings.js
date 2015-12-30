@@ -14,6 +14,7 @@ export default function reducer(state = INITIAL_STATE, action) {
 
   switch(type){
     case types.UPDATE_SETTINGS: return updateSettings(state, payload);
+    case types.RESET_SETTINGS: return resetSettings(state);
   }
 
   return state;
@@ -26,4 +27,8 @@ function updateSettings(state, payload){
   newState[payload.setting] = payload.isChecked;
 
   return newState;
+}
+
+function resetSettings(state){
+  return INITIAL_STATE;
 }
