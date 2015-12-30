@@ -232,57 +232,54 @@ export const sameRule = (i) => (dispatch, getState) => {
     const isNotFirstColumn = column > 0;
     const isNotLastColumn = column < 2;
 
-    if(isNotFirstColumn && isNotLastColumn){
-        if(cardAtLeft && cardAtRight){
-            if(card.rank.left === cardAtLeft.rank.right && card.rank.right === cardAtRight.rank.left){
-                dispatch(updateBoard(right, card.owner));
-                dispatch(updateBoard(left, card.owner));
-            }
+    let indiciesToUpdate = [];
+
+    if(shouldApplySameRule(isNotFirstColumn, isNotLastColumn, card, cardAtLeft, cardAtRight)){
+        if(card.rank.left === cardAtLeft.rank.right && card.rank.right === cardAtRight.rank.left){
+            indiciesToUpdate = indiciesToUpdate.concat([right, left])
         }
     }
 
-    if(isNotFirstRow && isNotLastRow){
-        if(cardAbove && cardBelow){
-            if(card.rank.top === cardAbove.rank.bottom && card.rank.bottom === cardBelow.rank.top){
-                dispatch(updateBoard(above, card.owner));
-                dispatch(updateBoard(below, card.owner));
-            }
+    if(shouldApplySameRule(isNotFirstRow, isNotLastRow, card, cardAbove, cardBelow)){
+        if(card.rank.top === cardAbove.rank.bottom && card.rank.bottom === cardBelow.rank.top){
+            indiciesToUpdate = indiciesToUpdate.concat([above, below])
         }
     }
 
-    if(isNotFirstRow && isNotFirstColumn){
-        if(cardAbove && cardAtLeft){
-            if(card.rank.top === cardAbove.rank.bottom && card.rank.left === cardAtLeft.rank.right){
-                dispatch(updateBoard(above, card.owner));
-                dispatch(updateBoard(left, card.owner));
-            }
+    if(shouldApplySameRule(isNotFirstRow, isNotFirstColumn, card, cardAbove, cardAtLeft)){
+        if(card.rank.top === cardAbove.rank.bottom && card.rank.left === cardAtLeft.rank.right){
+            indiciesToUpdate = indiciesToUpdate.concat([above, left])
         }
     }
 
-    if(isNotLastRow && isNotFirstColumn){
-        if(cardBelow && cardAtLeft){
-            if(card.rank.bottom === cardBelow.rank.top && card.rank.left === cardAtLeft.rank.right){
-                dispatch(updateBoard(below, card.owner));
-                dispatch(updateBoard(left, card.owner));
-            }
+    if(shouldApplySameRule(isNotLastRow, isNotFirstColumn, card, cardBelow, cardAtLeft)){
+        if(card.rank.bottom === cardBelow.rank.top && card.rank.left === cardAtLeft.rank.right){
+            indiciesToUpdate = indiciesToUpdate.concat([below, left])
         }
     }
 
-    if(isNotFirstRow && isNotLastColumn){
-        if(cardAbove && cardAtRight){
-            if(card.rank.top === cardAbove.rank.bottom && card.rank.right === cardAtRight.rank.left){
-                dispatch(updateBoard(above, card.owner));
-                dispatch(updateBoard(right, card.owner));
-            }
+    if(shouldApplySameRule(isNotFirstRow, isNotLastColumn, card, cardAbove, cardAtRight)){
+        if(card.rank.top === cardAbove.rank.bottom && card.rank.right === cardAtRight.rank.left){
+            indiciesToUpdate = indiciesToUpdate.concat([above, right])
         }
     }
 
-    if(isNotLastRow && isNotLastColumn){
-        if(cardBelow && cardAtRight){
-            if(card.rank.bottom === cardBelow.rank.top && card.rank.right === cardAtRight.rank.left){
-                dispatch(updateBoard(below, card.owner));
-                dispatch(updateBoard(right, card.owner));
-            }
+    if(shouldApplySameRule(isNotLastRow, isNotLastColumn, card, cardBelow, cardAtRight)){
+        if(card.rank.bottom === cardBelow.rank.top && card.rank.right === cardAtRight.rank.left){
+            indiciesToUpdate = indiciesToUpdate.concat([below, right])
         }
     }
+
+    indiciesToUpdate.forEach(index => { dispatch(updateBoard(index, card.owner)) })
 };
+
+function shouldApplySameRule(boundary, boundaryTwo, card, firstCard, secondCard){
+    return (
+    boundary
+    && boundaryTwo
+    && firstCard
+    && secondCard
+    && firstCard.owner !== card.owner
+    && secondCard.owner !== card.owner
+    )
+}
