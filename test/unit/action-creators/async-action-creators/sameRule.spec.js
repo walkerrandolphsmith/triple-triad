@@ -131,14 +131,14 @@ describe('SAME_RULE async action creator', () => {
             let adjacentCardTwo = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
             getState = () => ({
                 game: {
-                    board: [null, adjacentCard, null, null, card, null, null, adjacentCardTwo, null]
+                    board: [null, null, null, adjacentCard, card, null, null, adjacentCardTwo, null]
                 }
             });
         });
 
         it('should dispatch UPDATE_BOARD action with a payload of index of first card to flip and player owner', () => {
             sameRule(index)(dispatch, getState);
-            expect(dispatch).toHaveBeenCalledWith({ type: 'UpdateBoard', payload: {index: 1, owner: player} });
+            expect(dispatch).toHaveBeenCalledWith({ type: 'UpdateBoard', payload: {index: 3, owner: player} });
         });
 
         it('should dispatch UPDATE_BOARD action with a payload of index of second card to flip and player owner', () => {
