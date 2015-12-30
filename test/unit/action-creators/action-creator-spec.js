@@ -17,6 +17,20 @@ describe('actions', () => {
         expect(actions.resetStep()).toEqual(expectedAction)
     });
 
+    it('should create an action to trigger a rest of the board', () => {
+        const expectedAction = {
+            type: types.RESET_GAME
+        };
+        expect(actions.resetGame()).toEqual(expectedAction)
+    });
+
+    it('should create an action to trigger a rest of the settings', () => {
+        const expectedAction = {
+            type: types.RESET_SETTINGS
+        };
+        expect(actions.resetSettings()).toEqual(expectedAction)
+    });
+
     it('should create an action to set the hands of the players', () => {
        const expectedAction = {
            type: types.SET_HAND,

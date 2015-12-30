@@ -75,4 +75,18 @@ describe("Settings reducer", () => {
         });
     });
 
+    describe("when resetting the settings", () => {
+
+        let newState;
+        beforeEach(() => {
+            newState = reducer(initialState, {
+                type: types.RESET_SETTINGS
+            });
+        });
+
+        it('should handle UPDATE_SETTINGS visible hand', () => {
+            expect(newState.toJS()).toEqual(initialState)
+        });
+    });
+
 });

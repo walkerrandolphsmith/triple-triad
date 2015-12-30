@@ -226,4 +226,14 @@ describe("Game reducer", () => {
         });
     });
 
+    describe('resetting the game', () => {
+
+        it('should handle RESET_GAME by setting current turn to the opponent', () => {
+            let newState = reducer(initialState, {
+                type: types.RESET_GAME
+            });
+            expect(newState.toJS()).toEqual(initialState);
+        });
+    });
+
 });
