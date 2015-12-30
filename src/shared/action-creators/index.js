@@ -142,6 +142,7 @@ export const aiTurn = () => (dispatch, getState) => {
 export const playerTakesTurn = (selectedPiece, isPlayer) => (dispatch, getState) => {
     dispatch(selectPiece(selectedPiece));
     dispatch(rule(selectedPiece));
+    dispatch(sameRule(selectedPiece));
 
     if(isPlayer){
         dispatch(aiTurn());
