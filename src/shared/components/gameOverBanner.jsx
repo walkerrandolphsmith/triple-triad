@@ -4,11 +4,11 @@ import WINNER from './../constants/winner';
 export default class Round extends React.Component {
 
     click() {
-        this.props.resetStep();
+        this.props.newGame();
     }
 
     render() {
-        let {winner, score, resetStep} = this.props;
+        let {winner, score, newGame} = this.props;
 
         let phrase = "";
         let bannerStyle = {
