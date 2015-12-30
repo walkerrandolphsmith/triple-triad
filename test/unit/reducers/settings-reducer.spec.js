@@ -1,4 +1,5 @@
 import expect from 'expect';
+import { toJs, fromJS } from 'immutable';
 import reducer from './../../../src/shared/reducers/settings';
 import * as types from './../../../src/shared/constants/action-types';
 
@@ -6,17 +7,17 @@ describe("Settings reducer", () => {
 
     let initialState;
     beforeEach(() => {
-        initialState = {
+        initialState = fromJS({
             randomHand: false,
             multiplayer: false,
             visibleHand: false
-        };
+        });
     });
 
 
     describe("Given no state", () => {
         it('should return the initial state', () => {
-            expect(reducer(undefined, {}).toJS()).toEqual(initialState)
+            expect(reducer(undefined, {})).toEqual(initialState)
         });
     });
 
@@ -35,7 +36,7 @@ describe("Settings reducer", () => {
         });
 
         it('should handle UPDATE_SETTINGS random hand', () => {
-            expect(newState.randomHand).toEqual(true)
+            expect(newState.get('randomHand')).toEqual(true)
         });
     });
 
@@ -53,7 +54,7 @@ describe("Settings reducer", () => {
         });
 
         it('should handle UPDATE_SETTINGS multiplayer', () => {
-            expect(newState.multiplayer).toEqual(true)
+            expect(newState.get('multiplayer')).toEqual(true)
         });
     });
 
@@ -71,7 +72,7 @@ describe("Settings reducer", () => {
         });
 
         it('should handle UPDATE_SETTINGS visible hand', () => {
-            expect(newState.visibleHand).toEqual(true)
+            expect(newState.get('visibleHand')).toEqual(true)
         });
     });
 
