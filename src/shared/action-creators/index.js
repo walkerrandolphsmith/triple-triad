@@ -240,4 +240,49 @@ export const sameRule = (i) => (dispatch, getState) => {
             }
         }
     }
+
+    if(isNotFirstRow && isNotLastRow){
+        if(cardAbove && cardBelow){
+            if(card.rank.top === cardAbove.rank.bottom && card.rank.bottom === cardBelow.rank.top){
+                dispatch(updateBoard(above, card.owner));
+                dispatch(updateBoard(below, card.owner));
+            }
+        }
+    }
+
+    if(isNotFirstRow && isNotFirstColumn){
+        if(cardAbove && cardAtLeft){
+            if(card.rank.top === cardAbove.rank.bottom && card.rank.left === cardAtLeft.rank.right){
+                dispatch(updateBoard(above, card.owner));
+                dispatch(updateBoard(left, card.owner));
+            }
+        }
+    }
+
+    if(isNotLastRow && isNotFirstColumn){
+        if(cardBelow && cardAtLeft){
+            if(card.rank.bottom === cardBelow.rank.top && card.rank.left === cardAtLeft.rank.right){
+                dispatch(updateBoard(below, card.owner));
+                dispatch(updateBoard(left, card.owner));
+            }
+        }
+    }
+
+    if(isNotFirstRow && isNotLastColumn){
+        if(cardAbove && cardAtRight){
+            if(card.rank.top === cardAbove.rank.bottom && card.rank.right === cardAtRight.rank.left){
+                dispatch(updateBoard(above, card.owner));
+                dispatch(updateBoard(right, card.owner));
+            }
+        }
+    }
+
+    if(isNotLastRow && isNotLastColumn){
+        if(cardBelow && cardAtRight){
+            if(card.rank.bottom === cardBelow.rank.top && card.rank.right === cardAtRight.rank.left){
+                dispatch(updateBoard(below, card.owner));
+                dispatch(updateBoard(right, card.owner));
+            }
+        }
+    }
 };
