@@ -1,4 +1,5 @@
 import expect from 'expect';
+import { toJS, fromJS } from 'immutable';
 import reducer from './../../../src/shared/reducers/step';
 import * as types from './../../../src/shared/constants/action-types';
 
@@ -6,15 +7,15 @@ describe("Step reducer", () => {
 
     let initialState;
     beforeEach(() => {
-        initialState = {
+        initialState = fromJS({
             current: 0
-        };
+        });
     });
 
 
     describe("Given no state", () => {
         it('should return the initial state', () => {
-            expect(reducer(undefined, {}).toJS()).toEqual(initialState)
+            expect(reducer(undefined, {})).toEqual(initialState)
         });
     });
 
@@ -29,7 +30,7 @@ describe("Step reducer", () => {
         });
 
         it('should handle NEXT_STEP by incrementing current step', () => {
-            expect(newState.current).toEqual(initialState.current + 1)
+            expect(newState.get('current')).toEqual(initialState.get('current') + 1)
         });
     });
 
