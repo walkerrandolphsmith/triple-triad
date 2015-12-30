@@ -232,45 +232,33 @@ export const sameRule = (i) => (dispatch, getState) => {
     const isNotFirstColumn = column > 0;
     const isNotLastColumn = column < 2;
 
-    let indiciesToUpdate = [];
+    let indexesToUpdate = [];
 
-    if(shouldEvaluateSameRule(isNotFirstColumn, isNotLastColumn, card, cardAtLeft, cardAtRight)){
-        if(card.rank.left === cardAtLeft.rank.right && card.rank.right === cardAtRight.rank.left){
-            indiciesToUpdate = indiciesToUpdate.concat([right, left])
-        }
-    }
+    if(shouldEvaluateSameRule(isNotFirstColumn, isNotLastColumn, card, cardAtLeft, cardAtRight))
+        if(card.rank.left === cardAtLeft.rank.right && card.rank.right === cardAtRight.rank.left)
+            indexesToUpdate = indexesToUpdate.concat([right, left]);
 
-    if(shouldEvaluateSameRule(isNotFirstRow, isNotLastRow, card, cardAbove, cardBelow)){
-        if(card.rank.top === cardAbove.rank.bottom && card.rank.bottom === cardBelow.rank.top){
-            indiciesToUpdate = indiciesToUpdate.concat([above, below])
-        }
-    }
+    if(shouldEvaluateSameRule(isNotFirstRow, isNotLastRow, card, cardAbove, cardBelow))
+        if(card.rank.top === cardAbove.rank.bottom && card.rank.bottom === cardBelow.rank.top)
+            indexesToUpdate = indexesToUpdate.concat([above, below]);
 
-    if(shouldEvaluateSameRule(isNotFirstRow, isNotFirstColumn, card, cardAbove, cardAtLeft)){
-        if(card.rank.top === cardAbove.rank.bottom && card.rank.left === cardAtLeft.rank.right){
-            indiciesToUpdate = indiciesToUpdate.concat([above, left])
-        }
-    }
+    if(shouldEvaluateSameRule(isNotFirstRow, isNotFirstColumn, card, cardAbove, cardAtLeft))
+        if(card.rank.top === cardAbove.rank.bottom && card.rank.left === cardAtLeft.rank.right)
+            indexesToUpdate = indexesToUpdate.concat([above, left]);
 
-    if(shouldEvaluateSameRule(isNotLastRow, isNotFirstColumn, card, cardBelow, cardAtLeft)){
-        if(card.rank.bottom === cardBelow.rank.top && card.rank.left === cardAtLeft.rank.right){
-            indiciesToUpdate = indiciesToUpdate.concat([below, left])
-        }
-    }
+    if(shouldEvaluateSameRule(isNotLastRow, isNotFirstColumn, card, cardBelow, cardAtLeft))
+        if(card.rank.bottom === cardBelow.rank.top && card.rank.left === cardAtLeft.rank.right)
+            indexesToUpdate = indexesToUpdate.concat([below, left]);
 
-    if(shouldEvaluateSameRule(isNotFirstRow, isNotLastColumn, card, cardAbove, cardAtRight)){
-        if(card.rank.top === cardAbove.rank.bottom && card.rank.right === cardAtRight.rank.left){
-            indiciesToUpdate = indiciesToUpdate.concat([above, right])
-        }
-    }
+    if(shouldEvaluateSameRule(isNotFirstRow, isNotLastColumn, card, cardAbove, cardAtRight))
+        if(card.rank.top === cardAbove.rank.bottom && card.rank.right === cardAtRight.rank.left)
+            indexesToUpdate = indexesToUpdate.concat([above, right]);
 
-    if(shouldEvaluateSameRule(isNotLastRow, isNotLastColumn, card, cardBelow, cardAtRight)){
-        if(card.rank.bottom === cardBelow.rank.top && card.rank.right === cardAtRight.rank.left){
-            indiciesToUpdate = indiciesToUpdate.concat([below, right])
-        }
-    }
+    if(shouldEvaluateSameRule(isNotLastRow, isNotLastColumn, card, cardBelow, cardAtRight))
+        if(card.rank.bottom === cardBelow.rank.top && card.rank.right === cardAtRight.rank.left)
+            indexesToUpdate = indexesToUpdate.concat([below, right]);
 
-    indiciesToUpdate.forEach(index => { dispatch(updateBoard(index, card.owner)) })
+    indexesToUpdate.forEach(index => { dispatch(updateBoard(index, card.owner)) })
 };
 
 function shouldEvaluateSameRule(boundary, boundaryTwo, card, firstCard, secondCard){
