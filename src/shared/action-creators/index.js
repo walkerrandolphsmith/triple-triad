@@ -1,4 +1,5 @@
 import * as types from './../constants/action-types';
+import _ from 'lodash';
 
 export function nextStep() {
     return {
@@ -24,20 +25,12 @@ export function resetSettings() {
     }
 }
 
-export function setHand(owner) {
-    return {
-        type: types.SET_HAND,
-        payload: {
-            owner: owner
-        }
-    }
-}
-
-export function addCard(id) {
+export function addCard(id, owner) {
     return {
         type: types.ADD_CARD,
         payload: {
-            id: id
+            id: id,
+            owner: owner || 1
         }
     }
 }
@@ -115,6 +108,20 @@ export const setHands = () => (dispatch, getState) => {
         dispatch(nextStep());
     }
     dispatch(setHand(state.game.ownerType.opponent));
+};
+
+export const setHand = (owner) => (dispatch, getState) => {
+    const state = getState();
+
+    let unownedCards = _.filter(state.game.deck, card => {
+        return card.owner === 0;
+    });
+
+    let randomHand = _.sample(unownedCards, 5);
+
+    randomHand.forEach(card => {
+        dispatch(addCard(card.id, owner))
+    });
 };
 
 export const aiTurn = () => (dispatch, getState) => {

@@ -19,7 +19,6 @@ export default function reducer(state = INITIAL_STATE, action) {
   let {type, payload} = action;
 
   switch(type){
-    case types.SET_HAND: return setHands(state, payload);
     case types.ADD_CARD: return addCard(state, payload);
     case types.REMOVE_CARD: return removeCard(state, payload);
     case types.SELECT_CARD: return selectCard(state, payload);
@@ -33,29 +32,13 @@ export default function reducer(state = INITIAL_STATE, action) {
   return state;
 }
 
-function setHands(state, payload){
-  var newState = _.cloneDeep(state);
-
-  let unownedCards = _.filter(newState.deck, card => {
-    return card.owner === 0;
-  });
-
-  let randomHand = _.sample(unownedCards, 5);
-
-  randomHand.forEach(card => {
-    card.owner = payload.owner
-  });
-
-  return newState;
-}
-
 function addCard(state, payload){
 
   var newState = _.cloneDeep(state);
 
   let cardToAdd = _.find(newState.deck, {id: payload.id});
 
-  cardToAdd.owner = newState.ownerType.player;
+  cardToAdd.owner = payload.owner;
 
   return newState;
 }
