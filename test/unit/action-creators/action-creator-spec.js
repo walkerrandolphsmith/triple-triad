@@ -10,6 +10,13 @@ describe('actions', () => {
         expect(actions.nextStep()).toEqual(expectedAction)
     });
 
+    it('should creat an action to trigger a reset of the current step', () => {
+        const expectedAction = {
+            type: types.RESET_STEP
+        };
+        expect(actions.resetStep()).toEqual(expectedAction)
+    });
+
     it('should create an action to set the hands of the players', () => {
        const expectedAction = {
            type: types.SET_HAND,
