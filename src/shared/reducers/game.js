@@ -4,7 +4,6 @@ import deck from './../constants/deck';
 import * as types from './../constants/action-types';
 
 const INITIAL_STATE = new Immutable.Map({
-  step: 0,
   deck: deck,
   ownerType: {
     none: 0,
@@ -20,7 +19,6 @@ export default function reducer(state = INITIAL_STATE, action) {
   let {type, payload} = action;
 
   switch(type){
-    case types.NEXT_STEP: return nextStep(state);
     case types.SET_HAND: return setHands(state, payload);
     case types.ADD_CARD: return addCard(state, payload);
     case types.REMOVE_CARD: return removeCard(state, payload);
@@ -32,15 +30,6 @@ export default function reducer(state = INITIAL_STATE, action) {
   }
 
   return state;
-}
-
-function nextStep(state) {
-
-  var newState = _.cloneDeep(state);
-
-  newState.step++;
-
-  return newState;
 }
 
 function setHands(state, payload){

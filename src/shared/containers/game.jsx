@@ -11,7 +11,7 @@ class Game extends React.Component {
     render() {
         let currentGameStep = null;
 
-        switch(this.props.game.step){
+        switch(this.props.step.current){
             case 0: currentGameStep = (<SettingsSelection />); break;
             case 1: currentGameStep = (<CardSelection/>); break;
             case 2: currentGameStep = (<Round/>); break;
@@ -29,7 +29,7 @@ class Game extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        game: state.game
+        step: state.step
     }
 }
 
