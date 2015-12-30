@@ -1,63 +1,63 @@
 import expect from 'expect';
+import { fromJS } from 'immutable';
 import {setHands} from './../../../../src/shared/action-creators/';
 
 describe('SET_HANDS async action creator', () => {
-   it('should be a function', () => {
+
+    let dispatch, game, player, opponent;
+    beforeEach(() => {
+       player = 1;
+       opponent = 2;
+       game = {
+           ownerType: {
+               player: player,
+               opponent: opponent
+           }
+       };
+       dispatch = expect.createSpy();
+    });
+
+    it('should be a function', () => {
        expect(setHands()).toBeA('function');
-   });
+    });
 
     describe('Given random hand is disabled', () => {
 
-        it('should dispatch SET_HAND action', () => {
-            let ownerTypeOppoent = 2;
-            const getState = () => ({
-                game: {
-                    ownerType: {
-                        opponent: ownerTypeOppoent
-                    }
-                },
-                settings: {
-                    randomHand: false
-                }
+        let getState;
+        beforeEach(() => {
+            const settings = fromJS({ randomHand: false});
+            getState = () => ({
+                game: game,
+                settings: settings
             });
+        });
 
-
-            const dispatch = expect.createSpy();
+        it('should dispatch SET_HAND action', () => {
             setHands()(dispatch, getState);
-            expect(dispatch).toHaveBeenCalledWith({type: 'SetHand', payload: {owner: ownerTypeOppoent}})
+            expect(dispatch).toHaveBeenCalledWith({type: 'SetHand', payload: {owner: opponent}})
         });
 
     });
 
     describe('Given random hand is enabled', () => {
 
-        let getState, dispatch;
-        let playerOwnerType, opponentOwnerType;
+        let getState;
         beforeEach(() => {
-            playerOwnerType = 1;
-            opponentOwnerType = 2;
+            const settings = fromJS({ randomHand: true});
             getState = () => ({
-                game: {
-                    ownerType: {
-                        player: playerOwnerType,
-                        opponent:  opponentOwnerType
-                    }
-                },
-                settings: {
-                    randomHand: true
-                }
+                game: game,
+                settings: settings
             });
-            dispatch = expect.createSpy();
         });
 
         it('should dispatch SET_HAND action given the player ownerType in the payload', () => {
             setHands()(dispatch, getState);
-            expect(dispatch).toHaveBeenCalledWith({type: 'SetHand', payload: {owner: playerOwnerType}})
+            expect(dispatch).toHaveBeenCalledWith({type: 'SetHand', payload: {owner: player}})
         });
 
         it('should dispatch SET_HAND action given the opponent ownerType in the payload', () => {
             setHands()(dispatch, getState);
-            expect(dispatch).toHaveBeenCalledWith({type: 'SetHand', payload: {owner: opponentOwnerType}})
+            expect(dispatch).toHaveBeenCalledWith({type: 'SetHand', payload: {owner: player}})
         });
 
         it('should dispatch NEXT_STEP', () => {
