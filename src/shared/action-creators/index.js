@@ -206,3 +206,7 @@ function shouldFLip(card, otherCard, attackDirection, defenseDirection){
     && card.rank[attackDirection] > otherCard.rank[defenseDirection]
     )
 }
+
+export const sameRule = (i) => (getState, dispatch) => {
+
+};
