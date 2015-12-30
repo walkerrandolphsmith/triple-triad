@@ -2,7 +2,7 @@ import React from 'react';
 
 export default class Card extends React.Component {
 
-    click = () => {
+    click() {
         let {clickAction, id} = this.props;
         clickAction(id);
     };

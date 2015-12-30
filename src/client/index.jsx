@@ -20,6 +20,6 @@ ReactDom.render(
 );
 
 if (process.env.NODE_ENV !== 'production') {
-  const showDevTools = require('./../dev-tools/showDevTools');
+  const showDevTools = require('./../dev-tools/showDevTools').default;
   showDevTools(store);
 }

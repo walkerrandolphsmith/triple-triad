@@ -18,9 +18,12 @@ module.exports = {
   module: {
     loaders: [
       {
-        test:    /\.jsx?$/,
+        loader: "babel-loader",
         exclude: /node_modules/,
-        loaders: ['react-hot', 'babel']
+        test: /\.jsx?$/,
+        query: {
+          presets: ['es2015', 'stage-0', 'react']
+        }
       },
       { test: /\.(png|jpg|gif|jpeg)$/, loader: 'url-loader?limit=8192'},
       { test: /\.less$/, loader: 'style!css!less' },

@@ -7,19 +7,19 @@ import Cards from './../components/cards';
 
 class SettingsSelection extends React.Component {
 
-    randomHand = (event) => {
+    randomHand(event) {
         this.props.updateSettings("randomHand", event.target.checked);
     };
 
-    multiplayer = (event) => {
+    multiplayer(event) {
         this.props.updateSettings("multiplayer", event.target.checked);
     };
 
-    visibleHand = (event) => {
+    visibleHand(event) {
         this.props.updateSettings("visibleHand", event.target.checked);
     };
 
-    click = () => {
+    click() {
         this.props.nextStep();
         this.props.setHands();
     };
@@ -52,7 +52,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators(Actions,dispatch);
+    return bindActionCreators(Actions.default,dispatch);
 }
 
 

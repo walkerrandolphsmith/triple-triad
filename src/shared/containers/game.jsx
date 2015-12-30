@@ -34,7 +34,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators(Actions,dispatch);
+    return bindActionCreators(Actions.default,dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game);
