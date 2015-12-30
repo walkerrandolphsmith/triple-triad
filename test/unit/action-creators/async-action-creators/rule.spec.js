@@ -9,7 +9,7 @@ describe('RULE async action creator', () => {
         index = 4;
         player = 1;
         opponent = 2;
-        card = { owner: player, rank: { left: 5, top: 5, right: 5, bottom: 5} }
+        card = { owner: player, rank: { left: 4, top: 4, right: 5, bottom: 5} }
     });
 
     it('should be a function', () => {
@@ -37,10 +37,10 @@ describe('RULE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            let adjacentCard = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
+            let adjacentCard = { owner: opponent, rank: { left: 5, top: 5, right: 4, bottom: 5} };
             getState = () => ({
                 game: {
-                    board: [null, null, null, card, adjacentCard, null, null, null, null]
+                    board: [null, null, null, adjacentCard, card, null, null, null, null]
                 }
             });
         });
@@ -55,7 +55,7 @@ describe('RULE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            let adjacentCard = { owner: opponent, rank: { left: 5, top: 5, right: 4, bottom: 5} };
+            let adjacentCard = { owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} };
             getState = () => ({
                 game: {
                     board: [null, null, null, adjacentCard, card, null, null, null, null]
@@ -91,7 +91,7 @@ describe('RULE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
+            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 4, bottom: 5} };
             let adjacentCardTwo = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
             getState = () => ({
                 game: {
@@ -110,7 +110,7 @@ describe('RULE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 4, bottom: 5} };
+            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} };
             let adjacentCardTwo = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
             getState = () => ({
                 game: {
@@ -129,7 +129,7 @@ describe('RULE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 4, bottom: 5} };
+            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} };
             let adjacentCardTwo = { owner: opponent, rank: { left: 4, top: 5, right: 5, bottom: 5} };
             getState = () => ({
                 game: {
@@ -153,8 +153,8 @@ describe('RULE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 6, bottom: 5} };
-            let adjacentCardTwo = { owner: opponent, rank: { left: 4, top: 5, right: 5, bottom: 5} };
+            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} };
+            let adjacentCardTwo = { owner: opponent, rank: { left: 6, top: 5, right: 5, bottom: 5} };
             getState = () => ({
                 game: {
                     board: [null, null, null, adjacentCardOne, card, adjacentCardTwo, null, null, null]
@@ -169,7 +169,7 @@ describe('RULE async action creator', () => {
 
         it('should dispatch UPDATE_BOARD action with a payload of index of card to flip and player owner', () => {
             rule(index)(dispatch, getState);
-            expect(dispatch).toHaveBeenCalledWith({ type: 'UpdateBoard', payload: {index: 5, owner: player} });
+            expect(dispatch).toHaveBeenCalledWith({ type: 'UpdateBoard', payload: {index: 3, owner: player} });
         });
     });
 
@@ -196,9 +196,9 @@ describe('RULE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
+            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 4, bottom: 5} };
             let adjacentCardTwo = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
-            let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
+            let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 4} };
             getState = () => ({
                 game: {
                     board: [null, adjacentCardThree, null, adjacentCardOne, card, adjacentCardTwo, null, null, null]
@@ -216,9 +216,9 @@ describe('RULE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 4, bottom: 5} };
+            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} };
             let adjacentCardTwo = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
-            let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
+            let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 4} };
             getState = () => ({
                 game: {
                     board: [null, adjacentCardThree, null, adjacentCardOne, card, adjacentCardTwo, null, null, null]
@@ -236,9 +236,9 @@ describe('RULE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 4, bottom: 5} };
+            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} };
             let adjacentCardTwo = { owner: opponent, rank: { left: 4, top: 5, right: 5, bottom: 5} };
-            let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
+            let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 4} };
             getState = () => ({
                 game: {
                     board: [null, adjacentCardThree, null, adjacentCardOne, card, adjacentCardTwo, null, null, null]
@@ -262,9 +262,9 @@ describe('RULE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 4, bottom: 5} };
-            let adjacentCardTwo = { owner: opponent, rank: { left: 4, top: 5, right: 5, bottom: 5} };
-            let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 4} };
+            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} };
+            let adjacentCardTwo = { owner: opponent, rank: { left: 3, top: 5, right: 5, bottom: 5} };
+            let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 3} };
             getState = () => ({
                 game: {
                     board: [null, adjacentCardThree, null, adjacentCardOne, card, adjacentCardTwo, null, null, null]
@@ -292,9 +292,9 @@ describe('RULE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 4, bottom: 5} };
+            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} };
             let adjacentCardTwo = { owner: opponent, rank: { left: 6, top: 5, right: 5, bottom: 5} };
-            let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
+            let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 4} };
             getState = () => ({
                 game: {
                     board: [null, adjacentCardThree, null, adjacentCardOne, card, adjacentCardTwo, null, null, null]
@@ -317,7 +317,7 @@ describe('RULE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 4, bottom: 5} };
+            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} };
             let adjacentCardTwo = { owner: opponent, rank: { left: 4, top: 5, right: 5, bottom: 5} };
             let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 6} };
             getState = () => ({
@@ -367,9 +367,9 @@ describe('RULE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
+            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 4, bottom: 5} };
             let adjacentCardTwo = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
-            let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
+            let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 4} };
             let adjacentCardFour = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
             getState = () => ({
                 game: {
@@ -387,9 +387,9 @@ describe('RULE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 4, bottom: 5} };
+            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} };
             let adjacentCardTwo = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
-            let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
+            let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 4} };
             let adjacentCardFour = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
             getState = () => ({
                 game: {
@@ -408,9 +408,9 @@ describe('RULE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 4, bottom: 5} };
+            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} };
             let adjacentCardTwo = { owner: opponent, rank: { left: 4, top: 5, right: 5, bottom: 5} };
-            let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
+            let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 4} };
             let adjacentCardFour = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
             getState = () => ({
                 game: {
@@ -435,9 +435,9 @@ describe('RULE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 4, bottom: 5} };
+            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} };
             let adjacentCardTwo = { owner: opponent, rank: { left: 4, top: 5, right: 5, bottom: 5} };
-            let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 4} };
+            let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 3} };
             let adjacentCardFour = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
             getState = () => ({
                 game: {
@@ -466,9 +466,9 @@ describe('RULE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 4, bottom: 5} };
+            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} };
             let adjacentCardTwo = { owner: opponent, rank: { left: 4, top: 5, right: 5, bottom: 5} };
-            let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 4} };
+            let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 3} };
             let adjacentCardFour = { owner: opponent, rank: { left: 5, top: 4, right: 5, bottom: 5} };
             getState = () => ({
                 game: {
@@ -502,9 +502,9 @@ describe('RULE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 4, bottom: 5} };
+            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} };
             let adjacentCardTwo = { owner: opponent, rank: { left: 6, top: 5, right: 5, bottom: 5} };
-            let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
+            let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 4} };
             let adjacentCardFour = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
             getState = () => ({
                 game: {
@@ -528,7 +528,7 @@ describe('RULE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 4, bottom: 5} };
+            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} };
             let adjacentCardTwo = { owner: opponent, rank: { left: 4, top: 5, right: 5, bottom: 5} };
             let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 6} };
             let adjacentCardFour = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
@@ -560,9 +560,9 @@ describe('RULE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 4, bottom: 5} };
+            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} };
             let adjacentCardTwo = { owner: opponent, rank: { left: 4, top: 5, right: 5, bottom: 5} };
-            let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 4} };
+            let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 3} };
             let adjacentCardFour = { owner: opponent, rank: { left: 5, top: 6, right: 5, bottom: 5} };
             getState = () => ({
                 game: {
