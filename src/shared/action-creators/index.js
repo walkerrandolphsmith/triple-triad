@@ -109,7 +109,8 @@ export const newGame = () => (dispatch, getState) => {
 
 export const setHands = () => (dispatch, getState) => {
     const state = getState();
-    if(state.settings.randomHand) {
+
+    if(state.settings.get('randomHand')) {
         dispatch(setHand(state.game.ownerType.player));
         dispatch(nextStep());
     }

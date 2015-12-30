@@ -13,22 +13,9 @@ export default function reducer(state = INITIAL_STATE, action) {
   let {type, payload} = action;
 
   switch(type){
-    case types.UPDATE_SETTINGS: return updateSettings(state, payload);
-    case types.RESET_SETTINGS: return resetSettings(state);
+    case types.UPDATE_SETTINGS: return state.set(payload.setting, payload.isChecked);
+    case types.RESET_SETTINGS: return INITIAL_STATE;
   }
 
   return state;
-}
-
-function updateSettings(state, payload){
-
-  var newState = _.cloneDeep(state);
-
-  newState[payload.setting] = payload.isChecked;
-
-  return newState;
-}
-
-function resetSettings(state){
-  return INITIAL_STATE.toJS();
 }

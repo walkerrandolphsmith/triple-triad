@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { handSelector, opponentHandSelector, scoreSelector, validPiecesSelector, winnerSelector, stepCompleteSelector } from './../selectors/index';
 import * as Actions from './../action-creators/';
+import { toJS } from 'immutable';
 
 import React from 'react';
 import Board from './../components/board';
@@ -43,7 +44,7 @@ class Round extends React.Component {
 function mapStateToProps(state) {
     return {
         game: state.game,
-        settings: state.settings,
+        settings: state.settings.toJS(),
         hand: handSelector(state.game),
         opponentHand: opponentHandSelector(state.game),
         score: scoreSelector(state.game),

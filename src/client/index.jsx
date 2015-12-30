@@ -11,7 +11,7 @@ import configureStore from './../shared/store/store';
 const history = createBrowserHistory();
 
 let initialState = window.__INITIAL_STATE__;
-Object.keys(initialState).forEach(key => { if(key === "step") initialState[key] = fromJS(initialState[key]);  });
+Object.keys(initialState).forEach(key => { if(key === "step" || key === "settings") initialState[key] = fromJS(initialState[key]);  });
 
 const store = configureStore(initialState);
 
