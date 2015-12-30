@@ -24,12 +24,28 @@ describe("Step reducer", () => {
         let newState;
         beforeEach(() => {
             newState = reducer(initialState, {
-                type: 'NextStep'
+                type: types.NEXT_STEP
             });
         });
 
         it('should handle NEXT_STEP by incrementing current step', () => {
             expect(newState.current).toEqual(initialState.current + 1)
+        });
+    });
+
+    describe("When resetting the current step to 0", () => {
+
+        let newState;
+        beforeEach(() => {
+            let initialState = { current: 1 };
+
+            newState = reducer(initialState, {
+                type: types.RESET_STEP
+            });
+        });
+
+        it('should handle NEXT_STEP by incrementing current step', () => {
+            expect(newState.current).toEqual(0)
         });
     });
 
