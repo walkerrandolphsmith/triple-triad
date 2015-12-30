@@ -207,6 +207,37 @@ function shouldFLip(card, otherCard, attackDirection, defenseDirection){
     )
 }
 
-export const sameRule = (i) => (getState, dispatch) => {
+export const sameRule = (i) => (dispatch, getState) => {
+    const state = getState();
 
+    const board = state.game.board;
+
+    const row = i / 3;
+    const column = i % 3;
+
+    const card = board[i];
+
+    const above = i-3;
+    const below = i+3;
+    const left = i-1;
+    const right = i+1;
+
+    const cardAbove = board[above];
+    const cardBelow = board[below];
+    const cardAtLeft = board[left];
+    const cardAtRight = board[right];
+
+    const isNotFirstRow = row > 0;
+    const isNotLastRow = row < 2;
+    const isNotFirstColumn = column > 0;
+    const isNotLastColumn = column < 2;
+
+    if(isNotFirstColumn && isNotLastColumn){
+        if(cardAtLeft && cardAtRight){
+            if(card.rank.left === cardAtLeft.rank.right && card.rank.right === cardAtRight.rank.left){
+                dispatch(updateBoard(right, card.owner));
+                dispatch(updateBoard(left, card.owner));
+            }
+        }
+    }
 };
