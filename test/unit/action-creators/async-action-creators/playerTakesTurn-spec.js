@@ -1,5 +1,5 @@
 import expect from 'expect';
-import {playerTakesTurn, rule, aiTurn} from './../../../../src/shared/action-creators/';
+import {playerTakesTurn, rule, sameRule, aiTurn} from './../../../../src/shared/action-creators/';
 
 
 describe('PLAYER_TAKES_TURN async action creator', () => {
@@ -33,6 +33,11 @@ describe('PLAYER_TAKES_TURN async action creator', () => {
             expect(dispatch).toHaveBeenCalledWith(rule(selectedPiece))
         });
 
+        it('should dispatch SAME_RULE async action', () => {
+            playerTakesTurn(selectedPiece, isPlayer)(dispatch, getState);
+            expect(dispatch).toHaveBeenCalledWith(sameRule(selectedPiece))
+        });
+
         it('should dispatch AI_TURN async action', () => {
             playerTakesTurn(selectedPiece, isPlayer)(dispatch, getState);
             expect(dispatch).toHaveBeenCalledWith(aiTurn())
@@ -55,6 +60,11 @@ describe('PLAYER_TAKES_TURN async action creator', () => {
         it('should dispatch RULE async action', () => {
             playerTakesTurn(selectedPiece, isPlayer)(dispatch, getState);
             expect(dispatch).toHaveBeenCalledWith(rule(selectedPiece))
+        });
+
+        it('should dispatch SAME_RULE async action', () => {
+            playerTakesTurn(selectedPiece, isPlayer)(dispatch, getState);
+            expect(dispatch).toHaveBeenCalledWith(sameRule(selectedPiece))
         });
     });
 
