@@ -9,7 +9,6 @@ describe("Game reducer", () => {
     let initialState;
     beforeEach(() => {
         initialState = {
-            step: 0,
             deck: deck,
             ownerType: {
                 none: 0,
@@ -56,7 +55,6 @@ describe("Game reducer", () => {
             cardFromDeck = _.find(deck, {id: id});
 
             let initialState = {
-                step: 0,
                 deck: deck,
                 ownerType: {
                     none: 0,
@@ -78,21 +76,6 @@ describe("Game reducer", () => {
 
         it('should handle REMOVE_CARD by updating the card in deck with no owner', () => {
             expect(_.find(newState.deck, {id: id}).owner).toEqual(newState.ownerType.none);
-        });
-    });
-
-    describe("Going to the next step of the game wizard", () => {
-
-        let newState;
-        let step = 0;
-        beforeEach(() => {
-            newState = reducer(initialState, {
-                type: types.NEXT_STEP
-            });
-        });
-
-        it('should handle NEXT_STEP by incrementing the step counter', () => {
-            expect(newState.step).toEqual(step + 1);
         });
     });
 
@@ -159,7 +142,6 @@ describe("Game reducer", () => {
             selectedCard = 0;
 
             let initialState = {
-                step: 2,
                 deck: deck,
                 selectedCard: selectedCard,
                 board: [null, null, null, null, null, null, null, null, null]
@@ -195,7 +177,6 @@ describe("Game reducer", () => {
             index = 0;
 
             let initialState = {
-                step: 2,
                 deck: deck,
                 ownerType: ownerType,
                 selectedCard: -1,
@@ -224,7 +205,6 @@ describe("Game reducer", () => {
         beforeEach(() => {
 
             initialSate = {
-                step: 0,
                 deck: deck,
                 selectedCard: -1,
                 board: [null, null, null, null, null, null, null, null, null]
