@@ -1,5 +1,5 @@
 import expect from 'expect';
-import {playerTakesTurn, rule, aiTurn} from './../../../../src/shared/action-creators/asyncActionCreators';
+import {playerTakesTurn, rule, aiTurn} from './../../../../src/shared/action-creators/';
 
 
 describe('PLAYER_TAKES_TURN async action creator', () => {

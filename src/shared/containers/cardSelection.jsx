@@ -32,7 +32,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators(Actions.default,dispatch);
+    return bindActionCreators(Actions,dispatch);
 }
 
 

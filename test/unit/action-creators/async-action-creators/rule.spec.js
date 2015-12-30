@@ -1,5 +1,5 @@
 import expect from 'expect';
-import {rule} from './../../../../src/shared/action-creators/asyncActionCreators';
+import {rule} from './../../../../src/shared/action-creators/';
 
 describe('RULE async action creator', () => {
 

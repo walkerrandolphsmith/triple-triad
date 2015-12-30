@@ -1,5 +1,5 @@
 import expect from 'expect';
-import {setHands} from './../../../../src/shared/action-creators/asyncActionCreators';
+import {setHands} from './../../../../src/shared/action-creators/';
 
 describe('SET_HANDS async action creator', () => {
    it('should be a function', () => {
