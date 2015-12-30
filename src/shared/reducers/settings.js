@@ -30,5 +30,5 @@ function updateSettings(state, payload){
 }
 
 function resetSettings(state){
-  return INITIAL_STATE;
+  return INITIAL_STATE.toJS();
 }

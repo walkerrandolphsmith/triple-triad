@@ -26,5 +26,5 @@ function nextStep(state) {
 }
 
 function resetStep(state) {
-    return INITIAL_STATE;
+    return INITIAL_STATE.toJS();
 }

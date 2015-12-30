@@ -112,5 +112,5 @@ function endAiTurn(state) {
 }
 
 function resetGame(state) {
-  return INITIAL_STATE;
+  return INITIAL_STATE.toJS();
 }

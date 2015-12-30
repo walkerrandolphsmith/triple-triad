@@ -43,7 +43,7 @@ describe("Step reducer", () => {
         });
 
         it('should handle RESET_STEP', () => {
-            expect(newState.toJS()).toEqual(initialState)
+            expect(newState).toEqual(initialState)
         });
     });
 

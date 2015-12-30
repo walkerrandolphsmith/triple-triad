@@ -85,7 +85,7 @@ describe("Settings reducer", () => {
         });
 
         it('should handle UPDATE_SETTINGS visible hand', () => {
-            expect(newState.toJS()).toEqual(initialState)
+            expect(newState).toEqual(initialState)
         });
     });
 

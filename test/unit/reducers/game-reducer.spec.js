@@ -232,7 +232,7 @@ describe("Game reducer", () => {
             let newState = reducer(initialState, {
                 type: types.RESET_GAME
             });
-            expect(newState.toJS()).toEqual(initialState);
+            expect(newState).toEqual(initialState);
         });
     });
 
