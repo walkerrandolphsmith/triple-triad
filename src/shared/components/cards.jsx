@@ -7,7 +7,7 @@ export default class Cards extends React.Component {
 
         let cardsMarkup = cards.map((card, index) => {
             return (
-                <Card id={card.id} name={card.name} owner={owner} showBack={showBack} clickAction={clickAction} />
+                <Card key={card.id} id={card.id} name={card.name} owner={owner} showBack={showBack} clickAction={clickAction} />
             )
         });
 
