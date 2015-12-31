@@ -118,7 +118,7 @@ export const setHand = (owner) => (dispatch, getState) => {
     const game = state.game.toJS();
 
     let unownedCards = game.deck.filter(card => {
-        return card.owner === 0;
+        return card.owner === game.ownerType.none;
     });
 
     let randomHand = _.sample(unownedCards, 5);
@@ -135,7 +135,7 @@ export const aiTurn = () => (dispatch, getState) => {
     const game = state.game.toJS();
 
     let opponentHand = game.deck.filter(card => {
-        return card.owner === 2 && !game.board.find(c => { return c && c.id === card.id });
+        return card.owner === game.ownerType.opponent && !game.board.find(c => { return c && c.id === card.id });
     });
 
     let selectedCard = _.sample(opponentHand);
