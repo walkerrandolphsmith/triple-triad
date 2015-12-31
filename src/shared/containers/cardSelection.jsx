@@ -24,11 +24,13 @@ class CardSelection extends React.Component {
 }
 
 function mapStateToProps(state) {
+    const game = state.game.toJS();
+    const settings = state.settings.toJS();
     return {
-        game: state.game,
-        settings: state.settings.toJS(),
-        hand: handSelector(state.game),
-        handSelected: stepCompleteSelector(state.game)
+        game: game,
+        settings: settings,
+        hand: handSelector(game),
+        handSelected: stepCompleteSelector(game)
     }
 }
 

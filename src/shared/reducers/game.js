@@ -1,9 +1,9 @@
-import Immutable from 'immutable';
+import { fromJS } from 'immutable';
 import _ from 'lodash';
 import deck from './../constants/deck';
 import * as types from './../constants/action-types';
 
-const INITIAL_STATE = new Immutable.Map({
+const INITIAL_STATE = new fromJS({
   deck: deck,
   ownerType: {
     none: 0,
@@ -21,7 +21,7 @@ export default function reducer(state = INITIAL_STATE, action) {
   switch(type){
     case types.ADD_CARD: return addCard(state, payload);
     case types.REMOVE_CARD: return removeCard(state, payload);
-    case types.SELECT_CARD: return selectCard(state, payload);
+    case types.SELECT_CARD: return state.set('selectedCard', payload.id);
     case types.SELECT_PIECE: return selectPiece(state, payload);
     case types.UPDATE_BOARD: return updateBoard(state, payload);
     case types.START_AI_TURN: return startAITurn(state);
@@ -34,56 +34,57 @@ export default function reducer(state = INITIAL_STATE, action) {
 
 function addCard(state, payload){
 
-  var newState = _.cloneDeep(state);
+  let deck = state.get('deck');
 
-  let cardToAdd = _.find(newState.deck, {id: payload.id});
+  deck = deck.update(
+      deck.findIndex(
+          card => card.get('id') === payload.id
+      ),
+      card => card.set("owner", payload.owner)
+  );
 
-  cardToAdd.owner = payload.owner;
-
-  return newState;
+  return state.set('deck', deck);
 }
 
 function removeCard(state, payload){
 
-  var newState = _.cloneDeep(state);
+  let deck = state.get('deck');
+  let none = state.get('ownerType').get('none');
 
-  let cardToAdd = _.find(newState.deck, {id: payload.id});
+  deck = deck.update(
+      deck.findIndex(
+          card => card.get('id') === payload.id
+      ),
+      card => card.set('owner', none)
+  );
 
-  cardToAdd.owner = newState.ownerType.none;
-
-  return newState;
-}
-
-function selectCard(state, payload) {
-
-  var newState = _.cloneDeep(state);
-
-  newState.selectedCard = payload.id;
-
-  return newState;
+  return state.set('deck', deck);
 }
 
 function selectPiece(state, payload) {
 
-  let newState = _.cloneDeep(state);
+  let card = state.get('deck').find(
+      card => card.get('id') === state.get('selectedCard')
+  );
 
-  let card = _.find(newState.deck, {id: newState.selectedCard});
+  let board = state.get('board').setIn([payload.index], card);
 
-  newState.board[payload.index] = card;
+  state = state.set('board', board);
 
-  newState.selectedCard = -1;
+  return state.set('selectedCard', -1);
 
-  return newState;
 }
 
 function updateBoard(state, payload) {
-  let newState = _.cloneDeep(state);
 
-  let {index, owner} = payload;
+  let board =  state.get('board');
 
-  newState.board[index].owner = owner;
+  board = board.update(
+      payload.index,
+      card => card.set('owner', payload.owner)
+  );
 
-  return newState;
+  return state.set('board', board);
 }
 
 function startAITurn(state){
@@ -95,5 +96,5 @@ function endAiTurn(state) {
 }
 
 function resetGame(state) {
-  return INITIAL_STATE.toJS();
+  return INITIAL_STATE;
 }

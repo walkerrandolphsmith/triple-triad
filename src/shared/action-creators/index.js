@@ -102,18 +102,22 @@ export const newGame = () => (dispatch, getState) => {
 
 export const setHands = () => (dispatch, getState) => {
     const state = getState();
+    const game = state.game.toJS();
 
-    if(state.settings.get('randomHand')) {
-        dispatch(setHand(state.game.ownerType.player));
+    const settings = state.settings.toJS();
+
+    if(settings.randomHand) {
+        dispatch(setHand(game.ownerType.player));
         dispatch(nextStep());
     }
-    dispatch(setHand(state.game.ownerType.opponent));
+    dispatch(setHand(game.ownerType.opponent));
 };
 
 export const setHand = (owner) => (dispatch, getState) => {
     const state = getState();
+    const game = state.game.toJS();
 
-    let unownedCards = _.filter(state.game.deck, card => {
+    let unownedCards = game.deck.filter(card => {
         return card.owner === 0;
     });
 
@@ -128,16 +132,17 @@ export const aiTurn = () => (dispatch, getState) => {
     dispatch(startAiTurn());
 
     const state = getState();
+    const game = state.game.toJS();
 
-    let opponentHand = state.game.deck.filter(card => {
-        return card.owner === 2 && !_.contains(state.game.board, card);
+    let opponentHand = game.deck.filter(card => {
+        return card.owner === 2 && !_.contains(game.board, card);
     });
 
     let selectedCard = _.sample(opponentHand);
 
     dispatch(selectCard(selectedCard.id));
 
-    let validPieces = state.game.board.reduce((validPieces, piece, index) => { if(!piece) validPieces.push(index); return validPieces }, []);
+    let validPieces = game.board.reduce((validPieces, piece, index) => { if(!piece) validPieces.push(index); return validPieces }, []);
 
     if(validPieces.length > 0) {
         let validPiece = _.sample(validPieces);
@@ -159,8 +164,9 @@ export const playerTakesTurn = (selectedPiece, isPlayer) => (dispatch, getState)
 
 export const rule = (i) => (dispatch, getState) => {
     const state = getState();
+    const game = state.game.toJS();
 
-    const board = state.game.board;
+    const board = game.board;
 
     const row = i / 3;
     const column = i % 3;
@@ -218,8 +224,9 @@ function shouldFLip(card, otherCard, attackDirection, defenseDirection){
 
 export const sameRule = (i) => (dispatch, getState) => {
     const state = getState();
+    const game = state.game.toJS();
 
-    const board = state.game.board;
+    const board = game.board;
 
     const row = i / 3;
     const column = i % 3;

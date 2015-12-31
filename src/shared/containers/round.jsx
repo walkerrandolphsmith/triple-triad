@@ -42,15 +42,17 @@ class Round extends React.Component {
 
 
 function mapStateToProps(state) {
+    const game = state.game.toJS();
+    const settings = state.settings.toJS();
     return {
-        game: state.game,
-        settings: state.settings.toJS(),
-        hand: handSelector(state.game),
-        opponentHand: opponentHandSelector(state.game),
-        score: scoreSelector(state.game),
-        handSelected: stepCompleteSelector(state.game),
-        validPieces: validPiecesSelector(state.game),
-        winner: winnerSelector(state.game)
+        game: game,
+        settings: settings,
+        hand: handSelector(game),
+        opponentHand: opponentHandSelector(game),
+        score: scoreSelector(game),
+        handSelected: stepCompleteSelector(game),
+        validPieces: validPiecesSelector(game),
+        winner: winnerSelector(game)
     }
 }
 
