@@ -47,7 +47,7 @@ describe('actions', () => {
             type: types.ADD_CARD,
             payload: {
                 id: 0,
-                owner: 1
+                owner: undefined
             }
         };
         expect(actions.addCard(0)).toEqual(expectedAction)
