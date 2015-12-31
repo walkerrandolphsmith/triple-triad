@@ -135,7 +135,7 @@ export const aiTurn = () => (dispatch, getState) => {
     const game = state.game.toJS();
 
     let opponentHand = game.deck.filter(card => {
-        return card.owner === 2 && !_.contains(game.board, card);
+        return card.owner === 2 && !game.board.find(c => { return c && c.id === card.id });
     });
 
     let selectedCard = _.sample(opponentHand);
