@@ -35,12 +35,13 @@ export default function reducer(state = INITIAL_STATE, action) {
 function addCard(state, payload){
 
   let deck = state.get('deck');
+  let owner =  payload.owner || state.get('ownerType').get('none');
 
   deck = deck.update(
       deck.findIndex(
           card => card.get('id') === payload.id
       ),
-      card => card.set("owner", payload.owner)
+      card => card.set("owner", owner)
   );
 
   return state.set('deck', deck);

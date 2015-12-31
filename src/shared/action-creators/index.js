@@ -30,7 +30,7 @@ export function addCard(id, owner) {
         type: types.ADD_CARD,
         payload: {
             id: id,
-            owner: owner || 1
+            owner: owner
         }
     }
 }
