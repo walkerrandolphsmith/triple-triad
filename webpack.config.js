@@ -2,43 +2,30 @@ var path    = require('path');
 var webpack = require('webpack');
 
 module.exports = {
+  devtool: 'inline-source-map',
   entry:  [
-    'webpack-dev-server/client?http://127.0.0.1:8080/',
+    'webpack-dev-server/client?http://localhost:3001/',
     'webpack/hot/only-dev-server',
     './src/client'
   ],
   output: {
     path:     path.join(__dirname, 'dist'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    publicPath: '/'
   },
   resolve: {
     modulesDirectories: ['node_modules', 'shared'],
     extensions:         ['', '.js', '.jsx']
   },
-  module: {
-    loaders: [
-      {
-        loader: "babel-loader",
-        exclude: /node_modules/,
-        test: /\.jsx?$/,
-        query: {
-          presets: ['es2015', 'stage-0', 'react']
-        }
-      },
-      { test: /\.(png|jpg|gif|jpeg)$/, loader: 'url-loader?limit=8192'},
-      { test: /\.less$/, loader: 'style!css!less' },
-    ]
-  },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
   ],
-  devtool: 'inline-source-map',
-  devServer: {
-    hot: true,
-    proxy: {
-      '*': 'http://127.0.0.1:' + (process.env.PORT || 3000)
-    },
-    host: '127.0.0.1'
+  module: {
+    loaders: [
+      { test: /\.jsx?$/, loaders: ['react-hot-loader', "babel-loader"], exclude: /node_modules/ },
+      { test: /\.(png|jpg|gif|jpeg)$/, loader: 'url-loader?limit=8192'},
+      { test: /\.less$/, loader: 'style!css!less' },
+    ]
   }
 };
