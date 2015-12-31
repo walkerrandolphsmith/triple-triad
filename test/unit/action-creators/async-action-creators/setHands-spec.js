@@ -8,12 +8,12 @@ describe('SET_HANDS async action creator', () => {
     beforeEach(() => {
        player = 1;
        opponent = 2;
-       game = {
+       game = fromJS({
            ownerType: {
                player: player,
                opponent: opponent
            }
-       };
+       });
        dispatch = expect.createSpy();
     });
 

@@ -1,4 +1,5 @@
 import expect from 'expect';
+import { toJS, fromJS } from 'immutable';
 import _ from 'lodash';
 import reducer from './../../../src/shared/reducers/game';
 import * as types from './../../../src/shared/constants/action-types';
@@ -7,8 +8,9 @@ import deck from './../../../src/shared/constants/deck';
 describe("Game reducer", () => {
 
     let initialState;
+    let unmutedDeck = _.cloneDeep(deck);
     beforeEach(() => {
-        initialState = {
+        initialState = fromJS({
             deck: deck,
             ownerType: {
                 none: 0,
@@ -17,12 +19,12 @@ describe("Game reducer", () => {
             },
             selectedCard: -1,
             board: [null, null, null, null, null, null, null, null, null]
-        }
+        })
     });
 
     describe("Given no state", () => {
         it('should return the initial state', () => {
-            expect(reducer(undefined, {}).toJS()).toEqual(initialState)
+            expect(reducer(undefined, {})).toEqual(initialState)
         });
     });
 
@@ -40,7 +42,7 @@ describe("Game reducer", () => {
                     id: id,
                     owner: owner
                 }
-            });
+            }).toJS();
         });
 
         it('should handle ADD_CARD by updating card in deck with new owner', () => {
@@ -56,7 +58,7 @@ describe("Game reducer", () => {
             id = 0;
             cardFromDeck = _.find(deck, {id: id});
 
-            let initialState = {
+            let initialState = fromJS({
                 deck: deck,
                 ownerType: {
                     none: 0,
@@ -65,7 +67,7 @@ describe("Game reducer", () => {
                 },
                 selectedCard: -1,
                 board: [null, null, null, null, null, null, null, null, null]
-            };
+            });
 
 
             newState = reducer(initialState, {
@@ -73,7 +75,7 @@ describe("Game reducer", () => {
                 payload: {
                     id: id
                 }
-            });
+            }).toJS();
         });
 
         it('should handle REMOVE_CARD by updating the card in deck with no owner', () => {
@@ -92,7 +94,7 @@ describe("Game reducer", () => {
                 payload: {
                     id: id
                 }
-            });
+            }).toJS();
         });
 
         it('should handle SELECT_CARD', () => {
@@ -107,18 +109,18 @@ describe("Game reducer", () => {
             index = 0;
             selectedCard = 0;
 
-            let initialState = {
+            let initialState = fromJS({
                 deck: deck,
                 selectedCard: selectedCard,
                 board: [null, null, null, null, null, null, null, null, null]
-            };
+            });
 
             newState = reducer(initialState, {
                 type: types.SELECT_PIECE,
                 payload: {
                     index: index
                 }
-            });
+            }).toJS();
         });
 
         it('should handle SELECT_PIECE', () => {
@@ -137,17 +139,17 @@ describe("Game reducer", () => {
                 opponent: 2
             };
 
-            flippedCard = deck[0];
+            flippedCard = _.cloneDeep(deck[0]);
             flippedCard.owner = ownerType.player;
 
             index = 0;
 
-            let initialState = {
+            let initialState = fromJS({
                 deck: deck,
                 ownerType: ownerType,
                 selectedCard: -1,
                 board: [flippedCard, null, null, null, null, null, null, null, null]
-            };
+            });
 
             newState = reducer(initialState, {
                 type: types.UPDATE_BOARD,
@@ -155,7 +157,7 @@ describe("Game reducer", () => {
                     index: index,
                     owner: ownerType.opponent
                 }
-            });
+            }).toJS();
         });
 
         it('should handle UPDATE_BOARD', () => {
@@ -170,11 +172,11 @@ describe("Game reducer", () => {
 
         beforeEach(() => {
 
-            initialSate = {
+            initialSate = fromJS({
                 deck: deck,
                 selectedCard: -1,
                 board: [null, null, null, null, null, null, null, null, null]
-            };
+            });
         });
 
         it('should handle START_AI_TURN by setting current turn to the opponent', () => {

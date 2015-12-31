@@ -1,4 +1,5 @@
 import expect from 'expect';
+import { fromJS } from 'immutable';
 import {rule} from './../../../../src/shared/action-creators/';
 
 describe('RULE async action creator', () => {
@@ -9,7 +10,7 @@ describe('RULE async action creator', () => {
         index = 4;
         player = 1;
         opponent = 2;
-        card = { owner: player, rank: { left: 4, top: 4, right: 5, bottom: 5} }
+        card = fromJS({ owner: player, rank: { left: 4, top: 4, right: 5, bottom: 5} });
     });
 
     it('should be a function', () => {
@@ -21,10 +22,10 @@ describe('RULE async action creator', () => {
         let getState;
         beforeEach(() => {
             getState = () => ({
-                game: {
+                game: fromJS({
                     board: [null, null, null, null, card, null, null, null, null]
-                }
-            });
+                })
+            })
         });
 
         it('should not dispatch UPDATE_BOARD action', () => {
@@ -37,12 +38,12 @@ describe('RULE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            let adjacentCard = { owner: opponent, rank: { left: 5, top: 5, right: 4, bottom: 5} };
+            let adjacentCard = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 4, bottom: 5} });
             getState = () => ({
-                game: {
+                game: fromJS({
                     board: [null, null, null, adjacentCard, card, null, null, null, null]
-                }
-            });
+                })
+            })
         });
 
         it('should not dispatch UPDATE_BOARD action', () => {
@@ -55,12 +56,12 @@ describe('RULE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            let adjacentCard = { owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} };
+            let adjacentCard = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} });
             getState = () => ({
-                game: {
+                game: fromJS({
                     board: [null, null, null, adjacentCard, card, null, null, null, null]
-                }
-            });
+                })
+            })
         });
 
         it('should dispatch UPDATE_BOARD action with payload of index of card to flip and player owner', () => {
@@ -73,12 +74,12 @@ describe('RULE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            let adjacentCard = { owner: opponent, rank: { left: 5, top: 5, right: 6, bottom: 5} };
+            let adjacentCard = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 6, bottom: 5} });
             getState = () => ({
-                game: {
+                game: fromJS({
                     board: [null, null, null, adjacentCard, card, null, null, null, null]
-                }
-            });
+                })
+            })
         });
 
         it('should dispatch UPDATE_BOARD action with a payload of index of your card and opponent owner', () => {
@@ -91,13 +92,13 @@ describe('RULE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 4, bottom: 5} };
-            let adjacentCardTwo = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
+            let adjacentCardOne = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 4, bottom: 5} });
+            let adjacentCardTwo = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
             getState = () => ({
-                game: {
+                game: fromJS({
                     board: [null, null, null, adjacentCardOne, card, adjacentCardTwo, null, null, null]
-                }
-            });
+                })
+            })
         });
 
         it('should not dispatch UPDATE_BOARD action', () => {
@@ -110,13 +111,13 @@ describe('RULE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} };
-            let adjacentCardTwo = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
+            let adjacentCardOne = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} });
+            let adjacentCardTwo = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
             getState = () => ({
-                game: {
+                game: fromJS({
                     board: [null, null, null, adjacentCardOne, card, adjacentCardTwo, null, null, null]
-                }
-            });
+                })
+            })
         });
 
         it('should dispatch UPDATE_BOARD action with a payload of index of card to flip and player owner', () => {
@@ -129,13 +130,13 @@ describe('RULE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} };
-            let adjacentCardTwo = { owner: opponent, rank: { left: 4, top: 5, right: 5, bottom: 5} };
+            let adjacentCardOne = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} });
+            let adjacentCardTwo = fromJS({ owner: opponent, rank: { left: 4, top: 5, right: 5, bottom: 5} });
             getState = () => ({
-                game: {
+                game: fromJS({
                     board: [null, null, null, adjacentCardOne, card, adjacentCardTwo, null, null, null]
-                }
-            });
+                })
+            })
         });
 
         it('should dispatch UPDATE_BOARD action with a payload of index of first card to flip and player owner', () => {
@@ -153,13 +154,13 @@ describe('RULE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} };
-            let adjacentCardTwo = { owner: opponent, rank: { left: 6, top: 5, right: 5, bottom: 5} };
+            let adjacentCardOne = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} });
+            let adjacentCardTwo = fromJS({ owner: opponent, rank: { left: 6, top: 5, right: 5, bottom: 5} });
             getState = () => ({
-                game: {
+                game: fromJS({
                     board: [null, null, null, adjacentCardOne, card, adjacentCardTwo, null, null, null]
-                }
-            });
+                })
+            })
         });
 
         it('should dispatch UPDATE_BOARD action with a payload of index your card and player opponent', () => {
@@ -177,13 +178,13 @@ describe('RULE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 6, bottom: 5} };
-            let adjacentCardTwo = { owner: opponent, rank: { left: 6, top: 5, right: 5, bottom: 5} };
+            let adjacentCardOne = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 6, bottom: 5} });
+            let adjacentCardTwo = fromJS({ owner: opponent, rank: { left: 6, top: 5, right: 5, bottom: 5} });
             getState = () => ({
-                game: {
+                game: fromJS({
                     board: [null, null, null, adjacentCardOne, card, adjacentCardTwo, null, null, null]
-                }
-            });
+                })
+            })
         });
 
         it('should dispatch UPDATE_BOARD action with a payload of index your card and player opponent', () => {
@@ -196,14 +197,14 @@ describe('RULE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 4, bottom: 5} };
-            let adjacentCardTwo = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
-            let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 4} };
+            let adjacentCardOne = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 4, bottom: 5} });
+            let adjacentCardTwo = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
+            let adjacentCardThree = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 4} });
             getState = () => ({
-                game: {
+                game: fromJS({
                     board: [null, adjacentCardThree, null, adjacentCardOne, card, adjacentCardTwo, null, null, null]
-                }
-            });
+                })
+            })
         });
 
         it('should not dispatch UPDATE_BOARD action', () => {
@@ -216,14 +217,14 @@ describe('RULE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} };
-            let adjacentCardTwo = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
-            let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 4} };
+            let adjacentCardOne = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} });
+            let adjacentCardTwo = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
+            let adjacentCardThree = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 4} });
             getState = () => ({
-                game: {
+                game: fromJS({
                     board: [null, adjacentCardThree, null, adjacentCardOne, card, adjacentCardTwo, null, null, null]
-                }
-            });
+                })
+            })
         });
 
         it('should dispatch UPDATE_BOARD action with a payload of index of card to flip and player owner', () => {
@@ -236,14 +237,14 @@ describe('RULE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} };
-            let adjacentCardTwo = { owner: opponent, rank: { left: 4, top: 5, right: 5, bottom: 5} };
-            let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 4} };
+            let adjacentCardOne = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} });
+            let adjacentCardTwo = fromJS({ owner: opponent, rank: { left: 4, top: 5, right: 5, bottom: 5} });
+            let adjacentCardThree = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 4} });
             getState = () => ({
-                game: {
+                game: fromJS({
                     board: [null, adjacentCardThree, null, adjacentCardOne, card, adjacentCardTwo, null, null, null]
-                }
-            });
+                })
+            })
         });
 
         it('should dispatch UPDATE_BOARD action with a payload of index of first card to flip and player owner', () => {
@@ -262,14 +263,14 @@ describe('RULE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} };
-            let adjacentCardTwo = { owner: opponent, rank: { left: 3, top: 5, right: 5, bottom: 5} };
-            let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 3} };
+            let adjacentCardOne = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} });
+            let adjacentCardTwo = fromJS({ owner: opponent, rank: { left: 3, top: 5, right: 5, bottom: 5} });
+            let adjacentCardThree = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 3} });
             getState = () => ({
-                game: {
+                game: fromJS({
                     board: [null, adjacentCardThree, null, adjacentCardOne, card, adjacentCardTwo, null, null, null]
-                }
-            });
+                })
+            })
         });
 
         it('should dispatch UPDATE_BOARD action with a payload of index of first card to flip and player owner', () => {
@@ -292,14 +293,14 @@ describe('RULE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} };
-            let adjacentCardTwo = { owner: opponent, rank: { left: 6, top: 5, right: 5, bottom: 5} };
-            let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 4} };
+            let adjacentCardOne = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} });
+            let adjacentCardTwo = fromJS({ owner: opponent, rank: { left: 6, top: 5, right: 5, bottom: 5} });
+            let adjacentCardThree = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 4} });
             getState = () => ({
-                game: {
+                game: fromJS({
                     board: [null, adjacentCardThree, null, adjacentCardOne, card, adjacentCardTwo, null, null, null]
-                }
-            });
+                })
+            })
         });
 
         it('should dispatch UPDATE_BOARD action with a payload of index of card to flip and player owner', () => {
@@ -317,14 +318,14 @@ describe('RULE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} };
-            let adjacentCardTwo = { owner: opponent, rank: { left: 4, top: 5, right: 5, bottom: 5} };
-            let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 6} };
+            let adjacentCardOne = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} });
+            let adjacentCardTwo = fromJS({ owner: opponent, rank: { left: 4, top: 5, right: 5, bottom: 5} });
+            let adjacentCardThree = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 6} });
             getState = () => ({
-                game: {
+                game: fromJS({
                     board: [null, adjacentCardThree, null, adjacentCardOne, card, adjacentCardTwo, null, null, null]
-                }
-            });
+                })
+            })
         });
 
         it('should dispatch UPDATE_BOARD action with a payload of index of first card to flip and player owner', () => {
@@ -347,14 +348,14 @@ describe('RULE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
-            let adjacentCardTwo = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
-            let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 6} };
+            let adjacentCardOne = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
+            let adjacentCardTwo = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
+            let adjacentCardThree = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 6} });
             getState = () => ({
-                game: {
+                game: fromJS({
                     board: [null, adjacentCardThree, null, adjacentCardOne, card, adjacentCardTwo, null, null, null]
-                }
-            });
+                })
+            })
         });
 
         it('should dispatch UPDATE_BOARD action with a payload of index of your card and opponent owner', () => {
@@ -367,15 +368,15 @@ describe('RULE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 4, bottom: 5} };
-            let adjacentCardTwo = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
-            let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 4} };
-            let adjacentCardFour = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
+            let adjacentCardOne = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 4, bottom: 5} });
+            let adjacentCardTwo = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
+            let adjacentCardThree = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 4} });
+            let adjacentCardFour = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
             getState = () => ({
-                game: {
+                game: fromJS({
                     board: [null, adjacentCardThree, null, adjacentCardOne, card, adjacentCardTwo, null, adjacentCardFour, null]
-                }
-            });
+                })
+            })
         });
 
         it('should not dispatch UPDATE_BOARD action', () => {
@@ -387,15 +388,15 @@ describe('RULE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} };
-            let adjacentCardTwo = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
-            let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 4} };
-            let adjacentCardFour = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
+            let adjacentCardOne = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} });
+            let adjacentCardTwo = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
+            let adjacentCardThree = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 4} });
+            let adjacentCardFour = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
             getState = () => ({
-                game: {
+                game: fromJS({
                     board: [null, adjacentCardThree, null, adjacentCardOne, card, adjacentCardTwo, null, adjacentCardFour, null]
-                }
-            });
+                })
+            })
         });
 
         it('should dispatch UPDATE_BOARD action with a payload of index of card to flip and player owner', () => {
@@ -408,15 +409,15 @@ describe('RULE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} };
-            let adjacentCardTwo = { owner: opponent, rank: { left: 4, top: 5, right: 5, bottom: 5} };
-            let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 4} };
-            let adjacentCardFour = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
+            let adjacentCardOne = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} });
+            let adjacentCardTwo = fromJS({ owner: opponent, rank: { left: 4, top: 5, right: 5, bottom: 5} });
+            let adjacentCardThree = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 4} });
+            let adjacentCardFour = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
             getState = () => ({
-                game: {
+                game: fromJS({
                     board: [null, adjacentCardThree, null, adjacentCardOne, card, adjacentCardTwo, null, adjacentCardFour, null]
-                }
-            });
+                })
+            })
         });
 
         it('should dispatch UPDATE_BOARD action with a payload of index of first card to flip and player owner', () => {
@@ -435,15 +436,15 @@ describe('RULE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} };
-            let adjacentCardTwo = { owner: opponent, rank: { left: 4, top: 5, right: 5, bottom: 5} };
-            let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 3} };
-            let adjacentCardFour = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
+            let adjacentCardOne = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} });
+            let adjacentCardTwo = fromJS({ owner: opponent, rank: { left: 4, top: 5, right: 5, bottom: 5} });
+            let adjacentCardThree = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 3} });
+            let adjacentCardFour = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
             getState = () => ({
-                game: {
+                game: fromJS({
                     board: [null, adjacentCardThree, null, adjacentCardOne, card, adjacentCardTwo, null, adjacentCardFour, null]
-                }
-            });
+                })
+            })
         });
 
         it('should dispatch UPDATE_BOARD action with a payload of index of first card to flip and player owner', () => {
@@ -466,15 +467,15 @@ describe('RULE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} };
-            let adjacentCardTwo = { owner: opponent, rank: { left: 4, top: 5, right: 5, bottom: 5} };
-            let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 3} };
-            let adjacentCardFour = { owner: opponent, rank: { left: 5, top: 4, right: 5, bottom: 5} };
+            let adjacentCardOne = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} });
+            let adjacentCardTwo = fromJS({ owner: opponent, rank: { left: 4, top: 5, right: 5, bottom: 5} });
+            let adjacentCardThree = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 3} });
+            let adjacentCardFour = fromJS({ owner: opponent, rank: { left: 5, top: 4, right: 5, bottom: 5} });
             getState = () => ({
-                game: {
+                game: fromJS({
                     board: [null, adjacentCardThree, null, adjacentCardOne, card, adjacentCardTwo, null, adjacentCardFour, null]
-                }
-            });
+                })
+            })
         });
 
         it('should dispatch UPDATE_BOARD action with a payload of index of first card to flip and player owner', () => {
@@ -502,15 +503,15 @@ describe('RULE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} };
-            let adjacentCardTwo = { owner: opponent, rank: { left: 6, top: 5, right: 5, bottom: 5} };
-            let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 4} };
-            let adjacentCardFour = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
+            let adjacentCardOne = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} });
+            let adjacentCardTwo = fromJS({ owner: opponent, rank: { left: 6, top: 5, right: 5, bottom: 5} });
+            let adjacentCardThree = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 4} });
+            let adjacentCardFour = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
             getState = () => ({
-                game: {
+                game: fromJS({
                     board: [null, adjacentCardThree, null, adjacentCardOne, card, adjacentCardTwo, null, adjacentCardFour, null]
-                }
-            });
+                })
+            })
         });
 
         it('should dispatch UPDATE_BOARD action with a payload of index of card to flip and player owner', () => {
@@ -528,15 +529,15 @@ describe('RULE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} };
-            let adjacentCardTwo = { owner: opponent, rank: { left: 4, top: 5, right: 5, bottom: 5} };
-            let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 6} };
-            let adjacentCardFour = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
+            let adjacentCardOne = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} });
+            let adjacentCardTwo = fromJS({ owner: opponent, rank: { left: 4, top: 5, right: 5, bottom: 5} });
+            let adjacentCardThree = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 6} });
+            let adjacentCardFour = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
             getState = () => ({
-                game: {
+                game: fromJS({
                     board: [null, adjacentCardThree, null, adjacentCardOne, card, adjacentCardTwo, null, adjacentCardFour, null]
-                }
-            });
+                })
+            })
         });
 
         it('should dispatch UPDATE_BOARD action with a payload of index of first card to flip and player owner', () => {
@@ -560,15 +561,15 @@ describe('RULE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} };
-            let adjacentCardTwo = { owner: opponent, rank: { left: 4, top: 5, right: 5, bottom: 5} };
-            let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 3} };
-            let adjacentCardFour = { owner: opponent, rank: { left: 5, top: 6, right: 5, bottom: 5} };
+            let adjacentCardOne = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} });
+            let adjacentCardTwo = fromJS({ owner: opponent, rank: { left: 4, top: 5, right: 5, bottom: 5} });
+            let adjacentCardThree = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 3} });
+            let adjacentCardFour = fromJS({ owner: opponent, rank: { left: 5, top: 6, right: 5, bottom: 5} });
             getState = () => ({
-                game: {
+                game: fromJS({
                     board: [null, adjacentCardThree, null, adjacentCardOne, card, adjacentCardTwo, null, adjacentCardFour, null]
-                }
-            });
+                })
+            })
         });
 
         it('should dispatch UPDATE_BOARD action with a payload of index of first card to flip and player owner', () => {
@@ -596,15 +597,15 @@ describe('RULE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            let adjacentCardOne = { owner: opponent, rank: { left: 5, top: 5, right: 6, bottom: 5} };
-            let adjacentCardTwo = { owner: opponent, rank: { left: 6, top: 5, right: 5, bottom: 5} };
-            let adjacentCardThree = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 6} };
-            let adjacentCardFour = { owner: opponent, rank: { left: 5, top: 6, right: 5, bottom: 5} };
+            let adjacentCardOne = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 6, bottom: 5} });
+            let adjacentCardTwo = fromJS({ owner: opponent, rank: { left: 6, top: 5, right: 5, bottom: 5} });
+            let adjacentCardThree = fromJS({ owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 6} });
+            let adjacentCardFour = fromJS({ owner: opponent, rank: { left: 5, top: 6, right: 5, bottom: 5} });
             getState = () => ({
-                game: {
+                game: fromJS({
                     board: [null, adjacentCardThree, null, adjacentCardOne, card, adjacentCardTwo, null, adjacentCardFour, null]
-                }
-            });
+                })
+            })
         });
 
         it('should dispatch UPDATE_BOARD action with a payload of index of your card and opponent owner', () => {

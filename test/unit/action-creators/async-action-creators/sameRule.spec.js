@@ -1,4 +1,5 @@
 import expect from 'expect';
+import { fromJS } from 'immutable';
 import {sameRule} from './../../../../src/shared/action-creators/';
 
 describe('SAME_RULE async action creator', () => {
@@ -21,9 +22,9 @@ describe('SAME_RULE async action creator', () => {
         let getState;
         beforeEach(() => {
             getState = () => ({
-                game: {
+                game: fromJS({
                     board: [null, null, null, null, card, null, null, null, null]
-                }
+                })
             });
         });
 
@@ -39,9 +40,9 @@ describe('SAME_RULE async action creator', () => {
         beforeEach(() => {
             let adjacentCard = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
             getState = () => ({
-                game: {
+                game: fromJS({
                     board: [null, null, null, adjacentCard, card, null, null, null, null]
-                }
+                })
             });
         });
 
@@ -58,9 +59,9 @@ describe('SAME_RULE async action creator', () => {
             let adjacentCard = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
             let adjacentCardTwo = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
             getState = () => ({
-                game: {
+                game: fromJS({
                     board: [null, null, null, adjacentCard, card, adjacentCardTwo, null, null, null]
-                }
+                })
             });
         });
 
@@ -82,9 +83,9 @@ describe('SAME_RULE async action creator', () => {
             let adjacentCard = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
             let adjacentCardTwo = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
             getState = () => ({
-                game: {
+                game: fromJS({
                     board: [null, adjacentCard, null, null, card, null, null, adjacentCardTwo, null]
-                }
+                })
             });
         });
 
@@ -106,9 +107,9 @@ describe('SAME_RULE async action creator', () => {
             let adjacentCard = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
             let adjacentCardTwo = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
             getState = () => ({
-                game: {
+                game: fromJS({
                     board: [null, adjacentCard, null, adjacentCardTwo, card, null, null, null, null]
-                }
+                })
             });
         });
 
@@ -130,9 +131,9 @@ describe('SAME_RULE async action creator', () => {
             let adjacentCard = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
             let adjacentCardTwo = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
             getState = () => ({
-                game: {
+                game: fromJS({
                     board: [null, null, null, adjacentCard, card, null, null, adjacentCardTwo, null]
-                }
+                })
             });
         });
 
@@ -154,9 +155,9 @@ describe('SAME_RULE async action creator', () => {
             let adjacentCard = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
             let adjacentCardTwo = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
             getState = () => ({
-                game: {
+                game: fromJS({
                     board: [null, adjacentCard, null, null, card, adjacentCardTwo, null, null, null]
-                }
+                })
             });
         });
 
@@ -178,9 +179,9 @@ describe('SAME_RULE async action creator', () => {
             let adjacentCard = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
             let adjacentCardTwo = { owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} };
             getState = () => ({
-                game: {
+                game: fromJS({
                     board: [null, null, null, null, card, adjacentCard, null, adjacentCardTwo, null]
-                }
+                })
             });
         });
 
