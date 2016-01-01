@@ -7,18 +7,17 @@ import deck from './../../../src/shared/constants/deck';
 
 describe("Game reducer", () => {
 
-    let initialState;
-    let unmutedDeck = _.cloneDeep(deck);
+    let initialState, ownerType;
     beforeEach(() => {
+        ownerType = {
+            none: 0,
+            player: 1,
+            opponent: 2
+        };
+
         initialState = fromJS({
             deck: deck,
-            ownerType: {
-                none: 0,
-                player: 1,
-                opponent: 2
-            },
-            selectedCard: -1,
-            board: [null, null, null, null, null, null, null, null, null]
+            ownerType: ownerType
         })
     });
 
@@ -64,9 +63,7 @@ describe("Game reducer", () => {
                     none: 0,
                     player: 1,
                     opponent: 2
-                },
-                selectedCard: -1,
-                board: [null, null, null, null, null, null, null, null, null]
+                }
             });
 
 
@@ -98,24 +95,24 @@ describe("Game reducer", () => {
         });
 
         it('should handle SELECT_CARD', () => {
-            expect(newState.selectedCard).toEqual(id);
+            expect(_.find(newState.deck, {isSelected: true}).id).toEqual(id);
         });
     });
 
     describe("Selecting a piece by the player", () => {
 
-        let index, selectedCard, newState;
+        let index, newState;
         beforeEach(() => {
             index = 0;
-            selectedCard = 0;
 
-            let initialState = fromJS({
-                deck: deck,
-                selectedCard: selectedCard,
-                board: [null, null, null, null, null, null, null, null, null]
+            let newDeck = _.cloneDeep(deck);
+            newDeck[0].isSelected = true;
+            let gameWithSelectedCard = fromJS({
+                deck: newDeck,
+                ownerType: ownerType
             });
 
-            newState = reducer(initialState, {
+            newState = reducer(gameWithSelectedCard, {
                 type: types.SELECT_PIECE,
                 payload: {
                     index: index
@@ -124,73 +121,53 @@ describe("Game reducer", () => {
         });
 
         it('should handle SELECT_PIECE', () => {
-            expect(newState.board[index]).toEqual(_.find(newState.deck, {id: selectedCard}));
+
+            expect(_.find(newState.deck, {isSelected: true}).boardIndex).toEqual(index);
         });
     });
 
     describe("updating the board when a card is flipped", () => {
 
-        let newState, flippedCard, index;
+        let newState, owner, index, gameWithSelectedPiece;
         beforeEach(() => {
+            owner = 2; index = 5;
 
-            let ownerType = {
-                none: 0,
-                player: 1,
-                opponent: 2
-            };
-
-            flippedCard = _.cloneDeep(deck[0]);
-            flippedCard.owner = ownerType.player;
-
-            index = 0;
-
-            let initialState = fromJS({
-                deck: deck,
-                ownerType: ownerType,
-                selectedCard: -1,
-                board: [flippedCard, null, null, null, null, null, null, null, null]
+            let newDeck = _.cloneDeep(deck);
+            newDeck[0].boardIndex = index;
+            let gameWithSelectedPiece = fromJS({
+                deck: newDeck,
+                ownerType: ownerType
             });
 
-            newState = reducer(initialState, {
+            newState = reducer(gameWithSelectedPiece, {
                 type: types.UPDATE_BOARD,
                 payload: {
                     index: index,
-                    owner: ownerType.opponent
+                    owner: owner
                 }
             }).toJS();
         });
 
         it('should handle UPDATE_BOARD', () => {
-            expect(newState.board[index].owner).toEqual(newState.ownerType.opponent);
+            expect(_.find(newState.deck, {boardIndex: index}).owner).toEqual(owner);
         });
     });
 
 
     describe('opponent turn in progress game', () => {
 
-        let initialSate;
-
-        beforeEach(() => {
-
-            initialSate = fromJS({
-                deck: deck,
-                selectedCard: -1,
-                board: [null, null, null, null, null, null, null, null, null]
-            });
-        });
-
         it('should handle START_AI_TURN by setting current turn to the opponent', () => {
-            let newState = reducer(initialSate, {
+            let newState = reducer(initialState, {
                 type: types.START_AI_TURN
             });
-            expect(newState).toEqual(initialSate);
+            expect(newState).toEqual(initialState);
         });
 
         it('should handle END_AI_TURN by setting the current turn to the player', () => {
-            let newState = reducer(initialSate, {
+            let newState = reducer(initialState, {
                 type: types.END_AI_TURN
             });
-            expect(newState).toEqual(initialSate);
+            expect(newState).toEqual(initialState);
         });
     });
 

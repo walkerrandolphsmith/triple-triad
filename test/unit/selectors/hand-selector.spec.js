@@ -1,46 +1,68 @@
 import expect from 'expect';
 import { getHand } from './../../../src/shared/selectors/handSelector';
-import deck from './../../../src/shared/constants/deck';
 
 describe("Hand selector", () => {
 
-    let owner, board, expectedHand;
-    beforeEach(() => {
-        deck.forEach(card => {
-            card.owner = 0;
-        });
-        expectedHand = [deck[0]];
-    });
+    describe("given player owns no cards", () => {
 
-    describe("given player owns one card not on board", () => {
-
+        let deck;
         beforeEach(() => {
-            owner = 1;
-            expectedHand.forEach(card => {
-                card.owner = owner;
-            });
-            board = [];
-
+            deck = [
+                {id: 0, owner: 0, boardIndex: -1},
+                {id: 1, owner: 0, boardIndex: -1},
+                {id: 2, owner: 0, boardIndex: -1},
+                {id: 3, owner: 0, boardIndex: -1}
+            ];
         });
 
-        it('should contain one cards', () => {
-            expect(getHand(deck, board, owner)).toEqual(expectedHand)
+        it('should contain empty hand', () => {
+            expect(getHand(deck, 1)).toEqual([])
         });
     });
 
-    describe("given player owns five cards, four in hand and one on board", () => {
+    describe("given player owns cards all which are on board", () => {
 
+        let deck, cardOne, cardTwo;
         beforeEach(() => {
-            owner = 2;
-            expectedHand.forEach(card => {
-                card.owner = owner;
-            });
-            deck[1].owner = owner;
-            board = [deck[1]];
+            cardOne = {id: 0, owner: 1, boardIndex: 1};
+            cardTwo = {id: 1, owner: 1, boardIndex: 1};
+
+            deck = [cardOne, cardTwo, {id: 2, owner: 0}, {id: 3, owner: 0}];
         });
 
-        it('should contain four cards', () => {
-            expect(getHand(deck, board, owner)).toEqual(expectedHand)
+        it('should contain an empty hand', () => {
+            expect(getHand(deck, 1)).toEqual([])
+        });
+    });
+
+
+    describe("given player owns two cards none on board", () => {
+
+        let deck, cardOne, cardTwo;
+        beforeEach(() => {
+            cardOne = {id: 0, owner: 1, boardIndex: -1};
+            cardTwo = {id: 1, owner: 1, boardIndex: -1};
+
+            deck = [cardOne, cardTwo, {id: 2, owner: 0}, {id: 3, owner: 0}];
+        });
+
+        it('should contain an empty hand', () => {
+            expect(getHand(deck, 1)).toEqual([cardOne, cardTwo])
+        });
+    });
+
+    describe("given player owns two cards one on board", () => {
+
+        let deck, cardOne, cardTwo;
+        beforeEach(() => {
+            cardOne = {id: 0, owner: 1, boardIndex: 1};
+            cardTwo = {id: 1, owner: 1, boardIndex: -1};
+
+            deck = [cardOne, cardTwo, {id: 2, owner: 0}, {id: 3, owner: 0}];
+        });
+
+        it('should contain the card not on the board in hand', () => {
+            expect(getHand(deck, 1)).toEqual([cardTwo])
         });
     });
 });
