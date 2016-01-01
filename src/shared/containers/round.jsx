@@ -6,7 +6,7 @@ import { toJS } from 'immutable';
 
 import React from 'react';
 import Board from './../components/board';
-import Cards from './../components/cards';
+import Hand from './../components/hand';
 import GameOverBanner from './../components/gameOverBanner';
 
 class Round extends React.Component {
@@ -26,25 +26,15 @@ class Round extends React.Component {
 
                 <div className="row">
                     <div className="col-md-2">
-                        <div id="hand">
-                            <div className="score">{score.blue}</div>
-                            <Cards cards={hand} showBack={false} owner={ownerType.player} clickAction={selectCard}/>
-                        </div>
+                        <Hand score={score.blue} hand={hand} showBack={false} owner={ownerType.player} clickAction={selectCard} />
                     </div>
 
                     <div className="col-md-8">
-                        <Board board={board}
-                            validPieces={validPieces}
-                            cardHasBeenSelected={selectedCard !== -1}
-                            playerTakesTurn={playerTakesTurn}
-                        />
+                        <Board board={board} validPieces={validPieces} cardHasBeenSelected={selectedCard !== -1} playerTakesTurn={playerTakesTurn} />
                     </div>
 
                     <div className="col-md-2">
-                        <div id="opponent-hand">
-                            <div className="score">{score.red}</div>
-                            <Cards cards={opponentHand} showBack={showFront} owner={ownerType.opponent}  />
-                        </div>
+                        <Hand score={score.red} hand={hand} showBack={showFront} owner={ownerType.opponent} />
                     </div>
                 </div>
             </div>
