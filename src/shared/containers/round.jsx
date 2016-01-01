@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { boardSelector, handSelector, opponentHandSelector, scoreSelector, validPiecesSelector, stepCompleteSelector } from './../selectors/index';
+import { boardSelector, handSelector, opponentHandSelector, scoreSelector, validPiecesSelector, cardSelectedSelector } from './../selectors/index';
 import * as Actions from './../action-creators/';
 import { toJS } from 'immutable';
 
@@ -10,23 +10,23 @@ import Hand from './../components/hand';
 
 class Round extends React.Component {
     render() {
-        let {game, board, hand, opponentHand, settings, score, validPieces, selectCard, playerTakesTurn} = this.props;
-        let {selectedCard, ownerType} = game;
+        let {game, board, hand, opponentHand, settings, score, cardSelected, validPieces, selectCard, playerTakesTurn} = this.props;
+        let {player, opponent} = game.ownerType;
         let showFront = settings.visibleHand;
 
         return (
             <div id="round" className="container">
                 <div className="row">
                     <div className="col-md-2">
-                        <Hand score={score.blue} hand={hand} showBack={false} owner={ownerType.player} clickAction={selectCard} />
+                        <Hand score={score.blue} hand={hand} showBack={false} owner={player} clickAction={selectCard} />
                     </div>
 
                     <div className="col-md-8">
-                        <Board board={board} validPieces={validPieces} cardHasBeenSelected={selectedCard !== -1} playerTakesTurn={playerTakesTurn} />
+                        <Board board={board} validPieces={validPieces} cardHasBeenSelected={cardSelected} playerTakesTurn={playerTakesTurn} />
                     </div>
 
                     <div className="col-md-2">
-                        <Hand score={score.red} hand={opponentHand} showBack={showFront} owner={ownerType.opponent} />
+                        <Hand score={score.red} hand={opponentHand} showBack={showFront} owner={opponent} />
                     </div>
                 </div>
             </div>
@@ -45,7 +45,7 @@ function mapStateToProps(state) {
         hand: handSelector(game),
         opponentHand: opponentHandSelector(game),
         score: scoreSelector(game),
-        handSelected: stepCompleteSelector(game),
+        cardSelected: cardSelectedSelector(game),
         validPieces: validPiecesSelector(game)
     }
 }
