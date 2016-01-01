@@ -12,20 +12,14 @@ export default class Card extends React.Component {
 
         name = showBack ? 'back' : name;
 
-        const cardWrapperStyle = {
-            display: 'inline'
-        };
-
         const cardStyle = {
             backgroundImage: `url(assets/images/${name}.png)`,
-            backgroundColor: owner === 2 ? 'red' : 'blue',
-            width: '100px',
-            height: '127px'
+            backgroundColor: owner === 2 ? 'red' : 'blue'
         };
 
         return (
-            <div key={id} style={cardWrapperStyle} onClick={this.click.bind(this)}>
-                <div style={cardStyle}></div>
+            <div key={id} className='card-wrapper' onClick={this.click.bind(this)}>
+                <div className='card' style={cardStyle}></div>
             </div>
         )
     }

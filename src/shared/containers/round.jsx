@@ -16,24 +16,36 @@ class Round extends React.Component {
         let showFront = settings.visibleHand;
 
         return (
-            <div id="step-2">
+            <div id="round" className="container">
 
-                <GameOverBanner winner={winner} score={score} newGame={newGame}/>
-
-                <div id="hand">
-                    <Cards cards={hand} showBack={false} owner={ownerType.player} clickAction={selectCard}/>
-                    <div className="score">{score.blue}</div>
+                <div className="row">
+                    <div className="col-md-12">
+                        <GameOverBanner winner={winner} score={score} newGame={newGame}/>
+                    </div>
                 </div>
 
-                <Board board={board}
-                    validPieces={validPieces}
-                    cardHasBeenSelected={selectedCard !== -1}
-                    playerTakesTurn={playerTakesTurn}
-                />
+                <div className="row">
+                    <div className="col-md-2">
+                        <div id="hand">
+                            <div className="score">{score.blue}</div>
+                            <Cards cards={hand} showBack={false} owner={ownerType.player} clickAction={selectCard}/>
+                        </div>
+                    </div>
 
-                <div id="opponent-hand">
-                    <Cards cards={opponentHand} showBack={showFront} owner={ownerType.opponent}  />
-                    <div className="score">{score.red}</div>
+                    <div className="col-md-8">
+                        <Board board={board}
+                            validPieces={validPieces}
+                            cardHasBeenSelected={selectedCard !== -1}
+                            playerTakesTurn={playerTakesTurn}
+                        />
+                    </div>
+
+                    <div className="col-md-2">
+                        <div id="opponent-hand">
+                            <div className="score">{score.red}</div>
+                            <Cards cards={opponentHand} showBack={showFront} owner={ownerType.opponent}  />
+                        </div>
+                    </div>
                 </div>
             </div>
         );

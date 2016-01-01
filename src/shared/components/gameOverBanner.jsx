@@ -11,56 +11,8 @@ export default class Round extends React.Component {
         let {winner, score, newGame} = this.props;
 
         let phrase = "";
-        let bannerStyle = {
-            background: 'none',
-            display: 'block',
-            zIndex: '1000',
-            position: 'absolute',
-            left: '0',
-            top: '120px',
-            height: '300px',
-            width: '100%',
-            textAlign: 'center'
-        };
 
-        let phraseStyle = {
-            position: 'absolute',
-            top: '25%',
-            display: 'block',
-            width: '100%',
-            font: 'bold 6em Impact, sans-serif',
-            letterSpacing: '8px',
-            textTransform: 'uppercase',
-            textShadow: '2px 2px 0 white, 4px 4px 0 black'
-        };
-
-        let blueScoreStyle = {
-            position: 'absolute',
-            left: '10px',
-            top: '25%',
-            font: 'bold 6em Impact, sans-serif',
-            textShadow: '2px 2px 0 white, 4px 4px 0 black'
-        };
-
-        let redScoreStyle = {
-            position: 'absolute',
-            right: '15px',
-            top: '25%',
-            font: 'bold 6em Impact, sans-serif',
-            textShadow: '2px 2px 0 white, 4px 4px 0 black'
-        };
-
-        let buttonStyle = {
-            width: '280px',
-            textAlign: 'center',
-            margin: '0px auto',
-            fontSize: '25px',
-            padding: '20px',
-            borderRadius: '9px',
-            color: 'white',
-            top: '200px',
-            position: 'relative'
-        };
+        let bannerStyle={};
 
         switch(winner){
             case WINNER.NONE:
@@ -80,12 +32,17 @@ export default class Round extends React.Component {
         }
 
         return (
-            <div id="banner" style={bannerStyle}>
-                <span style={blueScoreStyle}>{score.blue}</span>
-                <span style={phraseStyle}>{phrase}</span>
-                <span style={redScoreStyle}>{score.red}</span>
-
-                <button style={buttonStyle} onClick={this.click.bind(this)}>Play again</button>
+            <div id="banner" className="container" style={bannerStyle}>
+                <div className="results row">
+                    <div className="col-md-1">{score.blue}</div>
+                    <div className="col-md-10">{phrase}</div>
+                    <div className="col-md-1">{score.red}</div>
+                </div>
+                <div className="row">
+                    <div className="col-md-12">
+                        <button className="play-again" onClick={this.click.bind(this)}>Play again</button>
+                    </div>
+                </div>
             </div>
         );
     }

@@ -15,8 +15,6 @@ export default class Board extends React.Component {
         let boardStyle = {
             display: 'flex',
             flexDirection: 'column',
-            width: '300px',
-            height: '381px',
             margin: '0px auto'
         };
 
@@ -26,8 +24,6 @@ export default class Board extends React.Component {
         };
 
         let pieceStyle = {
-            width: '100px',
-            height: '127px',
             fontSize: '5em',
             flex: '1',
             display: 'flex',
@@ -48,18 +44,18 @@ export default class Board extends React.Component {
             if(cardHasBeenSelected && _.contains(validPieces, i)){
                 let validPieceStyle = _.assign(_.clone(pieceStyle), { cursor: 'pointer' });
                 pieces.push(
-                    <div key={i} id={i} onClick={this.click.bind(this, i)} style={validPieceStyle}>{card}</div>
+                    <div key={i} id={i} className="piece" onClick={this.click.bind(this, i)} style={validPieceStyle}>{card}</div>
                 )
             }else{
                 pieces.push(
-                    <div key={i} id={i} style={pieceStyle}>{card}</div>
+                    <div key={i} id={i} className="piece" style={pieceStyle}>{card}</div>
                 )
             }
 
         }
 
         let rows = _.chunk(pieces, 3).map((group, i)=> {
-            return (<div key={i} className='row' style={rowStyle}>{group}</div>)
+            return (<div key={i} className='lane' style={rowStyle}>{group}</div>)
         });
 
         return (

@@ -12,7 +12,7 @@ export default class Cards extends React.Component {
         });
 
         return (
-            <div className="deck">
+            <div className="cards">
             {cardsMarkup}
             </div>
         );
