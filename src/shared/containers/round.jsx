@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { handSelector, opponentHandSelector, scoreSelector, validPiecesSelector, winnerSelector, stepCompleteSelector } from './../selectors/index';
+import { boardSelector, handSelector, opponentHandSelector, scoreSelector, validPiecesSelector, winnerSelector, stepCompleteSelector } from './../selectors/index';
 import * as Actions from './../action-creators/';
 import { toJS } from 'immutable';
 
@@ -11,8 +11,8 @@ import GameOverBanner from './../components/gameOverBanner';
 
 class Round extends React.Component {
     render() {
-        let {game, hand, opponentHand, settings, score, validPieces, winner, selectCard, newGame, playerTakesTurn} = this.props;
-        let {selectedCard, board, ownerType} = game;
+        let {game, board, hand, opponentHand, settings, score, validPieces, winner, selectCard, newGame, playerTakesTurn} = this.props;
+        let {selectedCard, ownerType} = game;
         let showFront = settings.visibleHand;
 
         return (
@@ -47,6 +47,7 @@ function mapStateToProps(state) {
     return {
         game: game,
         settings: settings,
+        board: boardSelector(game),
         hand: handSelector(game),
         opponentHand: opponentHandSelector(game),
         score: scoreSelector(game),

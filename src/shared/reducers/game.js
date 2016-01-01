@@ -9,9 +9,7 @@ const INITIAL_STATE = new fromJS({
     none: 0,
     player: 1,
     opponent: 2
-  },
-  selectedCard: -1,
-  board: [null, null, null, null, null, null, null, null, null]
+  }
 });
 
 export default function reducer(state = INITIAL_STATE, action) {
@@ -21,7 +19,7 @@ export default function reducer(state = INITIAL_STATE, action) {
   switch(type){
     case types.ADD_CARD: return addCard(state, payload);
     case types.REMOVE_CARD: return removeCard(state, payload);
-    case types.SELECT_CARD: return state.set('selectedCard', payload.id);
+    case types.SELECT_CARD: return selectCard(state, payload);
     case types.SELECT_PIECE: return selectPiece(state, payload);
     case types.UPDATE_BOARD: return updateBoard(state, payload);
     case types.START_AI_TURN: return startAITurn(state);
@@ -34,68 +32,91 @@ export default function reducer(state = INITIAL_STATE, action) {
 
 function addCard(state, payload){
 
-  let deck = state.get('deck');
-  let owner =  payload.owner || state.get('ownerType').get('player');
+    let deck = state.get('deck');
+    let owner =  payload.owner || state.get('ownerType').get('player');
 
-  deck = deck.update(
+    deck = deck.update(
       deck.findIndex(
           card => card.get('id') === payload.id
       ),
       card => card.set("owner", owner)
-  );
+    );
 
-  return state.set('deck', deck);
+    return state.set('deck', deck);
 }
 
 function removeCard(state, payload){
 
-  let deck = state.get('deck');
-  let none = state.get('ownerType').get('none');
+    let deck = state.get('deck');
+    let none = state.get('ownerType').get('none');
 
-  deck = deck.update(
-      deck.findIndex(
-          card => card.get('id') === payload.id
-      ),
-      card => card.set('owner', none)
-  );
+    deck = deck.update(
+        deck.findIndex(
+            card => card.get('id') === payload.id
+        ),
+        card => card.set('owner', none)
+    );
 
-  return state.set('deck', deck);
+    return state.set('deck', deck);
+}
+
+function selectCard(state, payload){
+    let deck = state.get('deck');
+
+    deck = deck.update(
+        deck.findIndex(
+            card => card.get('isSelected')
+        ),
+        card => card.set('isSelected', false)
+    );
+
+    state = state.set('deck', deck);
+
+    deck = deck.update(
+        deck.findIndex(
+            card => card.get('id') === payload.id
+        ),
+        card => card.set('isSelected', true)
+    );
+    return state.set('deck', deck);
 }
 
 function selectPiece(state, payload) {
 
-  let card = state.get('deck').find(
-      card => card.get('id') === state.get('selectedCard')
-  );
+    let deck = state.get('deck');
 
-  let board = state.get('board').setIn([payload.index], card);
-
-  state = state.set('board', board);
-
-  return state.set('selectedCard', -1);
+    deck = deck.update(
+        deck.findIndex(
+            card => card.get('isSelected')
+        ),
+        card => card.set('boardIndex', payload.index)
+    );
+    return state.set('deck', deck);
 
 }
 
 function updateBoard(state, payload) {
 
-  let board =  state.get('board');
+    let deck =  state.get('deck');
 
-  board = board.update(
-      payload.index,
-      card => card.set('owner', payload.owner)
-  );
+    deck = deck.update(
+        deck.findIndex(
+            card => card.get('boardIndex') === payload.index
+        ),
+        card => card.set('owner', payload.owner)
+    );
 
-  return state.set('board', board);
+    return state.set('deck', deck);
 }
 
 function startAITurn(state){
-  return state;
+    return state;
 }
 
 function endAiTurn(state) {
-  return state;
+    return state;
 }
 
 function resetGame(state) {
-  return INITIAL_STATE;
+    return INITIAL_STATE;
 }

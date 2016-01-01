@@ -1,33 +1,34 @@
 import _ from 'lodash';
+import { toJS, fromJS } from 'immutable';
+import { getBoard } from './../selectors/boardSelector';
+import { getHand } from './../selectors/handSelector';
+import { getValidPieces } from './../selectors/validPiecesSelector';
 
 export function getCardsToAdd(game) {
-    const unownedCards = game.get('deck').filter(card => card.get('owner') === game.get('ownerType').get('none'));
-    const cards = sample(unownedCards, 5);
-    return cards.map(card => card.get('id'))
+    let unOwnedCards = getHand(game.get('deck').toJS(), game.get('ownerType').get('none'));
+    let cards = _.sample(unOwnedCards, 5);
+    return cards.map(card => card.id);
 }
 
 export function selectCardForOpponent(game){
-    let opponentHand = game.get('deck').filter(card => {
-        return card.get('owner') === game.get('ownerType').get('opponent')
-                && !game.get('board').find(c => { return c && c.get('id') === card.get('id') });
-    });
-
-    return sample(opponentHand).get('id');
+    let opponentHand = getHand(game.get('deck').toJS(), game.get('ownerType').get('opponent'));
+    let card = _.sample(opponentHand);
+    return card.id;
 }
 
 export function getValidPiece(game){
-    let validPieces = game.get('board').reduce((validPieces, piece, index) => { if(!piece) validPieces.push(index); return validPieces }, []);
-
+    const board = getBoard(game.get('deck').toJS());
+    let validPieces = getValidPieces(board);
     return validPieces.length > 0 ? _.sample(validPieces) : -1;
 }
 
 export function basicRule(i, game){
-    const board = game.get('board');
+    const board = fromJS(getBoard(game.get('deck').toJS()));
     
     const row = i / 3;
     const column = i % 3;
 
-    const card = board.get(i);
+    const card = board.filter(card => card && card.get('boardIndex') === i).get(0);
 
     const above = i-3;
     const below = i+3;
@@ -39,10 +40,10 @@ export function basicRule(i, game){
     const isNotFirstColumn = column > 0;
     const isNotLastColumn = column < 2;
 
-    const cardAbove = isNotFirstRow ? board.get(above) : null;
-    const cardBelow = isNotLastRow ? board.get(below) : null;
-    const cardAtLeft = isNotFirstColumn? board.get(left) : null;
-    const cardAtRight = isNotLastColumn ? board.get(right): null;
+    const cardAbove = isNotFirstRow ? board.filter(card => card && card.get('boardIndex') === above).get(0) : null;
+    const cardBelow = isNotLastRow ? board.filter(card => card && card.get('boardIndex') === below).get(0) : null;
+    const cardAtLeft = isNotFirstColumn? board.filter(card => card && card.get('boardIndex') === left).get(0) : null;
+    const cardAtRight = isNotLastColumn ? board.filter(card => card && card.get('boardIndex') === right).get(0): null;
 
     let owner = card.get('owner');
     let other = owner === 1 ? 2 : 1;
@@ -74,12 +75,12 @@ export function basicRule(i, game){
 
 export function sameRule(i, game){
 
-    const board = game.get('board');
+    const board = fromJS(getBoard(game.get('deck').toJS()));
 
     const row = i / 3;
     const column = i % 3;
 
-    const card = board.get(i);
+    const card = board.filter(card => card && card.get('boardIndex') === i).get(0);
 
     const above = i-3;
     const below = i+3;
@@ -91,10 +92,10 @@ export function sameRule(i, game){
     const isNotFirstColumn = column > 0;
     const isNotLastColumn = column < 2;
 
-    const cardAbove = isNotFirstRow ? board.get(above) : null;
-    const cardBelow = isNotLastRow ? board.get(below) : null;
-    const cardAtLeft = isNotFirstColumn? board.get(left) : null;
-    const cardAtRight = isNotLastColumn ? board.get(right): null;
+    const cardAbove = isNotFirstRow ? board.filter(card => card && card.get('boardIndex') === above).get(0) : null;
+    const cardBelow = isNotLastRow ? board.filter(card => card && card.get('boardIndex') === below).get(0) : null;
+    const cardAtLeft = isNotFirstColumn? board.filter(card => card && card.get('boardIndex') === left).get(0) : null;
+    const cardAtRight = isNotLastColumn ? board.filter(card => card && card.get('boardIndex') === right).get(0): null;
 
     let indexes = [];
 
