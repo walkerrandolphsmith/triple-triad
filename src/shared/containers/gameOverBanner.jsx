@@ -1,14 +1,20 @@
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as Actions from './../action-creators/';
+import { toJS } from 'immutable';
+import { scoreSelector, winnerSelector } from './../selectors/index';
+
 import React from 'react';
 import WINNER from './../constants/winner';
 
-export default class Round extends React.Component {
+export default class GameOverBanner extends React.Component {
 
     click() {
         this.props.newGame();
     }
 
     render() {
-        let {winner, score, newGame} = this.props;
+        let {winner, score} = this.props;
 
         let phrase = "";
 
@@ -47,3 +53,20 @@ export default class Round extends React.Component {
         );
     }
 }
+
+
+function mapStateToProps(state) {
+    const game = state.game.toJS();
+
+    return {
+        score: scoreSelector(game),
+        winner: winnerSelector(game)
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators(Actions,dispatch);
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(GameOverBanner);

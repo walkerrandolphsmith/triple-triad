@@ -1,7 +1,7 @@
 import React from 'react';
 import Cards from './cards';
 
-export default class Cards extends React.Component {
+export default class Hand extends React.Component {
     render() {
         let {score, hand, showBack, owner, clickAction} = this.props;
 

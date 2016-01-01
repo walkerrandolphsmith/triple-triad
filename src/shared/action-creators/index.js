@@ -131,7 +131,11 @@ export const aiTurn = () => (dispatch, getState) => {
     dispatch(selectCard(selectedCard));
 
     let piece = getValidPiece(state.game);
-    if(piece >= 0) dispatch(playerTakesTurn(piece, false));
+    if(piece >= 0) {
+        dispatch(playerTakesTurn(piece, false));
+    }else{
+        dispatch(nextStep());
+    }
 
     dispatch(endAiTurn());
 };
