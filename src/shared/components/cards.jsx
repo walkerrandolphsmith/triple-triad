@@ -5,9 +5,9 @@ export default class Cards extends React.Component {
     render() {
         let {cards, showBack, clickAction} = this.props;
 
-        let cardsMarkup = cards.map((card, index) => {
+        let cardsMarkup = cards.map(card => {
             return (
-                <Card key={card.id} id={card.id} name={card.name} owner={card.owner} showBack={showBack} clickAction={clickAction} />
+                <Card key={card.id} card={card} showBack={showBack} clickAction={clickAction} />
             )
         });
 

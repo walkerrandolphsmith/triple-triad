@@ -3,12 +3,13 @@ import React from 'react';
 export default class Card extends React.Component {
 
     click() {
-        let {clickAction, id} = this.props;
-        clickAction(id);
+        let {clickAction, card} = this.props;
+        clickAction(card.id);
     };
 
     render() {
-        let {id, name, owner, showBack} = this.props;
+        let {card, showBack} = this.props;
+        let {id, name, owner} = card;
 
         name = showBack ? 'back' : name;
 
