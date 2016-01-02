@@ -51,7 +51,7 @@ export default class Board extends React.Component {
         }
 
         pieces = pieces.map((piece, i) => {
-            let card = piece.card ? (<Card id={piece.card.id} name={piece.card.name} owner={piece.card.owner} />) : (<div></div>);
+            let card = piece.card ? (<Card card={piece.card} />) : (<div></div>);
             return (
                 <div key={i} id={i} className="piece" onClick={piece.clickHandler} style={piece.style}>{card}</div>
             )
