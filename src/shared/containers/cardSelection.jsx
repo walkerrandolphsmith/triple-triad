@@ -10,7 +10,6 @@ import Cards from './../components/cards';
 class CardSelection extends React.Component {
     render() {
         let {availableDeck, game, hand, handSelected, addCard, removeCard, nextStep} = this.props;
-        let {deck, ownerType} = game;
         let addCardHandler = handSelected ? function(){} : addCard;
 
         return (

@@ -9,15 +9,8 @@ describe("Game reducer", () => {
 
     let initialState, ownerType;
     beforeEach(() => {
-        ownerType = {
-            none: 0,
-            player: 1,
-            opponent: 2
-        };
-
         initialState = fromJS({
-            deck: deck,
-            ownerType: ownerType
+            deck: deck
         })
     });
 
@@ -58,12 +51,7 @@ describe("Game reducer", () => {
             cardFromDeck = _.find(deck, {id: id});
 
             let initialState = fromJS({
-                deck: deck,
-                ownerType: {
-                    none: 0,
-                    player: 1,
-                    opponent: 2
-                }
+                deck: deck
             });
 
 
@@ -76,7 +64,7 @@ describe("Game reducer", () => {
         });
 
         it('should handle REMOVE_CARD by updating the card in deck with no owner', () => {
-            expect(_.find(newState.deck, {id: id}).owner).toEqual(newState.ownerType.none);
+            expect(_.find(newState.deck, {id: id}).owner).toEqual(0);
         });
     });
 
@@ -108,8 +96,7 @@ describe("Game reducer", () => {
             let newDeck = _.cloneDeep(deck);
             newDeck[0].isSelected = true;
             let gameWithSelectedCard = fromJS({
-                deck: newDeck,
-                ownerType: ownerType
+                deck: newDeck
             });
 
             newState = reducer(gameWithSelectedCard, {
@@ -135,8 +122,7 @@ describe("Game reducer", () => {
             let newDeck = _.cloneDeep(deck);
             newDeck[0].boardIndex = index;
             let gameWithSelectedPiece = fromJS({
-                deck: newDeck,
-                ownerType: ownerType
+                deck: newDeck
             });
 
             newState = reducer(gameWithSelectedPiece, {

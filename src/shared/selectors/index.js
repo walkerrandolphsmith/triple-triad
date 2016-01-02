@@ -11,9 +11,9 @@ import { getValidPieces } from './validPiecesSelector';
 
 
 const deckSelector = state => state.deck
-const playerSelector = state => state.ownerType ? state.ownerType.player : -1
-const opponentSelector = state => state.ownerType ? state.ownerType.opponent : -1
-const unownedSelector = state => state.ownerType ? state.ownerType.none : -1
+const playerSelector = state => 1
+const opponentSelector = state => 2
+const unownedSelector = state => 0
 
 export const cardSelectedSelector = createSelector(
     [deckSelector],

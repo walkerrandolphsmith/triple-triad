@@ -4,12 +4,7 @@ import deck from './../constants/deck';
 import * as types from './../constants/action-types';
 
 const INITIAL_STATE = new fromJS({
-  deck: deck,
-  ownerType: {
-    none: 0,
-    player: 1,
-    opponent: 2
-  }
+  deck: deck
 });
 
 export default function reducer(state = INITIAL_STATE, action) {
@@ -33,7 +28,7 @@ export default function reducer(state = INITIAL_STATE, action) {
 function addCard(state, payload){
 
     let deck = state.get('deck');
-    let owner =  payload.owner || state.get('ownerType').get('player');
+    let owner =  payload.owner || 1;
 
     deck = deck.update(
       deck.findIndex(
@@ -48,13 +43,12 @@ function addCard(state, payload){
 function removeCard(state, payload){
 
     let deck = state.get('deck');
-    let none = state.get('ownerType').get('none');
 
     deck = deck.update(
         deck.findIndex(
             card => card.get('id') === payload.id
         ),
-        card => card.set('owner', none)
+        card => card.set('owner', 0)
     );
 
     return state.set('deck', deck);

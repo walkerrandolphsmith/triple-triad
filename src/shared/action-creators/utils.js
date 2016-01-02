@@ -6,14 +6,14 @@ import { getAvailableDeck } from './../selectors/availableDeckSelector';
 import { getValidPieces } from './../selectors/validPiecesSelector';
 
 export function getCardsToAdd(game) {
-    let deck = getAvailableDeck(game.get('deck').toJS(), game.get('ownerType').get('player'));
-    let unOwnedCards = deck.filter(card => card.owner === game.get('ownerType').get('none'));
+    let deck = getAvailableDeck(game.get('deck').toJS(), 1);
+    let unOwnedCards = deck.filter(card => card.owner === 0);
     let cards = _.sample(unOwnedCards, 5);
     return cards.map(card => card.id);
 }
 
 export function selectCardForOpponent(game){
-    let opponentHand = getHand(game.get('deck').toJS(), game.get('ownerType').get('opponent'));
+    let opponentHand = getHand(game.get('deck').toJS(), 2);
     let card = _.sample(opponentHand);
     return card.id;
 }

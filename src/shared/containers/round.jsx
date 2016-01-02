@@ -10,15 +10,14 @@ import Hand from './../components/hand';
 
 class Round extends React.Component {
     render() {
-        let {game, board, hand, opponentHand, settings, score, cardSelected, validPieces, selectCard, playerTakesTurn} = this.props;
-        let {player, opponent} = game.ownerType;
+        let {board, hand, opponentHand, settings, score, cardSelected, validPieces, selectCard, playerTakesTurn} = this.props;
         let showFront = settings.visibleHand;
 
         return (
             <div id="round" className="container">
                 <div className="row">
                     <div className="col-md-2">
-                        <Hand score={score.blue} hand={hand} showBack={false} owner={player} clickAction={selectCard} />
+                        <Hand score={score.blue} hand={hand} showBack={false} owner={1} clickAction={selectCard} />
                     </div>
 
                     <div className="col-md-8">
@@ -26,7 +25,7 @@ class Round extends React.Component {
                     </div>
 
                     <div className="col-md-2">
-                        <Hand score={score.red} hand={opponentHand} showBack={showFront} owner={opponent} />
+                        <Hand score={score.red} hand={opponentHand} showBack={showFront} owner={2} />
                     </div>
                 </div>
             </div>

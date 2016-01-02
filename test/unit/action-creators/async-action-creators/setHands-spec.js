@@ -8,12 +8,6 @@ describe('SET_HANDS async action creator', () => {
     beforeEach(() => {
        player = 1;
        opponent = 2;
-       game = fromJS({
-           ownerType: {
-               player: player,
-               opponent: opponent
-           }
-       });
        dispatch = expect.createSpy();
     });
 
@@ -27,7 +21,6 @@ describe('SET_HANDS async action creator', () => {
         beforeEach(() => {
             const settings = fromJS({ randomHand: false});
             getState = () => ({
-                game: game,
                 settings: settings
             });
         });
@@ -45,17 +38,16 @@ describe('SET_HANDS async action creator', () => {
         beforeEach(() => {
             const settings = fromJS({ randomHand: true});
             getState = () => ({
-                game: game,
                 settings: settings
             });
         });
 
-        it('should dispatch SET_HAND action given the player ownerType in the payload', () => {
+        it('should dispatch SET_HAND action given the player in the payload', () => {
             setHands()(dispatch, getState);
             expect(dispatch).toHaveBeenCalledWith(setHand(player))
         });
 
-        it('should dispatch SET_HAND action given the opponent ownerType in the payload', () => {
+        it('should dispatch SET_HAND action given the opponent in the payload', () => {
             setHands()(dispatch, getState);
             expect(dispatch).toHaveBeenCalledWith(setHand(player))
         });

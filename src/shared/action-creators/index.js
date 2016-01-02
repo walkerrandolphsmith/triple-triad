@@ -104,14 +104,12 @@ export const setHands = () => (dispatch, getState) => {
     const state = getState();
 
     let randomHand = state.settings.get('randomHand');
-    let player = state.game.get('ownerType').get('player');
-    let opponent = state.game.get('ownerType').get('opponent');
 
     if(randomHand) {
-        dispatch(setHand(player));
+        dispatch(setHand(1));
         dispatch(nextStep());
     }
-    dispatch(setHand(opponent));
+    dispatch(setHand(2));
 };
 
 export const setHand = (owner) => (dispatch, getState) => {
