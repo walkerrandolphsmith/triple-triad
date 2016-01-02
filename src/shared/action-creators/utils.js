@@ -2,10 +2,12 @@ import _ from 'lodash';
 import { toJS, fromJS } from 'immutable';
 import { getBoard } from './../selectors/boardSelector';
 import { getHand } from './../selectors/handSelector';
+import { getAvailableDeck } from './../selectors/availableDeckSelector';
 import { getValidPieces } from './../selectors/validPiecesSelector';
 
 export function getCardsToAdd(game) {
-    let unOwnedCards = game.get('deck').toJS().filter(card => card.owner === game.get('ownerType').get('none'));
+    let deck = getAvailableDeck(game.get('deck').toJS());
+    let unOwnedCards = deck.filter(card => card.owner === game.get('ownerType').get('none'));
     let cards = _.sample(unOwnedCards, 5);
     return cards.map(card => card.id);
 }

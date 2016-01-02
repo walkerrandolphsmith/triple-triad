@@ -1,5 +1,6 @@
 import { createSelector } from 'reselect';
 
+import { getAvailableDeck } from './availableDeckSelector';
 import { getCardSelected } from './cardSelectedSelector';
 import { getBoard } from './boardSelector';
 import { getHand } from './handSelector';
@@ -17,6 +18,11 @@ export const cardSelectedSelector = createSelector(
     [deckSelector],
     getCardSelected
 );
+
+export const availableDeckSelector = createSelector(
+    [deckSelector],
+    getAvailableDeck
+)
 
 export const boardSelector = createSelector(
     [deckSelector],
