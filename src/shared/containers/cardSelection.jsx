@@ -15,8 +15,8 @@ class CardSelection extends React.Component {
 
         return (
             <div id="card-selection">
-                <Cards cards={availableDeck} showBack={false} owner={ownerType.none} clickAction={addCardHandler} />
-                <Cards cards={hand} showBack={false} owner={ownerType.player} clickAction={removeCard} />
+                <Cards cards={availableDeck} showBack={false} clickAction={addCardHandler} />
+                <Cards cards={hand} showBack={false} clickAction={removeCard} />
                 <button disabled={!handSelected} onClick={nextStep}> Next step</button>
             </div>
         );
