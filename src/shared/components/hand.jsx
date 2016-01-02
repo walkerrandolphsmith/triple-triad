@@ -8,7 +8,7 @@ export default class Hand extends React.Component {
         return (
             <div className="hand">
                 <div className="score">{score}</div>
-                <Cards cards={hand} showBack={false} clickAction={clickAction}/>
+                <Cards cards={hand} showBack={showBack} clickAction={clickAction}/>
             </div>
         );
     }
