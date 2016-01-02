@@ -5,7 +5,7 @@ import { getHand } from './../selectors/handSelector';
 import { getValidPieces } from './../selectors/validPiecesSelector';
 
 export function getCardsToAdd(game) {
-    let unOwnedCards = getHand(game.get('deck').toJS(), game.get('ownerType').get('none'));
+    let unOwnedCards = game.get('deck').toJS().filter(card => card.owner === game.get('ownerType').get('none'));
     let cards = _.sample(unOwnedCards, 5);
     return cards.map(card => card.id);
 }
