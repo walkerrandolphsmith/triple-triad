@@ -27,5 +27,12 @@ module.exports = {
       { test: /\.(png|jpg|gif|jpeg)$/, loader: 'url-loader?limit=8192'},
       { test: /\.less$/, loader: 'style!css!less' },
     ]
+  },
+  devServer: {
+    hot: true,
+    historyApiFallback: true,
+    proxy: {
+      "*": "http://localhost:3000"
+    }
   }
 };

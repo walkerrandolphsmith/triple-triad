@@ -24,24 +24,14 @@ if(process.env.NODE_ENV !== 'production'){
   app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }));
   app.use(webpackHotMiddleware(compiler));
 
-  new WebpackDevServer(webpack(config), {
-    hot: true,
-    historyApiFallback: true,
-    proxy: {
-      "*": "http://localhost:3000"
-    }
-  }).listen(3001, 'localhost', function (err, result) {
-    if (err) {
-    console.log(err);
-    }
-
+  new WebpackDevServer(webpack(config), config.devServer).listen(3001, 'localhost', (err, result) => {
+    if (err) console.log(err);
     console.log('Listening at localhost:3001');
   });
+  app.use(express.static(path.join(__dirname, './../../src')));
 }else{
   app.use(express.static(path.join(__dirname, './../../../dist')));
 }
-
-app.use(express.static(path.join(__dirname, './../../src')));
 
 app.use((request, response) => {
   const location = createLocation(request.url);
