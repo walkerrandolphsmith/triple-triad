@@ -85,6 +85,14 @@ function selectPiece(state, payload) {
         ),
         card => card.set('boardIndex', payload.index)
     );
+
+    deck = deck.update(
+        deck.findIndex(
+            card => card.get('isSelected')
+        ),
+        card => card.set('isSelected', false)
+    );
+
     return state.set('deck', deck);
 
 }
