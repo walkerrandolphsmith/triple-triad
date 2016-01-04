@@ -10,7 +10,8 @@ describe("Game reducer", () => {
     let initialState, ownerType;
     beforeEach(() => {
         initialState = fromJS({
-            deck: deck
+            deck: deck,
+            selectedCard: -1
         })
     });
 
@@ -51,7 +52,8 @@ describe("Game reducer", () => {
             cardFromDeck = _.find(deck, {id: id});
 
             let initialState = fromJS({
-                deck: deck
+                deck: deck,
+                selectedCard: -1
             });
 
 
@@ -79,24 +81,24 @@ describe("Game reducer", () => {
                 payload: {
                     id: id
                 }
-            }).toJS();
+            });
         });
 
         it('should handle SELECT_CARD', () => {
-            expect(_.find(newState.deck, {isSelected: true}).id).toEqual(id);
+            expect(newState.get('selectedCard')).toEqual(id);
         });
     });
 
     describe("Selecting a piece by the player", () => {
 
-        let index, newState;
+        let index, selectedCard, newState;
         beforeEach(() => {
             index = 0;
+            selectedCard = 0;
 
-            let newDeck = _.cloneDeep(deck);
-            newDeck[0].isSelected = true;
             let gameWithSelectedCard = fromJS({
-                deck: newDeck
+                deck: deck,
+                selectedCard: selectedCard
             });
 
             newState = reducer(gameWithSelectedCard, {
@@ -104,12 +106,11 @@ describe("Game reducer", () => {
                 payload: {
                     index: index
                 }
-            }).toJS();
+            });
         });
 
         it('should handle SELECT_PIECE', () => {
-
-            expect(_.find(newState.deck, {isSelected: true}).boardIndex).toEqual(index);
+            expect(newState.get('deck').get(index).get('boardIndex')).toEqual(selectedCard);
         });
     });
 
