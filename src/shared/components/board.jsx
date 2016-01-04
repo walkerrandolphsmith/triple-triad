@@ -41,7 +41,8 @@ export default class Board extends React.Component {
                 },
                 clickHandler: function(){}
             };
-            if(cardHasBeenSelected && _.contains(validPieces, i)){
+
+            if(cardHasBeenSelected !== -1 && _.contains(validPieces, i)){
                 piece.style.cursor = 'pointer';
                 piece.clickHandler = this.click.bind(this, i);
             }

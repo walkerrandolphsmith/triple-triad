@@ -10,7 +10,7 @@ import Hand from './../components/hand';
 
 class Round extends React.Component {
     render() {
-        let {board, hand, opponentHand, settings, score, cardSelected, validPieces, selectCard, playerTakesTurn} = this.props;
+        let {game, board, hand, opponentHand, settings, score, validPieces, selectCard, playerTakesTurn} = this.props;
         let showFront = settings.visibleHand;
 
         return (
@@ -21,7 +21,7 @@ class Round extends React.Component {
                     </div>
 
                     <div className="col-md-8">
-                        <Board board={board} validPieces={validPieces} cardHasBeenSelected={cardSelected} playerTakesTurn={playerTakesTurn} />
+                        <Board board={board} validPieces={validPieces} cardHasBeenSelected={game.selectedCard} playerTakesTurn={playerTakesTurn} />
                     </div>
 
                     <div className="col-md-2">
@@ -44,7 +44,6 @@ function mapStateToProps(state) {
         hand: handSelector(game),
         opponentHand: opponentHandSelector(game),
         score: scoreSelector(game),
-        cardSelected: cardSelectedSelector(game),
         validPieces: validPiecesSelector(game)
     }
 }

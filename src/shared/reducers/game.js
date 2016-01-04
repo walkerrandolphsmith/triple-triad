@@ -4,7 +4,8 @@ import deck from './../constants/deck';
 import * as types from './../constants/action-types';
 
 const INITIAL_STATE = new fromJS({
-  deck: deck
+  deck: deck,
+  selectedCard: -1
 });
 
 export default function reducer(state = INITIAL_STATE, action) {
@@ -55,46 +56,21 @@ function removeCard(state, payload){
 }
 
 function selectCard(state, payload){
-    let deck = state.get('deck');
-
-    deck = deck.update(
-        deck.findIndex(
-            card => card.get('isSelected')
-        ),
-        card => card.set('isSelected', false)
-    );
-
-    state = state.set('deck', deck);
-
-    deck = deck.update(
-        deck.findIndex(
-            card => card.get('id') === payload.id
-        ),
-        card => card.set('isSelected', true)
-    );
-    return state.set('deck', deck);
+    return state.set('selectedCard', payload.id);
 }
 
 function selectPiece(state, payload) {
-
     let deck = state.get('deck');
 
     deck = deck.update(
         deck.findIndex(
-            card => card.get('isSelected')
+            card => card.get('id') === state.get('selectedCard')
         ),
         card => card.set('boardIndex', payload.index)
     );
 
-    deck = deck.update(
-        deck.findIndex(
-            card => card.get('isSelected')
-        ),
-        card => card.set('isSelected', false)
-    );
-
-    return state.set('deck', deck);
-
+    state = state.set('deck', deck);
+    return state.set('selectedCard', -1);
 }
 
 function updateBoard(state, payload) {

@@ -1,7 +1,6 @@
 import { createSelector } from 'reselect';
 
 import { getAvailableDeck } from './availableDeckSelector';
-import { getCardSelected } from './cardSelectedSelector';
 import { getBoard } from './boardSelector';
 import { getHand } from './handSelector';
 import { getScoreForOwner, getScore } from './scoreSelector';
@@ -14,11 +13,6 @@ const deckSelector = state => state.deck
 const playerSelector = state => 1
 const opponentSelector = state => 2
 const unownedSelector = state => 0
-
-export const cardSelectedSelector = createSelector(
-    [deckSelector],
-    getCardSelected
-);
 
 export const availableDeckSelector = createSelector(
     [deckSelector, opponentSelector],
