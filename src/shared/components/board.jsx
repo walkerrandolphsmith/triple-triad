@@ -23,28 +23,26 @@ export default class Board extends React.Component {
             display: 'flex'
         };
 
-        let pieceStyle = {
-            fontSize: '5em',
-            flex: '1',
-            display: 'flex',
-            justifyContent: 'center',
-            borderTopWidth: '1px',
-            borderLeftWidth: '1px',
-            borderTopStyle: 'solid',
-            borderLeftStyle: 'solid',
-            background: 'grey',
-            cursor: 'default'
-        };
-
         let pieces = [];
         for(var i = 0; i < 9; i++){
             let piece  = {
                 card: board[i],
-                style: pieceStyle,
+                style: {
+                    fontSize: '5em',
+                    flex: '1',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    backgroundImage: `url('assets/images/board/board-${i}.png')`,
+                    borderTopWidth: '1px',
+                    borderLeftWidth: '1px',
+                    borderTopStyle: 'solid',
+                    borderLeftStyle: 'solid',
+                    cursor: 'default'
+                },
                 clickHandler: function(){}
             };
             if(cardHasBeenSelected && _.contains(validPieces, i)){
-                piece.style = _.assign(_.clone(pieceStyle), { cursor: 'pointer' });
+                piece.style.cursor = 'pointer';
                 piece.clickHandler = this.click.bind(this, i);
             }
             pieces.push(piece);
