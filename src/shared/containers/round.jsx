@@ -17,7 +17,7 @@ class Round extends React.Component {
             <div id="round" className="container">
                 <div className="row">
                     <div className="col-md-2">
-                        <Hand score={score.blue} hand={hand} showBack={false} owner={1} clickAction={selectCard} />
+                        <Hand score={score.blue} cards={hand} showBack={false} owner={1} clickAction={selectCard} />
                     </div>
 
                     <div className="col-md-8">
@@ -25,7 +25,7 @@ class Round extends React.Component {
                     </div>
 
                     <div className="col-md-2">
-                        <Hand score={score.red} hand={opponentHand} showBack={showFront} owner={2} />
+                        <Hand score={score.red} cards={opponentHand} showBack={showFront} owner={2} />
                     </div>
                 </div>
             </div>
