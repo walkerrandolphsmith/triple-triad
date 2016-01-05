@@ -1,0 +1,1 @@
+export const getIsFullHand = hand => { return hand.length >= 5 }

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { handSelector, stepCompleteSelector, availableDeckSelector } from './../selectors/index';
+import { handSelector, isFullHandSelector, availableDeckSelector } from './../selectors/index';
 import * as Actions from './../action-creators/';
 import { toJS } from 'immutable';
 
@@ -9,14 +9,14 @@ import Cards from './../components/cards';
 
 class CardSelection extends React.Component {
     render() {
-        let {availableDeck, game, hand, handSelected, addCard, removeCard, nextStep} = this.props;
-        let addCardHandler = handSelected ? function(){} : addCard;
+        let {availableDeck, game, hand, isHandSelected, addCard, removeCard, nextStep} = this.props;
+        let addCardHandler = isHandSelected ? function(){} : addCard;
 
         return (
             <div id="card-selection">
                 <Cards cards={availableDeck} showBack={false} clickAction={addCardHandler} />
                 <Cards cards={hand} showBack={false} clickAction={removeCard} />
-                <button disabled={!handSelected} onClick={nextStep}> Next step</button>
+                <button disabled={!isHandSelected} onClick={nextStep}> Next step</button>
             </div>
         );
     }
@@ -30,7 +30,7 @@ function mapStateToProps(state) {
         settings: settings,
         availableDeck: availableDeckSelector(game),
         hand: handSelector(game),
-        handSelected: stepCompleteSelector(game)
+        isHandSelected: isFullHandSelector(game)
     }
 }
 

@@ -1,1 +1,0 @@
-export const getStepComplete = hand => { return hand.length >= 5 }

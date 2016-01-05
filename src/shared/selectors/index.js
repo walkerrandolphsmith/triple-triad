@@ -4,7 +4,7 @@ import { getAvailableDeck } from './availableDeckSelector';
 import { getBoard } from './boardSelector';
 import { getHand } from './handSelector';
 import { getScoreForOwner, getScore } from './scoreSelector';
-import { getStepComplete } from './stepCompleteSelector';
+import { getIsFullHand } from './isFullHandSelector';
 import { getWinner } from './winnerSelector';
 import { getValidPieces } from './validPiecesSelector';
 
@@ -59,7 +59,7 @@ export const winnerSelector = createSelector(
     getWinner
 );
 
-export const stepCompleteSelector = createSelector(
+export const isFullHandSelector = createSelector(
     [handSelector],
-    getStepComplete
+    getIsFullHand
 );
