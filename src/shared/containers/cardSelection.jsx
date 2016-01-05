@@ -5,7 +5,7 @@ import * as Actions from './../action-creators/';
 import { toJS } from 'immutable';
 
 import React from 'react';
-import Cards from './../components/cards';
+import Hand from './../components/hand';
 import Deck from './../components/deck';
 
 class CardSelection extends React.Component {
@@ -16,7 +16,7 @@ class CardSelection extends React.Component {
         return (
             <div id="card-selection">
                 <Deck cards={availableDeck} isHandSelected={isHandSelected} clickAction={addCardHandler} />
-                <Cards cards={hand} showBack={false} clickAction={removeCard} />
+                <Hand cards={hand} showBack={false} clickAction={removeCard} />
                 <button disabled={!isHandSelected} onClick={nextStep}> Next step</button>
             </div>
         );
