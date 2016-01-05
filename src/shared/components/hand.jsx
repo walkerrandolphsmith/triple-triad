@@ -1,14 +1,20 @@
 import React from 'react';
-import Cards from './cards';
+import Card from './card';
 
 export default class Hand extends React.Component {
     render() {
         let {score, cards, showBack, clickAction} = this.props;
 
+        let cardsMarkup = cards.map(card => {
+            return (
+                <Card key={card.id} card={card} showBack={showBack} clickAction={clickAction} />
+            )
+        });
+
         return (
             <div className="hand">
                 <div className="score">{score}</div>
-                <Cards cards={cards} showBack={showBack} clickAction={clickAction}/>
+                {cardsMarkup}
             </div>
         );
     }

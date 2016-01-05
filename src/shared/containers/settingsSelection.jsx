@@ -3,7 +3,6 @@ import { bindActionCreators } from 'redux';
 import * as Actions from './../action-creators/';
 
 import React from 'react';
-import Cards from './../components/cards';
 
 class SettingsSelection extends React.Component {
 
