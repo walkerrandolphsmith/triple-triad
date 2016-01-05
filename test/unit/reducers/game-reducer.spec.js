@@ -98,12 +98,9 @@ describe("Game reducer", () => {
             index = 0;
             selectedCard = 0;
 
-            let gameWithSelectedCard = fromJS({
-                deck: deck,
-                selectedCard: selectedCard
-            });
+            initialState = initialState.set('selectedCard', selectedCard);
 
-            newState = reducer(gameWithSelectedCard, {
+            newState = reducer(initialState, {
                 type: types.SELECT_PIECE,
                 payload: {
                     index: index
