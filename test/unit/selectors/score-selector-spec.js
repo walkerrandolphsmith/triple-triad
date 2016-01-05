@@ -1,7 +1,5 @@
 import expect from 'expect';
 import { getScoreForOwner } from './../../../src/shared/selectors/scoreSelector';
-import deck from './../../../src/shared/constants/deck';
-import _ from 'lodash';
 
 describe("Blue Score selector", () => {
 

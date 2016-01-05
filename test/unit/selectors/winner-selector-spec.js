@@ -1,7 +1,6 @@
 import expect from 'expect';
 import { getWinner } from './../../../src/shared/selectors/winnerSelector';
 import WINNER from './../../../src/shared/constants/winner';
-import _ from 'lodash';
 
 describe("winner selector", () => {
 

@@ -1,8 +1,18 @@
 import expect from 'expect';
 import { getIsFullHand } from './../../../src/shared/selectors/isFullHandSelector';
-import deck from './../../../src/shared/constants/deck';
 
 describe("stepComplete selector", () => {
+
+    let deck;
+    beforeEach(() => {
+        deck = [
+            {id: 1, owner: 0},
+            {id: 2, owner: 0},
+            {id: 3, owner: 0},
+            {id: 4, owner: 0},
+            {id: 5, owner: 0}
+        ];
+    });
 
     describe("stepComplete selector of a full hand", () => {
         it('should be true', () => {

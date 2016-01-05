@@ -1,8 +1,24 @@
 import expect from 'expect';
 import { getValidPieces } from './../../../src/shared/selectors/validPiecesSelector';
-import deck from './../../../src/shared/constants/deck';
 
 describe("validPieces selector", () => {
+
+    let deck;
+    beforeEach(() => {
+        deck = [
+            {id: 1, owner: 0},
+            {id: 2, owner: 0},
+            {id: 3, owner: 0},
+            {id: 4, owner: 0},
+            {id: 5, owner: 0},
+
+            {id: 6, owner: 1},
+            {id: 7, owner: 1},
+            {id: 8, owner: 1},
+            {id: 9, owner: 1},
+            {id: 10, owner: 1}
+        ];
+    });
 
     describe("validPieces selector of a full board", () => {
         it('should have no valid pieces', () => {
