@@ -18,7 +18,7 @@ export default class Deck extends React.Component {
 
             const cardStyle = {
                 backgroundImage: `url(assets/images/${name}.png)`,
-                backgroundColor: owner === 2 ? 'red' : 'blue',
+                backgroundColor: 'blue',
                 opacity: owner === 0 ? '1' : '0.5',
                 cursor: isSelectable ? 'pointer' : 'default'
             };
