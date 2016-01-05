@@ -6,6 +6,7 @@ import { toJS } from 'immutable';
 
 import React from 'react';
 import Cards from './../components/cards';
+import Deck from './../components/deck';
 
 class CardSelection extends React.Component {
     render() {
@@ -14,7 +15,7 @@ class CardSelection extends React.Component {
 
         return (
             <div id="card-selection">
-                <Cards cards={availableDeck} showBack={false} clickAction={addCardHandler} />
+                <Deck cards={availableDeck} isHandSelected={isHandSelected} clickAction={addCardHandler} />
                 <Cards cards={hand} showBack={false} clickAction={removeCard} />
                 <button disabled={!isHandSelected} onClick={nextStep}> Next step</button>
             </div>
