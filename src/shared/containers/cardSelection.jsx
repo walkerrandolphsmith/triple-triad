@@ -10,7 +10,7 @@ import Deck from './../components/deck';
 
 class CardSelection extends React.Component {
     render() {
-        let {availableDeck, game, hand, isHandSelected, addCard, nextStep} = this.props;
+        let {availableDeck, hand, isHandSelected, addCard, nextStep} = this.props;
 
         return (
             <div id="card-selection">
@@ -26,7 +26,6 @@ function mapStateToProps(state) {
     const game = state.game.toJS();
     const settings = state.settings.toJS();
     return {
-        game: game,
         settings: settings,
         availableDeck: availableDeckSelector(game),
         hand: handSelector(game),
