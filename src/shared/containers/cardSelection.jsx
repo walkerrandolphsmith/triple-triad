@@ -10,13 +10,12 @@ import Deck from './../components/deck';
 
 class CardSelection extends React.Component {
     render() {
-        let {availableDeck, game, hand, isHandSelected, addCard, removeCard, nextStep} = this.props;
-        let addCardHandler = isHandSelected ? function(){} : addCard;
+        let {availableDeck, game, hand, isHandSelected, addCard, nextStep} = this.props;
 
         return (
             <div id="card-selection">
-                <Deck cards={availableDeck} isHandSelected={isHandSelected} clickAction={addCardHandler} />
-                <Hand cards={hand} showBack={false} clickAction={removeCard} />
+                <Deck cards={availableDeck} isHandSelected={isHandSelected} addCard={addCard} />
+                <Hand cards={hand} showBack={false} />
                 <button disabled={!isHandSelected} onClick={nextStep}> Next step</button>
             </div>
         );

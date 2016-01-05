@@ -35,15 +35,6 @@ export function addCard(id, owner) {
     }
 }
 
-export function removeCard(id) {
-    return {
-        type: types.REMOVE_CARD,
-        payload: {
-            id: id
-        }
-    }
-}
-
 export function updateSettings(setting, isChecked) {
     return {
         type: types.UPDATE_SETTINGS,

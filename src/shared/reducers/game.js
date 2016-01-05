@@ -14,7 +14,6 @@ export default function reducer(state = INITIAL_STATE, action) {
 
   switch(type){
     case types.ADD_CARD: return addCard(state, payload);
-    case types.REMOVE_CARD: return removeCard(state, payload);
     case types.SELECT_CARD: return selectCard(state, payload);
     case types.SELECT_PIECE: return selectPiece(state, payload);
     case types.UPDATE_BOARD: return updateBoard(state, payload);
@@ -29,27 +28,12 @@ export default function reducer(state = INITIAL_STATE, action) {
 function addCard(state, payload){
 
     let deck = state.get('deck');
-    let owner =  payload.owner || 1;
 
     deck = deck.update(
       deck.findIndex(
           card => card.get('id') === payload.id
       ),
-      card => card.set("owner", owner)
-    );
-
-    return state.set('deck', deck);
-}
-
-function removeCard(state, payload){
-
-    let deck = state.get('deck');
-
-    deck = deck.update(
-        deck.findIndex(
-            card => card.get('id') === payload.id
-        ),
-        card => card.set('owner', 0)
+      card => card.set("owner", payload.owner)
     );
 
     return state.set('deck', deck);

@@ -3,12 +3,13 @@ import Card from './card';
 
 export default class Deck extends React.Component {
 
-    click(id) {
-        this.props.clickAction(id);
+    click(card) {
+        let owner = card.owner === 0 ? 1 : 0;
+        this.props.addCard(card.id, owner);
     };
 
     render() {
-        let {cards, isHandSelected, clickAction} = this.props;
+        let {cards, isHandSelected} = this.props;
 
         let cardsMarkup = cards.map(card => {
 
@@ -22,7 +23,7 @@ export default class Deck extends React.Component {
             };
 
             return (
-                <div key={id} className='card-wrapper' onClick={this.click.bind(this, id)}>
+                <div key={id} className='card-wrapper' onClick={this.click.bind(this, card)}>
                     <div className='card' style={cardStyle}></div>
                 </div>
             )

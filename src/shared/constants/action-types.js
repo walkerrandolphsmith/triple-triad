@@ -4,7 +4,6 @@ export const RESET_GAME = 'ResetGame';
 export const RESET_SETTINGS = 'ResetSettings';
 export const SET_HAND = 'SetHand';
 export const ADD_CARD = 'AddCard';
-export const REMOVE_CARD = 'RemoveCard';
 export const UPDATE_SETTINGS = 'UpdateSettings';
 export const SELECT_CARD = 'SelectCard';
 export const SELECT_PIECE = 'SelectPiece';
