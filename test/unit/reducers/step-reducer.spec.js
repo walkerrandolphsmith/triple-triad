@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { toJS, fromJS } from 'immutable';
+import { fromJS } from 'immutable';
 import reducer from './../../../src/shared/reducers/step';
 import * as types from './../../../src/shared/constants/action-types';
 
