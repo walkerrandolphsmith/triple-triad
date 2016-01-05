@@ -2,13 +2,25 @@ import React from 'react';
 import Card from './card';
 
 export default class Hand extends React.Component {
+
+    click(card) {
+        this.props.clickAction(card.id);
+    };
+
     render() {
         let {score, cards, showBack, clickAction} = this.props;
 
         let cardsMarkup = cards.map(card => {
-            return (
-                <Card key={card.id} card={card} showBack={showBack} clickAction={clickAction} />
-            )
+            let { name, owner} = card;
+
+            name = showBack ? 'back' : name;
+
+            const cardStyle = {
+                backgroundImage: `url(assets/images/${name}.png)`,
+                backgroundColor: owner === 2 ? 'red' : 'blue'
+            };
+
+            return (<Card card={card} cardStyle={cardStyle} clickAction={this.click.bind(this, card)} />);
         });
 
         return (

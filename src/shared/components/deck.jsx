@@ -13,7 +13,7 @@ export default class Deck extends React.Component {
 
         let cardsMarkup = cards.map(card => {
 
-            const {id, name, owner} = card;
+            const { name, owner } = card;
             const isSelectable = (owner === 1) || (!isHandSelected && owner === 0);
 
             const cardStyle = {
@@ -23,11 +23,7 @@ export default class Deck extends React.Component {
                 cursor: isSelectable ? 'pointer' : 'default'
             };
 
-            return (
-                <div key={id} className='card-wrapper' onClick={this.click.bind(this, card)}>
-                    <div className='card' style={cardStyle}></div>
-                </div>
-            )
+            return (<Card card={card} cardStyle={cardStyle} clickAction={this.click.bind(this, card)} />);
         });
 
         return (

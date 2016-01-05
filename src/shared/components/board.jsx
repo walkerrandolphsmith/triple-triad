@@ -50,7 +50,20 @@ export default class Board extends React.Component {
         }
 
         pieces = pieces.map((piece, i) => {
-            let card = piece.card ? (<Card card={piece.card} />) : (<div></div>);
+
+            let card = (<div></div>);
+
+            if(piece.card){
+                let { name, owner } = piece.card;
+
+                const cardStyle = {
+                    backgroundImage: `url(assets/images/${name}.png)`,
+                    backgroundColor: owner === 2 ? 'red' : 'blue'
+                };
+
+                card = (<Card card={piece.card} cardStyle={cardStyle} clickAction={()=>{}} />);
+            }
+
             return (
                 <div key={i} id={i} className="piece" onClick={piece.clickHandler} style={piece.style}>{card}</div>
             )
