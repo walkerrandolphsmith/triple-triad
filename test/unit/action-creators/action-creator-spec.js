@@ -53,16 +53,6 @@ describe('actions', () => {
         expect(actions.addCard(0)).toEqual(expectedAction)
     });
 
-    it('should create an action to remove a card to a players hand', () => {
-        const expectedAction = {
-            type: types.REMOVE_CARD,
-            payload: {
-                id: 0
-            }
-        };
-        expect(actions.removeCard(0)).toEqual(expectedAction)
-    });
-
     it('should create an action to update a game setting', () => {
         const expectedAction = {
             type: types.UPDATE_SETTINGS,
