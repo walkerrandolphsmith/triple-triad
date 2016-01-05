@@ -14,12 +14,13 @@ export default class Deck extends React.Component {
         let cardsMarkup = cards.map(card => {
 
             const {id, name, owner} = card;
-            const isSelectable = !isHandSelected && card.owner === 0;
+            const isSelectable = (owner === 1) || (!isHandSelected && owner === 0);
 
             const cardStyle = {
                 backgroundImage: `url(assets/images/${name}.png)`,
                 backgroundColor: owner === 2 ? 'red' : 'blue',
-                opacity: isSelectable ? '1' : '0.5'
+                opacity: owner === 0 ? '1' : '0.5',
+                cursor: isSelectable ? 'pointer' : 'default'
             };
 
             return (
