@@ -22,12 +22,10 @@ describe("Game reducer", () => {
     });
 
     describe('When adding a card by id to the owners hand', () => {
-        let newState;
-        let cardFromDeck, id, owner;
+        let newState, id, owner;
         beforeEach(() => {
             id = 0;
             owner = 2;
-            cardFromDeck = _.find(deck, {id: id});
 
             newState = reducer(initialState, {
                 type: types.ADD_CARD,
@@ -35,11 +33,11 @@ describe("Game reducer", () => {
                     id: id,
                     owner: owner
                 }
-            }).toJS();
+            });
         });
 
         it('should handle ADD_CARD by updating card in deck with new owner', () => {
-            expect(_.find(newState.deck, {id: id}).owner).toEqual(owner);
+            expect(newState.get('deck').find(card => card.get('id') === id).get('owner')).toEqual(owner);
         });
     });
 
