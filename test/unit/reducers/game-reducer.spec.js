@@ -41,35 +41,6 @@ describe("Game reducer", () => {
         });
     });
 
-    describe('When removing a card by id from the hand', () => {
-
-        let newState, id;
-        beforeEach(() => {
-            id = 0;
-
-            let deck = initialState.get('deck');
-            deck = deck.update(
-                deck.findIndex(
-                    card => card.get('id') === id
-                ),
-                card => card.set('owner', 1)
-            );
-
-            initialState = initialState.set('deck', deck);
-
-            newState = reducer(initialState, {
-                type: types.REMOVE_CARD,
-                payload: {
-                    id: id
-                }
-            });
-        });
-
-        it('should handle REMOVE_CARD by updating the card in deck with no owner', () => {
-            expect(newState.get('deck').find(card => card.get('id') === id).get('owner')).toEqual(0);
-        });
-    });
-
     describe("Selecting a card", () => {
 
         let id, newState;
