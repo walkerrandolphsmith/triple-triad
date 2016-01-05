@@ -115,27 +115,31 @@ describe("Game reducer", () => {
 
     describe("updating the board when a card is flipped", () => {
 
-        let newState, owner, index, gameWithSelectedPiece;
+        let newState, owner, index;
         beforeEach(() => {
             owner = 2; index = 5;
 
-            let newDeck = _.cloneDeep(deck);
-            newDeck[0].boardIndex = index;
-            let gameWithSelectedPiece = fromJS({
-                deck: newDeck
-            });
+            let deck = initialState.get('deck');
+            deck = deck.update(
+                deck.findIndex(
+                    card => card.get('id') === 0
+                ),
+                card => card.set('boardIndex', index)
+            );
 
-            newState = reducer(gameWithSelectedPiece, {
+            initialState = initialState.set('deck', deck);
+
+            newState = reducer(initialState, {
                 type: types.UPDATE_BOARD,
                 payload: {
                     index: index,
                     owner: owner
                 }
-            }).toJS();
+            });
         });
 
         it('should handle UPDATE_BOARD', () => {
-            expect(_.find(newState.deck, {boardIndex: index}).owner).toEqual(owner);
+            expect(newState.get('deck').find(card => card.get('boardIndex') === index).get('owner')).toEqual(owner);
         });
     });
 
