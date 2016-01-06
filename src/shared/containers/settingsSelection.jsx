@@ -29,22 +29,19 @@ class SettingsSelection extends React.Component {
                 <div className="row">
                     <div className="col-md-12">
                         <div className="control-group">
-                            <label htmlFor="random-hand">
-                                <input type="checkbox" id="random-hand" onChange={this.randomHand.bind(this)}></input>
-                                Random Hand
-                            </label>
+                            <input type="checkbox" id="random-hand" onChange={this.randomHand.bind(this)}></input>
+                            <label htmlFor="random-hand"></label>
+                            <label className="text" htmlFor="random-hand">Random Hand</label>
                         </div>
                         <div className="control-group">
-                            <label htmlFor="two-player">
-                                <input type="checkbox" id="two-player" onChange={this.multiplayer.bind(this)}></input>
-                                2P
-                            </label>
+                            <input type="checkbox" id="two-player" onChange={this.multiplayer.bind(this)}></input>
+                            <label htmlFor="two-player"></label>
+                            <label className="text" htmlFor="two-player">2 Player</label>
                         </div>
                         <div className="control-group">
-                            <label htmlFor="hidden-hand">
-                                <input type="checkbox" id="hidden-hand" onChange={this.visibleHand.bind(this)}></input>
-                                Hide opponent's hand
-                            </label>
+                            <input type="checkbox" id="hidden-hand" onChange={this.visibleHand.bind(this)}></input>
+                            <label htmlFor="hidden-hand"></label>
+                            <label className="text" htmlFor="hidden-hand">Hide opponent's hand</label>
                         </div>
                         <button className="btn btn-next" onClick={this.click.bind(this)}> Next step</button>
                     </div>
