@@ -46,7 +46,7 @@ export default class GameOverBanner extends React.Component {
                 </div>
                 <div className="row">
                     <div className="col-md-12">
-                        <button className="play-again" onClick={this.click.bind(this)}>Play again</button>
+                        <button className="btn btn-next" onClick={this.click.bind(this)}>Play again</button>
                     </div>
                 </div>
             </div>

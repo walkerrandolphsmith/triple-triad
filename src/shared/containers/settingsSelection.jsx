@@ -25,20 +25,30 @@ class SettingsSelection extends React.Component {
 
     render() {
         return (
-            <div id="step-0">
-                <label htmlFor="random-hand">
-                    <input type="checkbox" id="random-hand" onChange={this.randomHand.bind(this)}></input>
-                    Random Hand
-                </label>
-                <label htmlFor="two-player">
-                    <input type="checkbox" id="two-player" onChange={this.multiplayer.bind(this)}></input>
-                    2P
-                </label>
-                <label htmlFor="hidden-hand">
-                    <input type="checkbox" id="hidden-hand" onChange={this.visibleHand.bind(this)}></input>
-                    Hide opponent's hand
-                </label>
-                <button onClick={this.click.bind(this)}> Next step</button>
+            <div id="settings-selection" className="container">
+                <div className="row">
+                    <div className="col-md-12">
+                        <div className="control-group">
+                            <label htmlFor="random-hand">
+                                <input type="checkbox" id="random-hand" onChange={this.randomHand.bind(this)}></input>
+                                Random Hand
+                            </label>
+                        </div>
+                        <div className="control-group">
+                            <label htmlFor="two-player">
+                                <input type="checkbox" id="two-player" onChange={this.multiplayer.bind(this)}></input>
+                                2P
+                            </label>
+                        </div>
+                        <div className="control-group">
+                            <label htmlFor="hidden-hand">
+                                <input type="checkbox" id="hidden-hand" onChange={this.visibleHand.bind(this)}></input>
+                                Hide opponent's hand
+                            </label>
+                        </div>
+                        <button className="btn btn-next" onClick={this.click.bind(this)}> Next step</button>
+                    </div>
+                </div>
             </div>
         );
     }

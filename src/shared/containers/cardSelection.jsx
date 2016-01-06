@@ -13,10 +13,14 @@ class CardSelection extends React.Component {
         let {availableDeck, hand, isHandSelected, addCard, nextStep} = this.props;
 
         return (
-            <div id="card-selection">
-                <Deck cards={availableDeck} isHandSelected={isHandSelected} addCard={addCard} />
-                <Hand cards={hand} showBack={false} />
-                <button disabled={!isHandSelected} onClick={nextStep}> Next step</button>
+            <div id="card-selection" className="container">
+                <div className="row">
+                    <div className="col-md-12">
+                        <Deck cards={availableDeck} isHandSelected={isHandSelected} addCard={addCard} />
+                        <Hand cards={hand} showBack={false} />
+                        <button className="btn btn-next" disabled={!isHandSelected} onClick={nextStep}> Next step</button>
+                    </div>
+                </div>
             </div>
         );
     }

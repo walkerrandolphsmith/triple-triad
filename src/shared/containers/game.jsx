@@ -22,9 +22,13 @@ class Game extends React.Component {
         }
 
         return (
-            <div id="game">
-                {currentGameStep}
-                {this.props.children}
+            <div id="game" className="container">
+                <div className="row">
+                    <div className="col-md-12">
+                        {currentGameStep}
+                        {this.props.children}
+                    </div>
+                </div>
             </div>
         );
     }

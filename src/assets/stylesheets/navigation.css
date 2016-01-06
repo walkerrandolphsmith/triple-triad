@@ -57,7 +57,7 @@ html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:1
   letter-spacing: 8px;
 }
 
-#banner .play-again {
+.btn.btn-next {
   width: 280px;
   text-align: center;
   margin: 0px auto;
