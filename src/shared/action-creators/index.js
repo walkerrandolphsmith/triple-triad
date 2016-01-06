@@ -1,5 +1,5 @@
 import * as types from './../constants/action-types';
-import { getCardsToAdd, selectCardForOpponent, getValidPiece, basicRule, sameRule } from './utils';
+import { getCardsToAdd, selectCardForOpponent, getValidPiece, basicRule, sameRule, getNextCardToFocus, getCardToSelect } from './utils';
 
 export function nextStep() {
     return {
@@ -31,6 +31,15 @@ export function addCard(id, owner) {
         payload: {
             id: id,
             owner: owner
+        }
+    }
+}
+
+export function setFocus(index) {
+    return {
+        type: types.SET_FOCUS,
+        payload: {
+            index: index
         }
     }
 }
@@ -84,6 +93,24 @@ export function endAiTurn() {
         type: types.END_AI_TURN
     }
 }
+
+export const determineCardToSelect = () => (dispatch, getState) => {
+  const state = getState();
+
+  const card = getCardToSelect(state.game);
+
+  dispatch(selectCard(card.id));
+
+};
+
+export const determineNextFocusCard = (directionInLoop) => (dispatch, getState) => {
+
+    const state = getState();
+
+    const nextCard = getNextCardToFocus(state.game, directionInLoop);
+
+    dispatch(setFocus(nextCard));
+};
 
 export const newGame = () => (dispatch, getState) => {
     dispatch(resetStep());

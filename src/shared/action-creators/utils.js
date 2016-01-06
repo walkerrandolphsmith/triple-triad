@@ -5,6 +5,26 @@ import { getHand } from './../selectors/handSelector';
 import { getAvailableDeck } from './../selectors/availableDeckSelector';
 import { getValidPieces } from './../selectors/validPiecesSelector';
 
+export function getCardToSelect(game){
+    const hand = getHand(game.get('deck').toJS(), 1);
+    return hand[game.get('focusedCard')];
+}
+
+export function getNextCardToFocus(game, directionInLoop){
+    const hand = getHand(game.get('deck').toJS(), 1);
+    const currentCard = game.get('focusedCard');
+
+    let nextCard;
+    if(currentCard === hand.length - 1 && directionInLoop === 1){
+        nextCard = 0;
+    }else if(currentCard === 0 && directionInLoop === -1){
+        nextCard = hand.length - 1;
+    }else{
+        nextCard = currentCard + directionInLoop;
+    }
+    return nextCard;
+}
+
 export function getCardsToAdd(game) {
     let deck = getAvailableDeck(game.get('deck').toJS(), 1);
     let unOwnedCards = deck.filter(card => card.owner === 0);
