@@ -33,6 +33,29 @@ html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:1
   width: 100px;
 }
 
+#round .hand .card-wrapper{
+  position: relative;
+}
+
+#round .hand .card-wrapper.selected {
+  padding-left: 40px;
+}
+#round .hand .card-wrapper.selected.focused:after {
+  left: 15px;
+}
+
+#round .hand .card-wrapper.focused:after {
+  content: " ";
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  left: -25px;
+  top: -75px;
+  transform: rotate(90deg);
+  background-image: url("../images/pointer.png");
+  background-size: contain;
+}
+
 
 #banner {
   display: block;

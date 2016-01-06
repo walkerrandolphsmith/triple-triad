@@ -3,10 +3,11 @@ export default class Card extends React.Component {
 
     render() {
 
-        let { card, cardStyle, clickAction } = this.props;
-
+        let { card, classes, cardStyle, clickAction } = this.props;
+        classes = classes ? classes.join(' ') : "";
+        let className = `card-wrapper ${classes}`;
         return (
-            <div key={card.id} className='card-wrapper' onClick={clickAction}>
+            <div key={card.id} className={className} onClick={clickAction}>
                 <div className='card' style={cardStyle}></div>
             </div>
         );
