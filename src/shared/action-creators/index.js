@@ -148,6 +148,7 @@ export const playerTakesTurn = (selectedPiece, isPlayer) => (dispatch, getState)
 
     if(isPlayer){
         dispatch(aiTurn());
+        dispatch(getNextSelectedCard());
     }
 };
 
