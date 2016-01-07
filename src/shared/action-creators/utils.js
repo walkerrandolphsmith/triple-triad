@@ -25,21 +25,6 @@ export function getCardToSelect(game, directionInLoop){
     return hand[nextCard];
 }
 
-export function getNextCardToFocus(game, directionInLoop){
-    const hand = getHand(game.get('deck').toJS(), 1);
-    const currentCard = game.get('focusedCard');
-
-    let nextCard;
-    if(currentCard === hand.length - 1 && directionInLoop === 1){
-        nextCard = 0;
-    }else if(currentCard === 0 && directionInLoop === -1){
-        nextCard = hand.length - 1;
-    }else{
-        nextCard = currentCard + directionInLoop;
-    }
-    return nextCard;
-}
-
 export function getCardsToAdd(game) {
     let deck = getAvailableDeck(game.get('deck').toJS(), 1);
     let unOwnedCards = deck.filter(card => card.owner === 0);
@@ -177,30 +162,4 @@ function shouldApplySameRule(card, firstCard, secondCard, d1, d2, d3, d4){
         && card.get('rank').get(d1) === firstCard.get('rank').get(d3)
         && card.get('rank').get(d2) === secondCard.get('rank').get(d4)
     )
-}
-
-function sample(list, size){
-    if(size === undefined){
-        let index = getIndex(list.size);
-        return list.get(index);
-    }
-    let indexes = getIndexes(list.size, size);
-    return indexes.map(i => list.get(i));
-}
-
-function getIndexes(listSize, size){
-    let counter = 0;
-    let indexes = [];
-    while(counter < size){
-        let index = getIndex(listSize);
-        if(indexes.indexOf(index) < 0) {
-            indexes.push(index);
-            counter++;
-        }
-    }
-    return indexes;
-}
-
-function getIndex(listSize){
-    return Math.floor(Math.random() * (listSize -1));
 }
