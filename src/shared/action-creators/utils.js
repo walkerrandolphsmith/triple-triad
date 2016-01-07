@@ -5,9 +5,24 @@ import { getHand } from './../selectors/handSelector';
 import { getAvailableDeck } from './../selectors/availableDeckSelector';
 import { getValidPieces } from './../selectors/validPiecesSelector';
 
-export function getCardToSelect(game){
+export function getCardToSelect(game, directionInLoop){
     const hand = getHand(game.get('deck').toJS(), 1);
-    return hand[game.get('focusedCard')];
+
+    if(game.get('selectedCard') === -1){
+        return hand[0]
+    }
+
+    const selectedCardIndex = hand.findIndex(card => card.id === game.get('selectedCard'));
+
+    let nextCard;
+    if(selectedCardIndex === hand.length - 1 && directionInLoop === 1){
+        nextCard = 0;
+    }else if(selectedCardIndex === 0 && directionInLoop === -1){
+        nextCard = hand.length - 1;
+    }else{
+        nextCard = selectedCardIndex + directionInLoop;
+    }
+    return hand[nextCard];
 }
 
 export function getNextCardToFocus(game, directionInLoop){

@@ -92,12 +92,16 @@ export const newGame = () => (dispatch, getState) => {
 };
 
 export const beginRound = () => (dispatch, getState) => {
+    dispatch(getNextSelectedCard());
+    dispatch(nextStep());
+};
+
+export const getNextSelectedCard = (directionInLoop) => (dispatch, getState) => {
     const state = getState();
 
-    const card = getCardToSelect(state.game);
+    const card = getCardToSelect(state.game, directionInLoop);
 
     dispatch(selectCard(card.id));
-    dispatch(nextStep());
 };
 
 export const setHands = () => (dispatch, getState) => {
