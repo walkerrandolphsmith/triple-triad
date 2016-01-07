@@ -54,6 +54,16 @@ export function selectCard(id) {
     }
 }
 
+export function setCardIsPlayable(isPlayable) {
+    return {
+        type: types.CARD_IS_PLAYABLE,
+        payload: {
+            isPlayable: isPlayable
+        }
+    }
+}
+
+
 export function selectPiece(index) {
     return {
         type: types.SELECT_PIECE,
@@ -131,6 +141,7 @@ export const playerTakesTurn = (selectedPiece, isPlayer) => (dispatch, getState)
     if(isPlayer){
         dispatch(aiTurn());
         dispatch(getNextSelectedCard());
+        dispatch(setCardIsPlayable(false));
     }
 };
 

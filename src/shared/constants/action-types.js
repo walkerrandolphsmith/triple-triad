@@ -6,6 +6,7 @@ export const SET_HAND = 'SetHand';
 export const ADD_CARD = 'AddCard';
 export const UPDATE_SETTINGS = 'UpdateSettings';
 export const SELECT_CARD = 'SelectCard';
+export const CARD_IS_PLAYABLE = 'CardIsPlayable';
 export const SELECT_PIECE = 'SelectPiece';
 export const UPDATE_BOARD = 'UpdateBoard';
 export const APPLY_RULES = 'ApplyRules';
