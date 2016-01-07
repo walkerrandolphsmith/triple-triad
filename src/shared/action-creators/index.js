@@ -35,15 +35,6 @@ export function addCard(id, owner) {
     }
 }
 
-export function setFocus(index) {
-    return {
-        type: types.SET_FOCUS,
-        payload: {
-            index: index
-        }
-    }
-}
-
 export function updateSettings(setting, isChecked) {
     return {
         type: types.UPDATE_SETTINGS,
