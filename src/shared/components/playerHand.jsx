@@ -29,7 +29,7 @@ export default class Hand extends React.Component {
 
             const cardStyle = {
                 backgroundImage: `url(assets/images/${name}.png)`,
-                backgroundColor: i === focusedCard ? 'green' : 'blue',
+                backgroundColor: 'blue',
                 cursor: 'pointer'
             };
 
