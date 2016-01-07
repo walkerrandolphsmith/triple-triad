@@ -8,10 +8,10 @@ describe("Available Deck selector", () => {
         let deck, TifaOne, TifaTwo, Cloud, Cid;
         beforeEach(() => {
 
-                TifaOne = {id: 0, name: 'Tifa', owner: 0, boardIndex: -1};
-                TifaTwo = {id: 1, name: 'Tifa', owner: 0, boardIndex: -1};
-                Cloud = {id: 2, name: 'Cloud', owner: 0, boardIndex: -1};
-                Cid = {id: 3, name: 'Cid', owner: 0, boardIndex: -1};
+            TifaOne = {id: 0, name: 'Tifa', owner: 0, boardIndex: -1};
+            TifaTwo = {id: 1, name: 'Tifa', owner: 0, boardIndex: -1};
+            Cloud = {id: 2, name: 'Cloud', owner: 0, boardIndex: -1};
+            Cid = {id: 3, name: 'Cid', owner: 0, boardIndex: -1};
 
             deck = [TifaOne, TifaTwo, Cloud, Cid];
         });
