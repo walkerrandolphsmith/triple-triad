@@ -8,12 +8,14 @@ export default class Hand extends React.Component {
     };
 
     componentDidMount() {
+        const getNextSelectedCard = this.props.getNextSelectedCard;
+
         document.addEventListener('keydown', event => {
            const keyCode = event.which;
 
            switch(keyCode){
-               case 38: ; break;
-               case 40: ; break;
+               case 38: getNextSelectedCard(-1); break;
+               case 40: getNextSelectedCard(1); break;
                case 13: ; break;
            }
         });
