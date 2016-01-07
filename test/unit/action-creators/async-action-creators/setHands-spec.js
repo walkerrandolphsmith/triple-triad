@@ -1,6 +1,6 @@
 import expect from 'expect';
 import { fromJS } from 'immutable';
-import {setHands, setHand} from './../../../../src/shared/action-creators/';
+import {setHands, setHand, beginRound} from './../../../../src/shared/action-creators/';
 
 describe('SET_HANDS async action creator', () => {
 
@@ -52,9 +52,9 @@ describe('SET_HANDS async action creator', () => {
             expect(dispatch).toHaveBeenCalledWith(setHand(player))
         });
 
-        it('should dispatch NEXT_STEP', () => {
+        it('should dispatch BEGIN_ROUND', () => {
             setHands()(dispatch, getState);
-            expect(dispatch).toHaveBeenCalledWith({type: 'NextStep'})
+            expect(dispatch).toHaveBeenCalledWith(beginRound())
         });
 
     });

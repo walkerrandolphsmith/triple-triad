@@ -11,8 +11,7 @@ describe("Game reducer", () => {
     beforeEach(() => {
         initialState = fromJS({
             deck: deck,
-            selectedCard: -1,
-            focusedCard: 0
+            selectedCard: -1
         });
     });
 
@@ -39,25 +38,6 @@ describe("Game reducer", () => {
 
         it('should handle ADD_CARD by updating card in deck with new owner', () => {
             expect(newState.get('deck').find(card => card.get('id') === id).get('owner')).toEqual(owner);
-        });
-    });
-
-    describe("focusing a card", () => {
-
-        let index, focusedCard, newState;
-        beforeEach(() => {
-            index = 0;
-
-            newState = reducer(initialState, {
-                type: types.FOCUS_CARD,
-                payload: {
-                    index: index
-                }
-            });
-        });
-
-        it('should handle SELECT_CARD', () => {
-            expect(newState.get('focusedCard')).toEqual(index);
         });
     });
 
