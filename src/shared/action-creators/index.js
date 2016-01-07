@@ -91,19 +91,6 @@ export const newGame = () => (dispatch, getState) => {
     dispatch(resetSettings());
 };
 
-export const beginRound = () => (dispatch, getState) => {
-    dispatch(getNextSelectedCard());
-    dispatch(nextStep());
-};
-
-export const getNextSelectedCard = (directionInLoop) => (dispatch, getState) => {
-    const state = getState();
-
-    const card = getCardToSelect(state.game, directionInLoop);
-
-    dispatch(selectCard(card.id));
-};
-
 export const setHands = () => (dispatch, getState) => {
     const state = getState();
 
@@ -124,22 +111,17 @@ export const setHand = (owner) => (dispatch, getState) => {
     });
 };
 
-export const aiTurn = () => (dispatch, getState) => {
-    dispatch(startAiTurn());
+export const beginRound = () => (dispatch, getState) => {
+    dispatch(getNextSelectedCard());
+    dispatch(nextStep());
+};
 
+export const getNextSelectedCard = (directionInLoop) => (dispatch, getState) => {
     const state = getState();
 
-    let selectedCard = selectCardForOpponent(state.game);
-    dispatch(selectCard(selectedCard));
+    const card = getCardToSelect(state.game, directionInLoop);
 
-    let piece = getValidPiece(state.game);
-    if(piece >= 0) {
-        dispatch(playerTakesTurn(piece, false));
-    }else{
-        dispatch(nextStep());
-    }
-
-    dispatch(endAiTurn());
+    dispatch(selectCard(card.id));
 };
 
 export const playerTakesTurn = (selectedPiece, isPlayer) => (dispatch, getState) => {
@@ -166,4 +148,22 @@ export const applyFlips = (i) => (dispatch, getState) => {
     tuples.forEach(tuple => {
         dispatch(updateBoard(tuple.index, tuple.owner));
     });
+};
+
+export const aiTurn = () => (dispatch, getState) => {
+    dispatch(startAiTurn());
+
+    const state = getState();
+
+    let selectedCard = selectCardForOpponent(state.game);
+    dispatch(selectCard(selectedCard));
+
+    let piece = getValidPiece(state.game);
+    if(piece >= 0) {
+        dispatch(playerTakesTurn(piece, false));
+    }else{
+        dispatch(nextStep());
+    }
+
+    dispatch(endAiTurn());
 };
