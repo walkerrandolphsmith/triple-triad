@@ -11,7 +11,8 @@ describe("Game reducer", () => {
     beforeEach(() => {
         initialState = fromJS({
             deck: deck,
-            selectedCard: -1
+            selectedCard: -1,
+            cardIsPlayable: false
         });
     });
 

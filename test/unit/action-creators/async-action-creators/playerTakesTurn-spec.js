@@ -1,5 +1,5 @@
 import expect from 'expect';
-import {playerTakesTurn, applyFlips, aiTurn} from './../../../../src/shared/action-creators/';
+import {playerTakesTurn, applyFlips, aiTurn, getNextSelectedCard, setCardIsPlayable} from './../../../../src/shared/action-creators/';
 
 
 describe('PLAYER_TAKES_TURN async action creator', () => {
@@ -36,6 +36,16 @@ describe('PLAYER_TAKES_TURN async action creator', () => {
         it('should dispatch AI_TURN async action', () => {
             playerTakesTurn(selectedPiece, isPlayer)(dispatch, getState);
             expect(dispatch).toHaveBeenCalledWith(aiTurn())
+        });
+
+        it('should dispatch GET_NEXT_SLECTED_CARD async action', () => {
+            playerTakesTurn(selectedPiece, isPlayer)(dispatch, getState);
+            expect(dispatch).toHaveBeenCalledWith(getNextSelectedCard())
+        });
+
+        it('should dispatch SET_CARD_IS_PLAYABLE async action with a payload of isPlayable false', () => {
+            playerTakesTurn(selectedPiece, isPlayer)(dispatch, getState);
+            expect(dispatch).toHaveBeenCalledWith(setCardIsPlayable(false))
         });
     });
 
