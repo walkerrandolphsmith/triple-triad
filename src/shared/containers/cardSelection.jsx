@@ -10,7 +10,7 @@ import Deck from './../components/deck';
 
 class CardSelection extends React.Component {
     render() {
-        let {availableDeck, hand, isHandSelected, addCard, nextStep} = this.props;
+        let {availableDeck, hand, isHandSelected, addCard, beginRound} = this.props;
 
         return (
             <div id="card-selection" className="container">
@@ -18,7 +18,7 @@ class CardSelection extends React.Component {
                     <div className="col-md-12">
                         <Deck cards={availableDeck} isHandSelected={isHandSelected} addCard={addCard} />
                         <Hand cards={hand} showBack={false} />
-                        <button className="btn btn-next" disabled={!isHandSelected} onClick={nextStep}> Next step</button>
+                        <button className="btn btn-next" disabled={!isHandSelected} onClick={beginRound}> Next step</button>
                     </div>
                 </div>
             </div>

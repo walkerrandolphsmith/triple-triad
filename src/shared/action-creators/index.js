@@ -1,5 +1,5 @@
 import * as types from './../constants/action-types';
-import { getCardsToAdd, selectCardForOpponent, getValidPiece, basicRule, sameRule, getNextCardToFocus, getCardToSelect } from './utils';
+import { getCardsToAdd, selectCardForOpponent, getValidPiece, basicRule, sameRule, getCardToSelect } from './utils';
 
 export function nextStep() {
     return {
@@ -94,28 +94,19 @@ export function endAiTurn() {
     }
 }
 
-export const determineCardToSelect = () => (dispatch, getState) => {
-  const state = getState();
-
-  const card = getCardToSelect(state.game);
-
-  dispatch(selectCard(card.id));
-
-};
-
-export const determineNextFocusCard = (directionInLoop) => (dispatch, getState) => {
-
-    const state = getState();
-
-    const nextCard = getNextCardToFocus(state.game, directionInLoop);
-
-    dispatch(setFocus(nextCard));
-};
-
 export const newGame = () => (dispatch, getState) => {
     dispatch(resetStep());
     dispatch(resetGame());
     dispatch(resetSettings());
+};
+
+export const beginRound = () => (dispatch, getState) => {
+    const state = getState();
+
+    const card = getCardToSelect(state.game);
+
+    dispatch(selectCard(card.id));
+    dispatch(nextStep());
 };
 
 export const setHands = () => (dispatch, getState) => {
@@ -125,7 +116,7 @@ export const setHands = () => (dispatch, getState) => {
 
     if(randomHand) {
         dispatch(setHand(1));
-        dispatch(nextStep());
+        dispatch(beginRound());
     }
     dispatch(setHand(2));
 };

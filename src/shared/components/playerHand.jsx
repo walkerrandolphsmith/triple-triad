@@ -8,16 +8,13 @@ export default class Hand extends React.Component {
     };
 
     componentDidMount() {
-        let determineNextFocusCard = this.props.determineNextFocusCard;
-        let onEnterKeyHandler = this.props.onEnterKeyHandler;
-
         document.addEventListener('keydown', event => {
            const keyCode = event.which;
 
            switch(keyCode){
-               case 38: determineNextFocusCard(-1); break;
-               case 40: determineNextFocusCard(1); break;
-               case 13: onEnterKeyHandler(); break;
+               case 38: ; break;
+               case 40: ; break;
+               case 13: ; break;
            }
         });
     }
@@ -37,7 +34,6 @@ export default class Hand extends React.Component {
             let classes = [];
 
             if(card.id === selectedCard) classes.push('selected');
-            if(i === focusedCard) classes.push('focused');
 
             return (<Card card={card} classes={classes} cardStyle={cardStyle} clickAction={this.click.bind(this, card)} />);
         });

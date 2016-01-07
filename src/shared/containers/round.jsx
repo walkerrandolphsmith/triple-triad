@@ -11,14 +11,14 @@ import PlayerHand from './../components/playerHand';
 
 class Round extends React.Component {
     render() {
-        let {game, board, hand, opponentHand, settings, score, validPieces, selectCard, playerTakesTurn, determineCardToSelect, determineNextFocusCard} = this.props;
+        let {game, board, hand, opponentHand, settings, score, validPieces, selectCard, playerTakesTurn} = this.props;
         let showFront = settings.visibleHand;
 
         return (
             <div id="round" className="container">
                 <div className="row">
                     <div className="col-md-2">
-                        <PlayerHand score={score.blue} cards={hand} focusedCard={game.focusedCard} selectedCard={game.selectedCard} clickAction={selectCard} onEnterKeyHandler={determineCardToSelect}  determineNextFocusCard={determineNextFocusCard}/>
+                        <PlayerHand score={score.blue} cards={hand} selectedCard={game.selectedCard} clickAction={selectCard} />
                     </div>
 
                     <div className="col-md-8">
