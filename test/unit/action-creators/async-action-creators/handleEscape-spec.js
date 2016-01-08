@@ -1,5 +1,6 @@
 import expect from 'expect';
-import { handleEscape } from './../../../../src/shared/action-creators/';
+import { Map } from 'immutable';
+import { handleEscape, setPhase } from './../../../../src/shared/action-creators/';
 
 describe('HANDLE_ESCAPE async action creator', () => {
 
@@ -11,6 +12,23 @@ describe('HANDLE_ESCAPE async action creator', () => {
 
     it('should be a function', () => {
         expect(handleEscape()).toBeA('function');
+    });
+
+    describe('given it is in the piece selection phase', () => {
+
+        let getState;
+        beforeEach(() => {
+            getState = () => ({
+                game: new Map({
+                    phase: "pieceSelection"
+                })
+            });
+        });
+
+        it('should dispatch the SET_PHASE action setting the phase to card selection', () => {
+            handleEscape()(dispatch, getState);
+            expect(dispatch).toHaveBeenCalledWith(setPhase('cardSelection'))
+        });
     });
 
 });
