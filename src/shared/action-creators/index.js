@@ -1,5 +1,5 @@
 import * as types from './../constants/action-types';
-import { getCardsToAdd, selectCardForOpponent, getValidPiece, basicRule, sameRule, getCardToSelect } from './utils';
+import { getCardsToAdd, selectCardForOpponent, getValidPiece, basicRule, sameRule, getCardToSelect, getPieceToSelect } from './utils';
 
 export function nextStep() {
     return {
@@ -142,6 +142,14 @@ export const getNextSelectedCard = (directionInLoop) => (dispatch, getState) => 
     dispatch(selectCard(card.id));
 };
 
+export const getNextSelectedPiece = () => (dispatch, getState) => {
+    const state = getState();
+
+    const piece = getPieceToSelect(state.game);
+
+    dispatch(selectPiece(piece));
+};
+
 export const selectedPieceByClick = (index) => (dispatch, getState) => {
     dispatch(selectPiece(index));
     dispatch(playerTakesTurn(true));
@@ -234,6 +242,7 @@ export const handleEnter = () => (dispatch, getState) => {
 
     if(state.game.get('phase') === 'cardSelection'){
         dispatch(setPhase('pieceSelection'));
+        dispatch(getNextSelectedPiece());
     }else{
 
     }

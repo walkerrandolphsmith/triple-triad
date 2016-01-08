@@ -4,6 +4,7 @@ import { getBoard } from './../selectors/boardSelector';
 import { getHand } from './../selectors/handSelector';
 import { getAvailableDeck } from './../selectors/availableDeckSelector';
 import { getValidPieces } from './../selectors/validPiecesSelector';
+import KEY_CODE from './../constants/keyCodes';
 
 export function getCardToSelect(game, directionInLoop){
     const hand = getHand(game.get('deck').toJS(), 1);
@@ -23,6 +24,13 @@ export function getCardToSelect(game, directionInLoop){
         nextCard = selectedCardIndex + directionInLoop;
     }
     return hand[nextCard];
+}
+
+export function getPieceToSelect(game, keyCode){
+    const board = getBoard(game.get('deck').toJS());
+    const validPieces = getValidPieces(board);
+    const selectedPiece = game.get('selectedPiece');
+    return selectedPiece === -1 ? validPieces[0] : selectedPiece;
 }
 
 export function getCardsToAdd(game) {
