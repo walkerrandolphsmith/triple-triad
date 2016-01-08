@@ -206,8 +206,6 @@ export const aiTurn = () => (dispatch, getState) => {
 };
 
 export const handleUp = () => (dispatch, getState) => {
-    console.log("UP");
-
     const state = getState();
 
     if(state.game.get('phase') === 'pieceSelection'){
@@ -218,8 +216,6 @@ export const handleUp = () => (dispatch, getState) => {
 };
 
 export const handleDown = () => (dispatch, getState) => {
-    console.log("DOWN");
-
     const state = getState();
 
     if(state.game.get('phase') === 'pieceSelection'){
@@ -249,8 +245,6 @@ export const handleEnter = () => (dispatch, getState) => {
 };
 
 export const handleEscape = () => (dispatch, getState) => {
-    console.log("ESC");
-
     const state = getState();
 
     if(state.game.get('phase') === 'pieceSelection'){
