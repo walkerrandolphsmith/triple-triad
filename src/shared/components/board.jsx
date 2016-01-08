@@ -10,7 +10,7 @@ export default class Board extends React.Component {
 
     render() {
 
-        let {validPieces, cardIsPlayable, board} = this.props;
+        let {validPieces, selectedPiece, board} = this.props;
 
         let boardStyle = {
             display: 'flex',
@@ -42,9 +42,9 @@ export default class Board extends React.Component {
                 clickHandler: function(){}
             };
 
-            if(cardIsPlayable && _.contains(validPieces, i)){
-                piece.style.cursor = 'pointer';
+            if(_.contains(validPieces, i)){
                 piece.clickHandler = this.click.bind(this, i);
+                piece.style.cursor = 'pointer';
             }
             pieces.push(piece);
         }
