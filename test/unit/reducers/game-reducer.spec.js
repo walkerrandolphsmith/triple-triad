@@ -12,13 +12,32 @@ describe("Game reducer", () => {
         initialState = fromJS({
             deck: deck,
             selectedCard: -1,
-            selectedPiece: -1
+            selectedPiece: -1,
+            phase: 'cardSelection'
         });
     });
 
     describe("Given no state", () => {
         it('should return the initial state', () => {
             expect(reducer(undefined, {})).toEqual(initialState)
+        });
+    });
+
+    describe("Given you update the phase of a round", () => {
+        let newState, phase;
+        beforeEach(() => {
+            phase = 'gamePhase';
+
+            newState = reducer(initialState, {
+                type: types.SET_PHASE,
+                payload: {
+                    phase: phase
+                }
+            });
+        });
+
+        it('should handle SET_PHASE by updating the phase of the round', () => {
+            expect(newState.get('phase')).toEqual(phase);
         });
     });
 

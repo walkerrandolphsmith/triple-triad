@@ -31,6 +31,16 @@ describe('actions', () => {
         expect(actions.resetSettings()).toEqual(expectedAction)
     });
 
+    it('should create an action to set the phase of a round', () => {
+       const expectedAction = {
+           type: types.SET_PHASE,
+           payload: {
+               phase: 'phaseLabel'
+           }
+       };
+       expect(actions.setPhase('phaseLabel')).toEqual(expectedAction);
+    });
+
     it('should create an action to add a card to a owners hand', () => {
         const expectedAction = {
             type: types.ADD_CARD,
