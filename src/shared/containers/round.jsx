@@ -11,22 +11,22 @@ import PlayerHand from './../components/playerHand';
 
 class Round extends React.Component {
     render() {
-        let {game, board, hand, opponentHand, settings, score, validPieces, selectCard, getNextSelectedCard, setCardIsPlayable, playerTakesTurn} = this.props;
-        let showFront = settings.visibleHand;
+        let { game, board, hand, opponentHand, settings, score, validPieces } = this.props;
+        let { selectCard, selectedPieceByClick } = this.props;
 
         return (
             <div id="round" className="container">
                 <div className="row">
                     <div className="col-md-2">
-                        <PlayerHand score={score.blue} cards={hand} selectedCard={game.selectedCard} getNextSelectedCard={getNextSelectedCard} clickAction={selectCard} setCardIsPlayable={setCardIsPlayable} />
+                        <PlayerHand score={score.blue} cards={hand} selectedCard={game.selectedCard} clickAction={selectCard} />
                     </div>
 
                     <div className="col-md-8">
-                        <Board board={board} validPieces={validPieces} cardIsPlayable={game.cardIsPlayable} playerTakesTurn={playerTakesTurn} />
+                        <Board board={board} validPieces={validPieces} selectedPiece={game.selectedPiece} selectedPieceByClick={selectedPieceByClick} />
                     </div>
 
                     <div className="col-md-2">
-                        <Hand score={score.red} cards={opponentHand} showBack={showFront} owner={2} />
+                        <Hand score={score.red} cards={opponentHand} showBack={settings.visibleHand} owner={2} />
                     </div>
                 </div>
             </div>
