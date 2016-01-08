@@ -241,4 +241,12 @@ export const handleEnter = () => (dispatch, getState) => {
 
 export const handleEscape = () => (dispatch, getState) => {
     console.log("ESC");
+
+    const state = getState();
+
+    if(state.game.get('phase') === 'pieceSelection'){
+        dispatch(setPhase('cardSelection'));
+    }else{
+
+    }
 };
