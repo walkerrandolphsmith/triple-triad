@@ -6,7 +6,6 @@ import * as types from './../constants/action-types';
 const INITIAL_STATE = new fromJS({
   deck: deck,
   selectedCard: -1,
-  cardIsPlayable: false
 });
 
 export default function reducer(state = INITIAL_STATE, action) {
@@ -16,7 +15,6 @@ export default function reducer(state = INITIAL_STATE, action) {
   switch(type){
     case types.ADD_CARD: return addCard(state, payload);
     case types.SELECT_CARD: return selectCard(state, payload);
-    case types.CARD_IS_PLAYABLE: return setCardIsPlayable(state, payload);
     case types.SELECT_PIECE: return selectPiece(state, payload);
     case types.UPDATE_BOARD: return updateBoard(state, payload);
     case types.START_AI_TURN: return startAITurn(state);
@@ -45,8 +43,6 @@ function selectCard(state, payload){
     return state.set('selectedCard', payload.id);
 }
 
-function setCardIsPlayable(state, payload){
-    return state.set('cardIsPlayable', payload.isPlayable);
 }
 
 function selectPiece(state, payload) {
