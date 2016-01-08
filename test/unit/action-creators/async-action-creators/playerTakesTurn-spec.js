@@ -43,10 +43,6 @@ describe('PLAYER_TAKES_TURN async action creator', () => {
             expect(dispatch).toHaveBeenCalledWith(getNextSelectedCard())
         });
 
-        it('should dispatch SET_CARD_IS_PLAYABLE async action with a payload of isPlayable false', () => {
-            playerTakesTurn(selectedPiece, isPlayer)(dispatch, getState);
-            expect(dispatch).toHaveBeenCalledWith(setCardIsPlayable(false))
-        });
     });
 
     describe('Given it is the opponent', () => {

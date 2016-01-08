@@ -12,7 +12,6 @@ describe("Game reducer", () => {
         initialState = fromJS({
             deck: deck,
             selectedCard: -1,
-            cardIsPlayable: false
         });
     });
 

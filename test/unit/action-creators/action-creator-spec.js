@@ -74,26 +74,6 @@ describe('actions', () => {
         expect(actions.selectCard(0)).toEqual(expectedAction)
     });
 
-    it('should create an action to indicate a card is ready to be placed on the board', () => {
-        const expectedAction = {
-            type: types.CARD_IS_PLAYABLE,
-            payload: {
-                isPlayable: true
-            }
-        };
-        expect(actions.setCardIsPlayable(true)).toEqual(expectedAction)
-    });
-
-    it('should create an action to indicate a card is not ready to be placed on the board', () => {
-        const expectedAction = {
-            type: types.CARD_IS_PLAYABLE,
-            payload: {
-                isPlayable: false
-            }
-        };
-        expect(actions.setCardIsPlayable(false)).toEqual(expectedAction)
-    });
-
     it('should create an action to select a piece on the board', () => {
         const expectedAction = {
             type: types.SELECT_PIECE,
