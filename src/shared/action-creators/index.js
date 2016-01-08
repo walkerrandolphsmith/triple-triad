@@ -190,10 +190,26 @@ export const aiTurn = () => (dispatch, getState) => {
 
 export const handleUp = () => (dispatch, getState) => {
     console.log("UP");
+
+    const state = getState();
+
+    if(state.game.get('phase') === 'pieceSelection'){
+
+    }else{
+        dispatch(getNextSelectedCard(-1));
+    }
 };
 
 export const handleDown = () => (dispatch, getState) => {
     console.log("DOWN");
+
+    const state = getState();
+
+    if(state.game.get('phase') === 'pieceSelection'){
+
+    }else{
+        dispatch(getNextSelectedCard(1));
+    }
 };
 
 export const handleLeft = () => (dispatch, getState) => {
