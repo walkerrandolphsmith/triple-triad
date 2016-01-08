@@ -64,8 +64,10 @@ export default class Board extends React.Component {
                 card = (<Card card={piece.card} cardStyle={cardStyle} clickAction={()=>{}} />);
             }
 
+            let className = `piece ${i === selectedPiece ? 'selected' : ''}`;
+
             return (
-                <div key={i} id={i} className="piece" onClick={piece.clickHandler} style={piece.style}>{card}</div>
+                <div key={i} id={i} className={className} onClick={piece.clickHandler} style={piece.style}>{card}</div>
             )
         });
 

@@ -162,3 +162,19 @@ html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:1
   margin-left: 25px;
   cursor: pointer;
 }
+
+.piece {
+  position: relative;
+}
+
+.piece.selected:after{
+  content: " ";
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  left: -25px;
+  top: 50px;
+  transform: rotate(90deg);
+  background-image: url("../images/pointer.png");
+  background-size: contain;
+}
