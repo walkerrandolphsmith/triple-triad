@@ -45,6 +45,15 @@ export function updateSettings(setting, isChecked) {
     }
 }
 
+export function setPhase(phase) {
+    return {
+        type: types.SET_PHASE,
+        payload: {
+            phase: phase
+        }
+    }
+}
+
 export function selectCard(id) {
     return {
         type: types.SELECT_CARD,
