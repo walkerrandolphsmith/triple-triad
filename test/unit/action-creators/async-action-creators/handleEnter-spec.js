@@ -1,7 +1,7 @@
 import expect from 'expect';
 import { handleEnter } from './../../../../src/shared/action-creators/';
 
-describe('HANDLE_UP async action creator', () => {
+describe('HANDLE_ENTER async action creator', () => {
 
     let getState, dispatch;
     beforeEach(() => {
