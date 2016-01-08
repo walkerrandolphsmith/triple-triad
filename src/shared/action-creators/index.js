@@ -189,5 +189,25 @@ export const aiTurn = () => (dispatch, getState) => {
 };
 
 export const handleUp = () => (dispatch, getState) => {
+    console.log("UP");
+};
 
+export const handleDown = () => (dispatch, getState) => {
+    console.log("DOWN");
+};
+
+export const handleLeft = () => (dispatch, getState) => {
+    console.log("LEFT");
+};
+
+export const handleRight = () => (dispatch, getState) => {
+    console.log("RIGHT");
+};
+
+export const handleEnter = () => (dispatch, getState) => {
+    console.log("ENTER");
+};
+
+export const handleEscape = () => (dispatch, getState) => {
+    console.log("ESC");
 };

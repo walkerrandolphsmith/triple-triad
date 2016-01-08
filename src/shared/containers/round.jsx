@@ -23,10 +23,10 @@ class Round extends React.Component {
         const keyCode = event.which;
 
         switch(keyCode){
-            case KEY_CODE.UP: handleUp(keyCode); break;
-            case KEY_CODE.DOWN: handleDown(keyCode); break;
-            case KEY_CODE.LEFT: handleLeft(keyCode); break;
-            case KEY_CODE.RIGHT: handleRight(keyCode); break;
+            case KEY_CODE.UP: handleUp(); break;
+            case KEY_CODE.DOWN: handleDown(); break;
+            case KEY_CODE.LEFT: handleLeft(); break;
+            case KEY_CODE.RIGHT: handleRight(); break;
             case KEY_CODE.ENTER: handleEnter(); break;
             case KEY_CODE.ESC: handleEscape(); break;
         }
