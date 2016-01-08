@@ -7,24 +7,8 @@ export default class Hand extends React.Component {
         this.props.clickAction(card.id);
     };
 
-    componentDidMount() {
-        const getNextSelectedCard = this.props.getNextSelectedCard;
-        const setCardIsPlayable = this.props.setCardIsPlayable;
-
-        document.addEventListener('keydown', event => {
-           const keyCode = event.which;
-
-           switch(keyCode){
-               case 38: getNextSelectedCard(-1); break;
-               case 40: getNextSelectedCard(1); break;
-               case 13: setCardIsPlayable(true); break;
-               case 27: setCardIsPlayable(false); break;
-           }
-        });
-    }
-
     render() {
-        let { score, cards, focusedCard, selectedCard} = this.props;
+        let { score, cards, selectedCard} = this.props;
 
         let cardsMarkup = cards.map((card, i) => {
             let { name } = card;
