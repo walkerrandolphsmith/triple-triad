@@ -5,7 +5,7 @@ import _ from 'lodash';
 export default class Board extends React.Component {
 
     click(index) {
-        this.props.playerTakesTurn(index, true);
+        this.props.selectedPieceByClick(index);
     };
 
     render() {

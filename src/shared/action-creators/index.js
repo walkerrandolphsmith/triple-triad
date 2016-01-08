@@ -133,6 +133,10 @@ export const getNextSelectedCard = (directionInLoop) => (dispatch, getState) => 
     dispatch(selectCard(card.id));
 };
 
+export const selectedPieceByClick = (index) => (dispatch, getState) => {
+    dispatch(selectPiece(index));
+    dispatch(playerTakesTurn(true));
+};
 
 export const playerTakesTurn = (isPlayer) => (dispatch, getState) => {
     const state = getState();
@@ -183,5 +187,7 @@ export const aiTurn = () => (dispatch, getState) => {
 
     dispatch(endAiTurn());
 };
+
+export const handleUp = () => (dispatch, getState) => {
 
 };
