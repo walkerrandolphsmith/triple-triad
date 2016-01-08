@@ -255,6 +255,7 @@ export const handleEscape = () => (dispatch, getState) => {
 
     if(state.game.get('phase') === 'pieceSelection'){
         dispatch(setPhase('cardSelection'));
+        dispatch(selectPiece(-1));
     }else{
 
     }
