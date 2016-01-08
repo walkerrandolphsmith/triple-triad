@@ -1,6 +1,6 @@
 import expect from 'expect';
 import { Map } from 'immutable';
-import { handleEscape, setPhase } from './../../../../src/shared/action-creators/';
+import { handleEscape, setPhase, selectPiece } from './../../../../src/shared/action-creators/';
 
 describe('HANDLE_ESCAPE async action creator', () => {
 
@@ -28,6 +28,7 @@ describe('HANDLE_ESCAPE async action creator', () => {
         it('should dispatch the SET_PHASE action setting the phase to card selection', () => {
             handleEscape()(dispatch, getState);
             expect(dispatch).toHaveBeenCalledWith(setPhase('cardSelection'))
+            expect(dispatch).toHaveBeenCalledWith(selectPiece(-1))
         });
     });
 
