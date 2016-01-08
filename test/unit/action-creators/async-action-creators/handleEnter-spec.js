@@ -1,6 +1,6 @@
 import expect from 'expect';
 import { Map } from 'immutable';
-import { handleEnter, setPhase } from './../../../../src/shared/action-creators/';
+import { handleEnter, setPhase, getNextSelectedPiece } from './../../../../src/shared/action-creators/';
 
 describe('HANDLE_ENTER async action creator', () => {
 
@@ -28,6 +28,7 @@ describe('HANDLE_ENTER async action creator', () => {
         it('should dispatch the SET_PHASE action setting the phase to pieceSelection', () => {
             handleEnter()(dispatch, getState);
             expect(dispatch).toHaveBeenCalledWith(setPhase('pieceSelection'))
+            expect(dispatch).toHaveBeenCalledWith(getNextSelectedPiece());
         });
     });
 
