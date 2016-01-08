@@ -230,7 +230,13 @@ export const handleRight = () => (dispatch, getState) => {
 };
 
 export const handleEnter = () => (dispatch, getState) => {
-    console.log("ENTER");
+    const state = getState();
+
+    if(state.game.get('phase') === 'cardSelection'){
+        dispatch(setPhase('pieceSelection'));
+    }else{
+
+    }
 };
 
 export const handleEscape = () => (dispatch, getState) => {
