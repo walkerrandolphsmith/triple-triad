@@ -54,16 +54,18 @@ export function selectCard(id) {
     }
 }
 
+export function selectPiece(index) {
     return {
+        type: types.SELECT_PIECE,
         payload: {
+            index: index
         }
     }
 }
 
-
-export function selectPiece(index) {
+export function placeCard(index) {
     return {
-        type: types.SELECT_PIECE,
+        type: types.PLACE_CARD,
         payload: {
             index: index
         }
@@ -131,9 +133,14 @@ export const getNextSelectedCard = (directionInLoop) => (dispatch, getState) => 
     dispatch(selectCard(card.id));
 };
 
-export const playerTakesTurn = (selectedPiece, isPlayer) => (dispatch, getState) => {
-    dispatch(selectPiece(selectedPiece));
-    dispatch(applyFlips(selectedPiece));
+
+export const playerTakesTurn = (isPlayer) => (dispatch, getState) => {
+    const state = getState();
+
+    dispatch(placeCard());
+    dispatch(applyFlips());
+    dispatch(selectCard(-1));
+    dispatch(selectPiece(-1));
 
     if(isPlayer){
         dispatch(aiTurn());
@@ -141,9 +148,10 @@ export const playerTakesTurn = (selectedPiece, isPlayer) => (dispatch, getState)
     }
 };
 
-export const applyFlips = (i) => (dispatch, getState) => {
+export const applyFlips = () => (dispatch, getState) => {
     const state = getState();
 
+    let i = state.game.get('selectedPiece');
     let tuples = sameRule(i, state.game);
 
     tuples.forEach(tuple => {
@@ -167,10 +175,13 @@ export const aiTurn = () => (dispatch, getState) => {
 
     let piece = getValidPiece(state.game);
     if(piece >= 0) {
-        dispatch(playerTakesTurn(piece, false));
+        dispatch(selectPiece(piece));
+        dispatch(playerTakesTurn(false));
     }else{
         dispatch(nextStep());
     }
 
     dispatch(endAiTurn());
+};
+
 };

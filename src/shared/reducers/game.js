@@ -6,6 +6,7 @@ import * as types from './../constants/action-types';
 const INITIAL_STATE = new fromJS({
   deck: deck,
   selectedCard: -1,
+  selectedPiece: -1
 });
 
 export default function reducer(state = INITIAL_STATE, action) {
@@ -16,6 +17,7 @@ export default function reducer(state = INITIAL_STATE, action) {
     case types.ADD_CARD: return addCard(state, payload);
     case types.SELECT_CARD: return selectCard(state, payload);
     case types.SELECT_PIECE: return selectPiece(state, payload);
+    case types.PLACE_CARD: return placeCard(state, payload);
     case types.UPDATE_BOARD: return updateBoard(state, payload);
     case types.START_AI_TURN: return startAITurn(state);
     case types.END_AI_TURN: return endAiTurn(state);
@@ -43,20 +45,22 @@ function selectCard(state, payload){
     return state.set('selectedCard', payload.id);
 }
 
+function selectPiece(state, payload){
+    return state.set('selectedPiece', payload.index);
 }
 
-function selectPiece(state, payload) {
+function placeCard(state, payload) {
     let deck = state.get('deck');
 
     deck = deck.update(
         deck.findIndex(
             card => card.get('id') === state.get('selectedCard')
         ),
-        card => card.set('boardIndex', payload.index)
+        card => card.set('boardIndex', state.get('selectedPiece'))
     );
 
-    state = state.set('deck', deck);
-    return state.set('selectedCard', -1);
+    return state.set('deck', deck);
+
 }
 
 function updateBoard(state, payload) {
