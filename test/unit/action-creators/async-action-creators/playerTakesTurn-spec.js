@@ -1,5 +1,5 @@
 import expect from 'expect';
-import {playerTakesTurn, applyFlips, aiTurn, getNextSelectedCard, setCardIsPlayable} from './../../../../src/shared/action-creators/';
+import {playerTakesTurn, placeCard, applyFlips, aiTurn, getNextSelectedCard} from './../../../../src/shared/action-creators/';
 
 
 describe('PLAYER_TAKES_TURN async action creator', () => {
@@ -23,9 +23,9 @@ describe('PLAYER_TAKES_TURN async action creator', () => {
             isPlayer = true;
         });
 
-        it('should dispatch SELECT_PIECE action', () => {
+        it('should dispatch PLACE_CARD action', () => {
             playerTakesTurn(selectedPiece, isPlayer)(dispatch, getState);
-            expect(dispatch).toHaveBeenCalledWith({type: 'SelectPiece', payload: {index: selectedPiece}})
+            expect(dispatch).toHaveBeenCalledWith(placeCard())
         });
 
         it('should dispatch RULE async action', () => {
@@ -42,7 +42,6 @@ describe('PLAYER_TAKES_TURN async action creator', () => {
             playerTakesTurn(selectedPiece, isPlayer)(dispatch, getState);
             expect(dispatch).toHaveBeenCalledWith(getNextSelectedCard())
         });
-
     });
 
     describe('Given it is the opponent', () => {
@@ -52,9 +51,9 @@ describe('PLAYER_TAKES_TURN async action creator', () => {
             isPlayer = false;
         });
 
-        it('should dispatch SELECT_PIECE action', () => {
+        it('should dispatch PLACE_CARD action', () => {
             playerTakesTurn(selectedPiece, isPlayer)(dispatch, getState);
-            expect(dispatch).toHaveBeenCalledWith({type: 'SelectPiece', payload: {index: selectedPiece}})
+            expect(dispatch).toHaveBeenCalledWith(placeCard())
         });
 
         it('should dispatch RULE async action', () => {

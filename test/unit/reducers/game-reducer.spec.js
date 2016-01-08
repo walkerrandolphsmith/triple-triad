@@ -12,6 +12,7 @@ describe("Game reducer", () => {
         initialState = fromJS({
             deck: deck,
             selectedCard: -1,
+            selectedPiece: -1
         });
     });
 
@@ -62,12 +63,9 @@ describe("Game reducer", () => {
 
     describe("Selecting a piece by the player", () => {
 
-        let index, selectedCard, newState;
+        let index, newState;
         beforeEach(() => {
             index = 0;
-            selectedCard = 0;
-
-            initialState = initialState.set('selectedCard', selectedCard);
 
             newState = reducer(initialState, {
                 type: types.SELECT_PIECE,
@@ -78,7 +76,7 @@ describe("Game reducer", () => {
         });
 
         it('should handle SELECT_PIECE', () => {
-            expect(newState.get('deck').get(index).get('boardIndex')).toEqual(selectedCard);
+            expect(newState.get('selectedPiece')).toEqual(index);
         });
     });
 
