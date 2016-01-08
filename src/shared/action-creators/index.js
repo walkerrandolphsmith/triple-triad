@@ -124,8 +124,8 @@ export const setHands = () => (dispatch, getState) => {
 export const setHand = (owner) => (dispatch, getState) => {
     const state = getState();
     let randomHand = getCardsToAdd(state.game);
-    randomHand.forEach(id => {
-        dispatch(addCard(id, owner))
+    randomHand.forEach(card => {
+        dispatch(addCard(card.id, owner))
     });
 };
 

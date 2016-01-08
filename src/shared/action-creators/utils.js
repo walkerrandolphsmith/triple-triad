@@ -36,8 +36,7 @@ export function getPieceToSelect(game, keyCode){
 export function getCardsToAdd(game) {
     let deck = getAvailableDeck(game.get('deck').toJS(), 1);
     let unOwnedCards = deck.filter(card => card.owner === 0);
-    let cards = _.sample(unOwnedCards, 5);
-    return cards.map(card => card.id);
+    return _.sample(unOwnedCards, 5);
 }
 
 export function selectCardForOpponent(game){
