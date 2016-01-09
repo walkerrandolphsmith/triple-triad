@@ -7,23 +7,15 @@ import { getValidPieces } from './../selectors/validPiecesSelector';
 import KEY_CODE from './../constants/keyCodes';
 
 export function getCardToSelect(game, directionInLoop){
+
     const hand = getHand(game.get('deck').toJS(), 1);
+    const id = game.get('selectedCard');
 
-    if(game.get('selectedCard') === -1){
-        return hand[0]
-    }
+    if(id === -1) return hand[0];
 
-    const selectedCardIndex = hand.findIndex(card => card.id === game.get('selectedCard'));
+    const i = hand.findIndex(card => card.id === id);
 
-    let nextCard;
-    if(selectedCardIndex === hand.length - 1 && directionInLoop === 1){
-        nextCard = 0;
-    }else if(selectedCardIndex === 0 && directionInLoop === -1){
-        nextCard = hand.length - 1;
-    }else{
-        nextCard = selectedCardIndex + directionInLoop;
-    }
-    return hand[nextCard];
+    return hand[(i + directionInLoop) % hand.length];
 }
 
 export function getPieceToSelect(game, keyCode){
