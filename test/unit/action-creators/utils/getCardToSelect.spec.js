@@ -46,13 +46,30 @@ describe('getCardToSelect utility', () => {
             });
         });
 
-        it('should return the first card in the hand', () => {
+        it('should return the next card in the hand', () => {
             expect(getCardToSelect(game, 1)).toEqual(deck[1]);
         });
 
     });
 
     describe('Given a card has previously been selected and the direction in loop is 4', () => {
+
+        let game, selectedCard;
+        beforeEach(() => {
+            selectedCard = deck[1].id;
+            game = new Map({
+                deck: new List(deck),
+                selectedCard: selectedCard
+            });
+        });
+
+        it('should return the previous card in the hand', () => {
+            expect(getCardToSelect(game, 4)).toEqual(deck[0]);
+        });
+
+    });
+
+    describe('Given previously selected card is the first one in the hand and the direction in loop is 4', () => {
 
         let game, selectedCard;
         beforeEach(() => {
@@ -63,8 +80,25 @@ describe('getCardToSelect utility', () => {
             });
         });
 
-        it('should return the first card in the hand', () => {
+        it('should return the last card in the hand', () => {
             expect(getCardToSelect(game, 4)).toEqual(deck[4]);
+        });
+
+    });
+
+    describe('Given previously selected card is the last one in the hand and the direction in loop is 1', () => {
+
+        let game, selectedCard;
+        beforeEach(() => {
+            selectedCard = deck[4].id;
+            game = new Map({
+                deck: new List(deck),
+                selectedCard: selectedCard
+            });
+        });
+
+        it('should return the last card in the hand', () => {
+            expect(getCardToSelect(game, 1)).toEqual(deck[0]);
         });
 
     });
