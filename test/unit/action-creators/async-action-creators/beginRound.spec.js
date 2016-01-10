@@ -22,7 +22,4 @@ describe('BEGIN_ROUND async action creator', () => {
         beginRound()(dispatch, getState);
         expect(dispatch).toHaveBeenCalledWith({type: 'NextStep' })
     });
-
-
-
 });
