@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { getValidPiece } from './../../../../src/shared/action-creators/utils';
+import { getValidPiece } from './../../../../src/shared/action-creators/utils/utils';
 
 describe('getValidPiece utility', () => {
 

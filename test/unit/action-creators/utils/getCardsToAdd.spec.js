@@ -1,6 +1,6 @@
 import expect from 'expect';
 import { Map, List } from 'immutable';
-import { getCardsToAdd } from './../../../../src/shared/action-creators/utils';
+import { getCardsToAdd } from './../../../../src/shared/action-creators/utils/utils';
 
 describe('getCardsToAdd utility', () => {
 

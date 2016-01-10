@@ -1,10 +1,10 @@
 import _ from 'lodash';
 import { toJS, fromJS } from 'immutable';
-import { getBoard } from './../selectors/boardSelector';
-import { getHand } from './../selectors/handSelector';
-import { getAvailableDeck } from './../selectors/availableDeckSelector';
-import { getValidPieces } from './../selectors/validPiecesSelector';
-import KEY_CODE from './../constants/keyCodes';
+import { getBoard } from './../../selectors/boardSelector';
+import { getHand } from './../../selectors/handSelector';
+import { getAvailableDeck } from './../../selectors/availableDeckSelector';
+import { getValidPieces } from './../../selectors/validPiecesSelector';
+import KEY_CODE from './../../constants/keyCodes';
 
 export function getCardToSelect(game, directionInLoop){
 

@@ -1,6 +1,6 @@
 import expect from 'expect';
 import { fromJS, Map, List } from 'immutable';
-import {sameRule} from './../../../../src/shared/action-creators/utils';
+import {sameRule} from './../../../../src/shared/action-creators/utils/utils';
 
 describe('SAME_RULE async action creator', () => {
 

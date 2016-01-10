@@ -1,5 +1,5 @@
 import * as types from './../constants/action-types';
-import { getCardsToAdd, selectCardForOpponent, getValidPiece, applyFlipRules, getCardToSelect, getPieceToSelect } from './utils';
+import { getCardsToAdd, selectCardForOpponent, getValidPiece, applyFlipRules, getCardToSelect, getPieceToSelect } from './utils/utils';
 
 export function nextStep() {
     return {
@@ -200,6 +200,7 @@ export const aiTurn = () => (dispatch, getState) => {
 };
 
 export const handleUp = () => (dispatch, getState) => {
+    console.log('UP');
     const state = getState();
 
     if(state.game.get('phase') === 'pieceSelection'){

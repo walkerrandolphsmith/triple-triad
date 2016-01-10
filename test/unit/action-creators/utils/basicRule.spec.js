@@ -1,6 +1,6 @@
 import expect from 'expect';
 import { fromJS, Map, List } from 'immutable';
-import {basicRule} from './../../../../src/shared/action-creators/utils';
+import {basicRule} from './../../../../src/shared/action-creators/utils/utils';
 
 describe('BASIC RULE utility', () => {
 
