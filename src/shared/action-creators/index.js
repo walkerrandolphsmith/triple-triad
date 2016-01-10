@@ -7,6 +7,16 @@ export function nextStep() {
     }
 }
 
+export function updateSettings(setting, isChecked) {
+    return {
+        type: types.UPDATE_SETTINGS,
+        payload: {
+            setting: setting,
+            isChecked: isChecked
+        }
+    }
+}
+
 export function resetStep() {
     return {
         type: types.RESET_STEP
@@ -31,16 +41,6 @@ export function addCard(id, owner) {
         payload: {
             id: id,
             owner: owner
-        }
-    }
-}
-
-export function updateSettings(setting, isChecked) {
-    return {
-        type: types.UPDATE_SETTINGS,
-        payload: {
-            setting: setting,
-            isChecked: isChecked
         }
     }
 }
