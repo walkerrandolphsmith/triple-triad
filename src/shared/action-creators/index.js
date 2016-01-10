@@ -1,5 +1,5 @@
 import * as types from './../constants/action-types';
-import { getCardsToAdd, selectCardForOpponent, getValidPiece, basicRule, sameRule, getCardToSelect, getPieceToSelect } from './utils';
+import { getCardsToAdd, selectCardForOpponent, getValidPiece, applyFlipRules, getCardToSelect, getPieceToSelect } from './utils';
 
 export function nextStep() {
     return {
@@ -172,14 +172,8 @@ export const playerTakesTurn = (isPlayer) => (dispatch, getState) => {
 export const applyFlips = () => (dispatch, getState) => {
     const state = getState();
 
-    let i = state.game.get('selectedPiece');
-    let tuples = sameRule(i, state.game);
-
-    tuples.forEach(tuple => {
-        dispatch(updateBoard(tuple.index, tuple.owner));
-    });
-
-    tuples = basicRule(i, state.game);
+    const i = state.game.get('selectedPiece');
+    const tuples = applyFlipRules(i, state.game);
 
     tuples.forEach(tuple => {
         dispatch(updateBoard(tuple.index, tuple.owner));

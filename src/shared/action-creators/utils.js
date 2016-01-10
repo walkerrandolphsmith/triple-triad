@@ -43,6 +43,12 @@ export function getValidPiece(game){
     return validPieces.length > 0 ? _.sample(validPieces) : -1;
 }
 
+export function applyFlipRules(i, game){
+    const basic = basicRule(i, game);
+    const same = sameRule(i, game);
+    return _.union(basic, same);
+}
+
 export function basicRule(i, game){
     const board = fromJS(getBoard(game.get('deck').toJS()));
     
