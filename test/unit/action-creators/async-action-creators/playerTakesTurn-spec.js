@@ -5,15 +5,13 @@ import {playerTakesTurn, placeCard, applyFlips, aiTurn, getNextSelectedCard} fro
 describe('PLAYER_TAKES_TURN async action creator', () => {
 
     let getState, dispatch;
-    let selectedPiece;
     beforeEach(() => {
-        selectedPiece = 1;
         getState = () => ({});
         dispatch = expect.createSpy();
     });
 
    it('should be a function', () => {
-       expect(playerTakesTurn(selectedPiece, false)).toBeA('function');
+       expect(playerTakesTurn(false)).toBeA('function');
    });
 
     describe('Given it is not the opponent', () => {
@@ -24,22 +22,32 @@ describe('PLAYER_TAKES_TURN async action creator', () => {
         });
 
         it('should dispatch PLACE_CARD action', () => {
-            playerTakesTurn(selectedPiece, isPlayer)(dispatch, getState);
+            playerTakesTurn(isPlayer)(dispatch, getState);
             expect(dispatch).toHaveBeenCalledWith(placeCard())
         });
 
         it('should dispatch RULE async action', () => {
-            playerTakesTurn(selectedPiece, isPlayer)(dispatch, getState);
-            expect(dispatch).toHaveBeenCalledWith(applyFlips(selectedPiece))
+            playerTakesTurn(isPlayer)(dispatch, getState);
+            expect(dispatch).toHaveBeenCalledWith(applyFlips())
+        });
+
+        it('should dispatch RULE async action', () => {
+            playerTakesTurn(isPlayer)(dispatch, getState);
+            expect(dispatch).toHaveBeenCalledWith({type: 'SelectCard', payload: {id: -1}})
+        });
+
+        it('should dispatch RULE async action', () => {
+            playerTakesTurn(isPlayer)(dispatch, getState);
+            expect(dispatch).toHaveBeenCalledWith({type: 'SelectPiece', payload: {index: -1}})
         });
 
         it('should dispatch AI_TURN async action', () => {
-            playerTakesTurn(selectedPiece, isPlayer)(dispatch, getState);
+            playerTakesTurn(isPlayer)(dispatch, getState);
             expect(dispatch).toHaveBeenCalledWith(aiTurn())
         });
 
         it('should dispatch GET_NEXT_SLECTED_CARD async action', () => {
-            playerTakesTurn(selectedPiece, isPlayer)(dispatch, getState);
+            playerTakesTurn(isPlayer)(dispatch, getState);
             expect(dispatch).toHaveBeenCalledWith(getNextSelectedCard())
         });
     });
@@ -52,14 +60,25 @@ describe('PLAYER_TAKES_TURN async action creator', () => {
         });
 
         it('should dispatch PLACE_CARD action', () => {
-            playerTakesTurn(selectedPiece, isPlayer)(dispatch, getState);
+            playerTakesTurn(isPlayer)(dispatch, getState);
             expect(dispatch).toHaveBeenCalledWith(placeCard())
         });
 
         it('should dispatch RULE async action', () => {
-            playerTakesTurn(selectedPiece, isPlayer)(dispatch, getState);
-            expect(dispatch).toHaveBeenCalledWith(applyFlips(selectedPiece))
+            playerTakesTurn(isPlayer)(dispatch, getState);
+            expect(dispatch).toHaveBeenCalledWith(applyFlips())
         });
+
+        it('should dispatch RULE async action', () => {
+            playerTakesTurn(isPlayer)(dispatch, getState);
+            expect(dispatch).toHaveBeenCalledWith({type: 'SelectCard', payload: {id: -1}})
+        });
+
+        it('should dispatch RULE async action', () => {
+            playerTakesTurn(isPlayer)(dispatch, getState);
+            expect(dispatch).toHaveBeenCalledWith({type: 'SelectPiece', payload: {index: -1}})
+        });
+
     });
 
 });
