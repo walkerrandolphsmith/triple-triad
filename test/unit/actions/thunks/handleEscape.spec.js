@@ -1,7 +1,7 @@
 import expect from 'expect';
 import { Map } from 'immutable';
-import { setPhase, selectPiece } from './../../../../src/shared/actions/action-creators/';
-import { handleEscape } from './../../../../src/shared/actions/thunks/handleEscape';
+import HandleEscape from './../../../../src/shared/actions/thunks/handleEscape';
+import { handleEscape, __RewireAPI__ as handleEscapeRewireAPI } from './../../../../src/shared/actions/thunks/handleEscape';
 
 describe('HANDLE_ESCAPE async action creator', () => {
 
@@ -26,10 +26,20 @@ describe('HANDLE_ESCAPE async action creator', () => {
             });
         });
 
-        it('should dispatch the SET_PHASE action setting the phase to card selection', () => {
+        it('should dispatch the SET_PHASE action', () => {
+            HandleEscape.__Rewire__('setPhase', function(){
+                return 1;
+            });
             handleEscape()(dispatch, getState);
-            expect(dispatch).toHaveBeenCalledWith(setPhase('cardSelection'))
-            expect(dispatch).toHaveBeenCalledWith(selectPiece(-1))
+            expect(dispatch).toHaveBeenCalledWith(1)
+        });
+
+        it('should dispatch the SELECT_PIECE action', () => {
+            HandleEscape.__Rewire__('selectPiece', function(){
+                return 2;
+            });
+            handleEscape()(dispatch, getState);
+            expect(dispatch).toHaveBeenCalledWith(2)
         });
     });
 
