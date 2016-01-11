@@ -1,8 +1,7 @@
 import expect from 'expect';
 import { fromJS } from 'immutable';
-import { setHands } from './../../../../src/shared/actions/thunks/setHands';
-import { setHand } from './../../../../src/shared/actions/thunks/setHand';
-import { beginRound } from './../../../../src/shared/actions/thunks/beginRound';
+import SetHands from './../../../../src/shared/actions/thunks/setHands';
+import { setHands, __RewireAPI__ as setHandsRewireAPI } from './../../../../src/shared/actions/thunks/setHands';
 
 describe('SET_HANDS async action creator', () => {
 
@@ -28,8 +27,11 @@ describe('SET_HANDS async action creator', () => {
         });
 
         it('should dispatch SET_HAND action', () => {
+            SetHands.__Rewire__('setHand', function(){
+                return 1;
+            });
             setHands()(dispatch, getState);
-            expect(dispatch).toHaveBeenCalledWith(setHand(opponent))
+            expect(dispatch).toHaveBeenCalledWith(1)
         });
 
     });
@@ -45,18 +47,19 @@ describe('SET_HANDS async action creator', () => {
         });
 
         it('should dispatch SET_HAND action given the player in the payload', () => {
+            SetHands.__Rewire__('setHand', function(){
+                return 1;
+            });
             setHands()(dispatch, getState);
-            expect(dispatch).toHaveBeenCalledWith(setHand(player))
-        });
-
-        it('should dispatch SET_HAND action given the opponent in the payload', () => {
-            setHands()(dispatch, getState);
-            expect(dispatch).toHaveBeenCalledWith(setHand(player))
+            expect(dispatch).toHaveBeenCalledWith(1)
         });
 
         it('should dispatch BEGIN_ROUND', () => {
+            SetHands.__Rewire__('beginRound', function(){
+                return 2;
+            });
             setHands()(dispatch, getState);
-            expect(dispatch).toHaveBeenCalledWith(beginRound())
+            expect(dispatch).toHaveBeenCalledWith(2)
         });
 
     });
