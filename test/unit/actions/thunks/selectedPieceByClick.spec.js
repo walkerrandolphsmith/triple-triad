@@ -1,7 +1,6 @@
 import expect from 'expect';
-import { setPhase } from './../../../../src/shared/actions/action-creators';
-import { playerTakesTurn } from './../../../../src/shared/actions/thunks/playerTakesTurn';
-import { selectedPieceByClick } from './../../../../src/shared/actions/thunks/selectedPieceByClick';
+import SelectedPieceByClick from './../../../../src/shared/actions/thunks/selectedPieceByClick';
+import { selectedPieceByClick, __RewireAPI__ as selectedPieceByClickRewireAPI } from './../../../../src/shared/actions/thunks/selectedPieceByClick';
 
 describe('SELECTED_PIECE_BY_CLICK async action creator', () => {
 
@@ -17,22 +16,26 @@ describe('SELECTED_PIECE_BY_CLICK async action creator', () => {
     });
 
     it('should dispatch getNextSelectedCard action', () => {
+        SelectedPieceByClick.__Rewire__('selectPiece', function(){
+            return 1;
+        });
         selectedPieceByClick(index)(dispatch, getState);
-        expect(dispatch).toHaveBeenCalledWith({
-            type: 'SelectPiece',
-            payload: {
-                index: index
-            }
-        })
+        expect(dispatch).toHaveBeenCalledWith(1)
     });
 
     it('should dispatch PLayerTakesTurn action', () => {
+        SelectedPieceByClick.__Rewire__('playerTakesTurn', function(){
+            return 2;
+        });
         selectedPieceByClick(index)(dispatch, getState);
-        expect(dispatch).toHaveBeenCalledWith(playerTakesTurn())
+        expect(dispatch).toHaveBeenCalledWith(2)
     });
 
     it('should dispatch SET_PHASE action', () => {
+        SelectedPieceByClick.__Rewire__('setPhase', function(){
+            return 3;
+        });
         selectedPieceByClick(index)(dispatch, getState);
-        expect(dispatch).toHaveBeenCalledWith(setPhase('cardSelection'))
+        expect(dispatch).toHaveBeenCalledWith(3)
     });
 });
