@@ -1,9 +1,7 @@
 import expect from 'expect';
 import { Map } from 'immutable';
-import { setPhase, selectPiece } from './../../../../src/shared/actions/action-creators/';
-import { handleEnter } from './../../../../src/shared/actions/thunks/handleEnter';
-import { getNextSelectedPiece } from './../../../../src/shared/actions/thunks/getNextSelectedPiece';
-import { playerTakesTurn } from './../../../../src/shared/actions/thunks/playerTakesTurn';
+import HandleEnter from './../../../../src/shared/actions/thunks/handleEnter';
+import { handleEnter, __RewireAPI__ as handleEnterRewireAPI } from './../../../../src/shared/actions/thunks/handleEnter';
 
 describe('HANDLE_ENTER async action creator', () => {
 
@@ -29,13 +27,20 @@ describe('HANDLE_ENTER async action creator', () => {
         });
 
         it('should dispatch the SET_PHASE action setting the phase to pieceSelection', () => {
+            HandleEnter.__Rewire__('setPhase', function(){
+                return 1;
+            });
             handleEnter()(dispatch, getState);
-            expect(dispatch).toHaveBeenCalledWith(setPhase('pieceSelection'))
+            expect(dispatch).toHaveBeenCalledWith(1)
+
         });
 
         it('should dispatch the getNextSelectedPiece action to set the board with a selected piece', () => {
+            HandleEnter.__Rewire__('getNextSelectedPiece', function(){
+                return 2;
+            });
             handleEnter()(dispatch, getState);
-            expect(dispatch).toHaveBeenCalledWith(getNextSelectedPiece());
+            expect(dispatch).toHaveBeenCalledWith(2);
         });
     });
 
@@ -52,13 +57,19 @@ describe('HANDLE_ENTER async action creator', () => {
         });
 
         it('should dispatch the PlayerTakesTurn action', () => {
+            HandleEnter.__Rewire__('playerTakesTurn', function(){
+                return 3;
+            });
             handleEnter()(dispatch, getState);
-            expect(dispatch).toHaveBeenCalledWith(playerTakesTurn(true));
+            expect(dispatch).toHaveBeenCalledWith(3);
         });
 
         it('should dispatch the SET_PHASE action setting the phase to cardSelection', () => {
+            HandleEnter.__Rewire__('setPhase', function(){
+                return 4;
+            });
             handleEnter()(dispatch, getState);
-            expect(dispatch).toHaveBeenCalledWith(setPhase('cardSelection'))
+            expect(dispatch).toHaveBeenCalledWith(4)
         });
     });
 
