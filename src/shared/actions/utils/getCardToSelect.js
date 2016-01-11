@@ -8,6 +8,7 @@ export function getCardToSelect(game, directionInLoop){
     if(id === -1) return hand[0];
 
     const i = hand.findIndex(card => card.id === id);
+    const amountToIncrement = directionInLoop === 'down' ? 1 : hand.length - 1;
 
-    return hand[(i + directionInLoop) % hand.length];
+    return hand[(i + amountToIncrement) % hand.length];
 }

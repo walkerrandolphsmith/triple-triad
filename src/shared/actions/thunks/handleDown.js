@@ -6,6 +6,6 @@ export const handleDown = () => (dispatch, getState) => {
     if(state.game.get('phase') === 'pieceSelection'){
 
     }else{
-        dispatch(getNextSelectedCard(1));
+        dispatch(getNextSelectedCard('down'));
     }
 };
