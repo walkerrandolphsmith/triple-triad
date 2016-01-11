@@ -1,8 +1,7 @@
 import expect from 'expect';
 import { Map } from 'immutable';
-import { handleUp } from './../../../../src/shared/actions/thunks/handleUp';
-import { getNextSelectedCard } from './../../../../src/shared/actions/thunks/getNextSelectedCard';
-
+import HandleUp from './../../../../src/shared/actions/thunks/handleUp';
+import { handleUp, __RewireAPI__ as handleUpRewireAPI } from './../../../../src/shared/actions/thunks/handleUp';
 
 describe('HANDLE_UP async action creator', () => {
 
@@ -27,9 +26,12 @@ describe('HANDLE_UP async action creator', () => {
             });
         });
 
-        it('should dispatch the getNextSelectedCard action', () => {
+        it('should dispatch the GET_NEXT_SELECTED_CARD action', () => {
+            HandleUp.__Rewire__('getNextSelectedCard', function(){
+                return 1;
+            });
             handleUp()(dispatch, getState);
-            expect(dispatch).toHaveBeenCalledWith(getNextSelectedCard(-1))
+            expect(dispatch).toHaveBeenCalledWith(1)
         });
     });
 
