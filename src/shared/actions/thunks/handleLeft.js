@@ -1,3 +1,11 @@
+import { getNextSelectedPiece } from './getNextSelectedPiece';
+
 export const handleLeft = () => (dispatch, getState) => {
-    console.log("LEFT");
+    const state = getState();
+
+    if(state.game.get('phase') === 'pieceSelection'){
+        dispatch(getNextSelectedPiece('left'));
+    }else{
+
+    }
 };
