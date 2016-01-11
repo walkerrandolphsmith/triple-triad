@@ -1,4 +1,5 @@
 import expect from 'expect';
+import { setPhase } from './../../../../src/shared/actions/action-creators';
 import { playerTakesTurn } from './../../../../src/shared/actions/thunks/playerTakesTurn';
 import { selectedPieceByClick } from './../../../../src/shared/actions/thunks/selectedPieceByClick';
 
@@ -25,8 +26,13 @@ describe('SELECTED_PIECE_BY_CLICK async action creator', () => {
         })
     });
 
-    it('should dispatch NEXT_STEP action', () => {
+    it('should dispatch PLayerTakesTurn action', () => {
         selectedPieceByClick(index)(dispatch, getState);
         expect(dispatch).toHaveBeenCalledWith(playerTakesTurn())
+    });
+
+    it('should dispatch SET_PHASE action', () => {
+        selectedPieceByClick(index)(dispatch, getState);
+        expect(dispatch).toHaveBeenCalledWith(setPhase('cardSelection'))
     });
 });
