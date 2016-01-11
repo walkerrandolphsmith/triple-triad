@@ -10,7 +10,10 @@ describe('UPDATE_ROUTE async action creator', () => {
         getState = () => ({
             settings: new Map({
                 randomHand: false
-            })
+            }),
+            routing: {
+                path: '/'
+            }
         });
         dispatch = expect.createSpy();
     });
@@ -23,18 +26,29 @@ describe('UPDATE_ROUTE async action creator', () => {
         UpdateRoute.__Rewire__('pushPath', function(){
             return 0;
         });
-        updateRoute('round')(dispatch, getState);
+        updateRoute()(dispatch, getState);
         expect(dispatch).toHaveBeenCalledWith(0)
     });
 
     describe('given the game is over and you play again', () => {
-        let currentRoute = "game-over";
+        let getState, dispatch;
+        beforeEach(() => {
+            getState = () => ({
+                settings: new Map({
+                    randomHand: false
+                }),
+                routing: {
+                    path: '/game-over'
+                }
+            });
+            dispatch = expect.createSpy();
+        });
 
         it('should dispatch newGame action', () => {
             UpdateRoute.__Rewire__('newGame', function(){
                 return 1;
             });
-            updateRoute(currentRoute)(dispatch, getState);
+            updateRoute()(dispatch, getState);
             expect(dispatch).toHaveBeenCalledWith(1)
         });
     });
