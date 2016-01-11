@@ -47,7 +47,7 @@ describe('getCardToSelect utility', () => {
         });
 
         it('should return the next card in the hand', () => {
-            expect(getCardToSelect(game, 1)).toEqual(deck[1]);
+            expect(getCardToSelect(game, 'down')).toEqual(deck[1]);
         });
 
     });
@@ -64,7 +64,7 @@ describe('getCardToSelect utility', () => {
         });
 
         it('should return the previous card in the hand', () => {
-            expect(getCardToSelect(game, 4)).toEqual(deck[0]);
+            expect(getCardToSelect(game, 'up')).toEqual(deck[0]);
         });
 
     });
@@ -81,7 +81,7 @@ describe('getCardToSelect utility', () => {
         });
 
         it('should return the last card in the hand', () => {
-            expect(getCardToSelect(game, 4)).toEqual(deck[4]);
+            expect(getCardToSelect(game, 'up')).toEqual(deck[4]);
         });
 
     });
@@ -98,7 +98,7 @@ describe('getCardToSelect utility', () => {
         });
 
         it('should return the last card in the hand', () => {
-            expect(getCardToSelect(game, 1)).toEqual(deck[0]);
+            expect(getCardToSelect(game, 'down')).toEqual(deck[0]);
         });
 
     });
