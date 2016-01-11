@@ -1,6 +1,8 @@
 import { applyMiddleware, createStore, compose } from 'redux'
 import thunk from 'redux-thunk';
-import rootReducer from '../reducers'
+import reducers from '../reducers'
+import { routeReducer } from 'redux-simple-router';
+import { combineReducers } from 'redux';
 import DevTools from './../../dev-tools/devTools';
 
 let createStoreWithMiddleware;
@@ -15,6 +17,11 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 export default function configureStore(initialState) {
+
+  const rootReducer = combineReducers(Object.assign({}, reducers, {
+      routing: routeReducer
+  }));
+
   const store = createStoreWithMiddleware(rootReducer, initialState);
 
   if (module.hot) {

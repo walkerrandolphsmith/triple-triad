@@ -14,3 +14,4 @@ export { playerTakesTurn } from './playerTakesTurn';
 export { selectedPieceByClick } from './selectedPieceByClick';
 export { setHand } from './setHand';
 export { setHands } from './setHands';
+export { updateRoute } from './updateRoute';

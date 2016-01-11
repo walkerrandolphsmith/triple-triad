@@ -10,7 +10,7 @@ import WINNER from './../constants/winner';
 export default class GameOverBanner extends React.Component {
 
     click() {
-        this.props.newGame();
+        this.props.updateRoute('game-over');
     }
 
     render() {
