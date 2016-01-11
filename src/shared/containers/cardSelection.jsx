@@ -11,7 +11,7 @@ import Deck from './../components/deck';
 class CardSelection extends React.Component {
 
     click() {
-        this.props.updateRoute('card-selection');
+        this.props.updateRoute();
     };
 
     render() {

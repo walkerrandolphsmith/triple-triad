@@ -1,24 +1,26 @@
 import { pushPath } from 'redux-simple-router';
 import { newGame } from './newGame';
 
-export const updateRoute = (currentRoute) => (dispatch, getState) => {
+export const updateRoute = () => (dispatch, getState) => {
     const state = getState();
 
     let randomHand = state.settings.get('randomHand');
 
-    switch(currentRoute){
-        case 'settings-selection':
-            randomHand ? dispatch(pushPath('/round')) : dispatch(pushPath('/card-selection'));
+    let nextRoute;
+    switch(state.routing.path){
+        case '/':
+            nextRoute = randomHand ? '/round' : '/card-selection';
             break;
-        case 'card-selection':
-            dispatch(pushPath('/round'));
+        case '/card-selection':
+            nextRoute = '/round';
             break;
-        case 'round':
-            dispatch(pushPath('/game-over'));
+        case '/round':
+            nextRoute = '/game-over';
             break;
-        case 'game-over':
+        case '/game-over':
             dispatch(newGame());
-            dispatch(pushPath('/'));
+            nextRoute = '/';
             break;
     }
+    dispatch(pushPath(nextRoute));
 };

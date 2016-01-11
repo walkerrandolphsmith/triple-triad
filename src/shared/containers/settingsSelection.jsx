@@ -20,7 +20,7 @@ class SettingsSelection extends React.Component {
 
     click() {
         this.props.setHands();
-        this.props.updateRoute('settings-selection');
+        this.props.updateRoute();
     };
 
     render() {
