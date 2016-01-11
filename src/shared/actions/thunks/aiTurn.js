@@ -14,9 +14,6 @@ export const aiTurn = () => (dispatch, getState) => {
     if(piece >= 0) {
         dispatch(selectPiece(piece));
         dispatch(playerTakesTurn(false));
-    }else{
-        dispatch(nextStep());
     }
-
     dispatch(endAiTurn());
 };

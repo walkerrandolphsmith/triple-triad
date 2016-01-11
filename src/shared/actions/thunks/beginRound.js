@@ -3,5 +3,4 @@ import { getNextSelectedCard } from './getNextSelectedCard';
 
 export const beginRound = () => (dispatch, getState) => {
     dispatch(getNextSelectedCard());
-    dispatch(nextStep());
 };

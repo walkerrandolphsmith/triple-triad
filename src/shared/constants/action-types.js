@@ -1,5 +1,3 @@
-export const NEXT_STEP = 'NextStep';
-export const RESET_STEP = 'ResetStep';
 export const RESET_GAME = 'ResetGame';
 export const RESET_SETTINGS = 'ResetSettings';
 export const SET_HAND = 'SetHand';

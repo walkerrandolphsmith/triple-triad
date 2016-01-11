@@ -19,7 +19,6 @@ class SettingsSelection extends React.Component {
     };
 
     click() {
-        this.props.nextStep();
         this.props.setHands();
     };
 

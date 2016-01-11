@@ -1,10 +1,8 @@
 export { addCard } from './addCard';
 export { endAiTurn } from './endAiTurn';
-export { nextStep } from './nextStep';
 export { placeCard } from './placeCard';
 export { resetGame } from './resetGame';
 export { resetSettings } from './resetSettings';
-export { resetStep } from './resetStep';
 export { selectCard } from './selectCard';
 export { selectPiece } from './selectPiece';
 export { setPhase } from './setPhase';
