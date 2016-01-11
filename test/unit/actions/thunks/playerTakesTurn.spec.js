@@ -1,10 +1,6 @@
 import expect from 'expect';
-import { placeCard } from './../../../../src/shared/actions/action-creators/';
-import { playerTakesTurn } from './../../../../src/shared/actions/thunks/playerTakesTurn';
-import { aiTurn } from './../../../../src/shared/actions/thunks/aiTurn';
-import { getNextSelectedCard } from './../../../../src/shared/actions/thunks/getNextSelectedCard';
-import { applyFlips } from './../../../../src/shared/actions/thunks/applyFlips';
-
+import PlayerTakesTurn from './../../../../src/shared/actions/thunks/playerTakesTurn';
+import { playerTakesTurn, __RewireAPI__ as playerTakesTurnRewireAPI } from './../../../../src/shared/actions/thunks/playerTakesTurn';
 
 describe('PLAYER_TAKES_TURN async action creator', () => {
 
@@ -26,33 +22,51 @@ describe('PLAYER_TAKES_TURN async action creator', () => {
         });
 
         it('should dispatch PLACE_CARD action', () => {
+            PlayerTakesTurn.__Rewire__('placeCard', function(){
+                return 1;
+            });
             playerTakesTurn(isPlayer)(dispatch, getState);
-            expect(dispatch).toHaveBeenCalledWith(placeCard())
+            expect(dispatch).toHaveBeenCalledWith(1)
         });
 
         it('should dispatch RULE async action', () => {
+            PlayerTakesTurn.__Rewire__('applyFlips', function(){
+                return 2;
+            });
             playerTakesTurn(isPlayer)(dispatch, getState);
-            expect(dispatch).toHaveBeenCalledWith(applyFlips())
+            expect(dispatch).toHaveBeenCalledWith(2)
         });
 
         it('should dispatch RULE async action', () => {
+            PlayerTakesTurn.__Rewire__('selectCard', function(){
+                return 3;
+            });
             playerTakesTurn(isPlayer)(dispatch, getState);
-            expect(dispatch).toHaveBeenCalledWith({type: 'SelectCard', payload: {id: -1}})
+            expect(dispatch).toHaveBeenCalledWith(3)
         });
 
         it('should dispatch RULE async action', () => {
+            PlayerTakesTurn.__Rewire__('selectPiece', function(){
+                return 4;
+            });
             playerTakesTurn(isPlayer)(dispatch, getState);
-            expect(dispatch).toHaveBeenCalledWith({type: 'SelectPiece', payload: {index: -1}})
+            expect(dispatch).toHaveBeenCalledWith(4)
         });
 
         it('should dispatch AI_TURN async action', () => {
+            PlayerTakesTurn.__Rewire__('aiTurn', function(){
+                return 5;
+            });
             playerTakesTurn(isPlayer)(dispatch, getState);
-            expect(dispatch).toHaveBeenCalledWith(aiTurn())
+            expect(dispatch).toHaveBeenCalledWith(5)
         });
 
         it('should dispatch GET_NEXT_SLECTED_CARD async action', () => {
+            PlayerTakesTurn.__Rewire__('getNextSelectedCard', function(){
+                return 6;
+            });
             playerTakesTurn(isPlayer)(dispatch, getState);
-            expect(dispatch).toHaveBeenCalledWith(getNextSelectedCard())
+            expect(dispatch).toHaveBeenCalledWith(6)
         });
     });
 
@@ -64,23 +78,35 @@ describe('PLAYER_TAKES_TURN async action creator', () => {
         });
 
         it('should dispatch PLACE_CARD action', () => {
+            PlayerTakesTurn.__Rewire__('placeCard', function(){
+                return 1;
+            });
             playerTakesTurn(isPlayer)(dispatch, getState);
-            expect(dispatch).toHaveBeenCalledWith(placeCard())
+            expect(dispatch).toHaveBeenCalledWith(1)
         });
 
         it('should dispatch RULE async action', () => {
+            PlayerTakesTurn.__Rewire__('applyFlips', function(){
+                return 2;
+            });
             playerTakesTurn(isPlayer)(dispatch, getState);
-            expect(dispatch).toHaveBeenCalledWith(applyFlips())
+            expect(dispatch).toHaveBeenCalledWith(2)
         });
 
         it('should dispatch RULE async action', () => {
+            PlayerTakesTurn.__Rewire__('selectCard', function(){
+                return 3;
+            });
             playerTakesTurn(isPlayer)(dispatch, getState);
-            expect(dispatch).toHaveBeenCalledWith({type: 'SelectCard', payload: {id: -1}})
+            expect(dispatch).toHaveBeenCalledWith(3)
         });
 
         it('should dispatch RULE async action', () => {
+            PlayerTakesTurn.__Rewire__('selectPiece', function(){
+                return 4;
+            });
             playerTakesTurn(isPlayer)(dispatch, getState);
-            expect(dispatch).toHaveBeenCalledWith({type: 'SelectPiece', payload: {index: -1}})
+            expect(dispatch).toHaveBeenCalledWith(4)
         });
 
     });
