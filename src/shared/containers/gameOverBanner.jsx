@@ -1,6 +1,6 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as Actions from './../action-creators/';
+import * as Actions from './../actions/';
 import { toJS } from 'immutable';
 import { scoreSelector, winnerSelector } from './../selectors/index';
 

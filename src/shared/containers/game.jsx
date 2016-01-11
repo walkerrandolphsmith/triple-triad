@@ -1,7 +1,7 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { toJS } from 'immutable';
-import * as Actions from './../action-creators/';
+import * as Actions from './../actions/';
 import KEY_CODE from './../constants/keyCodes';
 
 import React from 'react';
