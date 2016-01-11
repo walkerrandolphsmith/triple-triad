@@ -1,4 +1,5 @@
 import expect from 'expect';
+import { Map, List } from 'immutable';
 import PlayerTakesTurn from './../../../../src/shared/actions/thunks/playerTakesTurn';
 import { playerTakesTurn, __RewireAPI__ as playerTakesTurnRewireAPI } from './../../../../src/shared/actions/thunks/playerTakesTurn';
 
@@ -6,7 +7,11 @@ describe('PLAYER_TAKES_TURN async action creator', () => {
 
     let getState, dispatch;
     beforeEach(() => {
-        getState = () => ({});
+        getState = () => ({
+            game: new Map({
+               deck: new List([])
+            })
+        });
         dispatch = expect.createSpy();
     });
 

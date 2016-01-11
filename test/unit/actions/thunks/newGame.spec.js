@@ -14,15 +14,6 @@ describe('NEW_GAME async action creator', () => {
         expect(newGame()).toBeA('function');
     });
 
-    it('should dispatch RESET_STEP action', () => {
-        NewGame.__Rewire__('resetStep', function(){
-            return 'resetStepAction';
-        });
-        newGame()(dispatch, getState);
-        expect(dispatch).toHaveBeenCalledWith('resetStepAction')
-    });
-
-
     it('should dispatch RESET_SETTINGS action', () => {
         NewGame.__Rewire__('resetSettings', function(){
             return 'resetSettingsAction';

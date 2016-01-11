@@ -21,12 +21,4 @@ describe('BEGIN_ROUND async action creator', () => {
         beginRound()(dispatch, getState);
         expect(dispatch).toHaveBeenCalledWith(1)
     });
-
-    it('should dispatch NEXT_STEP action', () => {
-        BeginRound.__Rewire__('nextStep', function(){
-            return 'nextStep';
-        });
-        beginRound()(dispatch, getState);
-        expect(dispatch).toHaveBeenCalledWith('nextStep')
-    });
 });
