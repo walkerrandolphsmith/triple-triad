@@ -1,6 +1,6 @@
 import expect from 'expect';
-import { beginRound } from './../../../../src/shared/actions/thunks/beginRound';
-import { getNextSelectedCard } from './../../../../src/shared/actions/thunks/getNextSelectedCard';
+import BeginRound from './../../../../src/shared/actions/thunks/beginRound';
+import { beginRound, __RewireAPI__ as beginRoundRewireAPI } from './../../../../src/shared/actions/thunks/beginRound';
 
 describe('BEGIN_ROUND async action creator', () => {
 
@@ -15,12 +15,18 @@ describe('BEGIN_ROUND async action creator', () => {
     });
 
     it('should dispatch getNextSelectedCard action', () => {
+        BeginRound.__Rewire__('getNextSelectedCard', function(){
+            return 1;
+        });
         beginRound()(dispatch, getState);
-        expect(dispatch).toHaveBeenCalledWith(getNextSelectedCard())
+        expect(dispatch).toHaveBeenCalledWith(1)
     });
 
     it('should dispatch NEXT_STEP action', () => {
+        BeginRound.__Rewire__('nextStep', function(){
+            return 'nextStep';
+        });
         beginRound()(dispatch, getState);
-        expect(dispatch).toHaveBeenCalledWith({type: 'NextStep' })
+        expect(dispatch).toHaveBeenCalledWith('nextStep')
     });
 });
