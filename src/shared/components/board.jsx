@@ -26,7 +26,7 @@ export default class Board extends React.Component {
         let pieces = [];
         for(var i = 0; i < 9; i++){
             let piece  = {
-                card: board[i],
+                card: board.find(card => card.boardIndex === i),
                 style: {
                     fontSize: '5em',
                     flex: '1',

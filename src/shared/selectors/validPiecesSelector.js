@@ -1,3 +1,4 @@
 export const getValidPieces = board => {
-    return board.reduce((pieces, card, i) => { if(!card) pieces.push(i); return pieces }, []);
+    let boardIndexes = board.map(card => card.boardIndex);
+    return [0,1,2,3,4,5,6,7,8].filter(index => boardIndexes.indexOf(index) < 0);
 };

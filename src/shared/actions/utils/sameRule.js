@@ -20,10 +20,10 @@ export function sameRule(i, game){
     const isNotFirstColumn = column > 0;
     const isNotLastColumn = column < 2;
 
-    const cardAbove = isNotFirstRow ? board.filter(card => card && card.get('boardIndex') === above).get(0) : null;
-    const cardBelow = isNotLastRow ? board.filter(card => card && card.get('boardIndex') === below).get(0) : null;
-    const cardAtLeft = isNotFirstColumn? board.filter(card => card && card.get('boardIndex') === left).get(0) : null;
-    const cardAtRight = isNotLastColumn ? board.filter(card => card && card.get('boardIndex') === right).get(0): null;
+    const cardAbove = isNotFirstRow ? board.filter(card => card.get('boardIndex') === above).get(0) : null;
+    const cardBelow = isNotLastRow ? board.filter(card => card.get('boardIndex') === below).get(0) : null;
+    const cardAtLeft = isNotFirstColumn? board.filter(card => card.get('boardIndex') === left).get(0) : null;
+    const cardAtRight = isNotLastColumn ? board.filter(card => card.get('boardIndex') === right).get(0): null;
 
     let indexes = [];
 

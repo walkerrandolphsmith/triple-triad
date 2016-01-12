@@ -1,34 +1,28 @@
 import { getBoard } from './../../selectors/boardSelector';
+import { getValidPieces } from './../../selectors/validPiecesSelector';
 
 export function getPieceToSelect(game, keyCode){
 
     const board = getBoard(game.get('deck').toJS());
+
+    let validPieces = getValidPieces(board);
+
     const selectedPiece = game.get('selectedPiece');
 
-    let firstValidPiece = board.findIndex(piece => piece === null);
-    debugger;
-    let nextEmptyPiece = selectedPiece === -1 ? firstValidPiece : selectedPiece;
+    let nextEmptyPiece = selectedPiece === -1 ? validPieces[0] : selectedPiece;
 
     switch(keyCode){
-        case 'left': nextEmptyPiece = getNextEmptyPieceHorizontally(nextEmptyPiece, board, 8); break;
-        case 'right': nextEmptyPiece = getNextEmptyPieceHorizontally(nextEmptyPiece, board, 1); break;
+        case 'left': nextEmptyPiece = getNextEmptyPieceHorizontally(nextEmptyPiece, validPieces, -1); break;
+        case 'right': nextEmptyPiece = getNextEmptyPieceHorizontally(nextEmptyPiece, validPieces, 1); break;
         case 'enter': break;
     }
 
     return nextEmptyPiece;
 }
 
-function getNextEmptyPieceHorizontally(emptyPieceIndex, board, direction) {
-    let l = board.length;
-    let nextEmptyIndex = emptyPieceIndex;
-    let searching = true;
-
-    while(searching){
-        nextEmptyIndex = (nextEmptyIndex + direction) % l;
-        if(board[nextEmptyIndex] === null)
-            searching = false;
-    }
-
-    return nextEmptyIndex;
+function getNextEmptyPieceHorizontally(emptyPieceIndex, validPieces, direction) {
+    return validPieces[
+        (validPieces.findIndex(emptyPiece => emptyPiece === emptyPieceIndex) + direction) % validPieces.length
+        ];
 }
 
