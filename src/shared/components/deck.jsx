@@ -23,7 +23,7 @@ export default class Deck extends React.Component {
                 cursor: isSelectable ? 'pointer' : 'default'
             };
 
-            return (<Card card={card} cardStyle={cardStyle} clickAction={this.click.bind(this, card)} />);
+            return (<Card key={card.id} card={card} cardStyle={cardStyle} clickAction={this.click.bind(this, card)} />);
         });
 
         return (

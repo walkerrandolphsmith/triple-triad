@@ -23,7 +23,7 @@ export default class Hand extends React.Component {
 
             if(card.id === selectedCard) classes.push('selected');
 
-            return (<Card card={card} classes={classes} cardStyle={cardStyle} clickAction={this.click.bind(this, card)} />);
+            return (<Card key={card.id} card={card} classes={classes} cardStyle={cardStyle} clickAction={this.click.bind(this, card)} />);
         });
 
         return (
