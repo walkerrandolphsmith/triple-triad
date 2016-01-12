@@ -68,14 +68,34 @@
     "webpack-hot-middleware": "^2.4.1"
   },
   "babel": {
-    "presets": [
-      "stage-0",
-      "es2015",
-      "react"
-    ],
-    "plugins": [
-      "rewire"
-    ]
+    "env": {
+      "production": {
+        "presets": [
+          "stage-0",
+          "es2015",
+          "react"
+        ]
+      },
+      "development": {
+        "presets": [
+          "stage-0",
+          "es2015",
+          "react"
+        ]
+      },
+      "test": {
+        "presets": [
+          "stage-0",
+          "es2015",
+          "react"
+        ],
+        "plugins": [
+          "rewire"
+        ]
+      }
+    }
+
+
   },
   "engines": {
     "node": "4.1.1"
