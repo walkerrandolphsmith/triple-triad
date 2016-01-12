@@ -35,4 +35,25 @@ describe('HANDLE_DOWN async action creator', () => {
         });
     });
 
+    describe('given it is the piece selection phase', () => {
+
+        let getState;
+        beforeEach(() => {
+            getState = () => ({
+                game: new Map({
+                    phase: "pieceSelection"
+                })
+            });
+        });
+
+        it('should dispatch the GET_NEXT_SELECTED_PIECE action', () => {
+            HandleDown.__Rewire__('getNextSelectedPiece', function(){
+                return 2;
+            });
+            handleDown()(dispatch, getState);
+            expect(dispatch).toHaveBeenCalledWith(2)
+        });
+    });
+
+
 });
