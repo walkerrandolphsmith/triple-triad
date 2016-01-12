@@ -52,14 +52,7 @@ describe('SET_HANDS async action creator', () => {
             });
             setHands()(dispatch, getState);
             expect(dispatch).toHaveBeenCalledWith(1)
-        });
-
-        it('should dispatch GetNetSelectedCard', () => {
-            SetHands.__Rewire__('getNextSelectedCard', function(){
-                return 2;
-            });
-            setHands()(dispatch, getState);
-            expect(dispatch).toHaveBeenCalledWith(2)
+            expect(dispatch).toHaveBeenCalledWith(1)
         });
 
     });

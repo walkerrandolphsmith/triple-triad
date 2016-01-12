@@ -30,6 +30,21 @@ describe('UPDATE_ROUTE async action creator', () => {
             updateRoute()(dispatch, getState);
             expect(dispatch).toHaveBeenCalledWith(0)
         });
+    });
+
+    describe('given the route is /card-selection', () => {
+        let getState, dispatch;
+        beforeEach(() => {
+            getState = () => ({
+                settings: new Map({
+                    randomHand: false
+                }),
+                routing: {
+                    path: '/card-selection'
+                }
+            });
+            dispatch = expect.createSpy();
+        });
 
         it('should dispatch setHands action', () => {
             UpdateRoute.__Rewire__('setHands', function(){
@@ -38,10 +53,46 @@ describe('UPDATE_ROUTE async action creator', () => {
             updateRoute()(dispatch, getState);
             expect(dispatch).toHaveBeenCalledWith(1)
         });
+
+        it('should dispatch getNextSelectedCard action', () => {
+            UpdateRoute.__Rewire__('getNextSelectedCard', function(){
+                return 2;
+            });
+            updateRoute()(dispatch, getState);
+            expect(dispatch).toHaveBeenCalledWith(1)
+        });
     });
 
+    describe('given the route is / and random hand is enabled ', () => {
+        let getState, dispatch;
+        beforeEach(() => {
+            getState = () => ({
+                settings: new Map({
+                    randomHand: true
+                }),
+                routing: {
+                    path: '/'
+                }
+            });
+            dispatch = expect.createSpy();
+        });
 
+        it('should dispatch setHands action', () => {
+            UpdateRoute.__Rewire__('setHands', function(){
+                return 1;
+            });
+            updateRoute()(dispatch, getState);
+            expect(dispatch).toHaveBeenCalledWith(1)
+        });
 
+        it('should dispatch getNextSelectedCard action', () => {
+            UpdateRoute.__Rewire__('getNextSelectedCard', function(){
+                return 2;
+            });
+            updateRoute()(dispatch, getState);
+            expect(dispatch).toHaveBeenCalledWith(1)
+        });
+    });
 
     describe('given the game is over and you play again', () => {
         let getState, dispatch;
