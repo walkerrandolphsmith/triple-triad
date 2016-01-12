@@ -54,8 +54,8 @@ describe('SET_HANDS async action creator', () => {
             expect(dispatch).toHaveBeenCalledWith(1)
         });
 
-        it('should dispatch BEGIN_ROUND', () => {
-            SetHands.__Rewire__('beginRound', function(){
+        it('should dispatch GetNetSelectedCard', () => {
+            SetHands.__Rewire__('getNextSelectedCard', function(){
                 return 2;
             });
             setHands()(dispatch, getState);

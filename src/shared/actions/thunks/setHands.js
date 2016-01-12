@@ -1,4 +1,4 @@
-import { beginRound } from './beginRound';
+import { getNextSelectedCard } from './getNextSelectedCard';
 import { setHand } from './setHand';
 
 export const setHands = () => (dispatch, getState) => {
@@ -8,7 +8,7 @@ export const setHands = () => (dispatch, getState) => {
 
     if(randomHand) {
         dispatch(setHand(1));
-        dispatch(beginRound());
+        dispatch(getNextSelectedCard());
     }
     dispatch(setHand(2));
 };

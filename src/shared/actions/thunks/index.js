@@ -1,6 +1,5 @@
 export { aiTurn } from './aiTurn';
 export { applyFlips } from './applyFlips';
-export { beginRound } from './beginRound';
 export { getNextSelectedCard } from './getNextSelectedCard';
 export { getNextSelectedPiece } from './getNextSelectedPiece';
 export { handleDown } from './handleDown';
