@@ -9,10 +9,6 @@ import WINNER from './../constants/winner';
 
 export default class GameOverBanner extends React.Component {
 
-    click() {
-        this.props.updateRoute();
-    }
-
     render() {
         let {winner, score} = this.props;
 
@@ -46,7 +42,7 @@ export default class GameOverBanner extends React.Component {
                 </div>
                 <div className="row">
                     <div className="col-md-12">
-                        <button className="btn btn-next" onClick={this.click.bind(this)}>Play again</button>
+                        <button className="btn btn-next" onClick={this.props.updateRoute}>Play again</button>
                     </div>
                 </div>
             </div>

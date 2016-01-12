@@ -18,10 +18,6 @@ class SettingsSelection extends React.Component {
         this.props.updateSettings("visibleHand", event.target.checked);
     };
 
-    click() {
-        this.props.updateRoute();
-    };
-
     render() {
         return (
             <div id="settings-selection" className="container">
@@ -42,7 +38,7 @@ class SettingsSelection extends React.Component {
                             <label htmlFor="hidden-hand"></label>
                             <label className="text" htmlFor="hidden-hand">Hide opponent's hand</label>
                         </div>
-                        <button className="btn btn-next" onClick={this.click.bind(this)}> Next step</button>
+                        <button className="btn btn-next" onClick={this.props.updateRoute}> Next step</button>
                     </div>
                 </div>
             </div>
