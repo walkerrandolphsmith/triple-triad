@@ -1,11 +1,11 @@
 import { getNextSelectedCard } from './getNextSelectedCard';
+import { getNextSelectedPiece } from './getNextSelectedPiece';
 
 export const handleUp = () => (dispatch, getState) => {
-    console.log('UP');
     const state = getState();
 
     if(state.game.get('phase') === 'pieceSelection'){
-
+        dispatch(getNextSelectedPiece('up'));
     }else{
         dispatch(getNextSelectedCard('up'));
     }
