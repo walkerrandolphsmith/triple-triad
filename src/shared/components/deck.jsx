@@ -17,11 +17,12 @@ export default class Deck extends React.Component {
             const isSelectable = (owner === 1) || (!isHandSelected && owner === 0);
 
             const cardStyle = {
-                backgroundImage: `url(assets/images/${name}.png)`,
+                backgroundImage: `url(assets/images/${name}.png), linear-gradient( 45deg, white, #608FC6 )`,
                 backgroundColor: 'blue',
                 opacity: owner === 0 ? '1' : '0.5',
                 cursor: isSelectable ? 'pointer' : 'default'
             };
+            console.log("I still try");
 
             return (<Card key={card.id} card={card} cardStyle={cardStyle} clickAction={this.click.bind(this, card)} />);
         });

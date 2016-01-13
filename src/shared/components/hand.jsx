@@ -15,9 +15,10 @@ export default class Hand extends React.Component {
 
             name = showBack ? 'back' : name;
 
+            let backgroundColor = owner === 1 ? 'linear-gradient( 45deg, white, #608FC6 )' : 'linear-gradient( 45deg, white, #CC181E )';
+
             const cardStyle = {
-                backgroundImage: `url(assets/images/${name}.png)`,
-                backgroundColor: owner === 1 ? 'blue' : 'red',
+                backgroundImage: `url(assets/images/${name}.png), ${backgroundColor}`,
                 cursor: owner === 1 ? 'pointer' : 'default'
             };
 
