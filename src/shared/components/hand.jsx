@@ -8,10 +8,10 @@ export default class Hand extends React.Component {
     };
 
     render() {
-        let {score, cards, showBack, clickAction} = this.props;
+        let { score, cards, selectedCard, showBack} = this.props;
 
-        let cardsMarkup = cards.map(card => {
-            let { name, owner} = card;
+        let cardsMarkup = cards.map((card, i) => {
+            let { name, owner } = card;
 
             name = showBack ? 'back' : name;
 
@@ -21,7 +21,11 @@ export default class Hand extends React.Component {
                 cursor: owner === 1 ? 'pointer' : 'default'
             };
 
-            return (<Card key={card.id} card={card} cardStyle={cardStyle} clickAction={this.click.bind(this, card)} />);
+            let classes = [];
+
+            if(card.id === selectedCard) classes.push('selected');
+
+            return (<Card key={card.id} card={card} classes={classes} cardStyle={cardStyle} clickAction={this.click.bind(this, card)} />);
         });
 
         return (

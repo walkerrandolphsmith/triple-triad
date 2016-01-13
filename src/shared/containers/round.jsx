@@ -7,7 +7,6 @@ import { toJS } from 'immutable';
 import React from 'react';
 import Board from './../components/board';
 import Hand from './../components/hand';
-import PlayerHand from './../components/playerHand';
 
 class Round extends React.Component {
 
@@ -19,7 +18,7 @@ class Round extends React.Component {
             <div id="round" className="container">
                 <div className="row">
                     <div className="col-md-2">
-                        <PlayerHand score={score.blue} cards={hand} selectedCard={game.selectedCard} clickAction={selectCard} />
+                        <Hand score={score.blue} cards={hand} selectedCard={game.selectedCard} showBack={false} clickAction={selectCard} />
                     </div>
 
                     <div className="col-md-8">
@@ -27,7 +26,7 @@ class Round extends React.Component {
                     </div>
 
                     <div className="col-md-2">
-                        <Hand score={score.red} cards={opponentHand} showBack={settings.visibleHand} owner={2} />
+                        <Hand score={score.red} cards={opponentHand} selectedCard={game.selectedCard} showBack={settings.visibleHand} clickAction={() => {}} />
                     </div>
                 </div>
             </div>
