@@ -24,6 +24,14 @@ describe('UPDATE_ROUTE async action creator', () => {
         });
 
         it('should dispatch pushPath action', () => {
+            UpdateRoute.__Rewire__('getNextCardForHand', function(){
+                return 'id';
+            });
+            updateRoute()(dispatch, getState);
+            expect(dispatch).toHaveBeenCalledWith('id')
+        });
+
+        it('should dispatch pushPath action', () => {
             UpdateRoute.__Rewire__('pushPath', function(){
                 return 0;
             });
