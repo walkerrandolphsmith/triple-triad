@@ -9,6 +9,22 @@ body {
   background-color: transparent;
 }
 
+#settings-selection {
+  text-align: center;
+}
+
+#settings-selection .settings {
+  text-align: left;
+  position: relative;
+  margin-left: calc(50% - 100px);
+  margin-top: 40%;
+}
+
+#card-selection {
+  margin-top: 20%;
+  text-align: center;
+}
+
 #card-selection .card-wrapper {
   display: inline-block;
 }
