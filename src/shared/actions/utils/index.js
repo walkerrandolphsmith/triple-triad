@@ -1,6 +1,6 @@
 export { applyFlipRules } from './applyFlipRules';
 export { basicRule } from './basicRule';
-export { getCardsToAdd } from './getCardsToAdd';
+export { getRandomHand } from './getRandomHand';
 export { getCardToAdd } from './getCardToAdd';
 export { getCardToSelect } from './getCardToSelect';
 export { getPieceToSelect } from './getPieceToSelect';

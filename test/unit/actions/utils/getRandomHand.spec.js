@@ -1,6 +1,6 @@
 import expect from 'expect';
 import { Map, List } from 'immutable';
-import { getCardsToAdd } from './../../../../src/shared/actions/utils';
+import { getRandomHand } from './../../../../src/shared/actions/utils';
 
 describe('getCardsToAdd utility', () => {
 
@@ -20,23 +20,23 @@ describe('getCardsToAdd utility', () => {
     });
 
     it('should be a function', () => {
-        expect(getCardsToAdd).toBeA('function');
+        expect(getRandomHand).toBeA('function');
     });
 
 
     it('should retreive five cards', () => {
-       expect(getCardsToAdd(game).length).toEqual(5);
+       expect(getRandomHand(game).length).toEqual(5);
     });
 
     it('should not contain any cards with an owner', () => {
-        getCardsToAdd(game).forEach(card => {
+        getRandomHand(game).forEach(card => {
             expect(card.owner).toEqual(0);
         });
     });
 
     it('should not contain two cards with the same name', () => {
         let names = {};
-        getCardsToAdd(game).forEach(card => {
+        getRandomHand(game).forEach(card => {
             expect(names[card.name] === undefined).toEqual(true);
             names[card.name] === true;
         });
