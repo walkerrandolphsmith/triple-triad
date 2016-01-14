@@ -24,7 +24,7 @@ export default class Deck extends React.Component {
             };
             console.log("I still try");
 
-            return (<Card key={card.id} card={card} cardStyle={cardStyle} clickAction={this.click.bind(this, card)} />);
+            return (<Card key={card.id} card={card} cardStyle={cardStyle} clickAction={isSelectable ? this.click.bind(this, card) : ()=> {} } />);
         });
 
         return (
