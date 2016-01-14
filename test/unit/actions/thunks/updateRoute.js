@@ -102,7 +102,7 @@ describe('UPDATE_ROUTE async action creator', () => {
                     randomHand: false
                 }),
                 routing: {
-                    path: '/game-over'
+                    path: '/round'
                 }
             });
             dispatch = expect.createSpy();
