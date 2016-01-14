@@ -69,7 +69,7 @@ body {
 #round .hand .card-wrapper.selected:after {
   content: " ";
   width: 25px;
-  height: 25px;
+  height: 30px;
   position: absolute;
   left: 15px;
   top: -75px;
@@ -77,6 +77,23 @@ body {
   background-image: url("../images/pointer.png");
   background-size: contain;
 }
+
+.piece {
+  position: relative;
+}
+
+.piece.selected:after{
+  content: " ";
+  width: 25px;
+  height: 30px;
+  position: absolute;
+  left: -25px;
+  top: 50px;
+  transform: rotate(90deg);
+  background-image: url("../images/pointer.png");
+  background-size: contain;
+}
+
 #banner {
   position: relative;
   z-index: 1;
@@ -191,20 +208,4 @@ body {
 .control-group .text {
   margin-left: 25px;
   cursor: pointer;
-}
-
-.piece {
-  position: relative;
-}
-
-.piece.selected:after{
-  content: " ";
-  width: 25px;
-  height: 25px;
-  position: absolute;
-  left: -25px;
-  top: 50px;
-  transform: rotate(90deg);
-  background-image: url("../images/pointer.png");
-  background-size: contain;
 }
