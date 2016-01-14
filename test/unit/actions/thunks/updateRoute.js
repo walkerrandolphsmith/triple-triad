@@ -78,6 +78,14 @@ describe('UPDATE_ROUTE async action creator', () => {
         });
 
         it('should dispatch setHands action', () => {
+            UpdateRoute.__Rewire__('setPhase', function(){
+                return 'cardSelection';
+            });
+            updateRoute()(dispatch, getState);
+            expect(dispatch).toHaveBeenCalledWith('cardSelection')
+        });
+
+        it('should dispatch setHands action', () => {
             UpdateRoute.__Rewire__('setHands', function(){
                 return 1;
             });
