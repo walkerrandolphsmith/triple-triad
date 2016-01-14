@@ -109,11 +109,11 @@ describe('UPDATE_ROUTE async action creator', () => {
         });
 
         it('should dispatch newGame action', () => {
-            UpdateRoute.__Rewire__('newGame', function(){
-                return 1;
+            UpdateRoute.__Rewire__('resetGame', function(){
+                return 5;
             });
             updateRoute()(dispatch, getState);
-            expect(dispatch).toHaveBeenCalledWith(1)
+            expect(dispatch).toHaveBeenCalledWith(5)
         });
     });
 
