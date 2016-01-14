@@ -2,7 +2,6 @@ export { addCard } from './addCard';
 export { endAiTurn } from './endAiTurn';
 export { placeCard } from './placeCard';
 export { resetGame } from './resetGame';
-export { resetSettings } from './resetSettings';
 export { selectCard } from './selectCard';
 export { selectPiece } from './selectPiece';
 export { setPhase } from './setPhase';

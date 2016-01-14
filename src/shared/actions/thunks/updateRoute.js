@@ -1,7 +1,7 @@
 import { pushPath } from 'redux-simple-router';
 import { setHands } from './setHands';
 import { getNextSelectedCard } from './getNextSelectedCard';
-import { newGame } from './newGame';
+import { resetGame } from './../action-creators/resetGame.js';
 
 export const updateRoute = () => (dispatch, getState) => {
     const state = getState();
@@ -18,7 +18,7 @@ export const updateRoute = () => (dispatch, getState) => {
             nextRoute = '/round';
             break;
         case '/round':
-            dispatch(newGame());
+            dispatch(resetGame());
             nextRoute = '/';
             break;
     }

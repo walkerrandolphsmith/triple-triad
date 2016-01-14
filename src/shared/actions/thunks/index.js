@@ -8,7 +8,6 @@ export { handleEscape } from './handleEscape';
 export { handleLeft } from './handleLeft';
 export { handleRight } from './handleRight';
 export { handleUp } from './handleUp';
-export { newGame } from './newGame';
 export { playerTakesTurn } from './playerTakesTurn';
 export { selectedPieceByClick } from './selectedPieceByClick';
 export { setHand } from './setHand';
