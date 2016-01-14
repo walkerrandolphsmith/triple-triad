@@ -19,7 +19,4 @@ export const playerTakesTurn = (isPlayer) => (dispatch, getState) => {
         dispatch(getNextSelectedCard());
     }
 
-    if(gameOver)
-        dispatch(updateRoute('round'));
-
 };

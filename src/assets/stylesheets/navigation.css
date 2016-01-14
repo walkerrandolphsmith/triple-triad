@@ -61,28 +61,33 @@ body {
   background-image: url("../images/pointer.png");
   background-size: contain;
 }
-
-
 #banner {
-  display: block;
-  z-index: 1000;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 40px;
+  position: relative;
+  z-index: 1;
+  top: -150px;
   height: 300px;
-  width: 100%;
   text-align: center;
+
+}
+
+#banner-scrim {
+  position: relative;
+  z-index: -1;
+  top: -450px;
+  height: 300px;
 }
 
 #banner .results {
-  margin-top: 50px;
+  margin-top: 75px;
+  padding-left: 5px;
+  padding-right: 25px;
 }
 
 #banner .results div {
   font: bold 6em Impact, sans-serif;
   text-transform: uppercase;
   text-shadow: 2px 2px 0 white, 4px 4px 0 black;
+  text-align: center;
   letter-spacing: 8px;
 }
 

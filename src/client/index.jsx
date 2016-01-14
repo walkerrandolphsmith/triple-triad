@@ -12,7 +12,6 @@ import Game from './../shared/containers/game';
 import SettingsSelection from './../shared/containers/settingsSelection';
 import CardSelection from './../shared/containers/cardSelection';
 import Round from './../shared/containers/round';
-import GameOverBanner from './../shared/containers/gameOverBanner';
 
 let initialState = window.__INITIAL_STATE__;
 Object.keys(initialState).forEach(key => { initialState[key] = fromJS(initialState[key]);  });
@@ -30,7 +29,6 @@ ReactDom.render(
         <IndexRoute component={SettingsSelection}/>
         <Route path="card-selection" component={CardSelection}/>
         <Route path="round" component={Round}/>
-        <Route path="game-over" component={GameOverBanner}/>
       </Route>
     </Router>
   </Provider>,

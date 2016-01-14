@@ -18,9 +18,6 @@ export const updateRoute = () => (dispatch, getState) => {
             nextRoute = '/round';
             break;
         case '/round':
-            nextRoute = '/game-over';
-            break;
-        case '/game-over':
             dispatch(newGame());
             nextRoute = '/';
             break;
