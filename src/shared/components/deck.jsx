@@ -9,7 +9,7 @@ export default class Deck extends React.Component {
     };
 
     render() {
-        let {cards, isHandSelected} = this.props;
+        let {cards, selectedCard, isHandSelected} = this.props;
 
         let cardsMarkup = cards.map(card => {
 
@@ -22,9 +22,14 @@ export default class Deck extends React.Component {
                 opacity: owner === 0 ? '1' : '0.5',
                 cursor: isSelectable ? 'pointer' : 'default'
             };
-            console.log("I still try");
 
-            return (<Card key={card.id} card={card} cardStyle={cardStyle} clickAction={isSelectable ? this.click.bind(this, card) : ()=> {} } />);
+            let classes = [];
+
+            if(card.id === selectedCard) classes.push('selected');
+
+            return (
+                <Card key={card.id} card={card} cardStyle={cardStyle} classes={classes} clickAction={isSelectable ? this.click.bind(this, card) : ()=> {} } />
+            );
         });
 
         return (

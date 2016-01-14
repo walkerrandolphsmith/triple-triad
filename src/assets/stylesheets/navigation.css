@@ -58,40 +58,35 @@ body {
   width: 100px;
 }
 
-#round .hand .card-wrapper{
-  position: relative;
-}
-
 #round .hand .card-wrapper.selected {
   padding-left: 40px;
 }
 
-#round .hand .card-wrapper.selected:after {
-  content: " ";
-  width: 25px;
-  height: 30px;
-  position: absolute;
-  left: 15px;
-  top: -75px;
-  transform: rotate(90deg);
-  background-image: url("../images/pointer.png");
-  background-size: contain;
-}
-
+#round .hand .card-wrapper,
+#card-selection .card-wrapper,
 .piece {
   position: relative;
 }
 
-.piece.selected:after{
+.selected:after {
   content: " ";
   width: 25px;
   height: 30px;
   position: absolute;
-  left: -25px;
-  top: 50px;
   transform: rotate(90deg);
   background-image: url("../images/pointer.png");
   background-size: contain;
+}
+
+#round .hand .card-wrapper.selected:after {
+  left: 15px; /*offset the padding*/
+  top: -75px;
+}
+
+#card-selection .card-wrapper.selected:after,
+.piece.selected:after{
+  left: -25px;
+  top: 50px;
 }
 
 #banner {

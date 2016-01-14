@@ -11,13 +11,13 @@ import Deck from './../components/deck';
 class CardSelection extends React.Component {
 
     render() {
-        let {availableDeck, hand, isHandSelected, addCard} = this.props;
+        let {availableDeck, selectedCard, hand, isHandSelected, addCard} = this.props;
 
         return (
             <div id="card-selection" className="container">
                 <div className="row">
                     <div className="col-md-12">
-                        <Deck cards={availableDeck} isHandSelected={isHandSelected} addCard={addCard} />
+                        <Deck cards={availableDeck} selectedCard={selectedCard} isHandSelected={isHandSelected} addCard={addCard} />
                         <Hand cards={hand} showBack={false} clickAction={() => {}}/>
                         <button className="btn btn-next" disabled={!isHandSelected} onClick={this.props.updateRoute}> Next step</button>
                     </div>
@@ -31,6 +31,7 @@ function mapStateToProps(state) {
     const game = state.game.toJS();
     const settings = state.settings.toJS();
     return {
+        selectedCard: game.selectedCard,
         settings: settings,
         availableDeck: availableDeckSelector(game),
         hand: handSelector(game),
