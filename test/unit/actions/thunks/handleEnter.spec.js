@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { Map } from 'immutable';
+import { Map, List } from 'immutable';
 import HandleEnter from './../../../../src/shared/actions/thunks/handleEnter';
 import { handleEnter, __RewireAPI__ as handleEnterRewireAPI } from './../../../../src/shared/actions/thunks/handleEnter';
 
@@ -13,6 +13,33 @@ describe('HANDLE_ENTER async action creator', () => {
 
     it('should be a function', () => {
         expect(handleEnter()).toBeA('function');
+    });
+
+    describe('given it is hand selection phase', () => {
+
+        let getState;
+        beforeEach(() => {
+            let cardIndex = 12;
+            getState = () => ({
+                game: new Map({
+                    phase: "handSelection",
+                    selectedCard: cardIndex,
+                    deck: new List([
+                        new Map({id: cardIndex, owner: 0, name: 'Cloud', boardIndex: -1}),
+                        new Map({id: 0, owner: 0, name: 'Tifa', boardIndex: -1})
+                    ])
+                })
+            });
+        });
+
+        it('should dispatch the ADD_CARD action', () => {
+            HandleEnter.__Rewire__('addCard', function(){
+                return 'card';
+            });
+            handleEnter()(dispatch, getState);
+            expect(dispatch).toHaveBeenCalledWith('card')
+
+        });
     });
 
     describe('given it is not the piece selection phase', () => {
