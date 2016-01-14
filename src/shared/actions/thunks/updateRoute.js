@@ -1,6 +1,7 @@
 import { pushPath } from 'redux-simple-router';
 import { setHands } from './setHands';
 import { getNextSelectedCard } from './getNextSelectedCard';
+import { setPhase } from './../action-creators';
 import { resetGame } from './../action-creators/resetGame.js';
 
 export const updateRoute = () => (dispatch, getState) => {
@@ -23,6 +24,7 @@ export const updateRoute = () => (dispatch, getState) => {
             break;
     }
     if(nextRoute === '/round') {
+        dispatch(setPhase('cardSelection'));
         dispatch(setHands());
         dispatch(getNextSelectedCard());
     }
