@@ -88,6 +88,32 @@ describe('HANDLE_ENTER async action creator', () => {
         });
     });
 
+    describe('given it is hand selection phase and your hand is full', () => {
+
+        let getState;
+        beforeEach(() => {
+            getState = () => ({
+                game: new Map({
+                    phase: "handSelection",
+                    selectedCard: 12,
+                    deck: new List([
+                        new Map({id: 0, owner: 1, name: '0', boardIndex: -1}),
+                        new Map({id: 1, owner: 1, name: '1', boardIndex: -1}),
+                        new Map({id: 2, owner: 1, name: '2', boardIndex: -1}),
+                        new Map({id: 3, owner: 1, name: '3', boardIndex: -1}),
+                        new Map({id: 4, owner: 1, name: '4', boardIndex: -1})
+                    ])
+                })
+            });
+        });
+
+        it('should do nothing', () => {
+            handleEnter()(dispatch, getState);
+            expect(dispatch).toNotHaveBeenCalled()
+
+        });
+    });
+
     describe('given it is not the piece selection phase', () => {
 
         let getState;
