@@ -14,7 +14,6 @@ export const updateRoute = () => (dispatch, getState) => {
     let nextRoute;
     switch(state.routing.path){
         case '/':
-            dispatch(getNextCardForHand());
             nextRoute = randomHand ? '/round' : '/card-selection';
             break;
         case '/card-selection':
@@ -25,6 +24,12 @@ export const updateRoute = () => (dispatch, getState) => {
             nextRoute = '/';
             break;
     }
+
+    if(nextRoute === '/card-selection'){
+        dispatch(setPhase('handSelection'));
+        dispatch(getNextCardForHand());
+    }
+
     if(nextRoute === '/round') {
         dispatch(setPhase('cardSelection'));
         dispatch(setHands());

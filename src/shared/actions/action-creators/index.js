@@ -8,3 +8,4 @@ export { setPhase } from './setPhase';
 export { startAiTurn } from './startAiTurn';
 export { updateBoard } from './updateBoard';
 export { updateSettings } from './updateSettings';
+export { updateFocusSetting } from './updateFocusSetting';

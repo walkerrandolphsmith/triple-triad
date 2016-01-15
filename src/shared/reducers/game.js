@@ -7,7 +7,7 @@ const INITIAL_STATE = new fromJS({
   deck: deck,
   selectedCard: -1,
   selectedPiece: -1,
-  phase: 'handSelection'
+  phase: 'settingsSelection'
 });
 
 export default function reducer(state = INITIAL_STATE, action) {
