@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { fromJS } from 'immutable';
+import { Map } from 'immutable';
 import reducer from './../../../src/shared/reducers/settings';
 import * as types from './../../../src/shared/constants/action-types';
 
@@ -7,7 +7,7 @@ describe("Settings reducer", () => {
 
     let initialState;
     beforeEach(() => {
-        initialState = fromJS({
+        initialState = new Map({
             randomHand: false,
             multiplayer: false,
             visibleHand: false

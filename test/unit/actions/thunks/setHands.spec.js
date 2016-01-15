@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { fromJS } from 'immutable';
+import { Map } from 'immutable';
 import SetHands from './../../../../src/shared/actions/thunks/setHands';
 import { setHands, __RewireAPI__ as setHandsRewireAPI } from './../../../../src/shared/actions/thunks/setHands';
 
@@ -20,7 +20,7 @@ describe('SET_HANDS async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            const settings = fromJS({ randomHand: false});
+            const settings = new Map({ randomHand: false});
             getState = () => ({
                 settings: settings
             });
@@ -40,7 +40,7 @@ describe('SET_HANDS async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            const settings = fromJS({ randomHand: true});
+            const settings = new Map({ randomHand: true});
             getState = () => ({
                 settings: settings
             });

@@ -1,5 +1,4 @@
 import expect from 'expect';
-import { fromJS } from 'immutable';
 import SetHand from './../../../../src/shared/actions/thunks/setHand';
 import { setHand, __RewireAPI__ as setHandRewireAPI } from './../../../../src/shared/actions/thunks/setHand';
 

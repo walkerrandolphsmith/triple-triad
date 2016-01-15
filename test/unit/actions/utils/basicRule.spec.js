@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { fromJS, Map, List } from 'immutable';
+import { Map, List } from 'immutable';
 import { basicRule } from './../../../../src/shared/actions/utils';
 
 describe('BASIC RULE utility', () => {
@@ -9,7 +9,7 @@ describe('BASIC RULE utility', () => {
         index = 4;
         player = 1;
         opponent = 2;
-        card = fromJS({ boardIndex: 4, owner:  player, rank: { left: 4, top: 4, right: 5, bottom: 5} });
+        card = new Map({ boardIndex: 4, owner:  player, rank: { left: 4, top: 4, right: 5, bottom: 5} });
     });
 
     it('should be a function', () => {
@@ -35,7 +35,7 @@ describe('BASIC RULE utility', () => {
 
         let game;
         beforeEach(() => {
-            let adjacentCard = fromJS({ boardIndex: 3, owner:  opponent, rank: { left: 5, top: 5, right: 4, bottom: 5} });
+            let adjacentCard = new Map({ boardIndex: 3, owner:  opponent, rank: { left: 5, top: 5, right: 4, bottom: 5} });
             let deck = [adjacentCard, card];
             game = new Map({
                 deck : new List(deck)
@@ -51,7 +51,7 @@ describe('BASIC RULE utility', () => {
 
         let game;
         beforeEach(() => {
-            let adjacentCard = fromJS({ boardIndex: 3, owner:  opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} });
+            let adjacentCard = new Map({ boardIndex: 3, owner:  opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} });
             let deck = [adjacentCard, card];
             game = new Map({
                 deck : new List(deck)
@@ -67,7 +67,7 @@ describe('BASIC RULE utility', () => {
 
         let game;
         beforeEach(() => {
-            let adjacentCard = fromJS({ boardIndex: 3, owner:  opponent, rank: { left: 5, top: 5, right: 6, bottom: 5} });
+            let adjacentCard = new Map({ boardIndex: 3, owner:  opponent, rank: { left: 5, top: 5, right: 6, bottom: 5} });
             let deck = [adjacentCard, card];
             game = new Map({
                 deck : new List(deck)
@@ -85,8 +85,8 @@ describe('BASIC RULE utility', () => {
 
         let game;
         beforeEach(() => {
-            let adjacentCardOne = fromJS({ boardIndex: 3, owner:  opponent, rank: { left: 5, top: 5, right: 4, bottom: 5} });
-            let adjacentCardTwo = fromJS({ boardIndex: 5, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
+            let adjacentCardOne = new Map({ boardIndex: 3, owner:  opponent, rank: { left: 5, top: 5, right: 4, bottom: 5} });
+            let adjacentCardTwo = new Map({ boardIndex: 5, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
             let deck = [adjacentCardOne, card, adjacentCardTwo];
             game = new Map({
                 deck : new List(deck)
@@ -102,8 +102,8 @@ describe('BASIC RULE utility', () => {
 
         let game;
         beforeEach(() => {
-            let adjacentCardOne = fromJS({ boardIndex: 3, owner:  opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} });
-            let adjacentCardTwo = fromJS({ boardIndex: 5, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
+            let adjacentCardOne = new Map({ boardIndex: 3, owner:  opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} });
+            let adjacentCardTwo = new Map({ boardIndex: 5, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
             let deck = [adjacentCardOne, card, adjacentCardTwo];
             game = new Map({
                 deck : new List(deck)
@@ -121,8 +121,8 @@ describe('BASIC RULE utility', () => {
 
         let game;
         beforeEach(() => {
-            let adjacentCardOne = fromJS({ boardIndex: 3, owner:  opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} });
-            let adjacentCardTwo = fromJS({ boardIndex: 5, owner:  opponent, rank: { left: 4, top: 5, right: 5, bottom: 5} });
+            let adjacentCardOne = new Map({ boardIndex: 3, owner:  opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} });
+            let adjacentCardTwo = new Map({ boardIndex: 5, owner:  opponent, rank: { left: 4, top: 5, right: 5, bottom: 5} });
             let deck = [adjacentCardOne, card, adjacentCardTwo];
             game = new Map({
                 deck : new List(deck)
@@ -141,8 +141,8 @@ describe('BASIC RULE utility', () => {
 
         let game;
         beforeEach(() => {
-            let adjacentCardOne = fromJS({ boardIndex: 3, owner:  opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} });
-            let adjacentCardTwo = fromJS({ boardIndex: 5, owner:  opponent, rank: { left: 6, top: 5, right: 5, bottom: 5} });
+            let adjacentCardOne = new Map({ boardIndex: 3, owner:  opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} });
+            let adjacentCardTwo = new Map({ boardIndex: 5, owner:  opponent, rank: { left: 6, top: 5, right: 5, bottom: 5} });
             let deck = [adjacentCardOne, card, adjacentCardTwo];
             game = new Map({
                 deck : new List(deck)
@@ -161,8 +161,8 @@ describe('BASIC RULE utility', () => {
 
         let game;
         beforeEach(() => {
-            let adjacentCardOne = fromJS({ boardIndex: 3, owner:  opponent, rank: { left: 5, top: 5, right: 6, bottom: 5} });
-            let adjacentCardTwo = fromJS({ boardIndex: 5, owner:  opponent, rank: { left: 6, top: 5, right: 5, bottom: 5} });
+            let adjacentCardOne = new Map({ boardIndex: 3, owner:  opponent, rank: { left: 5, top: 5, right: 6, bottom: 5} });
+            let adjacentCardTwo = new Map({ boardIndex: 5, owner:  opponent, rank: { left: 6, top: 5, right: 5, bottom: 5} });
             let deck = [adjacentCardOne, card, adjacentCardTwo];
             game = new Map({
                 deck : new List(deck)
@@ -180,9 +180,9 @@ describe('BASIC RULE utility', () => {
 
         let game;
         beforeEach(() => {
-            let adjacentCardOne = fromJS({ boardIndex: 3, owner:  opponent, rank: { left: 5, top: 5, right: 4, bottom: 5} });
-            let adjacentCardTwo = fromJS({ boardIndex: 5, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
-            let adjacentCardThree = fromJS({ boardIndex: 1, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 4} });
+            let adjacentCardOne = new Map({ boardIndex: 3, owner:  opponent, rank: { left: 5, top: 5, right: 4, bottom: 5} });
+            let adjacentCardTwo = new Map({ boardIndex: 5, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
+            let adjacentCardThree = new Map({ boardIndex: 1, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 4} });
             let deck = [adjacentCardThree,  adjacentCardOne, card, adjacentCardTwo];
             game = new Map({
                 deck : new List(deck)
@@ -198,9 +198,9 @@ describe('BASIC RULE utility', () => {
 
         let game;
         beforeEach(() => {
-            let adjacentCardOne = fromJS({ boardIndex: 3, owner:  opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} });
-            let adjacentCardTwo = fromJS({ boardIndex: 5, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
-            let adjacentCardThree = fromJS({ boardIndex: 1, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 4} });
+            let adjacentCardOne = new Map({ boardIndex: 3, owner:  opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} });
+            let adjacentCardTwo = new Map({ boardIndex: 5, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
+            let adjacentCardThree = new Map({ boardIndex: 1, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 4} });
             let deck = [adjacentCardThree,  adjacentCardOne, card, adjacentCardTwo];
             game = new Map({
                 deck : new List(deck)
@@ -218,9 +218,9 @@ describe('BASIC RULE utility', () => {
 
         let game;
         beforeEach(() => {
-            let adjacentCardOne = fromJS({ boardIndex: 3, owner: opponent, rank: {left: 5, top: 5, right: 3, bottom: 5}});
-            let adjacentCardTwo = fromJS({ boardIndex: 5, owner: opponent, rank: {left: 4, top: 5, right: 5, bottom: 5}});
-            let adjacentCardThree = fromJS({ boardIndex: 1, owner: opponent, rank: {left: 5, top: 5, right: 5, bottom: 4}});
+            let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: {left: 5, top: 5, right: 3, bottom: 5}});
+            let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: {left: 4, top: 5, right: 5, bottom: 5}});
+            let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: {left: 5, top: 5, right: 5, bottom: 4}});
             let deck = [adjacentCardThree,  adjacentCardOne, card, adjacentCardTwo];
             game = new Map({
                 deck: new List(deck)
@@ -240,9 +240,9 @@ describe('BASIC RULE utility', () => {
 
         let game;
         beforeEach(() => {
-            let adjacentCardOne = fromJS({ boardIndex: 3, owner:  opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} });
-            let adjacentCardTwo = fromJS({ boardIndex: 5, owner:  opponent, rank: { left: 3, top: 5, right: 5, bottom: 5} });
-            let adjacentCardThree = fromJS({ boardIndex: 1, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 3} });
+            let adjacentCardOne = new Map({ boardIndex: 3, owner:  opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} });
+            let adjacentCardTwo = new Map({ boardIndex: 5, owner:  opponent, rank: { left: 3, top: 5, right: 5, bottom: 5} });
+            let adjacentCardThree = new Map({ boardIndex: 1, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 3} });
             let deck = [adjacentCardThree,  adjacentCardOne, card, adjacentCardTwo];
             game = new Map({
                 deck : new List(deck)
@@ -262,9 +262,9 @@ describe('BASIC RULE utility', () => {
 
         let game;
         beforeEach(() => {
-            let adjacentCardOne = fromJS({ boardIndex: 3, owner:  opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} });
-            let adjacentCardTwo = fromJS({ boardIndex: 5, owner:  opponent, rank: { left: 6, top: 5, right: 5, bottom: 5} });
-            let adjacentCardThree = fromJS({ boardIndex: 1, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 4} });
+            let adjacentCardOne = new Map({ boardIndex: 3, owner:  opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} });
+            let adjacentCardTwo = new Map({ boardIndex: 5, owner:  opponent, rank: { left: 6, top: 5, right: 5, bottom: 5} });
+            let adjacentCardThree = new Map({ boardIndex: 1, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 4} });
             let deck = [adjacentCardThree,  adjacentCardOne, card, adjacentCardTwo];
             game = new Map({
                 deck : new List(deck)
@@ -283,9 +283,9 @@ describe('BASIC RULE utility', () => {
 
         let game;
         beforeEach(() => {
-            let adjacentCardOne = fromJS({ boardIndex: 3, owner:  opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} });
-            let adjacentCardTwo = fromJS({ boardIndex: 5, owner:  opponent, rank: { left: 4, top: 5, right: 5, bottom: 5} });
-            let adjacentCardThree = fromJS({ boardIndex: 1, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 6} });
+            let adjacentCardOne = new Map({ boardIndex: 3, owner:  opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} });
+            let adjacentCardTwo = new Map({ boardIndex: 5, owner:  opponent, rank: { left: 4, top: 5, right: 5, bottom: 5} });
+            let adjacentCardThree = new Map({ boardIndex: 1, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 6} });
             let deck = [adjacentCardThree,  adjacentCardOne, card, adjacentCardTwo];
             game = new Map({
                 deck : new List(deck)
@@ -305,9 +305,9 @@ describe('BASIC RULE utility', () => {
 
         let game;
         beforeEach(() => {
-            let adjacentCardOne = fromJS({ boardIndex: 3, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
-            let adjacentCardTwo = fromJS({ boardIndex: 5, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
-            let adjacentCardThree = fromJS({ boardIndex: 1, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 6} });
+            let adjacentCardOne = new Map({ boardIndex: 3, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
+            let adjacentCardTwo = new Map({ boardIndex: 5, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
+            let adjacentCardThree = new Map({ boardIndex: 1, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 6} });
             let deck = [adjacentCardThree,  adjacentCardOne, card, adjacentCardTwo];
             game = new Map({
                 deck : new List(deck)
@@ -325,10 +325,10 @@ describe('BASIC RULE utility', () => {
 
         let game;
         beforeEach(() => {
-            let adjacentCardOne = fromJS({ boardIndex: 3, owner:  opponent, rank: { left: 5, top: 5, right: 4, bottom: 5} });
-            let adjacentCardTwo = fromJS({ boardIndex: 5, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
-            let adjacentCardThree = fromJS({ boardIndex: 1, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 4} });
-            let adjacentCardFour = fromJS({ boardIndex: 7, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
+            let adjacentCardOne = new Map({ boardIndex: 3, owner:  opponent, rank: { left: 5, top: 5, right: 4, bottom: 5} });
+            let adjacentCardTwo = new Map({ boardIndex: 5, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
+            let adjacentCardThree = new Map({ boardIndex: 1, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 4} });
+            let adjacentCardFour = new Map({ boardIndex: 7, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
             let deck = [adjacentCardThree,  adjacentCardOne, card, adjacentCardTwo,  adjacentCardFour];
             game = new Map({
                 deck : new List(deck)
@@ -343,10 +343,10 @@ describe('BASIC RULE utility', () => {
 
         let game;
         beforeEach(() => {
-            let adjacentCardOne = fromJS({ boardIndex: 3, owner:  opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} });
-            let adjacentCardTwo = fromJS({ boardIndex: 5, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
-            let adjacentCardThree = fromJS({ boardIndex: 1, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 4} });
-            let adjacentCardFour = fromJS({ boardIndex: 7, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
+            let adjacentCardOne = new Map({ boardIndex: 3, owner:  opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} });
+            let adjacentCardTwo = new Map({ boardIndex: 5, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
+            let adjacentCardThree = new Map({ boardIndex: 1, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 4} });
+            let adjacentCardFour = new Map({ boardIndex: 7, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
             let deck = [adjacentCardThree,  adjacentCardOne, card, adjacentCardTwo,  adjacentCardFour];
             game = new Map({
                 deck : new List(deck)
@@ -364,10 +364,10 @@ describe('BASIC RULE utility', () => {
 
         let game;
         beforeEach(() => {
-            let adjacentCardOne = fromJS({ boardIndex: 3, owner:  opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} });
-            let adjacentCardTwo = fromJS({ boardIndex: 5, owner:  opponent, rank: { left: 4, top: 5, right: 5, bottom: 5} });
-            let adjacentCardThree = fromJS({ boardIndex: 1, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 4} });
-            let adjacentCardFour = fromJS({ boardIndex: 7, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
+            let adjacentCardOne = new Map({ boardIndex: 3, owner:  opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} });
+            let adjacentCardTwo = new Map({ boardIndex: 5, owner:  opponent, rank: { left: 4, top: 5, right: 5, bottom: 5} });
+            let adjacentCardThree = new Map({ boardIndex: 1, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 4} });
+            let adjacentCardFour = new Map({ boardIndex: 7, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
             let deck = [adjacentCardThree,  adjacentCardOne, card, adjacentCardTwo,  adjacentCardFour];
             game = new Map({
                 deck : new List(deck)
@@ -387,10 +387,10 @@ describe('BASIC RULE utility', () => {
 
         let game;
         beforeEach(() => {
-            let adjacentCardOne = fromJS({ boardIndex: 3, owner:  opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} });
-            let adjacentCardTwo = fromJS({ boardIndex: 5, owner:  opponent, rank: { left: 4, top: 5, right: 5, bottom: 5} });
-            let adjacentCardThree = fromJS({ boardIndex: 1, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 3} });
-            let adjacentCardFour = fromJS({ boardIndex: 7, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
+            let adjacentCardOne = new Map({ boardIndex: 3, owner:  opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} });
+            let adjacentCardTwo = new Map({ boardIndex: 5, owner:  opponent, rank: { left: 4, top: 5, right: 5, bottom: 5} });
+            let adjacentCardThree = new Map({ boardIndex: 1, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 3} });
+            let adjacentCardFour = new Map({ boardIndex: 7, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
             let deck = [adjacentCardThree,  adjacentCardOne, card, adjacentCardTwo,  adjacentCardFour];
             game = new Map({
                 deck : new List(deck)
@@ -410,10 +410,10 @@ describe('BASIC RULE utility', () => {
 
         let game;
         beforeEach(() => {
-            let adjacentCardOne = fromJS({ boardIndex: 3, owner:  opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} });
-            let adjacentCardTwo = fromJS({ boardIndex: 5, owner:  opponent, rank: { left: 4, top: 5, right: 5, bottom: 5} });
-            let adjacentCardThree = fromJS({ boardIndex: 1, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 3} });
-            let adjacentCardFour = fromJS({ boardIndex: 7, owner:  opponent, rank: { left: 5, top: 4, right: 5, bottom: 5} });
+            let adjacentCardOne = new Map({ boardIndex: 3, owner:  opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} });
+            let adjacentCardTwo = new Map({ boardIndex: 5, owner:  opponent, rank: { left: 4, top: 5, right: 5, bottom: 5} });
+            let adjacentCardThree = new Map({ boardIndex: 1, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 3} });
+            let adjacentCardFour = new Map({ boardIndex: 7, owner:  opponent, rank: { left: 5, top: 4, right: 5, bottom: 5} });
             let deck = [adjacentCardThree,  adjacentCardOne, card, adjacentCardTwo,  adjacentCardFour];
             game = new Map({
                 deck : new List(deck)
@@ -434,10 +434,10 @@ describe('BASIC RULE utility', () => {
 
         let game;
         beforeEach(() => {
-            let adjacentCardOne = fromJS({ boardIndex: 3, owner:  opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} });
-            let adjacentCardTwo = fromJS({ boardIndex: 5, owner:  opponent, rank: { left: 6, top: 5, right: 5, bottom: 5} });
-            let adjacentCardThree = fromJS({ boardIndex: 1, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 4} });
-            let adjacentCardFour = fromJS({ boardIndex: 7, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
+            let adjacentCardOne = new Map({ boardIndex: 3, owner:  opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} });
+            let adjacentCardTwo = new Map({ boardIndex: 5, owner:  opponent, rank: { left: 6, top: 5, right: 5, bottom: 5} });
+            let adjacentCardThree = new Map({ boardIndex: 1, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 4} });
+            let adjacentCardFour = new Map({ boardIndex: 7, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
             let deck = [adjacentCardThree,  adjacentCardOne, card, adjacentCardTwo,  adjacentCardFour];
             game = new Map({
                 deck : new List(deck)
@@ -456,10 +456,10 @@ describe('BASIC RULE utility', () => {
 
         let game;
         beforeEach(() => {
-            let adjacentCardOne = fromJS({ boardIndex: 3, owner:  opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} });
-            let adjacentCardTwo = fromJS({ boardIndex: 5, owner:  opponent, rank: { left: 4, top: 5, right: 5, bottom: 5} });
-            let adjacentCardThree = fromJS({ boardIndex: 1, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 6} });
-            let adjacentCardFour = fromJS({ boardIndex: 7, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
+            let adjacentCardOne = new Map({ boardIndex: 3, owner:  opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} });
+            let adjacentCardTwo = new Map({ boardIndex: 5, owner:  opponent, rank: { left: 4, top: 5, right: 5, bottom: 5} });
+            let adjacentCardThree = new Map({ boardIndex: 1, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 6} });
+            let adjacentCardFour = new Map({ boardIndex: 7, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
             let deck = [adjacentCardThree,  adjacentCardOne, card, adjacentCardTwo,  adjacentCardFour];
             game = new Map({
                 deck : new List(deck)
@@ -480,10 +480,10 @@ describe('BASIC RULE utility', () => {
 
         let game;
         beforeEach(() => {
-            let adjacentCardOne = fromJS({ boardIndex: 3, owner:  opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} });
-            let adjacentCardTwo = fromJS({ boardIndex: 5, owner:  opponent, rank: { left: 4, top: 5, right: 5, bottom: 5} });
-            let adjacentCardThree = fromJS({ boardIndex: 1, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 3} });
-            let adjacentCardFour = fromJS({ boardIndex: 7, owner:  opponent, rank: { left: 5, top: 6, right: 5, bottom: 5} });
+            let adjacentCardOne = new Map({ boardIndex: 3, owner:  opponent, rank: { left: 5, top: 5, right: 3, bottom: 5} });
+            let adjacentCardTwo = new Map({ boardIndex: 5, owner:  opponent, rank: { left: 4, top: 5, right: 5, bottom: 5} });
+            let adjacentCardThree = new Map({ boardIndex: 1, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 3} });
+            let adjacentCardFour = new Map({ boardIndex: 7, owner:  opponent, rank: { left: 5, top: 6, right: 5, bottom: 5} });
             let deck = [adjacentCardThree,  adjacentCardOne, card, adjacentCardTwo,  adjacentCardFour];
             game = new Map({
                 deck : new List(deck)
@@ -504,10 +504,10 @@ describe('BASIC RULE utility', () => {
 
         let game;
         beforeEach(() => {
-            let adjacentCardOne = fromJS({ boardIndex: 3, owner:  opponent, rank: { left: 5, top: 5, right: 6, bottom: 5} });
-            let adjacentCardTwo = fromJS({ boardIndex: 5, owner:  opponent, rank: { left: 6, top: 5, right: 5, bottom: 5} });
-            let adjacentCardThree = fromJS({ boardIndex: 1, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 6} });
-            let adjacentCardFour = fromJS({ boardIndex: 7, owner:  opponent, rank: { left: 5, top: 6, right: 5, bottom: 5} });
+            let adjacentCardOne = new Map({ boardIndex: 3, owner:  opponent, rank: { left: 5, top: 5, right: 6, bottom: 5} });
+            let adjacentCardTwo = new Map({ boardIndex: 5, owner:  opponent, rank: { left: 6, top: 5, right: 5, bottom: 5} });
+            let adjacentCardThree = new Map({ boardIndex: 1, owner:  opponent, rank: { left: 5, top: 5, right: 5, bottom: 6} });
+            let adjacentCardFour = new Map({ boardIndex: 7, owner:  opponent, rank: { left: 5, top: 6, right: 5, bottom: 5} });
             let deck = [adjacentCardThree,  adjacentCardOne, card, adjacentCardTwo,  adjacentCardFour];
             game = new Map({
                 deck : new List(deck)
