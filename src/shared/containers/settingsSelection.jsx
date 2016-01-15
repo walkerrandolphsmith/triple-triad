@@ -19,20 +19,23 @@ class SettingsSelection extends React.Component {
         };
     }
 
-    randomHand(event) {
-        this.setState({randomHand: event.target.checked});
-        this.props.updateSettings("randomHand", event.target.checked);
-    };
+    componentWillReceiveProps(newProps) {
+        if (newProps !=  this.state) {
 
-    multiplayer(event) {
-        this.setState({multiplayer: event.target.checked});
-        this.props.updateSettings("multiplayer", event.target.checked);
-    };
+            let { randomHand, multiplayer, visibleHand } = newProps.settings;
 
-    visibleHand(event) {
-        this.setState({visibleHand: event.target.checked});
-        this.props.updateSettings("visibleHand", event.target.checked);
-    };
+            this.setState({
+                randomHand: randomHand,
+                multiplayer: multiplayer,
+                visibleHand: visibleHand
+            });
+        }
+    }
+
+    update(setting, event) {
+        this.props.updateSettings(setting, event.target.checked);
+    }
+
 
     render() {
 
@@ -44,17 +47,23 @@ class SettingsSelection extends React.Component {
                     <div className="col-md-12">
                         <div className="settings">
                             <div className="control-group">
-                                <input type="checkbox" id="random-hand" checked={randomHand} onChange={this.randomHand.bind(this)}></input>
+                                <input type="checkbox" id="random-hand" checked={randomHand}
+                                    onChange={this.update.bind(this, 'randomHand')}>
+                                </input>
                                 <label htmlFor="random-hand"></label>
                                 <label className="text" htmlFor="random-hand">Random Hand</label>
                             </div>
                             <div className="control-group">
-                                <input type="checkbox" id="two-player" checked={multiplayer} onChange={this.multiplayer.bind(this)}></input>
+                                <input type="checkbox" id="two-player" checked={multiplayer}
+                                    onChange={this.update.bind(this, 'multiplayer')}>
+                                </input>
                                 <label htmlFor="two-player"></label>
                                 <label className="text" htmlFor="two-player">2 Player</label>
                             </div>
                             <div className="control-group">
-                                <input type="checkbox" id="hidden-hand" checked={visibleHand} onChange={this.visibleHand.bind(this)}></input>
+                                <input type="checkbox" id="hidden-hand" checked={visibleHand}
+                                    onChange={this.update.bind(this, 'visibleHand')}>
+                                </input>
                                 <label htmlFor="hidden-hand"></label>
                                 <label className="text" htmlFor="hidden-hand">Hide opponent's hand</label>
                             </div>
