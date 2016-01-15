@@ -40,7 +40,7 @@ class Game extends React.Component {
         return (
             <div id="game" className="container-fluid">
                 <div className="row">
-                    <div className="col-md-12">
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         {this.props.children}
                     </div>
                 </div>

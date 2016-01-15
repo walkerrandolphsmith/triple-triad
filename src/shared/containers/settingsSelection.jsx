@@ -61,7 +61,7 @@ class SettingsSelection extends React.Component {
         return (
             <div id="settings-selection">
                 <div className="row">
-                    <div className="col-md-12">
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div className="settings">
                             <div className="control-group">
                                 <input type="checkbox" id="random-hand" checked={randomHand}
