@@ -19,6 +19,18 @@ class SettingsSelection extends React.Component {
         };
     }
 
+    componentDidMount() {
+        this.setState({
+            isMounted: true
+        });
+    }
+
+    componentWillUnmount() {
+        this.setState({
+            isMounted: false
+        });
+    }
+
     componentWillReceiveProps(newProps) {
         if (newProps !=  this.state) {
 
@@ -32,7 +44,7 @@ class SettingsSelection extends React.Component {
         }
     }
 
-    update(setting, event) {
+    update(setting) {
         this.props.updateSettings(setting);
     }
 
@@ -42,7 +54,9 @@ class SettingsSelection extends React.Component {
 
     render() {
 
-        let { randomHand, multiplayer, visibleHand } = this.state;
+        let { isMounted, randomHand, multiplayer, visibleHand } = this.state;
+
+        let focus = isMounted ? this.focus : () => {};
 
         return (
             <div id="settings-selection" className="container">
@@ -52,7 +66,7 @@ class SettingsSelection extends React.Component {
                             <div className="control-group">
                                 <input type="checkbox" id="random-hand" checked={randomHand}
                                     onChange={this.update.bind(this, 'randomHand')}
-                                    onFocus={this.focus.bind(this, 'randomHand')}>
+                                    onFocus={focus.bind(this, 'randomHand')}>
                                 </input>
                                 <label htmlFor="random-hand"></label>
                                 <label className="text" htmlFor="random-hand">Random Hand</label>
@@ -60,7 +74,7 @@ class SettingsSelection extends React.Component {
                             <div className="control-group">
                                 <input type="checkbox" id="two-player" checked={multiplayer}
                                     onChange={this.update.bind(this, 'multiplayer')}
-                                    onFocus={this.focus.bind(this, 'multiplayer')}>
+                                    onFocus={focus.bind(this, 'multiplayer')}>
                                 </input>
                                 <label htmlFor="two-player"></label>
                                 <label className="text" htmlFor="two-player">2 Player</label>
@@ -68,7 +82,7 @@ class SettingsSelection extends React.Component {
                             <div className="control-group">
                                 <input type="checkbox" id="hidden-hand" checked={visibleHand}
                                     onChange={this.update.bind(this, 'visibleHand')}
-                                    onFocus={this.focus.bind(this, 'visibleHand')}>
+                                    onFocus={focus.bind(this, 'visibleHand')}>
                                 </input>
                                 <label htmlFor="hidden-hand"></label>
                                 <label className="text" htmlFor="hidden-hand">Hide opponent's hand</label>
