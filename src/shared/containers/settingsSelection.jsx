@@ -59,7 +59,7 @@ class SettingsSelection extends React.Component {
         let focus = isMounted ? this.focus : () => {};
 
         return (
-            <div id="settings-selection" className="container">
+            <div id="settings-selection">
                 <div className="row">
                     <div className="col-md-12">
                         <div className="settings">

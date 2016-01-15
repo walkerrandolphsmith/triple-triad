@@ -38,7 +38,7 @@ class Game extends React.Component {
 
     render() {
         return (
-            <div id="game" className="container">
+            <div id="game" className="container-fluid">
                 <div className="row">
                     <div className="col-md-12">
                         {this.props.children}

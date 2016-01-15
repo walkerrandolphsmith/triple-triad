@@ -14,7 +14,7 @@ class CardSelection extends React.Component {
         let {availableDeck, selectedCard, hand, isHandSelected, addCard} = this.props;
 
         return (
-            <div id="card-selection" className="container">
+            <div id="card-selection">
                 <div className="row">
                     <div className="col-md-12">
                         <Deck cards={availableDeck} selectedCard={selectedCard} isHandSelected={isHandSelected} addCard={addCard} />

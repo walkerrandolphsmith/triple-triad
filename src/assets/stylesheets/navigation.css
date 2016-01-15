@@ -11,13 +11,13 @@ body {
 
 #settings-selection {
   text-align: center;
+  transform: translateY(100%);
 }
 
 #settings-selection .settings {
   text-align: left;
   position: relative;
   margin-left: calc(50% - 100px);
-  margin-top: 40%;
 }
 
 #card-selection {
@@ -89,7 +89,7 @@ body {
   top: 50px;
 }
 
-#banner {
+#banner-inner {
   position: relative;
   z-index: 1;
   top: -150px;
@@ -105,13 +105,13 @@ body {
   height: 300px;
 }
 
-#banner .results {
+#banner-inner .results {
   margin-top: 75px;
   padding-left: 5px;
   padding-right: 25px;
 }
 
-#banner .results div {
+#banner-inner .results div {
   font: bold 6em Impact, sans-serif;
   text-transform: uppercase;
   text-shadow: 2px 2px 0 white, 4px 4px 0 black;

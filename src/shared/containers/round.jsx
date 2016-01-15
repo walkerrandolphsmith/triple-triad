@@ -24,7 +24,6 @@ class Round extends React.Component {
             case WINNER.NONE:
                 handStyles.visibility = 'visible';
                 bannerStyle.display = 'none';
-                bannerScrimStyle.display = 'none';
             case WINNER.TIE:
                 phrase = "Tie";
                 bannerScrimStyle.background = 'repeating-linear-gradient(45deg, #5d9634, #5d9634 10px, #538c2b 10px, #538c2b 20px)';
@@ -40,34 +39,37 @@ class Round extends React.Component {
         }
 
         return (
-            <div id="round" className="container">
+            <div id="round">
                 <div className="row">
-                    <div className="col-md-2" style={handStyles}>
+                    <div className="col-xl-1 col-lg-2 col-md-2 col-sm-2 col-xs-2" style={handStyles}>
                         <Hand score={score.blue} cards={hand} selectedCard={game.selectedCard} showBack={false} clickAction={selectCard} />
                     </div>
 
-                    <div className="col-md-8">
+                    <div className="col-xl-10 col-lg-8 col-md-8 col-sm-8 col-xs-8">
                         <Board board={board} validPieces={validPieces} selectedPiece={game.selectedPiece} selectedPieceByClick={selectedPieceByClick} />
                     </div>
 
-                    <div className="col-md-2" style={handStyles}>
+                    <div className="col-xl-1 col-lg-2 col-md-2 col-sm-2 col-xs-2" style={handStyles}>
                         <Hand score={score.red} cards={opponentHand} selectedCard={game.selectedCard} showBack={settings.visibleHand} clickAction={() => {}} />
                     </div>
                 </div>
-                <div className="row">
-                    <div id="banner" className="container" style={bannerStyle}>
-                        <div className="results row">
-                            <div className="col-md-1">{score.blue}</div>
-                            <div className="col-md-10">{phrase}</div>
-                            <div className="col-md-1">{score.red}</div>
-                        </div>
-                        <div className="row">
-                            <div className="col-md-12">
-                                <button className="btn btn-next" onClick={this.props.updateRoute}>Play again</button>
+                <div style={bannerStyle}>
+                    <div id="banner-inner" className="row">
+                        <div className="col-md-12">
+                            <div className="results row">
+                                <div className="col-md-1">{score.blue}</div>
+                                <div className="col-md-10">{phrase}</div>
+                                <div className="col-md-1">{score.red}</div>
+                            </div>
+
+                            <div className="row">
+                                <div className="col-md-12">
+                                    <button className="btn btn-next" onClick={this.props.updateRoute}>Play again</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div id="banner-scrim" style={bannerScrimStyle}></div>
+                    <div id="banner-scrim" className="row" style={bannerScrimStyle}></div>
                 </div>
             </div>
         );
