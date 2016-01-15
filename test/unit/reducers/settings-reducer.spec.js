@@ -10,7 +10,8 @@ describe("Settings reducer", () => {
         initialState = new Map({
             randomHand: false,
             multiplayer: false,
-            visibleHand: false
+            visibleHand: false,
+            focused: -1
         });
     });
 
@@ -72,5 +73,5 @@ describe("Settings reducer", () => {
             expect(newState.get('visibleHand')).toEqual(true)
         });
     });
-    
+
 });

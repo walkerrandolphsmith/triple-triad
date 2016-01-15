@@ -15,6 +15,31 @@ describe('HANDLE_ENTER async action creator', () => {
         expect(handleEnter()).toBeA('function');
     });
 
+    describe('given it is settings selection phase', () => {
+
+        let getState;
+        beforeEach(() => {
+            getState = () => ({
+                game: new Map({
+                    phase: "settingsSelection"
+                }),
+                settings: new Map({
+
+                })
+            });
+        });
+
+        it('should dispatch the UPDATE_SETTINGS action', () => {
+            HandleEnter.__Rewire__('updateSettings', function(){
+                return 'settings';
+            });
+            handleEnter()(dispatch, getState);
+            expect(dispatch).toHaveBeenCalledWith('settings')
+
+        });
+    });
+
+
     describe('given it is hand selection phase', () => {
 
         let getState;

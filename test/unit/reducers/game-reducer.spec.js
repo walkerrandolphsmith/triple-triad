@@ -13,7 +13,7 @@ describe("Game reducer", () => {
             deck: deck,
             selectedCard: -1,
             selectedPiece: -1,
-            phase: 'handSelection'
+            phase: 'settingsSelection'
         });
     });
 
