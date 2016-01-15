@@ -21,7 +21,7 @@ export const handleEnter = () => (dispatch, getState) => {
             const hand = getHand(deck, 1);
             const isOwned = hand.find(card => card.id === id);
             const owner = isOwned ? 0 : 1;
-            if(!getIsFullHand(hand))
+            if(!getIsFullHand(hand) || isOwned)
                 dispatch(addCard(id, owner));
             break;
         case 'cardSelection':
