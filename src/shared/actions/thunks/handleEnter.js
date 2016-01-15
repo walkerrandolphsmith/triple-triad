@@ -3,6 +3,8 @@ import { getNextSelectedPiece } from './getNextSelectedPiece';
 import { playerTakesTurn } from './playerTakesTurn';
 import { updateRoute } from './updateRoute';
 import { addCard, updateSettings } from './../action-creators';
+import { getHand } from './../../selectors/handSelector';
+import { getIsFullHand } from './../../selectors/isFullHandSelector';
 
 export const handleEnter = () => (dispatch, getState) => {
     const state = getState();
@@ -14,10 +16,13 @@ export const handleEnter = () => (dispatch, getState) => {
                 dispatch(updateSettings(focusedSetting));
             break;
         case 'handSelection':
-            let id = state.game.get('selectedCard');
-            let card = state.game.get('deck').find(card => card.get('id') === id);
-            let owner = card.get('owner') === 1 ? 0 : 1;
-            dispatch(addCard(id, owner));
+            const id = state.game.get('selectedCard');
+            const deck = state.game.get('deck').toJS();
+            const hand = getHand(deck, 1);
+            const isOwned = hand.find(card => card.id === id);
+            const owner = isOwned ? 0 : 1;
+            if(!getIsFullHand(hand))
+                dispatch(addCard(id, owner));
             break;
         case 'cardSelection':
             dispatch(setPhase('pieceSelection'));
