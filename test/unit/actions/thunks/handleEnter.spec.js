@@ -61,7 +61,7 @@ describe('HANDLE_ENTER async action creator', () => {
     });
 
 
-    describe('given it is hand selection phase', () => {
+    describe('given it is hand selection phase and your hand is not full', () => {
 
         let getState;
         beforeEach(() => {
@@ -80,15 +80,15 @@ describe('HANDLE_ENTER async action creator', () => {
 
         it('should dispatch the ADD_CARD action', () => {
             HandleEnter.__Rewire__('addCard', function(){
-                return 'card';
+                return 'addCardToHand';
             });
             handleEnter()(dispatch, getState);
-            expect(dispatch).toHaveBeenCalledWith('card')
+            expect(dispatch).toHaveBeenCalledWith('addCardToHand')
 
         });
     });
 
-    describe('given it is hand selection phase and your hand is full', () => {
+    describe('given it is hand selection phase and your hand is full and the selected card is not owned', () => {
 
         let getState;
         beforeEach(() => {
@@ -110,6 +110,35 @@ describe('HANDLE_ENTER async action creator', () => {
         it('should do nothing', () => {
             handleEnter()(dispatch, getState);
             expect(dispatch).toNotHaveBeenCalled()
+
+        });
+    });
+
+    describe('given it is hand selection phase and your hand is full but the selected card is owned', () => {
+
+        let getState;
+        beforeEach(() => {
+            getState = () => ({
+                game: new Map({
+                    phase: "handSelection",
+                    selectedCard: 4,
+                    deck: new List([
+                        new Map({id: 0, owner: 1, name: '0', boardIndex: -1}),
+                        new Map({id: 1, owner: 1, name: '1', boardIndex: -1}),
+                        new Map({id: 2, owner: 1, name: '2', boardIndex: -1}),
+                        new Map({id: 3, owner: 1, name: '3', boardIndex: -1}),
+                        new Map({id: 4, owner: 1, name: '4', boardIndex: -1})
+                    ])
+                })
+            });
+        });
+
+        it('should dispatch ADD_CARD action', () => {
+            HandleEnter.__Rewire__('addCard', function(){
+                return 'addCardToDeck';
+            });
+            handleEnter()(dispatch, getState);
+            expect(dispatch).toHaveBeenCalledWith('addCardToDeck')
 
         });
     });
