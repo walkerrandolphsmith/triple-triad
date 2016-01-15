@@ -15,7 +15,7 @@ describe('HANDLE_ENTER async action creator', () => {
         expect(handleEnter()).toBeA('function');
     });
 
-    describe('given it is settings selection phase', () => {
+    describe('given it is settings selection phase and no setting is focused', () => {
 
         let getState;
         beforeEach(() => {
@@ -24,7 +24,28 @@ describe('HANDLE_ENTER async action creator', () => {
                     phase: "settingsSelection"
                 }),
                 settings: new Map({
+                    focused: -1
+                })
+            });
+        });
 
+        it('should do nothing', () => {
+            handleEnter()(dispatch, getState);
+            expect(dispatch).toNotHaveBeenCalled()
+
+        });
+    });
+
+    describe('given it is settings selection phase and a setting is focused', () => {
+
+        let getState;
+        beforeEach(() => {
+            getState = () => ({
+                game: new Map({
+                    phase: "settingsSelection"
+                }),
+                settings: new Map({
+                    focused: 'randomHand'
                 })
             });
         });
