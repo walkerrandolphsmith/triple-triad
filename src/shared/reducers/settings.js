@@ -13,7 +13,7 @@ export default function reducer(state = INITIAL_STATE, action) {
   let {type, payload} = action;
 
   switch(type){
-    case types.UPDATE_SETTINGS: return state.set(payload.setting, payload.isChecked);
+    case types.UPDATE_SETTINGS: return state.set(payload.setting, !state.get(payload.setting));
   }
 
   return state;

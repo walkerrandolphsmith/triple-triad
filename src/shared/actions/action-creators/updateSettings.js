@@ -4,8 +4,7 @@ export function updateSettings(setting, isChecked) {
     return {
         type: UPDATE_SETTINGS,
         payload: {
-            setting: setting,
-            isChecked: isChecked
+            setting: setting
         }
     }
 }

@@ -33,7 +33,7 @@ class SettingsSelection extends React.Component {
     }
 
     update(setting, event) {
-        this.props.updateSettings(setting, event.target.checked);
+        this.props.updateSettings(setting);
     }
 
 
