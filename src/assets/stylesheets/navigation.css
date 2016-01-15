@@ -196,6 +196,10 @@ body {
   outline: -webkit-focus-ring-color auto 0px;
 }
 
+.control-group input:focus + label {
+  outline: -webkit-focus-ring-color auto 5px;
+}
+
 .control-group input + label:hover::after,
 .control-group input + label:focus::after,
 .control-group input:focus + label::after {

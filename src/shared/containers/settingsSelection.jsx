@@ -36,6 +36,9 @@ class SettingsSelection extends React.Component {
         this.props.updateSettings(setting);
     }
 
+    focus(setting) {
+        this.props.updateFocusSetting(setting)
+    }
 
     render() {
 
@@ -48,21 +51,24 @@ class SettingsSelection extends React.Component {
                         <div className="settings">
                             <div className="control-group">
                                 <input type="checkbox" id="random-hand" checked={randomHand}
-                                    onChange={this.update.bind(this, 'randomHand')}>
+                                    onChange={this.update.bind(this, 'randomHand')}
+                                    onFocus={this.focus.bind(this, 'randomHand')}>
                                 </input>
                                 <label htmlFor="random-hand"></label>
                                 <label className="text" htmlFor="random-hand">Random Hand</label>
                             </div>
                             <div className="control-group">
                                 <input type="checkbox" id="two-player" checked={multiplayer}
-                                    onChange={this.update.bind(this, 'multiplayer')}>
+                                    onChange={this.update.bind(this, 'multiplayer')}
+                                    onFocus={this.focus.bind(this, 'multiplayer')}>
                                 </input>
                                 <label htmlFor="two-player"></label>
                                 <label className="text" htmlFor="two-player">2 Player</label>
                             </div>
                             <div className="control-group">
                                 <input type="checkbox" id="hidden-hand" checked={visibleHand}
-                                    onChange={this.update.bind(this, 'visibleHand')}>
+                                    onChange={this.update.bind(this, 'visibleHand')}
+                                    onFocus={this.focus.bind(this, 'visibleHand')}>
                                 </input>
                                 <label htmlFor="hidden-hand"></label>
                                 <label className="text" htmlFor="hidden-hand">Hide opponent's hand</label>
