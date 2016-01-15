@@ -14,7 +14,6 @@ export default function reducer(state = INITIAL_STATE, action) {
 
   switch(type){
     case types.UPDATE_SETTINGS: return state.set(payload.setting, payload.isChecked);
-    case types.RESET_SETTINGS: return INITIAL_STATE;
   }
 
   return state;
