@@ -9,7 +9,9 @@ export const handleEnter = () => (dispatch, getState) => {
 
     switch(state.game.get('phase')){
         case 'settingsSelection':
-            dispatch(updateSettings(state.settings.get('focused')));
+            const focusedSetting = state.settings.get('focused');
+            if(focusedSetting !== -1)
+                dispatch(updateSettings(focusedSetting));
             break;
         case 'handSelection':
             let id = state.game.get('selectedCard');
