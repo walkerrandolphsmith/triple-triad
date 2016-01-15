@@ -8,11 +8,10 @@ describe('UPDATE_SETTINGS', () => {
         const expectedAction = {
             type: UPDATE_SETTINGS,
             payload: {
-                setting: "multiplayer",
-                isChecked: true
+                setting: "multiplayer"
             }
         };
-        expect(updateSettings("multiplayer", true)).toEqual(expectedAction)
+        expect(updateSettings("multiplayer")).toEqual(expectedAction)
     });
 
 });

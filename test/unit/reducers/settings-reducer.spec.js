@@ -29,8 +29,7 @@ describe("Settings reducer", () => {
             newState = reducer(initialState, {
                 type: types.UPDATE_SETTINGS,
                 payload: {
-                    setting: "randomHand",
-                    isChecked: true
+                    setting: "randomHand"
                 }
             });
         });
@@ -47,8 +46,7 @@ describe("Settings reducer", () => {
             newState = reducer(initialState, {
                 type: types.UPDATE_SETTINGS,
                 payload: {
-                    setting: "multiplayer",
-                    isChecked: true
+                    setting: "multiplayer"
                 }
             });
         });
@@ -65,8 +63,7 @@ describe("Settings reducer", () => {
             newState = reducer(initialState, {
                 type: types.UPDATE_SETTINGS,
                 payload: {
-                    setting: "visibleHand",
-                    isChecked: true
+                    setting: "visibleHand"
                 }
             });
         });
@@ -75,19 +72,5 @@ describe("Settings reducer", () => {
             expect(newState.get('visibleHand')).toEqual(true)
         });
     });
-
-    describe("when resetting the settings", () => {
-
-        let newState;
-        beforeEach(() => {
-            newState = reducer(initialState, {
-                type: types.RESET_SETTINGS
-            });
-        });
-
-        it('should handle UPDATE_SETTINGS visible hand', () => {
-            expect(newState).toEqual(initialState)
-        });
-    });
-
+    
 });
