@@ -18,7 +18,6 @@ export default class Deck extends React.Component {
 
             const cardStyle = {
                 backgroundImage: `url(assets/images/${name}.png), linear-gradient( 45deg, white, #608FC6 )`,
-                backgroundColor: 'blue',
                 opacity: owner === 0 ? '1' : '0.5',
                 cursor: isSelectable ? 'pointer' : 'default'
             };
