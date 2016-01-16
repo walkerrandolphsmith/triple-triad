@@ -7,6 +7,7 @@ import { fromJS } from 'immutable';
 import { syncReduxAndRouter } from 'redux-simple-router'
 import Routes from './../shared/routes';
 import configureStore from './../shared/store/store';
+import './../assets/stylesheets/index.less';
 
 let initialState = window.__INITIAL_STATE__;
 Object.keys(initialState).forEach(key => { initialState[key] = fromJS(initialState[key]);  });

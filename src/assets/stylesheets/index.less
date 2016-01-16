@@ -1,0 +1,220 @@
+@import "~bootstrap/less/bootstrap";
+@import './board.less';
+
+@offset: ~"50% - 100px";
+
+#settings-selection {
+  text-align: center;
+  transform: translateY(100%);
+}
+
+#settings-selection .settings {
+  text-align: left;
+  position: relative;
+  margin-left: calc(@offset);
+}
+
+#card-selection {
+  margin-top: 20%;
+  text-align: center;
+}
+
+#card-selection .card-wrapper {
+  display: inline-block;
+}
+
+.hand {
+  text-align: center;
+}
+
+
+.score {
+  font-size: 36px;
+  color: rgb(51,51,51);
+  text-align: center;
+}
+
+
+.card-wrapper {
+  display: inline;
+}
+
+.card {
+  display: inline-block;
+}
+
+.card, .piece {
+  height: 127px;
+  width: 100px;
+  background-size: contain;
+}
+
+@media (min-width: 768px) {
+  #round .hand .card-wrapper.selected {
+    padding-left: 40px;
+  }
+
+  #round .hand .card-wrapper.selected:after {
+    left: 15px !important; /*offset the padding*/
+  }
+}
+
+@media (min-width: 1241px) {
+  #round .hand {
+    width: 100px;
+  }
+}
+
+
+#round .hand .card-wrapper,
+#card-selection .card-wrapper,
+.piece {
+  position: relative;
+}
+
+.selected:after {
+  content: " ";
+  width: 25px;
+  height: 30px;
+  position: absolute;
+  transform: rotate(90deg);
+  background-image: url("../images/pointer.png");
+  background-size: contain;
+}
+
+#round .hand .card-wrapper.selected:after {
+  top: -75px !important;
+}
+
+#card-selection .card-wrapper.selected:after,
+#round .hand .card-wrapper.selected:after,
+.piece.selected:after{
+  left: -25px;
+  top: 50px;
+}
+
+#banner-inner {
+  position: relative;
+  z-index: 1;
+  top: -150px;
+  height: 300px;
+  text-align: center;
+
+}
+
+#banner-scrim {
+  position: relative;
+  z-index: -1;
+  top: -450px;
+  height: 300px;
+}
+
+#banner-inner .results {
+  margin-top: 75px;
+  padding-left: 5px;
+  padding-right: 25px;
+}
+
+#banner-inner .results div {
+  font: bold 6em Impact, sans-serif;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 0 white, 4px 4px 0 black;
+  text-align: center;
+  letter-spacing: 8px;
+}
+
+.btn.btn-next {
+  box-shadow: none;
+  position: relative;
+  text-decoration: none !important;
+  padding: 0 47px;
+  font: 1em/3em Arial;
+  margin: 0;
+  text-shadow: none;
+  color: #ffffff;
+  border-radius: 5px;
+  background: #0082bf;
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  -webkit-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+}
+
+.btn.btn-next:hover {
+  color: #ffffff !important;
+  background: #e5e5e5 !important;
+  border-color: #e5e5e5 !important;
+  text-decoration: none !important;
+  -webkit-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+}
+
+.control-group {
+  width: 250px;
+  margin: 20px 0px;
+  position: relative;
+}
+
+.control-group input + label {
+  cursor: pointer;
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  top: 0;
+  left: 0;
+  background: white;
+  border:1px solid #ddd;
+}
+
+.control-group input + label:after {
+  opacity: 0;
+  content: '';
+  position: absolute;
+  width: 9px;
+  height: 5px;
+  background: transparent;
+  top: 6px;
+  left: 7px;
+  border: 3px solid #333;
+  border-top: none;
+  border-right: none;
+
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+.control-group input:focus {
+  outline: -webkit-focus-ring-color auto 0px;
+}
+
+.control-group input:focus + label {
+  outline: -webkit-focus-ring-color auto 5px;
+}
+
+.control-group input + label:hover::after,
+.control-group input + label:focus::after,
+.control-group input:focus + label::after {
+  opacity: 0.5;
+}
+
+.control-group input[type=checkbox]:checked + label:after {
+  opacity: 1;
+}
+
+.control-group .text {
+  margin-left: 25px;
+  cursor: pointer;
+}
