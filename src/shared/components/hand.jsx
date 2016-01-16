@@ -13,18 +13,13 @@ export default class Hand extends React.Component {
         let cardsMarkup = cards.map((card, i) => {
             let { name, owner } = card;
 
-            name = showBack ? 'back' : name;
-
-            let backgroundColor = owner === 1 ? 'linear-gradient( 45deg, white, #608FC6 )' : 'linear-gradient( 45deg, white, #CC181E )';
+            card.name = showBack ? 'back' : name;
 
             const cardStyle = {
-                backgroundImage: `url(assets/images/cards/${name}.png), ${backgroundColor}`,
                 cursor: owner === 1 ? 'pointer' : 'default'
             };
 
-            let classes = [];
-
-            if(card.id === selectedCard) classes.push('selected');
+            const classes = card.id === selectedCard ? 'selected' : '';
 
             return (<Card key={card.id} card={card} classes={classes} cardStyle={cardStyle} clickAction={this.click.bind(this, card)} />);
         });

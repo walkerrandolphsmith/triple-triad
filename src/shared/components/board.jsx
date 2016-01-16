@@ -56,13 +56,7 @@ export default class Board extends React.Component {
             if(piece.card){
                 let { name, owner } = piece.card;
 
-                let backgroundColor = owner === 1 ? 'linear-gradient( 45deg, white, #608FC6 )' : 'linear-gradient( 45deg, white, #CC181E )';
-
-                const cardStyle = {
-                    backgroundImage: `url(assets/images/cards/${name}.png), ${backgroundColor}`
-                };
-
-                card = (<Card card={piece.card} cardStyle={cardStyle} clickAction={()=>{}} />);
+                card = (<Card card={piece.card} clickAction={()=>{}} />);
             }
 
             let className = `piece ${i === selectedPiece ? 'selected' : ''}`;

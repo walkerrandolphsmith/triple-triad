@@ -13,18 +13,15 @@ export default class Deck extends React.Component {
 
         let cardsMarkup = cards.map(card => {
 
-            const { name, owner } = card;
+            const { owner } = card;
             const isSelectable = (owner === 1) || (!isHandSelected && owner === 0);
 
             const cardStyle = {
-                backgroundImage: `url(assets/images/cards/${name}.png), linear-gradient( 45deg, white, #608FC6 )`,
                 opacity: owner === 0 ? '1' : '0.5',
                 cursor: isSelectable ? 'pointer' : 'default'
             };
 
-            let classes = [];
-
-            if(card.id === selectedCard) classes.push('selected');
+            const classes = card.id === selectedCard ? 'selected' : '';
 
             return (
                 <Card key={card.id} card={card} cardStyle={cardStyle} classes={classes} clickAction={isSelectable ? this.click.bind(this, card) : ()=> {} } />
