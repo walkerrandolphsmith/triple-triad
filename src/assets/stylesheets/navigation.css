@@ -28,6 +28,14 @@ body {
   text-align: center;
 }
 
+
+.score {
+  font-size: 36px;
+  color: rgb(51,51,51);
+  text-align: center;
+}
+
+
 .card-wrapper {
   display: inline;
 }
@@ -36,10 +44,10 @@ body {
   display: inline-block;
 }
 
-.score {
-  font-size: 36px;
-  color: rgb(51,51,51);
-  text-align: center;
+.card, .piece {
+  height: 127px;
+  width: 100px;
+  background-size: contain;
 }
 
 #board {
@@ -48,14 +56,27 @@ body {
   transform: translateY(50%);
 }
 
-.card, .piece {
-  height: 127px;
-  width: 100px;
+@media (max-width: 767px) {
+  #board {
+    transform: translateY(0%);
+  }
+}
+@media (min-width: 768px) {
+  #round .hand .card-wrapper.selected {
+    padding-left: 40px;
+  }
+
+  #round .hand .card-wrapper.selected:after {
+    left: 15px !important; /*offset the padding*/
+  }
 }
 
-#round .hand .card-wrapper.selected {
-  padding-left: 40px;
+@media (min-width: 1241px) {
+  #round .hand {
+    width: 100px;
+  }
 }
+
 
 #round .hand .card-wrapper,
 #card-selection .card-wrapper,
@@ -74,11 +95,11 @@ body {
 }
 
 #round .hand .card-wrapper.selected:after {
-  left: 15px; /*offset the padding*/
-  top: -75px;
+  top: -75px !important;
 }
 
 #card-selection .card-wrapper.selected:after,
+#round .hand .card-wrapper.selected:after,
 .piece.selected:after{
   left: -25px;
   top: 50px;

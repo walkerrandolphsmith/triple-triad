@@ -41,15 +41,15 @@ class Round extends React.Component {
         return (
             <div id="round">
                 <div className="row">
-                    <div className="col-xl-1 col-lg-2 col-md-2 col-sm-2 col-xs-2" style={handStyles}>
+                    <div className="col-xl-1 col-lg-2 col-md-2 col-sm-2 col-xs-12" style={handStyles}>
                         <Hand score={score.blue} cards={hand} selectedCard={game.selectedCard} showBack={false} clickAction={selectCard} />
                     </div>
 
-                    <div className="col-xl-10 col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                    <div className="col-xl-10 col-lg-8 col-md-8 col-sm-8 col-xs-12">
                         <Board board={board} validPieces={validPieces} selectedPiece={game.selectedPiece} selectedPieceByClick={selectedPieceByClick} />
                     </div>
 
-                    <div className="col-xl-1 col-lg-2 col-md-2 col-sm-2 col-xs-2" style={handStyles}>
+                    <div className="col-xl-1 col-lg-2 col-md-2 col-sm-2 col-xs-12" style={handStyles}>
                         <Hand score={score.red} cards={opponentHand} selectedCard={game.selectedCard} showBack={settings.visibleHand} clickAction={() => {}} />
                     </div>
                 </div>
