@@ -7,7 +7,7 @@
     "clean": "rm -rf dist",
     "start": "NODE_ENV=development babel-node src/server/index.js --progress --colors --profile",
     "start-prod": "NODE_ENV=production babel-node src/server/index.js --progress --colors --profile",
-    "build": "npm run clean && NODE_ENV=production webpack -p --progress --colors --profile",
+    "build": "npm run clean && NODE_ENV=production webpack -p --config webpack.production.config.js",
     "test": "NODE_ENV=test mocha --compilers js:babel-core/register --recursive",
     "test:watch": "npm test -- --watch",
     "deploy": "git push heroku master"
@@ -50,6 +50,7 @@
     "babel-types": "^6.4.1",
     "css-loader": "^0.23.1",
     "expect": "^1.13.4",
+    "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.5",
     "less": "^2.5.3",
     "less-loader": "^2.2.2",
@@ -95,8 +96,6 @@
         ]
       }
     }
-
-
   },
   "engines": {
     "node": "4.1.1"
