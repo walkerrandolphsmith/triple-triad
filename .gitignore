@@ -1,18 +1,10 @@
+.DS_Store
+
 .idea/
 
+node_modules
 logs
 *.log
 
-pids
-*.pid
-*.seed
+dist
 
-lib-cov
-
-coverage
-
-.lock-wscript
-
-build/Release
-
-node_modules
