@@ -17,7 +17,7 @@ export default class Deck extends React.Component {
             const isSelectable = (owner === 1) || (!isHandSelected && owner === 0);
 
             const cardStyle = {
-                backgroundImage: `url(assets/images/${name}.png), linear-gradient( 45deg, white, #608FC6 )`,
+                backgroundImage: `url(assets/images/cards/${name}.png), linear-gradient( 45deg, white, #608FC6 )`,
                 opacity: owner === 0 ? '1' : '0.5',
                 cursor: isSelectable ? 'pointer' : 'default'
             };
