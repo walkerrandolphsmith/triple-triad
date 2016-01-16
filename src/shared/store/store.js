@@ -1,35 +1,43 @@
 import { applyMiddleware, createStore, compose } from 'redux'
 import thunk from 'redux-thunk';
-import reducers from '../reducers'
-import { routeReducer } from 'redux-simple-router';
-import { combineReducers } from 'redux';
+import rootReducer from '../reducers'
 import DevTools from './../../dev-tools/devTools';
 
-let createStoreWithMiddleware;
+const buildMiddleware = () => {
+    let middleware = applyMiddleware(thunk);
+    let composeElms = [];
 
-if (process.env.NODE_ENV !== 'production') {
-    createStoreWithMiddleware = compose(
-        applyMiddleware(thunk),
-        DevTools.instrument()
-    )(createStore);
-}else {
-    createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
-}
+    if(process.browser){
+
+        if(process.env.NODE_ENV !== 'production'){
+            composeElms = [
+                middleware,
+                DevTools.instrument()
+            ]
+        }else{
+            composeElms = [
+                middleware
+            ]
+        }
+
+    }else{
+        composeElms = [middleware];
+    }
+
+    return composeElms;
+};
 
 export default function configureStore(initialState) {
 
-  const rootReducer = combineReducers(Object.assign({}, reducers, {
-      routing: routeReducer
-  }));
+    const createStoreWithMiddleware = compose(...buildMiddleware())(createStore);
+    const store = createStoreWithMiddleware(rootReducer, initialState);
 
-  const store = createStoreWithMiddleware(rootReducer, initialState);
+    if (module.hot) {
+        module.hot.accept('../reducers', () => {
+            const nextReducer = require('../reducers').default;
+            store.replaceReducer(nextReducer)
+        })
+    }
 
-  if (module.hot) {
-    module.hot.accept('../reducers', () => {
-      const nextReducer = require('../reducers').default;
-      store.replaceReducer(nextReducer)
-    })
-  }
-
-  return store
+    return store
 }
