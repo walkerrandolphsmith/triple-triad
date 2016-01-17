@@ -24,7 +24,7 @@ if(process.env.NODE_ENV !== 'production'){
   app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }));
   app.use(webpackHotMiddleware(compiler));
 
-  new WebpackDevServer(webpack(config), config.devServer).listen(3001, 'localhost', (err, result) => {
+  new WebpackDevServer(compiler, config.devServer).listen(3001, 'localhost', (err, result) => {
     if (err) console.log(err);
     console.log('Listening at localhost:3001');
   });
