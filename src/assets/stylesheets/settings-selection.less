@@ -1,0 +1,76 @@
+@offset: ~"50% - 100px";
+
+#settings-selection {
+  text-align: center;
+  transform: translateY(100%);
+}
+
+#settings-selection .settings {
+  text-align: left;
+  position: relative;
+  margin-left: calc(@offset);
+}
+
+.control-group {
+  width: 250px;
+  margin: 20px 0px;
+  position: relative;
+
+  input {
+
+    & + label {
+      cursor: pointer;
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      top: 0;
+      left: 0;
+      background: white;
+      border:1px solid #ddd;
+
+      &:after {
+        opacity: 0;
+        content: '';
+        position: absolute;
+        width: 9px;
+        height: 5px;
+        background: transparent;
+        top: 6px;
+        left: 7px;
+        border: 3px solid #333;
+        border-top: none;
+        border-right: none;
+
+        -webkit-transform: rotate(-45deg);
+        -moz-transform: rotate(-45deg);
+        -o-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+      }
+    }
+
+    &:focus {
+      outline: -webkit-focus-ring-color auto 0px;
+
+      & + label {
+        outline: -webkit-focus-ring-color auto 5px;
+      }
+    }
+
+    &:checked + label:after {
+      opacity: 1 !important;
+    }
+  }
+
+  .text {
+    margin-left: 25px;
+    cursor: pointer;
+  }
+
+}
+
+.control-group input + label:hover::after,
+.control-group input + label:focus::after,
+.control-group input:focus + label::after {
+  opacity: 0.5;
+}
