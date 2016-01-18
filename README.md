@@ -2,6 +2,26 @@
 implementation of final fantasy 8's card game for the web
 
 
+#MongoDB
+`cd ~/Downloads`
+`tar xzf mongodb-osx-x86_64-2.2.3.tgz`
+`sudo mv mongodb-osx-x86_64-2.2.3 /usr/local/mongodb`
+
+`sudo mkdir -p /data/db`
+`whoami` // => <username>
+`sudo chown <username> /data/db`
+
+add to `.bash_profile`
+
+```
+export MONGO_PATH=/usr/local/mongodb
+export PATH=$PATH:$MONGO_PATH/bin
+```
+
+`mongo -version`
+
+In separate terminal from the `npm start` run `mongod`
+
 #Docker
 Build
 `docker build -t walkerrandolphsmith/triple-triad .`

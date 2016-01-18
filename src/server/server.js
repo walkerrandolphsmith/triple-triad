@@ -1,5 +1,10 @@
 import path from 'path';
 import express from 'express';
+import cors from 'cors';
+import mongoose from 'mongoose';
+import passport from 'passport';
+import configurePassport from './passport-strategies/configurePassport';
+import loadUserRoutes from './routes/user-routes';
 import game from './game';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
@@ -7,8 +12,22 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 var config = require('./../../webpack.config');
 
-let app = express();
 const port = process.env.PORT || 3000;
+const mongoUri = process.env.MONGOLAB_URI || `mongodb://localhost/${port}/test`;
+
+configurePassport(passport);
+
+let app = express();
+
+mongoose.connect(mongoUri);
+
+app.use(cors());
+app.use(passport.initialize());
+
+const userRouter = express.Router();
+loadUserRoutes(userRouter, passport);
+app.use('/api', userRouter);
+
 
 if(process.env.NODE_ENV !== 'production'){
   const compiler = webpack(config);
@@ -24,7 +43,7 @@ if(process.env.NODE_ENV !== 'production'){
   app.use(express.static(path.join(__dirname, './../../../dist')));
 }
 
-app.use((request, response) => {
+app.get('/*', (request, response) => {
   game(request, response);
 });
 
