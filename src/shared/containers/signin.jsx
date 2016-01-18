@@ -38,26 +38,34 @@ class SignIn extends React.Component {
     }
     render() {
         return (
-            <div>
+            <div id="signin">
                 <form onSubmit={this.handleSubmit.bind(this)}>
-                    <input
-                        labelFor="Username"
-                        ref="usernameInput"
-                        type="text"
-                        name="username"
-                        placeholder="Enter username"
-                        value={this.state.username}
-                        onChange={this.handleChange.bind(this)}
-                    />
-                    <input
-                        labelFor="Password"
-                        ref="passwordInput"
-                        type="password"
-                        name="password"
-                        placeholder="Enter password"
-                        value={this.state.password}
-                        onChange={this.handleChange.bind(this)}
-                    />
+                    <div className="form-group">
+                        <label for="username">User name</label>
+                        <input
+                            className="form-control"
+                            labelFor="Username"
+                            ref="usernameInput"
+                            type="text"
+                            name="username"
+                            placeholder="Enter username"
+                            value={this.state.username}
+                            onChange={this.handleChange.bind(this)}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label for="username">Password</label>
+                        <input
+                            className="form-control"
+                            labelFor="Password"
+                            ref="passwordInput"
+                            type="password"
+                            name="password"
+                            placeholder="Enter password"
+                            value={this.state.password}
+                            onChange={this.handleChange.bind(this)}
+                        />
+                    </div>
                     <button className="btn btn-next"
                         name="submitButton"
                         type="submit" >

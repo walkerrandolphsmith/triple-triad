@@ -65,35 +65,47 @@ class SignUp extends React.Component {
 
     render() {
         return (
-            <div>
+            <div id="signup">
                 <form onSubmit={this.handleSubmit.bind(this)}>
-                    <input
-                        labelFor="Username"
-                        ref="usernameInput"
-                        type="text"
-                        name="username"
-                        placeholder="Enter username"
-                        value={this.state.username}
-                        onChange={this.handleChange.bind(this)}
-                    />
-                    <input
-                        labelFor="Password"
-                        ref="passwordInput"
-                        type="password"
-                        name="password"
-                        placeholder="Enter password"
-                        value={this.state.password}
-                        onChange={this.handleChange.bind(this)}
-                    />
-                    <input
-                        labelFor="Confirm-Password"
-                        ref="confirmPasswordInput"
-                        type="password"
-                        name="confirm-password"
-                        placeholder="Confirm password"
-                        value={this.state.confirmPassword}
-                        onChange={this.handleChange.bind(this)}
-                    />
+                    <div className="form-group">
+                        <label for="username">User name</label>
+                        <input
+                            className="form-control"
+                            labelFor="Username"
+                            ref="usernameInput"
+                            type="text"
+                            name="username"
+                            placeholder="Enter username"
+                            value={this.state.username}
+                            onChange={this.handleChange.bind(this)}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label for="password">Password</label>
+                        <input
+                            className="form-control"
+                            labelFor="Password"
+                            ref="passwordInput"
+                            type="password"
+                            name="password"
+                            placeholder="Enter password"
+                            value={this.state.password}
+                            onChange={this.handleChange.bind(this)}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label for="confirm-password">Confirm Password</label>
+                        <input
+                            className="form-control"
+                            labelFor="Confirm-Password"
+                            ref="confirmPasswordInput"
+                            type="password"
+                            name="confirm-password"
+                            placeholder="Confirm password"
+                            value={this.state.confirmPassword}
+                            onChange={this.handleChange.bind(this)}
+                        />
+                    </div>
                     <button
                         className="btn btn-next"
                         name="submitButton"
