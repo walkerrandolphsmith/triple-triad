@@ -6,6 +6,7 @@ import { setPhase } from './../action-creators';
 import { resetGame } from './../action-creators/resetGame.js';
 
 export const updateRoute = () => (dispatch, getState) => {
+
     const state = getState();
 
     let randomHand = state.settings.get('randomHand');
@@ -13,7 +14,7 @@ export const updateRoute = () => (dispatch, getState) => {
 
     let nextRoute;
     switch(state.routing.path){
-        case '/':
+        case '/settings-selection':
             nextRoute = randomHand ? '/round' : '/card-selection';
             break;
         case '/card-selection':
@@ -21,7 +22,7 @@ export const updateRoute = () => (dispatch, getState) => {
             break;
         case '/round':
             dispatch(resetGame());
-            nextRoute = '/';
+            nextRoute = '/settings-selection';
             break;
     }
 
