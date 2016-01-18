@@ -1,14 +1,14 @@
 import { applyMiddleware, createStore, compose } from 'redux'
 import thunk from 'redux-thunk';
+import promiseMiddleware from './../middleware/promiseMiddleware';
 import rootReducer from '../reducers'
 import DevTools from './../../dev-tools/devTools';
 
 const buildMiddleware = () => {
-    let middleware = applyMiddleware(thunk);
+    let middleware = applyMiddleware(thunk, promiseMiddleware);
     let composeElms = [];
 
     if(process.browser){
-
         if(process.env.NODE_ENV !== 'production'){
             composeElms = [
                 middleware,
