@@ -68,8 +68,8 @@ class SignIn extends React.Component {
                     </div>
                     <button className="btn btn-next"
                         name="submitButton"
-                        type="submit" >
-                        <p>Sign In</p>
+                        type="submit">
+                        Sign In
                     </button>
 
                 </form>

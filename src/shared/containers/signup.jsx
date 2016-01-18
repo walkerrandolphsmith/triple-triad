@@ -109,8 +109,8 @@ class SignUp extends React.Component {
                     <button
                         className="btn btn-next"
                         name="submitButton"
-                        type="submit" >
-                        <p>Sign Up</p>
+                        type="submit">
+                    Sign Up
                     </button>
                 </form>
 
