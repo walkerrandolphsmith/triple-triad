@@ -17,7 +17,7 @@ describe('UPDATE_ROUTE async action creator', () => {
                     randomHand: false
                 }),
                 routing: {
-                    path: '/'
+                    path: '/settings-selection'
                 }
             });
             dispatch = expect.createSpy();
@@ -56,7 +56,7 @@ describe('UPDATE_ROUTE async action creator', () => {
                     randomHand: true
                 }),
                 routing: {
-                    path: '/'
+                    path: '/settings-selection'
                 }
             });
             dispatch = expect.createSpy();

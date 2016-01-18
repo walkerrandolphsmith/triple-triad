@@ -13,4 +13,7 @@ export { playerTakesTurn } from './playerTakesTurn';
 export { selectedPieceByClick } from './selectedPieceByClick';
 export { setHand } from './setHand';
 export { setHands } from './setHands';
+export { signIn } from './signIn';
+export { signOut } from './signOut';
+export { signUp } from './signUp';
 export { updateRoute } from './updateRoute';
