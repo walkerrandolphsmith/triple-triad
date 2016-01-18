@@ -37,8 +37,20 @@ class Game extends React.Component {
     }
 
     render() {
+
+        let navStyles = {
+            display: this.props.username ? 'block' : 'none'
+        };
+
         return (
             <div id="game" className="container-fluid">
+
+                <div className="row" style={navStyles}>
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <button onClick={this.props.signOut}> sign out </button>
+                    </div>
+                </div>
+
                 <div className="row">
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         {this.props.children}
@@ -50,9 +62,8 @@ class Game extends React.Component {
 }
 
 function mapStateToProps(state) {
-
     return {
-
+        username: state.auth.get('user').get('username')
     }
 }
 
