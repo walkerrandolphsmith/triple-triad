@@ -7,7 +7,7 @@ import { hand, __RewireAPI__ as handRewireAPI } from './../../../src/shared/comp
 
 expect.extend(expectJSX);
 
-describe('DECK component', () => {
+describe('HAND component', () => {
 
     let renderer, Card;
     beforeEach(() => {
