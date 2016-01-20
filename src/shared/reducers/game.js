@@ -1,5 +1,4 @@
 import { fromJS } from 'immutable';
-import _ from 'lodash';
 import deck from './../constants/deck';
 import * as types from './../constants/action-types';
 
