@@ -31,7 +31,6 @@
     "express": "^4.13.3",
     "immutable": "^3.7.5",
     "isomorphic-fetch": "^2.2.1",
-    "lodash": "^3.10.1",
     "mongoose": "^4.3.6",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",

@@ -1,6 +1,5 @@
 import expect from 'expect';
 import { fromJS } from 'immutable';
-import _ from 'lodash';
 import reducer from './../../../src/shared/reducers/game';
 import * as types from './../../../src/shared/constants/action-types';
 import deck from './../../../src/shared/constants/deck';
