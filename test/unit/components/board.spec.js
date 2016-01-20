@@ -21,7 +21,7 @@ describe('BOARD component', () => {
             props = {
                 validPieces: [0,1,2,3,4,5,6,7,8],
                 selectedPiece: -1,
-                board: [
+                cards: [
 
                 ]
             }
@@ -38,7 +38,7 @@ describe('BOARD component', () => {
 
 
             renderer.render(
-                <Board validPieces={props.validPieces} selectedPiece={props.selectedPiece} board={props.board} />
+                <Board validPieces={props.validPieces} selectedPiece={props.selectedPiece} cards={props.cards} />
             );
             const actualElement = renderer.getRenderOutput();
             const expectedElement =
@@ -89,7 +89,7 @@ describe('BOARD component', () => {
             props = {
                 validPieces: [],
                 selectedPiece: 0,
-                board: [
+                cards: [
                     {id: 1, owner: 1, name: "Cloud", boardIndex: 1}
                 ]
             }
@@ -106,43 +106,43 @@ describe('BOARD component', () => {
 
 
             renderer.render(
-                <Board validPieces={props.validPieces} selectedPiece={props.selectedPiece} board={props.board} />
+                <Board validPieces={props.validPieces} selectedPiece={props.selectedPiece} cards={props.cards} />
             );
             const actualElement = renderer.getRenderOutput();
             const expectedElement =
                 <div id="board">
                     <div key={0} className='lane'>
-                        <div key={0} id={0} className={'piece selected'} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${0}.png')`}}>
+                        <div key={0} id={0} className={'piece selected'} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${0}.png')`, cursor: 'default'}}>
                             <div></div>
                         </div>
-                        <div key={1} id={1} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${1}.png')`}}>
-                            <Card card={props.board[0]}
+                        <div key={1} id={1} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${1}.png')`, cursor: 'default'}}>
+                            <Card card={props.cards[0]}
                                 clickAction={() => {}}>
                             </Card>
                         </div>
-                        <div key={2} id={2} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${2}.png')`}}>
+                        <div key={2} id={2} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${2}.png')`, cursor: 'default'}}>
                             <div></div>
                         </div>
                     </div>
                     <div key={1} className='lane'>
-                        <div key={3} id={3} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${3}.png')`}}>
+                        <div key={3} id={3} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${3}.png')`, cursor: 'default'}}>
                             <div></div>
                         </div>
-                        <div key={4} id={4} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${4}.png')`}}>
+                        <div key={4} id={4} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${4}.png')`, cursor: 'default'}}>
                             <div></div>
                         </div>
-                        <div key={5} id={5} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${5}.png')`}}>
+                        <div key={5} id={5} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${5}.png')`, cursor: 'default'}}>
                             <div></div>
                         </div>
                     </div>
                     <div key={2} className='lane'>
-                        <div key={6} id={6} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${6}.png')`}}>
+                        <div key={6} id={6} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${6}.png')`, cursor: 'default'}}>
                             <div></div>
                         </div>
-                        <div key={7} id={7} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${7}.png')`}}>
+                        <div key={7} id={7} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${7}.png')`, cursor: 'default'}}>
                             <div></div>
                         </div>
-                        <div key={8} id={8} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${8}.png')`}}>
+                        <div key={8} id={8} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${8}.png')`, cursor: 'default'}}>
                             <div></div>
                         </div>
                     </div>
@@ -159,7 +159,7 @@ describe('BOARD component', () => {
             props = {
                 validPieces: [],
                 selectedPiece: 0,
-                board: [
+                cards: [
                     {id: 0, owner: 1, name: "Cloud", boardIndex: 0},
                     {id: 1, owner: 1, name: "Tifa", boardIndex: 1},
                     {id: 2, owner: 1, name: "Squall", boardIndex: 2},
@@ -184,58 +184,58 @@ describe('BOARD component', () => {
 
 
             renderer.render(
-                <Board validPieces={props.validPieces} selectedPiece={props.selectedPiece} board={props.board} />
+                <Board validPieces={props.validPieces} selectedPiece={props.selectedPiece} cards={props.cards} />
             );
             const actualElement = renderer.getRenderOutput();
             const expectedElement =
                 <div id="board">
                     <div key={0} className='lane'>
-                        <div key={0} id={0} className={'piece selected'} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${0}.png')`}}>
-                            <Card card={props.board[0]}
+                        <div key={0} id={0} className={'piece selected'} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${0}.png')`, cursor: 'default'}}>
+                            <Card card={props.cards[0]}
                                 clickAction={() => {}}>
                             </Card>
                         </div>
-                        <div key={1} id={1} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${1}.png')`}}>
-                            <Card card={props.board[1]}
+                        <div key={1} id={1} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${1}.png')`, cursor: 'default'}}>
+                            <Card card={props.cards[1]}
                                 clickAction={() => {}}>
                             </Card>
                         </div>
-                        <div key={2} id={2} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${2}.png')`}}>
-                            <Card card={props.board[2]}
+                        <div key={2} id={2} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${2}.png')`, cursor: 'default'}}>
+                            <Card card={props.cards[2]}
                                 clickAction={() => {}}>
                             </Card>
                         </div>
                     </div>
                     <div key={1} className='lane'>
-                        <div key={3} id={3} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${3}.png')`}}>
-                            <Card card={props.board[3]}
+                        <div key={3} id={3} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${3}.png')`, cursor: 'default'}}>
+                            <Card card={props.cards[3]}
                                 clickAction={() => {}}>
                             </Card>
                         </div>
-                        <div key={4} id={4} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${4}.png')`}}>
-                            <Card card={props.board[4]}
+                        <div key={4} id={4} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${4}.png')`, cursor: 'default'}}>
+                            <Card card={props.cards[4]}
                                 clickAction={() => {}}>
                             </Card>
                         </div>
-                        <div key={5} id={5} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${5}.png')`}}>
-                            <Card card={props.board[5]}
+                        <div key={5} id={5} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${5}.png')`, cursor: 'default'}}>
+                            <Card card={props.cards[5]}
                                 clickAction={() => {}}>
                             </Card>
                         </div>
                     </div>
                     <div key={2} className='lane'>
-                        <div key={6} id={6} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${6}.png')`}}>
-                            <Card card={props.board[6]}
+                        <div key={6} id={6} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${6}.png')`, cursor: 'default'}}>
+                            <Card card={props.cards[6]}
                                 clickAction={() => {}}>
                             </Card>
                         </div>
-                        <div key={7} id={7} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${7}.png')`}}>
-                            <Card card={props.board[7]}
+                        <div key={7} id={7} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${7}.png')`, cursor: 'default'}}>
+                            <Card card={props.cards[7]}
                                 clickAction={() => {}}>
                             </Card>
                         </div>
-                        <div key={8} id={8} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${8}.png')`}}>
-                            <Card card={props.board[8]}
+                        <div key={8} id={8} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${8}.png')`, cursor: 'default'}}>
+                            <Card card={props.cards[8]}
                                 clickAction={() => {}}>
                             </Card>
                         </div>

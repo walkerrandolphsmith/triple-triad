@@ -1,6 +1,5 @@
 import React from 'react';
 import Card from './card';
-import _ from 'lodash';
 
 export default class Board extends React.Component {
 
@@ -10,49 +9,34 @@ export default class Board extends React.Component {
 
     render() {
 
-        let {validPieces, selectedPiece, board} = this.props;
+        let {validPieces, selectedPiece, cards} = this.props;
 
-        let pieces = [];
-        for(var i = 0; i < 9; i++){
-            let piece  = {
-                card: board.find(card => card.boardIndex === i),
+        let board = [0,1,2,3,4,5,6,7,8].map(i => {
+            let isValidPiece = validPieces.indexOf(i) > -1;
+            return {
+                card: cards.find(card => card.boardIndex === i),
                 style: {
-                    backgroundImage: `url('assets/images/board/board-${i}.png')`
+                    backgroundImage: `url('assets/images/board/board-${i}.png')`,
+                    cursor: isValidPiece ? 'pointer' : 'default'
                 },
-                clickHandler: function(){}
+                clickHandler: isValidPiece ? this.click.bind(this, i) : function(){}
             };
-
-            if(_.contains(validPieces, i)){
-                piece.clickHandler = this.click.bind(this, i);
-                piece.style.cursor = 'pointer';
-            }
-            pieces.push(piece);
-        }
-
-        pieces = pieces.map((piece, i) => {
-
-            let card = (<div></div>);
-
-            if(piece.card){
-                let { name, owner } = piece.card;
-
-                card = (<Card card={piece.card} clickAction={()=>{}} />);
-            }
-
+        }).map((piece, i) => {
+            let card = piece.card ? (<Card card={piece.card} clickAction={()=>{}} />) : (<div></div>);
             let className = `piece ${i === selectedPiece ? 'selected' : ''}`;
-
-            return (
-                <div key={i} id={i} className={className} onClick={piece.clickHandler} style={piece.style}>{card}</div>
-            )
-        });
-
-        let rows = _.chunk(pieces, 3).map((group, i)=> {
-            return (<div key={i} className='lane'>{group}</div>)
-        });
+            return (<div key={i} id={i} className={className} onClick={piece.clickHandler} style={piece.style}>{card}</div>)
+        }).reduce((board, piece, i) => {
+            board.lane.push(piece);
+            if(i % 3 === 2) {
+                board.lanes.push(<div key={i} className='lane'>{board.lane}</div>);
+                board.lane = [];
+            }
+            return board;
+        }, {lanes: [], lane: []});
 
         return (
             <div id="board">
-                {rows}
+                {board.lanes}
             </div>
         );
     }
