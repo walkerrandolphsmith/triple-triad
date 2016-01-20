@@ -28,16 +28,7 @@ export default class Board extends React.Component {
             let piece  = {
                 card: board.find(card => card.boardIndex === i),
                 style: {
-                    fontSize: '5em',
-                    flex: '1',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    backgroundImage: `url('assets/images/board/board-${i}.png')`,
-                    borderTopWidth: '1px',
-                    borderLeftWidth: '1px',
-                    borderTopStyle: 'solid',
-                    borderLeftStyle: 'solid',
-                    cursor: 'default'
+                    backgroundImage: `url('assets/images/board/board-${i}.png')`
                 },
                 clickHandler: function(){}
             };
