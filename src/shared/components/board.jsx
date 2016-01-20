@@ -12,17 +12,6 @@ export default class Board extends React.Component {
 
         let {validPieces, selectedPiece, board} = this.props;
 
-        let boardStyle = {
-            display: 'flex',
-            flexDirection: 'column',
-            margin: '0px auto'
-        };
-
-        let rowStyle = {
-            flex: '1',
-            display: 'flex'
-        };
-
         let pieces = [];
         for(var i = 0; i < 9; i++){
             let piece  = {
@@ -58,11 +47,11 @@ export default class Board extends React.Component {
         });
 
         let rows = _.chunk(pieces, 3).map((group, i)=> {
-            return (<div key={i} className='lane' style={rowStyle}>{group}</div>)
+            return (<div key={i} className='lane'>{group}</div>)
         });
 
         return (
-            <div id="board" style={boardStyle}>
+            <div id="board">
                 {rows}
             </div>
         );

@@ -42,8 +42,8 @@ describe('BOARD component', () => {
             );
             const actualElement = renderer.getRenderOutput();
             const expectedElement =
-                <div id="board" style={{ display: 'flex', flexDirection: 'column', margin: '0px auto'}}>
-                    <div key={0} className='lane' style={{ flex: '1', display: 'flex' }}>
+                <div id="board">
+                    <div key={0} className='lane'>
                         <div key={0} id={0} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${0}.png')`, cursor: 'pointer'}}>
                             <div></div>
                         </div>
@@ -54,7 +54,7 @@ describe('BOARD component', () => {
                             <div></div>
                         </div>
                     </div>
-                    <div key={1} className='lane' style={{ flex: '1', display: 'flex' }}>
+                    <div key={1} className='lane'>
                         <div key={3} id={3} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${3}.png')`, cursor: 'pointer'}}>
                             <div></div>
                         </div>
@@ -65,7 +65,7 @@ describe('BOARD component', () => {
                             <div></div>
                         </div>
                     </div>
-                    <div key={2} className='lane' style={{ flex: '1', display: 'flex' }}>
+                    <div key={2} className='lane'>
                         <div key={6} id={6} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${6}.png')`, cursor: 'pointer'}}>
                             <div></div>
                         </div>
@@ -110,8 +110,8 @@ describe('BOARD component', () => {
             );
             const actualElement = renderer.getRenderOutput();
             const expectedElement =
-                <div id="board" style={{ display: 'flex', flexDirection: 'column', margin: '0px auto'}}>
-                    <div key={0} className='lane' style={{ flex: '1', display: 'flex' }}>
+                <div id="board">
+                    <div key={0} className='lane'>
                         <div key={0} id={0} className={'piece selected'} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${0}.png')`}}>
                             <div></div>
                         </div>
@@ -124,7 +124,7 @@ describe('BOARD component', () => {
                             <div></div>
                         </div>
                     </div>
-                    <div key={1} className='lane' style={{ flex: '1', display: 'flex' }}>
+                    <div key={1} className='lane'>
                         <div key={3} id={3} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${3}.png')`}}>
                             <div></div>
                         </div>
@@ -135,7 +135,7 @@ describe('BOARD component', () => {
                             <div></div>
                         </div>
                     </div>
-                    <div key={2} className='lane' style={{ flex: '1', display: 'flex' }}>
+                    <div key={2} className='lane'>
                         <div key={6} id={6} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${6}.png')`}}>
                             <div></div>
                         </div>
@@ -188,8 +188,8 @@ describe('BOARD component', () => {
             );
             const actualElement = renderer.getRenderOutput();
             const expectedElement =
-                <div id="board" style={{ display: 'flex', flexDirection: 'column', margin: '0px auto'}}>
-                    <div key={0} className='lane' style={{ flex: '1', display: 'flex' }}>
+                <div id="board">
+                    <div key={0} className='lane'>
                         <div key={0} id={0} className={'piece selected'} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${0}.png')`}}>
                             <Card card={props.board[0]}
                                 clickAction={() => {}}>
@@ -206,7 +206,7 @@ describe('BOARD component', () => {
                             </Card>
                         </div>
                     </div>
-                    <div key={1} className='lane' style={{ flex: '1', display: 'flex' }}>
+                    <div key={1} className='lane'>
                         <div key={3} id={3} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${3}.png')`}}>
                             <Card card={props.board[3]}
                                 clickAction={() => {}}>
@@ -223,7 +223,7 @@ describe('BOARD component', () => {
                             </Card>
                         </div>
                     </div>
-                    <div key={2} className='lane' style={{ flex: '1', display: 'flex' }}>
+                    <div key={2} className='lane'>
                         <div key={6} id={6} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${6}.png')`}}>
                             <Card card={props.board[6]}
                                 clickAction={() => {}}>
