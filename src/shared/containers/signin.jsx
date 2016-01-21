@@ -40,7 +40,7 @@ class SignIn extends React.Component {
             <div id="signin">
                 <form onSubmit={this.handleSubmit.bind(this)}>
                     <div className="form-group">
-                        <label for="username">User name</label>
+                        <label htmlFor="username">User name</label>
                         <input
                             className="form-control"
                             labelFor="Username"
@@ -53,7 +53,7 @@ class SignIn extends React.Component {
                         />
                     </div>
                     <div className="form-group">
-                        <label for="username">Password</label>
+                        <label htmlFor="username">Password</label>
                         <input
                             className="form-control"
                             labelFor="Password"

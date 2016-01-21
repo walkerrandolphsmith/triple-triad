@@ -68,7 +68,7 @@ class SignUp extends React.Component {
             <div id="signup">
                 <form onSubmit={this.handleSubmit.bind(this)}>
                     <div className="form-group">
-                        <label for="username">User name</label>
+                        <label htmlFor="username">User name</label>
                         <input
                             className="form-control"
                             labelFor="Username"
@@ -81,7 +81,7 @@ class SignUp extends React.Component {
                         />
                     </div>
                     <div className="form-group">
-                        <label for="password">Password</label>
+                        <label htmlFor="password">Password</label>
                         <input
                             className="form-control"
                             labelFor="Password"
@@ -94,7 +94,7 @@ class SignUp extends React.Component {
                         />
                     </div>
                     <div className="form-group">
-                        <label for="confirm-password">Confirm Password</label>
+                        <label htmlFor="confirm-password">Confirm Password</label>
                         <input
                             className="form-control"
                             labelFor="Confirm-Password"
