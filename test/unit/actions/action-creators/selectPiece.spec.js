@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { SELECT_PIECE } from './../../../../src/shared/constants/action-types';
+import { SELECT_PIECE } from './../../../../src/shared/constants/actionTypes';
 import { selectPiece } from './../../../../src/shared/actions/action-creators/';
 
 describe('SELECT_PIECE', () => {

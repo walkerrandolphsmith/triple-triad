@@ -1,4 +1,4 @@
-import { PLACE_CARD } from './../../constants/action-types';
+import { PLACE_CARD } from './../../constants/actionTypes';
 
 export function placeCard(index) {
     return {

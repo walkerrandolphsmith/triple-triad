@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { START_AI_TURN } from './../../../../src/shared/constants/action-types';
+import { START_AI_TURN } from './../../../../src/shared/constants/actionTypes';
 import { startAiTurn } from './../../../../src/shared/actions/action-creators/';
 
 describe('START_AI_TURN', () => {

@@ -1,4 +1,4 @@
-import { AUTH_SIGNOUT_SUCCESS } from './../../constants/action-types';
+import { AUTH_SIGNOUT_SUCCESS } from './../../constants/actionTypes';
 
 export function receiveSignOut() {
     return {

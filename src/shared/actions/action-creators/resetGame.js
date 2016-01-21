@@ -1,4 +1,4 @@
-import { RESET_GAME } from './../../constants/action-types';
+import { RESET_GAME } from './../../constants/actionTypes';
 
 
 export function resetGame() {

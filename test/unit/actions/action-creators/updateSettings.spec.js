@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { UPDATE_SETTINGS } from './../../../../src/shared/constants/action-types';
+import { UPDATE_SETTINGS } from './../../../../src/shared/constants/actionTypes';
 import { updateSettings } from './../../../../src/shared/actions/action-creators/';
 
 describe('UPDATE_SETTINGS', () => {

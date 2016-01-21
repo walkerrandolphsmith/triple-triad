@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { UPDATE_FOCUS_SETTING } from './../../../../src/shared/constants/action-types';
+import { UPDATE_FOCUS_SETTING } from './../../../../src/shared/constants/actionTypes';
 import { updateFocusSetting } from './../../../../src/shared/actions/action-creators/';
 
 describe('UPDATE_FOCUS_SETTING', () => {

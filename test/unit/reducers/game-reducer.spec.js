@@ -11,7 +11,7 @@ import {
     START_AI_TURN,
     END_AI_TURN,
     RESET_GAME
-} from './../../../src/shared/constants/action-types';
+} from './../../../src/shared/constants/actionTypes';
 import deck from './../../../src/shared/constants/deck';
 
 describe("Game reducer", () => {

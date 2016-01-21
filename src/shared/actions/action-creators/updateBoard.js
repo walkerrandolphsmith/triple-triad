@@ -1,4 +1,4 @@
-import { UPDATE_BOARD } from './../../constants/action-types';
+import { UPDATE_BOARD } from './../../constants/actionTypes';
 
 export function updateBoard(index, owner){
     return {

@@ -1,4 +1,4 @@
-import { AUTH_LOAD_SUCCESS } from './../../constants/action-types';
+import { AUTH_LOAD_SUCCESS } from './../../constants/actionTypes';
 import cookie from 'react-cookie';
 
 export function receiveAuth() {

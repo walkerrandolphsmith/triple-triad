@@ -1,4 +1,4 @@
-import { SET_PHASE } from './../../constants/action-types';
+import { SET_PHASE } from './../../constants/actionTypes';
 
 export function setPhase(phase) {
     return {

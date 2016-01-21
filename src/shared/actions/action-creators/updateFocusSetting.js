@@ -1,4 +1,4 @@
-import { UPDATE_FOCUS_SETTING } from './../../constants/action-types';
+import { UPDATE_FOCUS_SETTING } from './../../constants/actionTypes';
 
 export function updateFocusSetting(setting) {
     return {

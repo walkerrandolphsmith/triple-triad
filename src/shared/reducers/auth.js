@@ -12,7 +12,7 @@ import {
     AUTH_SIGNUP,
     AUTH_SIGNUP_SUCCESS,
     AUTH_SIGNUP_FAIL
-} from './../constants/action-types';
+} from './../constants/actionTypes';
 
 const INITIAL_STATE = new Map({
     loading: false,

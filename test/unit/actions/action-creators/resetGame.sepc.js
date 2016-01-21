@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { RESET_GAME } from './../../../../src/shared/constants/action-types';
+import { RESET_GAME } from './../../../../src/shared/constants/actionTypes';
 import { resetGame } from './../../../../src/shared/actions/action-creators/';
 
 describe('RESET_GAME', () => {

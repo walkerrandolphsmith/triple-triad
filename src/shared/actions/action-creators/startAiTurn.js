@@ -1,4 +1,4 @@
-import { START_AI_TURN } from './../../constants/action-types';
+import { START_AI_TURN } from './../../constants/actionTypes';
 
 export function startAiTurn() {
     return {

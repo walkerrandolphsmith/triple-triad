@@ -1,4 +1,4 @@
-import { SELECT_CARD } from './../../constants/action-types';
+import { SELECT_CARD } from './../../constants/actionTypes';
 
 export function selectCard(id) {
     return {

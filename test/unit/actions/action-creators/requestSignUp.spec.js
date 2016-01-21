@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { AUTH_SIGNUP } from './../../../../src/shared/constants/action-types';
+import { AUTH_SIGNUP } from './../../../../src/shared/constants/actionTypes';
 import { requestSignUp } from './../../../../src/shared/actions/action-creators/requestSignUp';
 
 describe('REQUEST_SIGN_UP', () => {

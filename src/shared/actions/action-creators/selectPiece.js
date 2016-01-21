@@ -1,4 +1,4 @@
-import { SELECT_PIECE } from './../../constants/action-types';
+import { SELECT_PIECE } from './../../constants/actionTypes';
 
 export function selectPiece(index) {
     return {

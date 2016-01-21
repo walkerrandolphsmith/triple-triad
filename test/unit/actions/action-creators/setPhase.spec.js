@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { SET_PHASE } from './../../../../src/shared/constants/action-types';
+import { SET_PHASE } from './../../../../src/shared/constants/actionTypes';
 import { setPhase } from './../../../../src/shared/actions/action-creators/';
 
 describe('SET_PHASE', () => {

@@ -1,4 +1,4 @@
-import { ADD_CARD } from './../../constants/action-types';
+import { ADD_CARD } from './../../constants/actionTypes';
 
 export function addCard(id, owner) {
     return {

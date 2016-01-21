@@ -1,7 +1,7 @@
 import expect from 'expect';
 import { Map } from 'immutable';
 import reducer from './../../../src/shared/reducers/settings';
-import * as types from './../../../src/shared/constants/action-types';
+import * as types from './../../../src/shared/constants/actionTypes';
 
 describe("Settings reducer", () => {
 

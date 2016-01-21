@@ -2,7 +2,7 @@ import { Map } from 'immutable';
 import {
   UPDATE_SETTINGS,
   UPDATE_FOCUS_SETTING
-} from './../constants/action-types';
+} from './../constants/actionTypes';
 
 const INITIAL_STATE = new Map({
   randomHand: false,

@@ -10,7 +10,7 @@ import {
     START_AI_TURN,
     END_AI_TURN,
     RESET_GAME
-} from './../constants/action-types';
+} from './../constants/actionTypes';
 
 const INITIAL_STATE = new Map({
   deck: deck,

@@ -14,7 +14,7 @@ import {
     AUTH_SIGNUP,
     AUTH_SIGNUP_SUCCESS,
     AUTH_SIGNUP_FAIL
-    } from './../../../src/shared/constants/action-types';
+    } from './../../../src/shared/constants/actionTypes';
 
 describe("Auth reducer", () => {
 

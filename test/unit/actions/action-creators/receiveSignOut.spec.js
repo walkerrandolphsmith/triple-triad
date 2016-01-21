@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { AUTH_SIGNOUT_SUCCESS } from './../../../../src/shared/constants/action-types';
+import { AUTH_SIGNOUT_SUCCESS } from './../../../../src/shared/constants/actionTypes';
 import { receiveSignOut } from './../../../../src/shared/actions/action-creators/receiveSignOut';
 
 describe('ReceiveSignOut', () => {

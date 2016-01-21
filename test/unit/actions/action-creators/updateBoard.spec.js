@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { UPDATE_BOARD } from './../../../../src/shared/constants/action-types';
+import { UPDATE_BOARD } from './../../../../src/shared/constants/actionTypes';
 import { updateBoard } from './../../../../src/shared/actions/action-creators/';
 
 describe('UPDATE_BOARD', () => {

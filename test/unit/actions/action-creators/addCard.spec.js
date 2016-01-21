@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { ADD_CARD } from './../../../../src/shared/constants/action-types'
+import { ADD_CARD } from './../../../../src/shared/constants/actionTypes'
 import { addCard } from './../../../../src/shared/actions/action-creators/';
 
 describe('ADD_CARD', () => {

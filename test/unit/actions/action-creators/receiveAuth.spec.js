@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { AUTH_LOAD_SUCCESS } from './../../../../src/shared/constants/action-types';
+import { AUTH_LOAD_SUCCESS } from './../../../../src/shared/constants/actionTypes';
 import ReceiveAuth from './../../../../src/shared/actions/action-creators/receiveAuth';
 import { receiveAuth, __RewireAPI__ as receiveAuthRewireAPI } from './../../../../src/shared/actions/action-creators/receiveAuth';
 

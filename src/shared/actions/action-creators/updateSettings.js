@@ -1,4 +1,4 @@
-import { UPDATE_SETTINGS } from './../../constants/action-types';
+import { UPDATE_SETTINGS } from './../../constants/actionTypes';
 
 export function updateSettings(setting, isChecked) {
     return {

@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { SELECT_CARD } from './../../../../src/shared/constants/action-types';
+import { SELECT_CARD } from './../../../../src/shared/constants/actionTypes';
 import { selectCard } from './../../../../src/shared/actions/action-creators/';
 
 describe('SELECT_CARD', () => {
