@@ -1,14 +1,24 @@
 import expect from 'expect';
-import { fromJS } from 'immutable';
+import { Map, List } from 'immutable';
 import reducer from './../../../src/shared/reducers/game';
-import * as types from './../../../src/shared/constants/action-types';
+import {
+    SET_PHASE,
+    ADD_CARD,
+    SELECT_CARD,
+    SELECT_PIECE,
+    PLACE_CARD,
+    UPDATE_BOARD,
+    START_AI_TURN,
+    END_AI_TURN,
+    RESET_GAME
+} from './../../../src/shared/constants/action-types';
 import deck from './../../../src/shared/constants/deck';
 
 describe("Game reducer", () => {
 
     let initialState, ownerType;
     beforeEach(() => {
-        initialState = fromJS({
+        initialState = new Map({
             deck: deck,
             selectedCard: -1,
             selectedPiece: -1,
@@ -28,7 +38,7 @@ describe("Game reducer", () => {
             phase = 'gamePhase';
 
             newState = reducer(initialState, {
-                type: types.SET_PHASE,
+                type: SET_PHASE,
                 payload: {
                     phase: phase
                 }
@@ -47,7 +57,7 @@ describe("Game reducer", () => {
             owner = 2;
 
             newState = reducer(initialState, {
-                type: types.ADD_CARD,
+                type: ADD_CARD,
                 payload: {
                     id: id,
                     owner: owner
@@ -67,7 +77,7 @@ describe("Game reducer", () => {
             id = 0;
 
             newState = reducer(initialState, {
-                type: types.SELECT_CARD,
+                type: SELECT_CARD,
                 payload: {
                     id: id
                 }
@@ -86,7 +96,7 @@ describe("Game reducer", () => {
             index = 0;
 
             newState = reducer(initialState, {
-                type: types.SELECT_PIECE,
+                type: SELECT_PIECE,
                 payload: {
                     index: index
                 }
@@ -115,7 +125,7 @@ describe("Game reducer", () => {
             initialState = initialState.set('deck', deck);
 
             newState = reducer(initialState, {
-                type: types.UPDATE_BOARD,
+                type: UPDATE_BOARD,
                 payload: {
                     index: index,
                     owner: owner
@@ -133,14 +143,14 @@ describe("Game reducer", () => {
 
         it('should handle START_AI_TURN by setting current turn to the opponent', () => {
             let newState = reducer(initialState, {
-                type: types.START_AI_TURN
+                type: START_AI_TURN
             });
             expect(newState).toEqual(initialState);
         });
 
         it('should handle END_AI_TURN by setting the current turn to the player', () => {
             let newState = reducer(initialState, {
-                type: types.END_AI_TURN
+                type: END_AI_TURN
             });
             expect(newState).toEqual(initialState);
         });
@@ -150,7 +160,7 @@ describe("Game reducer", () => {
 
         it('should handle RESET_GAME by setting current turn to the opponent', () => {
             let newState = reducer(initialState, {
-                type: types.RESET_GAME
+                type: RESET_GAME
             });
             expect(newState).toEqual(initialState);
         });

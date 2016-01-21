@@ -1,4 +1,4 @@
-import { fromJS } from 'immutable';
+import { Map, List } from 'immutable';
 import deck from './../constants/deck';
 import {
     SET_PHASE,
@@ -12,7 +12,7 @@ import {
     RESET_GAME
 } from './../constants/action-types';
 
-const INITIAL_STATE = new fromJS({
+const INITIAL_STATE = new Map({
   deck: deck,
   selectedCard: -1,
   selectedPiece: -1,
