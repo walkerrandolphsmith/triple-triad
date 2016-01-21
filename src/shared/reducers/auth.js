@@ -14,7 +14,7 @@ import {
     AUTH_SIGNUP_FAIL
 } from './../constants/action-types';
 
-const initialState = new Map({
+const INITIAL_STATE = new Map({
     loading: false,
     loaded: false,
     signingIn: false,
@@ -26,11 +26,11 @@ const initialState = new Map({
     })
 });
 
-export default function auth(state = initialState, action = {}) {
+export default function auth(state = INITIAL_STATE, action = {}) {
 
     const { type, payload } = action;
 
-    switch (action.type) {
+    switch (type) {
         case AUTH_LOAD: return load(state, payload);
         case AUTH_LOAD_SUCCESS: return loadSuccessful(state, payload);
         case AUTH_LOAD_FAIL: return loadFailure(state, payload);

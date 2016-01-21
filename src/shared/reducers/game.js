@@ -1,6 +1,16 @@
 import { fromJS } from 'immutable';
 import deck from './../constants/deck';
-import * as types from './../constants/action-types';
+import {
+    SET_PHASE,
+    ADD_CARD,
+    SELECT_CARD,
+    SELECT_PIECE,
+    PLACE_CARD,
+    UPDATE_BOARD,
+    START_AI_TURN,
+    END_AI_TURN,
+    RESET_GAME
+} from './../constants/action-types';
 
 const INITIAL_STATE = new fromJS({
   deck: deck,
@@ -9,20 +19,20 @@ const INITIAL_STATE = new fromJS({
   phase: 'settingsSelection'
 });
 
-export default function reducer(state = INITIAL_STATE, action) {
+export default function reducer(state = INITIAL_STATE, action = {}) {
 
   let {type, payload} = action;
 
   switch(type){
-    case types.SET_PHASE: return setPhase(state, payload);
-    case types.ADD_CARD: return addCard(state, payload);
-    case types.SELECT_CARD: return selectCard(state, payload);
-    case types.SELECT_PIECE: return selectPiece(state, payload);
-    case types.PLACE_CARD: return placeCard(state, payload);
-    case types.UPDATE_BOARD: return updateBoard(state, payload);
-    case types.START_AI_TURN: return startAITurn(state);
-    case types.END_AI_TURN: return endAiTurn(state);
-    case types.RESET_GAME: return resetGame(state);
+    case SET_PHASE: return setPhase(state, payload);
+    case ADD_CARD: return addCard(state, payload);
+    case SELECT_CARD: return selectCard(state, payload);
+    case SELECT_PIECE: return selectPiece(state, payload);
+    case PLACE_CARD: return placeCard(state, payload);
+    case UPDATE_BOARD: return updateBoard(state, payload);
+    case START_AI_TURN: return startAITurn(state);
+    case END_AI_TURN: return endAiTurn(state);
+    case RESET_GAME: return resetGame(state);
   }
 
   return state;
@@ -33,7 +43,6 @@ function setPhase(state, payload) {
 }
 
 function addCard(state, payload){
-
     let deck = state.get('deck');
 
     deck = deck.update(
@@ -68,7 +77,6 @@ function placeCard(state, payload) {
 }
 
 function updateBoard(state, payload) {
-
     let deck =  state.get('deck');
 
     deck = deck.update(
