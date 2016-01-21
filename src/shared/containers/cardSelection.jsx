@@ -2,7 +2,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { handSelector, isFullHandSelector, availableDeckSelector } from './../selectors/index';
 import * as Actions from './../actions/';
-import { toJS } from 'immutable';
 
 import React from 'react';
 import Hand from './../components/hand';

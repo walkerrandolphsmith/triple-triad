@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { toJS } from 'immutable';
 import * as Actions from './../actions/';
 import Settings from './../components/settings';
 
