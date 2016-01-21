@@ -26,7 +26,6 @@ class SignIn extends React.Component {
     }
     handleSubmit(event) {
         event.preventDefault();
-        debugger;
         if (this.state.username.length > 0 && this.state.password.length > 0) {
             var userObj = {
                 username: this.state.username,

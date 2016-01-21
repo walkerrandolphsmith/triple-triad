@@ -17,7 +17,7 @@ class SettingsSelection extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        settings: state.settings.toJS()
+        settings: state.settings
     }
 }
 

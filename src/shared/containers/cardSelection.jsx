@@ -28,10 +28,10 @@ class CardSelection extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const game = state.game.toJS();
-    const settings = state.settings.toJS();
+    const { game, settings } = state;
+
     return {
-        selectedCard: game.selectedCard,
+        selectedCard: game.get('selectedCard'),
         settings: settings,
         availableDeck: availableDeckSelector(game),
         hand: handSelector(game),

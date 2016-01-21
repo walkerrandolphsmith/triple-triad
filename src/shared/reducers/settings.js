@@ -1,7 +1,7 @@
-import Immutable from 'immutable';
+import { Map } from 'immutable';
 import * as types from './../constants/action-types';
 
-const INITIAL_STATE = new Immutable.Map({
+const INITIAL_STATE = new Map({
   randomHand: false,
   multiplayer: false,
   visibleHand: false,

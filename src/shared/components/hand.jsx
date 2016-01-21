@@ -3,25 +3,31 @@ import Card from './card';
 
 export default class Hand extends React.Component {
 
-    click(card) {
-        this.props.clickAction(card.id);
+    click(id) {
+        this.props.clickAction(id);
     };
 
     render() {
         let { score, cards, selectedCard, showBack} = this.props;
 
         let cardsMarkup = cards.map((card, i) => {
-            let { name, owner } = card;
 
-            card.name = showBack ? 'back' : name;
+            let name = showBack ? 'back' : card.get('name');
 
             const cardStyle = {
-                cursor: owner === 1 ? 'pointer' : 'default'
+                cursor: card.get('owner') === 1 ? 'pointer' : 'default'
             };
 
-            const classes = card.id === selectedCard ? 'selected' : '';
+            const classes = card.get('id') === selectedCard ? 'selected' : '';
 
-            return (<Card key={card.id} card={card} classes={classes} cardStyle={cardStyle} clickAction={this.click.bind(this, card)} />);
+            return (
+                <Card key={card.get('id')}
+                    card={card.set('name', name)}
+                    classes={classes}
+                    cardStyle={cardStyle}
+                    clickAction={this.click.bind(this, card.get('id'))}
+                />
+            );
         });
 
         return (

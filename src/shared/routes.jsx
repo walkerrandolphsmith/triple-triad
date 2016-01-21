@@ -18,8 +18,8 @@ function requireAuth(nextState, replace) {
 export default (
     <Route path="/" component={Game}>
       <IndexRoute component={SignIn}/>
-      <Route path="signin" component={SignIn} />
-      <Route path="signup" component={SignUp} />
+      <Route path="signin" component={SignIn}/>
+      <Route path="signup" component={SignUp}/>
       <Route path="settings-selection" component={SettingsSelection} onEnter={requireAuth}/>
       <Route path="card-selection" component={CardSelection} onEnter={requireAuth}/>
       <Route path="round" component={Round} onEnter={requireAuth}/>

@@ -9,7 +9,7 @@ import { getWinner } from './winnerSelector';
 import { getValidPieces } from './validPiecesSelector';
 
 
-const deckSelector = state => state.deck
+const deckSelector = state => state.get('deck')
 const playerSelector = state => 1
 const opponentSelector = state => 2
 const unownedSelector = state => 0

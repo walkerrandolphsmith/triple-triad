@@ -1,3 +1,3 @@
 export const getHand = (deck, owner) => {
-    return deck.filter(card => card.owner === owner && card.boardIndex < 0);
+    return deck.filter(card => card.get('owner') === owner && card.get('boardIndex') < 0);
 };

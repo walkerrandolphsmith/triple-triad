@@ -5,12 +5,12 @@ export default class Settings extends React.Component {
     constructor(props){
         super(props);
 
-        let { randomHand, multiplayer, visibleHand } = props.settings;
+        let { settings } = props;
 
         this.state = {
-            randomHand: randomHand,
-            multiplayer: multiplayer,
-            visibleHand: visibleHand
+            randomHand: settings.get('randomHand'),
+            multiplayer: settings.get('multiplayer'),
+            visibleHand: settings.get('visibleHand')
         };
     }
 
@@ -29,12 +29,12 @@ export default class Settings extends React.Component {
     componentWillReceiveProps(newProps) {
         if (newProps !=  this.state) {
 
-            let { randomHand, multiplayer, visibleHand } = newProps.settings;
+            let { settings } = newProps;
 
             this.setState({
-                randomHand: randomHand,
-                multiplayer: multiplayer,
-                visibleHand: visibleHand
+                randomHand: settings.get('randomHand'),
+                multiplayer: settings.get('multiplayer'),
+                visibleHand: settings.get('visibleHand')
             });
         }
     }

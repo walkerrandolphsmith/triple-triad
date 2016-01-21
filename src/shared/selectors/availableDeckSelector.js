@@ -1,10 +1,12 @@
+import { List } from 'immutable';
+
 export const getAvailableDeck = (deck, owner) => {
     let unique = {}, distinct = [];
-    for(var i = 0; i < deck.length; i++){
-       if(!unique[deck[i].name] && deck[i].owner !== owner) {
-           distinct.push(deck[i]);
-           unique[deck[i].name] = true;
+    for(var i = 0; i < deck.size; i++){
+       if(!unique[deck.get(i).get('name')] && deck.get(i).get('owner') !== owner) {
+           distinct.push(deck.get(i));
+           unique[deck.get(i).get('name')] = true;
        }
     }
-    return distinct;
+    return new List(distinct);
 };

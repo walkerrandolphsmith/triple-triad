@@ -1,3 +1,3 @@
 export const getBoard = (deck) => {
-    return deck.filter(card => card.boardIndex >= 0);
+    return deck.filter(card => card.get('boardIndex') >= 0);
 };

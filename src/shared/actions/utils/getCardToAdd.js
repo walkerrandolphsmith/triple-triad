@@ -3,13 +3,13 @@ import { getAvailableDeck } from './../../selectors/availableDeckSelector'
 
 export function getCardToAdd(game, directionInLoop){
 
-    const deck = getAvailableDeck(game.get('deck').toJS());
+    const deck = getAvailableDeck(game.get('deck'));
     const id = game.get('selectedCard');
 
-    if(id === -1) return deck[0];
+    if(id === -1) return deck.get(0);
 
-    const i = deck.findIndex(card => card.id === id);
-    const amountToIncrement = directionInLoop === 'right' ? 1 : deck.length - 1;
+    const i = deck.findIndex(card => card.get('id') === id);
+    const amountToIncrement = directionInLoop === 'right' ? 1 : deck.size - 1;
 
-    return deck[(i + amountToIncrement) % deck.length];
+    return deck.get((i + amountToIncrement) % deck.size);
 }

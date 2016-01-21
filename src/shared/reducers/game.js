@@ -42,7 +42,6 @@ function addCard(state, payload){
       ),
       card => card.set("owner", payload.owner)
     );
-
     return state.set('deck', deck);
 }
 

@@ -1,8 +1,7 @@
-import { fromJS } from 'immutable';
 import { getBoard } from './../../selectors/boardSelector';
 
 export function basicRule(i, game){
-    const board = fromJS(getBoard(game.get('deck').toJS()));
+    const board = getBoard(game.get('deck'));
 
     const row = i / 3;
     const column = i % 3;

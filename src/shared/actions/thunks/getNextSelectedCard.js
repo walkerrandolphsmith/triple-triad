@@ -6,5 +6,5 @@ export const getNextSelectedCard = (directionInLoop) => (dispatch, getState) => 
 
     const card = getCardToSelect(state.game, directionInLoop);
 
-    dispatch(selectCard(card.id));
+    dispatch(selectCard(card.get('id')));
 };

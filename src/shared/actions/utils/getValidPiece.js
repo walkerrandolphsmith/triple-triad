@@ -3,7 +3,9 @@ import { getBoard } from './../../selectors/boardSelector';
 import { getValidPieces } from './../../selectors/validPiecesSelector';
 
 export function getValidPiece(game){
-    const board = getBoard(game.get('deck').toJS());
+    const board = getBoard(game.get('deck'));
+    console.log(board);
     let validPieces = getValidPieces(board);
-    return validPieces.length > 0 ? sample(validPieces) : -1;
+    console.log(validPieces);
+    return validPieces.size > 0 ? sample(validPieces) : -1;
 }

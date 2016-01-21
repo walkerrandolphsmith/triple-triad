@@ -1,4 +1,6 @@
-/*export default function sample(list, size){
+import { List } from 'immutable';
+
+export default function sample(list, size){
     if(size === undefined){
         let index = getIndex(list.size);
         return list.get(index);
@@ -9,11 +11,11 @@
 
 function getIndexes(listSize, size){
     let counter = 0;
-    let indexes = [];
+    let indexes = new List([]);
     while(counter < size){
         let index = getIndex(listSize);
         if(indexes.indexOf(index) < 0) {
-            indexes.push(index);
+            indexes = indexes.set(counter, index);
             counter++;
         }
     }
@@ -22,10 +24,10 @@ function getIndexes(listSize, size){
 
 function getIndex(listSize){
     return Math.floor(Math.random() * (listSize -1));
-}*/
+}
 
 
-export default function sample(list, size){
+/*export default function sample(list, size){
     if(size === undefined){
         let index = getIndex(list.length);
         return list[index];
@@ -49,4 +51,4 @@ function getIndexes(listSize, size){
 
 function getIndex(listSize){
     return Math.floor(Math.random() * (listSize -1));
-}
+}*/

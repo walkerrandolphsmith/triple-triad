@@ -1,3 +1,4 @@
+import { toJS } from 'immutable';
 import { setPhase, selectPiece } from './../action-creators';
 import { getNextSelectedPiece } from './getNextSelectedPiece';
 import { playerTakesTurn } from './playerTakesTurn';
@@ -17,9 +18,8 @@ export const handleEnter = () => (dispatch, getState) => {
             break;
         case 'handSelection':
             const id = state.game.get('selectedCard');
-            const deck = state.game.get('deck').toJS();
-            const hand = getHand(deck, 1);
-            const isOwned = hand.find(card => card.id === id);
+            const hand = getHand(state.game.get('deck'), 1);
+            const isOwned = hand.find(card => card.get('id') === id);
             const owner = isOwned ? 0 : 1;
             if(!getIsFullHand(hand) || isOwned)
                 dispatch(addCard(id, owner));

@@ -4,8 +4,8 @@ import Card from './card';
 export default class Deck extends React.Component {
 
     click(card) {
-        let owner = card.owner === 0 ? 1 : 0;
-        this.props.addCard(card.id, owner);
+        let owner = card.get('owner') === 0 ? 1 : 0;
+        this.props.addCard(card.get('id'), owner);
     };
 
     render() {
@@ -13,18 +13,17 @@ export default class Deck extends React.Component {
 
         let cardsMarkup = cards.map(card => {
 
-            const { owner } = card;
-            const isSelectable = (owner === 1) || (!isHandSelected && owner === 0);
+            const isSelectable = (card.get('owner') === 1) || (!isHandSelected && card.get('owner') === 0);
 
             const cardStyle = {
-                opacity: owner === 0 ? '1' : '0.5',
+                opacity: card.get('owner') === 0 ? '1' : '0.5',
                 cursor: isSelectable ? 'pointer' : 'default'
             };
 
-            const classes = card.id === selectedCard ? 'selected' : '';
+            const classes = card.get('id') === selectedCard ? 'selected' : '';
 
             return (
-                <Card key={card.id} card={card} cardStyle={cardStyle} classes={classes} clickAction={isSelectable ? this.click.bind(this, card) : ()=> {} } />
+                <Card key={card.get('id')} card={card} cardStyle={cardStyle} classes={classes} clickAction={isSelectable ? this.click.bind(this, card) : ()=> {} } />
             );
         });
 
