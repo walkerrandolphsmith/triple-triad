@@ -1,4 +1,5 @@
 import expect from 'expect';
+import { List } from 'immutable';
 import { getWinner } from './../../../src/shared/selectors/winnerSelector';
 import WINNER from './../../../src/shared/constants/winner';
 
@@ -9,7 +10,7 @@ describe("winner selector", () => {
         let score, validPieces;
         beforeEach(() => {
             score = {blue: 5, red: 5};
-            validPieces = [0];
+            validPieces = new List([0]);
         });
 
         it('should be not have a winner', () => {
@@ -22,7 +23,7 @@ describe("winner selector", () => {
         let score, validPieces;
         beforeEach(() => {
             score = {blue: 5, red: 5};
-            validPieces = [];
+            validPieces = new List([]);
         });
 
         it('should be not have a winner', () => {
@@ -35,7 +36,7 @@ describe("winner selector", () => {
         let score, validPieces;
         beforeEach(() => {
             score = {blue: 6, red: 4};
-            validPieces = [];
+            validPieces = new List([]);
         });
 
         it('should be blue winner', () => {
@@ -48,7 +49,7 @@ describe("winner selector", () => {
         let score, validPieces;
         beforeEach(() => {
             score = {blue: 4, red: 6};
-            validPieces = [];
+            validPieces = new List([]);
         });
 
         it('should be blue winner', () => {

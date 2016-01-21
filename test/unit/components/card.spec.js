@@ -1,4 +1,5 @@
 import React from 'react';
+import { Map } from 'immutable';
 import expect from 'expect';
 import expectJSX from 'expect-jsx';
 import {createRenderer} from 'react-addons-test-utils';
@@ -18,12 +19,12 @@ describe('CARD component', () => {
         let props;
         beforeEach(() => {
             props = {
-                card: {
+                card: new Map({
                     id: 12,
                     name: 'Cloud',
                     owner: 1,
                     boardIndex: -1
-                },
+                }),
                 classes: 'classOne classTwo',
                 cardStyle: {
 
@@ -52,12 +53,12 @@ describe('CARD component', () => {
         let props;
         beforeEach(() => {
             props = {
-                card: {
+                card: new Map({
                     id: 12,
                     name: 'Cloud',
                     owner: 2,
                     boardIndex: -1
-                },
+                }),
                 classes: 'classOne classTwo',
                 cardStyle: {
 

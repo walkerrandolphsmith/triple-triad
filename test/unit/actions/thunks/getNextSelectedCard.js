@@ -21,7 +21,7 @@ describe('GET_NEXT_SELECTED_CARD async action creator', () => {
 
     it('should dispatch the SELECT_CARD action', () => {
         GetNextSelectedCard.__Rewire__('getCardToSelect', function(){
-            return {id: 12};
+            return new Map({id: 12});
         });
 
         GetNextSelectedCard.__Rewire__('selectCard', function(){

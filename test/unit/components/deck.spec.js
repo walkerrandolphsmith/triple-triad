@@ -1,4 +1,5 @@
 import React from 'react';
+import { Map, List } from 'immutable';
 import expect from 'expect';
 import expectJSX from 'expect-jsx';
 import {createRenderer} from 'react-addons-test-utils';
@@ -19,9 +20,9 @@ describe('DECK component', () => {
         let props;
         beforeEach(() => {
             props = {
-                cards: [
-                    {id: 12, name: 'Cloud', owner: 1, boardIndex: -1}
-                ],
+                cards: new List([
+                    new Map({id: 12, name: 'Cloud', owner: 1, boardIndex: -1})
+                ]),
                 selectedCard: 12,
                 isHandSelected: false
             }
@@ -43,7 +44,7 @@ describe('DECK component', () => {
             const actualElement = renderer.getRenderOutput();
             const expectedElement =
                 <div className="cards">
-                    <Card card={props.cards[0]}
+                    <Card card={props.cards.get(0)}
                         cardStyle={{cursor: 'pointer', opacity: '0.5'}}
                         classes="selected"
                         clickAction={() => {}}>
@@ -59,10 +60,10 @@ describe('DECK component', () => {
         let props;
         beforeEach(() => {
             props = {
-                cards: [
-                    {id: 12, name: 'Cloud', owner: 1, boardIndex: -1},
-                    {id: 1, name: 'Barrent', owner: 1, boardIndex: -1}
-                ],
+                cards: new List([
+                    new Map({id: 12, name: 'Cloud', owner: 1, boardIndex: -1}),
+                    new Map({id: 1, name: 'Barrent', owner: 1, boardIndex: -1})
+                ]),
                 selectedCard: 12,
                 isHandSelected: false
             }
@@ -84,12 +85,12 @@ describe('DECK component', () => {
             const actualElement = renderer.getRenderOutput();
             const expectedElement =
                 <div className="cards">
-                    <Card card={props.cards[0]}
+                    <Card card={props.cards.get(0)}
                         cardStyle={{cursor: 'pointer', opacity: '0.5'}}
                         classes="selected"
                         clickAction={() => {}}>
                     </Card>
-                    <Card card={props.cards[1]}
+                    <Card card={props.cards.get(1)}
                         cardStyle={{cursor: 'pointer', opacity: '0.5'}}
                         classes=""
                         clickAction={() => {}}>
@@ -105,9 +106,9 @@ describe('DECK component', () => {
         let props;
         beforeEach(() => {
             props = {
-                cards: [
-                    {id: 12, name: 'Cloud', owner: 1, boardIndex: -1}
-                ],
+                cards: new List([
+                    new Map({id: 12, name: 'Cloud', owner: 1, boardIndex: -1})
+                ]),
                 selectedCard: 12,
                 isHandSelected: false
             }
@@ -129,7 +130,7 @@ describe('DECK component', () => {
             const actualElement = renderer.getRenderOutput();
             const expectedElement =
                 <div className="cards">
-                    <Card card={props.cards[0]}
+                    <Card card={props.cards.get(0)}
                         cardStyle={{cursor: 'pointer', opacity: '0.5'}}
                         classes="selected"
                         clickAction={() => {}}>
@@ -144,9 +145,9 @@ describe('DECK component', () => {
         let props;
         beforeEach(() => {
             props = {
-                cards: [
-                    {id: 12, name: 'Cloud', owner: 0, boardIndex: -1}
-                ],
+                cards: new List([
+                    new Map({id: 12, name: 'Cloud', owner: 0, boardIndex: -1})
+                ]),
                 selectedCard: 12,
                 isHandSelected: false
             }
@@ -168,7 +169,7 @@ describe('DECK component', () => {
             const actualElement = renderer.getRenderOutput();
             const expectedElement =
                 <div className="cards">
-                    <Card card={props.cards[0]}
+                    <Card card={props.cards.get(0)}
                         cardStyle={{cursor: 'pointer', opacity: '1'}}
                         classes="selected"
                         clickAction={() => {}}>
@@ -183,9 +184,9 @@ describe('DECK component', () => {
         let props;
         beforeEach(() => {
             props = {
-                cards: [
-                    {id: 12, name: 'Cloud', owner: 0, boardIndex: -1}
-                ],
+                cards: new List([
+                    new Map({id: 12, name: 'Cloud', owner: 0, boardIndex: -1})
+                ]),
                 selectedCard: 12,
                 isHandSelected: true
             }
@@ -207,7 +208,7 @@ describe('DECK component', () => {
             const actualElement = renderer.getRenderOutput();
             const expectedElement =
                 <div className="cards">
-                    <Card card={props.cards[0]}
+                    <Card card={props.cards.get(0)}
                         cardStyle={{cursor: 'default', opacity: '1'}}
                         classes="selected"
                         clickAction={() => {}}>

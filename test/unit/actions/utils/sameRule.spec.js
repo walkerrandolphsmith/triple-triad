@@ -9,7 +9,7 @@ describe('SAME_RULE async action creator', () => {
         index = 4;
         player = 1;
         opponent = 2;
-        card = new Map({ boardIndex: 4, owner: player, rank: { left: 5, top: 5, right: 5, bottom: 5} })
+        card = new Map({ boardIndex: 4, owner: player, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5}) })
     });
 
     it('should be a function', () => {
@@ -35,7 +35,7 @@ describe('SAME_RULE async action creator', () => {
 
         let game;
         beforeEach(() => {
-            let adjacentCard = new Map({ boardIndex: 5, owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
+            let adjacentCard = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5}) });
             let deck = [card, adjacentCard];
             game = new Map({
                 deck: new List(deck)
@@ -51,8 +51,8 @@ describe('SAME_RULE async action creator', () => {
 
         let game;
         beforeEach(() => {
-            let adjacentCard = new Map({ boardIndex: 3, owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
-            let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
+            let adjacentCard = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5}) });
+            let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5}) });
             let deck = [adjacentCard, card, adjacentCardTwo];
             game = new Map({
                 deck: new List(deck)
@@ -71,8 +71,8 @@ describe('SAME_RULE async action creator', () => {
 
         let game;
         beforeEach(() => {
-            let adjacentCard = new Map({ boardIndex: 1, owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
-            let adjacentCardTwo = new Map({ boardIndex: 7, owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
+            let adjacentCard = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5}) });
+            let adjacentCardTwo = new Map({ boardIndex: 7, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5}) });
             let deck = [adjacentCard, card, adjacentCardTwo];
             game = new Map({
                 deck: new List(deck)
@@ -91,8 +91,8 @@ describe('SAME_RULE async action creator', () => {
 
         let game;
         beforeEach(() => {
-            let adjacentCard = new Map({ boardIndex: 3, owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
-            let adjacentCardTwo = new Map({ boardIndex: 1, owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
+            let adjacentCard = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5}) });
+            let adjacentCardTwo = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5}) });
             let deck = [adjacentCard, adjacentCardTwo, card];
             game = new Map({
                 deck: new List(deck)
@@ -111,8 +111,8 @@ describe('SAME_RULE async action creator', () => {
 
         let game;
         beforeEach(() => {
-            let adjacentCard = new Map({ boardIndex: 3, owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
-            let adjacentCardTwo = new Map({ boardIndex: 7, owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
+            let adjacentCard = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5}) });
+            let adjacentCardTwo = new Map({ boardIndex: 7, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5}) });
             let deck = [adjacentCard, card, adjacentCardTwo];
             game = new Map({
                 deck: new List(deck)
@@ -131,8 +131,8 @@ describe('SAME_RULE async action creator', () => {
 
         let game;
         beforeEach(() => {
-            let adjacentCard = new Map({ boardIndex: 5, owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
-            let adjacentCardTwo = new Map({ boardIndex: 1, owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
+            let adjacentCard = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5}) });
+            let adjacentCardTwo = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5}) });
             let deck = [adjacentCard, card, adjacentCardTwo];
             game = new Map({
                 deck: new List(deck)
@@ -151,8 +151,8 @@ describe('SAME_RULE async action creator', () => {
 
         let game;
         beforeEach(() => {
-            let adjacentCard = new Map({ boardIndex: 5, owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
-            let adjacentCardTwo = new Map({ boardIndex: 7, owner: opponent, rank: { left: 5, top: 5, right: 5, bottom: 5} });
+            let adjacentCard = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5}) });
+            let adjacentCardTwo = new Map({ boardIndex: 7, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5}) });
             let deck = [card, adjacentCard, adjacentCardTwo];
             game = new Map({
                 deck: new List(deck)

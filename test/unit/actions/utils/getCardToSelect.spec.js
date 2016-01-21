@@ -6,13 +6,13 @@ describe('getCardToSelect utility', () => {
 
     let deck;
     beforeEach(() => {
-        deck = [
-            {id: 0, name: '1', owner: 1, boardIndex: -1},
-            {id: 1, name: '2', owner: 1, boardIndex: -1},
-            {id: 2, name: '3', owner: 1, boardIndex: -1},
-            {id: 3, name: '4', owner: 1, boardIndex: -1},
-            {id: 4, name: '5', owner: 1, boardIndex: -1}
-        ]
+        deck = new List([
+            new Map({id: 0, name: '1', owner: 1, boardIndex: -1}),
+            new Map({id: 1, name: '2', owner: 1, boardIndex: -1}),
+            new Map({id: 2, name: '3', owner: 1, boardIndex: -1}),
+            new Map({id: 3, name: '4', owner: 1, boardIndex: -1}),
+            new Map({id: 4, name: '5', owner: 1, boardIndex: -1}),
+        ])
     });
 
     it('should be a function', () => {
@@ -24,13 +24,13 @@ describe('getCardToSelect utility', () => {
         let game;
         beforeEach(() => {
            game = new Map({
-               deck: new List(deck),
+               deck: deck,
                selectedCard: -1
            });
         });
 
         it('should return the first card in the hand', () => {
-            expect(getCardToSelect(game)).toEqual(deck[0]);
+            expect(getCardToSelect(game)).toEqual(deck.get(0));
         });
 
     });
@@ -39,15 +39,15 @@ describe('getCardToSelect utility', () => {
 
         let game, selectedCard;
         beforeEach(() => {
-            selectedCard = deck[0].id;
+            selectedCard = deck.get(0).get('id');
             game = new Map({
-                deck: new List(deck),
+                deck: deck,
                 selectedCard: selectedCard
             });
         });
 
         it('should return the next card in the hand', () => {
-            expect(getCardToSelect(game, 'down')).toEqual(deck[1]);
+            expect(getCardToSelect(game, 'down')).toEqual(deck.get(1));
         });
 
     });
@@ -56,15 +56,15 @@ describe('getCardToSelect utility', () => {
 
         let game, selectedCard;
         beforeEach(() => {
-            selectedCard = deck[1].id;
+            selectedCard = deck.get(1).get('id');
             game = new Map({
-                deck: new List(deck),
+                deck: deck,
                 selectedCard: selectedCard
             });
         });
 
         it('should return the previous card in the hand', () => {
-            expect(getCardToSelect(game, 'up')).toEqual(deck[0]);
+            expect(getCardToSelect(game, 'up')).toEqual(deck.get(0));
         });
 
     });
@@ -73,15 +73,15 @@ describe('getCardToSelect utility', () => {
 
         let game, selectedCard;
         beforeEach(() => {
-            selectedCard = deck[0].id;
+            selectedCard = deck.get(0).get('id');
             game = new Map({
-                deck: new List(deck),
+                deck: deck,
                 selectedCard: selectedCard
             });
         });
 
         it('should return the last card in the hand', () => {
-            expect(getCardToSelect(game, 'up')).toEqual(deck[4]);
+            expect(getCardToSelect(game, 'up')).toEqual(deck.get(4));
         });
 
     });
@@ -90,15 +90,15 @@ describe('getCardToSelect utility', () => {
 
         let game, selectedCard;
         beforeEach(() => {
-            selectedCard = deck[4].id;
+            selectedCard = deck.get(4).get('id');
             game = new Map({
-                deck: new List(deck),
+                deck: deck,
                 selectedCard: selectedCard
             });
         });
 
         it('should return the last card in the hand', () => {
-            expect(getCardToSelect(game, 'down')).toEqual(deck[0]);
+            expect(getCardToSelect(game, 'down')).toEqual(deck.get(0));
         });
 
     });

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Map, List } from 'immutable';
 import expect from 'expect';
 import expectJSX from 'expect-jsx';
 import {createRenderer} from 'react-addons-test-utils';
@@ -21,9 +22,9 @@ describe('BOARD component', () => {
             props = {
                 validPieces: [0,1,2,3,4,5,6,7,8],
                 selectedPiece: -1,
-                cards: [
+                cards: new List([
 
-                ]
+                ])
             }
         });
 
@@ -89,9 +90,9 @@ describe('BOARD component', () => {
             props = {
                 validPieces: [],
                 selectedPiece: 0,
-                cards: [
-                    {id: 1, owner: 1, name: "Cloud", boardIndex: 1}
-                ]
+                cards: new List([
+                    new Map({id: 1, owner: 1, name: "Cloud", boardIndex: 1})
+                ])
             }
         });
 
@@ -116,7 +117,7 @@ describe('BOARD component', () => {
                             <div></div>
                         </div>
                         <div key={1} id={1} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${1}.png')`, cursor: 'default'}}>
-                            <Card card={props.cards[0]}
+                            <Card card={props.cards.get(0)}
                                 clickAction={() => {}}>
                             </Card>
                         </div>
@@ -159,17 +160,17 @@ describe('BOARD component', () => {
             props = {
                 validPieces: [],
                 selectedPiece: 0,
-                cards: [
-                    {id: 0, owner: 1, name: "Cloud", boardIndex: 0},
-                    {id: 1, owner: 1, name: "Tifa", boardIndex: 1},
-                    {id: 2, owner: 1, name: "Squall", boardIndex: 2},
-                    {id: 3, owner: 1, name: "Cid", boardIndex: 3},
-                    {id: 4, owner: 1, name: "Selfie", boardIndex: 4},
-                    {id: 5, owner: 1, name: "Tidus", boardIndex: 5},
-                    {id: 6, owner: 1, name: "Vivi", boardIndex: 6},
-                    {id: 7, owner: 1, name: "Cat Sith", boardIndex: 7},
-                    {id: 8, owner: 1, name: "Barret", boardIndex: 8}
-                ]
+                cards: new List([
+                    new Map({id: 0, owner: 1, name: "Cloud", boardIndex: 0}),
+                    new Map({id: 1, owner: 1, name: "Tifa", boardIndex: 1}),
+                    new Map({id: 2, owner: 1, name: "Squall", boardIndex: 2}),
+                    new Map({id: 3, owner: 1, name: "Cid", boardIndex: 3}),
+                    new Map({id: 4, owner: 1, name: "Selfie", boardIndex: 4}),
+                    new Map({id: 5, owner: 1, name: "Tidus", boardIndex: 5}),
+                    new Map({id: 6, owner: 1, name: "Vivi", boardIndex: 6}),
+                    new Map({id: 7, owner: 1, name: "Cat Sith", boardIndex: 7}),
+                    new Map({id: 8, owner: 1, name: "Barret", boardIndex: 8})
+                ])
             }
         });
 
@@ -191,51 +192,51 @@ describe('BOARD component', () => {
                 <div id="board">
                     <div key={0} className='lane'>
                         <div key={0} id={0} className={'piece selected'} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${0}.png')`, cursor: 'default'}}>
-                            <Card card={props.cards[0]}
+                            <Card card={props.cards.get(0)}
                                 clickAction={() => {}}>
                             </Card>
                         </div>
                         <div key={1} id={1} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${1}.png')`, cursor: 'default'}}>
-                            <Card card={props.cards[1]}
+                            <Card card={props.cards.get(1)}
                                 clickAction={() => {}}>
                             </Card>
                         </div>
                         <div key={2} id={2} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${2}.png')`, cursor: 'default'}}>
-                            <Card card={props.cards[2]}
+                            <Card card={props.cards.get(2)}
                                 clickAction={() => {}}>
                             </Card>
                         </div>
                     </div>
                     <div key={1} className='lane'>
                         <div key={3} id={3} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${3}.png')`, cursor: 'default'}}>
-                            <Card card={props.cards[3]}
+                            <Card card={props.cards.get(3)}
                                 clickAction={() => {}}>
                             </Card>
                         </div>
                         <div key={4} id={4} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${4}.png')`, cursor: 'default'}}>
-                            <Card card={props.cards[4]}
+                            <Card card={props.cards.get(4)}
                                 clickAction={() => {}}>
                             </Card>
                         </div>
                         <div key={5} id={5} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${5}.png')`, cursor: 'default'}}>
-                            <Card card={props.cards[5]}
+                            <Card card={props.cards.get(5)}
                                 clickAction={() => {}}>
                             </Card>
                         </div>
                     </div>
                     <div key={2} className='lane'>
                         <div key={6} id={6} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${6}.png')`, cursor: 'default'}}>
-                            <Card card={props.cards[6]}
+                            <Card card={props.cards.get(6)}
                                 clickAction={() => {}}>
                             </Card>
                         </div>
                         <div key={7} id={7} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${7}.png')`, cursor: 'default'}}>
-                            <Card card={props.cards[7]}
+                            <Card card={props.cards.get(7)}
                                 clickAction={() => {}}>
                             </Card>
                         </div>
                         <div key={8} id={8} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('assets/images/board/board-${8}.png')`, cursor: 'default'}}>
-                            <Card card={props.cards[8]}
+                            <Card card={props.cards.get(8)}
                                 clickAction={() => {}}>
                             </Card>
                         </div>

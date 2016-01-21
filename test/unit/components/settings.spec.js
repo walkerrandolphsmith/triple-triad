@@ -1,4 +1,5 @@
 import React from 'react';
+import { Map } from 'immutable';
 import expect from 'expect';
 import expectJSX from 'expect-jsx';
 import {createRenderer} from 'react-addons-test-utils';
@@ -18,11 +19,11 @@ describe('SETTINGS component', () => {
         let props;
         beforeEach(() => {
             props = {
-                settings: {
+                settings: new Map({
                     randomHand: true,
                     multiplayer: true,
                     visibleHand: true
-                },
+                }),
                 updateRoute: () => {}
             }
         });
@@ -74,11 +75,11 @@ describe('SETTINGS component', () => {
         let props;
         beforeEach(() => {
             props = {
-                settings: {
+                settings: new Map({
                     randomHand: false,
                     multiplayer: false,
                     visibleHand: false
-                },
+                }),
                 updateRoute: () => {}
             }
         });
