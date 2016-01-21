@@ -27,7 +27,7 @@ ReactDom.render(
   mountNode
 );
 
-if (process.env.NODE_ENV !== 'production' && false) {
+if (process.env.NODE_ENV !== 'production') {
   const showDevTools = require('./../dev-tools/showDevTools').default;
   showDevTools(store);
 }
