@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import { Router, Route, IndexRoute } from 'react-router';
+import { Router } from 'react-router';
 import { createHistory } from 'history';
 import { Provider } from 'react-redux';
 import { fromJS } from 'immutable';
