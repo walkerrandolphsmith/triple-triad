@@ -9,7 +9,7 @@ describe('UPDATE_ROUTE async action creator', () => {
         expect(updateRoute()).toBeA('function');
     });
 
-    describe('given the indexRoute of / and random hand is not enabled', () => {
+    describe('given the indexRoute of /settings-selection and random hand is not enabled', () => {
         let getState, dispatch;
         beforeEach(() => {
             getState = () => ({
@@ -23,15 +23,15 @@ describe('UPDATE_ROUTE async action creator', () => {
             dispatch = expect.createSpy();
         });
 
-        it('should dispatch pushPath action', () => {
-            UpdateRoute.__Rewire__('setPhase', function(){
+        it('should dispatch setPhase action', () => {
+            UpdateRoute.__Rewire__('setPhase', function(newPhase){
                 return 'handSelection';
             });
             updateRoute()(dispatch, getState);
             expect(dispatch).toHaveBeenCalledWith('handSelection')
         });
 
-        it('should dispatch pushPath action', () => {
+        it('should dispatch getNextCardForHand action', () => {
             UpdateRoute.__Rewire__('getNextCardForHand', function(){
                 return 'id';
             });
@@ -48,7 +48,7 @@ describe('UPDATE_ROUTE async action creator', () => {
         });
     });
 
-    describe('given the route is / and random hand is enabled ', () => {
+    describe('given the route is /settings-selection and random hand is enabled ', () => {
         let getState, dispatch;
         beforeEach(() => {
             getState = () => ({
@@ -62,7 +62,7 @@ describe('UPDATE_ROUTE async action creator', () => {
             dispatch = expect.createSpy();
         });
 
-        it('should dispatch setHands action', () => {
+        it('should dispatch setPhase action', () => {
             UpdateRoute.__Rewire__('setPhase', function(){
                 return 'cardSelection';
             });
@@ -84,6 +84,14 @@ describe('UPDATE_ROUTE async action creator', () => {
             });
             updateRoute()(dispatch, getState);
             expect(dispatch).toHaveBeenCalledWith(1)
+        });
+
+        it('should dispatch pushPath action', () => {
+            UpdateRoute.__Rewire__('pushPath', function(){
+                return '/round';
+            });
+            updateRoute()(dispatch, getState);
+            expect(dispatch).toHaveBeenCalledWith('/round')
         });
     });
 
@@ -114,7 +122,15 @@ describe('UPDATE_ROUTE async action creator', () => {
                 return 2;
             });
             updateRoute()(dispatch, getState);
-            expect(dispatch).toHaveBeenCalledWith(1)
+            expect(dispatch).toHaveBeenCalledWith(2)
+        });
+
+        it('should dispatch pushPath action', () => {
+            UpdateRoute.__Rewire__('pushPath', function(){
+                return '/round';
+            });
+            updateRoute()(dispatch, getState);
+            expect(dispatch).toHaveBeenCalledWith('/round')
         });
     });
 
@@ -138,6 +154,14 @@ describe('UPDATE_ROUTE async action creator', () => {
             });
             updateRoute()(dispatch, getState);
             expect(dispatch).toHaveBeenCalledWith(5)
+        });
+
+        it('should dispatch pushPath action', () => {
+            UpdateRoute.__Rewire__('pushPath', function(){
+                return '/settings-selection';
+            });
+            updateRoute()(dispatch, getState);
+            expect(dispatch).toHaveBeenCalledWith('/settings-selection')
         });
     });
 
