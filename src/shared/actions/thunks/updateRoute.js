@@ -2,15 +2,14 @@ import { pushPath } from 'redux-simple-router';
 import { setHands } from './setHands';
 import { getNextSelectedCard } from './getNextSelectedCard';
 import { getNextCardForHand } from './getNextCardForHand';
-import { setPhase } from './../action-creators';
-import { resetGame } from './../action-creators/resetGame.js';
+import { setPhase, resetGame } from './../action-creators';
 
 export const updateRoute = () => (dispatch, getState) => {
 
     const state = getState();
+    console.log(state.routing);
 
     let randomHand = state.settings.get('randomHand');
-    //let isHandSelected = state.game.get('deck').filter(card => card.get('owner') === 1).size === 5;
 
     let nextRoute;
     switch(state.routing.path){
