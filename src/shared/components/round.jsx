@@ -18,6 +18,7 @@ export default class Round extends React.Component {
             case WINNER.NONE:
                 handStyles.visibility = 'visible';
                 bannerStyle.display = 'none';
+                break;
             case WINNER.TIE:
                 phrase = "Tie";
                 bannerScrimStyle.background = 'repeating-linear-gradient(45deg, #5d9634, #5d9634 10px, #538c2b 10px, #538c2b 20px)';
