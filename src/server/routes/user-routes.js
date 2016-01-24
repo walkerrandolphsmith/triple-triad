@@ -1,5 +1,5 @@
 import bodyparser from 'body-parser';
-import User from '../models/User.js';
+import User from '../models/user';
 
 export default function loadUserRoutes(router, passport) {
     router.use(bodyparser.json());

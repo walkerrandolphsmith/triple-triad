@@ -1,5 +1,5 @@
 import PassportLocal from 'passport-local';
-import User from './../models/user.js';
+import User from './../models/user';
 import cookies from 'react-cookie';
 
 export default function configurePassport(passport) {
