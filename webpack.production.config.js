@@ -1,6 +1,7 @@
 var path    = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var TransferWebpackPlugin = require('transfer-webpack-plugin');
 
 module.exports = {
   devtool: 'inline-source-map',
@@ -18,7 +19,10 @@ module.exports = {
   },
   plugins: [
     new webpack.NoErrorsPlugin(),
-    new ExtractTextPlugin('styles.css')
+    new ExtractTextPlugin('styles.css'),
+    new TransferWebpackPlugin([
+      {from: 'src/assets/images', to:'assets/images'}
+    ])
   ],
   module: {
     loaders: [
