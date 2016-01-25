@@ -1,10 +1,12 @@
-node:
-  build: .
+web:
+  build: ./node
   ports:
-   - "8080:3000"
-  volumes:
-   - .:data/db
+   - 3000
+   - 8080
   links:
-   - mongo
-  mongo:
-    image: mongo
+   - db
+
+db:
+  build: ./mongo
+  volumes:
+    - db:/data/db
