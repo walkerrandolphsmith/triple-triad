@@ -1,5 +1,5 @@
 web:
-  build: ./node
+  build: .
   ports:
    - 3000
    - 8080
@@ -7,6 +7,6 @@ web:
    - db
 
 db:
-  build: ./mongo
+  image: mongo
   volumes:
     - db:/data/db
