@@ -3,6 +3,11 @@ implementation of final fantasy 8's card game for the web
 
 
 #MongoDB
+
+###Reset
+`docker-machine restart default`
+`eval $(docker-machine env default)`
+
 `cd ~/Downloads`
 `tar xzf mongodb-osx-x86_64-2.2.3.tgz`
 `sudo mv mongodb-osx-x86_64-2.2.3 /usr/local/mongodb`
