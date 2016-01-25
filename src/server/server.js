@@ -13,6 +13,7 @@ import webpackHotMiddleware from 'webpack-hot-middleware';
 var config = require('./../../webpack.config');
 
 const port = process.env.PORT || 3000;
+//const mongoUri = `mongodb://db`; When I get docker working
 const mongoUri = process.env.MONGOLAB_URI || `mongodb://localhost/${port}/test`;
 
 configurePassport(passport);
