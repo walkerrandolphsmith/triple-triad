@@ -3,7 +3,7 @@ node:
   ports:
    - "8080:3000"
   volumes:
-   - .:../../src
+   - .:data/db
   links:
    - mongo
   mongo:
