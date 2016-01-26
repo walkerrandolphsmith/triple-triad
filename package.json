@@ -8,7 +8,9 @@
     "start": "babel-node src/server/index.js --progress --colors --profile",
     "build": "npm run clean && webpack -p --config webpack.production.config.js",
     "test": "NODE_ENV=test mocha --compilers js:babel-core/register --recursive",
-    "test:watch": "npm test -- --watch",
+    "test:unit": "NODE_ENV=test mocha ./test/unit/ --compilers js:babel-core/register --recursive",
+    "test:acceptance": "NODE_ENV=test mocha ./test/acceptance/ --compilers js:babel-core/register --recursive",
+    "test:watch": "npm run test:unit -- --watch",
     "deploy": "git push heroku master"
   },
   "repository": {
