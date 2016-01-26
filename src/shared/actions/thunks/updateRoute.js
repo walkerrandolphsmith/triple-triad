@@ -7,7 +7,6 @@ import { setPhase, resetGame } from './../action-creators';
 export const updateRoute = () => (dispatch, getState) => {
 
     const state = getState();
-    console.log(state.routing);
 
     let randomHand = state.settings.get('randomHand');
 

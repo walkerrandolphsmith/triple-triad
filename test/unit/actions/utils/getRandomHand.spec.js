@@ -36,7 +36,6 @@ describe('getRandomHand utility', () => {
 
 
     it('should retrieve five cards', () => {
-        console.log(getRandomHand(game));
         expect(getRandomHand(game).size).toEqual(5);
     });
 
