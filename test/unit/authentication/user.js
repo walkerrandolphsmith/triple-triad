@@ -70,6 +70,53 @@ describe('User', function() {
         });
     });
 
+    describe('Hashing a password', () => {
+
+        let password, user;
+        beforeEach(() => {
+            password = 'secret';
+            user = new User({
+                local: {
+                    username: 'tester',
+                    password: password,
+                    email: 'testbot@gmail.com'
+                }
+            });
+            user.save(error => { done(); });
+        });
+
+        it('should return a hashed password', () => {
+            user.generateHash(password, (err, passwordHash) => {
+                expect(err).toNotExist();
+                expect(err).toExist(passwordHash);
+                done();
+            });
+        });
+    });
+
+    describe('when validating a password hash', () => {
+
+        let password, user;
+        beforeEach(() => {
+            password = 'secret';
+            user = new User({
+                local: {
+                    username: 'tester',
+                    password: password,
+                    email: 'testbot@gmail.com'
+                }
+            });
+            user.save(error => { done(); });
+        });
+
+        it('should return true when the password hash can be validated', () => {
+            user.generateHash(password, (err, passwordHash) => {
+                expect(user.validPassword(passwordHash)).toEqual(true);
+                done();
+            });
+        });
+    });
+
     afterEach(function(done) {
         User.remove({}, () => { done(); });
     });
