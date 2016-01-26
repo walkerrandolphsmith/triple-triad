@@ -3,11 +3,12 @@ import { placeCard, selectCard, selectPiece } from './../action-creators';
 import { getNextSelectedCard } from './getNextSelectedCard';
 import { applyFlips } from './applyFlips';
 import { updateRoute } from './updateRoute';
+import { getBoard } from './../../selectors/boardSelector';
 
 export const playerTakesTurn = (isPlayer) => (dispatch, getState) => {
     const state = getState();
 
-    let gameOver = state.game.get('deck').filter(card => card.get('boardIndex') > -1).size === 8;
+    let gameOver = getBoard(state.game.get('deck')).size === 9;
 
     dispatch(placeCard());
     dispatch(applyFlips());
