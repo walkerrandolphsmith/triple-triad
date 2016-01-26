@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "clean": "rm -rf dist",
-    "start": "babel-node src/server/index.js --progress --colors --profile",
-    "build": "npm run clean && webpack -p --config webpack.production.config.js",
+    "start": "NODE_ENV=development babel-node src/server/index.js --progress --colors --profile",
+    "build": "NODE_ENV=production npm run clean && webpack -p --config webpack.production.config.js",
     "test": "NODE_ENV=test mocha --compilers js:babel-core/register --recursive",
     "test:unit": "NODE_ENV=test mocha ./test/unit/ --compilers js:babel-core/register --recursive",
     "test:acceptance": "NODE_ENV=test mocha ./test/acceptance/ --compilers js:babel-core/register --recursive",
