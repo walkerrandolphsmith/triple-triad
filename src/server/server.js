@@ -20,6 +20,7 @@ const mongoUri = process.env.MONGOLAB_URI || `mongodb://localhost/${port}/test`;
 configurePassport(passport);
 
 let app = express();
+export default app;
 
 mongoose.connect(mongoUri);
 
@@ -31,7 +32,7 @@ loadUserRoutes(userRouter, passport);
 app.use('/api', userRouter);
 
 
-if(process.env.NODE_ENV !== 'production'){
+if(process.env.NODE_ENV === 'development'){
   const compiler = webpack(config);
   app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }));
   app.use(webpackHotMiddleware(compiler));
