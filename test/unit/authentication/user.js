@@ -73,7 +73,7 @@ describe('User', function() {
     describe('Hashing a password', () => {
 
         let password, user;
-        beforeEach(() => {
+        beforeEach(done => {
             password = 'secret';
             user = new User({
                 local: {
@@ -85,19 +85,19 @@ describe('User', function() {
             user.save(error => { done(); });
         });
 
-        it('should return a hashed password', () => {
+        it('should return a hashed password', done => {
             user.generateHash(password, (err, passwordHash) => {
                 expect(err).toNotExist();
                 expect(err).toExist(passwordHash);
-                done();
             });
+            done();
         });
     });
 
-    describe('when validating a password hash', () => {
+    describe('when validating a valid password hash', () => {
 
         let password, user;
-        beforeEach(() => {
+        beforeEach(done => {
             password = 'secret';
             user = new User({
                 local: {
@@ -109,11 +109,34 @@ describe('User', function() {
             user.save(error => { done(); });
         });
 
-        it('should return true when the password hash can be validated', () => {
+        it('should return true when the password hash can be validated', done => {
             user.generateHash(password, (err, passwordHash) => {
                 expect(user.validPassword(passwordHash)).toEqual(true);
-                done();
             });
+            done();
+        });
+    });
+
+    describe('when validating an invalid password hash', () => {
+
+        let password, user;
+        beforeEach(done => {
+            password = 'secret';
+            user = new User({
+                local: {
+                    username: 'tester',
+                    password: password,
+                    email: 'testbot@gmail.com'
+                }
+            });
+            user.save(error => { done(); });
+        });
+
+        it('should return true when the password hash can be validated', done => {
+            user.generateHash(password, (err, passwordHash) => {
+                expect(user.validPassword('invalid'+passwordHash)).toEqual(false);
+            });
+            done();
         });
     });
 
