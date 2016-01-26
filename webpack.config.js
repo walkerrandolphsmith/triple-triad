@@ -19,6 +19,11 @@ module.exports = {
     extensions:         ['', '.js', '.jsx', '.css', '.less']
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('development'),
+      'process.env.PORT': JSON.stringify('3000'),
+      'process.env.DEV_PORT': JSON.stringify('3001')
+    }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new ExtractTextPlugin('styles.css')

@@ -18,6 +18,10 @@ module.exports = {
     extensions:         ['', '.js', '.jsx', '.css', '.less']
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production'),
+      'process.env.PORT': JSON.stringify('3000')
+    }),
     new webpack.NoErrorsPlugin(),
     new ExtractTextPlugin('styles.css'),
     new TransferWebpackPlugin([

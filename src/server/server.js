@@ -13,6 +13,7 @@ import webpackHotMiddleware from 'webpack-hot-middleware';
 var config = require('./../../webpack.config');
 
 const port = process.env.PORT || 3000;
+const dev_port = process.env.DEV_PORT || 3001;
 //const mongoUri = `mongodb://db`; When I get docker working
 const mongoUri = process.env.MONGOLAB_URI || `mongodb://localhost/${port}/test`;
 
@@ -35,9 +36,9 @@ if(process.env.NODE_ENV !== 'production'){
   app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }));
   app.use(webpackHotMiddleware(compiler));
 
-  new WebpackDevServer(webpack(config), config.devServer).listen(3001, 'localhost', (err, result) => {
+  new WebpackDevServer(webpack(config), config.devServer).listen(dev_port, 'localhost', (err, result) => {
     if (err) console.log(err);
-    console.log('Listening at localhost:3001');
+    console.info(`===> 🌎 Listening on port ${dev_port}`);
   });
   app.use(express.static(path.join(__dirname, './../../src')));
 }else{
