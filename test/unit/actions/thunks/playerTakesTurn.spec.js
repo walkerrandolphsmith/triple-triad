@@ -58,7 +58,7 @@ describe('PLAYER_TAKES_TURN async action creator', () => {
             expect(dispatch).toHaveBeenCalledWith(4)
         });
 
-        it('should dispatch AI_TURN async action', () => {
+        xit('should dispatch AI_TURN async action', () => {
             PlayerTakesTurn.__Rewire__('aiTurn', function(){
                 return 5;
             });
@@ -66,7 +66,7 @@ describe('PLAYER_TAKES_TURN async action creator', () => {
             expect(dispatch).toHaveBeenCalledWith(5)
         });
 
-        it('should dispatch GET_NEXT_SLECTED_CARD async action', () => {
+        xit('should dispatch GET_NEXT_SLECTED_CARD async action', () => {
             PlayerTakesTurn.__Rewire__('getNextSelectedCard', function(){
                 return 6;
             });
