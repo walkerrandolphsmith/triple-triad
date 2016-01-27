@@ -9,7 +9,7 @@
     "build": "NODE_ENV=production npm run clean && webpack -p --config webpack.production.config.js",
     "test": "NODE_ENV=test mocha --compilers js:babel-core/register --recursive",
     "test:unit": "NODE_ENV=test mocha ./test/unit/ --compilers js:babel-core/register --recursive",
-    "test:acceptance": "NODE_ENV=test PORT=4000 mocha ./test/acceptance/ --compilers js:babel-core/register --recursive",
+    "test:integration": "NODE_ENV=test PORT=4000 mocha ./test/integration/ --compilers js:babel-core/register --recursive",
     "test:watch": "npm run test:unit -- --watch",
     "deploy": "git push heroku master"
   },
