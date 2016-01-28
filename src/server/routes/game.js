@@ -4,8 +4,8 @@ import { RoutingContext, match } from 'react-router';
 import {Provider} from 'react-redux';
 import createLocation from 'history/lib/createLocation';
 
-import routes from './../shared/routes';
-import configureStore from './../shared/store/store';
+import routes from './../../shared/routes';
+import configureStore from './../../shared/store/store';
 
 export default function game(request, response) {
     const location = createLocation(request.url);

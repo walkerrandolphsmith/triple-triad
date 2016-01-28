@@ -1,54 +1,21 @@
-import path from 'path';
 import express from 'express';
-import cors from 'cors';
 import mongoose from 'mongoose';
 import passport from 'passport';
-import configurePassport from './passport-strategies/configurePassport';
-import loadUserRoutes from './routes/user-routes';
-import game from './game';
-import webpack from 'webpack';
-import WebpackDevServer from 'webpack-dev-server';
-import webpackDevMiddleware from 'webpack-dev-middleware';
-import webpackHotMiddleware from 'webpack-hot-middleware';
-var config = require('./../../webpack.config');
+import configurePassport from './config/passport';
+import configureRoutes from './config/routes';
+import configureServer from './config/server';
 
 const port = process.env.PORT || 3000;
-const dev_port = process.env.DEV_PORT || 3001;
-//const mongoUri = `mongodb://db`; When I get docker working
-const mongoUri = process.env.MONGOLAB_URI || `mongodb://localhost/${port}/test`;
+const mongoUri = process.env.MONGOLAB_URI || `mongodb://localhost/${port}/test` || 'mongodb://db';
 
-configurePassport(passport);
+mongoose.connect(mongoUri);
 
 let app = express();
 export default app;
 
-mongoose.connect(mongoUri);
-
-app.use(cors());
-app.use(passport.initialize());
-
-const userRouter = express.Router();
-loadUserRoutes(userRouter, passport);
-app.use('/api', userRouter);
-
-
-if(process.env.NODE_ENV === 'development'){
-  const compiler = webpack(config);
-  app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }));
-  app.use(webpackHotMiddleware(compiler));
-
-  new WebpackDevServer(webpack(config), config.devServer).listen(dev_port, 'localhost', (err, result) => {
-    if (err) console.log(err);
-    console.info(`===> 🌎 Listening on port ${dev_port}`);
-  });
-  app.use(express.static(path.join(__dirname, './../../src')));
-}else{
-  app.use(express.static(path.join(__dirname, './../../../dist')));
-}
-
-app.get('/*', (request, response) => {
-  game(request, response);
-});
+configurePassport(passport);
+let router = configureRoutes(passport);
+configureServer(app, passport, router);
 
 app.listen(port, (error) => {
   if (error) console.error(error);

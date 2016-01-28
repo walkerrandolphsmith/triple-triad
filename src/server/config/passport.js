@@ -1,8 +1,7 @@
 import PassportLocal from 'passport-local';
 import User from './../models/user';
-import cookies from 'react-cookie';
 
-export default function configurePassport(passport) {
+export default function(passport) {
     const LocalStrategy = PassportLocal.Strategy;
 
     passport.use('local-signup', new LocalStrategy({
@@ -52,5 +51,4 @@ export default function configurePassport(passport) {
             });
         }
     ));
-
-};
+}
