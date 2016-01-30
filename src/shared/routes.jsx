@@ -7,21 +7,15 @@ import SignUp from './../shared/containers/signup';
 import SettingsSelection from './../shared/containers/settingsSelection';
 import CardSelection from './../shared/containers/cardSelection';
 import Round from './../shared/containers/round';
-import { checkAuth } from './../shared/actions/action-creators/checkAuth';
-
-function requireAuth(nextState, replace) {
-    if(!checkAuth()) {
-        return replace(null, '/signin')
-    }
-};
+import RequireAuthentication from './containers/authentication';
 
 export default (
     <Route path="/" component={Game}>
       <IndexRoute component={SignIn}/>
       <Route path="signin" component={SignIn}/>
       <Route path="signup" component={SignUp}/>
-      <Route path="settings-selection" component={SettingsSelection} onEnter={requireAuth}/>
-      <Route path="card-selection" component={CardSelection} onEnter={requireAuth}/>
-      <Route path="round" component={Round} onEnter={requireAuth}/>
+      <Route path="settings-selection" component={RequireAuthentication(SettingsSelection)}/>
+      <Route path="card-selection" component={RequireAuthentication(CardSelection)}/>
+      <Route path="round" component={RequireAuthentication(Round)}/>
     </Route>
 )

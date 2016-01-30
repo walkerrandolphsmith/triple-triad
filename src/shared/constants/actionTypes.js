@@ -11,11 +11,6 @@ export const UPDATE_BOARD = 'UpdateBoard';
 export const START_AI_TURN = 'StartAITurn';
 export const END_AI_TURN = 'EndAITurn';
 
-
-export const AUTH_LOAD = 'AUTH_LOAD';
-export const AUTH_LOAD_SUCCESS = 'AUTH_LOAD_SUCCESS';
-export const AUTH_LOAD_FAIL = 'AUTH_LOAD_FAIL';
-
 export const AUTH_SIGNIN = 'AUTH_SIGNIN';
 export const AUTH_SIGNIN_SUCCESS = 'AUTH_SIGNIN_SUCCESS';
 export const AUTH_SIGNIN_FAIL = 'AUTH_SIGNIN_FAIL';

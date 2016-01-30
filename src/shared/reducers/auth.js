@@ -1,8 +1,5 @@
 import { Map } from 'immutable';
 import {
-    AUTH_LOAD,
-    AUTH_LOAD_SUCCESS,
-    AUTH_LOAD_FAIL,
     AUTH_SIGNIN,
     AUTH_SIGNIN_SUCCESS,
     AUTH_SIGNIN_FAIL,
@@ -31,10 +28,6 @@ export default function auth(state = INITIAL_STATE, action = {}) {
     const { type, payload } = action;
 
     switch (type) {
-        case AUTH_LOAD: return load(state, payload);
-        case AUTH_LOAD_SUCCESS: return loadSuccessful(state, payload);
-        case AUTH_LOAD_FAIL: return loadFailure(state, payload);
-
         case AUTH_SIGNIN: return signin(state, payload);
         case AUTH_SIGNIN_SUCCESS: return signInSuccess(state, payload);
         case AUTH_SIGNIN_FAIL: return signInFailure(state, payload);
@@ -49,22 +42,6 @@ export default function auth(state = INITIAL_STATE, action = {}) {
 
         default: return state;
     }
-}
-
-function load(state, payload) {
-    return state.set('loading', true);
-}
-
-function loadSuccessful(state, payload) {
-    state = state.set('loading', false);
-    state = state.set('loaded', true);
-    return state.setIn('user.username'.split('.'), payload.user);
-}
-
-function loadFailure(state, payload) {
-    state = state.set('loading', false);
-    state = state.set('loaded', false);
-    return state.set('error', payload.error);
 }
 
 function signin(state, payload) {

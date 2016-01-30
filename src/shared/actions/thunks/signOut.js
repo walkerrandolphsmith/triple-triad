@@ -1,6 +1,5 @@
 import fetch from 'isomorphic-fetch';
 import { pushPath } from 'redux-simple-router';
-import cookie from 'react-cookie';
 import { requestSignOut, receiveSignOut } from './../action-creators'
 
 export function signOut() {
@@ -9,7 +8,6 @@ export function signOut() {
         return fetch('/api/signout')
             .then(response => {
                 if(response.ok) {
-                    cookie.remove('username');
                     dispatch(receiveSignOut());
                     dispatch(pushPath('/'));
                 }

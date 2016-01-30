@@ -1,4 +1,3 @@
-import cookie from 'react-cookie';
 import fetch from 'isomorphic-fetch';
 import { pushPath } from 'redux-simple-router';
 import { requestSignIn, receiveSignIn } from './../action-creators'
@@ -15,7 +14,6 @@ export function signIn(user) {
         })
         .then(response => {
             if(response.ok) {
-                cookie.save('username', user.username);
                 dispatch(receiveSignIn(user.username));
                 dispatch(pushPath('/settings-selection'));
             }

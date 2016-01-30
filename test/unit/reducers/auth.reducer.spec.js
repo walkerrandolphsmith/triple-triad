@@ -2,9 +2,6 @@ import expect from 'expect';
 import { Map } from 'immutable';
 import reducer from './../../../src/shared/reducers/auth';
 import {
-    AUTH_LOAD,
-    AUTH_LOAD_SUCCESS,
-    AUTH_LOAD_FAIL,
     AUTH_SIGNIN,
     AUTH_SIGNIN_SUCCESS,
     AUTH_SIGNIN_FAIL,
@@ -36,66 +33,6 @@ describe("Auth reducer", () => {
     describe("Given no state", () => {
         it('should return the initial state', () => {
             expect(reducer(undefined, {})).toEqual(initialState)
-        });
-    });
-
-    describe("Given authentication loading is kicked off", () => {
-
-        it('should handle AUTH_LOAD action', () => {
-            let newState = reducer(initialState, {
-                type: AUTH_LOAD
-            });
-            expect(newState.get('loading')).toEqual(true);
-        });
-    });
-
-    describe("Given authentication loading is successful", () => {
-
-        let user;
-        beforeEach(() => {
-           user = 'walker';
-        });
-
-        it('should handle AUTH_LOAD_SUCCESS action', () => {
-            let newState = reducer(initialState, {
-                type: AUTH_LOAD_SUCCESS,
-                payload: {
-                    user: user
-                }
-            });
-            expect(newState.get('loading')).toEqual(false);
-            expect(newState.get('loaded')).toEqual(true);
-            expect(newState.get('user').get('username')).toEqual(user);
-        });
-    });
-
-    describe("Given authentication loading is unsuccessful", () => {
-
-        let error;
-        beforeEach(() => {
-            error = 'error';
-        });
-
-        it('should handle AUTH_LOAD_FAIL action', () => {
-            let newState = reducer(initialState, {
-                type: AUTH_LOAD_FAIL,
-                payload: {
-                    error: error
-                }
-            });
-            expect(newState.get('loading')).toEqual(false);
-            expect(newState.get('loaded')).toEqual(false);
-            expect(newState.get('error')).toEqual(error);
-        });
-    });
-
-    describe("Given user initiates signing in", () => {
-
-        it('should handle AUTH_LOAD_FAIL action', () => {
-            let newState = reducer(initialState, {
-                type: AUTH_SIGNIN
-            });
-            expect(newState.get('signingIn')).toEqual(true);
         });
     });
 

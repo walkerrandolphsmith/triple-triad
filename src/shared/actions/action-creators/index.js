@@ -1,9 +1,7 @@
 export { addCard } from './addCard';
-export { checkAuth } from './checkAuth';
 export { endAiTurn } from './endAiTurn';
 export { placeCard } from './placeCard';
 export { updateFocusSetting } from './updateFocusSetting';
-export { receiveAuth } from './receiveAuth';
 export { receiveSignIn } from './receiveSignIn';
 export { receiveSignOut } from './receiveSignOut';
 export { receiveUser } from './receiveUser';
