@@ -8,16 +8,9 @@ import React from 'react';
 class Game extends React.Component {
 
     KeyDownListener(board, event) {
-        const handleUp = board.props.handleUp;
-        const handleDown = board.props.handleDown;
-        const handleRight = board.props.handleRight;
-        const handleLeft = board.props.handleLeft;
-        const handleEnter = board.props.handleEnter;
-        const handleEscape = board.props.handleEscape;
+        const { handleUp, handleDown, handleRight, handleLeft, handleEnter, handleEscape } = board.props;
 
-        const keyCode = event.which;
-
-        switch(keyCode){
+        switch(event.which){
             case KEY_CODE.UP: handleUp(); break;
             case KEY_CODE.DOWN: handleDown(); break;
             case KEY_CODE.LEFT: handleLeft(); break;
