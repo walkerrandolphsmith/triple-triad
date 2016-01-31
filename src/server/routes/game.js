@@ -39,7 +39,7 @@ export default function game(request, response) {
             <link rel="stylesheet" type="text/css" href="styles.css" />
           </head>
           <body>
-            <div id="app">${componentHTML}</div>
+            <div id="app"><div>${componentHTML}</div></div>
             <script>
               window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}
             </script>
