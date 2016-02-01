@@ -12,5 +12,5 @@ export function isLessThanMaxLength(max) {
 }
 
 export function isInteger(value) {
-    return Number.isInteger(Number(value)) && !Array.isArray(value)
+    return !isEmpty(value) && Number.isInteger(Number(value)) && !Array.isArray(value)
 }
