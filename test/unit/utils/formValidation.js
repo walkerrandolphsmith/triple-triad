@@ -3,6 +3,26 @@ import { isGreaterThanMinLength, isLessThanMaxLength, isInteger } from './../../
 
 describe("Form validation utilities", () => {
 
+    describe("Given a form field value that is empty", () => {
+
+        let value;
+        beforeEach(() => {
+            value = '';
+        });
+
+        it('the minimum length requirement is not met', () => {
+            expect(isGreaterThanMinLength(5)(value)).toEqual(false)
+        });
+
+        it('the maximum length requirement is not met', () => {
+            expect(isLessThanMaxLength(5)(value)).toEqual(false)
+        });
+
+        it('the integer requirement is not met', () => {
+            expect(isInteger(value)).toEqual(false)
+        });
+    });
+
     describe("Given a form field value", () => {
 
         let minLength, maxLength, value;
