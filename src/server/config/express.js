@@ -6,11 +6,10 @@ import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
-import game from './../routes/game';
 import env from './../../shared/config/environment';
 var config = require('./../../../webpack.config');
 
-export default function(app, passport, router) {
+export default function(app, passport, routers) {
 
     const { nodeEnv, devPort } = env;
 
@@ -31,8 +30,7 @@ export default function(app, passport, router) {
     }else{
         app.use(express.static(path.join(__dirname, './../../../../dist')));
     }
-    app.use('/api', router);
-    app.get('/*', (request, response) => {
-        game(request, response);
-    });
+
+    app.use('/api', routers.authRouter);
+    app.use('/*', routers.gameRouter);
 }

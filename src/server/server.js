@@ -14,8 +14,8 @@ let app = express();
 export default app;
 
 configurePassport(passport);
-let router = configureRoutes(passport);
-configureServer(app, passport, router);
+const routers = configureRoutes(passport);
+configureServer(app, passport, routers);
 
 app.listen(port, (error) => {
   if (error) console.error(error);
