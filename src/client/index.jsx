@@ -7,6 +7,7 @@ import { fromJS } from 'immutable';
 import { syncReduxAndRouter } from 'redux-simple-router'
 import Routes from './../shared/routes';
 import configureStore from './../shared/store/store';
+import env from './../shared/config/environment';
 import './../assets/stylesheets/index.less';
 
 let initialState = window.__INITIAL_STATE__;
@@ -27,7 +28,7 @@ ReactDom.render(
   mountNode
 );
 
-if (process.env.NODE_ENV !== 'production') {
+if (env.nodeEnv !== 'production') {
   const showDevTools = require('./../dev-tools/showDevTools').default;
   showDevTools(store);
 }

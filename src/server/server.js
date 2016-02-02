@@ -4,9 +4,9 @@ import passport from 'passport';
 import configurePassport from './config/passport';
 import configureRoutes from './config/routes';
 import configureServer from './config/server';
+import env from './../shared/config/environment';
 
-const port = process.env.PORT || 3000;
-const mongoUri = process.env.MONGOLAB_URI || `mongodb://localhost/${port}/test` || 'mongodb://db';
+const { port, mongoUri } = env;
 
 mongoose.connect(mongoUri);
 
