@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import passport from 'passport';
 import configurePassport from './config/passport';
 import configureRoutes from './config/routes';
-import configureServer from './config/server';
+import configureServer from './config/express';
 import env from './../shared/config/environment';
 
 const { port, mongoUri } = env;
