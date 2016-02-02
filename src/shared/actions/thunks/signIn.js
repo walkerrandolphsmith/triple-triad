@@ -1,23 +1,20 @@
-import fetch from 'isomorphic-fetch';
+import request from 'superagent';
 import { pushPath } from 'redux-simple-router';
 import { requestSignIn, receiveSignIn } from './../action-creators'
 
 export function signIn(user) {
     return dispatch => {
         dispatch(requestSignIn());
-        return fetch('/api/sign_in', {
-            method: 'post',
-            headers: {
-                'Accept': 'application/json', 'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(user)
-        })
-        .then(response => {
-            if(response.ok) {
-                dispatch(receiveSignIn(user.username));
+        return request
+        .post('/api/sign_in')
+        .send(JSON.stringify(user))
+        .set('Accept', 'application/json')
+        .set('Content-Type', 'application/json')
+        .end((error, response) => {
+            if(response.status === 200) {
+                dispatch(receiveSignIn(response.body.userId));
                 dispatch(pushPath('/settings-selection'));
             }
-        })
-        .catch(error => {throw error});
+        });
     };
 }

@@ -31,7 +31,6 @@
     "cors": "^2.7.1",
     "express": "^4.13.3",
     "immutable": "^3.7.5",
-    "isomorphic-fetch": "^2.2.1",
     "koa": "^1.1.2",
     "koa-bodyparser": "^2.0.1",
     "koa-cors": "0.0.16",
@@ -48,7 +47,8 @@
     "redux": "^3.0.4",
     "redux-simple-router": "^1.0.2",
     "redux-thunk": "^1.0.2",
-    "reselect": "^2.0.1"
+    "reselect": "^2.0.1",
+    "superagent": "^1.7.2"
   },
   "devDependencies": {
     "babel": "^6.3.26",
