@@ -1,9 +1,9 @@
 export function sign_in(req, res) {
-    res.json(req.user)
+    res.json({userId: req.user._id})
 }
 
 export function sign_up(req, res) {
-    res.json(req.user)
+    res.json({userId: req.user._id})
 }
 
 export function sign_out(req, res) {

@@ -18,8 +18,7 @@ export default function(Component) {
 
         checkAuth() {
             if(!this.props.isAuthenticated) {
-                let redirectAfterLogin = this.props.location.pathname;
-                this.props.dispatch(pushPath(null, `/login?next=${redirectAfterLogin}`))
+                pushPath(null, `/sigin`)
             }
         }
 

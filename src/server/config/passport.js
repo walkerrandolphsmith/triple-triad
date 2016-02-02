@@ -4,6 +4,16 @@ import User from './../models/user';
 export default function(passport) {
     const LocalStrategy = PassportLocal.Strategy;
 
+    passport.serializeUser(function(user, done) {
+        done(null, user._id);
+    });
+
+    passport.deserializeUser(function(id, done) {
+        User.findById(id, function(err, user) {
+            done(err, user);
+        });
+    });
+
     passport.use('local-signup', new LocalStrategy({
             usernameField: 'username',
             passwordField: 'password',

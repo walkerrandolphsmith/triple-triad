@@ -16,9 +16,9 @@ export default (
       <IndexRoute component={SignIn}/>
       <Route path="signin" component={SignIn}/>
       <Route path="signup" component={SignUp}/>
-      <Route path="settings-selection" component={RequireAuthentication(PhaseEnforcer(SettingsSelection))}/>
-      <Route path="card-selection" component={RequireAuthentication(PhaseEnforcer(CardSelection))}/>
-      <Route path="round" component={RequireAuthentication(PhaseEnforcer(Round))}/>
+      <Route path="settings-selection" component={RequireAuthentication(SettingsSelection)}/>
+      <Route path="card-selection" component={RequireAuthentication(CardSelection)}/>
+      <Route path="round" component={RequireAuthentication(Round)}/>
       <Route path="*" component={NotFound} status={404}/>
     </Route>
 )

@@ -7,7 +7,7 @@ import game from './../routes/game';
 export default function(passport) {
     return {
         authRouter: configureAuthRoutes(passport),
-        gameRouter: configureGameRoutes()
+        gameRouter: configureGameRoutes(passport)
     }
 }
 
@@ -18,7 +18,7 @@ function configureAuthRoutes(passport) {
 
     router.post(
         '/sign_up',
-        passport.authenticate('local-signup', { session: false}),
+        passport.authenticate('local-signup'),
         (req, res) => {
             sign_up(req, res);
         }
@@ -26,25 +26,29 @@ function configureAuthRoutes(passport) {
 
     router.post(
         '/sign_in',
-        passport.authenticate('local-login', { session: false}),
+        passport.authenticate('local-login'),
         (req, res) => {
             sign_in(req, res);
         }
     );
 
-    router.get('/signout', (req, res) => {
+    router.get('/sign_out', (req, res) => {
+        console.log("SIGN_OUT ROUTE", res.cookies);
         sign_out(req, res);
     });
 
     return router;
 }
 
-function configureGameRoutes(){
+function configureGameRoutes(passport){
     const router = express.Router();
 
-    router.use('/*', (req, res) => {
-        game(req, res);
-    });
+    router.use(
+        '/*',
+        (req, res) => {
+            game(req, res);
+        }
+    );
 
     return router;
 }

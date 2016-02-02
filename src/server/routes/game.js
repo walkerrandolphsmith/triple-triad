@@ -3,6 +3,7 @@ import ReactDom from 'react-dom/server';
 import { RoutingContext, match } from 'react-router';
 import {Provider} from 'react-redux';
 import createLocation from 'history/lib/createLocation';
+import { receiveSignIn } from './../../shared/actions/action-creators';
 
 import routes from './../../shared/routes';
 import configureStore from './../../shared/store/store';
@@ -11,6 +12,10 @@ export default function game(request, response) {
     const location = createLocation(request.url);
 
     const store = configureStore();
+
+    if(request.session.passport.user) {
+        store.dispatch(receiveSignIn(request.session.passport.user));
+    }
 
     match({routes, location}, (err, redirectLocation, renderProps) => {
         if(err) return response.status(500).end('Internal server error.');
