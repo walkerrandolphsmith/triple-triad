@@ -4,6 +4,7 @@ import * as Actions from './../actions/';
 import KEY_CODE from './../constants/keyCodes';
 
 import React from 'react';
+import Navigation from './../components/navigation';
 
 class Game extends React.Component {
 
@@ -30,10 +31,13 @@ class Game extends React.Component {
 
     render() {
         return (
-            <div id="game" className="container-fluid">
-                <div className="row">
-                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        {this.props.children}
+            <div>
+                <Navigation isLoggedIn={this.props.isLoggedIn} signOut={this.props.signOut}/>
+                <div id="game" className="container-fluid">
+                    <div className="row">
+                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            {this.props.children}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -42,7 +46,9 @@ class Game extends React.Component {
 }
 
 function mapStateToProps(state) {
-    return {}
+    return {
+        isLoggedIn: state.auth.get('user').get('id') ? true : false
+    }
 }
 
 function mapDispatchToProps(dispatch) {

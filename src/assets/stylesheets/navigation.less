@@ -1,0 +1,297 @@
+@mainColor: #0082BF;
+@mainDark: darken(@mainColor, 20%);
+@mainLight: lighten(@mainColor, 5%);
+@fb: #3E5B99;
+@paper: #ffffff;
+@pale: #f9f9f9;
+@smoke: #e5e5e5;
+@coal: rgb(51,51,51);
+@coalLight: rgba(51,51,51,0.5);
+
+//149 = 65 + 84
+//min-height = margin top + footer height
+@minHeight: calc(~"100vh - 149px");
+
+@mega: 15em;
+@giant: 12em;
+@huge: 6em;
+@big: 4em;
+@xxl: 3em;
+@xl: 2.5em;
+@large: 2em;
+@medium: 1.5em;
+@smedium: 1.25em;
+@small: 1em;
+@xs: 0.75em;
+@tiny: 0.5em;
+@micro: 0.3em;
+@dropdown-position: ~"-160px + 2.75em";
+@height: 66px;
+
+.navigation-link(){
+  &.active {
+    border-bottom: 1px solid @mainColor;
+    background: linear-gradient(to bottom, @paper 91%, @mainColor 93%);
+
+    a {
+      background-color: transparent;
+    }
+  }
+
+  a{
+    float: none;
+    font-size: @small;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 15px;
+    padding-right: 15px;
+    height: @height;
+    line-height: @height;
+    cursor: pointer;
+    text-transform: uppercase;
+    text-shadow: 0 1px 0 rgba(0,0,0,0.1);
+
+    i {
+      font-size: @large;
+      vertical-align: sub;
+    }
+  }
+}
+
+#content{
+  padding: 0;
+
+  & > div {
+    margin-top: 65px;
+    min-height: @minHeight;
+  }
+}
+
+nav.navbar {
+  position: fixed;
+  width: 100%;
+  background-color: @paper;
+  border-radius: 0;
+  border: 0;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  margin-bottom: 0 !important;
+
+  .container-fluid {
+    overflow-x: hidden;
+    padding-right: 0;
+
+    .navbar-header{
+      .navbar-toggle {
+        margin-top: 14px !important;
+        background-color: @paper !important;
+        border-color: @paper !important;
+      }
+
+      li {
+        .navigation-link();
+        cursor: pointer;
+        list-style: none;
+        width: 105px;
+        margin-left: -50px;
+        a {
+          display: inline-block;
+          padding-left: 150px;
+          padding-right: 20px;
+          background-image: url('./../images/cards/back.png');
+          width: 50px;
+          height: 62px;
+          background-size: 42px;
+          background-repeat:no-repeat;
+          background-position: center;
+        }
+      }
+    }
+
+    #navbar-collapse.collapse.navbar-collapse .nav {
+      width: auto;
+
+      li{
+        .navigation-link();
+
+        a{
+          i {
+            font-size: @large;
+            vertical-align: sub;
+          }
+        }
+      }
+
+      &:not(.navbar-right){
+        li{
+          a{
+            margin: 0 0.5em;
+          }
+        }
+      }
+
+      &.navbar-right {
+        position: relative;
+        li {
+          a {
+            overflow-y: hidden;
+
+            img {
+              height: 32px;
+              width: 32px;
+              border-radius: 50%;
+            }
+            span {
+              font-size: @small;
+              margin-left: 1em;
+              word-break: break-all;
+            }
+          }
+
+          &:first-child {
+            width: 300px;
+            z-index: 1;
+            overflow-x: hidden;
+            margin-right: -36px;
+            a {
+              margin: 0 .5em;
+              overflow-x: hidden;
+            }
+          }
+
+          &#signout-dropdown {
+            z-index: 2;
+            background-color: @paper;
+            border-image: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.2)) 0 100%;
+            border-width: 1px 0 1px 1px;
+            height: @height + 1;
+            line-height: @height + 1;
+            position: inherit;
+            cursor: pointer;
+            i {
+              margin: 0 0.5em;
+              font-size: @large;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1080px) {
+
+  body nav .container-fluid .navbar-header li {
+    width: 105px !important;
+    a {
+      background-image: url('./../images/cards/back.png') !important;
+      background-size: 50px !important;
+      padding-right: 20px !important;
+    }
+  }
+
+  body nav .container-fluid #navbar-collapse .navbar-right li {
+    &:nth-child(1):nth-child(-n+2) {
+      width: 115px !important;
+    }
+  }
+  body nav .container-fluid #navbar-collapse .nav li {
+    a {
+      i{
+        margin: 0 0.5em !important;
+
+      }
+      span {
+        display: none;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+
+
+  body nav .container-fluid {
+    .navbar-header {
+      li {
+        background: @paper !important;
+        border-bottom: none !important;
+        transform: none !important;
+        width: 50%;
+        a {
+          transform: none !important;
+        }
+
+        &.active {
+          a {border-bottom: none;}
+        }
+      }
+    }
+  }
+
+  body nav .container-fluid #navbar-collapse .nav {
+
+    li.active {
+      background: @paper !important;
+      border-bottom: none !important;
+      a {
+        color: @mainColor;
+      }
+    }
+
+    &:not(.navbar-right) {
+      li{
+        transform: none !important;
+        a{
+          transform: none !important;
+          margin: 0 !important;
+          span { display: inline !important;}
+        }
+      }
+    }
+
+    &.navbar-right {
+      li {
+        display: inline-block !important;
+
+        &:first-child {
+          transform: none !important;
+          margin-right: 0 !important;
+          width: 80% !important;
+          vertical-align: middle !important;
+
+          a {
+            transform: none !important;
+            margin: 0 .5em !important;
+            overflow-x: hidden !important;
+            span { display: inline !important;}
+          }
+        }
+      }
+    }
+  }
+  body nav .container-fluid #navbar-collapse.collapsing {
+    .navbar-nav { margin: 7.5px -15px !important; }
+    img {
+      height: 32px;
+      width: 32px;
+      border-radius: 50%;
+    }
+    li{
+      .navigation-link();
+
+      a{
+        i {
+          font-size: @large;
+          vertical-align: sub;
+        }
+      }
+    }
+    .navbar-right li a span {
+      font-size: @small;
+      margin-left: 1em;
+      word-break: break-all;
+
+    }
+  }
+}
