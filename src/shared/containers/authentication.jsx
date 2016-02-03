@@ -18,7 +18,7 @@ export default function(Component) {
 
         checkAuth() {
             if(!this.props.isAuthenticated) {
-                pushPath(null, `/sigin`)
+                this.props.pushPath(null, `/sigin`)
             }
         }
 
@@ -47,7 +47,7 @@ export default function(Component) {
     });
 
     const mapDispatchToProps = (dispatch) => {
-        return bindActionCreators(Actions, dispatch);
+        return bindActionCreators({...Actions, pushPath: pushPath}, dispatch);
     };
 
     return connect(mapStateToProps, mapDispatchToProps)(AuthenticationComponent);

@@ -33,7 +33,6 @@ function configureAuthRoutes(passport) {
     );
 
     router.get('/sign_out', (req, res) => {
-        console.log("SIGN_OUT ROUTE", res.cookies);
         sign_out(req, res);
     });
 

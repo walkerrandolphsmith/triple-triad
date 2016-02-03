@@ -7,6 +7,6 @@ export function sign_up(req, res) {
 }
 
 export function sign_out(req, res) {
-    req.logout();
+    req.logOut();
     res.end();
 }

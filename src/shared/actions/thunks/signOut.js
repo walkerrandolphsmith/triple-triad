@@ -6,7 +6,7 @@ export function signOut() {
     return dispatch => {
         dispatch(requestSignOut());
         return request
-            .post('/api/sign_out')
+            .get('/api/sign_out')
             .end((error, response) => {
                 if(response.status === 200) {
                     dispatch(receiveSignOut());
