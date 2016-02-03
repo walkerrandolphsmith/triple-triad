@@ -9,7 +9,29 @@ describe('UPDATE_ROUTE async action creator', () => {
         expect(updateRoute()).toBeA('function');
     });
 
-    describe('given the indexRoute of /settings-selection and random hand is not enabled', () => {
+    describe('given the route is /settings-selection', () => {
+        let getState, dispatch;
+        beforeEach(() => {
+            getState = () => ({
+                settings: new Map({
+                }),
+                routing: {
+                    path: '/settings-selection'
+                }
+            });
+            dispatch = expect.createSpy();
+        });
+
+        it('should dispatch pushPath action', () => {
+            UpdateRoute.__Rewire__('pushPath', function(){
+                return '/invite';
+            });
+            updateRoute()(dispatch, getState);
+            expect(dispatch).toHaveBeenCalledWith('/invite')
+        });
+    });
+
+    describe('given the route /invite and random hand is not enabled', () => {
         let getState, dispatch;
         beforeEach(() => {
             getState = () => ({
@@ -17,7 +39,7 @@ describe('UPDATE_ROUTE async action creator', () => {
                     randomHand: false
                 }),
                 routing: {
-                    path: '/settings-selection'
+                    path: '/invite'
                 }
             });
             dispatch = expect.createSpy();
@@ -48,7 +70,7 @@ describe('UPDATE_ROUTE async action creator', () => {
         });
     });
 
-    describe('given the route is /settings-selection and random hand is enabled ', () => {
+    describe('given the route is /invite and random hand is enabled ', () => {
         let getState, dispatch;
         beforeEach(() => {
             getState = () => ({
@@ -56,7 +78,7 @@ describe('UPDATE_ROUTE async action creator', () => {
                     randomHand: true
                 }),
                 routing: {
-                    path: '/settings-selection'
+                    path: '/invite'
                 }
             });
             dispatch = expect.createSpy();
