@@ -1,12 +1,12 @@
 import { AUTH_SIGNUP_SUCCESS } from './../../constants/actionTypes';
 
-export function receiveUser(username) {
+export function receiveUser(user) {
     return {
         type: AUTH_SIGNUP_SUCCESS,
         payload: {
             user: {
-                name: username,
-                id: username
+                name: user.name,
+                id: user.id
             }
         }
     }

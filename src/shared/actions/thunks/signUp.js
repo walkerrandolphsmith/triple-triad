@@ -12,7 +12,7 @@ export function signUp(user) {
             .set('Content-Type', 'application/json')
             .end((error, response) => {
                 if(response.status === 200) {
-                    dispatch(receiveUser(response.body.userId));
+                    dispatch(receiveUser(response.body));
                     dispatch(pushPath('/settings-selection'));
                 }
             });
