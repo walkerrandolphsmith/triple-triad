@@ -3,16 +3,33 @@ import { Link } from 'react-router'
 
 export default class Navigation extends React.Component {
 
+    isActive(activeRoute, link) {
+        return link === activeRoute ? 'active' : 'passive';
+    }
+
     render() {
-        let { user, signOut } = this.props;
-        console.log(user);
+        let { user, activeRoute, signOut } = this.props;
+
+        let homeLink = (
+            <li className={this.isActive(activeRoute, '/')}>
+                <Link to="/" className="navbar-brand"></Link>
+            </li>
+        );
+
+        let links = ['games', 'leaderboard'].map((link, index) => {
+            console.log(link, index);
+            return (<li key={index} className={this.isActive(activeRoute, link)}>
+                <Link to="/">{link}</Link>
+            </li>)
+        });
+
         let userLink = user
-            ? (<li><a><img src="assets/images/default-user.png"/><span>{user}</span></a></li>)
+            ? (<li className={this.isActive(activeRoute, '/user')}><a><img src="assets/images/default-user.png"/><span>{user}</span></a></li>)
             : (<li></li>);
 
         let signLink = user
             ? (<li><a onClick={signOut}>SignOut</a></li>)
-            : (<li><Link to="/signin">SignIn</Link></li>);
+            : (<li className={this.isActive(activeRoute, '/signin')}><Link to="/signin">SignIn</Link></li>);
 
         return (
             <nav className="navbar navbar-default" role="navigation">
@@ -24,20 +41,13 @@ export default class Navigation extends React.Component {
                             <span className="icon-bar"></span>
                             <span className="icon-bar"></span>
                         </button>
-                        <li>
-                            <Link to="/" className="navbar-brand"></Link>
-                        </li>
+                        {homeLink}
                     </div>
 
                     <div className="collapse navbar-collapse" id="navbar-collapse">
 
                         <ul className="container nav navbar-nav">
-                            <li>
-                                <Link to="/">Games</Link>
-                            </li>
-                            <li>
-                                <Link to="/">Leaderboard</Link>
-                            </li>
+                            {links}
                         </ul>
 
                         <ul className="nav navbar-nav navbar-right">

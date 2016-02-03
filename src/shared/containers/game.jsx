@@ -32,7 +32,7 @@ class Game extends React.Component {
     render() {
         return (
             <div>
-                <Navigation user={this.props.user} signOut={this.props.signOut}/>
+                <Navigation user={this.props.user} activeRoute={this.props.activeRoute} signOut={this.props.signOut}/>
                 <div id="game" className="container-fluid">
                     <div className="row">
                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -47,7 +47,8 @@ class Game extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        user: state.auth.get('user').get('username')
+        user: state.auth.get('user').get('username'),
+        activeRoute: state.routing.path
     }
 }
 
