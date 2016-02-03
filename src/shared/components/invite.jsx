@@ -1,4 +1,5 @@
 import React from 'react';
+import InviteForm from './inviteForm';
 
 export default class Invite extends React.Component {
 
@@ -49,6 +50,8 @@ export default class Invite extends React.Component {
 
         let focus = isMounted ? this.focus : () => {};
 
+        let inviteForm = multiplayer ? (<InviteForm sendInvite={this.props.sendInvite} />) : (<button className="btn btn-next" onClick={this.props.updateRoute}> Next step</button>);
+
         return (
             <div id="settings-selection">
                 <div className="row">
@@ -62,8 +65,9 @@ export default class Invite extends React.Component {
                                 <label htmlFor="two-player"></label>
                                 <label className="text" htmlFor="two-player">2 Player</label>
                             </div>
+                            {inviteForm}
                         </div>
-                        <button className="btn btn-next" onClick={this.props.updateRoute}> Next step</button>
+
                     </div>
                 </div>
             </div>

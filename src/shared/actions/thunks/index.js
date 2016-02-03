@@ -11,6 +11,7 @@ export { handleRight } from './handleRight';
 export { handleUp } from './handleUp';
 export { playerTakesTurn } from './playerTakesTurn';
 export { selectedPieceByClick } from './selectedPieceByClick';
+export { sendInvite } from './sendInvite';
 export { setHand } from './setHand';
 export { setHands } from './setHands';
 export { signIn } from './signIn';
