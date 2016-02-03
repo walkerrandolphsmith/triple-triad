@@ -1,10 +1,6 @@
 import bcrypt from 'bcrypt-nodejs';
 import mongoose from 'mongoose';
 
-let Schema = mongoose.Schema;
-mongoose.models = {};
-mongoose.modelSchemas = {};
-
 var UserSchema = mongoose.Schema({
     local: {
         username: { type: String, unique: true },
