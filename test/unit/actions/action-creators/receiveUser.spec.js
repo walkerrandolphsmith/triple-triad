@@ -2,11 +2,14 @@ import expect from 'expect';
 import { AUTH_SIGNUP_SUCCESS } from './../../../../src/shared/constants/actionTypes';
 import { receiveUser } from './../../../../src/shared/actions/action-creators/receiveUser';
 
-describe('ReceiveSignOut', () => {
+describe('ReceiveSignUp', () => {
 
-    let username;
+    let user;
     beforeEach(() => {
-        username = "walker";
+        user = {
+            name: "walker",
+            id: 12
+        };
     });
 
     it('should be a function', () => {
@@ -19,12 +22,12 @@ describe('ReceiveSignOut', () => {
             type: AUTH_SIGNUP_SUCCESS,
             payload: {
                 user: {
-                    name: username,
-                    id: username
+                    name: user.name,
+                    id: user.id
                 }
             }
         };
-        expect(receiveUser(username)).toEqual(expectedAction)
+        expect(receiveUser(user)).toEqual(expectedAction)
     });
 
 });

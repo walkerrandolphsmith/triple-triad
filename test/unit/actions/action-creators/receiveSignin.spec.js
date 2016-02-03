@@ -4,9 +4,12 @@ import { receiveSignIn } from './../../../../src/shared/actions/action-creators/
 
 describe('ReceiveSignIn', () => {
 
-    let username;
+    let user;
     beforeEach(() => {
-        username = "walker";
+        user = {
+            name: "walker",
+            id: 12
+        };
     });
 
     it('should be a function', () => {
@@ -19,12 +22,12 @@ describe('ReceiveSignIn', () => {
             type: AUTH_SIGNIN_SUCCESS,
             payload: {
                 user: {
-                    name: username,
-                    id: username
+                    name: user.name,
+                    id: user.id
                 }
             }
         };
-        expect(receiveSignIn(username)).toEqual(expectedAction)
+        expect(receiveSignIn(user)).toEqual(expectedAction)
     });
 
 });
