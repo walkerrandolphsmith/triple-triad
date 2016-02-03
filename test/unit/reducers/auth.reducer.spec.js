@@ -90,25 +90,26 @@ describe("Auth reducer", () => {
         });
     });
 
-    describe("Given signing in is successful", () => {
+    describe("Given signing up is successful", () => {
 
-        let username, id;
+        let user;
         beforeEach(() => {
-            username = 'walker';
-            id = 888;
+            user = {
+                name: 'walker',
+                id: 888
+            }
         });
 
         it('should handle AUTH_SIGNUP_SUCCESS action', () => {
             let newState = reducer(initialState, {
                 type: AUTH_SIGNUP_SUCCESS,
                 payload: {
-                    username: username,
-                    id: id
+                    user: user
                 }
             });
             expect(newState.get('signingUp')).toEqual(false);
-            expect(newState.get('user').get('username')).toEqual(username);
-            expect(newState.get('user').get('id')).toEqual(id);
+            expect(newState.get('user').get('username')).toEqual(user.name);
+            expect(newState.get('user').get('id')).toEqual(user.id);
         });
     });
 
