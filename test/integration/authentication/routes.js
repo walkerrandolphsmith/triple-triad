@@ -44,18 +44,6 @@ describe('Passport: routes', () => {
             checkState();
         });
 
-        describe('GET /badRoute a route that does not exist', () => {
-            it('should throw a 404 Not found', done => {
-                request(app)
-                    .get('/api/badRoute')
-                    .expect(404)
-                    .end((err, res) => {
-                        expect(err).toNotExist();
-                        done();
-                    });
-            });
-        });
-
         describe('POST /sign_up given a valid username and password', () => {
             it('should give a status code 200 Ok', done => {
                 request(app)
