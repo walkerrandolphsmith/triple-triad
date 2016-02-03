@@ -13,7 +13,9 @@ export default function game(request, response) {
 
     const store = configureStore();
 
-    if(request.session.passport.user) {
+    if(request.session
+        && request.session.passport
+        && request.session.passport.user) {
         store.dispatch(receiveSignIn(request.session.passport.user));
     }
 
