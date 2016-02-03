@@ -16,9 +16,12 @@ export default class Navigation extends React.Component {
             </li>
         );
 
-        let links = ['games', 'leaderboard'].map((link, index) => {
-            return (<li key={index} className={this.isActive(activeRoute, link)}>
-                <Link to="/">{link}</Link>
+        const navLinks = user ? ['games', 'leaderboard'] : [];
+
+        let links = navLinks.map((link, index) => {
+            const path = `/${link}`;
+            return (<li key={index} className={this.isActive(activeRoute, path)}>
+                <Link to={path}>{link}</Link>
             </li>)
         });
 
