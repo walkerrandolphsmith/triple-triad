@@ -6,7 +6,7 @@ import KEY_CODE from './../constants/keyCodes';
 import React from 'react';
 import Navigation from './../components/navigation';
 
-class Game extends React.Component {
+class App extends React.Component {
 
     KeyDownListener(board, event) {
         const { handleUp, handleDown, handleRight, handleLeft, handleEnter, handleEscape } = board.props;
@@ -56,4 +56,4 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators(Actions,dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Game);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

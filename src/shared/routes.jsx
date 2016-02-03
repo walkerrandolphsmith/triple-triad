@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
-import Game from './../shared/containers/game';
+import App from './../shared/containers/app';
 import SignIn from './../shared/containers/signin';
 import SignUp from './../shared/containers/signup';
 import User from './../shared/containers/user';
@@ -13,7 +13,7 @@ import RequireAuthentication from './containers/authentication';
 import PhaseEnforcer from './containers/phaseEnforcer';
 
 export default (
-    <Route path="/" component={Game}>
+    <Route path="/" component={App}>
       <IndexRoute component={SignIn}/>
       <Route path="signin" component={SignIn}/>
       <Route path="signup" component={SignUp}/>
