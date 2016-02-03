@@ -2,7 +2,7 @@ import express from 'express';
 import bodyparser from 'body-parser';
 import User from '../models/user';
 import { sign_in, sign_up, sign_out } from './../routes/auth';
-import game from './../routes/game';
+import app from './../routes/app';
 
 export default function(passport) {
     return {
@@ -45,7 +45,7 @@ function configureGameRoutes(passport){
     router.use(
         '/*',
         (req, res) => {
-            game(req, res);
+            app(req, res);
         }
     );
 
