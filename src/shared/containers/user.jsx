@@ -14,6 +14,8 @@ export default class User extends React.Component {
                 <div>
                     <img heigth="150px" width="150px" src="assets/images/default-user.png"/>
                     <div id="username">{user}</div>
+
+                    <button className="btn btn-next" onClick={this.props.signOut}>SignOut</button>
                 </div>
             </div>
         );

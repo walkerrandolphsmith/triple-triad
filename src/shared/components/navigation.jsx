@@ -27,10 +27,6 @@ export default class Navigation extends React.Component {
 
         let userLink = user
             ? (<li className={this.isActive(activeRoute, '/user')}><Link to="/user"><img src="assets/images/default-user.png"/><span>{user}</span></Link></li>)
-            : (<li></li>);
-
-        let signLink = user
-            ? (<li><a onClick={signOut}>SignOut</a></li>)
             : (<li className={this.isActive(activeRoute, '/signin')}><Link to="/signin">SignIn</Link></li>);
 
         return (
@@ -54,7 +50,6 @@ export default class Navigation extends React.Component {
 
                         <ul className="nav navbar-nav navbar-right">
                             {userLink}
-                            {signLink}
                         </ul>
                     </div>
                 </div>
