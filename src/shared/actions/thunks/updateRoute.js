@@ -13,6 +13,9 @@ export const updateRoute = () => (dispatch, getState) => {
     let nextRoute;
     switch(state.routing.path){
         case '/settings-selection':
+            nextRoute = '/invite';
+            break;
+        case '/invite':
             nextRoute = randomHand ? '/round' : '/card-selection';
             break;
         case '/card-selection':

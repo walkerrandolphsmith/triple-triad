@@ -7,6 +7,7 @@ import SignUp from './../shared/containers/signup';
 import Games from './../shared/containers/games';
 import User from './../shared/containers/user';
 import SettingsSelection from './../shared/containers/settingsSelection';
+import Invite from './../shared/containers/invite';
 import CardSelection from './../shared/containers/cardSelection';
 import Round from './../shared/containers/round';
 import NotFound from './../shared/containers/notFound';
@@ -21,6 +22,7 @@ export default (
       <Route path="games" component={RequireAuthentication(Games)}/>
       <Route path="user" component={RequireAuthentication(User)}/>
       <Route path="settings-selection" component={RequireAuthentication(SettingsSelection)}/>
+      <Route path="invite" component={RequireAuthentication(Invite)}/>
       <Route path="card-selection" component={RequireAuthentication(CardSelection)}/>
       <Route path="round" component={RequireAuthentication(Round)}/>
       <Route path="*" component={NotFound} status={404}/>
