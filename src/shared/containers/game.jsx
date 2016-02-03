@@ -32,7 +32,7 @@ class Game extends React.Component {
     render() {
         return (
             <div>
-                <Navigation isLoggedIn={this.props.isLoggedIn} signOut={this.props.signOut}/>
+                <Navigation user={this.props.user} signOut={this.props.signOut}/>
                 <div id="game" className="container-fluid">
                     <div className="row">
                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -47,7 +47,7 @@ class Game extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        isLoggedIn: state.auth.get('user').get('id') ? true : false
+        user: state.auth.get('user').get('username')
     }
 }
 

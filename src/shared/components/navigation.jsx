@@ -4,9 +4,13 @@ import { Link } from 'react-router'
 export default class Navigation extends React.Component {
 
     render() {
-        let { isLoggedIn, signOut } = this.props;
-        
-        let userLink = isLoggedIn
+        let { user, signOut } = this.props;
+        console.log(user);
+        let userLink = user
+            ? (<li><a><img src="assets/images/default-user.png"/><span>{user}</span></a></li>)
+            : (<li></li>);
+
+        let signLink = user
             ? (<li><a onClick={signOut}>SignOut</a></li>)
             : (<li><Link to="/signin">SignIn</Link></li>);
 
@@ -21,7 +25,7 @@ export default class Navigation extends React.Component {
                             <span className="icon-bar"></span>
                         </button>
                         <li>
-                            <a className="navbar-brand" href="/"></a>
+                            <Link to="/" className="navbar-brand"></Link>
                         </li>
                     </div>
 
@@ -29,12 +33,16 @@ export default class Navigation extends React.Component {
 
                         <ul className="container nav navbar-nav">
                             <li>
-                                <Link to="/">Home</Link>
+                                <Link to="/">Games</Link>
+                            </li>
+                            <li>
+                                <Link to="/">Leaderboard</Link>
                             </li>
                         </ul>
 
                         <ul className="nav navbar-nav navbar-right">
                             {userLink}
+                            {signLink}
                         </ul>
                     </div>
                 </div>
