@@ -17,14 +17,13 @@ export default class Navigation extends React.Component {
         );
 
         let links = ['games', 'leaderboard'].map((link, index) => {
-            console.log(link, index);
             return (<li key={index} className={this.isActive(activeRoute, link)}>
                 <Link to="/">{link}</Link>
             </li>)
         });
 
         let userLink = user
-            ? (<li className={this.isActive(activeRoute, '/user')}><a><img src="assets/images/default-user.png"/><span>{user}</span></a></li>)
+            ? (<li className={this.isActive(activeRoute, '/user')}><Link to="/user"><img src="assets/images/default-user.png"/><span>{user}</span></Link></li>)
             : (<li></li>);
 
         let signLink = user
