@@ -15,7 +15,7 @@ export default class Games extends React.Component {
 
 function mapStateToProps(state) {
     return {
-
+        games: [{id: 12}, {id: 13}, {id: 14}]
     }
 }
 
