@@ -12,7 +12,7 @@ export function signIn(user) {
         .set('Content-Type', 'application/json')
         .end((error, response) => {
             if(response.status === 200) {
-                dispatch(receiveSignIn(response.body.userId));
+                dispatch(receiveSignIn(response.body));
                 dispatch(pushPath('/settings-selection'));
             }
         });
