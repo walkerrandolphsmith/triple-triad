@@ -67,8 +67,8 @@ function signUp(state, payload) {
 
 function signUpSuccess(state, payload) {
     state = state.set('signingUp', false);
-    state = state.setIn('user.username'.split('.'), payload.username);
-    return state.setIn('user.id'.split('.'), payload.id);
+    state = state.setIn('user.username'.split('.'), payload.user.name);
+    return state.setIn('user.id'.split('.'), payload.user.id);
 }
 
 function signUpFailure(state, payload) {
