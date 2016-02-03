@@ -4,7 +4,7 @@ import * as Actions from './../actions/';
 
 import React from 'react';
 
-export default class User extends React.Component {
+class User extends React.Component {
 
     render() {
         let { user } = this.props;

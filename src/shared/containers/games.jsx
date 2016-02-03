@@ -5,7 +5,7 @@ import * as Actions from './../actions/';
 import React from 'react';
 import GamesList from './../components/games';
 
-export default class Games extends React.Component {
+class Games extends React.Component {
     render() {
         return (
             <GamesList {...this.props} />
