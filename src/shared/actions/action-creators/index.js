@@ -1,4 +1,5 @@
 export { addCard } from './addCard';
+export { emailVerified } from './emailVerified';
 export { endAiTurn } from './endAiTurn';
 export { placeCard } from './placeCard';
 export { updateFocusSetting } from './updateFocusSetting';
