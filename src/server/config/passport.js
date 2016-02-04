@@ -1,5 +1,7 @@
 import PassportLocal from 'passport-local';
 import User from './../models/user';
+import UserToken from './../models/userTokens';
+import { send_verification_email } from './../utils/mailer';
 
 export default function(passport) {
     const LocalStrategy = PassportLocal.Strategy;
@@ -27,6 +29,12 @@ export default function(passport) {
                 if (user) {
                     return done(null, false);
                 } else {
+                    UserToken.new(req.user._id, (err, userToken) => {
+                        send_verification_email(req.body.email, userToken.token, (err, res) => {
+                            if(err) console.error(err);
+                            else console.log(res);
+                        });
+                    });
                     var newUser = new User();
                     newUser.local.username = username;
                     newUser.local.email = req.body.email;

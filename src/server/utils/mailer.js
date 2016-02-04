@@ -7,18 +7,18 @@ const mailgun = new Mailgun({
     domain: keys.mailgun.domain
 });
 
-function send_verification_email(user) {
+export function send_verification_email(email, token, fn) {
     const data = {
-        sender: "tripletriad@gmail.com",
-        to: user.email,
+        from: "tripletriad@gmail.com",
+        to: email,
         subject: 'Play Triple Triad',
         html: `
             Verify your account with the following link:
-            <a href="http://${env.host}:${env.port}/validate/${user.verificationKey}</a>
+            http://${env.host}:${env.port}/verify/${token}
             Welcome to Triple Triad were you can play with your friends.
         `
     };
-    sendEmail(data, function(error, result){});
+    sendEmail(data, fn);
 }
 
 export function sendEmail(data, fn) {
