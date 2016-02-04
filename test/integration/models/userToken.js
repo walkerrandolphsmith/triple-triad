@@ -7,10 +7,10 @@ describe('User tokens', () => {
 
         let userId;
         beforeEach(() => {
-            userId = '0000000001';
+            userId = '000000000000000000000001';
         });
 
-        it('should generate a token contaning the user id', () => {
+        it.only('should generate a token contaning the user id', () => {
             UserToken.new(userId, (err, userToken) => {
                 expect.toNotExist(err);
                 expect.toExist(userToken.token);
