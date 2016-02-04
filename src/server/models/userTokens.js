@@ -14,7 +14,7 @@ UserTokenSchema.statics.new = function (userId, fn) {
         let token = buf.toString('base64')
             .replace(/\//g, '_')
             .replace(/\+/g, '-');
-        user.token = `${userId}|${token.toString().slice(1,24)}`;
+        user.token = `${userId}-${token.toString().slice(1,24)}`;
         user.userId = userId;
         user.save(fn);
     });
