@@ -36,3 +36,13 @@ export function sign_out(req, res) {
     req.logOut();
     res.end();
 }
+
+export function user_profile(req, res) {
+    const userId = req.body.userId;
+    User.findById(userId, (err, user) => {
+        console.log(err, user);
+        res.json({
+            verified: user.local.verified
+        });
+    });
+}

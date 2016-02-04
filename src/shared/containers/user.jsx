@@ -6,14 +6,20 @@ import React from 'react';
 
 class User extends React.Component {
 
-    render() {
-        let { user } = this.props;
+    componentDidMount() {
+        this.props.getUserProfile(this.props.id);
+    }
 
+    render() {
+        let { id, username, verified } = this.props;
+        let v = verified ? 'true' : 'false';
         return (
             <div id="user">
                 <div>
                     <img heigth="150px" width="150px" src="assets/images/default-user.png"/>
-                    <div id="username">{user}</div>
+                    <div id="username">{username}</div>
+
+                    <div>IsVerfied: {v} </div>
 
                     <button className="btn btn-next" onClick={this.props.signOut}>SignOut</button>
                 </div>
@@ -24,7 +30,9 @@ class User extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        user: state.auth.get('user').get('username')
+        id: state.auth.get('user').get('id'),
+        username: state.auth.get('user').get('username'),
+        verified: state.user.get('user').get('verified')
     }
 }
 

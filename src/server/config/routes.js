@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyparser from 'body-parser';
 import User from '../models/user';
-import { sign_in, sign_up, sign_out, verify_email } from './../routes/auth';
+import { sign_in, sign_up, sign_out, verify_email, user_profile } from './../routes/auth';
 import app from './../routes/app';
 
 export default function(passport) {
@@ -42,6 +42,14 @@ function configureAuthRoutes(passport) {
     router.get('/sign_out', (req, res) => {
         sign_out(req, res);
     });
+
+    router.post(
+        '/user_profile',
+        (req, res) => {
+            user_profile(req, res)
+        }
+    );
+
 
     return router;
 }
