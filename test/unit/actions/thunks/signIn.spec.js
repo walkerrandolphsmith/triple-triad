@@ -4,7 +4,7 @@ import { signIn, __RewireAPI__ as signInRewireAPI } from './../../../../src/shar
 
 describe('SIGN_IN async action creator', () => {
 
-    let dispatch, user, cookie;
+    let dispatch, user;
     beforeEach(() => {
        dispatch = expect.createSpy();
         user = {
@@ -21,10 +21,6 @@ describe('SIGN_IN async action creator', () => {
 
         SignIn.__Rewire__('pushPath', function(){
             return 'newRoute';
-        });
-
-        cookie = SignIn.__Rewire__('cookie', {
-            save: (usernameLabel, username) => { return 'xxx' }
         });
     });
 

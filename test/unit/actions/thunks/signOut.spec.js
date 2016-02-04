@@ -4,7 +4,7 @@ import { signOut, __RewireAPI__ as signOutRewireAPI } from './../../../../src/sh
 
 describe('SIGN_OUT async action creator', () => {
 
-    let dispatch, cookie, userNameLabel;
+    let dispatch, userNameLabel;
     beforeEach(() => {
        userNameLabel = 'username';
        dispatch = expect.createSpy();
@@ -19,10 +19,6 @@ describe('SIGN_OUT async action creator', () => {
 
         SignOut.__Rewire__('pushPath', function(){
             return '/';
-        });
-
-        cookie = SignOut.__Rewire__('cookie', {
-            remove: (usernameLabel) => { return 'xxx' }
         });
     });
 
