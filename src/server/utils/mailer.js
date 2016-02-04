@@ -21,23 +21,21 @@ function send_verification_email(user) {
     sendEmail(data, function(error, result){});
 }
 
-function sendEmail(data, fn) {
+export function sendEmail(data, fn) {
 
-    let { sender, to, subject, message } = data;
-
-    if(!sender) {
+    if(!data.from) {
         return fn(new Error('Email address required'));
 
     }
-    if(!to){
+    if(!data.to){
         return fn(new Error('Email address required'));
     }
 
-    if(!subject){
+    if(!data.subject){
         return fn(new Error('Must contain a subject'));
     }
 
-    if(!message){
+    if(!data.html){
         return fn(new Error('Must contain a message'));
     }
 
@@ -50,5 +48,3 @@ function sendEmail(data, fn) {
         else return fn(null, body);
     })
 }
-
-export default sendEmail;

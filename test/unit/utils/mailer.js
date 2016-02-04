@@ -1,5 +1,5 @@
 import expect from 'expect';
-import sendEmail from './../../../src/server/utils/mailer';
+import { sendEmail } from './../../../src/server/utils/mailer';
 
 describe('Mailer', () => {
 
@@ -8,10 +8,10 @@ describe('Mailer', () => {
         let data;
         beforeEach(() => {
            data = {
-               sender: 'walker',
+               from: 'walker',
                to: 'recipient',
                subject: 'subject',
-               message: 'message'
+               html: 'message'
            }
         });
 
@@ -28,10 +28,10 @@ describe('Mailer', () => {
         let data;
         beforeEach(() => {
             data = {
-                sender: '',
+                from: '',
                 to: 'recipient',
                 subject: 'subject',
-                message: 'message'
+                html: 'message'
             }
         });
 
@@ -47,10 +47,10 @@ describe('Mailer', () => {
         let data;
         beforeEach(() => {
             data = {
-                sender: 'sender',
+                from: 'sender',
                 to: '',
                 subject: 'subject',
-                message: 'message'
+                html: 'message'
             }
         });
 
@@ -66,10 +66,10 @@ describe('Mailer', () => {
         let data;
         beforeEach(() => {
             data = {
-                sender: 'sender',
+                from: 'sender',
                 to: 'to',
                 subject: '',
-                message: 'message'
+                html: 'message'
             }
         });
 
@@ -85,10 +85,10 @@ describe('Mailer', () => {
         let data;
         beforeEach(() => {
             data = {
-                sender: 'sender',
+                from: 'sender',
                 to: 'to',
                 subject: 'subject',
-                message: ''
+                html: ''
             }
         });
 
