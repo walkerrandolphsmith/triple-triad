@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyparser from 'body-parser';
 import User from '../models/user';
-import { sign_in, sign_up, sign_out } from './../routes/auth';
+import { sign_in, sign_up, sign_out, verify_email } from './../routes/auth';
 import app from './../routes/app';
 
 export default function(passport) {
@@ -29,6 +29,13 @@ function configureAuthRoutes(passport) {
         passport.authenticate('local-login'),
         (req, res) => {
             sign_in(req, res);
+        }
+    );
+
+    router.post(
+        '/verify_email',
+        (req, res) => {
+            verify_email(req, res)
         }
     );
 
