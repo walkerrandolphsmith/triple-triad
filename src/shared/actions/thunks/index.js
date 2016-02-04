@@ -3,6 +3,7 @@ export { applyFlips } from './applyFlips';
 export { getNextCardForHand } from './getNextCardForHand';
 export { getNextSelectedCard } from './getNextSelectedCard';
 export { getNextSelectedPiece } from './getNextSelectedPiece';
+export { getUserProfile } from './getUserProfile';
 export { handleDown } from './handleDown';
 export { handleEnter } from './handleEnter';
 export { handleEscape } from './handleEscape';
