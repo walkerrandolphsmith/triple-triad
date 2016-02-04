@@ -10,6 +10,7 @@ class SignUp extends React.Component {
         super(props, context);
         this.state = {
             username: '',
+            email: '',
             password: '',
             confirmPassword: ''
         };
@@ -23,6 +24,9 @@ class SignUp extends React.Component {
         if (name === 'username') {
             this.setState({ username: value });
         }
+        if (name === 'email') {
+            this.setState({ email: value });
+        }
         if (name === 'password') {
             this.setState({ password: value });
         }
@@ -33,34 +37,14 @@ class SignUp extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        if (this.state.username.length && this.state.password.length && this.state.confirmPassword.length) {
-            const userObj = {
-                username: this.state.username,
-                password: this.state.password,
-                confirmPassword: this.state.confirmPassword
-            };
-            this.props.signUp(userObj);
-            this.setState({ username: '', password: '', confirmPassword: ''});
-        }
-    }
-
-    validateUsername() {
-        const { userValidation } = this.props;
-        if (userValidation.filter(user => {
-                return user === this.state.username.trim();
-            }).length > 0) {
-            return 'error';
-        }
-        return 'success';
-    }
-
-    validateConfirmPassword() {
-        if (this.state.confirmPassword.length > 0 && this.state.password.length > 0) {
-            if (this.state.password === this.state.confirmPassword) {
-                return 'success';
-            }
-            return 'error';
-        }
+        const userObj = {
+            username: this.state.username,
+            email: this.state.email,
+            password: this.state.password,
+            confirmPassword: this.state.confirmPassword
+        };
+        this.props.signUp(userObj);
+        this.setState({ username: '', email: '', password: '', confirmPassword: ''});
     }
 
     render() {
@@ -77,6 +61,19 @@ class SignUp extends React.Component {
                             name="username"
                             placeholder="Enter username"
                             value={this.state.username}
+                            onChange={this.handleChange.bind(this)}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="email">Email</label>
+                        <input
+                            className="form-control"
+                            labelFor="email"
+                            ref="emailInput"
+                            type="text"
+                            name="email"
+                            placeholder="Enter email"
+                            value={this.state.email}
                             onChange={this.handleChange.bind(this)}
                         />
                     </div>
