@@ -29,21 +29,20 @@ export default function(passport) {
                 if (user) {
                     return done(null, false);
                 } else {
-                    UserToken.new(req.user._id, (err, userToken) => {
-                        send_verification_email(req.body.email, userToken.token, (err, res) => {
-                            if(err) console.error(err);
-                            else console.log(res);
-                        });
-                    });
                     var newUser = new User();
                     newUser.local.username = username;
                     newUser.local.email = req.body.email;
                     newUser.local.password = newUser.generateHash(password);
                     newUser.save(function(err, user) {
-                        if (err) {
-                            throw err;
-                        }
-                        return done(null, newUser);
+                        if (err) throw err;
+                        console.log(newUser);
+                        UserToken.new(newUser._id, (err, userToken) => {
+                            if(err) throw err;
+                            send_verification_email(newUser.local.email, userToken.token, (err, res) => {
+                                if(err) throw err;
+                                return done(null, newUser);
+                            });
+                        });
                     });
                 }
             });
