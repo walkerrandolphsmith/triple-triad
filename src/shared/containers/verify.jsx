@@ -6,7 +6,7 @@ import * as Actions from './../actions';
 class Verify extends React.Component {
 
     componentDidMount() {
-        this.props.verifyEmail();
+        this.props.verifyEmail(this.props.token);
     }
 
     render() {
@@ -19,9 +19,8 @@ class Verify extends React.Component {
 }
 
 function mapStateToProps(state) {
-    debugger;
     return {
-        token: state.routing.path
+        token: state.routing.path.split('/verify/')[1]
     }
 }
 
