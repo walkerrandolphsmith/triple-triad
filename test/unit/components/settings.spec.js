@@ -21,7 +21,6 @@ describe('SETTINGS component', () => {
             props = {
                 settings: new Map({
                     randomHand: true,
-                    multiplayer: true,
                     visibleHand: true
                 }),
                 updateRoute: () => {}
@@ -47,14 +46,6 @@ describe('SETTINGS component', () => {
                                     <label className="text" htmlFor="random-hand">Random Hand</label>
                                 </div>
                                 <div className="control-group">
-                                    <input type="checkbox" id="two-player" checked={true}
-                                        onChange={() => {}}
-                                        onFocus={() => {}}>
-                                    </input>
-                                    <label htmlFor="two-player"></label>
-                                    <label className="text" htmlFor="two-player">2 Player</label>
-                                </div>
-                                <div className="control-group">
                                     <input type="checkbox" id="hidden-hand" checked={true}
                                         onChange={() => {}}
                                         onFocus={() => {}}>
@@ -77,7 +68,6 @@ describe('SETTINGS component', () => {
             props = {
                 settings: new Map({
                     randomHand: false,
-                    multiplayer: false,
                     visibleHand: false
                 }),
                 updateRoute: () => {}
@@ -101,14 +91,6 @@ describe('SETTINGS component', () => {
                                     </input>
                                     <label htmlFor="random-hand"></label>
                                     <label className="text" htmlFor="random-hand">Random Hand</label>
-                                </div>
-                                <div className="control-group">
-                                    <input type="checkbox" id="two-player" checked={false}
-                                        onChange={() => {}}
-                                        onFocus={() => {}}>
-                                    </input>
-                                    <label htmlFor="two-player"></label>
-                                    <label className="text" htmlFor="two-player">2 Player</label>
                                 </div>
                                 <div className="control-group">
                                     <input type="checkbox" id="hidden-hand" checked={false}
