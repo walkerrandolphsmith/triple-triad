@@ -10,16 +10,35 @@ class User extends React.Component {
         this.props.getUserProfile(this.props.id);
     }
 
+    resendVerificationEmail() {
+        this.props.resendVerificationEmail(this.props.id);
+    }
+
     render() {
         let { id, username, verified } = this.props;
-        let v = verified ? 'true' : 'false';
+        let resendVerificationEmail = verified
+            ? (<div></div>)
+            : (
+                <div>
+                    <button className="btn btn-next" onClick={this.resendVerificationEmail.bind(this)}>
+                        Resend Verifcation Email
+                    </button>
+                </div>
+            );
+
+        let resending = this.props.resendingVerificationEmail ? 'SEnding ...' : '';
+        let sent = this.props.verificationEmailSent  ? 'Success ' : '';
+        let failure = this.props.failedToSendVerificationEmail ? 'Failed to send' : '';
+
         return (
             <div id="user">
                 <div>
                     <img heigth="150px" width="150px" src="assets/images/default-user.png"/>
                     <div id="username">{username}</div>
 
-                    <div>IsVerfied: {v} </div>
+                    <div>{resendVerificationEmail}</div>
+
+                    {resending} {sent} {failure}
 
                     <button className="btn btn-next" onClick={this.props.signOut}>SignOut</button>
                 </div>
@@ -32,7 +51,11 @@ function mapStateToProps(state) {
     return {
         id: state.auth.get('user').get('id'),
         username: state.auth.get('user').get('username'),
-        verified: state.user.get('user').get('verified')
+        verified: state.user.get('user').get('verified'),
+        resendingVerificationEmail: state.user.get('resending'),
+        verificationEmailSent: state.user.get('resendingSuccess'),
+        failedToSendVerificationEmail: state.user.get('resendingFailure')
+
     }
 }
 
