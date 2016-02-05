@@ -59,7 +59,7 @@ export function sign_out(req, res) {
 export function user_profile(req, res) {
     const userId = req.body.userId;
     User.findById(userId, (err, user) => {
-        if(err) console.error(err);
+        if(err || user === null) return res.status(500).send();
         res.json({
             verified: user.local.verified
         });
