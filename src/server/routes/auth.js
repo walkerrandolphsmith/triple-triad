@@ -1,5 +1,6 @@
 import UserToken from './../models/userTokens';
 import User from './../models/user';
+import { send_verification_email } from './../utils/mailer';
 
 export function sign_in(req, res) {
     res.json({
@@ -32,6 +33,24 @@ export function verify_email(req, res) {
     });
 }
 
+export function resend_verification_email(req, res) {
+    const userId = req.body.userId;
+    console.log(req.body);
+    UserToken.findOne({ 'userId': userId}, function(err, userToken) {
+        if(err) console.error(err);
+        else {
+            User.findById(userId, function(err, user) {
+                if(err) console.error(err);
+                send_verification_email(user.local.email, userToken.token, (err, response) => {
+                    if(err) throw err;
+                    console.log(response);
+                    res.send({});
+                });
+            });
+        }
+    });
+}
+
 export function sign_out(req, res) {
     req.logOut();
     res.end();
@@ -40,7 +59,7 @@ export function sign_out(req, res) {
 export function user_profile(req, res) {
     const userId = req.body.userId;
     User.findById(userId, (err, user) => {
-        console.log(err, user);
+        if(err) console.error(err);
         res.json({
             verified: user.local.verified
         });

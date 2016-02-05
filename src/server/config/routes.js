@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyparser from 'body-parser';
 import User from '../models/user';
-import { sign_in, sign_up, sign_out, verify_email, user_profile } from './../routes/auth';
+import { sign_in, sign_up, sign_out, verify_email, resend_verification_email, user_profile } from './../routes/auth';
 import app from './../routes/app';
 
 export default function(passport) {
@@ -36,6 +36,13 @@ function configureAuthRoutes(passport) {
         '/verify_email',
         (req, res) => {
             verify_email(req, res)
+        }
+    );
+
+    router.post(
+        '/resend_verification_email',
+        (req, res) => {
+            resend_verification_email(req, res);
         }
     );
 
