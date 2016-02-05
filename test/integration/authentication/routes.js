@@ -210,8 +210,8 @@ describe('Passport: routes', () => {
             let id, token;
             beforeEach(done => {
                 let newUser = new User();
-                newUser.local.username = 'smith';
-                newUser.local.email = 'smith@gmail.com';
+                newUser.local.username = 'walker';
+                newUser.local.email = 'walkerrandolphsmith@gmail.com';
                 newUser.local.password = newUser.generateHash('password');
                 newUser.save(function(err, user) {
                     if (err) throw err;
@@ -224,7 +224,7 @@ describe('Passport: routes', () => {
                 });
             });
 
-            it.only('should return a 500 server error', done => {
+            it('should return a 500 server error', done => {
                 request(app)
                     .post('/api/verify_email')
                     .send({
@@ -236,6 +236,7 @@ describe('Passport: routes', () => {
                     });
             });
         });
+
 
         afterEach(done => {
             User.remove({}, () => { });
