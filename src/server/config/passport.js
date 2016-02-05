@@ -35,7 +35,6 @@ export default function(passport) {
                     newUser.local.password = newUser.generateHash(password);
                     newUser.save(function(err, user) {
                         if (err) throw err;
-                        console.log(newUser);
                         UserToken.new(newUser._id, (err, userToken) => {
                             if(err) throw err;
                             send_verification_email(newUser.local.email, userToken.token, (err, res) => {

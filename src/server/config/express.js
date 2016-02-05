@@ -2,6 +2,7 @@ import path from 'path';
 import express from 'express';
 import cors from 'cors';
 import passport from 'passport';
+import bodyparser from 'body-parser';
 import cookieSession from 'cookie-session';
 import cookieParser from 'cookie-parser';
 import webpack from 'webpack';
@@ -32,6 +33,7 @@ export default function(app, passport, routers) {
         app.use(express.static(path.join(__dirname, './../../../../dist')));
     }
 
+    app.use(bodyparser.json());
     app.use(cookieParser());
     app.use(cookieSession({
         secret: 'secret',

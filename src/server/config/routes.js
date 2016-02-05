@@ -1,5 +1,4 @@
 import express from 'express';
-import bodyparser from 'body-parser';
 import User from '../models/user';
 import { sign_in, sign_up, sign_out, verify_email, resend_verification_email, user_profile } from './../routes/auth';
 import app from './../routes/app';
@@ -13,8 +12,6 @@ export default function(passport) {
 
 function configureAuthRoutes(passport) {
     const router = express.Router();
-
-    router.use(bodyparser.json());
 
     router.post(
         '/sign_up',
