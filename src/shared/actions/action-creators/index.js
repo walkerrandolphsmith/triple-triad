@@ -5,8 +5,8 @@ export { placeCard } from './placeCard';
 export { updateFocusSetting } from './updateFocusSetting';
 export { receiveSignIn } from './receiveSignIn';
 export { receiveSignOut } from './receiveSignOut';
-export { receiveUserProfile } from './receiveUserProfile';
 export { receiveUser } from './receiveUser';
+export { receiveUserProfile } from './receiveUserProfile';
 export { requestSignIn } from './requestSignIn';
 export { requestSignOut } from './requestSignOut';
 export { requestSignUp } from './requestSignUp';
@@ -18,3 +18,8 @@ export { setPhase } from './setPhase';
 export { startAiTurn } from './startAiTurn';
 export { updateBoard } from './updateBoard';
 export { updateSettings } from './updateSettings';
+
+export { clearEmailVerificationState } from './resendEmailVerification/clearEmailVerificationState';
+export { failResendEmailVerification } from './resendEmailVerification/failResendEmailVerification';
+export { receiveResendEmailVerification } from './resendEmailVerification/receiveResendEmailVerification';
+export { requestResendEmailVerification } from './resendEmailVerification/requestResendEmailVerification';

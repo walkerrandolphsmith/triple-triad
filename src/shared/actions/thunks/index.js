@@ -11,6 +11,7 @@ export { handleLeft } from './handleLeft';
 export { handleRight } from './handleRight';
 export { handleUp } from './handleUp';
 export { playerTakesTurn } from './playerTakesTurn';
+export { resendVerificationEmail } from './resendVerificationEmail';
 export { selectedPieceByClick } from './selectedPieceByClick';
 export { sendInvite } from './sendInvite';
 export { setHand } from './setHand';
