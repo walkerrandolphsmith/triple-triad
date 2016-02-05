@@ -10,7 +10,7 @@ describe('User tokens', () => {
             userId = '000000000000000000000001';
         });
 
-        it.only('should generate a token contaning the user id', () => {
+        it('should generate a token contaning the user id', () => {
             UserToken.new(userId, (err, userToken) => {
                 expect.toNotExist(err);
                 expect.toExist(userToken.token);
