@@ -22,6 +22,6 @@ GameSchema.statics.new = function (ownerId, deck, fn) {
     game.save();
 };
 
-Game = mongoose.model('UserToken', GameSchema);
+Game = mongoose.model('Game', GameSchema);
 
 export default Game;

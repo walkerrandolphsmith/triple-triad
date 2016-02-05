@@ -50,7 +50,8 @@ describe('Passport: routes', () => {
                     .post('/api/sign_up')
                     .send({
                         username: 'tester',
-                        password: 'password'
+                        password: 'password',
+                        email: 'test@gmail.com'
                     })
                     .expect(200)
                     .end((err, res) => {
