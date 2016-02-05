@@ -1,6 +1,6 @@
 import expect from 'expect';
-import { AUTH_SIGNIN_SUCCESS } from './../../../../src/shared/constants/actionTypes';
-import { receiveSignIn } from './../../../../src/shared/actions/action-creators/receiveSignIn';
+import { AUTH_SIGNIN_SUCCESS } from './../../../../../src/shared/constants/actionTypes';
+import { receiveSignIn } from './../../../../../src/shared/actions/action-creators';
 
 describe('ReceiveSignIn', () => {
 

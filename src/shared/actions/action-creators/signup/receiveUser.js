@@ -1,4 +1,4 @@
-import { AUTH_SIGNUP_SUCCESS } from './../../constants/actionTypes';
+import { AUTH_SIGNUP_SUCCESS } from './../../../constants/actionTypes';
 
 export function receiveUser(user) {
     return {

@@ -1,6 +1,6 @@
 import expect from 'expect';
-import { AUTH_SIGNUP_SUCCESS } from './../../../../src/shared/constants/actionTypes';
-import { receiveUser } from './../../../../src/shared/actions/action-creators/receiveUser';
+import { AUTH_SIGNUP_SUCCESS } from './../../../../../src/shared/constants/actionTypes';
+import { receiveUser } from './../../../../../src/shared/actions/action-creators';
 
 describe('ReceiveSignUp', () => {
 

@@ -1,4 +1,4 @@
-import { USER_PROFILE } from './../../constants/actionTypes';
+import { USER_PROFILE } from './../../../constants/actionTypes';
 
 export function requestUserProfile() {
     return {

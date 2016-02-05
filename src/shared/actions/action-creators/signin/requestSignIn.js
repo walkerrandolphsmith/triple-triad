@@ -1,4 +1,4 @@
-import { AUTH_SIGNIN } from './../../constants/actionTypes';
+import { AUTH_SIGNIN } from './../../../constants/actionTypes';
 
 export function requestSignIn() {
     return {

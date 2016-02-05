@@ -1,4 +1,4 @@
-import { USER_PROFILE_SUCCESS } from './../../constants/actionTypes';
+import { USER_PROFILE_SUCCESS } from './../../../constants/actionTypes';
 
 export function receiveUserProfile(user) {
     return {

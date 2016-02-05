@@ -1,6 +1,6 @@
 import expect from 'expect';
-import { USER_PROFILE } from './../../../../src/shared/constants/actionTypes';
-import { requestUserProfile } from './../../../../src/shared/actions/action-creators/requestUserProfile';
+import { USER_PROFILE } from './../../../../../src/shared/constants/actionTypes';
+import { requestUserProfile } from './../../../../../src/shared/actions/action-creators';
 
 describe('REQUEST USER PROFILE', () => {
 
