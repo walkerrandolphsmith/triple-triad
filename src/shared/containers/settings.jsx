@@ -5,7 +5,7 @@ import Settings from './../components/settings';
 
 import React from 'react';
 
-class SettingsSelection extends React.Component {
+class SettingsContainer extends React.Component {
 
     render() {
         return (
@@ -25,4 +25,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(SettingsSelection);
+export default connect(mapStateToProps, mapDispatchToProps)(SettingsContainer);
