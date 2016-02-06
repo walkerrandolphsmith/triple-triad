@@ -91,7 +91,7 @@ export function user_profile(req, res) {
 
 export function create_game(req, res) {
     const deck = req.body.deck;
-    const userId = req.body.userId;
+    const userId = parseInt(req.body.userId);
 
     const game = new Game();
     game.owner = userId;
@@ -110,7 +110,7 @@ export function create_game(req, res) {
 }
 
 export function get_games(req, res) {
-    const userId = req.body.userId;
+    const userId = parseInt(req.body.userId);
 
     Game.find({owner: userId}, (err, games) => {
         if(err) return res.status(500).send();
