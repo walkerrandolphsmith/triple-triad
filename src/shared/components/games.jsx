@@ -3,11 +3,16 @@ import Game from './game';
 
 export default class Games extends React.Component {
 
+    componentDidMount() {
+        this.props.getGames();
+    }
+
     render() {
         let { games } = this.props;
 
         const gamesList = games.map((game, index) => {
-            return (<Game key={index} {...game} />);
+            console.log(game);
+            return (<Game key={index} id={game._id} />);
         });
 
         return (

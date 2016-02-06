@@ -5,7 +5,7 @@ import * as Actions from './../actions/';
 import React from 'react';
 import GamesList from './../components/games';
 
-class Games extends React.Component {
+class GamesContainer extends React.Component {
     render() {
         return (
             <GamesList {...this.props} />
@@ -15,7 +15,7 @@ class Games extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        games: [{id: 12}, {id: 13}, {id: 14}]
+        games: state.games.get('games')
     }
 }
 
@@ -23,4 +23,4 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators(Actions,dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Games);
+export default connect(mapStateToProps, mapDispatchToProps)(GamesContainer);
