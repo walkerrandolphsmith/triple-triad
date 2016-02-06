@@ -24,15 +24,25 @@ export function sign_out(req, res) {
 export function verify_email(req, res) {
     const token = req.body.token;
     UserToken.findOne({ 'token': token}, function(err, userToken) {
-        if(err || userToken === null) return res.status(500).send();
+        if(err || userToken === null) {
+            return res.status(500).send();
+        }
         else {
-            User.findById(userToken.userId, function(err, user) {
-                if(err || user === null) res.status(500).send();
-                user.local.verified = true;
-                user.save((err, updatedUser) => {
-                    if(err) return res.status(500).send();
-                    else return res.status(200).send();
-                });
+            User.findById(userToken.userId, function (err, user) {
+                if (err || user === null) {
+                    res.status(500).send();
+                }
+                else {
+                    user.local.verified = true;
+                    user.save((err, updatedUser) => {
+                        if (err) {
+                            return res.status(500).send();
+                        }
+                        else {
+                            return res.status(200).send();
+                        }
+                    });
+                }
             });
         }
     });
@@ -41,14 +51,24 @@ export function verify_email(req, res) {
 export function resend_verification_email(req, res) {
     const userId = req.body.userId;
     UserToken.findOne({ 'userId': userId}, function(err, userToken) {
-        if(err || userToken === null) return res.status(500).send();
+        if(err || userToken === null) {
+            return res.status(500).send();
+        }
         else {
-            User.findById(userId, function(err, user) {
-                if(err || user === null) return res.status(500).send();
-                send_verification_email(user.local.email, userToken.token, (err, response) => {
-                    if(err) return res.status(500).send();
-                    return res.json({sent: true});
-                });
+            User.findById(userId, function (err, user) {
+                if (err || user === null) {
+                    return res.status(500).send();
+                }
+                else {
+                    send_verification_email(user.local.email, userToken.token, (err, response) => {
+                        if (err) {
+                            return res.status(500).send();
+                        }
+                        else {
+                            return res.json({sent: true});
+                        }
+                    });
+                }
             });
         }
     });
@@ -57,9 +77,13 @@ export function resend_verification_email(req, res) {
 export function user_profile(req, res) {
     const userId = req.body.userId;
     User.findById(userId, (err, user) => {
-        if(err || user === null) return res.status(500).send();
-        res.json({
-            verified: user.local.verified
-        });
+        if(err || user === null) {
+            return res.status(500).send();
+        }
+        else {
+            res.json({
+                verified: user.local.verified
+            });
+        }
     });
 }
