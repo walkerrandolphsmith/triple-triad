@@ -1,6 +1,7 @@
 export { aiTurn } from './aiTurn';
 export { applyFlips } from './applyFlips';
 export { createGame } from './createGame';
+export { getGames } from './getGames';
 export { getNextCardForHand } from './getNextCardForHand';
 export { getNextSelectedCard } from './getNextSelectedCard';
 export { getNextSelectedPiece } from './getNextSelectedPiece';

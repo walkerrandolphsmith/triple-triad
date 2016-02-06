@@ -11,6 +11,10 @@ export const UPDATE_BOARD = 'UpdateBoard';
 export const START_AI_TURN = 'StartAITurn';
 export const END_AI_TURN = 'EndAITurn';
 
+export const GET_GAMES_FAILED = 'GET_GAMES_FAILED';
+export const RECEIVE_GAMES = 'RECEIVE_GAMES';
+export const REQUEST_GAMES = 'REQUEST_GAMES';
+
 export const AUTH_SIGNIN = 'AUTH_SIGNIN';
 export const AUTH_SIGNIN_SUCCESS = 'AUTH_SIGNIN_SUCCESS';
 export const AUTH_SIGNIN_FAIL = 'AUTH_SIGNIN_FAIL';
