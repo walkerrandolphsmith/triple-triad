@@ -19,9 +19,9 @@ describe('Game model', () => {
 
         let newGame, owner, currentPlayer, opponent, deck, phase;
         beforeEach(done => {
-            owner = 1;
-            currentPlayer = 1;
-            opponent = 2;
+            owner = '1';
+            currentPlayer = '1';
+            opponent = '2';
             deck = [{id: 0}, {id: 1}];
             phase = 'phase';
 

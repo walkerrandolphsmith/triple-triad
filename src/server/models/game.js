@@ -1,9 +1,9 @@
 import mongoose from 'mongoose';
 
 let GameSchema = new mongoose.Schema({
-    owner: Number,
-    opponent: Number,
-    currentPlayer: Number,
+    owner: String,
+    opponent: String,
+    currentPlayer: String,
     deck: Array,
     phase: String
 });

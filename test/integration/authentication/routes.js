@@ -415,7 +415,7 @@ describe('Passport: routes', () => {
 
             let id, deck;
             beforeEach(() =>  {
-                id = 100;
+                id = '100';
                 deck = [{id: 0}, {id: 1}];
             });
 
@@ -440,33 +440,11 @@ describe('Passport: routes', () => {
             });
         });
 
-        describe('POST /create_game given a user id that is not a number', () => {
-
-            let id, deck;
-            beforeEach(() =>  {
-                id = 'a100';
-                deck = [{id: 0}, {id: 1}];
-            });
-
-            it('should return a status code of 500', done => {
-                request(app)
-                    .post('/api/create_game')
-                    .send({
-                        userId: id,
-                        deck: deck
-                    })
-                    .expect(500)
-                    .end((err, res) => {
-                        done();
-                    });
-            });
-        });
-
         describe('POST /get_games given a user id', () => {
 
             let newGame, id;
             beforeEach(done =>  {
-                id = 1;
+                id = '1';
 
                 newGame = new Game({
                     owner: id
@@ -484,32 +462,6 @@ describe('Passport: routes', () => {
                     .expect(200)
                     .end((err, res) => {
                         expect(res.body[0].owner).toEqual(id);
-                        done();
-                    });
-            });
-        });
-
-        describe('POST /get_games given a user id that is not a number', () => {
-
-            let newGame, id;
-            beforeEach(done =>  {
-                id = '123k';
-
-                newGame = new Game({
-                    owner: id
-                });
-
-                newGame.save(error => { done(); })
-            });
-
-            it('should return a status of 500', done => {
-                request(app)
-                    .post('/api/get_games')
-                    .send({
-                        userId: id
-                    })
-                    .expect(200)
-                    .end((err, res) => {
                         done();
                     });
             });
