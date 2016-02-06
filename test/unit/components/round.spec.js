@@ -43,7 +43,7 @@ describe('ROUND component', () => {
                 winner: 1,
                 selectCard: () => {},
                 selectedPieceByClick: () => {},
-                updateRoute: () => {}
+                endPhase: () => {}
             };
 
             handStyles = {
@@ -85,7 +85,7 @@ describe('ROUND component', () => {
 
             renderer.render(
                 <Round game={props.game} board={props.board} hand={props.hand} opponentHand={props.opponentHand} settings={props.settings} validPieces={props.validPieces} score={props.score} winner={props.winner}
-                    selectCard={props.selectCard} selectedPieceByClick={props.selectedPieceByClick} updateRoute={props.updateRoute} />
+                    selectCard={props.selectCard} selectedPieceByClick={props.selectedPieceByClick} endPhase={props.endPhase} />
             );
             const actualElement = renderer.getRenderOutput();
             const expectedElement =
@@ -114,7 +114,7 @@ describe('ROUND component', () => {
 
                                 <div className="row">
                                     <div className="col-md-12">
-                                        <button className="btn btn-next" onClick={props.updateRoute}>Play again</button>
+                                        <button className="btn btn-next" onClick={props.endPhase}>Play again</button>
                                     </div>
                                 </div>
                             </div>
@@ -155,7 +155,7 @@ describe('ROUND component', () => {
                 winner: 2,
                 selectCard: () => {},
                 selectedPieceByClick: () => {},
-                updateRoute: () => {}
+                endPhase: () => {}
             };
 
             handStyles = {
@@ -197,7 +197,7 @@ describe('ROUND component', () => {
 
             renderer.render(
                 <Round game={props.game} board={props.board} hand={props.hand} opponentHand={props.opponentHand} settings={props.settings} validPieces={props.validPieces} score={props.score} winner={props.winner}
-                    selectCard={props.selectCard} selectedPieceByClick={props.selectedPieceByClick} updateRoute={props.updateRoute} />
+                    selectCard={props.selectCard} selectedPieceByClick={props.selectedPieceByClick} endPhase={props.endPhase} />
             );
             const actualElement = renderer.getRenderOutput();
             const expectedElement =
@@ -226,7 +226,7 @@ describe('ROUND component', () => {
 
                                 <div className="row">
                                     <div className="col-md-12">
-                                        <button className="btn btn-next" onClick={props.updateRoute}>Play again</button>
+                                        <button className="btn btn-next" onClick={props.endPhase}>Play again</button>
                                     </div>
                                 </div>
                             </div>
@@ -267,7 +267,7 @@ describe('ROUND component', () => {
                 winner: 3,
                 selectCard: () => {},
                 selectedPieceByClick: () => {},
-                updateRoute: () => {}
+                endPhase: () => {}
             };
 
             handStyles = {
@@ -309,7 +309,7 @@ describe('ROUND component', () => {
 
             renderer.render(
                 <Round game={props.game} board={props.board} hand={props.hand} opponentHand={props.opponentHand} settings={props.settings} validPieces={props.validPieces} score={props.score} winner={props.winner}
-                    selectCard={props.selectCard} selectedPieceByClick={props.selectedPieceByClick} updateRoute={props.updateRoute} />
+                    selectCard={props.selectCard} selectedPieceByClick={props.selectedPieceByClick} endPhase={props.endPhase} />
             );
             const actualElement = renderer.getRenderOutput();
             const expectedElement =
@@ -338,7 +338,7 @@ describe('ROUND component', () => {
 
                                 <div className="row">
                                     <div className="col-md-12">
-                                        <button className="btn btn-next" onClick={props.updateRoute}>Play again</button>
+                                        <button className="btn btn-next" onClick={props.endPhase}>Play again</button>
                                     </div>
                                 </div>
                             </div>
@@ -379,7 +379,7 @@ describe('ROUND component', () => {
                 winner: 4,
                 selectCard: () => {},
                 selectedPieceByClick: () => {},
-                updateRoute: () => {}
+                endPhase: () => {}
             };
 
             handStyles = {
@@ -421,7 +421,7 @@ describe('ROUND component', () => {
 
             renderer.render(
                 <Round game={props.game} board={props.board} hand={props.hand} opponentHand={props.opponentHand} settings={props.settings} validPieces={props.validPieces} score={props.score} winner={props.winner}
-                    selectCard={props.selectCard} selectedPieceByClick={props.selectedPieceByClick} updateRoute={props.updateRoute} />
+                    selectCard={props.selectCard} selectedPieceByClick={props.selectedPieceByClick} endPhase={props.endPhase} />
             );
             const actualElement = renderer.getRenderOutput();
             const expectedElement =
@@ -450,7 +450,7 @@ describe('ROUND component', () => {
 
                                 <div className="row">
                                     <div className="col-md-12">
-                                        <button className="btn btn-next" onClick={props.updateRoute}>Play again</button>
+                                        <button className="btn btn-next" onClick={props.endPhase}>Play again</button>
                                     </div>
                                 </div>
                             </div>

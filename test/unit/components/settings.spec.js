@@ -23,13 +23,13 @@ describe('SETTINGS component', () => {
                     randomHand: true,
                     visibleHand: true
                 }),
-                updateRoute: () => {}
+                endPhase: () => {}
             }
         });
 
         it('should render a form where every checkbox is checked', () => {
             renderer.render(
-                <Settings settings={props.settings} updateRoute={props.updateRoute}/>
+                <Settings {...props}/>
             );
             const actualElement = renderer.getRenderOutput();
             const expectedElement =
@@ -54,7 +54,7 @@ describe('SETTINGS component', () => {
                                     <label className="text" htmlFor="hidden-hand">Hide opponent's hand</label>
                                 </div>
                             </div>
-                            <button className="btn btn-next" onClick={props.updateRoute}> Next step</button>
+                            <button className="btn btn-next" onClick={props.endPhase}> Next step</button>
                         </div>
                     </div>
                 </div>
@@ -70,13 +70,13 @@ describe('SETTINGS component', () => {
                     randomHand: false,
                     visibleHand: false
                 }),
-                updateRoute: () => {}
+                endPhase: () => {}
             }
         });
 
         it('should render a form where every checkbox is not checked', () => {
             renderer.render(
-                <Settings settings={props.settings} updateRoute={props.updateRoute}/>
+                <Settings {...props}/>
             );
             const actualElement = renderer.getRenderOutput();
             const expectedElement =
@@ -101,7 +101,7 @@ describe('SETTINGS component', () => {
                                     <label className="text" htmlFor="hidden-hand">Hide opponent's hand</label>
                                 </div>
                             </div>
-                            <button className="btn btn-next" onClick={props.updateRoute}> Next step</button>
+                            <button className="btn btn-next" onClick={props.endPhase}> Next step</button>
                         </div>
                     </div>
                 </div>
