@@ -19,14 +19,14 @@ export function sign_up(req, res) {
 export function verify_email(req, res) {
     const token = req.body.token;
     UserToken.findOne({ 'token': token}, function(err, userToken) {
-        if(err || userToken === null) res.status(500).send();
+        if(err || userToken === null) return res.status(500).send();
         else {
             User.findById(userToken.userId, function(err, user) {
                 if(err || user === null) res.status(500).send();
                 user.local.verified = true;
                 user.save((err, updatedUser) => {
-                    if(err) res.status(500).send();
-                    else res.status(200).send();
+                    if(err) return res.status(500).send();
+                    else return res.status(200).send();
                 });
             });
         }
@@ -35,16 +35,14 @@ export function verify_email(req, res) {
 
 export function resend_verification_email(req, res) {
     const userId = req.body.userId;
-    console.log(req.body);
     UserToken.findOne({ 'userId': userId}, function(err, userToken) {
-        if(err) console.error(err);
+        if(err || userToken === null) return res.status(500).send();
         else {
             User.findById(userId, function(err, user) {
-                if(err) console.error(err);
+                if(err || user === null) return res.status(500).send();
                 send_verification_email(user.local.email, userToken.token, (err, response) => {
-                    if(err) throw err;
-                    console.log(response);
-                    res.send({});
+                    if(err) return res.status(500).send();
+                    return res.json({sent: true});
                 });
             });
         }
