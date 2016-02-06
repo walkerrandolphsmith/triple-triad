@@ -7,7 +7,7 @@ import SignUp from './../shared/containers/signup';
 import VerifyEmail from './../shared/containers/verify';
 import Games from './../shared/containers/games';
 import User from './../shared/containers/user';
-import SettingsSelection from './../shared/containers/settingsSelection';
+import Settings from './../shared/containers/settings';
 import Invite from './../shared/containers/invite';
 import CardSelection from './../shared/containers/cardSelection';
 import Round from './../shared/containers/round';
@@ -21,14 +21,11 @@ export default (
       <Route path="signin" component={SignIn}/>
       <Route path="signup" component={SignUp}/>
       <Route path="verify/:token" component={VerifyEmail}/>
-      <Route path="games" component={RequireAuthentication(Games)}>
-          <Route path="game/:gameId" component={RequireAuthentication(Games)} />
-      </Route>
+      <Route path="games" component={RequireAuthentication(Games)}/>
+      <Route path="game/:gameId" component={RequireAuthentication(PhaseEnforcer(
+          Settings, Invite, CardSelection, Round
+      ))} />
       <Route path="user" component={RequireAuthentication(User)}/>
-      <Route path="settings-selection" component={RequireAuthentication(SettingsSelection)}/>
-      <Route path="invite" component={RequireAuthentication(Invite)}/>
-      <Route path="card-selection" component={RequireAuthentication(CardSelection)}/>
-      <Route path="round" component={RequireAuthentication(Round)}/>
       <Route path="*" component={NotFound} status={404}/>
     </Route>
 )
