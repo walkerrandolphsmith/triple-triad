@@ -7,7 +7,8 @@ import {
     verify_email,
     resend_verification_email,
     user_profile,
-    create_game
+    create_game,
+    get_games
 } from './../routes/auth';
 import app from './../routes/app';
 
@@ -66,6 +67,13 @@ function configureAuthRoutes(passport) {
         '/create_game',
         (req, res) => {
             create_game(req,res)
+        }
+    );
+
+    router.post(
+        '/get_games',
+        (req, res) => {
+            get_games(req,res)
         }
     );
 
