@@ -11,8 +11,7 @@ export default class Games extends React.Component {
         let { games } = this.props;
 
         const gamesList = games.map((game, index) => {
-            console.log(game);
-            return (<Game key={index} id={game._id} />);
+            return (<Game key={index} id={game._id} pushPath={this.props.pushPath} />);
         });
 
         return (
@@ -20,7 +19,6 @@ export default class Games extends React.Component {
                 <h2>Game List</h2>
                 <button className="btn btn-next" onClick={this.props.createGame}> New Game </button>
                 {gamesList}
-
             </div>
         );
     }

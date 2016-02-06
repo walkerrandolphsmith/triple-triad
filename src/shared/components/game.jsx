@@ -3,13 +3,19 @@ import Game from './game';
 
 export default class Games extends React.Component {
 
+    selectGame(id) {
+        this.props.pushPath(`/games/game/${id}`);
+    }
+
     render() {
         let { id } = this.props;
 
         return (
             <div id="game">
-
-                <h2>Game {id}</h2>
+                <h2>
+                    <span>Game </span>
+                    <span onClick={this.selectGame.bind(this, id)}>{id}</span>
+                </h2>
             </div>
         );
     }

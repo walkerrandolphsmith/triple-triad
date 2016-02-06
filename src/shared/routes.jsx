@@ -21,7 +21,9 @@ export default (
       <Route path="signin" component={SignIn}/>
       <Route path="signup" component={SignUp}/>
       <Route path="verify/:token" component={VerifyEmail}/>
-      <Route path="games" component={RequireAuthentication(Games)}/>
+      <Route path="games" component={RequireAuthentication(Games)}>
+          <Route path="game/:gameId" component={RequireAuthentication(Games)} />
+      </Route>
       <Route path="user" component={RequireAuthentication(User)}/>
       <Route path="settings-selection" component={RequireAuthentication(SettingsSelection)}/>
       <Route path="invite" component={RequireAuthentication(Invite)}/>
