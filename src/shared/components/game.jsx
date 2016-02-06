@@ -4,7 +4,7 @@ import Game from './game';
 export default class Games extends React.Component {
 
     selectGame(id) {
-        this.props.pushPath(`/games/game/${id}`);
+        this.props.pushPath(`/game/${id}`);
     }
 
     render() {

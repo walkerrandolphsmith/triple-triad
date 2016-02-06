@@ -13,7 +13,7 @@ export function signUp(user) {
             .end((error, response) => {
                 if(response.status === 200) {
                     dispatch(receiveUser(response.body));
-                    dispatch(pushPath('/settings-selection'));
+                    dispatch(pushPath('/games'));
                 }
             });
     };

@@ -13,7 +13,7 @@ export function signIn(user) {
         .end((error, response) => {
             if(response.status === 200) {
                 dispatch(receiveSignIn(response.body));
-                dispatch(pushPath('/settings-selection'));
+                dispatch(pushPath('/games'));
             }
         });
     };
