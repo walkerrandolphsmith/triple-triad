@@ -1,6 +1,14 @@
 import express from 'express';
 import User from '../models/user';
-import { sign_in, sign_up, sign_out, verify_email, resend_verification_email, user_profile } from './../routes/auth';
+import {
+    sign_in,
+    sign_up,
+    sign_out,
+    verify_email,
+    resend_verification_email,
+    user_profile,
+    create_game
+} from './../routes/auth';
 import app from './../routes/app';
 
 export default function(passport) {
@@ -51,6 +59,13 @@ function configureAuthRoutes(passport) {
         '/user_profile',
         (req, res) => {
             user_profile(req, res)
+        }
+    );
+
+    router.post(
+        '/create_game',
+        (req, res) => {
+            create_game(req,res)
         }
     );
 
