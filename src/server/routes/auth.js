@@ -91,7 +91,13 @@ export function user_profile(req, res) {
 
 export function create_game(req, res) {
     const deck = req.body.deck;
-    const userId = parseInt(req.body.userId);
+    let userId = req.body.userId;
+
+    if(isNaN(userId)){
+        return res.status(500).send();
+    }else{
+        userId = parseInt(userId);
+    }
 
     const game = new Game();
     game.owner = userId;
@@ -110,7 +116,14 @@ export function create_game(req, res) {
 }
 
 export function get_games(req, res) {
-    const userId = parseInt(req.body.userId);
+
+    let userId = req.body.userId;
+
+    if(isNaN(userId)){
+        return res.status(500).send();
+    }else{
+        userId = parseInt(userId);
+    }
 
     Game.find({owner: userId}, (err, games) => {
         if(err) return res.status(500).send();
