@@ -33,10 +33,12 @@ class App extends React.Component {
         return (
             <div>
                 <Navigation user={this.props.user} activeRoute={this.props.activeRoute} signOut={this.props.signOut}/>
-                <div id="game" className="container-fluid">
-                    <div className="row">
-                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            {this.props.children}
+                <div id="content">
+                    <div className="container-fluid">
+                        <div className="row">
+                            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                {this.props.children}
+                            </div>
                         </div>
                     </div>
                 </div>
