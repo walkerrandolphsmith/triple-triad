@@ -16,6 +16,11 @@ export function sign_up(req, res) {
     })
 }
 
+export function sign_out(req, res) {
+    req.logOut();
+    res.end();
+}
+
 export function verify_email(req, res) {
     const token = req.body.token;
     UserToken.findOne({ 'token': token}, function(err, userToken) {
@@ -47,11 +52,6 @@ export function resend_verification_email(req, res) {
             });
         }
     });
-}
-
-export function sign_out(req, res) {
-    req.logOut();
-    res.end();
 }
 
 export function user_profile(req, res) {

@@ -170,6 +170,20 @@ describe('Passport: routes', () => {
             });
         });
 
+        describe('POST /sign_out', () => {
+
+            it('should return a status 200 OK', done => {
+                request(app)
+                    .post('/api/sign_out')
+                    .expect(200)
+                    .end((err, res) => {
+                        expect(err).toNotExist();
+                        done();
+                    });
+            });
+        });
+
+
         describe('POST /verify_email given a valid token ', () => {
 
             let id, token;
