@@ -2,7 +2,6 @@ import { aiTurn } from './aiTurn';
 import { placeCard, selectCard, selectPiece } from './../action-creators';
 import { getNextSelectedCard } from './getNextSelectedCard';
 import { applyFlips } from './applyFlips';
-import { updateRoute } from './updateRoute';
 import { getBoard } from './../../selectors/boardSelector';
 
 export const playerTakesTurn = (isPlayer) => (dispatch, getState) => {

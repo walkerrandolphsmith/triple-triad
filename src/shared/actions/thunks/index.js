@@ -1,6 +1,7 @@
 export { aiTurn } from './aiTurn';
 export { applyFlips } from './applyFlips';
 export { createGame } from './createGame';
+export { endPhase } from './endPhase';
 export { getGames } from './getGames';
 export { getNextCardForHand } from './getNextCardForHand';
 export { getNextSelectedCard } from './getNextSelectedCard';
@@ -21,5 +22,4 @@ export { setHands } from './setHands';
 export { signIn } from './signIn';
 export { signOut } from './signOut';
 export { signUp } from './signUp';
-export { updateRoute } from './updateRoute';
 export { verifyEmail } from './verifyEmail';

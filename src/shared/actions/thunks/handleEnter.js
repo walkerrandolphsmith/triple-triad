@@ -2,7 +2,6 @@ import { toJS } from 'immutable';
 import { setPhase, selectPiece } from './../action-creators';
 import { getNextSelectedPiece } from './getNextSelectedPiece';
 import { playerTakesTurn } from './playerTakesTurn';
-import { updateRoute } from './updateRoute';
 import { addCard, updateSettings } from './../action-creators';
 import { getHand } from './../../selectors/handSelector';
 import { getIsFullHand } from './../../selectors/isFullHandSelector';

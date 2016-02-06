@@ -3,6 +3,7 @@ export { basicRule } from './basicRule';
 export { getRandomHand } from './getRandomHand';
 export { getCardToAdd } from './getCardToAdd';
 export { getCardToSelect } from './getCardToSelect';
+export { getNextPhase } from './getNextPhase';
 export { getPieceToSelect } from './getPieceToSelect';
 export { getValidPiece } from './getValidPiece';
 export { sameRule } from './sameRule';

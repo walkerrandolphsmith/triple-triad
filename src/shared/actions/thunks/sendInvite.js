@@ -1,8 +1,8 @@
 import request from 'superagent';
-import { updateRoute } from './updateRoute';
+import { endPhase } from './endPhase';
 
 export function sendInvite(email) {
     return dispatch => {
-        dispatch(updateRoute());
+        dispatch(endPhase());
     };
 }

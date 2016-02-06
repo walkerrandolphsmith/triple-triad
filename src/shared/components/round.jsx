@@ -7,7 +7,7 @@ export default class Round extends React.Component {
 
     render() {
         let { game, board, hand, opponentHand, settings, validPieces, score, winner } = this.props;
-        let { selectCard, selectedPieceByClick, updateRoute } = this.props;
+        let { selectCard, selectedPieceByClick, endPhase } = this.props;
 
         let phrase = "";
         let handStyles={visibility: 'hidden'};
@@ -59,7 +59,7 @@ export default class Round extends React.Component {
 
                             <div className="row">
                                 <div className="col-md-12">
-                                    <button className="btn btn-next" onClick={updateRoute}>Play again</button>
+                                    <button className="btn btn-next" onClick={endPhase}>Play again</button>
                                 </div>
                             </div>
                         </div>
