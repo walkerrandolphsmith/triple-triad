@@ -1,88 +1,124 @@
 import expect from 'expect';
-import { isGreaterThanMinLength, isLessThanMaxLength, isInteger } from './../../../src/shared/utils/formValidation';
+import {
+    isValidPassword,
+    passwordsMatch,
+    isValidUsername,
+    isValidEmail
+} from './../../../src/shared/utils/formValidation';
 
 describe("Form validation utilities", () => {
 
-    describe("Given a form field value that is empty", () => {
+    describe('Password validation', () => {
 
-        let value;
-        beforeEach(() => {
-            value = '';
-        });
-
-        it('the minimum length requirement is not met', () => {
-            expect(isGreaterThanMinLength(5)(value)).toEqual(false)
-        });
-
-        it('the maximum length requirement is not met', () => {
-            expect(isLessThanMaxLength(5)(value)).toEqual(false)
-        });
-
-        it('the integer requirement is not met', () => {
-            expect(isInteger(value)).toEqual(false)
-        });
-    });
-
-    describe("Given a form field value", () => {
-
-        let minLength, maxLength, value;
-        beforeEach(() => {
-            value = 'walker';
-        });
-
-        describe('A minimum length requirement less than the number of characters in value', () => {
-            beforeEach(() => {
-                minLength = 5;
-            });
-
-            it('the minimum length requirement is met', () => {
-                expect(isGreaterThanMinLength(minLength)(value)).toEqual(true)
+        describe("Given a password between 6 and 25 digits, when validating password", () => {
+            it('should return false', () => {
+                expect(isValidPassword('password')).toEqual(true)
             });
         });
 
-        describe('A minimum length requirement greater than the number of characters in value', () => {
-            beforeEach(() => {
-                minLength = 10;
-            });
-
-            it('the minimum length requirement is not met', () => {
-                expect(isGreaterThanMinLength(minLength)(value)).toEqual(false)
+        describe("Given an empty string", () => {
+            it('should return false', () => {
+                expect(isValidPassword('')).toEqual(false)
             });
         });
 
-        describe('A maximum length requirement less than the number of characters in value', () => {
-            beforeEach(() => {
-                maxLength = 3;
-            });
-
-            it('the maximum length requirement is not met', () => {
-                expect(isLessThanMaxLength(maxLength)(value)).toEqual(false)
+        describe("Given a password less than 6 digits", () => {
+            it('should return false', () => {
+                expect(isValidPassword('aaaaa')).toEqual(false)
             });
         });
 
-        describe('A maximum length requirement greater the number of characters in value', () => {
-            beforeEach(() => {
-                maxLength = 7;
+        describe("Given a password greater than 25 digits", () => {
+            it('should return false', () => {
+                expect(isValidPassword('aaaaaaaaaaaaaaaaaaaaaaaaaa')).toEqual(false)
             });
+        });
 
-            it('the maximum length requirement is met', () => {
-                expect(isLessThanMaxLength(maxLength)(value)).toEqual(true)
+        describe("Given an string containing invalid characters", () => {
+            it('should return false', () => {
+                expect(isValidPassword('*&^%$#@!)(+":;')).toEqual(false)
             });
         });
     });
 
-    describe("Given a form field value that is a valid number", () => {
-        it('the integer requirement is met', () => {
-            expect(isInteger('7')).toEqual(true)
-            expect(isInteger(7)).toEqual(true)
+    describe.only('Password match', () => {
+
+        describe('Given a password and a confirm password that are the same', () => {
+            it('should return true', () => {
+                expect(passwordsMatch('password', 'password')).toEqual(true)
+            });
+        });
+
+        describe('Given a password and a confirm password that are not the same', () => {
+            it('should return false', () => {
+                expect(passwordsMatch('password', 'differentPassword')).toEqual(false)
+            });
         });
     });
 
-    describe("Given a form field value that is an invalid number", () => {
-        it('the integer requirement is not met', () => {
-            expect(isInteger('asdf7')).toEqual(false)
-            expect(isInteger({})).toEqual(false)
-            expect(isInteger([])).toEqual(false)
+    describe('Username validation', () => {
+
+        describe("Given a password between 3 and 20 digits", () => {
+            it('should return true', () => {
+                expect(isValidUsername('walkerrandolphsmith')).toEqual(true)
+            });
+        });
+
+        describe("Given an empty string", () => {
+            it('should return false', () => {
+                expect(isValidUsername('')).toEqual(false)
+            });
+        });
+
+        describe("Given a password less than 3 digits", () => {
+            it('should return false', () => {
+                expect(isValidUsername('ws')).toEqual(false)
+            });
+        });
+
+        describe("Given a password greater than 20 digits", () => {
+            it('should return false', () => {
+                expect(isValidUsername('aaaaaaaaaaaaaaaaaaaaa')).toEqual(false)
+            });
+        });
+
+        describe("Given a password with invalid characters", () => {
+            it('should return false', () => {
+                expect(isValidUsername('!@#$%^&*()_+";:,.<>/?')).toEqual(false)
+            });
+        });
+    });
+
+    describe('Email validation', () => {
+
+        describe("Given a email between 3 and 20 digits", () => {
+            it('should return true', () => {
+                expect(isValidEmail('walkerrandolphsmith@gmail.com')).toEqual(true)
+            });
+        });
+
+        describe("Given a email not containing an @ symbol", () => {
+            it('should return false', () => {
+                expect(isValidEmail('walkerrandolphsmithgmail.com')).toEqual(false)
+            });
+        });
+
+        describe("Given a email not containing at least one . symbol after an @ symbol", () => {
+            it('should return false', () => {
+                expect(isValidEmail('walkerrandolphsmithgmail.@com')).toEqual(false)
+            });
+        });
+
+        describe("Given a email containing characters other than a-z, 0-9, -, _,.  before @ symbol", () => {
+            it('should return false', () => {
+                expect(isValidEmail('&.@gmail.com')).toEqual(false)
+            });
+        });
+
+        describe("Given a email not containing any characters between @ and .", () => {
+            it('should return false', () => {
+                expect(isValidEmail('walkerrandolphsmith@.com')).toEqual(false)
+            });
         });
     });
 });
