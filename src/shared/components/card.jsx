@@ -8,7 +8,7 @@ export default class Card extends React.Component {
         const backgroundColor = card.get('owner') < 2 ? 'linear-gradient( 45deg, white, #608FC6 )' : 'linear-gradient( 45deg, white, #CC181E )';
 
         const defaultStyle = {
-            backgroundImage: `url(assets/images/cards/${card.get('name')}.png), ${backgroundColor}`
+            backgroundImage: `url(../assets/images/cards/${card.get('name')}.png), ${backgroundColor}`
         };
         const overrideStyle = cardStyle || {};
         const finalStyles = Object.assign(defaultStyle, overrideStyle);

@@ -16,7 +16,7 @@ export default class Board extends React.Component {
             return {
                 card: cards.find(card => card.get('boardIndex') === i),
                 style: {
-                    backgroundImage: `url('assets/images/board/board-${i}.png')`,
+                    backgroundImage: `url('../assets/images/board/board-${i}.png')`,
                     cursor: isValidPiece ? 'pointer' : 'default'
                 },
                 clickHandler: isValidPiece ? this.click.bind(this, i) : function(){}
