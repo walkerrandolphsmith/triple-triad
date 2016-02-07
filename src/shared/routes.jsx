@@ -5,6 +5,8 @@ import App from './../shared/containers/app';
 import SignIn from './../shared/containers/signin';
 import SignUp from './../shared/containers/signup';
 import VerifyEmail from './../shared/containers/verify';
+import ResetPassword from './../shared/containers/resetPassword';
+import ForgotPassword from './../shared/containers/forgotPassword';
 import Games from './../shared/containers/games';
 import User from './../shared/containers/user';
 import Settings from './../shared/containers/settings';
@@ -21,6 +23,8 @@ export default (
       <Route path="signin" component={SignIn}/>
       <Route path="signup" component={SignUp}/>
       <Route path="verify/:token" component={VerifyEmail}/>
+      <Route path="forgot" component={ForgotPassword}/>
+      <Route path="reset/:token" component={ResetPassword}/>
       <Route path="games" component={RequireAuthentication(Games)}/>
       <Route path="game/:gameId" component={RequireAuthentication(PhaseEnforcer(
           Settings, Invite, CardSelection, Round
