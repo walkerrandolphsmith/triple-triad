@@ -6,6 +6,7 @@ import {
     sign_out,
     verify_email,
     resend_verification_email,
+    forgot_password,
     user_profile,
     create_game,
     get_games
@@ -49,6 +50,13 @@ function configureAuthRoutes(passport) {
         '/resend_verification_email',
         (req, res) => {
             resend_verification_email(req, res);
+        }
+    );
+
+    router.post(
+        '/forgot_password',
+        (req, res) => {
+            forgot_password(req, res);
         }
     );
 

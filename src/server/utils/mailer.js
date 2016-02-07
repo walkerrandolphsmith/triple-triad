@@ -21,6 +21,20 @@ export function send_verification_email(email, token, fn) {
     sendEmail(data, fn);
 }
 
+export function send_reset_password_email(email, token, fn) {
+    const data = {
+        from: "tripletriad@gmail.com",
+        to: email,
+        subject: 'Reset password for Triple Triad',
+        html: `
+            Reset password with the following link:
+            http://${env.host}:${env.port}/verify/${token}
+            This link will not expire... yet XD.
+        `
+    };
+    sendEmail(data, fn);
+}
+
 export function sendEmail(data, fn) {
 
     if(!data.from) {
