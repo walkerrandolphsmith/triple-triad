@@ -1,16 +1,15 @@
-
-export function isEmpty(value) {
-    return value === undefined || value === null || value === '';
+export function isValidPassword(password) {
+    return /^[a-z0-9_-]{6,25}$/.test(password);
 }
 
-export function isGreaterThanMinLength(min) {
-    return value => !isEmpty(value) && value.length > min
+export function passwordsMatch(password, repeatedPassword) {
+    return password === repeatedPassword;
 }
 
-export function isLessThanMaxLength(max) {
-    return value => !isEmpty(value) && value.length < max
+export function isValidUsername(username) {
+    return /^[a-z0-9_-]{3,20}$/.test(username);
 }
 
-export function isInteger(value) {
-    return !isEmpty(value) && Number.isInteger(Number(value)) && !Array.isArray(value)
+export function isValidEmail(email) {
+    return /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/.test(email);
 }
