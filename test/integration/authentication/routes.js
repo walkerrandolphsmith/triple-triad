@@ -11,7 +11,7 @@ describe('Passport: routes', () => {
     describe('routes', () => {
 
 
-        beforeEach(function (done) {
+        beforeEach(done => {
 
             function clearDB() {
                 for (var i in mongoose.connection.collections) {
@@ -270,7 +270,7 @@ describe('Passport: routes', () => {
                 });
             });
 
-            it('should altered the verified state of the user', done => {
+            it('should an email is sent', done => {
                 request(app)
                     .post('/api/resend_verification_email')
                     .send({
@@ -302,7 +302,7 @@ describe('Passport: routes', () => {
                 });
             });
 
-            it('should altered the verified state of the user', done => {
+            it('should not send an email', done => {
                 request(app)
                     .post('/api/resend_verification_email')
                     .send({
@@ -470,6 +470,7 @@ describe('Passport: routes', () => {
         afterEach(done => {
             User.remove({}, () => { });
             Game.remove({}, () => { });
+            UserToken.remove({}, () => { });
             mongoose.disconnect();
             return done();
         });

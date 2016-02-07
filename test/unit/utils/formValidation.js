@@ -41,7 +41,7 @@ describe("Form validation utilities", () => {
         });
     });
 
-    describe.only('Password match', () => {
+    describe('Password match', () => {
 
         describe('Given a password and a confirm password that are the same', () => {
             it('should return true', () => {

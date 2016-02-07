@@ -6,12 +6,12 @@ import User from './../../../src/server/models/user';
 describe('User', function() {
 
     let db;
-    before(function(done) {
+    before(done => {
         db = mongoose.connect('mongodb://localhost/test');
         done();
     });
 
-    after(function(done) {
+    after(done => {
         mongoose.connection.close();
         done();
     });
@@ -140,7 +140,7 @@ describe('User', function() {
         });
     });
 
-    afterEach(function(done) {
+    afterEach(done => {
         User.remove({}, () => { done(); });
     });
 
