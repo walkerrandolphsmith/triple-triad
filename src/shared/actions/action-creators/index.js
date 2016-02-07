@@ -6,6 +6,10 @@ export { requestResendEmailVerification } from './resendEmailVerification/reques
 export { endAiTurn } from './ai/endAiTurn';
 export { startAiTurn } from './ai/startAiTurn';
 
+export { createGameFailed } from './createGame/createGameFailed';
+export { receiveNewGame } from './createGame/receiveNewGame';
+export { requestNewGame } from './createGame/requestNewGame';
+
 export { getGamesFailed } from './games/getGamesFailed';
 export { receiveGames } from './games/receiveGames';
 export { requestGames } from './games/requestGames';

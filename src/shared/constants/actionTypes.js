@@ -8,8 +8,13 @@ export const SELECT_CARD = 'SelectCard';
 export const SELECT_PIECE = 'SelectPiece';
 export const PLACE_CARD = 'PlaceCard';
 export const UPDATE_BOARD = 'UpdateBoard';
+
 export const START_AI_TURN = 'StartAITurn';
 export const END_AI_TURN = 'EndAITurn';
+
+export const REQUEST_NEW_GAME = 'REQUEST_NEW_GAME';
+export const RECEIVE_NEW_GAME = 'RECEIVE_NEW_GAME';
+export const CREATE_FAILED = 'CREATE_FAILED';
 
 export const GET_GAMES_FAILED = 'GET_GAMES_FAILED';
 export const RECEIVE_GAMES = 'RECEIVE_GAMES';
