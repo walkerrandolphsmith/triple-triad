@@ -1,20 +1,13 @@
 import expect from 'expect';
 import mongoose from 'mongoose';
+import connectionManager from './../connectionManager';
 import User from './../../../src/server/models/user';
 
 
 describe('User', function() {
 
-    let db;
-    before(done => {
-        db = mongoose.connect('mongodb://localhost/test');
-        done();
-    });
-
-    after(done => {
-        mongoose.connection.close();
-        done();
-    });
+    beforeEach(connectionManager.connect);
+    afterEach(connectionManager.disconnect);
 
     describe('Given a account is created with a unique username', () => {
         let user;
@@ -139,9 +132,4 @@ describe('User', function() {
             done();
         });
     });
-
-    afterEach(done => {
-        User.remove({}, () => { done(); });
-    });
-
 });

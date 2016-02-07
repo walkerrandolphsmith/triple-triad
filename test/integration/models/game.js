@@ -1,19 +1,12 @@
 import expect from 'expect';
 import mongoose from 'mongoose';
+import connectionManager from './../connectionManager';
 import Game from './../../../src/server/models/game';
 
 describe('Game model', () => {
 
-    let db;
-    before(done => {
-        db = mongoose.connect('mongodb://localhost/test');
-        done();
-    });
-
-    after(done => {
-        mongoose.connection.close();
-        done();
-    });
+    beforeEach(connectionManager.connect);
+    afterEach(connectionManager.disconnect);
 
     describe('When saving a new game with owner, current player, opponent, deck, and phase', () => {
 
@@ -46,9 +39,5 @@ describe('Game model', () => {
                done();
             });
         });
-    });
-
-    afterEach(done => {
-        Game.remove({}, () => { done(); });
     });
 });

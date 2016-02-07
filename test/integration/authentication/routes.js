@@ -1,8 +1,10 @@
 import expect from 'expect';
 import request from 'supertest';
 import mongoose from 'mongoose';
+import connectionManager from './../connectionManager';
 import User from './../../../src/server/models/user';
 import UserToken from './../../../src/server/models/userTokens';
+import ResetToken from './../../../src/server/models/resetTokens';
 import Game from './../../../src/server/models/game';
 import app from './../../../src/server/server';
 
@@ -10,41 +12,8 @@ describe('Passport: routes', () => {
 
     describe('routes', () => {
 
-
-        beforeEach(done => {
-
-            function clearDB() {
-                for (var i in mongoose.connection.collections) {
-                    mongoose.connection.collections[i].remove();
-                }
-                return done();
-            }
-
-
-            function reconnect() {
-                mongoose.connect('mongodb://localhost/test', err => {
-                    if (err) {
-                        throw err;
-                    }
-                    return clearDB();
-                });
-            }
-
-            function checkState() {
-                switch (mongoose.connection.readyState) {
-                    case 0:
-                        reconnect();
-                        break;
-                    case 1:
-                        clearDB();
-                        break;
-                    default:
-                        process.nextTick(checkState);
-                }
-            }
-
-            checkState();
-        });
+        beforeEach(connectionManager.connect);
+        afterEach(connectionManager.disconnect);
 
         describe('POST /sign_up given a valid username and password', () => {
             it('should give a status code 200 Ok', done => {
@@ -315,6 +284,53 @@ describe('Passport: routes', () => {
             });
         });
 
+        describe('POST /forgot_password given an email of existing user', () => {
+            let email, id;
+            beforeEach(done => {
+                email = "walkerrandolphsmith@gamil.com";
+                let newUser = new User();
+                newUser.local.username = 'walker';
+                newUser.local.email = email;
+                newUser.local.password = newUser.generateHash('password');
+                newUser.save(function(err, user) {
+                    if (err) throw err;
+                    id = user._id;
+                    UserToken.new(id, (err, userToken) => {
+                        if(err) throw err;
+                        done();
+                    });
+                });
+            });
+
+            it('should create a new resetToken and send an email', done => {
+               request(app)
+                    .post('/api//forgot_password')
+                    .send({email: email})
+                    .set('Content-Type', 'application/json')
+                    .set('Accept', 'application/json')
+                    .expect(200)
+                    .end((err, res) => {
+                       expect(res.body.sent).toEqual(true);
+                       done();
+                   });
+            });
+        });
+
+        describe('POST /forgot_password given an email of that is not associated with an existing user', () => {
+
+            it('should create a new resetToken and send an email', done => {
+                request(app)
+                    .post('/api/forgot_password')
+                    .send({email: 'nonuser@gmail.com'})
+                    .set('Content-Type', 'application/json')
+                    .set('Accept', 'application/json')
+                    .expect(500)
+                    .end((err, res) => {
+                        done();
+                    });
+            });
+        });
+
         describe('POST /user_profile given a valid user id', () => {
 
             let id;
@@ -465,14 +481,6 @@ describe('Passport: routes', () => {
                         done();
                     });
             });
-        });
-
-        afterEach(done => {
-            User.remove({}, () => { });
-            Game.remove({}, () => { });
-            UserToken.remove({}, () => { });
-            mongoose.disconnect();
-            return done();
         });
     });
 });
