@@ -17,6 +17,7 @@ export { playerTakesTurn } from './playerTakesTurn';
 export { resendVerificationEmail } from './resendVerificationEmail';
 export { selectedPieceByClick } from './selectedPieceByClick';
 export { sendInvite } from './sendInvite';
+export { sendPasswordReset } from './sendPasswordReset';
 export { setHand } from './setHand';
 export { setHands } from './setHands';
 export { signIn } from './signIn';
