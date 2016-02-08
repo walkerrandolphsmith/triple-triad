@@ -38,14 +38,6 @@ export default {
         checkState();
     },
 
-    remove: done => {
-      User.remove(() => {});
-      UserToken.remove(() => {});
-      ResetToken.remove(() => {});
-      Game.remove(() => {});
-      done();
-    },
-
     disconnect: done => {
         mongoose.disconnect();
         done();
