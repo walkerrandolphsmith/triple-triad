@@ -15,7 +15,6 @@ export function sendPasswordReset(email) {
         .set('Accept', 'application/json')
         .set('Content-Type', 'application/json')
         .end((error, response) => {
-                debugger;
             if(response.status === 200)
                 dispatch(receiveSendPasswordReset());
             else
