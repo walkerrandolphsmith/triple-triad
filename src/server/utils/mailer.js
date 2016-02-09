@@ -1,10 +1,9 @@
 import env from './../../shared/config/environment';
-import keys from './../config/keys';
 import Mailgun from 'mailgun-js';
 
 const mailgun = new Mailgun({
-    apiKey: keys.mailgun.apiKey,
-    domain: keys.mailgun.domain
+    apiKey: env.keys.mailgun.apiKey,
+    domain: env.keys.mailgun.domain
 });
 
 export function send_verification_email(email, token, fn) {
