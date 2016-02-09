@@ -7,6 +7,7 @@ import {
     verify_email,
     resend_verification_email,
     forgot_password,
+    reset_password,
     user_profile,
     create_game,
     get_games
@@ -57,6 +58,13 @@ function configureAuthRoutes(passport) {
         '/forgot_password',
         (req, res) => {
             forgot_password(req, res);
+        }
+    );
+
+    router.post(
+        '/reset_password',
+        (req, res) => {
+            reset_password(req, res);
         }
     );
 
