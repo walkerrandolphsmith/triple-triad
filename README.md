@@ -1,9 +1,9 @@
 # Triple Triad
 [ ![Codeship Status for walkerrandolphsmith/triple-triad](https://codeship.com/projects/7a0d0880-b10c-0133-3c40-7ee430441c87/status?branch=master)](https://codeship.com/projects/132884)
 [![Twitter][twitter-follow-badge]][twitter]
-implementation of final fantasy 8's card game for the web
-
+Web application for playing the card game, triple triad.
 ##Issues
+Please file issues [here](https://github.com/walkerrandolphsmith/triple-triad/issues)
 
 ##Prerequesites
 This application requires Node and Mongo.
@@ -91,3 +91,6 @@ Reset
 docker-machine restart default
 `eval $(docker-machine env default)
 ```
+
+[twitter-follow-badge]: https://img.shields.io/twitter/follow/walkerrsmith.svg?style=social
+[twitter]: http://twitter.com/intent/user?screen_name=walkerrsmith
