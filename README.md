@@ -1,60 +1,93 @@
-# triple-triad
+# Triple Triad
+[ ![Codeship Status for walkerrandolphsmith/triple-triad](https://codeship.com/projects/7a0d0880-b10c-0133-3c40-7ee430441c87/status?branch=master)](https://codeship.com/projects/132884)
+[![Twitter][twitter-follow-badge]][twitter]
 implementation of final fantasy 8's card game for the web
 
+##Issues
 
-#MongoDB
+##Prerequesites
+This application requires Node and Mongo.
 
-###Reset
-`docker-machine restart default`
-`eval $(docker-machine env default)`
+###Install Node
 
-`cd ~/Downloads`
-`tar xzf mongodb-osx-x86_64-2.2.3.tgz`
-`sudo mv mongodb-osx-x86_64-2.2.3 /usr/local/mongodb`
+Download and run installer from [here](https://nodejs.org/en/download/).
 
-`sudo mkdir -p /data/db`
-`whoami` // => <username>
-`sudo chown <username> /data/db`
+```bash
+node --version
+```
 
-add to `.bash_profile`
+###Install Mongo
+
+Add the following lines to `.bash_profile`
 
 ```
 export MONGO_PATH=/usr/local/mongodb
 export PATH=$PATH:$MONGO_PATH/bin
 ```
 
-`mongo -version`
+```bash
+cd ~/Downloads
+tar xzf mongodb-osx-x86_64-2.2.3.tgz
+sudo mv mongodb-osx-x86_64-2.2.3 /usr/local/mongodb
+sudo mkdir -p /data/db
+whoami #// => <username>
+sudo chown <username> /data/db
+mongo -version
+```
 
-In separate terminal from the `npm start` run `mongod`
+##Getting Started
+```bash
+npm install
+```
 
-#Docker
-Build
-`docker build -t walkerrandolphsmith/triple-triad .`
+##Development
 
-Run
-`docker run -p 49160:8080 -d <your username>/node-web-app`
+###Run
+```bash
+mongod
+#In another terminal
+npm start
+```
 
-List containers
-`docker ps`
+###Specs
+```bash
+npm test
+npm run test:unit # runs unit tests
+rpm run test:integration # runs integration tests
+```
 
-View log
-`docker logs <container id>`
+##Docker
 
-Curl
-`curl -i <container ip>:49160`
+```bash
+#build
+docker build -t <username>/<tag> .
+#run
+docker run -p 49160:8080 -d <username>/<tag>
+```
 
-Enter container
-`docker exec -it <container id> /bin/bash`
+List containers and show container logs:
 
-Exit container by killing process
-`ps -A`
-`kill -9 <pid>`
+```bash
+#List containers
+docker ps
+#View log
+docker logs <container id>
+```
 
-Stop all containers
-`docker stop $(docker ps -a -q)`
+Stopping containers, deleting containers and images:
 
-Delete all containers
-`docker rm $(docker ps -a -q)`
+```bash
+#Stop all containers
+docker stop $(docker ps -a -q)
+#Delete all containers
+docker rm $(docker ps -a -q)
+#Delete all images
+docker rmi $(docker images -q)
+```
 
-Delete all images
-`docker rmi $(docker images -q)`
+Reset
+
+```bash
+docker-machine restart default
+`eval $(docker-machine env default)
+```
