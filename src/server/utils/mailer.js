@@ -28,7 +28,7 @@ export function send_reset_password_email(email, token, fn) {
         subject: 'Reset password for Triple Triad',
         html: `
             Reset password with the following link:
-            http://${env.host}:${env.port}/verify/${token}
+            http://${env.host}:${env.port}/reset/${token}
             This link will not expire... yet XD.
         `
     };
