@@ -93,7 +93,6 @@ function configureAuthRoutes(passport) {
         }
     );
 
-
     return router;
 }
 
