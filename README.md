@@ -1,7 +1,9 @@
 # Triple Triad
 [ ![Codeship Status for walkerrandolphsmith/triple-triad](https://codeship.com/projects/7a0d0880-b10c-0133-3c40-7ee430441c87/status?branch=master)](https://codeship.com/projects/132884)
 [![Twitter][twitter-follow-badge]][twitter]
+
 Web application for playing the card game, triple triad.
+
 ##Issues
 Please file issues [here](https://github.com/walkerrandolphsmith/triple-triad/issues)
 
