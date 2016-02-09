@@ -1,11 +1,11 @@
 # Triple Triad
-[![Codeship][ci]]()
+[![Codeship][ci-badge]][ci]
 [![Twitter][twitter-follow-badge]][twitter]
 
 Web application for playing the card game, triple triad.
 
-##Issues [![GitHub issues][issues]]()
-Please file issues [triple-triad/issues](https://github.com/walkerrandolphsmith/triple-triad/issues)
+##Issues [![GitHub issues][issues-badge]][issues]
+Please file issues [here][issues]
 
 ##Prerequesites
 This application requires Node and Mongo.
@@ -92,9 +92,11 @@ docker-machine restart default
 `eval $(docker-machine env default)
 ```
 
-[ci]: https://img.shields.io/codeship/d6c1ddd0-16a3-0132-5f85-2e35c05e22b1.svg?style=flat-square
+[ci]: https://codeship.com/projects/7a0d0880-b10c-0133-3c40-7ee430441c87/status?branch=master
+[ci-badge]: https://img.shields.io/codeship/d6c1ddd0-16a3-0132-5f85-2e35c05e22b1.svg?style=flat-square
 
-[issues]: https://img.shields.io/github/issues/badges/shields.svg?style=flat-square
+[issues]: https://github.com/walkerrandolphsmith/triple-triad/issues
+[issues-badge]: https://img.shields.io/github/issues/badges/shields.svg?style=flat-square
 
-[twitter-follow-badge]: https://img.shields.io/twitter/follow/walkerrsmith.svg?style=social
 [twitter]: http://twitter.com/intent/user?screen_name=walkerrsmith
+[twitter-follow-badge]: https://img.shields.io/twitter/follow/walkerrsmith.svg?style=social
