@@ -4,8 +4,8 @@
 
 Web application for playing the card game, triple triad.
 
-##Issues
-Please file issues [here](https://github.com/walkerrandolphsmith/triple-triad/issues)
+##Issues [![GitHub issues](https://img.shields.io/github/issues/badges/shields.svg?style=flat-square)]()
+Please file issues [triple-triad/issues](https://github.com/walkerrandolphsmith/triple-triad/issues)
 
 ##Prerequesites
 This application requires Node and Mongo.
@@ -61,10 +61,8 @@ rpm run test:integration # runs integration tests
 ##Docker
 
 ```bash
-#build
-docker build -t <username>/<tag> .
-#run
-docker run -p 49160:8080 -d <username>/<tag>
+#aggregates the output of each container
+docker-compose up
 ```
 
 List containers and show container logs:
