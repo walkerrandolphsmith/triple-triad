@@ -92,7 +92,7 @@ docker-machine restart default
 `eval $(docker-machine env default)
 ```
 
-[ci]: https://codeship.com/projects/7a0d0880-b10c-0133-3c40-7ee430441c87/status?branch=master
+[ci]: https://codeship.com/projects/132884
 [ci-badge]: https://img.shields.io/codeship/d6c1ddd0-16a3-0132-5f85-2e35c05e22b1.svg?style=flat-square
 
 [issues]: https://github.com/walkerrandolphsmith/triple-triad/issues
