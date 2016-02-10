@@ -1,6 +1,6 @@
 import UserToken from './../../models/userTokens/userTokens';
 import User from './../../models/user/user';
-import { send_verification_email } from './../../utils/mailer';
+import { send_verification_email } from './../../utils/mailer/mailer';
 
 export function resend_verification_email(req, res) {
     const userId = req.body.userId;

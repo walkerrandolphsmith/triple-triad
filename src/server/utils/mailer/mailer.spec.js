@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { sendEmail } from './../../../src/server/utils/mailer';
+import { sendEmail } from './mailer';
 
 describe('Mailer', () => {
 

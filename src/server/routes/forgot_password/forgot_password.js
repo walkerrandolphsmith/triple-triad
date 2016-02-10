@@ -1,6 +1,6 @@
 import ResetToken from './../../models/resetTokens/resetTokens';
 import User from './../../models/user/user';
-import { send_reset_password_email } from './../../utils/mailer';
+import { send_reset_password_email } from './../../utils/mailer/mailer';
 
 export function forgot_password(req, res) {
     const email = req.body.email;

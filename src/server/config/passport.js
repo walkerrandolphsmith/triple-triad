@@ -1,7 +1,7 @@
 import PassportLocal from 'passport-local';
 import User from './../models/user/user';
 import UserToken from './../models/userTokens/userTokens';
-import { send_verification_email } from './../utils/mailer';
+import { send_verification_email } from './../utils/mailer/mailer';
 
 export default function(passport) {
     const LocalStrategy = PassportLocal.Strategy;
