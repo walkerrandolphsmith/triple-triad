@@ -8,7 +8,7 @@ import { receiveSignIn } from './../../../shared/actions/action-creators';
 import routes from './../../../shared/routes';
 import configureStore from './../../../shared/store/store';
 
-export function game(request, response) {
+export function app(request, response) {
     const location = createLocation(request.url);
 
     const store = configureStore();
