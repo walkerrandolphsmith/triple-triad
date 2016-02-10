@@ -1,12 +1,12 @@
 import { createSelector } from 'reselect';
 
-import { getAvailableDeck } from './availableDeckSelector';
-import { getBoard } from './boardSelector';
-import { getHand } from './handSelector';
-import { getScoreForOwner, getScore } from './scoreSelector';
-import { getIsFullHand } from './isFullHandSelector';
-import { getWinner } from './winnerSelector';
-import { getValidPieces } from './validPiecesSelector';
+import { getAvailableDeck } from './availableDeck/availableDeckSelector';
+import { getBoard } from './board/boardSelector';
+import { getHand } from './hand/handSelector';
+import { getScoreForOwner, getScore } from './score/scoreSelector';
+import { getIsFullHand } from './isFullHand/isFullHandSelector';
+import { getWinner } from './winner/winnerSelector';
+import { getValidPieces } from './validPieces/validPiecesSelector';
 
 
 const deckSelector = state => state.get('deck')

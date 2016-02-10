@@ -1,44 +1,44 @@
 
-export { endAiTurn } from './ai/endAiTurn';
-export { startAiTurn } from './ai/startAiTurn';
+export { endAiTurn } from './ai/endAiTurn/endAiTurn';
+export { startAiTurn } from './ai/startAiTurn/startAiTurn';
 
-export { createGameFailed } from './createGame/createGameFailed';
-export { receiveNewGame } from './createGame/receiveNewGame';
-export { requestNewGame } from './createGame/requestNewGame';
+export { createGameFailed } from './createGame/createGameFailed/createGameFailed';
+export { receiveNewGame } from './createGame/receiveNewGame/receiveNewGame';
+export { requestNewGame } from './createGame/requestNewGame/requestNewGame';
 
-export { getGamesFailed } from './games/getGamesFailed';
-export { receiveGames } from './games/receiveGames';
-export { requestGames } from './games/requestGames';
+export { getGamesFailed } from './games/getGamesFailed/getGamesFailed';
+export { receiveGames } from './games/receiveGames/receiveGames';
+export { requestGames } from './games/requestGames/requestGames';
 
-export { clearEmailVerificationState } from './resendEmailVerification/clearEmailVerificationState';
-export { failResendEmailVerification } from './resendEmailVerification/failResendEmailVerification';
-export { receiveResendEmailVerification } from './resendEmailVerification/receiveResendEmailVerification';
-export { requestResendEmailVerification } from './resendEmailVerification/requestResendEmailVerification';
+export { clearEmailVerificationState } from './resendEmailVerification/clearEmailVerificationState/clearEmailVerificationState';
+export { failResendEmailVerification } from './resendEmailVerification/failResendEmailVerification/failResendEmailVerification';
+export { receiveResendEmailVerification } from './resendEmailVerification/receiveResendEmailVerification/receiveResendEmailVerification';
+export { requestResendEmailVerification } from './resendEmailVerification/requestResendEmailVerification/requestResendEmailVerification';
 
-export { clearSendPasswordReset } from './sendPasswordReset/clearSendPasswordReset';
-export { failSendPasswordReset } from './sendPasswordReset/failSendPasswordReset';
-export { receiveSendPasswordReset } from './sendPasswordReset/receiveSendPasswordReset';
-export { requestSendPasswordReset } from './sendPasswordReset/requestSendPasswordReset';
+export { clearSendPasswordReset } from './sendPasswordReset/clearSendPasswordReset/clearSendPasswordReset';
+export { failSendPasswordReset } from './sendPasswordReset/failSendPasswordReset/failSendPasswordReset';
+export { receiveSendPasswordReset } from './sendPasswordReset/receiveSendPasswordReset/receiveSendPasswordReset';
+export { requestSendPasswordReset } from './sendPasswordReset/requestSendPasswordReset/requestSendPasswordReset';
 
-export { receiveSignIn } from './signin/receiveSignIn';
-export { requestSignIn } from './signin/requestSignIn';
+export { receiveSignIn } from './signin/receiveSignIn/receiveSignIn';
+export { requestSignIn } from './signin/requestSignIn/requestSignIn';
 
-export { receiveSignOut } from './signout/receiveSignOut';
-export { requestSignOut } from './signout/requestSignOut';
+export { receiveSignOut } from './signout/receiveSignOut/receiveSignOut';
+export { requestSignOut } from './signout/requestSignOut/requestSignOut';
 
-export { receiveUser } from './signup/receiveUser';
-export { requestSignUp } from './signup/requestSignUp';
+export { receiveUser } from './signup/receiveSignUp/receiveUser';
+export { requestSignUp } from './signup/requestSignUp/requestSignUp';
 
-export { receiveUserProfile } from './userProfile/receiveUserProfile';
-export { requestUserProfile } from './userProfile/requestUserProfile';
+export { receiveUserProfile } from './userProfile/receiveUserProfile/receiveUserProfile';
+export { requestUserProfile } from './userProfile/requestUserProfile/requestUserProfile';
 
-export { addCard } from './addCard';
-export { emailVerified } from './emailVerified';
-export { placeCard } from './placeCard';
-export { updateFocusSetting } from './updateFocusSetting';
-export { resetGame } from './resetGame';
-export { selectCard } from './selectCard';
-export { selectPiece } from './selectPiece';
-export { setPhase } from './setPhase';
-export { updateBoard } from './updateBoard';
-export { updateSettings } from './updateSettings';
+export { addCard } from './addCard/addCard';
+export { emailVerified } from './emailVerified/emailVerified';
+export { placeCard } from './placeCard/placeCard';
+export { updateFocusSetting } from './updateFocusSetting/updateFocusSetting';
+export { resetGame } from './resetGame/resetGame';
+export { selectCard } from './selectCard/selectCard';
+export { selectPiece } from './selectPiece/selectPiece';
+export { setPhase } from './setPhase/setPhase';
+export { updateBoard } from './updateBoard/updateBoard';
+export { updateSettings } from './updateSettings/updateSettings';

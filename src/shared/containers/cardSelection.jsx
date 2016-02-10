@@ -4,8 +4,8 @@ import { handSelector, isFullHandSelector, availableDeckSelector } from './../se
 import * as Actions from './../actions/';
 
 import React from 'react';
-import Hand from './../components/hand';
-import Deck from './../components/deck';
+import Hand from './../components/hand/hand';
+import Deck from './../components/deck/deck';
 
 class CardSelection extends React.Component {
 

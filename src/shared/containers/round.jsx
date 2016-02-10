@@ -4,7 +4,7 @@ import { boardSelector, handSelector, opponentHandSelector, scoreSelector, winne
 import * as Actions from './../actions/';
 
 import React from 'react';
-import Round from './../components/round';
+import Round from './../components/round/round';
 
 class RoundContainer extends React.Component {
 

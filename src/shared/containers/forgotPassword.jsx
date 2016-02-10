@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import * as Actions from './../actions';
 
 import React from 'react';
-import ForgotPassword from './../components/forgotPassword';
+import ForgotPassword from './../components/forgotPassword/forgotPassword';
 
 class ForgotPasswordContainer extends React.Component {
 

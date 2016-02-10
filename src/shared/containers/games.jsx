@@ -4,7 +4,7 @@ import { pushPath } from 'redux-simple-router';
 import * as Actions from './../actions/';
 
 import React from 'react';
-import GamesList from './../components/games';
+import GamesList from './../components/games/games';
 
 class GamesContainer extends React.Component {
     render() {
