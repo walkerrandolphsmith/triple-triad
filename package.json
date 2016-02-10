@@ -8,8 +8,8 @@
     "start": "cross-env NODE_ENV=development babel-node src/server/index.js --progress --colors --profile",
     "build": "cross-env NODE_ENV=production npm run clean && webpack -p --config webpack.production.config.js",
     "test": "cross-env NODE_ENV=test mocha --compilers js:babel-core/register --recursive",
-    "test:unit": "cross-env NODE_ENV=test mocha ./test/unit/ --compilers js:babel-core/register --recursive",
-    "test:integration": "cross-env NODE_ENV=test PORT=4000 mocha ./test/integration/ --compilers js:babel-core/register --recursive",
+    "test:unit": "cross-env NODE_ENV=test mocha ./test/unit/",
+    "test:integration": "cross-env NODE_ENV=test PORT=4000 mocha ./test/integration/",
     "test:watch": "npm run test:unit -- --watch",
     "deploy": "git push heroku master"
   },
