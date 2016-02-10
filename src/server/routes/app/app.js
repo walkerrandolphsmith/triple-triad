@@ -3,12 +3,12 @@ import ReactDom from 'react-dom/server';
 import { RoutingContext, match } from 'react-router';
 import {Provider} from 'react-redux';
 import createLocation from 'history/lib/createLocation';
-import { receiveSignIn } from './../../shared/actions/action-creators';
+import { receiveSignIn } from './../../../shared/actions/action-creators';
 
-import routes from './../../shared/routes';
-import configureStore from './../../shared/store/store';
+import routes from './../../../shared/routes';
+import configureStore from './../../../shared/store/store';
 
-export default function game(request, response) {
+export function game(request, response) {
     const location = createLocation(request.url);
 
     const store = configureStore();

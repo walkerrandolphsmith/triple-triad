@@ -1,7 +1,7 @@
 import expect from 'expect';
 import mongoose from 'mongoose';
-import connectionManager from './../connectionManager';
-import Game from './../../../src/server/models/game';
+import connectionManager from './../../../../test/connectionManager';
+import Game from './game';
 
 describe('Game model', () => {
 

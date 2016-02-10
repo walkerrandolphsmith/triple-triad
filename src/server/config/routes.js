@@ -1,6 +1,6 @@
 import express from 'express';
-import User from '../models/user';
 import {
+    app,
     sign_in,
     sign_up,
     sign_out,
@@ -11,8 +11,7 @@ import {
     user_profile,
     create_game,
     get_games
-} from './../routes/auth';
-import app from './../routes/app';
+} from './../routes';
 
 export default function(passport) {
     return {

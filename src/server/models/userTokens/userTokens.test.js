@@ -1,7 +1,7 @@
 import expect from 'expect';
 import mongoose from 'mongoose';
-import connectionManager from './../connectionManager';
-import UserToken from './../../../src/server/models/userTokens';
+import connectionManager from './../../../../test/connectionManager';
+import UserToken from './userTokens';
 
 describe('User tokens', () => {
 

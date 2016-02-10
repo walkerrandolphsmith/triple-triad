@@ -1,9 +1,9 @@
 import expect from 'expect';
 import request from 'supertest';
-import connectionManager from './../connectionManager';
-import app from './../../../src/server/server';
+import connectionManager from './../../../../test/connectionManager';
+import app from './../../server';
 
-describe('/api/sing_out', () => {
+describe('/api/sign_out', () => {
 
     beforeEach(connectionManager.connect);
     afterEach(connectionManager.disconnect);
@@ -15,7 +15,6 @@ describe('/api/sing_out', () => {
                 .post('/api/sign_out')
                 .expect(200)
                 .end((err, res) => {
-                    expect(err).toNotExist();
                     done();
                 });
         });

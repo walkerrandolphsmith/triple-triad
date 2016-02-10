@@ -1,9 +1,9 @@
 import expect from 'expect';
 import request from 'supertest';
-import connectionManager from './../connectionManager';
-import app from './../../../src/server/server';
+import connectionManager from './../../../../test/connectionManager';
+import app from './../../server';
 
-import Game from './../../../src/server/models/game';
+import Game from './../../models/game/game';
 
 describe('/api/get_games', () => {
 

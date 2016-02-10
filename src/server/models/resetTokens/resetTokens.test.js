@@ -1,7 +1,7 @@
 import expect from 'expect';
 import mongoose from 'mongoose';
-import connectionManager from './../connectionManager';
-import ResetToken from './../../../src/server/models/resetTokens';
+import connectionManager from './../../../../test/connectionManager';
+import ResetToken from './resetTokens';
 
 describe('Reset tokens', () => {
 

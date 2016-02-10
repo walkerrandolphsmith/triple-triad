@@ -1,8 +1,4 @@
 import mongoose from 'mongoose';
-import User from './../../src/server/models/user';
-import UserToken from './../../src/server/models/userTokens';
-import ResetToken from './../../src/server/models/resetTokens';
-import Game from './../../src/server/models/game';
 
 export default {
     connect: done => {

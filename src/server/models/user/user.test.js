@@ -1,7 +1,7 @@
 import expect from 'expect';
 import mongoose from 'mongoose';
-import connectionManager from './../connectionManager';
-import User from './../../../src/server/models/user';
+import connectionManager from './../../../../test/connectionManager';
+import User from './user';
 
 
 describe('User', function() {

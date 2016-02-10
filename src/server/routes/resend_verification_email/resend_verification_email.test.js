@@ -1,19 +1,19 @@
 import expect from 'expect';
 import request from 'supertest';
-import connectionManager from './../connectionManager';
-import app from './../../../src/server/server';
+import connectionManager from './../../../../test/connectionManager';
+import app from './../../server';
 
-import User from './../../../src/server/models/user';
-import UserToken from './../../../src/server/models/userTokens';
+import UserToken from './../../models/userTokens/userTokens';
+import User from './../../models/user/user';
 
-describe('/api/verify_email', () => {
+describe('/api/resend_verification_email', () => {
 
     beforeEach(connectionManager.connect);
     afterEach(connectionManager.disconnect);
 
-    describe('POST /verify_email given a valid token ', () => {
+    describe('POST /resend_verification_email given a valid user id ', () => {
 
-        let id, token;
+        let id;
         beforeEach(done => {
             let newUser = new User();
             newUser.local.username = 'walker';
@@ -24,31 +24,28 @@ describe('/api/verify_email', () => {
                 id = user._id;
                 UserToken.new(id, (err, userToken) => {
                     if(err) throw err;
-                    token = userToken.token;
                     done();
                 });
             });
         });
 
-        it('should altered the verified state of the user', done => {
+        it('should an email is sent', done => {
             request(app)
-                .post('/api/verify_email')
+                .post('/api/resend_verification_email')
                 .send({
-                    token: token
+                    userId: id
                 })
                 .expect(200)
                 .end((err, res) => {
-                    User.findById(id, (err, user) => {
-                        expect(user.local.verified).toEqual(true);
-                        done();
-                    });
+                    expect(res.body.sent).toEqual(true);
+                    done();
                 });
         });
     });
 
-    describe('POST /verify_email given a invalid token ', () => {
+    describe('POST /resend_verification_email given an invalid user id ', () => {
 
-        let id, token;
+        let id;
         beforeEach(done => {
             let newUser = new User();
             newUser.local.username = 'walker';
@@ -59,17 +56,16 @@ describe('/api/verify_email', () => {
                 id = user._id;
                 UserToken.new(id, (err, userToken) => {
                     if(err) throw err;
-                    token = userToken.token;
                     done();
                 });
             });
         });
 
-        it('should return a 500 server error', done => {
+        it('should not send an email', done => {
             request(app)
-                .post('/api/verify_email')
+                .post('/api/resend_verification_email')
                 .send({
-                    token: token + "bad token"
+                    userId: id + 'bad id'
                 })
                 .expect(500)
                 .end((err, res) => {

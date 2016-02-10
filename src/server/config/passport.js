@@ -1,6 +1,6 @@
 import PassportLocal from 'passport-local';
-import User from './../models/user';
-import UserToken from './../models/userTokens';
+import User from './../models/user/user';
+import UserToken from './../models/userTokens/userTokens';
 import { send_verification_email } from './../utils/mailer';
 
 export default function(passport) {
