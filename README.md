@@ -12,9 +12,18 @@ This application requires Node and Mongo.
 
 ###Install Node
 
-Download and run installer from [here](https://nodejs.org/en/download/).
+Add the following line to `.bash_profile`
+
+```
+export PATH=$PATH:/usr/local/git/bin:/usr/local/bin
+```
 
 ```bash
+git clone git://github.com/ry/node.git
+cd node
+./configure
+make
+sudo make install
 node --version
 ```
 
