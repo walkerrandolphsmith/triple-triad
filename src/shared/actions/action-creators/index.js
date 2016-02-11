@@ -20,14 +20,14 @@ export { failSendPasswordReset } from './sendPasswordReset/failSendPasswordReset
 export { receiveSendPasswordReset } from './sendPasswordReset/receiveSendPasswordReset/receiveSendPasswordReset';
 export { requestSendPasswordReset } from './sendPasswordReset/requestSendPasswordReset/requestSendPasswordReset';
 
-export { receiveSignIn } from './signin/receiveSignIn/receiveSignIn';
-export { requestSignIn } from './signin/requestSignIn/requestSignIn';
+export { receiveSignIn } from './signin/receiveSignin/receiveSignIn';
+export { requestSignIn } from './signin/requestSignin/requestSignIn';
 
-export { receiveSignOut } from './signout/receiveSignOut/receiveSignOut';
-export { requestSignOut } from './signout/requestSignOut/requestSignOut';
+export { receiveSignOut } from './signout/receiveSignout/receiveSignOut';
+export { requestSignOut } from './signout/requestSignout/requestSignOut';
 
-export { receiveUser } from './signup/receiveSignUp/receiveUser';
-export { requestSignUp } from './signup/requestSignUp/requestSignUp';
+export { receiveUser } from './signup/receiveSignup/receiveUser';
+export { requestSignUp } from './signup/requestSignup/requestSignUp';
 
 export { receiveUserProfile } from './userProfile/receiveUserProfile/receiveUserProfile';
 export { requestUserProfile } from './userProfile/requestUserProfile/requestUserProfile';
