@@ -5,13 +5,45 @@
   "main": "index.js",
   "scripts": {
     "clean": "rm -rf dist",
-    "start": "cross-env NODE_ENV=development babel-node src/server/index.js --progress --colors --profile",
-    "build": "cross-env NODE_ENV=production npm run clean && webpack -p --config webpack.production.config.js",
-    "test": "cross-env NODE_ENV=test mocha ./src ",
-    "test:unit": "find ./src -name '*.spec.js' | xargs cross-env NODE_ENV=test mocha --compilers js:babel-core/register",
-    "test:integration": "find ./src -name '*.test.js' | xargs cross-env NODE_ENV=test mocha --compilers js:babel-core/register",
+    "start": "better-npm-run start",
+    "build": "better-npm-run build",
+    "test": "better-npm-run test",
+    "test:unit": "better-npm-run test:unit",
+    "test:integration": "better-npm-run test:integration",
     "test:watch": "npm run test:unit -- --watch",
     "deploy": "git push heroku master"
+  },
+  "betterScripts": {
+    "start": {
+      "command": "babel-node src/server/index.js --progress --colors --profile",
+      "env": {
+        "NODE_ENV": "development"
+      }
+    },
+    "build": {
+      "command": "npm run clean && webpack -p --config webpack.production.config.js",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    },
+    "test": {
+      "command": "mocha ./src",
+      "env": {
+        "NODE_ENV": "test"
+      }
+    },
+    "test:unit": {
+      "command": "find ./src -name '*.spec.js' | xargs mocha --compilers js:babel-core/register",
+      "env": {
+        "NODE_ENV": "test"
+      }
+    },
+    "test:integration": {
+      "command": "find ./src -name '*.test.js' | xargs mocha --compilers js:babel-core/register",
+      "env": {
+        "NODE_ENV": "test"
+      }
+    }
   },
   "repository": {
     "type": "git",
@@ -60,8 +92,8 @@
     "babel-runtime": "^6.3.19",
     "babel-template": "^6.3.13",
     "babel-types": "^6.4.1",
+    "better-npm-run": "0.0.7",
     "cookie-session": "^1.2.0",
-    "cross-env": "^1.0.7",
     "css-loader": "^0.23.1",
     "expect": "^1.13.4",
     "expect-jsx": "^2.2.2",
