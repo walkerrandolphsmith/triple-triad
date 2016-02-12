@@ -114,7 +114,7 @@ describe('ROUND component', () => {
 
                                 <div className="row">
                                     <div className="col-md-12">
-                                        <button className="btn btn-next" onClick={props.endPhase}>Play again</button>
+                                        <button className="btn btn-main" onClick={props.endPhase}>Play again</button>
                                     </div>
                                 </div>
                             </div>
@@ -226,7 +226,7 @@ describe('ROUND component', () => {
 
                                 <div className="row">
                                     <div className="col-md-12">
-                                        <button className="btn btn-next" onClick={props.endPhase}>Play again</button>
+                                        <button className="btn btn-main" onClick={props.endPhase}>Play again</button>
                                     </div>
                                 </div>
                             </div>
@@ -338,7 +338,7 @@ describe('ROUND component', () => {
 
                                 <div className="row">
                                     <div className="col-md-12">
-                                        <button className="btn btn-next" onClick={props.endPhase}>Play again</button>
+                                        <button className="btn btn-main" onClick={props.endPhase}>Play again</button>
                                     </div>
                                 </div>
                             </div>
@@ -450,7 +450,7 @@ describe('ROUND component', () => {
 
                                 <div className="row">
                                     <div className="col-md-12">
-                                        <button className="btn btn-next" onClick={props.endPhase}>Play again</button>
+                                        <button className="btn btn-main" onClick={props.endPhase}>Play again</button>
                                     </div>
                                 </div>
                             </div>

@@ -18,7 +18,7 @@ class CardSelection extends React.Component {
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <Deck cards={availableDeck} selectedCard={selectedCard} isHandSelected={isHandSelected} addCard={addCard} />
                         <Hand cards={hand} showBack={false} clickAction={() => {}}/>
-                        <button className="btn btn-next" disabled={!isHandSelected} onClick={this.props.endPhase}> Next step</button>
+                        <button className="btn btn-main" disabled={!isHandSelected} onClick={this.props.endPhase}> Next step</button>
                     </div>
                 </div>
             </div>

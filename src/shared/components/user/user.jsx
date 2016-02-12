@@ -16,7 +16,7 @@ export default class User extends React.Component {
             ? (<div></div>)
             : (
             <div>
-                <button className="btn btn-next" onClick={this.resendVerificationEmail.bind(this)}>
+                <button className="btn btn-main" onClick={this.resendVerificationEmail.bind(this)}>
                 Resend Verifcation Email
                 </button>
             </div>
@@ -36,7 +36,7 @@ export default class User extends React.Component {
 
                     {resending} {sent} {failure}
 
-                    <button className="btn btn-next" onClick={this.props.signOut}>SignOut</button>
+                    <button className="btn btn-main" onClick={this.props.signOut}>SignOut</button>
                 </div>
             </div>
         );

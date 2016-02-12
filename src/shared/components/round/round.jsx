@@ -59,7 +59,7 @@ export default class Round extends React.Component {
 
                             <div className="row">
                                 <div className="col-md-12">
-                                    <button className="btn btn-next" onClick={endPhase}>Play again</button>
+                                    <button className="btn btn-main" onClick={endPhase}>Play again</button>
                                 </div>
                             </div>
                         </div>

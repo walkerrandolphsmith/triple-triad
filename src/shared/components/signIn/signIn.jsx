@@ -62,7 +62,7 @@ export default class SignIn extends React.Component {
                             onChange={this.handleChange.bind(this)}
                         />
                     </div>
-                    <button className="btn btn-next"
+                    <button className="btn btn-main"
                         name="submitButton"
                         type="submit">
                     Sign In

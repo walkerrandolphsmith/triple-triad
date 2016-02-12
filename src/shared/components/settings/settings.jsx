@@ -73,7 +73,7 @@ export default class Settings extends React.Component {
                                 <label className="text" htmlFor="hidden-hand">Hide opponent's hand</label>
                             </div>
                         </div>
-                        <button className="btn btn-next" onClick={this.props.endPhase}> Next step</button>
+                        <button className="btn btn-main" onClick={this.props.endPhase}> Next step</button>
                     </div>
                 </div>
             </div>

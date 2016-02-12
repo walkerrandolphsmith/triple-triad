@@ -62,7 +62,7 @@ export default class ResetPassword extends React.Component {
                         />
                     </div>
                     <button
-                        className="btn btn-next"
+                        className="btn btn-main"
                         name="submitButton"
                         type="submit">
                         Reset Password

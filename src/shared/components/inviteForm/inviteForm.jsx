@@ -21,7 +21,7 @@ export default class InviteForm extends React.Component {
                         onChange={this.update.bind(this)}>
                     </input>
                 </div>
-                <button className="btn btn-next" onClick={this.invite.bind(this)}> Invite</button>
+                <button className="btn btn-main" onClick={this.invite.bind(this)}> Invite</button>
             </div>
         );
     }
