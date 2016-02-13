@@ -73,6 +73,10 @@ export default class SignIn extends React.Component {
                 <Link to="/signup">
                     <span> Or Sign Up </span>
                 </Link>
+
+                <Link to="/forgot">
+                    <span>forgot your password</span>
+                </Link>
             </div>
         );
     }
