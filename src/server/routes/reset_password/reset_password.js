@@ -14,7 +14,7 @@ export function reset_password(req, res) {
                 if(err || user === null){
                     return res.status(500).send()
                 }else {
-                    user.local.password = password;
+                    user.local.password = user.generateHash(password);
                     user.save((err, updatedUser) => {
                         if(err || updatedUser === null){
                             return res.status(500).send();
