@@ -27,8 +27,7 @@ export default class ResetPassword extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        console.log(this.props.token, this.state);
-        debugger;
+        this.props.resetPassword(this.props.token, this.state.password, this.state.confirmPassword);
     }
 
     render() {
