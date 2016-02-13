@@ -10,6 +10,11 @@ export { getGamesFailed } from './games/getGamesFailed/getGamesFailed';
 export { receiveGames } from './games/receiveGames/receiveGames';
 export { requestGames } from './games/requestGames/requestGames';
 
+export { passwordResetClear } from './passwordReset/passwordResetClear/passwordResetClear';
+export { passwordResetFailed } from './passwordReset/passwordResetFailed/passwordResetFailed';
+export { passwordResetRequest } from './passwordReset/passwordResetRequest/passwordResetRequest'
+export { passwordResetSuccess } from './passwordReset/passwordResetSuccess/passwordResetSuccess';
+
 export { clearEmailVerificationState } from './resendEmailVerification/clearEmailVerificationState/clearEmailVerificationState';
 export { failResendEmailVerification } from './resendEmailVerification/failResendEmailVerification/failResendEmailVerification';
 export { receiveResendEmailVerification } from './resendEmailVerification/receiveResendEmailVerification/receiveResendEmailVerification';
