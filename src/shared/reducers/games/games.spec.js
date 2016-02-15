@@ -5,9 +5,9 @@ import {
     GET_GAMES_FAILED,
     GET_GAMES_REQUEST,
     GET_GAMES_SUCCESS,
-    REQUEST_NEW_GAME,
-    RECEIVE_NEW_GAME,
-    CREATE_FAILED
+    CREATE_GAME_FAILED,
+    CREATE_GAME_REQUEST,
+    CREATE_GAME_SUCCESS
 } from './../../constants/actionTypes';
 
 describe("Games reducer", () => {
@@ -77,9 +77,9 @@ describe("Games reducer", () => {
 
     describe('requesting to create new game', () => {
 
-        it('should handle REQUEST_NEW_GAME by settings the loading state to true', () => {
+        it('should handle CREATE_GAME_REQUEST by settings the loading state to true', () => {
             let newState = reducer(initialState, {
-                type: REQUEST_NEW_GAME
+                type: CREATE_GAME_REQUEST
             });
             expect(newState.get('newGame').get('loading')).toEqual(true);
             expect(newState.get('newGame').get('loaded')).toEqual(false);
@@ -89,9 +89,9 @@ describe("Games reducer", () => {
 
     describe('receiving a new game', () => {
 
-        it('should handle RECEIVE_NEW_GAME by settings the loading state to true', () => {
+        it('should handle CREATE_GAME_SUCCESS by settings the loading state to true', () => {
             let newState = reducer(initialState, {
-                type: RECEIVE_NEW_GAME,
+                type: CREATE_GAME_SUCCESS,
                 payload: {
                     game: {id: 0}
                 }
@@ -105,9 +105,9 @@ describe("Games reducer", () => {
 
     describe('create game failed', () => {
 
-        it('should handle CREATE_FAILED by settings the failed state to true', () => {
+        it('should handle CREATE_GAME_FAILED by settings the failed state to true', () => {
             let newState = reducer(initialState, {
-                type: CREATE_FAILED
+                type: CREATE_GAME_FAILED
             });
             expect(newState.get('newGame').get('loading')).toEqual(false);
             expect(newState.get('newGame').get('loaded')).toEqual(false);

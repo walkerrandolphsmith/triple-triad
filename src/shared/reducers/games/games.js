@@ -3,9 +3,9 @@ import {
     GET_GAMES_FAILED,
     GET_GAMES_REQUEST,
     GET_GAMES_SUCCESS,
-    REQUEST_NEW_GAME,
-    RECEIVE_NEW_GAME,
-    CREATE_FAILED
+    CREATE_GAME_FAILED,
+    CREATE_GAME_REQUEST,
+    CREATE_GAME_SUCCESS
 } from './../../constants/actionTypes';
 
 const INITIAL_STATE = new Map({
@@ -28,11 +28,11 @@ export default function user(state = INITIAL_STATE, action = {}) {
 
     switch (type) {
         case GET_GAMES_FAILED: return getGamesFailed(state, payload);
-        case GET_GAMES_SUCCESS: return receiveGames(state, payload);
         case GET_GAMES_REQUEST: return requestGames(state, payload);
-        case REQUEST_NEW_GAME: return requestNewGame(state, payload);
-        case RECEIVE_NEW_GAME: return receiveNewGame(state, payload);
-        case CREATE_FAILED: return createFailed(state, payload);
+        case GET_GAMES_SUCCESS: return receiveGames(state, payload);
+        case CREATE_GAME_FAILED: return createFailed(state, payload);
+        case CREATE_GAME_REQUEST: return requestNewGame(state, payload);
+        case CREATE_GAME_SUCCESS: return receiveNewGame(state, payload);
         default: return state;
     }
 }

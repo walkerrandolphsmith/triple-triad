@@ -12,9 +12,9 @@ export const UPDATE_BOARD = 'UpdateBoard';
 export const START_AI_TURN = 'StartAITurn';
 export const END_AI_TURN = 'EndAITurn';
 
-export const REQUEST_NEW_GAME = 'REQUEST_NEW_GAME';
-export const RECEIVE_NEW_GAME = 'RECEIVE_NEW_GAME';
-export const CREATE_FAILED = 'CREATE_FAILED';
+export const CREATE_GAME_FAILED = 'CREATE_GAME_FAILED';
+export const CREATE_GAME_REQUEST = 'CREATE_GAME_REQUEST';
+export const CREATE_GAME_SUCCESS = 'CREATE_GAME_SUCCESS';
 
 export const PASSWORD_RESET_CLEAR = 'PASSWORD_RESET_CLEAR';
 export const PASSWORD_RESET_FAILED = 'PASSWORD_RESET_FAILED';
