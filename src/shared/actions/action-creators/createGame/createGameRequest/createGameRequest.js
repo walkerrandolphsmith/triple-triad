@@ -1,6 +1,6 @@
 import { REQUEST_NEW_GAME } from './../../../../constants/actionTypes';
 
-export function requestNewGame() {
+export function createGameRequest() {
     return {
         type: REQUEST_NEW_GAME
     }

@@ -1,6 +1,6 @@
 import expect from 'expect';
 import { REQUEST_NEW_GAME } from './../../../../constants/actionTypes';
-import { requestNewGame } from './requestNewGame';
+import { createGameRequest } from './createGameRequest';
 
 describe('REQUEST_NEW_GAME', () => {
 
@@ -8,7 +8,7 @@ describe('REQUEST_NEW_GAME', () => {
         const expectedAction = {
             type: REQUEST_NEW_GAME
         };
-        expect(requestNewGame()).toEqual(expectedAction);
+        expect(createGameRequest()).toEqual(expectedAction);
     });
 
 });

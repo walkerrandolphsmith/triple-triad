@@ -3,8 +3,8 @@ export { endAiTurn } from './ai/endAiTurn/endAiTurn';
 export { startAiTurn } from './ai/startAiTurn/startAiTurn';
 
 export { createGameFailed } from './createGame/createGameFailed/createGameFailed';
-export { receiveNewGame } from './createGame/receiveNewGame/receiveNewGame';
-export { requestNewGame } from './createGame/requestNewGame/requestNewGame';
+export { createGameSuccess } from './createGame/createGameSuccess/createGameSuccess';
+export { createGameRequest } from './createGame/createGameRequest/createGameRequest';
 
 export { getGamesFailed } from './games/getGamesFailed/getGamesFailed';
 export { receiveGames } from './games/receiveGames/receiveGames';
