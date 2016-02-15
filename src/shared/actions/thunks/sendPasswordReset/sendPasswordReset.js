@@ -1,14 +1,14 @@
 import request from 'superagent';
 import {
-    requestSendPasswordReset,
-    receiveSendPasswordReset,
-    failSendPasswordReset,
-    clearSendPasswordReset
+    sendPasswordResetClear,
+    sendPasswordResetFailed,
+    sendPasswordResetRequest,
+    sendPasswordResetSuccess
 } from './../../action-creators';
 
 export function sendPasswordReset(email) {
     return dispatch => {
-        dispatch(requestSendPasswordReset());
+        dispatch(sendPasswordResetSuccess());
         return request
         .post('/api/forgot_password')
         .send(JSON.stringify({email: email}))
@@ -16,12 +16,12 @@ export function sendPasswordReset(email) {
         .set('Content-Type', 'application/json')
         .end((error, response) => {
             if(response.status === 200)
-                dispatch(receiveSendPasswordReset());
+                dispatch(sendPasswordResetRequest());
             else
-                dispatch(failSendPasswordReset());
+                dispatch(sendPasswordResetFailed());
 
             setTimeout(() => {
-                dispatch(clearSendPasswordReset())
+                dispatch(sendPasswordResetClear())
             }, 2500);
         });
     };

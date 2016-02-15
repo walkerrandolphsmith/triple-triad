@@ -20,10 +20,10 @@ export { resendEmailVerificationFailed } from './resendEmailVerification/resendE
 export { resendEmailVerificationSuccess } from './resendEmailVerification/resendEmailVerificationSuccess/resendEmailVerificationSuccess';
 export { resendEmailVerificationRequest } from './resendEmailVerification/resendEmailVerificationRequest/resendEmailVerificationRequest';
 
-export { clearSendPasswordReset } from './sendPasswordReset/clearSendPasswordReset/clearSendPasswordReset';
-export { failSendPasswordReset } from './sendPasswordReset/failSendPasswordReset/failSendPasswordReset';
-export { receiveSendPasswordReset } from './sendPasswordReset/receiveSendPasswordReset/receiveSendPasswordReset';
-export { requestSendPasswordReset } from './sendPasswordReset/requestSendPasswordReset/requestSendPasswordReset';
+export { sendPasswordResetClear } from './sendPasswordReset/sendPasswordResetClear/sendPasswordResetClear';
+export { sendPasswordResetFailed } from './sendPasswordReset/sendPasswordResetFailed/sendPasswordResetFailed';
+export { sendPasswordResetRequest } from './sendPasswordReset/sendPasswordResetRequest/sendPasswordResetRequest';
+export { sendPasswordResetSuccess } from './sendPasswordReset/sendPasswordResetSuccess/sendPasswordResetSuccess';
 
 export { receiveSignIn } from './signin/receiveSignin/receiveSignIn';
 export { requestSignIn } from './signin/requestSignin/requestSignIn';

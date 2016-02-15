@@ -1,6 +1,6 @@
 import expect from 'expect';
 import {  SEND_PASSWORD_RESET_SUCCESS } from './../../../../constants/actionTypes';
-import { receiveSendPasswordReset } from './receiveSendPasswordReset';
+import { sendPasswordResetSuccess } from './sendPasswordResetSuccess';
 
 describe('Password reset was successful', () => {
 
@@ -8,7 +8,7 @@ describe('Password reset was successful', () => {
         const expectedAction = {
             type: SEND_PASSWORD_RESET_SUCCESS
         };
-        expect(receiveSendPasswordReset()).toEqual(expectedAction)
+        expect(sendPasswordResetSuccess()).toEqual(expectedAction)
     });
 
 });

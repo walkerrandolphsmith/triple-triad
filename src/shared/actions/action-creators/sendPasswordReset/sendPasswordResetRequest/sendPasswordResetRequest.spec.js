@@ -1,6 +1,6 @@
 import expect from 'expect';
 import {  SEND_PASSWORD_RESET } from './../../../../constants/actionTypes';
-import { requestSendPasswordReset } from './requestSendPasswordReset';
+import { sendPasswordResetRequest } from './sendPasswordResetRequest';
 
 describe('Initiate send password reset', () => {
 
@@ -8,7 +8,7 @@ describe('Initiate send password reset', () => {
         const expectedAction = {
             type: SEND_PASSWORD_RESET
         };
-        expect(requestSendPasswordReset()).toEqual(expectedAction)
+        expect(sendPasswordResetRequest()).toEqual(expectedAction)
     });
 
 });
