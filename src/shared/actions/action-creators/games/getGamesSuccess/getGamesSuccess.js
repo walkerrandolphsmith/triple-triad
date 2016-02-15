@@ -1,8 +1,8 @@
-import { RECEIVE_GAMES } from './../../../../constants/actionTypes';
+import { GET_GAMES_SUCCESS } from './../../../../constants/actionTypes';
 
 export function getGamesSuccess(games) {
     return {
-        type: RECEIVE_GAMES,
+        type: GET_GAMES_SUCCESS,
         payload: {
             games: games
         }

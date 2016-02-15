@@ -1,8 +1,8 @@
 import { Map, List } from 'immutable';
 import {
     GET_GAMES_FAILED,
-    RECEIVE_GAMES,
-    REQUEST_GAMES,
+    GET_GAMES_REQUEST,
+    GET_GAMES_SUCCESS,
     REQUEST_NEW_GAME,
     RECEIVE_NEW_GAME,
     CREATE_FAILED
@@ -28,8 +28,8 @@ export default function user(state = INITIAL_STATE, action = {}) {
 
     switch (type) {
         case GET_GAMES_FAILED: return getGamesFailed(state, payload);
-        case RECEIVE_GAMES: return receiveGames(state, payload);
-        case REQUEST_GAMES: return requestGames(state, payload);
+        case GET_GAMES_SUCCESS: return receiveGames(state, payload);
+        case GET_GAMES_REQUEST: return requestGames(state, payload);
         case REQUEST_NEW_GAME: return requestNewGame(state, payload);
         case RECEIVE_NEW_GAME: return receiveNewGame(state, payload);
         case CREATE_FAILED: return createFailed(state, payload);

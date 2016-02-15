@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { RECEIVE_GAMES } from './../../../../constants/actionTypes';
+import { GET_GAMES_SUCCESS } from './../../../../constants/actionTypes';
 import { getGamesSuccess } from './getGamesSuccess';
 
 describe('RECEIVE_GAMES action creator', () => {
@@ -8,7 +8,7 @@ describe('RECEIVE_GAMES action creator', () => {
         let games = [0,1,2];
 
         const expectedAction = {
-            type: RECEIVE_GAMES,
+            type: GET_GAMES_SUCCESS,
             payload: {
                 games: games
             }

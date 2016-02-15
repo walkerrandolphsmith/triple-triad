@@ -1,7 +1,7 @@
-import { REQUEST_GAMES } from './../../../../constants/actionTypes';
+import { GET_GAMES_REQUEST } from './../../../../constants/actionTypes';
 
 export function getGamesRequest() {
     return {
-        type: REQUEST_GAMES
+        type: GET_GAMES_REQUEST
     }
 }

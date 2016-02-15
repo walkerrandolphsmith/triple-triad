@@ -3,8 +3,8 @@ import { Map, List } from 'immutable';
 import reducer from './games';
 import {
     GET_GAMES_FAILED,
-    RECEIVE_GAMES,
-    REQUEST_GAMES,
+    GET_GAMES_REQUEST,
+    GET_GAMES_SUCCESS,
     REQUEST_NEW_GAME,
     RECEIVE_NEW_GAME,
     CREATE_FAILED
@@ -37,9 +37,9 @@ describe("Games reducer", () => {
 
     describe('requesting games', () => {
 
-        it('should handle REQUEST_GAMES by settings the loading state to true', () => {
+        it('should handle GET_GAMES_REQUEST by settings the loading state to true', () => {
             let newState = reducer(initialState, {
-                type: REQUEST_GAMES
+                type: GET_GAMES_REQUEST
             });
             expect(newState.get('getGames').get('loading')).toEqual(true);
             expect(newState.get('getGames').get('loaded')).toEqual(false);
@@ -49,9 +49,9 @@ describe("Games reducer", () => {
 
     describe('receiving games', () => {
 
-        it('should handle RECEIVE_GAMES by settings the loading state to true', () => {
+        it('should handle GET_GAMES_SUCCESS by settings the loading state to true', () => {
             let newState = reducer(initialState, {
-                type: RECEIVE_GAMES,
+                type: GET_GAMES_SUCCESS,
                 payload: {
                     games: [{id: 0}]
                 }
