@@ -1,9 +1,9 @@
 import request from 'superagent';
-import { requestGames, receiveGames, getGamesFailed } from './../../../actions/action-creators';
+import { getGamesRequest, getGamesSuccess, getGamesFailed } from './../../../actions/action-creators';
 
 export function getGames() {
     return (dipatch, getState) => {
-        dipatch(requestGames());
+        dipatch(getGamesRequest());
         const state = getState();
         const ownerId = state.auth.get('user').get('id');
 
@@ -17,7 +17,7 @@ export function getGames() {
         .set('Content-Type', 'application/json')
         .end((err, response) => {
             if(response.status === 200){
-                dipatch(receiveGames(response.body));
+                dipatch(getGamesSuccess(response.body));
             }else{
                 dipatch(getGamesFailed());
             }

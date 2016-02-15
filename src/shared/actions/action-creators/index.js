@@ -7,8 +7,8 @@ export { createGameSuccess } from './createGame/createGameSuccess/createGameSucc
 export { createGameRequest } from './createGame/createGameRequest/createGameRequest';
 
 export { getGamesFailed } from './games/getGamesFailed/getGamesFailed';
-export { receiveGames } from './games/receiveGames/receiveGames';
-export { requestGames } from './games/requestGames/requestGames';
+export { getGamesSuccess } from './games/getGamesSuccess/getGamesSuccess';
+export { getGamesRequest } from './games/getGamesRequest/getGamesRequest';
 
 export { passwordResetClear } from './passwordReset/passwordResetClear/passwordResetClear';
 export { passwordResetFailed } from './passwordReset/passwordResetFailed/passwordResetFailed';

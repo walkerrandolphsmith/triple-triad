@@ -1,6 +1,6 @@
 import expect from 'expect';
 import { RECEIVE_GAMES } from './../../../../constants/actionTypes';
-import { receiveGames } from './receiveGames';
+import { getGamesSuccess } from './getGamesSuccess';
 
 describe('RECEIVE_GAMES action creator', () => {
 
@@ -13,7 +13,7 @@ describe('RECEIVE_GAMES action creator', () => {
                 games: games
             }
         };
-        expect(receiveGames(games)).toEqual(expectedAction)
+        expect(getGamesSuccess(games)).toEqual(expectedAction)
     });
 
 });

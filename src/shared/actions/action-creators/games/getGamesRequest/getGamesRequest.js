@@ -1,6 +1,6 @@
 import { REQUEST_GAMES } from './../../../../constants/actionTypes';
 
-export function requestGames() {
+export function getGamesRequest() {
     return {
         type: REQUEST_GAMES
     }
