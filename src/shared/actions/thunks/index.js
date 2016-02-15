@@ -14,7 +14,7 @@ export { handleLeft } from './handleLeft/handleLeft';
 export { handleRight } from './handleRight/handleRight';
 export { handleUp } from './handleUp/handleUp';
 export { playerTakesTurn } from './playerTakesTurn/playerTakesTurn';
-export { resendVerificationEmail } from './resendVerificationEmail/resendVerificationEmail';
+export { resendEmailVerification } from './resendEmailVerification/resendEmailVerification';
 export { resetPassword } from './resetPassword/resetPassword';
 export { selectedPieceByClick } from './selectedPieceByClick/selectedPieceByClick';
 export { sendInvite } from './sendInvite/sendInvite';

@@ -1,6 +1,6 @@
 import { RESEND_EMAIL_VERIFICATION } from './../../../../constants/actionTypes';
 
-export function requestResendEmailVerification() {
+export function resendEmailVerificationRequest() {
     return {
         type: RESEND_EMAIL_VERIFICATION
     }

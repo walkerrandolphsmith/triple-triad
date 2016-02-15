@@ -1,14 +1,14 @@
 import request from 'superagent';
 import {
-    requestResendEmailVerification,
-    receiveResendEmailVerification,
-    failResendEmailVerification,
-    clearEmailVerificationState
+    resendEmailVerificationRequest,
+    resendEmailVerificationSuccess,
+    resendEmailVerificationFailed,
+    resendEmailVerificationClear
 } from './../../action-creators';
 
-export function resendVerificationEmail(id) {
+export function resendEmailVerification(id) {
     return dispatch => {
-        dispatch(requestResendEmailVerification());
+        dispatch(resendEmailVerificationRequest());
         return request
         .post('/api/resend_verification_email')
         .send(JSON.stringify({userId: id}))
@@ -16,12 +16,12 @@ export function resendVerificationEmail(id) {
         .set('Content-Type', 'application/json')
         .end((error, response) => {
             if(response.status === 200)
-                dispatch(receiveResendEmailVerification());
+                dispatch(resendEmailVerificationSuccess());
             else
-                dispatch(failResendEmailVerification());
+                dispatch(resendEmailVerificationFailed());
 
             setTimeout(() => {
-                dispatch(clearEmailVerificationState())
+                dispatch(resendEmailVerificationClear())
             }, 2500);
         });
     };

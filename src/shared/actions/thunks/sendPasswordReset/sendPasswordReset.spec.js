@@ -1,5 +1,5 @@
 import expect from 'expect';
-import SendPasswordReset from './../resendVerificationEmail/resendVerificationEmail';
+import SendPasswordReset from './../sendPasswordReset/sendPasswordReset';
 import { sendPasswordReset, __RewireAPI__ as sendPasswordResetRewireAPI } from './sendPasswordReset';
 
 describe('SEND PASSWORD RESET async action creator', () => {

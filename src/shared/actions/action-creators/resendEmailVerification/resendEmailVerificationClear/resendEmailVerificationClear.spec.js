@@ -1,6 +1,6 @@
 import expect from 'expect';
 import {  RESEND_EMAIL_VERIFICATION_CLEAR } from './../../../../constants/actionTypes';
-import { clearEmailVerificationState } from './clearEmailVerificationState';
+import { resendEmailVerificationClear } from './resendEmailVerificationClear';
 
 describe('Clear resend email verification state', () => {
 
@@ -8,7 +8,7 @@ describe('Clear resend email verification state', () => {
         const expectedAction = {
             type: RESEND_EMAIL_VERIFICATION_CLEAR
         };
-        expect(clearEmailVerificationState()).toEqual(expectedAction)
+        expect(resendEmailVerificationClear()).toEqual(expectedAction)
     });
 
 });
