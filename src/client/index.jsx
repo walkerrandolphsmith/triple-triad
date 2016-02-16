@@ -4,6 +4,7 @@ import { Router } from 'react-router';
 import { createHistory } from 'history';
 import { Provider } from 'react-redux';
 import { fromJS } from 'immutable';
+import io from 'socket.io-client';
 import { syncReduxAndRouter } from 'redux-simple-router'
 import Routes from './../shared/routes';
 import configureStore from './../shared/store/store';
@@ -27,6 +28,12 @@ ReactDom.render(
   </Provider>,
   mountNode
 );
+
+const socket = io.connect('http://localhost:3001');
+socket.on('serverEvent', data => {
+  console.log(data);
+  socket.emit('clientEvent', { my: 'data' });
+});
 
 if (env.nodeEnv !== 'production') {
   const showDevTools = require('./../dev-tools/showDevTools').default;
