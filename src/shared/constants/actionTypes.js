@@ -7,6 +7,7 @@ export const ADD_CARD = 'AddCard';
 export const SELECT_CARD = 'SelectCard';
 export const SELECT_PIECE = 'SelectPiece';
 export const PLACE_CARD = 'PlaceCard';
+export const SIGN_UP_FORM_ERROR = 'SIGN_UP_FORM_ERROR';
 export const UPDATE_BOARD = 'UpdateBoard';
 
 export const START_AI_TURN = 'StartAITurn';
