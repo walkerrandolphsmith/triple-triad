@@ -16,7 +16,12 @@ class SignUp extends React.Component {
 
 function mapStateToProps(state) {
     return {
-
+        errors: {
+            username: state.signupForm.get('username'),
+            password: state.signupForm.get('password'),
+            confirmPassword: state.signupForm.get('confirmPassword'),
+            email: state.signupForm.get('email')
+        }
     }
 }
 

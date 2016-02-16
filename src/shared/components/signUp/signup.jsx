@@ -24,13 +24,6 @@ export default class SignUp extends React.Component {
     handleChange(event) {
         const { name, value } = event.target;
 
-        this.setState({
-            usernameError: false,
-            passwordError: false,
-            passwordMatchError: false,
-            emailError: false
-        });
-
         if (name === 'username') {
             this.setState({ username: value });
         }
@@ -43,37 +36,13 @@ export default class SignUp extends React.Component {
         if (name === 'confirm-password') {
             this.setState({ confirmPassword: value });
         }
+        this.props.signUpFormErrorReset();
     }
 
     handleSubmit(event) {
         event.preventDefault();
 
         const { username, email, password, confirmPassword } = this.state;
-        let errorMessage = null;
-
-        if(!isValidUsername(username)) {
-            errorMessage = 'Invalid username';
-            this.setState({usernameError: errorMessage});
-        }
-
-        if(!isValidPassword(password)){
-            errorMessage = 'Invalid password';
-            this.setState({passwordError: errorMessage});
-        }
-
-        if(!passwordsMatch(password, confirmPassword)){
-            errorMessage = 'Passwords must match';
-            this.setState({passwordMatchError: errorMessage});
-        }
-
-        if(!isValidEmail(email)){
-            errorMessage = 'Invalid email address';
-            this.setState({emailError: errorMessage});
-        }
-
-        if(errorMessage){
-            return;
-        }
 
         this.props.signUp({
             username: username,
@@ -86,18 +55,20 @@ export default class SignUp extends React.Component {
     }
 
     render() {
+        
+        let { username, password, confirmPassword, email } = this.props.errors;
 
-        let usernameFormGroupClass = `form-group ${this.state.usernameError ? 'has-error': ''}`;
-        let usernameHelpText = !this.state.usernameError ? (<span></span>) : (<span className="help-block">{this.state.usernameError}</span>);
+        let usernameFormGroupClass = `form-group ${username ? 'has-error': ''}`;
+        let usernameHelpText = !username ? (<span></span>) : (<span className="help-block">{username}</span>);
 
-        let emailFormGroupClass = `form-group ${this.state.emailError ? 'has-error': ''}`;
-        let emailHelpText = !this.state.emailError ? (<span></span>) : (<span className="help-block">{this.state.emailError}</span>);
+        let emailFormGroupClass = `form-group ${email ? 'has-error': ''}`;
+        let emailHelpText = !email ? (<span></span>) : (<span className="help-block">{email}</span>);
 
-        let passwordFormGroupClass = `form-group ${this.state.passwordError ? 'has-error': ''}`;
-        let passwordHelpText = !this.state.passwordError ? (<span></span>) : (<span className="help-block">{this.state.passwordError}</span>);
+        let passwordFormGroupClass = `form-group ${password ? 'has-error': ''}`;
+        let passwordHelpText = !password ? (<span></span>) : (<span className="help-block">{password}</span>);
 
-        let passwordConfirmFormGroupClass = `form-group ${this.state.passwordMatchError ? 'has-error': ''}`;
-        let passwordConfirmHelpText = !this.state.passwordMatchError ? (<span></span>) : (<span className="help-block">{this.state.passwordMatchError}</span>);
+        let passwordConfirmFormGroupClass = `form-group ${confirmPassword ? 'has-error': ''}`;
+        let passwordConfirmHelpText = !confirmPassword ? (<span></span>) : (<span className="help-block">{confirmPassword}</span>);
 
         return (
             <div id="signup">
