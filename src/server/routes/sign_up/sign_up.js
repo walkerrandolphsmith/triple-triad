@@ -5,10 +5,17 @@ export function sign_up(req, res, next, passport) {
                 id: user._id,
                 name: user.local.username
             });
-        } else {
+        }
+        else if(err){
             res.status(500).json({
                 field: 'username',
                 error: err
+            });
+        }
+        else {
+            res.status(500).json({
+                field: 'username',
+                error: info.message
             });
         }
     })(req, res, next);
