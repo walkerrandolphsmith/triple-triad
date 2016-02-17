@@ -45,6 +45,8 @@ export { resetGame } from './resetGame/resetGame';
 export { selectCard } from './selectCard/selectCard';
 export { selectPiece } from './selectPiece/selectPiece';
 export { setPhase } from './setPhase/setPhase';
+export { signinFormError } from './signinFormError/signinFormError';
+export { signinFormErrorReset } from './signinFormErrorReset/signinFormErrorReset';
 export { signUpFormError } from './signUpFormError/signUpFormError';
 export { signUpFormErrorReset } from './signUpFormErrorReset/signUpFormErrorReset';
 export { updateBoard } from './updateBoard/updateBoard';
