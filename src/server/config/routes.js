@@ -25,9 +25,8 @@ function configureAuthRoutes(passport) {
 
     router.post(
         '/sign_up',
-        passport.authenticate('local-signup'),
-        (req, res) => {
-            sign_up(req, res);
+        (req, res, next) => {
+            sign_up(req, res, next, passport);
         }
     );
 

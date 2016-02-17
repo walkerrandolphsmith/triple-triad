@@ -62,6 +62,9 @@ export function signUp(user) {
                 if(response.status === 200) {
                     dispatch(receiveUser(response.body));
                     dispatch(pushPath('/games'));
+                }else{
+                    let error = JSON.parse(response.text);
+                    dispatch(signUpFormError(error));
                 }
             });
     };

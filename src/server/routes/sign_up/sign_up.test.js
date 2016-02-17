@@ -43,16 +43,17 @@ describe('/api/sign_up', () => {
             });
         });
 
-        it('should throw a 401 unauthorized', done => {
+        it('should throw a 500 server error', done => {
             request(app)
                 .post('/api/sign_up')
                 .send({
                     username: username,
                     password: 'password'
                 })
-                .expect(401)
+                .expect(500)
                 .end((err, res) => {
                     expect(err).toNotExist();
+                    expect(JSON.parse(res.text).field).toEqual('username')
                     done();
                 });
         });

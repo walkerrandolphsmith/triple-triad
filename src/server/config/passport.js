@@ -27,21 +27,30 @@ export default function(passport) {
                     return done(err);
                 }
                 if (user) {
-                    return done(null, false);
+                    return done(null, false, {message: 'User already exists.'});
                 } else {
                     var newUser = new User();
                     newUser.local.username = username;
                     newUser.local.email = req.body.email;
                     newUser.local.password = newUser.generateHash(password);
                     newUser.save(function(err, user) {
-                        if (err) throw err;
-                        UserToken.new(newUser._id, (err, userToken) => {
-                            if(err) throw err;
-                            send_verification_email(newUser.local.email, userToken.token, (err, res) => {
-                                if(err) throw err;
-                                return done(null, newUser);
+                        if (err) {
+                            return done(err);
+                        }else {
+                            UserToken.new(newUser._id, (err, userToken) => {
+                                if (err) {
+                                    return done(err);
+                                }else {
+                                    send_verification_email(newUser.local.email, userToken.token, (err, res) => {
+                                        if (err) {
+                                            return done(err);
+                                        }else {
+                                            return done(null, newUser);
+                                        }
+                                    });
+                                }
                             });
-                        });
+                        }
                     });
                 }
             });
