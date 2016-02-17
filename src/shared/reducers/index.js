@@ -7,6 +7,7 @@ import game from './game/game';
 import games from './games/games';
 import settings from './settings/settings';
 import signupForm from './signupForm/signupForm'
+import signinForm from './signinForm/signinForm';
 
 export default combineReducers({
     auth: auth,
@@ -15,5 +16,6 @@ export default combineReducers({
     games: games,
     settings: settings,
     signupForm: signupForm,
+    signinForm: signinForm,
     routing: routeReducer
 });
