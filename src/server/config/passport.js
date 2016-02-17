@@ -68,10 +68,10 @@ export default function(passport) {
                     return done(err);
                 }
                 if (!user) {
-                    return done(null, false);
+                    return done(null, false, {message: `${username} does not exist`});
                 }
                 if (!user.validPassword(password)) {
-                    return done(null, false)
+                    return done(null, false, {message: 'Username and password do not exist'})
                 }
                 return done(null, user);
             });

@@ -64,7 +64,7 @@ describe('/api/sign_in', () => {
                     username: username,
                     password: 'invalid_password'
                 })
-                .expect(401)
+                .expect(500)
                 .end((err, res) => {
                     expect(err).toNotExist();
                     done();
@@ -81,7 +81,7 @@ describe('/api/sign_in', () => {
                     username: 'non-existing-user',
                     password: 'password'
                 })
-                .expect(401)
+                .expect(500)
                 .end((err, res) => {
                     expect(err).toNotExist();
                     done();
