@@ -16,7 +16,10 @@ class SignIn extends React.Component {
 
 function mapStateToProps(state) {
     return {
-
+        errors: {
+            username: state.signinForm.get('username'),
+            password: state.signinForm.get('password')
+        }
     }
 }
 

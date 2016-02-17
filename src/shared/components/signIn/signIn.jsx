@@ -20,23 +20,31 @@ export default class SignIn extends React.Component {
         if (event.target.name === 'password') {
             this.setState({ password: event.target.value });
         }
+
+        this.props.signinFormErrorReset();
     }
     handleSubmit(event) {
         event.preventDefault();
-        if (this.state.username.length > 0 && this.state.password.length > 0) {
-            var userObj = {
-                username: this.state.username,
-                password: this.state.password
-            };
-            this.props.signIn(userObj);
-            this.setState({ username: '', password: ''});
-        }
+
+        this.props.signIn({
+            username: this.state.username,
+            password: this.state.password
+        });
     }
     render() {
+
+        let { username, password} = this.props.errors;
+
+        let usernameFormGroupClass = `form-group ${username ? 'has-error': ''}`;
+        let usernameHelpText = !username ? (<span></span>) : (<span className="help-block">{username}</span>);
+
+        let passwordFormGroupClass = `form-group ${password ? 'has-error': ''}`;
+        let passwordHelpText = !password ? (<span></span>) : (<span className="help-block">{password}</span>);
+
         return (
             <div id="signin">
                 <form onSubmit={this.handleSubmit.bind(this)}>
-                    <div className="form-group">
+                    <div className={usernameFormGroupClass}>
                         <label htmlFor="username">User name</label>
                         <input
                             className="form-control"
@@ -48,8 +56,9 @@ export default class SignIn extends React.Component {
                             value={this.state.username}
                             onChange={this.handleChange.bind(this)}
                         />
+                        {usernameHelpText}
                     </div>
-                    <div className="form-group">
+                    <div className={passwordFormGroupClass}>
                         <label htmlFor="username">Password</label>
                         <input
                             className="form-control"
@@ -61,6 +70,7 @@ export default class SignIn extends React.Component {
                             value={this.state.password}
                             onChange={this.handleChange.bind(this)}
                         />
+                        {passwordHelpText}
                     </div>
                     <button className="btn btn-main"
                         name="submitButton"
