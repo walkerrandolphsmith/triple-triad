@@ -9,6 +9,7 @@ import settings from './settings/settings';
 import signupForm from './signupForm/signupForm'
 import signinForm from './signinForm/signinForm';
 import resetPasswordForm from './resetPasswordForm/resetPasswordForm';
+import forgotPasswordForm from './forgotPasswordForm/forgotPasswordForm';
 
 export default combineReducers({
     auth: auth,
@@ -19,5 +20,6 @@ export default combineReducers({
     signupForm: signupForm,
     signinForm: signinForm,
     resetPasswordForm: resetPasswordForm,
+    forgotPasswordForm: forgotPasswordForm,
     routing: routeReducer
 });
