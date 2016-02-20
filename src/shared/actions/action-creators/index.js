@@ -39,6 +39,10 @@ export { requestUserProfile } from './userProfile/requestUserProfile/requestUser
 
 export { addCard } from './addCard/addCard';
 export { emailVerified } from './emailVerified/emailVerified';
+
+export { forgotPasswordFormError } from './forgotPasswordFormError/forgotPasswordFormError';
+export { forgotPasswordFormErrorReset } from './forgotPasswordFormErrorReset/forgotPasswordFormErrorReset';
+
 export { placeCard } from './placeCard/placeCard';
 export { updateFocusSetting } from './updateFocusSetting/updateFocusSetting';
 export { resetGame } from './resetGame/resetGame';
