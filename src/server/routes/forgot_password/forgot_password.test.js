@@ -53,6 +53,7 @@ describe('/api/forgot_password', () => {
                 .set('Accept', 'application/json')
                 .expect(500)
                 .end((err, res) => {
+                    expect(res.body.invalidEmail).toEqual(true)
                     done();
                 });
         });
