@@ -22,8 +22,8 @@ function mapStateToProps(state) {
     return {
         token: state.routing.path.split('/reset/')[1],
         errors: {
-            password: state.signupForm.get('password'),
-            confirmPassword: state.signupForm.get('confirmPassword')
+            password: state.resetPasswordForm.get('password'),
+            confirmPassword: state.resetPasswordForm.get('confirmPassword')
         }
     }
 }

@@ -42,6 +42,10 @@ export { emailVerified } from './emailVerified/emailVerified';
 export { placeCard } from './placeCard/placeCard';
 export { updateFocusSetting } from './updateFocusSetting/updateFocusSetting';
 export { resetGame } from './resetGame/resetGame';
+
+export { resetPasswordFormError } from './resetPasswordFormError/resetPasswordFormError';
+export { resetPasswordFormErrorReset } from './resetPasswordFormErrorReset/resetPasswordFormErrorReset';
+
 export { selectCard } from './selectCard/selectCard';
 export { selectPiece } from './selectPiece/selectPiece';
 export { setPhase } from './setPhase/setPhase';
