@@ -3,7 +3,8 @@ import {
     sendPasswordResetClear,
     sendPasswordResetFailed,
     sendPasswordResetRequest,
-    sendPasswordResetSuccess
+    sendPasswordResetSuccess,
+    forgotPasswordFormError
 } from './../../action-creators';
 
 export function sendPasswordReset(email) {
@@ -15,10 +16,18 @@ export function sendPasswordReset(email) {
         .set('Accept', 'application/json')
         .set('Content-Type', 'application/json')
         .end((error, response) => {
-            if(response.status === 200)
+            if(response.status === 200) {
                 dispatch(sendPasswordResetRequest());
-            else
+            }
+            else {
+                if(response.body.invalidEmail){
+                    dispatch(forgotPasswordFormError({
+                        field: 'email',
+                        error: 'This user does not exist'
+                    }));
+                }
                 dispatch(sendPasswordResetFailed());
+            }
 
             setTimeout(() => {
                 dispatch(sendPasswordResetClear())
