@@ -20,7 +20,9 @@ class ForgotPasswordContainer extends React.Component {
 
 function mapStateToProps(state) {
     return {
-
+        errors: {
+            email: state.forgotPasswordForm.get('email')
+        }
     }
 }
 
