@@ -45,16 +45,16 @@ describe.only('SIGN_UP async action creator', () => {
             SignUp.__Rewire__('pushPath', function(){
                 return 3;
             });
-
         });
 
         it('should dispatch requestSignUp, receiveUser, and pushPath action', done => {
             signUp(user)(dispatch);
             expect(dispatch).toHaveBeenCalledWith(1);
-            //expect(dispatch).toHaveBeenCalledWith(2);
-            //expect(dispatch).toHaveBeenCalledWith(3);
-            done();
-
+            setTimeout(() => {
+                expect(dispatch).toHaveBeenCalledWith(2);
+                expect(dispatch).toHaveBeenCalledWith(3);
+                done();
+            }, 0);
         });
     });
 
