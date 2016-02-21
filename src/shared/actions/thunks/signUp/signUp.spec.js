@@ -1,85 +1,64 @@
 import expect from 'expect';
 import SignUp from './signUp';
 import { signUp, __RewireAPI__ as signUpRewireAPI } from './signUp';
+import request from 'superagent';
+import mocker from 'superagent-mocker';
 
-describe('SIGN_OUT async action creator', () => {
+describe.only('SIGN_UP async action creator', () => {
 
-    let dispatch, cookie, userNameLabel, username;
+    let dispatch, mock;
     beforeEach(() => {
-       userNameLabel = 'username';
-       username = 'walker';
+       mock = mocker(request);
        dispatch = expect.createSpy();
-
-        SignUp.__Rewire__('requestSignUp', function(){
-            return 1;
-        });
-
-        SignUp.__Rewire__('receiveUser', function(){
-            return 2;
-        });
-
-        SignUp.__Rewire__('pushPath', function(){
-            return '/';
-        });
-
-        cookie = SignUp.__Rewire__('cookie', {
-            save: (usernameLabel, username) => { return 'xxx' }
-        });
+       mock.clearRoutes()
     });
 
     it('should be a function', () => {
        expect(signUp()).toBeA('function')
     });
 
-    describe('Signing out is successful', () => {
+    describe('Given a valid username, password, matching password and email, when requesting to sign up', () => {
 
-        let fetch;
+        let user, username, password, confirmPassword, email;
         beforeEach(() => {
-            fetch = SignUp.__Rewire__('fetch', function(){
-                return Promise.resolve({ok: true});
+            username = 'walkerrandolphsmith';
+            password = 'password';
+            confirmPassword = 'password';
+            email = 'tester@gmail.com';
+
+            user = {username: username, password: password, confirmPassword: confirmPassword, email: email};
+
+            mock.post('/api/sign_up', function(req) {
+                return {
+                    status: 200
+                };
             });
+
+            SignUp.__Rewire__('requestSignUp', function(){
+                return 1;
+            });
+
+            SignUp.__Rewire__('receiveUser', function(){
+                return 2;
+            });
+
+            SignUp.__Rewire__('pushPath', function(){
+                return 3;
+            });
+
         });
 
-        it('should dispatch requestSignIn action', () => {
-            fetch().then(response => {
-                expect(dispatch).toHaveBeenCalledWith(1)
-            });
-        });
+        it('should dispatch requestSignUp, receiveUser, and pushPath action', done => {
+            signUp(user)(dispatch);
+            expect(dispatch).toHaveBeenCalledWith(1);
+            //expect(dispatch).toHaveBeenCalledWith(2);
+            //expect(dispatch).toHaveBeenCalledWith(3);
+            done();
 
-        it('should call cookie given the username', () => {
-            fetch().then(response => {
-                expect(cookie).toHaveBeenCalled(userNameLabel, username)
-            });
         });
-
-        it('should dispatch receiveSignIn action', () => {
-            fetch().then(response => {
-                expect(dispatch).toHaveBeenCalledWith(2)
-            });
-        });
-
-        it('should dispatch update route action', () => {
-            fetch().then(response => {
-                expect(dispatch).toHaveBeenCalledWith('newRoute')
-            });
-        });
-
     });
 
-    describe('Signing out is unsuccessful', () => {
-
-        let fetch;
-        beforeEach(() => {
-            fetch = SignUp.__Rewire__('fetch', function(){
-                return Promise.resolve({ok: false});
-            });
-        });
-
-        it('should not dispatch any actions', () => {
-            fetch().then(response => {
-                expect(dispatch).toNotHaveBeenCalled();
-            });
-        });
+    describe('Signing up is unsuccessful', () => {
 
     });
 });
