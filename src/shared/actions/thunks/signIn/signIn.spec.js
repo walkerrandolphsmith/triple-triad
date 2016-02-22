@@ -1,27 +1,43 @@
 import expect from 'expect';
 import SignIn from './signIn';
 import { signIn, __RewireAPI__ as signInRewireAPI } from './signIn';
+import request from 'superagent';
+import mocker from 'superagent-mocker';
 
 describe('SIGN_IN async action creator', () => {
 
-    let dispatch, user;
+    let mock, dispatch, user;
     beforeEach(() => {
-       dispatch = expect.createSpy();
+        mock = mocker(request);
+        dispatch = expect.createSpy();
         user = {
-            username: 'walker'
+            username: 'walker',
+            password: 'password'
         };
+
+        SignIn.__Rewire__('isValidUsername', function(){
+            return true;
+        });
+
+        SignIn.__Rewire__('isValidPassword', function(){
+            return true;
+        });
 
         SignIn.__Rewire__('requestSignIn', function(){
             return 1;
         });
 
-        SignIn.__Rewire__('receiveSignIn', function(){
+        SignIn.__Rewire__('signinFormError', function(){
             return 2;
         });
 
-        SignIn.__Rewire__('pushPath', function(){
-            return 'newRoute';
+        SignIn.__Rewire__('receiveSignIn', function(){
+            return 3;
         });
+    });
+
+    afterEach(() => {
+        mock.clearRoutes();
     });
 
     it('should be a function', () => {
@@ -29,54 +45,80 @@ describe('SIGN_IN async action creator', () => {
     });
 
     describe('Signing in is successful', () => {
-
-        let fetch;
         beforeEach(() => {
-            fetch = SignIn.__Rewire__('fetch', function(){
-                return Promise.resolve({ok: true});
+            mock.post('/api/sign_in', function(req) {
+                return {
+                    status: 200
+                };
+            });
+
+            SignIn.__Rewire__('receiveUser', function(){
+                return 3;
+            });
+
+            SignIn.__Rewire__('pushPath', function(){
+                return 4;
             });
         });
 
-        it('should dispatch requestSignIn action', () => {
-            fetch().then(response => {
-                expect(dispatch).toHaveBeenCalledWith(1)
-            });
+        it('should dispatch receiveSignIn action', done => {
+            signIn(user)(dispatch);
+            expect(dispatch).toHaveBeenCalledWith(1);
+            setTimeout(() => {
+                expect(dispatch).toHaveBeenCalledWith(3);
+                done();
+            }, 0);
         });
-
-        it('should call cookie given the username', () => {
-            fetch().then(response => {
-                expect(cookie).toHaveBeenCalled('username', user.username)
-            });
-        });
-
-        it('should dispatch receiveSignIn action', () => {
-            fetch().then(response => {
-                expect(dispatch).toHaveBeenCalledWith(2)
-            });
-        });
-
-        it('should dispatch update route action', () => {
-            fetch().then(response => {
-                expect(dispatch).toHaveBeenCalledWith('newRoute')
-            });
-        });
-
     });
 
     describe('Signing in is unsuccessful', () => {
-
-        let fetch;
         beforeEach(() => {
-            fetch = SignIn.__Rewire__('fetch', function(){
-                return Promise.resolve({ok: false});
+            mock.post('/api/sign_in', function(req) {
+                return {
+                    status: 500,
+                    text: `{
+                        "field": "username",
+                        "error": "Username already exists"
+                    }`
+                };
             });
         });
 
-        it('should not dispatch any actions', () => {
-            fetch().then(response => {
-                expect(dispatch).toNotHaveBeenCalled();
+        it('should dispatch signUpFormError action', done => {
+            signIn(user)(dispatch);
+            expect(dispatch).toHaveBeenCalledWith(1);
+            setTimeout(() => {
+                expect(dispatch).toHaveBeenCalledWith(2);
+                done();
+            }, 200);
+        });
+    });
+
+    describe('Given an invalid username', () => {
+        beforeEach(() => {
+            SignIn.__Rewire__('isValidUsername', function(){
+                return false;
             });
         });
 
+        it('should dispatch signUpFormError action', () => {
+            signIn(user)(dispatch);
+            expect(dispatch).toHaveBeenCalledWith(1);
+            expect(dispatch).toHaveBeenCalledWith(2);
+        });
+    });
+
+    describe('Given an invalid password', () => {
+        beforeEach(() => {
+            SignIn.__Rewire__('isValidPassword', function(){
+                return false;
+            });
+        });
+
+        it('should dispatch signUpFormError action', () => {
+            signIn(user)(dispatch);
+            expect(dispatch).toHaveBeenCalledWith(1);
+            expect(dispatch).toHaveBeenCalledWith(2);
+        });
     });
 });
