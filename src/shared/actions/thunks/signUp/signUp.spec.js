@@ -4,7 +4,7 @@ import { signUp, __RewireAPI__ as signUpRewireAPI } from './signUp';
 import request from 'superagent';
 import mocker from 'superagent-mocker';
 
-describe.only('SIGN_UP async action creator', () => {
+describe('SIGN_UP async action creator', () => {
 
     let dispatch, mock, user;
     beforeEach(() => {
