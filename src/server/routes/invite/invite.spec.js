@@ -8,7 +8,7 @@ describe('/api/invite', () => {
     beforeEach(connectionManager.connect);
     afterEach(connectionManager.disconnect);
 
-    describe('POST /invite valid email', () => {
+    describe('Given a valid email, when POST /invite', () => {
         it('should give a status code 200 Ok', done => {
             request(app)
                 .post('/api/invite')
