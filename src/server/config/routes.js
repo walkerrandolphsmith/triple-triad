@@ -10,7 +10,8 @@ import {
     reset_password,
     user_profile,
     create_game,
-    get_games
+    get_games,
+    invite
 } from './../routes';
 
 export default function(passport) {
@@ -87,6 +88,13 @@ function configureAuthRoutes(passport) {
         '/get_games',
         (req, res) => {
             get_games(req,res)
+        }
+    );
+
+    router.post(
+        '/invite',
+        (req, res) => {
+            invite(req,res)
         }
     );
 

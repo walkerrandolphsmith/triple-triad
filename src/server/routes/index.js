@@ -1,6 +1,7 @@
 export { create_game } from './create_game/create_game';
 export { forgot_password } from './forgot_password/forgot_password';
 export { get_games } from './get_games/get_games';
+export { invite } from './invite/invite';
 export { resend_verification_email } from './resend_verification_email/resend_verification_email';
 export { reset_password } from './reset_password/reset_password';
 export { sign_in } from './sign_in/sign_in';
