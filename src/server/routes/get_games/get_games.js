@@ -5,6 +5,6 @@ export function get_games(req, res) {
 
     Game.find({owner: userId}, (err, games) => {
         if(err) return res.status(500).send();
-        return res.send(games);
+        return res.status(200).send(games);
     });
 }
