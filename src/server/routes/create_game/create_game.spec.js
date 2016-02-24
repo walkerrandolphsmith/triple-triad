@@ -2,11 +2,7 @@ import expect from 'expect';
 import Create_Game from './create_game';
 import { create_game, __RewireAPI__ as create_gameRewireAPI } from './create_game';
 
-describe.only("create_game", () => {
-   let save;
-   beforeEach(() => {
-
-   });
+describe('create_game', () => {
 
     describe('Given a userId and deck in the request body, when creating a new game', () => {
 
