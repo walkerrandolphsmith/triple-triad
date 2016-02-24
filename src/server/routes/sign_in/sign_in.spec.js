@@ -40,4 +40,76 @@ describe('sign_in', () => {
 
     });
 
+    describe('Given a request and response and passport, when passport throws an error', () => {
+
+        let error, status, json;
+        beforeEach(() => {
+            error = new Error();
+            passport = {
+                authenticate: (strategy, fn) => {
+                    fn(error, null, null);
+                    return (req, res, next) => {};
+                }
+            };
+
+            req = {};
+
+            json = expect.createSpy();
+            res = {
+                status: () => ({
+                    json: json
+                })
+            };
+
+            status = expect.spyOn(res, 'status').andCallThrough();
+        });
+
+        it('should return a status of 200 and the user\'s id and name', () => {
+            sign_in(req, res, {}, passport);
+            expect(status).toHaveBeenCalledWith(500);
+            expect(json).toHaveBeenCalledWith({
+                field: 'username',
+                error: error
+            });
+        });
+
+    });
+
+    describe('Given a request and response and passport, when passport is not successful in authenticating', () => {
+
+        let info, status, json;
+        beforeEach(() => {
+            info = { message: 'error message' };
+            passport = {
+                authenticate: (strategy, fn) => {
+                    fn(null, null, info);
+                    return (req, res, next) => {};
+                }
+            };
+
+            req = {};
+
+            json = expect.createSpy();
+            res = {
+                status: () => ({
+                    json: json
+                })
+            };
+
+            status = expect.spyOn(res, 'status').andCallThrough();
+        });
+
+        it('should return a status of 200 and the user\'s id and name', () => {
+            sign_in(req, res, {}, passport);
+            expect(status).toHaveBeenCalledWith(500);
+            expect(json).toHaveBeenCalledWith({
+                field: 'username',
+                error: info.message
+            });
+        });
+
+    });
+
+
+
 });
