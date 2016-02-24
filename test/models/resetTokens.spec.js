@@ -1,14 +1,14 @@
 import expect from 'expect';
 import mongoose from 'mongoose';
-import connectionManager from './../../../../test/connectionManager';
-import UserToken from './userTokens';
+import connectionManager from './../connectionManager';
+import ResetToken from './../../src/server/models/resetTokens/resetTokens';
 
-describe('User tokens', () => {
+describe('Reset tokens', () => {
 
     beforeEach(connectionManager.connect);
     afterEach(connectionManager.disconnect);
 
-    describe('new user token', () => {
+    describe('new reset password token', () => {
 
         let userId;
         beforeEach(() => {

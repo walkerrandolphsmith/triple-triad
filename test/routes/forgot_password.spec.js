@@ -1,10 +1,10 @@
 import expect from 'expect';
 import request from 'supertest';
-import connectionManager from './../../../../test/connectionManager';
-import app from './../../server';
+import connectionManager from './../connectionManager';
+import app from './../../src/server/server';
 
-import UserToken from './../../models/userTokens/userTokens';
-import User from './../../models/user/user';
+import UserToken from './../../src/server/models/userTokens/userTokens';
+import User from './../../src/server/models/user/user';
 
 describe('/api/forgot_password', () => {
 
@@ -31,7 +31,7 @@ describe('/api/forgot_password', () => {
 
         it('should create a new resetToken and send an email', done => {
             request(app)
-                .post('/api//forgot_password')
+                .post('/api/forgot_password')
                 .send({email: email})
                 .set('Content-Type', 'application/json')
                 .set('Accept', 'application/json')

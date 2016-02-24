@@ -1,9 +1,9 @@
 import expect from 'expect';
 import request from 'supertest';
-import connectionManager from './../../../../test/connectionManager';
-import app from './../../server';
+import connectionManager from './../connectionManager';
+import app from './../../src/server/server';
 
-import User from './../../models/user/user';
+import User from './../../src/server/models/user/user';
 
 describe('/api/sign_up', () => {
 

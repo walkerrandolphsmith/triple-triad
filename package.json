@@ -27,7 +27,7 @@
       }
     },
     "test": {
-      "command": "mocha ./src",
+      "command": "npm run test:unit && npm run test:integration",
       "env": {
         "NODE_ENV": "test"
       }
@@ -39,7 +39,7 @@
       }
     },
     "test:integration": {
-      "command": "find ./src -name '*.test.js' | xargs mocha --compilers js:babel-core/register",
+      "command": "find ./test -name '*.spec.js' | xargs mocha --compilers js:babel-core/register",
       "env": {
         "NODE_ENV": "test"
       }

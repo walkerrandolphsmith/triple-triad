@@ -1,10 +1,10 @@
 import expect from 'expect';
 import request from 'supertest';
-import connectionManager from './../../../../test/connectionManager';
-import app from './../../server';
+import connectionManager from './../connectionManager';
+import app from './../../src/server/server';
 
-import ResetToken from './../../models/resetTokens/resetTokens';
-import User from './../../models/user/user';
+import ResetToken from './../../src/server/models/resetTokens/resetTokens';
+import User from './../../src/server/models/user/user';
 
 describe('/api/reset_password', () => {
 
