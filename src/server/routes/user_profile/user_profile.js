@@ -7,7 +7,7 @@ export function user_profile(req, res) {
             return res.status(500).send();
         }
         else {
-            res.json({
+            res.status(200).json({
                 verified: user.local.verified
             });
         }
