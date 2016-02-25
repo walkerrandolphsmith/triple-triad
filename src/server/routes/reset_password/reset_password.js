@@ -6,7 +6,7 @@ export function reset_password(req, res) {
 
     if(password !== confirmPassword) return res.status(500).send();
 
-    Token.findOne({token: req.body.token}, (err, token) => {
+    Token.findOne({token: req.body.token, type: 'RESET' }, (err, token) => {
         if(err || token === null) {
             return res.status(500).send();
         }else {
