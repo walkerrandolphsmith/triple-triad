@@ -1,7 +1,7 @@
-import { REQUEST_NEW_GAME } from './../../../../constants/actionTypes';
+import { CREATE_GAME_REQUEST } from './../../../../constants/actionTypes';
 
 export function createGameRequest() {
     return {
-        type: REQUEST_NEW_GAME
+        type: CREATE_GAME_REQUEST
     }
 }

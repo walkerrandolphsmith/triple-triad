@@ -1,12 +1,12 @@
 import expect from 'expect';
-import { RECEIVE_NEW_GAME } from './../../../../constants/actionTypes';
+import { CREATE_GAME_SUCCESS } from './../../../../constants/actionTypes';
 import { createGameSuccess } from './createGameSuccess';
 
 describe('RECEIVE_NEW_GAME', () => {
 
     it('should create an action to indicate creating a game was successful', () => {
         const expectedAction = {
-            type: RECEIVE_NEW_GAME,
+            type: CREATE_GAME_SUCCESS,
             payload: {
                 game: 1
             }
