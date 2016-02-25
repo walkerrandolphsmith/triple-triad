@@ -1,5 +1,5 @@
-import crypto from 'crypto';
 import mongoose from 'mongoose';
+import tokenGenerator from './../../utils/tokenGenerator/tokenGenerator';
 
 let ResetToken;
 
@@ -9,14 +9,11 @@ let ResetTokenSchema = new mongoose.Schema({
 });
 
 ResetTokenSchema.statics.new = function (userId, fn) {
-    let user = new ResetToken();
-    crypto.randomBytes(48, function (ex, buf) {
-        let token = buf.toString('base64')
-            .replace(/\//g, '_')
-            .replace(/\+/g, '-');
-        user.token = `${userId}-${token.toString().slice(1,24)}`;
-        user.userId = userId;
-        user.save(fn);
+    let resetToken = new ResetToken();
+    tokenGenerator(userId).then((token, err) => {
+        resetToken.token = token;
+        resetToken.userId = userId;
+        resetToken.save(fn);
     });
 };
 
