@@ -1,6 +1,6 @@
 import PassportLocal from 'passport-local';
 import User from './../models/user/user';
-import UserToken from './../models/userTokens/userTokens';
+import Token from './../models/token/token';
 import { send_verification_email } from './../utils/mailer/mailer';
 
 export default function(passport) {
@@ -37,11 +37,11 @@ export default function(passport) {
                         if (err) {
                             return done(err);
                         }else {
-                            UserToken.new(newUser._id, (err, userToken) => {
+                            Token.new(newUser._id, 'USER', (err, token) => {
                                 if (err) {
                                     return done(err);
                                 }else {
-                                    send_verification_email(newUser.local.email, userToken.token, (err, res) => {
+                                    send_verification_email(newUser.local.email, token.token, (err, res) => {
                                         if (err) {
                                             return done(err);
                                         }else {

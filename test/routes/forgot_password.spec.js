@@ -3,7 +3,7 @@ import request from 'supertest';
 import connectionManager from './../connectionManager';
 import app from './../../src/server/server';
 
-import UserToken from './../../src/server/models/userTokens/userTokens';
+import Token from './../../src/server/models/token/token';
 import User from './../../src/server/models/user/user';
 
 describe('/api/forgot_password', () => {
@@ -22,14 +22,14 @@ describe('/api/forgot_password', () => {
             newUser.save(function(err, user) {
                 if (err) throw err;
                 id = user._id;
-                UserToken.new(id, (err, userToken) => {
+                Token.new(id, 'USER', (err, token) => {
                     if(err) throw err;
                     done();
                 });
             });
         });
 
-        it('should create a new resetToken and send an email', done => {
+        it('should create a new token and send an email', done => {
             request(app)
                 .post('/api/forgot_password')
                 .send({email: email})
@@ -45,7 +45,7 @@ describe('/api/forgot_password', () => {
 
     describe('POST /forgot_password given an email of that is not associated with an existing user', () => {
 
-        it('should create a new resetToken and send an email', done => {
+        it('should create a new token and send an email', done => {
             request(app)
                 .post('/api/forgot_password')
                 .send({email: 'nonuser@gmail.com'})

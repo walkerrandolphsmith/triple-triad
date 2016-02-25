@@ -1,4 +1,4 @@
-import ResetToken from './../../models/resetTokens/resetTokens';
+import Token from './../../models/token/token';
 import User from './../../models/user/user';
 import { send_reset_password_email } from './../../utils/mailer/mailer';
 
@@ -11,12 +11,12 @@ export function forgot_password(req, res) {
             res.status(500).send({invalidEmail: true})
         }
         else{
-            ResetToken.new(user._id, (err, resetToken) => {
+            Token.new(user._id, 'RESET', (err, token) => {
                 if(err){
                     res.status(500).send();
                 }
                 else{
-                    send_reset_password_email(email, resetToken.token, (err, mail) => {
+                    send_reset_password_email(email, token.token, (err, mail) => {
                         res.status(200).send({sent: true});
                     });
                 }

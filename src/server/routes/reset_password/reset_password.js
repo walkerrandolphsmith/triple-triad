@@ -1,16 +1,16 @@
-import ResetToken from './../../models/resetTokens/resetTokens';
+import Token from './../../models/token/token';
 import User from './../../models/user/user';
 
 export function reset_password(req, res) {
-    const { token, password, confirmPassword } = req.body;
+    const { password, confirmPassword } = req.body;
 
     if(password !== confirmPassword) return res.status(500).send();
 
-    ResetToken.findOne({token: token}, (err, resetToken) => {
-        if(err || resetToken === null) {
+    Token.findOne({token: req.body.token}, (err, token) => {
+        if(err || token === null) {
             return res.status(500).send();
         }else {
-            User.findById(resetToken.userId, (err, user) => {
+            User.findById(token.userId, (err, user) => {
                 if(err || user === null){
                     return res.status(500).send()
                 }else {

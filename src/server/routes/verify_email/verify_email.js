@@ -1,14 +1,13 @@
-import UserToken from './../../models/userTokens/userTokens';
+import Token from './../../models/token/token';
 import User from './../../models/user/user';
 
 export function verify_email(req, res) {
-    const token = req.body.token;
-    UserToken.findOne({ 'token': token}, function(err, userToken) {
-        if(err || userToken === null) {
+    Token.findOne({ 'token': req.body.token}, function(err, token) {
+        if(err || token === null) {
             return res.status(500).send();
         }
         else {
-            User.findById(userToken.userId, function (err, user) {
+            User.findById(token.userId, function (err, user) {
                 if (err || user === null) {
                     res.status(500).send();
                 }

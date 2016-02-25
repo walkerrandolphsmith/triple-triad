@@ -3,7 +3,7 @@ import request from 'supertest';
 import connectionManager from './../connectionManager';
 import app from './../../src/server/server';
 
-import ResetToken from './../../src/server/models/resetTokens/resetTokens';
+import Token from './../../src/server/models/token/token';
 import User from './../../src/server/models/user/user';
 
 describe('/api/reset_password', () => {
@@ -25,7 +25,7 @@ describe('/api/reset_password', () => {
             });
             user.local.password = user.generateHash(password);
             user.save(error => {
-                ResetToken.new(user._id, (err, resetToken) => {
+                Token.new(user._id, 'RESET', (err, resetToken) => {
                     if(err) throw err;
                     token = resetToken.token;
                     done();
@@ -64,7 +64,7 @@ describe('/api/reset_password', () => {
             });
             user.local.password = user.generateHash(password);
             user.save(error => {
-                ResetToken.new(user._id, (err, resetToken) => {
+                Token.new(user._id, 'RESET', (err, resetToken) => {
                     if(err) throw err;
                     token = resetToken.token;
                     done();
@@ -103,7 +103,7 @@ describe('/api/reset_password', () => {
             });
             user.local.password = user.generateHash(password);
             user.save(error => {
-                ResetToken.new(user._id, (err, resetToken) => {
+                Token.new(user._id, 'RESET', (err, resetToken) => {
                     if(err) throw err;
                     token = resetToken.token;
                     done();
@@ -142,7 +142,7 @@ describe('/api/reset_password', () => {
             });
             user.local.password = user.generateHash(password);
             user.save(error => {
-                ResetToken.new(user._id, (err, resetToken) => {
+                Token.new(user._id, 'RESET', (err, resetToken) => {
                     if(err) throw err;
                     token = resetToken.token;
                     done();

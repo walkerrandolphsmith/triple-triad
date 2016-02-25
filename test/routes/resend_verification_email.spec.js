@@ -3,7 +3,7 @@ import request from 'supertest';
 import connectionManager from './../connectionManager';
 import app from './../../src/server/server';
 
-import UserToken from './../../src/server/models/userTokens/userTokens';
+import Token from './../../src/server/models/token/token';
 import User from './../../src/server/models/user/user';
 
 describe('/api/resend_verification_email', () => {
@@ -22,7 +22,7 @@ describe('/api/resend_verification_email', () => {
             newUser.save(function(err, user) {
                 if (err) throw err;
                 id = user._id;
-                UserToken.new(id, (err, userToken) => {
+                Token.new(id, 'USER', (err, token) => {
                     if(err) throw err;
                     done();
                 });
@@ -54,7 +54,7 @@ describe('/api/resend_verification_email', () => {
             newUser.save(function(err, user) {
                 if (err) throw err;
                 id = user._id;
-                UserToken.new(id, (err, userToken) => {
+                Token.new(id, 'USER', (err, token) => {
                     if(err) throw err;
                     done();
                 });
