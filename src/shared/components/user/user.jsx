@@ -6,8 +6,8 @@ export default class User extends React.Component {
         this.props.getUserProfile(this.props.id);
     }
 
-    resendVerificationEmail() {
-        this.props.resendVerificationEmail(this.props.id);
+    resendEmailVerification() {
+        this.props.resendEmailVerification(this.props.id);
     }
 
     render() {
@@ -16,7 +16,7 @@ export default class User extends React.Component {
             ? (<div></div>)
             : (
             <div>
-                <button className="btn btn-main" onClick={this.resendVerificationEmail.bind(this)}>
+                <button className="btn btn-main" onClick={this.resendEmailVerification.bind(this)}>
                 Resend Verifcation Email
                 </button>
             </div>
