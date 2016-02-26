@@ -21,7 +21,7 @@ export default class SignIn extends React.Component {
             this.setState({ password: event.target.value });
         }
 
-        this.props.signinFormErrorReset();
+        this.props.clearFormErrors();
     }
     handleSubmit(event) {
         event.preventDefault();

@@ -1,7 +1,7 @@
 import { Map } from 'immutable';
 import {
     RESET_PASSWORD_FORM_ERROR,
-    RESET_PASSWORD_FORM_ERROR_RESET
+    CLEAR_FORM_ERRORS
 } from './../../constants/actionTypes';
 
 const INITIAL_STATE = new Map({
@@ -15,7 +15,7 @@ export default function resetPasswordFormErrors(state = INITIAL_STATE, action = 
 
     switch (type) {
         case RESET_PASSWORD_FORM_ERROR: return state.set(payload['field'], payload['error']);
-        case RESET_PASSWORD_FORM_ERROR_RESET: return INITIAL_STATE;
+        case CLEAR_FORM_ERRORS: return INITIAL_STATE;
         default: return state;
     }
 }

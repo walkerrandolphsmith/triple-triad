@@ -16,6 +16,8 @@ export const UPDATE_BOARD = 'UpdateBoard';
 export const START_AI_TURN = 'StartAITurn';
 export const END_AI_TURN = 'EndAITurn';
 
+export const CLEAR_FORM_ERRORS = 'CLEAR_FORM_ERRORS';
+
 export const CREATE_GAME_FAILED = 'CREATE_GAME_FAILED';
 export const CREATE_GAME_REQUEST = 'CREATE_GAME_REQUEST';
 export const CREATE_GAME_SUCCESS = 'CREATE_GAME_SUCCESS';

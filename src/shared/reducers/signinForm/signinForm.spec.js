@@ -3,7 +3,7 @@ import { Map } from 'immutable';
 import reducer from './signinForm';
 import {
     SIGN_IN_FORM_ERROR,
-    SIGN_IN_FORM_ERROR_RESET
+    CLEAR_FORM_ERRORS
 } from './../../constants/actionTypes';
 
 describe("Sign up form errors reducer", () => {
@@ -46,7 +46,7 @@ describe("Sign up form errors reducer", () => {
 
         it('should handle SIGN_IN_FORM_ERROR_RESET action', () => {
             let newState = reducer(initialState, {
-                type: SIGN_IN_FORM_ERROR_RESET
+                type: CLEAR_FORM_ERRORS
             });
             expect(newState).toEqual(initialState);
         });

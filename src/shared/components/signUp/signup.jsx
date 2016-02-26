@@ -36,7 +36,7 @@ export default class SignUp extends React.Component {
         if (name === 'confirm-password') {
             this.setState({ confirmPassword: value });
         }
-        this.props.signUpFormErrorReset();
+        this.props.clearFormErrors();
     }
 
     handleSubmit(event) {

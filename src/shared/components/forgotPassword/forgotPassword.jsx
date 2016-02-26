@@ -19,7 +19,7 @@ export default class ForgotPassword extends React.Component {
             this.setState({ email: value });
         }
 
-        this.props.forgotPasswordFormErrorReset();
+        this.props.clearFormErrors();
     }
 
     handleSubmit(event) {

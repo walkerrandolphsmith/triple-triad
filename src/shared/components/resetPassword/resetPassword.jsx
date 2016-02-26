@@ -23,7 +23,7 @@ export default class ResetPassword extends React.Component {
         if(name === 'confirmPassword') {
             this.setState({confirmPassword: value});
         }
-        this.props.resetPasswordFormErrorReset();
+        this.props.clearFormErrors();
     }
 
     handleSubmit(event) {
