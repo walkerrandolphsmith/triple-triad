@@ -12,27 +12,27 @@ describe('SIGN_UP async action creator', () => {
        dispatch = expect.createSpy();
        user = {username: 'walkerrandolphsmith', password: 'password', confirmPassword: 'password', email: 'email'};
 
-        SignUp.__Rewire__('isValidUsername', function(){
+        SignUp.__Rewire__('isValidUsername', () => {
             return true;
         });
 
-        SignUp.__Rewire__('isValidPassword', function(){
+        SignUp.__Rewire__('isValidPassword', () => {
             return true;
         });
 
-        SignUp.__Rewire__('passwordsMatch', function(){
+        SignUp.__Rewire__('passwordsMatch', () => {
             return true;
         });
 
-        SignUp.__Rewire__('isValidEmail', function(){
+        SignUp.__Rewire__('isValidEmail', () => {
             return true;
         });
 
-         SignUp.__Rewire__('requestSignUp', function(){
+         SignUp.__Rewire__('requestSignUp', () => {
              return 1;
          });
 
-         SignUp.__Rewire__('signUpFormError', function(){
+         SignUp.__Rewire__('signUpFormError', () => {
              return 2;
          });
     });
@@ -76,11 +76,11 @@ describe('SIGN_UP async action creator', () => {
                 };
             });
 
-            SignUp.__Rewire__('receiveUser', function(){
+            SignUp.__Rewire__('receiveUser', () => {
                 return 3;
             });
 
-            SignUp.__Rewire__('pushPath', function(){
+            SignUp.__Rewire__('pushPath', () => {
                 return 4;
             });
         });
@@ -98,7 +98,7 @@ describe('SIGN_UP async action creator', () => {
 
     describe('Given an invalid username', () => {
         beforeEach(() => {
-            SignUp.__Rewire__('isValidUsername', function(){
+            SignUp.__Rewire__('isValidUsername', () => {
                 return false;
             });
         });
@@ -112,7 +112,7 @@ describe('SIGN_UP async action creator', () => {
 
     describe('Given an invalid password', () => {
         beforeEach(() => {
-            SignUp.__Rewire__('isValidPassword', function(){
+            SignUp.__Rewire__('isValidPassword', () => {
                 return false;
             });
         });
@@ -126,7 +126,7 @@ describe('SIGN_UP async action creator', () => {
 
     describe('Given password does not match the confirm password', () => {
         beforeEach(() => {
-            SignUp.__Rewire__('passwordsMatch', function(){
+            SignUp.__Rewire__('passwordsMatch', () => {
                 return false;
             });
         });
@@ -140,7 +140,7 @@ describe('SIGN_UP async action creator', () => {
 
     describe('Given an invalid email', () => {
         beforeEach(() => {
-            SignUp.__Rewire__('isValidEmail', function(){
+            SignUp.__Rewire__('isValidEmail', () => {
                 return false;
             });
         });

@@ -9,19 +9,19 @@ describe('RESEND EMAIL VERIFICATION async action creator', () => {
        dispatch = expect.createSpy();
         id = 100;
 
-        ResendEmailVerification.__Rewire__('requestResendEmailVerification', function(){
+        ResendEmailVerification.__Rewire__('requestResendEmailVerification', () => {
             return 1;
         });
 
-        ResendEmailVerification.__Rewire__('receiveResendEmailVerification', function(){
+        ResendEmailVerification.__Rewire__('receiveResendEmailVerification', () => {
             return 2;
         });
 
-        ResendEmailVerification.__Rewire__('failResendEmailVerification', function(){
+        ResendEmailVerification.__Rewire__('failResendEmailVerification', () => {
             return 3;
         });
 
-        ResendEmailVerification.__Rewire__('clearEmailVerificationState', function(){
+        ResendEmailVerification.__Rewire__('clearEmailVerificationState', () => {
             return 4;
         });
     });

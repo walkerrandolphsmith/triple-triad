@@ -20,11 +20,11 @@ describe('GET_NEXT_CARD_FOR_HAND async action creator', () => {
    });
 
     it('should dispatch the SELECT_CARD action', () => {
-        GetNextCardForHand.__Rewire__('getCardToAdd', function(){
+        GetNextCardForHand.__Rewire__('getCardToAdd', () => {
             return new Map({id: 12});
         });
 
-        GetNextCardForHand.__Rewire__('selectCard', function(){
+        GetNextCardForHand.__Rewire__('selectCard', () => {
             return 12;
         });
         getNextCardForHand()(dispatch, getState);

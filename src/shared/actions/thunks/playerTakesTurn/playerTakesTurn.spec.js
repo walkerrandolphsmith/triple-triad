@@ -27,7 +27,7 @@ describe('PLAYER_TAKES_TURN async action creator', () => {
         });
 
         it('should dispatch PLACE_CARD action', () => {
-            PlayerTakesTurn.__Rewire__('placeCard', function(){
+            PlayerTakesTurn.__Rewire__('placeCard', () => {
                 return 1;
             });
             playerTakesTurn(isPlayer)(dispatch, getState);
@@ -35,7 +35,7 @@ describe('PLAYER_TAKES_TURN async action creator', () => {
         });
 
         it('should dispatch RULE async action', () => {
-            PlayerTakesTurn.__Rewire__('applyFlips', function(){
+            PlayerTakesTurn.__Rewire__('applyFlips', () => {
                 return 2;
             });
             playerTakesTurn(isPlayer)(dispatch, getState);
@@ -43,7 +43,7 @@ describe('PLAYER_TAKES_TURN async action creator', () => {
         });
 
         it('should dispatch RULE async action', () => {
-            PlayerTakesTurn.__Rewire__('selectCard', function(){
+            PlayerTakesTurn.__Rewire__('selectCard', () => {
                 return 3;
             });
             playerTakesTurn(isPlayer)(dispatch, getState);
@@ -51,7 +51,7 @@ describe('PLAYER_TAKES_TURN async action creator', () => {
         });
 
         it('should dispatch RULE async action', () => {
-            PlayerTakesTurn.__Rewire__('selectPiece', function(){
+            PlayerTakesTurn.__Rewire__('selectPiece', () => {
                 return 4;
             });
             playerTakesTurn(isPlayer)(dispatch, getState);
@@ -59,7 +59,7 @@ describe('PLAYER_TAKES_TURN async action creator', () => {
         });
 
         xit('should dispatch AI_TURN async action', () => {
-            PlayerTakesTurn.__Rewire__('aiTurn', function(){
+            PlayerTakesTurn.__Rewire__('aiTurn', () => {
                 return 5;
             });
             playerTakesTurn(isPlayer)(dispatch, getState);
@@ -67,7 +67,7 @@ describe('PLAYER_TAKES_TURN async action creator', () => {
         });
 
         xit('should dispatch GET_NEXT_SLECTED_CARD async action', () => {
-            PlayerTakesTurn.__Rewire__('getNextSelectedCard', function(){
+            PlayerTakesTurn.__Rewire__('getNextSelectedCard', () => {
                 return 6;
             });
             playerTakesTurn(isPlayer)(dispatch, getState);
@@ -83,7 +83,7 @@ describe('PLAYER_TAKES_TURN async action creator', () => {
         });
 
         it('should dispatch PLACE_CARD action', () => {
-            PlayerTakesTurn.__Rewire__('placeCard', function(){
+            PlayerTakesTurn.__Rewire__('placeCard', () => {
                 return 1;
             });
             playerTakesTurn(isPlayer)(dispatch, getState);
@@ -91,7 +91,7 @@ describe('PLAYER_TAKES_TURN async action creator', () => {
         });
 
         it('should dispatch RULE async action', () => {
-            PlayerTakesTurn.__Rewire__('applyFlips', function(){
+            PlayerTakesTurn.__Rewire__('applyFlips', () => {
                 return 2;
             });
             playerTakesTurn(isPlayer)(dispatch, getState);
@@ -99,7 +99,7 @@ describe('PLAYER_TAKES_TURN async action creator', () => {
         });
 
         it('should dispatch RULE async action', () => {
-            PlayerTakesTurn.__Rewire__('selectCard', function(){
+            PlayerTakesTurn.__Rewire__('selectCard', () => {
                 return 3;
             });
             playerTakesTurn(isPlayer)(dispatch, getState);
@@ -107,7 +107,7 @@ describe('PLAYER_TAKES_TURN async action creator', () => {
         });
 
         it('should dispatch RULE async action', () => {
-            PlayerTakesTurn.__Rewire__('selectPiece', function(){
+            PlayerTakesTurn.__Rewire__('selectPiece', () => {
                 return 4;
             });
             playerTakesTurn(isPlayer)(dispatch, getState);

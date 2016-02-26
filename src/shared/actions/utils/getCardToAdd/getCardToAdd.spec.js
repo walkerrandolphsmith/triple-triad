@@ -15,7 +15,7 @@ describe('getCardToAdd utility', () => {
             new Map({id: 4, name: '5', owner: 1, boardIndex: -1})
         ]);
 
-        GetCardToAdd.__Rewire__('getAvailableDeck', function(){
+        GetCardToAdd.__Rewire__('getAvailableDeck', () => {
             return new List([
                 deck.get(0), deck.get(1), deck.get(2), deck.get(3), deck.get(4)
             ]);

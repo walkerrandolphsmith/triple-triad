@@ -22,13 +22,13 @@ describe('selectCardForOpponent utility', () => {
         deck: deck
     });
 
-    SelectCardForOpponent.__Rewire__('getHand', function(){
+    SelectCardForOpponent.__Rewire__('getHand', () => {
         return new List([
             deck.get(0), deck.get(1), deck.get(2), deck.get(3), deck.get(4), deck.get(5)
         ]);
     });
 
-    SelectCardForOpponent.__Rewire__('sample', function(){
+    SelectCardForOpponent.__Rewire__('sample', () => {
         return deck.get(0)
     });
 

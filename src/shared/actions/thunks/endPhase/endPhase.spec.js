@@ -8,23 +8,23 @@ describe('END_PHASE async action creator', () => {
     let dispatch;
     beforeEach(() => {
         dispatch = expect.createSpy();
-        EndPhase.__Rewire__('setPhase', function() {
+        EndPhase.__Rewire__('setPhase', () => {
             return 1;
         });
 
-        EndPhase.__Rewire__('setHands', function() {
+        EndPhase.__Rewire__('setHands', () => {
             return 2;
         });
 
-        EndPhase.__Rewire__('getNextSelectedCard', function() {
+        EndPhase.__Rewire__('getNextSelectedCard', () => {
             return 3;
         });
 
-        EndPhase.__Rewire__('getNextCardForHand', function() {
+        EndPhase.__Rewire__('getNextCardForHand', () => {
             return 4;
         });
 
-        EndPhase.__Rewire__('resetGame', function() {
+        EndPhase.__Rewire__('resetGame', () => {
             return 5;
         });
     });
@@ -37,7 +37,7 @@ describe('END_PHASE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            EndPhase.__Rewire__('getNextPhase', function() {
+            EndPhase.__Rewire__('getNextPhase', () => {
                 return 0;
             });
             getState = () => ({
@@ -61,7 +61,7 @@ describe('END_PHASE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            EndPhase.__Rewire__('getNextPhase', function() {
+            EndPhase.__Rewire__('getNextPhase', () => {
                 return 0;
             });
             getState = () => ({
@@ -85,7 +85,7 @@ describe('END_PHASE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            EndPhase.__Rewire__('getNextPhase', function() {
+            EndPhase.__Rewire__('getNextPhase', () => {
                 return 'handSelection';
             });
             getState = () => ({
@@ -109,7 +109,7 @@ describe('END_PHASE async action creator', () => {
 
         let getState;
         beforeEach(() => {
-            EndPhase.__Rewire__('getNextPhase', function() {
+            EndPhase.__Rewire__('getNextPhase', () => {
                 return 'round';
             });
             getState = () => ({

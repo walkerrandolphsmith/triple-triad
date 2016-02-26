@@ -16,7 +16,7 @@ describe('SELECTED_PIECE_BY_CLICK async action creator', () => {
     });
 
     it('should dispatch getNextSelectedCard action', () => {
-        SelectedPieceByClick.__Rewire__('selectPiece', function(){
+        SelectedPieceByClick.__Rewire__('selectPiece', () => {
             return 1;
         });
         selectedPieceByClick(index)(dispatch, getState);
@@ -24,7 +24,7 @@ describe('SELECTED_PIECE_BY_CLICK async action creator', () => {
     });
 
     it('should dispatch PLayerTakesTurn action', () => {
-        SelectedPieceByClick.__Rewire__('playerTakesTurn', function(){
+        SelectedPieceByClick.__Rewire__('playerTakesTurn', () => {
             return 2;
         });
         selectedPieceByClick(index)(dispatch, getState);
@@ -32,7 +32,7 @@ describe('SELECTED_PIECE_BY_CLICK async action creator', () => {
     });
 
     it('should dispatch SET_PHASE action', () => {
-        SelectedPieceByClick.__Rewire__('setPhase', function(){
+        SelectedPieceByClick.__Rewire__('setPhase', () => {
             return 3;
         });
         selectedPieceByClick(index)(dispatch, getState);

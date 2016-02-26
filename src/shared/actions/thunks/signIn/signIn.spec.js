@@ -15,23 +15,23 @@ describe('SIGN_IN async action creator', () => {
             password: 'password'
         };
 
-        SignIn.__Rewire__('isValidUsername', function(){
+        SignIn.__Rewire__('isValidUsername', () => {
             return true;
         });
 
-        SignIn.__Rewire__('isValidPassword', function(){
+        SignIn.__Rewire__('isValidPassword', () => {
             return true;
         });
 
-        SignIn.__Rewire__('requestSignIn', function(){
+        SignIn.__Rewire__('requestSignIn', () => {
             return 1;
         });
 
-        SignIn.__Rewire__('signinFormError', function(){
+        SignIn.__Rewire__('signinFormError', () => {
             return 2;
         });
 
-        SignIn.__Rewire__('receiveSignIn', function(){
+        SignIn.__Rewire__('receiveSignIn', () => {
             return 3;
         });
     });
@@ -52,11 +52,11 @@ describe('SIGN_IN async action creator', () => {
                 };
             });
 
-            SignIn.__Rewire__('receiveUser', function(){
+            SignIn.__Rewire__('receiveUser', () => {
                 return 3;
             });
 
-            SignIn.__Rewire__('pushPath', function(){
+            SignIn.__Rewire__('pushPath', () => {
                 return 4;
             });
         });
@@ -96,7 +96,7 @@ describe('SIGN_IN async action creator', () => {
 
     describe('Given an invalid username', () => {
         beforeEach(() => {
-            SignIn.__Rewire__('isValidUsername', function(){
+            SignIn.__Rewire__('isValidUsername', () => {
                 return false;
             });
         });
@@ -110,7 +110,7 @@ describe('SIGN_IN async action creator', () => {
 
     describe('Given an invalid password', () => {
         beforeEach(() => {
-            SignIn.__Rewire__('isValidPassword', function(){
+            SignIn.__Rewire__('isValidPassword', () => {
                 return false;
             });
         });

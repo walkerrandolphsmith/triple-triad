@@ -5,11 +5,11 @@ import { applyFlipRules, __RewireAPI__ as applyFlipRulesRewireAPI } from './appl
 describe('applyFlipRules utility', () => {
 
     beforeEach(() => {
-        ApplyFlipRules.__Rewire__('basicRule', function(){
+        ApplyFlipRules.__Rewire__('basicRule', () => {
             return [0,1,5];
         });
 
-        ApplyFlipRules.__Rewire__('sameRule', function(){
+        ApplyFlipRules.__Rewire__('sameRule', () => {
             return [0,1,2,3,4];
         });
     });

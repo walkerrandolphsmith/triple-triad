@@ -27,7 +27,7 @@ describe('SET_HANDS async action creator', () => {
         });
 
         it('should dispatch SET_HAND action', () => {
-            SetHands.__Rewire__('setHand', function(){
+            SetHands.__Rewire__('setHand', () => {
                 return 1;
             });
             setHands()(dispatch, getState);
@@ -47,7 +47,7 @@ describe('SET_HANDS async action creator', () => {
         });
 
         it('should dispatch SET_HAND action given the player in the payload', () => {
-            SetHands.__Rewire__('setHand', function(){
+            SetHands.__Rewire__('setHand', () => {
                 return 1;
             });
             setHands()(dispatch, getState);

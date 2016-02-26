@@ -14,31 +14,31 @@ describe('AI_TURN async action creator', () => {
            })
        });
 
-        AiTurn.__Rewire__('startAiTurn', function(){
+        AiTurn.__Rewire__('startAiTurn', () => {
             return 'startAI';
         });
 
-        AiTurn.__Rewire__('selectCardForOpponent', function(){
+        AiTurn.__Rewire__('selectCardForOpponent', () => {
             return {index: 1, owner: 1};
         });
 
-        AiTurn.__Rewire__('selectCard', function(){
+        AiTurn.__Rewire__('selectCard', () => {
             return 'selectCard';
         });
 
-        AiTurn.__Rewire__('getValidPiece', function(){
+        AiTurn.__Rewire__('getValidPiece', () => {
             return 'getValidPiece';
         });
 
-        AiTurn.__Rewire__('selectPiece', function(){
+        AiTurn.__Rewire__('selectPiece', () => {
             return 'selectPiece';
         });
 
-        AiTurn.__Rewire__('playerTakesTurn', function(){
+        AiTurn.__Rewire__('playerTakesTurn', () => {
             return 'playerTakesTurn';
         });
 
-        AiTurn.__Rewire__('endAiTurn', function(){
+        AiTurn.__Rewire__('endAiTurn', () => {
             return 'endAI';
         });
 
@@ -66,15 +66,15 @@ describe('AI_TURN async action creator', () => {
     describe('Given there is a valid piece', () => {
 
         beforeEach(() =>{
-            AiTurn.__Rewire__('getValidPiece', function(){
+            AiTurn.__Rewire__('getValidPiece', () => {
                 return 1;
             });
 
-            AiTurn.__Rewire__('playerTakesTurn', function(){
+            AiTurn.__Rewire__('playerTakesTurn', () => {
                 return 'playerTakesTurn';
             });
 
-            AiTurn.__Rewire__('endAiTurn', function(){
+            AiTurn.__Rewire__('endAiTurn', () => {
                 return 'endAI';
             });
         });
@@ -82,8 +82,8 @@ describe('AI_TURN async action creator', () => {
         it('should dispatch SELECT_PIECE and PLAYER_TAKES_TURN actions', () => {
 
             aiTurn()(dispatch, getState);
-            expect(dispatch).toHaveBeenCalledWith('selectPiece')
-            expect(dispatch).toHaveBeenCalledWith('playerTakesTurn')
+            expect(dispatch).toHaveBeenCalledWith('selectPiece');
+            expect(dispatch).toHaveBeenCalledWith('playerTakesTurn');
             expect(dispatch.calls.length).toEqual(5)
         });
     });
@@ -91,15 +91,15 @@ describe('AI_TURN async action creator', () => {
     describe('Given there is a not a valid piece', () => {
 
         beforeEach(() =>{
-            AiTurn.__Rewire__('getValidPiece', function(){
+            AiTurn.__Rewire__('getValidPiece', () => {
                 return -1;
             });
 
-            AiTurn.__Rewire__('playerTakesTurn', function(){
+            AiTurn.__Rewire__('playerTakesTurn', () => {
                 return 'playerTakesTurn';
             });
 
-            AiTurn.__Rewire__('endAiTurn', function(){
+            AiTurn.__Rewire__('endAiTurn', () => {
                 return 'endAI';
             });
         });

@@ -10,7 +10,7 @@ describe('SEND INVITE async action creator', () => {
 
         getState = () => ({ });
 
-        SendInvite.__Rewire__('endPhase', function(){
+        SendInvite.__Rewire__('endPhase', () => {
             return 1;
         });
     });

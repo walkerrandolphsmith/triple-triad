@@ -27,7 +27,7 @@ describe('HANDLE_ESCAPE async action creator', () => {
         });
 
         it('should dispatch the SET_PHASE action', () => {
-            HandleEscape.__Rewire__('setPhase', function(){
+            HandleEscape.__Rewire__('setPhase', () => {
                 return 1;
             });
             handleEscape()(dispatch, getState);
@@ -35,7 +35,7 @@ describe('HANDLE_ESCAPE async action creator', () => {
         });
 
         it('should dispatch the SELECT_PIECE action', () => {
-            HandleEscape.__Rewire__('selectPiece', function(){
+            HandleEscape.__Rewire__('selectPiece', () => {
                 return 2;
             });
             handleEscape()(dispatch, getState);

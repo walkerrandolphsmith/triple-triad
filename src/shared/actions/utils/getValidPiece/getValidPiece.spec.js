@@ -27,17 +27,17 @@ describe('getValidPiece utility', () => {
             deck: deck
         });
 
-        GetValidPiece.__Rewire__('getBoard', function(){
+        GetValidPiece.__Rewire__('getBoard', () => {
             return new List([
                 deck.get(0), deck.get(1), deck.get(2), deck.get(3), deck.get(4), deck.get(5)
             ]);
         });
 
-        GetValidPiece.__Rewire__('getValidPieces', function(){
+        GetValidPiece.__Rewire__('getValidPieces', () => {
             return new List([]);
         });
 
-        GetValidPiece.__Rewire__('sample', function(){
+        GetValidPiece.__Rewire__('sample', () => {
             return 99;
         });
 

@@ -51,7 +51,7 @@ describe('HANDLE_ENTER async action creator', () => {
         });
 
         it('should dispatch the UPDATE_SETTINGS action', () => {
-            HandleEnter.__Rewire__('updateSettings', function(){
+            HandleEnter.__Rewire__('updateSettings', () => {
                 return 'settings';
             });
             handleEnter()(dispatch, getState);
@@ -79,7 +79,7 @@ describe('HANDLE_ENTER async action creator', () => {
         });
 
         it('should dispatch the ADD_CARD action', () => {
-            HandleEnter.__Rewire__('addCard', function(){
+            HandleEnter.__Rewire__('addCard', () => {
                 return 'addCardToHand';
             });
             handleEnter()(dispatch, getState);
@@ -134,7 +134,7 @@ describe('HANDLE_ENTER async action creator', () => {
         });
 
         it('should dispatch ADD_CARD action', () => {
-            HandleEnter.__Rewire__('addCard', function(){
+            HandleEnter.__Rewire__('addCard', () => {
                 return 'addCardToDeck';
             });
             handleEnter()(dispatch, getState);
@@ -155,7 +155,7 @@ describe('HANDLE_ENTER async action creator', () => {
         });
 
         it('should dispatch the SET_PHASE action setting the phase to pieceSelection', () => {
-            HandleEnter.__Rewire__('setPhase', function(){
+            HandleEnter.__Rewire__('setPhase', () => {
                 return 1;
             });
             handleEnter()(dispatch, getState);
@@ -164,7 +164,7 @@ describe('HANDLE_ENTER async action creator', () => {
         });
 
         it('should dispatch the getNextSelectedPiece action to set the board with a selected piece', () => {
-            HandleEnter.__Rewire__('getNextSelectedPiece', function(){
+            HandleEnter.__Rewire__('getNextSelectedPiece', () => {
                 return 2;
             });
             handleEnter()(dispatch, getState);
@@ -185,7 +185,7 @@ describe('HANDLE_ENTER async action creator', () => {
         });
 
         it('should dispatch the PlayerTakesTurn action', () => {
-            HandleEnter.__Rewire__('playerTakesTurn', function(){
+            HandleEnter.__Rewire__('playerTakesTurn', () => {
                 return 3;
             });
             handleEnter()(dispatch, getState);
@@ -193,7 +193,7 @@ describe('HANDLE_ENTER async action creator', () => {
         });
 
         it('should dispatch the SET_PHASE action setting the phase to cardSelection', () => {
-            HandleEnter.__Rewire__('setPhase', function(){
+            HandleEnter.__Rewire__('setPhase', () => {
                 return 4;
             });
             handleEnter()(dispatch, getState);

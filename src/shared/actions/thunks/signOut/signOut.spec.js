@@ -9,15 +9,15 @@ describe('SIGN_OUT async action creator', () => {
        userNameLabel = 'username';
        dispatch = expect.createSpy();
 
-        SignOut.__Rewire__('requestSignOut', function(){
+        SignOut.__Rewire__('requestSignOut', () => {
             return 1;
         });
 
-        SignOut.__Rewire__('receiveSignOut', function(){
+        SignOut.__Rewire__('receiveSignOut', () => {
             return 2;
         });
 
-        SignOut.__Rewire__('pushPath', function(){
+        SignOut.__Rewire__('pushPath', () => {
             return '/';
         });
     });
@@ -30,7 +30,7 @@ describe('SIGN_OUT async action creator', () => {
 
         let fetch;
         beforeEach(() => {
-            fetch = SignOut.__Rewire__('fetch', function(){
+            fetch = SignOut.__Rewire__('fetch', () => {
                 return Promise.resolve({ok: true});
             });
         });
@@ -65,7 +65,7 @@ describe('SIGN_OUT async action creator', () => {
 
         let fetch;
         beforeEach(() => {
-            fetch = SignOut.__Rewire__('fetch', function(){
+            fetch = SignOut.__Rewire__('fetch', () => {
                 return Promise.resolve({ok: false});
             });
         });

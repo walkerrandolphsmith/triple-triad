@@ -21,11 +21,11 @@ describe('GET_NEXT_SELECTED_PIECE async action creator', () => {
    });
 
     it('should dispatch the SELECT_PIECE action', () => {
-        GetNextSelectedPiece.__Rewire__('getPieceToSelect', function(){
+        GetNextSelectedPiece.__Rewire__('getPieceToSelect', () => {
             return 1;
         });
 
-        GetNextSelectedPiece.__Rewire__('selectPiece', function(){
+        GetNextSelectedPiece.__Rewire__('selectPiece', () => {
             return 2;
         });
 

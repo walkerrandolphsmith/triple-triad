@@ -23,7 +23,7 @@ describe('getRandomHand utility', () => {
             deck: deck
         });
 
-        GetRandomHand.__Rewire__('getAvailableDeck', function(){
+        GetRandomHand.__Rewire__('getAvailableDeck', () => {
             return new List([
                 deck.get(0), deck.get(1), deck.get(2), deck.get(3), deck.get(4), deck.get(5)
             ]);

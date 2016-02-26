@@ -27,7 +27,7 @@ describe('HANDLE_DOWN async action creator', () => {
         });
 
         it('should dispatch the getNextSelectedCard action', () => {
-            HandleDown.__Rewire__('getNextSelectedCard', function(){
+            HandleDown.__Rewire__('getNextSelectedCard', () => {
                 return 1;
             });
             handleDown()(dispatch, getState);
@@ -47,7 +47,7 @@ describe('HANDLE_DOWN async action creator', () => {
         });
 
         it('should dispatch the GET_NEXT_SELECTED_PIECE action', () => {
-            HandleDown.__Rewire__('getNextSelectedPiece', function(){
+            HandleDown.__Rewire__('getNextSelectedPiece', () => {
                 return 2;
             });
             handleDown()(dispatch, getState);

@@ -18,7 +18,7 @@ describe('SET_HAND async action creator', () => {
     });
 
     it('should dispatch ADD_CARD action for each card in hand', () => {
-        SetHand.__Rewire__('getRandomHand', function(){
+        SetHand.__Rewire__('getRandomHand', () => {
             return new List([
                 new Map({id: 1, name: '1', owner: 1, boardIndex: -1}),
                 new Map({id: 2, name: '2', owner: 1, boardIndex: -1}),
@@ -27,7 +27,7 @@ describe('SET_HAND async action creator', () => {
                 new Map({id: 5, name: '5', owner: 1, boardIndex: -1})
             ]);
         });
-        SetHand.__Rewire__('addCard', function(){
+        SetHand.__Rewire__('addCard', () => {
             return 1;
         });
 

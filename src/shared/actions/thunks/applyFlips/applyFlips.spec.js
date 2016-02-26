@@ -20,7 +20,7 @@ describe('APPLY_FLIPS async action creator', () => {
     });
 
     it('should dispatch UPDATE_BOARD action for each tuple (index, owner)', () => {
-        ApplyFlips.__Rewire__('applyFlipRules', function(){
+        ApplyFlips.__Rewire__('applyFlipRules', () => {
             return [
                 {index: 1, owner: 1},
                 {index: 3, owner: 2},
@@ -29,7 +29,7 @@ describe('APPLY_FLIPS async action creator', () => {
             ];
         });
 
-        ApplyFlips.__Rewire__('updateBoard', function(){
+        ApplyFlips.__Rewire__('updateBoard', () => {
             return 1;
         });
 

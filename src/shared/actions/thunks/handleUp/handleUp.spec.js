@@ -27,7 +27,7 @@ describe('HANDLE_UP async action creator', () => {
         });
 
         it('should dispatch the GET_NEXT_SELECTED_CARD action', () => {
-            HandleUp.__Rewire__('getNextSelectedCard', function(){
+            HandleUp.__Rewire__('getNextSelectedCard', () => {
                 return 1;
             });
             handleUp()(dispatch, getState);
@@ -47,7 +47,7 @@ describe('HANDLE_UP async action creator', () => {
         });
 
         it('should dispatch the GET_NEXT_SELECTED_PIECE action', () => {
-            HandleUp.__Rewire__('getNextSelectedPiece', function(){
+            HandleUp.__Rewire__('getNextSelectedPiece', () => {
                 return 2;
             });
             handleUp()(dispatch, getState);

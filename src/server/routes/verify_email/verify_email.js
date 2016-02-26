@@ -2,12 +2,12 @@ import Token from './../../models/token/token';
 import User from './../../models/user/user';
 
 export function verify_email(req, res) {
-    Token.findOne({ 'token': req.body.token, type: 'USER' }, function(err, token) {
+    Token.findOne({ 'token': req.body.token, type: 'USER' }, (err, token) => {
         if(err || token === null) {
             return res.status(500).send();
         }
         else {
-            User.findById(token.userId, function (err, user) {
+            User.findById(token.userId, (err, user) => {
                 if (err || user === null) {
                     res.status(500).send();
                 }
