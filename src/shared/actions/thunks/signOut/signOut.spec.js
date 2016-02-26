@@ -1,12 +1,14 @@
 import expect from 'expect';
 import SignOut from './signOut';
 import { signOut, __RewireAPI__ as signOutRewireAPI } from './signOut';
+import request from 'superagent';
+import mocker from 'superagent-mocker';
 
 describe('SIGN_OUT async action creator', () => {
 
-    let dispatch, userNameLabel;
+    let mock, dispatch;
     beforeEach(() => {
-       userNameLabel = 'username';
+       mock = mocker(request);
        dispatch = expect.createSpy();
 
         SignOut.__Rewire__('requestSignOut', () => {
@@ -18,8 +20,12 @@ describe('SIGN_OUT async action creator', () => {
         });
 
         SignOut.__Rewire__('pushPath', () => {
-            return '/';
+            return 3;
         });
+    });
+
+    afterEach(() => {
+        mock.clearRoutes();
     });
 
     it('should be a function', () => {
@@ -27,54 +33,33 @@ describe('SIGN_OUT async action creator', () => {
     });
 
     describe('Signing out is successful', () => {
-
-        let fetch;
         beforeEach(() => {
-            fetch = SignOut.__Rewire__('fetch', () => {
-                return Promise.resolve({ok: true});
-            });
+            mock.get('/api/sign_out', (req) => ({
+                status: 200
+            }));
         });
 
-        it('should dispatch requestSignIn action', () => {
-            fetch().then(response => {
-                expect(dispatch).toHaveBeenCalledWith(1)
-            });
+        it('should dispatch requestSignOut and receiveSignOut action', done => {
+            signOut()(dispatch);
+            expect(dispatch).toHaveBeenCalledWith(1);
+            setTimeout(() => {
+                expect(dispatch).toHaveBeenCalledWith(2);
+                expect(dispatch).toHaveBeenCalledWith(3);
+                done();
+            }, 0);
         });
-
-        it('should call cookie given the username', () => {
-            fetch().then(response => {
-                expect(cookie).toHaveBeenCalled(userNameLabel)
-            });
-        });
-
-        it('should dispatch receiveSignIn action', () => {
-            fetch().then(response => {
-                expect(dispatch).toHaveBeenCalledWith(2)
-            });
-        });
-
-        it('should dispatch update route action', () => {
-            fetch().then(response => {
-                expect(dispatch).toHaveBeenCalledWith('newRoute')
-            });
-        });
-
     });
 
     describe('Signing out is unsuccessful', () => {
-
-        let fetch;
         beforeEach(() => {
-            fetch = SignOut.__Rewire__('fetch', () => {
-                return Promise.resolve({ok: false});
-            });
+            mock.get('/api/sign_out', (req) => ({
+                status: 500
+            }));
         });
 
-        it('should not dispatch any actions', () => {
-            fetch().then(response => {
-                expect(dispatch).toNotHaveBeenCalled();
-            });
+        it('should dispatch requestSignOut action', () => {
+            signOut()(dispatch);
+            expect(dispatch).toHaveBeenCalledWith(1);
         });
-
     });
 });
