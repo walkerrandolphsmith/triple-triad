@@ -2,7 +2,7 @@ import expect from 'expect';
 import GetUserProfile from './getUserProfile';
 import { getUserProfile, __RewireAPI__ as getUserProfileRewireAPI } from './getUserProfile';
 
-describe.only('Get User Profile async action creator', () => {
+describe('Get User Profile async action creator', () => {
 
     let dispatch, id;
     let post, send, set;
