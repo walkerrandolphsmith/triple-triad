@@ -3,7 +3,7 @@ import { List, Map } from 'immutable';
 import CreateGame from './createGame';
 import { createGame, __RewireAPI__ as createGameRewireAPI } from './createGame';
 
-describe.only('Create Game async action creator', () => {
+describe('Create Game async action creator', () => {
 
     let dispatch, getState;
     let deck, ownerId;
@@ -82,10 +82,6 @@ describe.only('Create Game async action creator', () => {
                     fn(null, { status: 200 });
                 }
             });
-
-            post = expect.spyOn(request, 'post').andCallThrough();
-            send = expect.spyOn(request, 'send').andCallThrough();
-            set = expect.spyOn(request, 'set').andCallThrough();
         });
 
         it('should dispatch createGameSuccess', () => {
@@ -107,10 +103,6 @@ describe.only('Create Game async action creator', () => {
                     fn(null, { status: 500 });
                 }
             });
-
-            post = expect.spyOn(request, 'post').andCallThrough();
-            send = expect.spyOn(request, 'send').andCallThrough();
-            set = expect.spyOn(request, 'set').andCallThrough();
         });
 
         it('should dispatch createGameFailed', () => {
