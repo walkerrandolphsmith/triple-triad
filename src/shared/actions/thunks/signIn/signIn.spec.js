@@ -2,7 +2,7 @@ import expect from 'expect';
 import SignIn from './signIn';
 import { signIn, __RewireAPI__ as signInRewireAPI } from './signIn';
 
-describe.only('SIGN_IN async action creator', () => {
+describe('SIGN_IN async action creator', () => {
 
     let dispatch, user;
     let post, send, set;
