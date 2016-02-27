@@ -13,25 +13,12 @@ describe('SIGN_IN async action creator', () => {
             password: 'password'
         };
 
-        SignIn.__Rewire__('isValidUsername', () => {
-            return true;
-        });
-
-        SignIn.__Rewire__('isValidPassword', () => {
-            return true;
-        });
-
-        SignIn.__Rewire__('requestSignIn', () => {
-            return 1;
-        });
-
-        SignIn.__Rewire__('signinFormError', () => {
-            return 2;
-        });
-
-        SignIn.__Rewire__('receiveSignIn', () => {
-            return 3;
-        });
+        SignIn.__Rewire__('isValidUsername', () => true);
+        SignIn.__Rewire__('isValidPassword', () => true);
+        SignIn.__Rewire__('requestSignIn', () => 1);
+        SignIn.__Rewire__('signinFormError', () => 2);
+        SignIn.__Rewire__('receiveSignIn', () => 3);
+        SignIn.__Rewire__('pushPath', () => 4);
     });
 
     it('should be a function', () => {
@@ -82,19 +69,14 @@ describe('SIGN_IN async action creator', () => {
                     fn(null, { status: 200 });
                 }
             });
+            signIn(user)(dispatch);
+        });
 
-            SignIn.__Rewire__('receiveUser', () => {
-                return 3;
-            });
-
-            SignIn.__Rewire__('pushPath', () => {
-                return 4;
-            });
+        it('should dispatch requestSignIn action', () => {
+            expect(dispatch).toHaveBeenCalledWith(1);
         });
 
         it('should dispatch receiveSignIn action', () => {
-            signIn(user)(dispatch);
-            expect(dispatch).toHaveBeenCalledWith(1);
             expect(dispatch).toHaveBeenCalledWith(3);
         });
     });
@@ -109,39 +91,44 @@ describe('SIGN_IN async action creator', () => {
                     fn(null, { status: 500, text: '{"field": "username", "error": "message"}' });
                 }
             });
+            signIn(user)(dispatch);
+        });
+
+        it('should dispatch requestSignIn action', () => {
+            expect(dispatch).toHaveBeenCalledWith(1);
         });
 
         it('should dispatch signUpFormError action', () => {
-            signIn(user)(dispatch);
-            expect(dispatch).toHaveBeenCalledWith(1);
             expect(dispatch).toHaveBeenCalledWith(2);
         });
     });
 
     describe('Given an invalid username', () => {
         beforeEach(() => {
-            SignIn.__Rewire__('isValidUsername', () => {
-                return false;
-            });
+            SignIn.__Rewire__('isValidUsername', () => false);
+            signIn(user)(dispatch);
+        });
+
+        it('should dispatch requestSignIn action', () => {
+            expect(dispatch).toHaveBeenCalledWith(1);
         });
 
         it('should dispatch signUpFormError action', () => {
-            signIn(user)(dispatch);
-            expect(dispatch).toHaveBeenCalledWith(1);
             expect(dispatch).toHaveBeenCalledWith(2);
         });
     });
 
     describe('Given an invalid password', () => {
         beforeEach(() => {
-            SignIn.__Rewire__('isValidPassword', () => {
-                return false;
-            });
+            SignIn.__Rewire__('isValidPassword', () => false);
+            signIn(user)(dispatch);
+        });
+
+        it('should dispatch requestSignIn action', () => {
+            expect(dispatch).toHaveBeenCalledWith(1);
         });
 
         it('should dispatch signUpFormError action', () => {
-            signIn(user)(dispatch);
-            expect(dispatch).toHaveBeenCalledWith(1);
             expect(dispatch).toHaveBeenCalledWith(2);
         });
     });
