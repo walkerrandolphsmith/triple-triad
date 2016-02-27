@@ -1,14 +1,12 @@
 import expect from 'expect';
 import SignIn from './signIn';
 import { signIn, __RewireAPI__ as signInRewireAPI } from './signIn';
-import request from 'superagent';
-import mocker from 'superagent-mocker';
 
-describe('SIGN_IN async action creator', () => {
+describe.only('SIGN_IN async action creator', () => {
 
-    let mock, dispatch, user;
+    let dispatch, user;
+    let post, send, set;
     beforeEach(() => {
-        mock = mocker(request);
         dispatch = expect.createSpy();
         user = {
             username: 'walker',
@@ -36,20 +34,53 @@ describe('SIGN_IN async action creator', () => {
         });
     });
 
-    afterEach(() => {
-        mock.clearRoutes();
-    });
-
     it('should be a function', () => {
        expect(signIn()).toBeA('function')
     });
 
+
+    describe('Given a request is made to sign in', () => {
+
+        beforeEach(() => {
+            let request = SignIn.__Rewire__('request', {
+                post: function(endpoint) { return this; },
+                send: function(data) { return this },
+                set: function(key, value) { return this },
+                end: (fn) => {
+                    fn(null, { status: 200 });
+                }
+            });
+
+            post = expect.spyOn(request, 'post').andCallThrough();
+            send = expect.spyOn(request, 'send').andCallThrough();
+            set = expect.spyOn(request, 'set').andCallThrough();
+
+            signIn(user)(dispatch);
+        });
+
+        it('should request to /api/sign_in endpoint', () => {
+            expect(post).toHaveBeenCalledWith('/api/sign_in');
+        });
+
+        it('should send the user with post data', () => {
+            expect(send).toHaveBeenCalledWith(JSON.stringify(user));
+        });
+
+        it('should set the Accept and Content-Type headers', () => {
+            expect(set).toHaveBeenCalled('Accept', 'application/json');
+            expect(set).toHaveBeenCalled('Content-Type', 'application/json');
+        });
+    });
+
     describe('Signing in is successful', () => {
         beforeEach(() => {
-            mock.post('/api/sign_in', function(req) {
-                return {
-                    status: 200
-                };
+            let request = SignIn.__Rewire__('request', {
+                post: function(endpoint) { return this; },
+                send: function(data) { return this },
+                set: function(key, value) { return this },
+                end: (fn) => {
+                    fn(null, { status: 200 });
+                }
             });
 
             SignIn.__Rewire__('receiveUser', () => {
@@ -61,36 +92,29 @@ describe('SIGN_IN async action creator', () => {
             });
         });
 
-        it('should dispatch receiveSignIn action', done => {
+        it('should dispatch receiveSignIn action', () => {
             signIn(user)(dispatch);
             expect(dispatch).toHaveBeenCalledWith(1);
-            setTimeout(() => {
-                expect(dispatch).toHaveBeenCalledWith(3);
-                done();
-            }, 0);
+            expect(dispatch).toHaveBeenCalledWith(3);
         });
     });
 
     describe('Signing in is unsuccessful', () => {
         beforeEach(() => {
-            mock.post('/api/sign_in', function(req) {
-                return {
-                    status: 500,
-                    text: `{
-                        "field": "username",
-                        "error": "Username already exists"
-                    }`
-                };
+            let request = SignIn.__Rewire__('request', {
+                post: function(endpoint) { return this; },
+                send: function(data) { return this },
+                set: function(key, value) { return this },
+                end: (fn) => {
+                    fn(null, { status: 500, text: '{"field": "username", "error": "message"}' });
+                }
             });
         });
 
-        it('should dispatch signUpFormError action', done => {
+        it('should dispatch signUpFormError action', () => {
             signIn(user)(dispatch);
             expect(dispatch).toHaveBeenCalledWith(1);
-            setTimeout(() => {
-                expect(dispatch).toHaveBeenCalledWith(2);
-                done();
-            }, 200);
+            expect(dispatch).toHaveBeenCalledWith(2);
         });
     });
 
