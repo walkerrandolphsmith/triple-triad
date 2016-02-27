@@ -2,7 +2,7 @@ import expect from 'expect';
 import ResendVerificationEmail from './resend_verification_email';
 import { resend_verification_email, __RewireAPI__ as resend_verification_emailRewireAPI } from './resend_verification_email';
 
-describe.only('/api/resend_verification_email', () => {
+describe('/api/resend_verification_email', () => {
 
     let req, res;
 

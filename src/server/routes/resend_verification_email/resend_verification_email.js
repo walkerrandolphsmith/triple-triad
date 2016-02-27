@@ -4,12 +4,12 @@ import { send_verification_email } from './../../utils/mailer/mailer';
 
 export function resend_verification_email(req, res) {
     const userId = req.body.userId;
-    Token.findOne({ 'userId': userId, type: 'USER' }, function(err, token) {
+    Token.findOne({ 'userId': userId, type: 'USER' }, (err, token) => {
         if(err || token === null) {
             return res.status(500).send();
         }
         else {
-            User.findById(userId, function (err, user) {
+            User.findById(userId, (err, user) => {
                 if (err || user === null) {
                     return res.status(500).send();
                 }
