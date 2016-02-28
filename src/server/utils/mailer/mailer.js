@@ -6,6 +6,19 @@ const mailgun = new Mailgun({
     domain: env.keys.mailgun.domain
 });
 
+export function send_invite_email(toEmail, fromEmail, token, fn) {
+    const data = {
+        from: fromEmail,
+        to: toEmail,
+        subject: `${fromEmail} invited you to play Triple Triad`,
+        html: `
+            Join ${fromEmail} with the following link:
+            http://${env.host}:${env.port}/accept_invitation/${token}.
+        `
+    };
+    sendEmail(data, fn);
+}
+
 export function send_verification_email(email, token, fn) {
     const data = {
         from: "tripletriad@gmail.com",
