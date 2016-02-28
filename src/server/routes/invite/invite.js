@@ -3,7 +3,8 @@ import Token from './../../models/token/token';
 import { send_invite_email } from './../../utils/mailer/mailer';
 
 export function invite(req, res, next) {
-    const gameId = req.body.gameId;
+    const { gameId, invitee, gameOwner } = req.body;
+
     Game.findById(gameId, (err, game) => {
         if(err || game === null){
             res.status(500).send();
@@ -14,8 +15,13 @@ export function invite(req, res, next) {
                     res.status(500).send();
                 }
                 else{
-                    send_invite_email('email', 'token', err => {
-
+                    send_invite_email(invitee, gameOwner, token.token, err => {
+                        if (err) {
+                            return res.status(500).send();
+                        }
+                        else {
+                            return res.status(200).json({sent: true});
+                        }
                     });
                 }
             });
