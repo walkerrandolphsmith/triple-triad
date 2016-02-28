@@ -173,5 +173,54 @@ describe.only('/api/invite', () => {
                 expect(sendInvite).toHaveBeenCalled()
             });
         });
+
+        describe('When sending an email', () => {
+            let newSpy, sendInvite;
+            beforeEach(() => {
+                newSpy = expect.createSpy();
+                Invite.__Rewire__('Token', {
+                    new: (id, type, cb) => {
+                        cb(null, {})
+                    }
+                });
+                sendInvite = expect.createSpy();
+                Invite.__Rewire__('send_invite_email', sendInvite);
+            });
+            describe('When email is sent without error', () => {
+                let json;
+                beforeEach(() => {
+                    Invite.__Rewire__('send_invite_email', (toEmail, fromEmail, token, cb) => {
+                        cb(null);
+                    });
+                    json = expect.createSpy();
+                    res = {
+                        status: () => ({
+                            json: json
+                        })
+                    };
+                    status = expect.spyOn(res, 'status').andCallThrough();
+                    invite(req, res);
+                });
+
+                it('should respond with json', () => {
+                    expect(status).toHaveBeenCalledWith(200);
+                    expect(json).toHaveBeenCalledWith({ sent: true })
+                })
+            });
+
+            describe('When there is an error sending email', () => {
+                beforeEach(() => {
+                    Invite.__Rewire__('send_invite_email', (toEmail, fromEmail, token, cb) => {
+                        cb(new Error());
+                    });
+                    invite(req, res);
+                });
+
+                it('should respond with status 500', () => {
+                    expect(status).toHaveBeenCalledWith(500);
+                    expect(send).toHaveBeenCalled();
+                })
+            });
+        });
     });
 });
