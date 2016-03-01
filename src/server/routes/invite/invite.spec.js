@@ -2,7 +2,7 @@ import expect from 'expect';
 import Invite from './invite';
 import { invite, __RewireAPI__ as inviteRewireAPI } from './invite';
 
-describe.only('/api/invite', () => {
+describe('/api/invite', () => {
 
     let req, res;
 
