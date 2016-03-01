@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as Actions from './../actions/';
-import Invite from './../components/invite/invite';
 
 import React from 'react';
+import { Invite } from './../components/';
 
 class InviteContainer extends React.Component {
 

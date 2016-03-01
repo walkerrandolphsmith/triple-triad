@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as Actions from './../actions/';
-import Settings from './../components/settings/settings';
 
 import React from 'react';
+import { Settings } from './../components';
 
 class SettingsContainer extends React.Component {
 

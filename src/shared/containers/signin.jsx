@@ -3,13 +3,13 @@ import { bindActionCreators } from 'redux';
 import * as Actions from './../actions';
 
 import React from 'react';
-import SignInForm from './../components/signIn/signIn';
+import { SignIn } from './../components';
 
-class SignIn extends React.Component {
+class SignInContainer extends React.Component {
 
     render() {
         return (
-            <SignInForm {...this.props} />
+            <SignIn {...this.props} />
         );
     }
 }
@@ -27,4 +27,4 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators(Actions,dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignIn)
+export default connect(mapStateToProps, mapDispatchToProps)(SignInContainer)

@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import * as Actions from './../actions';
 
 import React from 'react';
-import ResetPassword from './../components/resetPassword/resetPassword';
+import { ResetPassword } from './../components';
 
 class ResetPasswordContainer extends React.Component {
 

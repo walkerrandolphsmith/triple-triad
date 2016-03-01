@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import * as Actions from './../actions/';
 
 import React from 'react';
-import User from './../components/user/user';
+import { User } from './../components';
 
 class UserContainer extends React.Component {
 

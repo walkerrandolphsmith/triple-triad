@@ -4,7 +4,7 @@ import * as Actions from './../actions/';
 import KEY_CODE from './../constants/keyCodes';
 
 import React from 'react';
-import Navigation from './../components/navigation/navigation';
+import { Navigation } from './../components';
 
 class App extends React.Component {
 
