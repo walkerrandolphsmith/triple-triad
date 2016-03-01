@@ -8,16 +8,18 @@ describe('/api/invite', () => {
     beforeEach(connectionManager.connect);
     afterEach(connectionManager.disconnect);
 
-    describe('Given a valid email, when POST /invite', () => {
+    describe('Given an invalid game id, when POST /invite', () => {
+
         it('should give a status code 200 Ok', done => {
             request(app)
                 .post('/api/invite')
                 .send({
-                    email: 'test@gmail.com'
+                    gameId: 'invalid game token',
+                    invitee: 'test@gmail.com',
+                    gameOwner: 'invalid owner'
                 })
-                .expect(200)
+                .expect(500)
                 .end((err, res) => {
-                    expect(err).toNotExist();
                     done();
                 });
         });
