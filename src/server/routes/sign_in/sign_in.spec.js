@@ -4,10 +4,10 @@ import { sign_in } from './sign_in';
 describe('sign_in', () => {
 
     let req, res, passport;
-
+    req = {};
     describe('Given a request and response and passport, when passport successfully authenticates', () => {
 
-        let user, status, json;
+        let user, status, json, logIn;
         beforeEach(() => {
             user = { _id: 20, local: { username: 'tester' } };
             passport = {
@@ -17,7 +17,10 @@ describe('sign_in', () => {
                 }
             };
 
-            req = {};
+            req = {
+                logIn: (user, cb) => cb()
+            };
+            logIn = expect.spyOn(req, 'logIn').andCallThrough();
 
             json = expect.createSpy();
             res = {
@@ -31,6 +34,7 @@ describe('sign_in', () => {
 
         it('should return a status of 200 and the user\'s id and name', () => {
            sign_in(req, res, {}, passport);
+           expect(logIn).toHaveBeenCalled();
            expect(status).toHaveBeenCalledWith(200);
            expect(json).toHaveBeenCalledWith({
                id: user._id,
@@ -51,9 +55,6 @@ describe('sign_in', () => {
                     return (req, res, next) => {};
                 }
             };
-
-            req = {};
-
             json = expect.createSpy();
             res = {
                 status: () => ({
@@ -86,9 +87,6 @@ describe('sign_in', () => {
                     return (req, res, next) => {};
                 }
             };
-
-            req = {};
-
             json = expect.createSpy();
             res = {
                 status: () => ({
