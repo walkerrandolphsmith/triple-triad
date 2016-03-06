@@ -1,6 +1,6 @@
 import expect from 'expect';
 import {  SEND_INVITE_REQUEST } from './../../../../constants/actionTypes';
-import { sendInviteRequest } from './sendPasswordResetRequest';
+import { sendInviteRequest } from './sendInviteRequest';
 
 describe('Initiate send invite', () => {
 

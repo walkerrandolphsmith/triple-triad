@@ -1,6 +1,6 @@
 import expect from 'expect';
 import {  SEND_INVITE_SUCCESS } from './../../../../constants/actionTypes';
-import { sendInviteSuccess } from './sendPasswordResetSuccess';
+import { sendInviteSuccess } from './sendInviteSuccess';
 
 describe('Invitation was successfully sent', () => {
 

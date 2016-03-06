@@ -1,6 +1,6 @@
 import expect from 'expect';
 import {  SEND_INVITE_FAILED } from './../../../../constants/actionTypes';
-import { sendInviteFailed } from './sendPasswordResetFailed';
+import { sendInviteFailed } from './sendInviteFailed';
 
 describe('Invitation failed', () => {
 
