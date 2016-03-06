@@ -13,6 +13,10 @@ describe('SEND INVITE async action creator', () => {
         SendInvite.__Rewire__('endPhase', () => {
             return 1;
         });
+
+        SendInvite.__Rewire__('sendInviteRequest', () => 1);
+        SendInvite.__Rewire__('sendInviteFailed', () => 2);
+        SendInvite.__Rewire__('sendInviteSuccess', () => 3);
     });
 
     it('should be a function', () => {
@@ -56,6 +60,56 @@ describe('SEND INVITE async action creator', () => {
         it('should set the Accept and Content-Type headers', () => {
             expect(set).toHaveBeenCalled('Accept', 'application/json');
             expect(set).toHaveBeenCalled('Content-Type', 'application/json');
+        });
+    });
+
+    describe('Given a request is made and is successful', () => {
+        let email;
+        beforeEach(() => {
+            let request = SendInvite.__Rewire__('request', {
+                post: function(endpoint) { return this; },
+                send: function(data) { return this },
+                set: function(key, value) { return this },
+                end: (fn) => {
+                    fn(null, { status: 200 });
+                }
+            });
+
+            email = 'tester@gmail.com';
+            sendInvite(email)(dispatch);
+        });
+
+        it('should dispatch sendInviteRequest action', () => {
+            expect(dispatch).toHaveBeenCalledWith(1);
+        });
+
+        it('should dispatch sendInviteSuccess action', () => {
+            expect(dispatch).toHaveBeenCalledWith(3);
+        });
+    });
+
+    describe('Given a request is made and is unsuccessful', () => {
+        let email;
+        beforeEach(() => {
+            let request = SendInvite.__Rewire__('request', {
+                post: function(endpoint) { return this; },
+                send: function(data) { return this },
+                set: function(key, value) { return this },
+                end: (fn) => {
+                    fn(null, { status: 500 });
+                }
+            });
+
+            email = 'tester@gmail.com';
+            sendInvite(email)(dispatch);
+        });
+
+        it('should dispatch sendInviteRequest action', () => {
+            expect(dispatch).toHaveBeenCalledWith(1);
+        });
+
+        it('should dispatch sendInviteFailed action', () => {
+            expect(dispatch).toHaveBeenCalledWith(2);
         });
     });
 
