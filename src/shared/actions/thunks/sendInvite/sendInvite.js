@@ -1,10 +1,9 @@
 import request from 'superagent';
-import { endPhase } from './../endPhase/endPhase';
+import { sendInviteRequest, sendInviteSuccess, sendInviteFailed } from './../../action-creators';
 
 export function sendInvite(email) {
     return dispatch => {
-        dispatch(endPhase());
-
+        dispatch(sendInviteRequest());
 
         const data = {
           email: email
@@ -16,7 +15,11 @@ export function sendInvite(email) {
         .set('Accept', 'application/json')
         .set('Content-Type', 'application/json')
         .end((error, response) => {
-
+            if(response.status === 200){
+                dispatch(sendInviteSuccess());
+            }else{
+                dispatch(sendInviteFailed());
+            }
         });
     };
 }
