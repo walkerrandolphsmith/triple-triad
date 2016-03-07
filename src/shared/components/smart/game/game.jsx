@@ -1,7 +1,6 @@
 import React from 'react';
-import { Game } from './game';
 
-export class Games extends React.Component {
+export class Game extends React.Component {
 
     selectGame(id) {
         this.props.pushPath(`/game/${id}`);
