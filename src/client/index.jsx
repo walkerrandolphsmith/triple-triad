@@ -1,23 +1,29 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import { Router } from 'react-router';
-import { createHistory } from 'history';
+import createBrowserHistory from 'history/lib/createBrowserHistory'
+import { Router, useRouterHistory } from 'react-router'
+import { syncHistoryWithStore } from 'react-router-redux'
 import { Provider } from 'react-redux';
 import { fromJS } from 'immutable';
 import io from 'socket.io-client';
-import { syncReduxAndRouter } from 'redux-simple-router'
+
 import Routes from './../shared/routes';
 import configureStore from './../shared/store/store';
 import env from './../shared/config/environment';
 import './../assets/stylesheets/index.less';
 
+const browserHistory = useRouterHistory(createBrowserHistory)({
+    basename: '/'
+});
+
 let initialState = window.__INITIAL_STATE__;
 Object.keys(initialState).forEach(key => { initialState[key] = fromJS(initialState[key]);  });
 
-const store = configureStore(initialState);
-const history = createHistory();
+const store = configureStore(initialState, browserHistory);
 
-syncReduxAndRouter(history, store);
+const history = syncHistoryWithStore(browserHistory, store, {
+    selectLocationState: (state) => state.routing
+});
 
 const mountNode = document.getElementById('app');
 ReactDom.render(

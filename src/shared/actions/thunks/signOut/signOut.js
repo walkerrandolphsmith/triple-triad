@@ -1,5 +1,5 @@
 import request from 'superagent';
-import { pushPath } from 'redux-simple-router';
+import { push } from 'react-router-redux';
 import { requestSignOut, receiveSignOut } from './../../action-creators'
 
 export function signOut() {
@@ -10,7 +10,7 @@ export function signOut() {
             .end((error, response) => {
                 if(response.status === 200) {
                     dispatch(receiveSignOut());
-                    dispatch(pushPath('/'));
+                    dispatch(push('/'));
                 }
             });
     }

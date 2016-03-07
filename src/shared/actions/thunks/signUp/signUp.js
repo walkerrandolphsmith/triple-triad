@@ -1,5 +1,5 @@
 import request from 'superagent';
-import { pushPath } from 'redux-simple-router';
+import { push } from 'react-router-redux';
 import { requestSignUp, receiveUser, signUpFormError } from './../../action-creators';
 import {
     isValidUsername,
@@ -61,7 +61,7 @@ export function signUp(user) {
             .end((error, response) => {
                 if(response.status === 200) {
                     dispatch(receiveUser(response.body));
-                    dispatch(pushPath('/games'));
+                    dispatch(push('/games'));
                 }else{
                     let error = JSON.parse(response.text);
                     dispatch(signUpFormError(error));

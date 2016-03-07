@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDom from 'react-dom/server';
-import { RoutingContext, match } from 'react-router';
+import { RouterContext, match } from 'react-router';
 import {Provider} from 'react-redux';
 import createLocation from 'history/lib/createLocation';
 import { receiveSignIn } from './../../../shared/actions/action-creators';
@@ -25,7 +25,7 @@ export function app(request, response) {
 
         const InitialComponent = (
             <Provider store={store}>
-                <RoutingContext {...renderProps} />
+                <RouterContext {...renderProps} />
             </Provider>
         );
         const componentHTML = ReactDom.renderToString(InitialComponent);

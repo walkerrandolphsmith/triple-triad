@@ -18,7 +18,7 @@ describe('SIGN_IN async action creator', () => {
         SignIn.__Rewire__('requestSignIn', () => 1);
         SignIn.__Rewire__('signinFormError', () => 2);
         SignIn.__Rewire__('receiveSignIn', () => 3);
-        SignIn.__Rewire__('pushPath', () => 4);
+        SignIn.__Rewire__('push', () => 4);
     });
 
     it('should be a function', () => {

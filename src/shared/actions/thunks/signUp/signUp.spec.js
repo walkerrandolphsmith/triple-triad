@@ -17,7 +17,7 @@ describe('SIGN_UP async action creator', () => {
        SignUp.__Rewire__('requestSignUp', () => 1);
        SignUp.__Rewire__('signUpFormError', () => 2);
        SignUp.__Rewire__('receiveUser', () => 3);
-       SignUp.__Rewire__('pushPath', () => 4);
+       SignUp.__Rewire__('push', () => 4);
     });
 
     it('should be a function', () => {
@@ -80,7 +80,7 @@ describe('SIGN_UP async action creator', () => {
             expect(dispatch).toHaveBeenCalledWith(3);
         });
 
-        it('should dispatch pushPath action', () => {
+        it('should dispatch push action', () => {
             expect(dispatch).toHaveBeenCalledWith(4);
         });
     });

@@ -11,7 +11,7 @@ export class Games extends React.Component {
         let { games } = this.props;
 
         const gamesList = games.map((game, index) => {
-            return (<Game key={index} id={game._id} pushPath={this.props.pushPath} />);
+            return (<Game key={index} id={game._id} push={this.props.push} />);
         });
 
         return (

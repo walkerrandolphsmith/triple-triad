@@ -9,7 +9,7 @@ describe('SIGN_OUT async action creator', () => {
        dispatch = expect.createSpy();
        SignOut.__Rewire__('requestSignOut', () => 1);
        SignOut.__Rewire__('receiveSignOut', () => 2);
-       SignOut.__Rewire__('pushPath', () => 3);
+       SignOut.__Rewire__('push', () => 3);
     });
 
     it('should be a function', () => {

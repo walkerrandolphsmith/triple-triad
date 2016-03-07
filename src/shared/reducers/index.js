@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { routeReducer } from 'redux-simple-router';
+import { routerReducer as router } from 'react-router-redux';
 
 import auth from './auth/auth'
 import user from './user/user';
@@ -21,5 +21,5 @@ export default combineReducers({
     signinForm: signinForm,
     resetPasswordForm: resetPasswordForm,
     forgotPasswordForm: forgotPasswordForm,
-    routing: routeReducer
+    routing: router
 });

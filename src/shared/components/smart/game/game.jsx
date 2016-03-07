@@ -3,7 +3,7 @@ import React from 'react';
 export class Game extends React.Component {
 
     selectGame(id) {
-        this.props.pushPath(`/game/${id}`);
+        this.props.push(`/game/${id}`);
     }
 
     render() {
