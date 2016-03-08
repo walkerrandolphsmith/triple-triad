@@ -9,7 +9,7 @@ export class InviteForm extends React.Component {
     }
 
     invite() {
-        this.props.sendInvite(this.state.email)
+        this.props.sendInvite(this.props.gameId, this.state.email)
     }
 
     render() {
