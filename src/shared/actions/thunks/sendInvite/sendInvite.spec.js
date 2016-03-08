@@ -1,14 +1,26 @@
 import expect from 'expect';
+import { Map } from 'immutable';
 import SendInvite from './sendInvite';
 import { sendInvite, __RewireAPI__ as sendInviteRewireAPI } from './sendInvite';
 
 describe('SEND INVITE async action creator', () => {
 
     let dispatch, getState;
+    let gameId, email, gameOwner;
     beforeEach(() => {
+        gameId = '1234';
+        email = 'tester@gamil.com';
+        gameOwner = 'gameOwner';
+
         dispatch = expect.createSpy();
 
-        getState = () => ({ });
+        getState = () => ({
+            auth: new Map({
+                user: new Map({
+                    id: gameOwner
+                })
+            })
+        });
 
         SendInvite.__Rewire__('endPhase', () => {
             return 1;
@@ -30,7 +42,7 @@ describe('SEND INVITE async action creator', () => {
 
     describe('Given a request is made to get reset password', () => {
         let post, send, set;
-        let email;
+        let data;
         beforeEach(() => {
             let request = SendInvite.__Rewire__('request', {
                 post: function(endpoint) { return this; },
@@ -45,8 +57,14 @@ describe('SEND INVITE async action creator', () => {
             send = expect.spyOn(request, 'send').andCallThrough();
             set = expect.spyOn(request, 'set').andCallThrough();
 
-            email = 'tester@gmail.com';
-            sendInvite(email)(dispatch);
+
+            data = {
+                gameId: gameId,
+                invitee: email,
+                gameOwner: gameOwner
+            };
+
+            sendInvite(gameId, email)(dispatch, getState);
         });
 
         it('should request to /api/invite endpoint', () => {
@@ -54,7 +72,7 @@ describe('SEND INVITE async action creator', () => {
         });
 
         it('should send the user id with post data', () => {
-            expect(send).toHaveBeenCalledWith(JSON.stringify({ email: email }));
+            expect(send).toHaveBeenCalledWith(JSON.stringify(data));
         });
 
         it('should set the Accept and Content-Type headers', () => {
@@ -64,7 +82,6 @@ describe('SEND INVITE async action creator', () => {
     });
 
     describe('Given a request is made and is successful', () => {
-        let email;
         beforeEach(() => {
             let request = SendInvite.__Rewire__('request', {
                 post: function(endpoint) { return this; },
@@ -75,8 +92,7 @@ describe('SEND INVITE async action creator', () => {
                 }
             });
 
-            email = 'tester@gmail.com';
-            sendInvite(email)(dispatch);
+            sendInvite(gameId, email)(dispatch, getState);
         });
 
         it('should dispatch sendInviteRequest action', () => {
@@ -89,7 +105,6 @@ describe('SEND INVITE async action creator', () => {
     });
 
     describe('Given a request is made and is unsuccessful', () => {
-        let email;
         beforeEach(() => {
             let request = SendInvite.__Rewire__('request', {
                 post: function(endpoint) { return this; },
@@ -100,8 +115,7 @@ describe('SEND INVITE async action creator', () => {
                 }
             });
 
-            email = 'tester@gmail.com';
-            sendInvite(email)(dispatch);
+            sendInvite(gameId, email)(dispatch, getState);
         });
 
         it('should dispatch sendInviteRequest action', () => {
