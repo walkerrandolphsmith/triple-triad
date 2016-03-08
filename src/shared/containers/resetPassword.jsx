@@ -20,7 +20,7 @@ class ResetPasswordContainer extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        token: state.routing.path.split('/reset/')[1],
+        token: state.routing.locationBeforeTransitions.pathname.split('/reset/')[1],
         errors: {
             password: state.resetPasswordForm.get('password'),
             confirmPassword: state.resetPasswordForm.get('confirmPassword')

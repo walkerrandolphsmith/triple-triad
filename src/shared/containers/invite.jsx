@@ -16,7 +16,8 @@ class InviteContainer extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        settings: state.settings
+        settings: state.settings,
+        gameId: state.routing.locationBeforeTransitions.pathname.split('game/')[1]
     }
 }
 

@@ -20,7 +20,7 @@ class Verify extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        token: state.routing.path.split('/verify/')[1]
+        token: state.routing.locationBeforeTransitions.pathname.split('/verify/')[1]
     }
 }
 

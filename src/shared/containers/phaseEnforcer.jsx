@@ -19,7 +19,7 @@ export default function(Settings, Invite, Cards, Round) {
 
     const mapStateToProps = (state) => ({
         rollupPhase: getRollupPhase(state.game.get('phase')),
-        path: state.routing.path
+        path: state.routing.locationBeforeTransitions.pathname
     });
 
     return connect(mapStateToProps)(PhaseEnforcerComponent);
