@@ -1,12 +1,17 @@
 import request from 'superagent';
 import { sendInviteRequest, sendInviteSuccess, sendInviteFailed } from './../../action-creators';
 
-export function sendInvite(email) {
-    return dispatch => {
+export function sendInvite(gameId, email) {
+    return (dispatch, getState) => {
         dispatch(sendInviteRequest());
 
+        const state = getState();
+        const gameOwner = state.auth.get('user').get('id');
+
         const data = {
-          email: email
+            gameId: gameId,
+            invitee: email,
+            gameOwner: gameOwner
         };
 
         return request
