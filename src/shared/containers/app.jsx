@@ -50,7 +50,7 @@ class App extends React.Component {
 function mapStateToProps(state) {
     return {
         user: state.auth.get('user').get('username'),
-        activeRoute: state.routing.locationBeforeTransitions.pathname
+        activeRoute: state.routing.locationBeforeTransitions ? state.routing.locationBeforeTransitions.pathname : '/'
     }
 }
 
