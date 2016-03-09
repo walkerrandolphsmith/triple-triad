@@ -9,7 +9,7 @@ export function create_game(req, res) {
     game.currentPlayer = userId;
     game.deck = deck;
     game.phase = 'settings-selection';
-
+    game.accepted = false;
     game.save((err, newGame) => {
         if(err) {
             return  res.status(500).send();
