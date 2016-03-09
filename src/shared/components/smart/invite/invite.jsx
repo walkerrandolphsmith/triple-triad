@@ -46,11 +46,11 @@ export class Invite extends React.Component {
 
     render() {
 
-        let { isMounted, multiplayer, gameId } = this.state;
+        let { isMounted, multiplayer } = this.state;
 
         let focus = isMounted ? this.focus : () => {};
 
-        let inviteForm = multiplayer ? (<InviteForm gameId={gameId} sendInvite={this.props.sendInvite} />) : (<button className="btn btn-main" onClick={this.props.endPhase}> Next step</button>);
+        let inviteForm = multiplayer ? (<InviteForm gameId={this.props.gameId} sendInvite={this.props.sendInvite} />) : (<button className="btn btn-main" onClick={this.props.endPhase}> Next step</button>);
 
         return (
             <div id="settings-selection">
