@@ -5,6 +5,7 @@ export { ForgotPassword } from './forgotPassword/forgotPassword';
 export { Game } from './game/game';
 export { Games } from './games/games';
 export { Hand } from './hand/hand';
+export { Hold } from './hold/hold';
 export { Invite } from './invite/invite';
 export { InviteForm } from './inviteForm/inviteForm';
 export { Navigation } from './navigation/navigation';

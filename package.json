@@ -64,6 +64,7 @@
     "cookie-session": "^1.2.0",
     "cors": "^2.7.1",
     "express": "^4.13.3",
+    "font-awesome": "^4.5.0",
     "history": "^2.0.0",
     "immutable": "^3.7.5",
     "mailgun-js": "^0.7.7",
