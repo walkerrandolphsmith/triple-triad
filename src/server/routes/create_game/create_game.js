@@ -8,7 +8,7 @@ export function create_game(req, res) {
     game.owner = userId;
     game.currentPlayer = userId;
     game.deck = deck;
-    game.phase = 'settings-selection';
+    game.phase = 'settingsSelection';
     game.accepted = false;
     game.save((err, newGame) => {
         if(err) {

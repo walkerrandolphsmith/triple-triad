@@ -1,7 +1,6 @@
 import { Map, List } from 'immutable';
 import deck from './../../constants/deck';
 import {
-    CREATE_GAME_SUCCESS,
     SET_PHASE,
     ADD_CARD,
     SELECT_CARD,
@@ -30,7 +29,6 @@ export default function reducer(state = INITIAL_STATE, action = {}) {
   let {type, payload} = action;
 
   switch(type){
-    case CREATE_GAME_SUCCESS: return newGame(state, payload);
     case SET_PHASE: return setPhase(state, payload);
     case ADD_CARD: return addCard(state, payload);
     case SELECT_CARD: return selectCard(state, payload);
@@ -45,9 +43,12 @@ export default function reducer(state = INITIAL_STATE, action = {}) {
   return state;
 }
 
-function newGame(state, payload) {
+function bootstrap(state, payload) {
     state = state.set('gameId', payload.game._id);
     state = state.set('owner', payload.game.owner);
+    state = state.set('deck', payload.game.deck);
+    state = state.set('phase', payload.game.phase);
+    state = state.set('accepted', payload.game.accepted);
     return state.set('currentPlayer', payload.game.currentPlayer);
 }
 

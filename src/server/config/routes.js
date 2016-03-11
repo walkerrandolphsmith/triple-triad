@@ -10,6 +10,7 @@ import {
     reset_password,
     user_profile,
     create_game,
+    get_game,
     get_games,
     invite
 } from './../routes';
@@ -81,6 +82,13 @@ function configureAuthRoutes(passport) {
         '/create_game',
         (req, res) => {
             create_game(req,res)
+        }
+    );
+
+    router.post(
+        '/get_game',
+        (req, res) => {
+            get_game(req,res)
         }
     );
 
