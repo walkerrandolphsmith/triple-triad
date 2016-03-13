@@ -2,7 +2,6 @@ import expect from 'expect';
 import { Map, List } from 'immutable';
 import reducer from './game';
 import {
-    CREATE_GAME_SUCCESS,
     SET_PHASE,
     ADD_CARD,
     SELECT_CARD,
@@ -37,30 +36,6 @@ describe("Game reducer", () => {
             expect(reducer(undefined, {})).toEqual(initialState)
         });
     });
-
-    describe("When a new game is created", () => {
-        let newState, gameId, owner, currentPlayer;
-        beforeEach(() => {
-            gameId = 1; owner = currentPlayer = 2;
-            newState = reducer(initialState, {
-                type: CREATE_GAME_SUCCESS,
-                payload: {
-                    game: {
-                        _id: gameId,
-                        owner: owner,
-                        currentPlayer: currentPlayer
-                    }
-                }
-            });
-        });
-
-        it('should handle CREATE_GAME_SUCCESS by updating the game id, owner of the game, and current player', () => {
-            expect(newState.get('gameId')).toEqual(gameId);
-            expect(newState.get('owner')).toEqual(owner);
-            expect(newState.get('currentPlayer')).toEqual(currentPlayer);
-        });
-    });
-
 
     describe("Given you update the phase of a round", () => {
         let newState, phase;
