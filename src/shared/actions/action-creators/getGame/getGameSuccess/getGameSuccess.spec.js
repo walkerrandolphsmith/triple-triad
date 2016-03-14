@@ -1,6 +1,6 @@
 import expect from 'expect';
 import { GET_GAME_SUCCESS } from './../../../../constants/actionTypes';
-import getGameSuccess from './getGameSuccess';
+import { getGameSuccess } from './getGameSuccess';
 
 describe('When retrieving a game is successful', () => {
 

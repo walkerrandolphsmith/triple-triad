@@ -1,6 +1,6 @@
 import { GET_GAME_SUCCESS } from './../../../../constants/actionTypes';
 
-export default function(game){
+export function getGameSuccess(game){
     return {
         type: GET_GAME_SUCCESS,
         payload: {
