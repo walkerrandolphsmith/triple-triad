@@ -1,8 +1,11 @@
 import request from 'superagent';
-import { getGameSuccess } from './../../action-creators';
+import { getGameRequest, getGameSuccess, getGameFailed } from './../../action-creators';
 
 export function getGame(id) {
-    return (dipatch, getState) => {
+    return (dispatch, getState) => {
+
+        dispatch(getGameRequest());
+
         const data = JSON.stringify({
             gameId: id
         });
@@ -16,7 +19,7 @@ export function getGame(id) {
             if(response.status === 200){
                 dispatch(getGameSuccess(response.body))
             }else{
-
+                dispatch(getGameFailed());
             }
         });
     }
