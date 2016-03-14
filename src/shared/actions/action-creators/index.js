@@ -7,6 +7,8 @@ export { createGameFailed } from './createGame/createGameFailed/createGameFailed
 export { createGameSuccess } from './createGame/createGameSuccess/createGameSuccess';
 export { createGameRequest } from './createGame/createGameRequest/createGameRequest';
 
+export { getGameFailed } from './getGame/getGameFailed/getGameFailed';
+export { getGameRequest } from './getGame/getGameRequest/getGameRequest';
 export { getGameSuccess } from './getGame/getGameSuccess/getGameSuccess';
 
 export { getGamesFailed } from './games/getGamesFailed/getGamesFailed';
