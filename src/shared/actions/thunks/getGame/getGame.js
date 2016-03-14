@@ -1,4 +1,5 @@
 import request from 'superagent';
+import { getGameSuccess } from './../../action-creators';
 
 export function getGame(id) {
     return (dipatch, getState) => {
@@ -13,7 +14,7 @@ export function getGame(id) {
         .set('Content-Type', 'application/json')
         .end((err, response) => {
             if(response.status === 200){
-                console.log(response);
+                dispatch(getGameSuccess(response.body))
             }else{
 
             }
