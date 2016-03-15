@@ -425,7 +425,7 @@ describe('BASIC RULE utility', () => {
         });
 
         it('should contain two tuples with the index, owner of first, second, third, and forth card to flip', () => {
-            expect(basicRule(index, game)) .toEqual([
+            expect(basicRule(index, game)).toEqual([
                 {index: 1, owner: player},
                 {index: 3, owner: player},
                 {index: 5, owner: player},

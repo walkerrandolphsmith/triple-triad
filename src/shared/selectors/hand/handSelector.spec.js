@@ -48,7 +48,10 @@ describe("Hand selector", () => {
         });
 
         it('should contain an empty hand', () => {
-            expect(getHand(deck, 1)).toEqual(new List([cardOne, cardTwo]))
+            let expected = getHand(deck, 1).toJS();
+            let actual = new List([cardOne, cardTwo]).toJS();
+
+            expect(expected).toEqual(actual);
         });
     });
 
@@ -63,7 +66,10 @@ describe("Hand selector", () => {
         });
 
         it('should contain the card not on the board in hand', () => {
-            expect(getHand(deck, 1)).toEqual(new List([cardTwo]))
+            let expected = getHand(deck, 1).toJS();
+            let actual = new List([cardTwo]).toJS();
+
+            expect(expected).toEqual(actual);
         });
     });
 });

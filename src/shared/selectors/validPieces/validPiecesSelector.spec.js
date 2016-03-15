@@ -26,25 +26,36 @@ describe("validPieces selector", () => {
 
     describe("validPieces selector of a full board", () => {
         it('should have no valid pieces', () => {
-            expect(getValidPieces([
+
+            let expected = getValidPieces([
                 deck.get(0), deck.get(1), deck.get(2), deck.get(3), deck.get(4), deck.get(5), deck.get(6), deck.get(7), deck.get(8)
-            ])).toEqual(new List([]))
+            ]).toJS();
+
+            let actual = new List([]).toJS();
+
+            expect(expected).toEqual(actual)
         });
     });
 
     describe("validPieces selector of an empty board", () => {
         it('should have nine valid pieces', () => {
-            expect(getValidPieces(new List([
 
-            ]))).toEqual(new List([0,1,2,3,4,5,6,7,8]))
+            let expected = getValidPieces(new List([])).toJS();
+            let actual = new List([0,1,2,3,4,5,6,7,8]).toJS();
+
+            expect(expected).toEqual(actual)
         });
     });
 
     describe("validPieces selector of partially placed board", () => {
         it('should have four valid pieces', () => {
-            expect(getValidPieces([
+
+            let expected = getValidPieces([
                 deck.get(0), deck.get(1), deck.get(3), deck.get(4), deck.get(5)
-            ])).toEqual(new List([2, 6, 7, 8]))
+            ]).toJS();
+            let actual = new List([2, 6, 7, 8]).toJS();
+
+            expect(expected).toEqual(actual)
         });
     });
 

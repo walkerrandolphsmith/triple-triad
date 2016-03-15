@@ -19,7 +19,10 @@ describe("Board selector", () => {
         });
 
         it('should contain an array with nulls where no cards exists and cards otherwise', () => {
-            expect(getBoard(deck)).toEqual(new List([zero, one, two, six]));
+            let expected = getBoard(deck).toJS();
+            let actual = new List([zero, one, two, six]).toJS();
+
+            expect(expected).toEqual(actual)
         });
     });
 });
