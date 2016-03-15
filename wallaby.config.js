@@ -11,9 +11,20 @@ module.exports = function(wallaby) {
 
   var babelProcessor = wallaby.compilers.babel(packageConfig['babel']);
 
-  var webpackPostProcessor = wallabyWebpack(webpackConfig);
-
-
+  var webpackPostProcessor = wallabyWebpack({
+    resolve: {
+          extensions: ['', '.js', '.jsx']
+      },
+      module: {
+      loaders: [
+        {test: /\.(png|jpg|gif|jpeg)$/, loader: 'url-loader?limit=8192'},
+        {test: /\.less$/, loaders: ['style-loader', 'css-loader', 'less-loader']},
+        {test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=10000&minetype=application/font-woff'},
+        {test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/font-woff2'},
+        {test: /\.(ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader'}
+      ]
+    }
+  });
 
   return {
     testFramework: 'mocha',
