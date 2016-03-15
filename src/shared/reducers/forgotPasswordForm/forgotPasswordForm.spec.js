@@ -3,7 +3,7 @@ import { Map } from 'immutable';
 import reducer from './forgotPasswordForm';
 import {
     FORGOT_PASSWORD_FORM_ERROR,
-    FORGOT_PASSWORD_FORM_ERROR_RESET
+    CLEAR_FORM_ERRORS
 } from './../../constants/actionTypes';
 
 describe("Reset password form errors reducer", () => {
@@ -43,9 +43,9 @@ describe("Reset password form errors reducer", () => {
 
     describe("Given a the form validation is reset", () => {
 
-        it('should handle FORGOT_PASSWORD_FORM_ERROR_RESET action', () => {
+        it('should handle CLEAR_FORM_ERRORS action', () => {
             let newState = reducer(initialState, {
-                type: FORGOT_PASSWORD_FORM_ERROR_RESET
+                type: CLEAR_FORM_ERRORS
             });
             expect(newState).toEqual(initialState);
         });
