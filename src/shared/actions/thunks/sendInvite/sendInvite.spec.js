@@ -5,7 +5,7 @@ import { sendInvite, __RewireAPI__ as sendInviteRewireAPI } from './sendInvite';
 
 describe('SEND INVITE async action creator', () => {
 
-    let dispatch, getState;
+    let dispatch, getState, request;
     let gameId, email, gameOwner;
     beforeEach(() => {
         gameId = '1234';
@@ -22,8 +22,13 @@ describe('SEND INVITE async action creator', () => {
             })
         });
 
-        SendInvite.__Rewire__('endPhase', () => {
-            return 1;
+        request = SendInvite.__Rewire__('request', {
+            post: function(endpoint) { return this; },
+            send: function(data) { return this },
+            set: function(key, value) { return this },
+            end: (fn) => {
+                fn(null, { status: 200 });
+            }
         });
 
         SendInvite.__Rewire__('sendInviteRequest', () => 1);
@@ -44,15 +49,6 @@ describe('SEND INVITE async action creator', () => {
         let post, send, set;
         let data;
         beforeEach(() => {
-            let request = SendInvite.__Rewire__('request', {
-                post: function(endpoint) { return this; },
-                send: function(data) { return this },
-                set: function(key, value) { return this },
-                end: (fn) => {
-                    fn(null, { status: 200 });
-                }
-            });
-
             post = expect.spyOn(request, 'post').andCallThrough();
             send = expect.spyOn(request, 'send').andCallThrough();
             set = expect.spyOn(request, 'set').andCallThrough();
