@@ -19,6 +19,7 @@ module.exports = function(wallaby) {
     testFramework: 'mocha',
     debug: true,
     files: [
+      { pattern: 'node_modules/babel-polyfill/dist/polyfill.js', instrument: false },
       { pattern: srcFilePattern, load: false },
       { pattern: specFilePattern, ignore: true }
     ],
