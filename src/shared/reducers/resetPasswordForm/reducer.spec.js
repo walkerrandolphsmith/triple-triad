@@ -1,6 +1,7 @@
 import expect from 'expect';
 import { Map } from 'immutable';
-import reducer from './resetPasswordForm';
+import reducer from './reducer';
+import { __RewireAPI__ } from './reducer';
 import {
     RESET_PASSWORD_FORM_ERROR,
     CLEAR_FORM_ERRORS
@@ -9,11 +10,17 @@ import {
 describe("Reset password form errors reducer", () => {
 
     let initialState;
+    let resetSpy, clearSpy;
     beforeEach(() => {
         initialState = new Map({
             password: '',
             confirmPassword: ''
         });
+        resetSpy = expect.createSpy();
+        clearSpy = expect.createSpy();
+
+        __RewireAPI__.__Rewire__('resetPasswordFormError', resetSpy);
+        __RewireAPI__.__Rewire__('clearFormErrors', clearSpy);
     });
 
     describe("Given no state", () => {
@@ -23,32 +30,35 @@ describe("Reset password form errors reducer", () => {
     });
 
     describe("Given a field has an error", () => {
-
-        let field, error;
+        let payload;
         beforeEach(() => {
-            field = 'password';
-            error = 'password mismatch';
+            payload = {
+                field: 'x',
+                error: 'x'
+            };
+
+            reducer(initialState, {
+                type: RESET_PASSWORD_FORM_ERROR,
+                payload: payload
+            });
         });
 
-        it('should handle RESET_PASSWORD_FORM_ERROR action', () => {
-            let newState = reducer(initialState, {
-                type: RESET_PASSWORD_FORM_ERROR,
-                payload: {
-                    field: field,
-                    error: error
-                }
-            });
-            expect(newState.get(field)).toEqual(error);
+        it('should call reducer', () => {
+            expect(resetSpy).toHaveBeenCalled();
         });
     });
 
     describe("Given a the form validation is reset", () => {
-
-        it('should handle RESET_PASSWORD_FORM_ERROR_RESET action', () => {
-            let newState = reducer(initialState, {
+        let payload;
+        beforeEach(() => {
+            payload = {};
+            reducer(initialState, {
                 type: CLEAR_FORM_ERRORS
             });
-            expect(newState).toEqual(initialState);
+        });
+
+        it('should call clearFormErrors', () => {
+            expect(clearSpy).toHaveBeenCalled();
         });
     });
 

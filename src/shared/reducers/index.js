@@ -8,7 +8,7 @@ import games from './games/games';
 import settings from './settings/settings';
 import signupForm from './signupForm/signupForm'
 import signinForm from './signinForm/signinForm';
-import resetPasswordForm from './resetPasswordForm/resetPasswordForm';
+import resetPasswordForm from './resetPasswordForm/reducer';
 import forgotPasswordForm from './forgotPasswordForm/forgotPasswordForm';
 
 export default combineReducers({
