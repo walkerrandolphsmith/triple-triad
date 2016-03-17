@@ -33,7 +33,7 @@ describe('/api/create_game', () => {
                     expect(res.body.owner).toEqual(id);
                     expect(res.body.currentPlayer).toEqual(id);
                     expect(res.body.deck).toEqual(deck);
-                    expect(res.body.phase).toEqual('settings-selection');
+                    expect(res.body.phase).toEqual('settingsSelection');
                     done();
                 });
         });
