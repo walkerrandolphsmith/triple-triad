@@ -3,6 +3,8 @@ import {
   UPDATE_SETTINGS,
   UPDATE_FOCUS_SETTING
 } from './../../constants/actionTypes';
+import updateFocusSetting from './updateFocusSetting';
+import updateSettings from './updateSettings';
 
 const INITIAL_STATE = new Map({
   randomHand: false,
@@ -16,8 +18,8 @@ export default function reducer(state = INITIAL_STATE, action = {}) {
   let {type, payload} = action;
 
   switch(type){
-    case UPDATE_SETTINGS: return state.set(payload.setting, !state.get(payload.setting));
-    case UPDATE_FOCUS_SETTING: return state.set('focused', payload.setting);
+    case UPDATE_SETTINGS: return updateSettings(state, payload);
+    case UPDATE_FOCUS_SETTING: return updateFocusSetting(state, payload);
   }
 
   return state;

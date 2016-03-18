@@ -1,9 +1,10 @@
 import expect from 'expect';
 import { Map } from 'immutable';
 import reducer from './settings';
-import * as types from './../../constants/actionTypes';
+import { __RewireAPI__ } from './settings';
+import { UPDATE_SETTINGS, UPDATE_FOCUS_SETTING } from './../../constants/actionTypes';
 
-describe("Settings reducer", () => {
+describe("Given settings state", () => {
 
     let initialState;
     beforeEach(() => {
@@ -15,63 +16,43 @@ describe("Settings reducer", () => {
         });
     });
 
-
-    describe("Given no state", () => {
+    describe("When given no state", () => {
         it('should return the initial state', () => {
             expect(reducer(undefined, {})).toEqual(initialState)
         });
     });
 
+    describe("When handling UPDATE_SETTINGS", () => {
 
-    describe("When updating the random hand setting", () => {
+        let updateSettings = expect.createSpy();
+        __RewireAPI__.__Rewire__('updateSettings', updateSettings);
 
-        let newState;
-        beforeEach(() => {
-            newState = reducer(initialState, {
-                type: types.UPDATE_SETTINGS,
-                payload: {
-                    setting: "randomHand"
-                }
-            });
+        reducer(initialState, {
+            type: UPDATE_SETTINGS,
+            payload: {
+                setting: "randomHand"
+            }
         });
 
-        it('should handle UPDATE_SETTINGS random hand', () => {
-            expect(newState.get('randomHand')).toEqual(true)
-        });
-    });
-
-    describe("when updating the multiplayer settings", () => {
-
-        let newState;
-        beforeEach(() => {
-            newState = reducer(initialState, {
-                type: types.UPDATE_SETTINGS,
-                payload: {
-                    setting: "multiplayer"
-                }
-            });
-        });
-
-        it('should handle UPDATE_SETTINGS multiplayer', () => {
-            expect(newState.get('multiplayer')).toEqual(true)
+        it('should call updateSettings', () => {
+            expect(updateSettings).toHaveBeenCalled();
         });
     });
 
-    describe("when updating the visible hand settings", () => {
+    describe("When handling UPDATE_FOCUS_SETTING", () => {
 
-        let newState;
-        beforeEach(() => {
-            newState = reducer(initialState, {
-                type: types.UPDATE_SETTINGS,
-                payload: {
-                    setting: "visibleHand"
-                }
-            });
+        let updateFocusSetting = expect.createSpy();
+        __RewireAPI__.__Rewire__('updateFocusSetting', updateFocusSetting);
+
+        reducer(initialState, {
+            type: UPDATE_FOCUS_SETTING,
+            payload: {
+                setting: "randomHand"
+            }
         });
 
-        it('should handle UPDATE_SETTINGS visible hand', () => {
-            expect(newState.get('visibleHand')).toEqual(true)
+        it('should call updateFocusSetting', () => {
+            expect(updateFocusSetting).toHaveBeenCalled();
         });
     });
-
 });
