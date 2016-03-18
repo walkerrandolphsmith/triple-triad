@@ -4,6 +4,9 @@ import {
     CLEAR_FORM_ERRORS
 } from './../../constants/actionTypes';
 
+import setFormError from './setFormError';
+import clearFormError from './clearFormError';
+
 const INITIAL_STATE = new Map({
     email: ''
 });
@@ -13,8 +16,8 @@ export default function forgotPasswordFormErrors(state = INITIAL_STATE, action =
     const { type, payload } = action;
 
     switch (type) {
-        case FORGOT_PASSWORD_FORM_ERROR: return state.set(payload['field'], payload['error']);
-        case CLEAR_FORM_ERRORS: return INITIAL_STATE;
+        case FORGOT_PASSWORD_FORM_ERROR: return setFormError(state, payload);
+        case CLEAR_FORM_ERRORS: return clearFormError(INITIAL_STATE);
         default: return state;
     }
 }
