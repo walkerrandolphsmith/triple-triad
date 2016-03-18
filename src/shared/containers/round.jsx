@@ -6,16 +6,6 @@ import * as Actions from './../actions/';
 import React from 'react';
 import { Round } from './../components';
 
-class RoundContainer extends React.Component {
-
-    render() {
-        return (
-            <Round {...this.props} />
-        )
-    }
-}
-
-
 function mapStateToProps(state) {
     const { game, settings } = state;
 
@@ -36,4 +26,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(RoundContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(Round);

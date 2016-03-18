@@ -5,15 +5,6 @@ import * as Actions from './../actions/';
 import React from 'react';
 import { User } from './../components';
 
-class UserContainer extends React.Component {
-
-    render() {
-        return (
-            <User {...this.props} />
-        );
-    }
-}
-
 function mapStateToProps(state) {
     return {
         id: state.auth.get('user').get('id'),
@@ -30,4 +21,4 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators(Actions,dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(User);

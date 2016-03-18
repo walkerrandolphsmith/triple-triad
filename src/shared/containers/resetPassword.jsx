@@ -5,19 +5,6 @@ import * as Actions from './../actions';
 import React from 'react';
 import { ResetPassword } from './../components';
 
-class ResetPasswordContainer extends React.Component {
-
-    componentDidMount() {
-
-    }
-
-    render() {
-        return (
-            <ResetPassword {...this.props} />
-        );
-    }
-}
-
 function mapStateToProps(state) {
     return {
         token: state.routing.locationBeforeTransitions.pathname.split('/reset/')[1],
@@ -32,4 +19,4 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators(Actions, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ResetPasswordContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(ResetPassword)

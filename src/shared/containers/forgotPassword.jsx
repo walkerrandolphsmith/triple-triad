@@ -5,19 +5,6 @@ import * as Actions from './../actions';
 import React from 'react';
 import { ForgotPassword } from './../components';
 
-class ForgotPasswordContainer extends React.Component {
-
-    componentDidMount() {
-
-    }
-
-    render() {
-        return (
-            <ForgotPassword {...this.props} />
-        );
-    }
-}
-
 function mapStateToProps(state) {
     return {
         errors: {
@@ -30,4 +17,4 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators(Actions, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ForgotPasswordContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(ForgotPassword)

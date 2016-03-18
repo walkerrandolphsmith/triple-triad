@@ -5,15 +5,6 @@ import * as Actions from './../actions/';
 import React from 'react';
 import { Hold } from './../components/';
 
-class HoldContainer extends React.Component {
-
-    render() {
-        return (
-            <Hold {...this.props} />
-        )
-    }
-}
-
 function mapStateToProps(state) {
     return {
         holding: true
@@ -25,4 +16,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(HoldContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(Hold);

@@ -5,15 +5,6 @@ import * as Actions from './../actions/';
 import React from 'react';
 import { Settings } from './../components';
 
-class SettingsContainer extends React.Component {
-
-    render() {
-        return (
-            <Settings {...this.props} />
-        )
-    }
-}
-
 function mapStateToProps(state) {
     return {
         settings: state.settings
@@ -25,4 +16,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(SettingsContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(Settings);

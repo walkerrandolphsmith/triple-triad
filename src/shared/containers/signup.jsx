@@ -5,15 +5,6 @@ import * as Actions from './../actions';
 import React from 'react';
 import { SignUp } from './../components';
 
-class SignUpContainer extends React.Component {
-
-    render() {
-        return (
-            <SignUp {...this.props} />
-        );
-    }
-}
-
 function mapStateToProps(state) {
     return {
         errors: {
@@ -29,4 +20,4 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators(Actions,dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUpContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp)
