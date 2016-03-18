@@ -11,6 +11,17 @@ import {
     AUTH_SIGNUP_FAIL
 } from './../../constants/actionTypes';
 
+import signin from './signin';
+import signinSuccess from './signinSuccess';
+import signinFailure from './signinFailure';
+import signup from './signup';
+import signupSuccess from './signupSuccess';
+import signupFailure from './signupFailure';
+import signout from './signout';
+import signoutSuccess from './signoutSuccess';
+import signoutFailure from './signoutFailure';
+
+
 const INITIAL_STATE = new Map({
     loading: false,
     loaded: false,
@@ -29,65 +40,17 @@ export default function auth(state = INITIAL_STATE, action = {}) {
 
     switch (type) {
         case AUTH_SIGNIN: return signin(state, payload);
-        case AUTH_SIGNIN_SUCCESS: return signInSuccess(state, payload);
-        case AUTH_SIGNIN_FAIL: return signInFailure(state, payload);
+        case AUTH_SIGNIN_SUCCESS: return signinSuccess(state, payload);
+        case AUTH_SIGNIN_FAIL: return signinFailure(state, payload);
 
-        case AUTH_SIGNUP: return signUp(state, payload);
-        case AUTH_SIGNUP_SUCCESS: return signUpSuccess(state, payload);
-        case AUTH_SIGNUP_FAIL: return signUpFailure(state, payload);
+        case AUTH_SIGNUP: return signup(state, payload);
+        case AUTH_SIGNUP_SUCCESS: return signupSuccess(state, payload);
+        case AUTH_SIGNUP_FAIL: return signupFailure(state, payload);
 
-        case AUTH_SIGNOUT: return signOut(state, payload);
-        case AUTH_SIGNOUT_SUCCESS: return signOutSuccess(state, payload);
-        case AUTH_SIGNOUT_FAIL: return signOutFailure(state, payload);
+        case AUTH_SIGNOUT: return signout(state, payload);
+        case AUTH_SIGNOUT_SUCCESS: return signoutSuccess(state, payload);
+        case AUTH_SIGNOUT_FAIL: return signoutFailure(state, payload);
 
         default: return state;
     }
-}
-
-function signin(state, payload) {
-    return state.set('signingIn', true);
-}
-
-function signInSuccess(state, payload) {
-    state = state.set('signingIn', true);
-    state = state.setIn('user.username'.split('.'), payload.user.name);
-    return state.setIn('user.id'.split('.'), payload.user.id);
-}
-
-function signInFailure(state, payload) {
-    state = state.set('signingIn', false);
-    state = state.setIn('user.username'.split('.'), null);
-    state = state.setIn('user.id'.split('.'), null);
-    return state.set('signInError', payload.error);
-}
-
-function signUp(state, payload) {
-    return state.set('signingUp', true);
-}
-
-function signUpSuccess(state, payload) {
-    state = state.set('signingUp', false);
-    state = state.setIn('user.username'.split('.'), payload.user.name);
-    return state.setIn('user.id'.split('.'), payload.user.id);
-}
-
-function signUpFailure(state, payload) {
-    state = state.set('signingUp', false);
-    state = state.setIn('user.username'.split('.'), null);
-    return state.setIn('user.id'.split('.'), null);
-}
-
-function signOut(state, payload){
-    return state.set('signingOut', true);
-}
-
-function signOutSuccess(state, payload){
-    state = state.set('signingOut', false);
-    state = state.setIn('user.username'.split('.'), null);
-    return state.setIn('user.id'.split('.'), null);
-}
-
-function signOutFailure(state, payload){
-    state.set('signingOut', false);
-    return state.set('signOutError', payload.error);
 }
