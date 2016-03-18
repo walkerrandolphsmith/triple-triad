@@ -7,15 +7,7 @@ describe('Given authentication state', () => {
     let state;
     beforeEach(() => {
         state = new Map({
-            loading: false,
-            loaded: false,
-            signingIn: false,
-            signingOut: false,
-            signingUp: false,
-            user: new Map({
-                username: null,
-                id: null
-            })
+            signingIn: false
         });
     });
 
