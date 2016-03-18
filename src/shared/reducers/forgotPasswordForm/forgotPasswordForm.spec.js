@@ -1,12 +1,13 @@
 import expect from 'expect';
 import { Map } from 'immutable';
 import reducer from './forgotPasswordForm';
+import { __RewireAPI__ } from './forgotPasswordForm';
 import {
     FORGOT_PASSWORD_FORM_ERROR,
     CLEAR_FORM_ERRORS
 } from './../../constants/actionTypes';
 
-describe("Reset password form errors reducer", () => {
+describe("Given an initial forgot password form state", () => {
 
     let initialState;
     beforeEach(() => {
@@ -15,40 +16,41 @@ describe("Reset password form errors reducer", () => {
         });
     });
 
-    describe("Given no state", () => {
+    describe("When given no state", () => {
         it('should return the initial state', () => {
             expect(reducer(undefined, {})).toEqual(initialState)
         });
     });
 
-    describe("Given a field has an error", () => {
+    describe("When handling FORGOT_PASSWORD_FORM_ERROR", () => {
 
-        let field, error;
-        beforeEach(() => {
-            field = 'email';
-            error = 'This user does not exist';
+        let setFormError = expect.createSpy();
+        __RewireAPI__.__Rewire__('setFormError', setFormError);
+
+        reducer(initialState, {
+            type: FORGOT_PASSWORD_FORM_ERROR,
+            payload: {
+                field: 'email',
+                error: 'message'
+            }
         });
 
-        it('should handle FORGOT_PASSWORD_FORM_ERROR action', () => {
-            let newState = reducer(initialState, {
-                type: FORGOT_PASSWORD_FORM_ERROR,
-                payload: {
-                    field: field,
-                    error: error
-                }
-            });
-            expect(newState.get(field)).toEqual(error);
+        it('should call setFormError', () => {
+            expect(setFormError).toHaveBeenCalled();
         });
     });
 
-    describe("Given a the form validation is reset", () => {
+    describe("When handling CLEAR_FORM_ERRORS", () => {
 
-        it('should handle CLEAR_FORM_ERRORS action', () => {
-            let newState = reducer(initialState, {
-                type: CLEAR_FORM_ERRORS
-            });
-            expect(newState).toEqual(initialState);
+        let clearFormError = expect.createSpy();
+        __RewireAPI__.__Rewire__('clearFormError', clearFormError);
+
+        reducer(initialState, {
+            type: CLEAR_FORM_ERRORS
+        });
+
+        it('should call clearFormError', () => {
+            expect(clearFormError).toHaveBeenCalled();
         });
     });
-
 });
