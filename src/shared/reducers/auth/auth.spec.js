@@ -1,6 +1,7 @@
 import expect from 'expect';
 import { Map } from 'immutable';
 import reducer from './auth';
+import { __RewireAPI__ } from './auth';
 import {
     AUTH_SIGNIN,
     AUTH_SIGNIN_SUCCESS,
@@ -13,8 +14,7 @@ import {
     AUTH_SIGNUP_FAIL
     } from './../../constants/actionTypes';
 
-describe("Auth reducer", () => {
-
+describe("Given an initial authentication state", () => {
     let initialState;
     beforeEach(() => {
         initialState = new Map({
@@ -30,142 +30,153 @@ describe("Auth reducer", () => {
         });
     });
 
-    describe("Given no state", () => {
+    describe("When given no state", () => {
         it('should return the initial state', () => {
             expect(reducer(undefined, {})).toEqual(initialState)
         });
     });
 
-    describe("Given signing in is successful", () => {
+    describe("When handling AUTH_SIGNIN", () => {
 
-        let user;
-        beforeEach(() => {
-            user = {
-                name: 'walker',
-                id: 888
-            };
+        let signin = expect.createSpy();
+        __RewireAPI__.__Rewire__('signin', signin);
+
+        reducer(initialState, {
+            type: AUTH_SIGNIN
         });
 
-        it('should handle AUTH_SIGNIN_SUCCESS action', () => {
-            let newState = reducer(initialState, {
-                type: AUTH_SIGNIN_SUCCESS,
-                payload: {
-                    user: user
+        it('should call signin', () => {
+            expect(signin).toHaveBeenCalled();
+        });
+    });
+
+    describe("When handling AUTH_SIGNIN_SUCCESS", () => {
+
+        let signinSuccess = expect.createSpy();
+        __RewireAPI__.__Rewire__('signinSuccess', signinSuccess);
+
+        reducer(initialState, {
+            type: AUTH_SIGNIN_SUCCESS,
+            payload: {
+                user: {
+                    id: 20,
+                    name: 'walker'
                 }
-            });
-            expect(newState.get('signingIn')).toEqual(true);
-            expect(newState.get('user').get('username')).toEqual(user.name);
-            expect(newState.get('user').get('id')).toEqual(user.id);
-        });
-    });
-
-    describe("Given signing in is unsuccessful", () => {
-
-        let error;
-        beforeEach(() => {
-            error = 'error';
-        });
-
-        it('should handle AUTH_SIGNIN_FAIL action', () => {
-            let newState = reducer(initialState, {
-                type: AUTH_SIGNIN_FAIL,
-                payload: {
-                    error: error
-                }
-            });
-            expect(newState.get('signingIn')).toEqual(false);
-            expect(newState.get('user').get('username')).toEqual(null);
-            expect(newState.get('user').get('id')).toEqual(null);
-            expect(newState.get('signInError')).toEqual(error);
-        });
-    });
-
-    describe("Given user initiates signing up", () => {
-
-        it('should handle AUTH_SIGNUP action', () => {
-            let newState = reducer(initialState, {
-                type: AUTH_SIGNUP
-            });
-            expect(newState.get('signingUp')).toEqual(true);
-        });
-    });
-
-    describe("Given signing up is successful", () => {
-
-        let user;
-        beforeEach(() => {
-            user = {
-                name: 'walker',
-                id: 888
             }
         });
 
-        it('should handle AUTH_SIGNUP_SUCCESS action', () => {
-            let newState = reducer(initialState, {
-                type: AUTH_SIGNUP_SUCCESS,
-                payload: {
-                    user: user
+        it('should call signinSuccess', () => {
+            expect(signinSuccess).toHaveBeenCalled();
+        });
+    });
+
+    describe("When handling AUTH_SIGNIN_FAILED", () => {
+
+        let signinFailure = expect.createSpy();
+        __RewireAPI__.__Rewire__('signinFailure', signinFailure);
+
+        reducer(initialState, {
+            type: AUTH_SIGNIN_FAIL,
+            payload: {
+                error: 'message'
+            }
+        });
+
+        it('should call signinFailure', () => {
+            expect(signinFailure).toHaveBeenCalled();
+        });
+    });
+
+    describe("When handling AUTH_SIGNUP", () => {
+
+        let signup = expect.createSpy();
+        __RewireAPI__.__Rewire__('signup', signup);
+
+        reducer(initialState, {
+            type: AUTH_SIGNUP
+        });
+
+        it('should call signup', () => {
+            expect(signup).toHaveBeenCalled();
+        });
+    });
+
+    describe("When handling AUTH_SIGNUP_SUCCESS", () => {
+
+        let signupSuccess = expect.createSpy();
+        __RewireAPI__.__Rewire__('signupSuccess', signupSuccess);
+
+        reducer(initialState, {
+            type: AUTH_SIGNUP_SUCCESS,
+            payload: {
+                user: {
+                    id: 20,
+                    name: 'walker'
                 }
-            });
-            expect(newState.get('signingUp')).toEqual(false);
-            expect(newState.get('user').get('username')).toEqual(user.name);
-            expect(newState.get('user').get('id')).toEqual(user.id);
+            }
+        });
+
+        it('should call signupSuccess', () => {
+            expect(signupSuccess).toHaveBeenCalled();
         });
     });
 
-    describe("Given signing in is unsuccessful", () => {
+    describe("When handling AUTH_SIGNUP_FAIL", () => {
 
-        it('should handle AUTH_SIGNUP_FAIL action', () => {
-            let newState = reducer(initialState, {
-                type: AUTH_SIGNUP_FAIL
-            });
-            expect(newState.get('signingIn')).toEqual(false);
-            expect(newState.get('user').get('username')).toEqual(null);
-            expect(newState.get('user').get('id')).toEqual(null);
+        let signupFailure = expect.createSpy();
+        __RewireAPI__.__Rewire__('signupFailure', signupFailure);
+
+        reducer(initialState, {
+            type: AUTH_SIGNUP_FAIL
+        });
+
+        it('should call signupFailure', () => {
+            expect(signupFailure).toHaveBeenCalled();
         });
     });
 
-    describe("Given user initiates signing out", () => {
+    describe("When handling AUTH_SIGNOUT", () => {
 
-        it('should handle AUTH_SIGNOUT action', () => {
-            let newState = reducer(initialState, {
-                type: AUTH_SIGNOUT
-            });
-            expect(newState.get('signingOut')).toEqual(true);
+        let signout = expect.createSpy();
+        __RewireAPI__.__Rewire__('signout', signout);
+
+        reducer(initialState, {
+            type: AUTH_SIGNOUT
+        });
+
+        it('should call signout', () => {
+            expect(signout).toHaveBeenCalled();
         });
     });
 
-    describe("Given signing out is successful", () => {
+    describe("When handling AUTH_SIGNOUT_SUCCESS", () => {
 
-        it('should handle AUTH_SIGNOUT_SUCCESS action', () => {
-            let newState = reducer(initialState, {
-                type: AUTH_SIGNOUT_SUCCESS
-            });
-            expect(newState.get('signingOut')).toEqual(false);
-            expect(newState.get('user').get('username')).toEqual(null);
-            expect(newState.get('user').get('id')).toEqual(null);
+        let signoutSuccess = expect.createSpy();
+        __RewireAPI__.__Rewire__('signoutSuccess', signoutSuccess);
+
+        reducer(initialState, {
+            type: AUTH_SIGNOUT_SUCCESS
+        });
+
+        it('should call signoutSuccess', () => {
+            expect(signoutSuccess).toHaveBeenCalled();
         });
     });
 
-    describe("Given signing out is unsuccessful", () => {
+    describe("When handling AUTH_SIGNOUT_FAIL", () => {
 
-        let error;
-        beforeEach(() =>{
-            error = 'error';
+        let signoutFailure = expect.createSpy();
+        __RewireAPI__.__Rewire__('signoutFailure', signoutFailure);
+
+        reducer(initialState, {
+            type: AUTH_SIGNOUT_FAIL,
+            payload: {
+                error: 'message'
+            }
         });
 
-        it('should handle AUTH_SIGNOUT_FAIL action', () => {
-            let newState = reducer(initialState, {
-                type: AUTH_SIGNOUT_FAIL,
-                payload: {
-                    error: error
-                }
-            });
-            expect(newState.get('signingOut')).toEqual(false);
-            expect(newState.get('signOutError')).toEqual(error);
+        it('should call signoutFailure', () => {
+            expect(signoutFailure).toHaveBeenCalled();
         });
     });
-
-
-
 });
