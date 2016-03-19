@@ -1,3 +1,4 @@
+export { App } from './app/app';
 export { Board } from './board/board';
 export { Card } from './card/card';
 export { Deck } from './deck/deck';
