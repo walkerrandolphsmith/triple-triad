@@ -4,8 +4,7 @@ import {
     CLEAR_FORM_ERRORS
 } from './../../constants/actionTypes';
 
-import setFormError from './../forms/setFormError';
-import clearFormError from './../forms/clearFormError';
+import { setFormError, clearFormError } from './../forms';
 
 const INITIAL_STATE = new Map({
     email: ''
