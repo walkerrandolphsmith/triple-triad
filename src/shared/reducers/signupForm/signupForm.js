@@ -4,6 +4,9 @@ import {
     CLEAR_FORM_ERRORS
 } from './../../constants/actionTypes';
 
+import setFormError from './../forms/setFormError';
+import clearFormError from './../forms/clearFormError';
+
 const INITIAL_STATE = new Map({
     username: '',
     password: '',
@@ -16,8 +19,8 @@ export default function signUpFormErrors(state = INITIAL_STATE, action = {}) {
     const { type, payload } = action;
 
     switch (type) {
-        case SIGN_UP_FORM_ERROR: return state.set(payload['field'], payload['error']);
-        case CLEAR_FORM_ERRORS: return INITIAL_STATE;
+        case SIGN_UP_FORM_ERROR: return setFormError(state, payload);
+        case CLEAR_FORM_ERRORS: return clearFormError(INITIAL_STATE);
         default: return state;
     }
 }

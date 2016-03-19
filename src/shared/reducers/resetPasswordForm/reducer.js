@@ -4,8 +4,8 @@ import {
     CLEAR_FORM_ERRORS
 } from './../../constants/actionTypes';
 
-import resetPasswordFormError from './resetPasswordFormError';
-import clearFormErrors from './clearFormErrors';
+import setFormError from './../forms/setFormError';
+import clearFormError from './../forms/clearFormError';
 
 const INITIAL_STATE = new Map({
     password: '',
@@ -17,8 +17,8 @@ export default function(state = INITIAL_STATE, action = {}) {
     const { type, payload } = action;
 
     switch (type) {
-        case RESET_PASSWORD_FORM_ERROR: return resetPasswordFormError(state, payload);
-        case CLEAR_FORM_ERRORS: return clearFormErrors(INITIAL_STATE);
+        case RESET_PASSWORD_FORM_ERROR: return setFormError(state, payload);
+        case CLEAR_FORM_ERRORS: return clearFormError(INITIAL_STATE);
         default: return state;
     }
 }

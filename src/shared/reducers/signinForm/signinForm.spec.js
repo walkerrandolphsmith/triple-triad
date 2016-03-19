@@ -1,12 +1,13 @@
 import expect from 'expect';
 import { Map } from 'immutable';
 import reducer from './signinForm';
+import { __RewireAPI__ } from './signinForm';
 import {
     SIGN_IN_FORM_ERROR,
     CLEAR_FORM_ERRORS
 } from './../../constants/actionTypes';
 
-describe("Sign up form errors reducer", () => {
+describe("Given Sign up form errors reducer initial state", () => {
 
     let initialState;
     beforeEach(() => {
@@ -16,40 +17,41 @@ describe("Sign up form errors reducer", () => {
         });
     });
 
-    describe("Given no state", () => {
+    describe("When given no state", () => {
         it('should return the initial state', () => {
             expect(reducer(undefined, {})).toEqual(initialState)
         });
     });
 
-    describe("Given a field has an error", () => {
+    describe("When handling SIGN_IN_FORM_ERROR", () => {
 
-        let field, error;
-        beforeEach(() => {
-            field = 'username';
-            error = 'username error';
+        let setFormError = expect.createSpy();
+        __RewireAPI__.__Rewire__('setFormError', setFormError);
+
+        reducer(initialState, {
+            type: SIGN_IN_FORM_ERROR,
+            payload: {
+                field: 'email',
+                error: 'message'
+            }
         });
 
-        it('should handle SIGN_IN_FORM_ERROR action', () => {
-            let newState = reducer(initialState, {
-                type: SIGN_IN_FORM_ERROR,
-                payload: {
-                    field: field,
-                    error: error
-                }
-            });
-            expect(newState.get(field)).toEqual(error);
+        it('should call setFormError', () => {
+            expect(setFormError).toHaveBeenCalled();
         });
     });
 
-    describe("Given a the form validation is reset", () => {
+    describe("When handling CLEAR_FORM_ERRORS", () => {
 
-        it('should handle SIGN_IN_FORM_ERROR_RESET action', () => {
-            let newState = reducer(initialState, {
-                type: CLEAR_FORM_ERRORS
-            });
-            expect(newState).toEqual(initialState);
+        let clearFormError = expect.createSpy();
+        __RewireAPI__.__Rewire__('clearFormError', clearFormError);
+
+        reducer(initialState, {
+            type: CLEAR_FORM_ERRORS
+        });
+
+        it('should call clearFormError', () => {
+            expect(clearFormError).toHaveBeenCalled();
         });
     });
-
 });

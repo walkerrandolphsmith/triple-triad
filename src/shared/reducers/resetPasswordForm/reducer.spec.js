@@ -7,20 +7,20 @@ import {
     CLEAR_FORM_ERRORS
 } from './../../constants/actionTypes';
 
-describe("Reset password form errors reducer", () => {
+describe("Given reset password form initial state", () => {
 
     let initialState;
-    let resetSpy, clearSpy;
+    let setFormError, clearSpy;
     beforeEach(() => {
         initialState = new Map({
             password: '',
             confirmPassword: ''
         });
-        resetSpy = expect.createSpy();
+        setFormError = expect.createSpy();
         clearSpy = expect.createSpy();
 
-        __RewireAPI__.__Rewire__('resetPasswordFormError', resetSpy);
-        __RewireAPI__.__Rewire__('clearFormErrors', clearSpy);
+        __RewireAPI__.__Rewire__('setFormError', setFormError);
+        __RewireAPI__.__Rewire__('clearFormError', clearSpy);
     });
 
     describe("Given no state", () => {
@@ -30,34 +30,29 @@ describe("Reset password form errors reducer", () => {
     });
 
     describe("Given a field has an error", () => {
-        let payload;
         beforeEach(() => {
-            payload = {
-                field: 'x',
-                error: 'x'
-            };
-
             reducer(initialState, {
                 type: RESET_PASSWORD_FORM_ERROR,
-                payload: payload
+                payload: {
+                    field: 'x',
+                    error: 'x'
+                }
             });
         });
 
-        it('should call reducer', () => {
-            expect(resetSpy).toHaveBeenCalled();
+        it('should call setFormError', () => {
+            expect(setFormError).toHaveBeenCalled();
         });
     });
 
-    describe("Given a the form validation is reset", () => {
-        let payload;
+    describe("Given the form errors are reset", () => {
         beforeEach(() => {
-            payload = {};
             reducer(initialState, {
                 type: CLEAR_FORM_ERRORS
             });
         });
 
-        it('should call clearFormErrors', () => {
+        it('should call clearFormError', () => {
             expect(clearSpy).toHaveBeenCalled();
         });
     });
