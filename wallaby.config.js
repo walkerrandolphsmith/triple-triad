@@ -29,6 +29,10 @@ module.exports = function(wallaby) {
   return {
     testFramework: 'mocha',
     debug: true,
+    workers: {
+      initial: 12,
+      regular: 2
+    },
     files: [
       { pattern: 'node_modules/babel-polyfill/dist/polyfill.js', instrument: false },
       { pattern: srcFilePattern, load: false },
