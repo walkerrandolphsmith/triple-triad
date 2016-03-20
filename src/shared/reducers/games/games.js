@@ -8,6 +8,13 @@ import {
     CREATE_GAME_SUCCESS
 } from './../../constants/actionTypes';
 
+import createGameFailed from './createGameFailed';
+import createGameRequest from './createGameRequest';
+import createGameSuccess from './createGameSuccess';
+import getGamesFailed from './getGamesFailed';
+import getGamesRequest from './getGamesRequest';
+import getGamesSuccess from './getGamesSuccess';
+
 const INITIAL_STATE = new Map({
     getGames: new Map({
         loading: false,
@@ -28,49 +35,11 @@ export default function user(state = INITIAL_STATE, action = {}) {
 
     switch (type) {
         case GET_GAMES_FAILED: return getGamesFailed(state, payload);
-        case GET_GAMES_REQUEST: return requestGames(state, payload);
-        case GET_GAMES_SUCCESS: return receiveGames(state, payload);
-        case CREATE_GAME_FAILED: return createFailed(state, payload);
-        case CREATE_GAME_REQUEST: return requestNewGame(state, payload);
-        case CREATE_GAME_SUCCESS: return receiveNewGame(state, payload);
+        case GET_GAMES_REQUEST: return getGamesRequest(state, payload);
+        case GET_GAMES_SUCCESS: return getGamesSuccess(state, payload);
+        case CREATE_GAME_FAILED: return createGameFailed(state, payload);
+        case CREATE_GAME_REQUEST: return createGameRequest(state, payload);
+        case CREATE_GAME_SUCCESS: return createGameSuccess(state, payload);
         default: return state;
     }
-}
-
-function getGamesFailed(state, payload) {
-    state = state.setIn('getGames.failed'.split('.'), true);
-    state = state.setIn('getGames.loaded'.split('.'), false);
-    return state.setIn('getGames.loading'.split('.'), false);
-}
-
-function receiveGames(state, payload) {
-    state = state.setIn('getGames.failed'.split('.'), false);
-    state = state.setIn('getGames.loading'.split('.'), false);
-    state = state.setIn('getGames.loaded'.split('.'), true);
-    return state.set('games', new List(payload.games));
-}
-
-function requestGames(state, payload) {
-    state = state.setIn('getGames.failed'.split('.'), false);
-    state = state.setIn('getGames.loading'.split('.'), true);
-    return state.setIn('getGames.loaded'.split('.'), false);
-}
-
-function requestNewGame(state, payload) {
-    state = state.setIn('newGame.failed'.split('.'), false);
-    state = state.setIn('newGame.loading'.split('.'), true);
-    return state.setIn('newGame.loaded'.split('.'), false);
-}
-
-function receiveNewGame(state, payload) {
-    state = state.setIn('newGame.failed'.split('.'), false);
-    state = state.setIn('newGame.loading'.split('.'), false);
-    state = state.setIn('newGame.loaded'.split('.'), true);
-    return state.set('games', state.get('games').push(payload.game));
-}
-
-function createFailed(state, payload) {
-    state = state.setIn('newGame.failed'.split('.'), true);
-    state = state.setIn('newGame.loading'.split('.'), false);
-    return state.setIn('newGame.loaded'.split('.'), false);
 }
