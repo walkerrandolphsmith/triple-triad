@@ -1,6 +1,7 @@
 import expect from 'expect';
 import { Map, List } from 'immutable';
 import reducer from './games';
+import { __RewireAPI__ } from './games';
 import {
     GET_GAMES_FAILED,
     GET_GAMES_REQUEST,
@@ -10,7 +11,7 @@ import {
     CREATE_GAME_SUCCESS
 } from './../../constants/actionTypes';
 
-describe("Games reducer", () => {
+describe("Given games state", () => {
 
     let initialState;
     beforeEach(() => {
@@ -29,91 +30,99 @@ describe("Games reducer", () => {
         });
     });
 
-    describe("Given no state", () => {
+    describe("When given no state", () => {
         it('should return the initial state', () => {
             expect(reducer(undefined, {})).toEqual(initialState)
         });
     });
 
-    describe('requesting games', () => {
+    describe("When handling GET_GAMES_REQUEST", () => {
 
-        it('should handle GET_GAMES_REQUEST by settings the loading state to true', () => {
-            let newState = reducer(initialState, {
-                type: GET_GAMES_REQUEST
-            });
-            expect(newState.get('getGames').get('loading')).toEqual(true);
-            expect(newState.get('getGames').get('loaded')).toEqual(false);
-            expect(newState.get('getGames').get('failed')).toEqual(false);
+        let getGamesRequest = expect.createSpy();
+        __RewireAPI__.__Rewire__('getGamesRequest', getGamesRequest);
+
+        reducer(initialState, {
+            type: GET_GAMES_REQUEST
+        });
+
+        it('should call getGamesRequest', () => {
+            expect(getGamesRequest).toHaveBeenCalled();
         });
     });
 
-    describe('receiving games', () => {
+    describe("When handling GET_GAMES_SUCCESS", () => {
 
-        it('should handle GET_GAMES_SUCCESS by settings the loading state to true', () => {
-            let newState = reducer(initialState, {
-                type: GET_GAMES_SUCCESS,
-                payload: {
-                    games: [{id: 0}]
-                }
-            });
-            expect(newState.get('getGames').get('loading')).toEqual(false);
-            expect(newState.get('getGames').get('loaded')).toEqual(true);
-            expect(newState.get('getGames').get('failed')).toEqual(false);
-            expect(newState.get('games').size).toEqual(1);
+        let getGamesSuccess = expect.createSpy();
+        __RewireAPI__.__Rewire__('getGamesSuccess', getGamesSuccess);
+
+        reducer(initialState, {
+            type: GET_GAMES_SUCCESS,
+            payload: {
+                games: [{id: 0}]
+            }
+        });
+
+        it('should call getGamesSuccess', () => {
+            expect(getGamesSuccess).toHaveBeenCalled();
         });
     });
 
-    describe('get games failed', () => {
+    describe("When handling GET_GAMES_FAILED", () => {
 
-        it('should handle GET_GAMES_FAILED by settings the failed state to true', () => {
-            let newState = reducer(initialState, {
-                type: GET_GAMES_FAILED
-            });
-            expect(newState.get('getGames').get('loading')).toEqual(false);
-            expect(newState.get('getGames').get('loaded')).toEqual(false);
-            expect(newState.get('getGames').get('failed')).toEqual(true);
+        let getGamesFailed = expect.createSpy();
+        __RewireAPI__.__Rewire__('getGamesFailed', getGamesFailed);
+
+        reducer(initialState, {
+            type: GET_GAMES_FAILED
+        });
+
+        it('should call getGamesFailed', () => {
+            expect(getGamesFailed).toHaveBeenCalled();
         });
     });
 
-    describe('requesting to create new game', () => {
+    describe("When handling CREATE_GAME_REQUEST", () => {
 
-        it('should handle CREATE_GAME_REQUEST by settings the loading state to true', () => {
-            let newState = reducer(initialState, {
-                type: CREATE_GAME_REQUEST
-            });
-            expect(newState.get('newGame').get('loading')).toEqual(true);
-            expect(newState.get('newGame').get('loaded')).toEqual(false);
-            expect(newState.get('newGame').get('failed')).toEqual(false);
+        let createGameRequest = expect.createSpy();
+        __RewireAPI__.__Rewire__('createGameRequest', createGameRequest);
+
+        reducer(initialState, {
+            type: CREATE_GAME_REQUEST
+        });
+
+        it('should call createGameRequest', () => {
+            expect(createGameRequest).toHaveBeenCalled();
         });
     });
 
-    describe('receiving a new game', () => {
+    describe("When handling CREATE_GAME_SUCCESS", () => {
 
-        it('should handle CREATE_GAME_SUCCESS by settings the loading state to true', () => {
-            let newState = reducer(initialState, {
-                type: CREATE_GAME_SUCCESS,
-                payload: {
-                    game: {id: 0}
-                }
-            });
-            expect(newState.get('newGame').get('loading')).toEqual(false);
-            expect(newState.get('newGame').get('loaded')).toEqual(true);
-            expect(newState.get('newGame').get('failed')).toEqual(false);
-            expect(newState.get('games').size).toEqual(1);
+        let createGameSuccess = expect.createSpy();
+        __RewireAPI__.__Rewire__('createGameSuccess', createGameSuccess);
+
+        reducer(initialState, {
+            type: CREATE_GAME_SUCCESS,
+            payload: {
+                game: {id: 0}
+            }
+        });
+
+        it('should call createGameSuccess', () => {
+            expect(createGameSuccess).toHaveBeenCalled();
         });
     });
 
-    describe('create game failed', () => {
+    describe("When handling CREATE_GAME_FAILED", () => {
 
-        it('should handle CREATE_GAME_FAILED by settings the failed state to true', () => {
-            let newState = reducer(initialState, {
-                type: CREATE_GAME_FAILED
-            });
-            expect(newState.get('newGame').get('loading')).toEqual(false);
-            expect(newState.get('newGame').get('loaded')).toEqual(false);
-            expect(newState.get('newGame').get('failed')).toEqual(true);
+        let createGameFailed = expect.createSpy();
+        __RewireAPI__.__Rewire__('createGameFailed', createGameFailed);
+
+        reducer(initialState, {
+            type: CREATE_GAME_FAILED
+        });
+
+        it('should call createGameFailed', () => {
+            expect(createGameFailed).toHaveBeenCalled();
         });
     });
-
-
 });
