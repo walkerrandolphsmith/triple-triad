@@ -1,6 +1,7 @@
 import expect from 'expect';
 import { Map, List } from 'immutable';
 import reducer from './game';
+import { __RewireAPI__ } from './game';
 import {
     SET_PHASE,
     ADD_CARD,
@@ -14,7 +15,7 @@ import {
 } from './../../constants/actionTypes';
 import deck from './../../constants/deck';
 
-describe("Game reducer", () => {
+describe("Given initial game state", () => {
 
     let initialState, ownerType;
     beforeEach(() => {
@@ -31,144 +32,138 @@ describe("Game reducer", () => {
         });
     });
 
-    describe("Given no state", () => {
+    describe("When given no state", () => {
         it('should return the initial state', () => {
             expect(reducer(undefined, {})).toEqual(initialState)
         });
     });
 
-    describe("Given you update the phase of a round", () => {
-        let newState, phase;
-        beforeEach(() => {
-            phase = 'gamePhase';
+    describe("When handling SET_PHASE", () => {
 
-            newState = reducer(initialState, {
-                type: SET_PHASE,
-                payload: {
-                    phase: phase
-                }
-            });
+        let setPhase = expect.createSpy();
+        __RewireAPI__.__Rewire__('setPhase', setPhase);
+
+        reducer(initialState, {
+            type: SET_PHASE,
+            payload: {
+                phase: 'phase'
+            }
         });
 
-        it('should handle SET_PHASE by updating the phase of the round', () => {
-            expect(newState.get('phase')).toEqual(phase);
-        });
-    });
-
-    describe('When adding a card by id to the owners hand', () => {
-        let newState, id, owner;
-        beforeEach(() => {
-            id = 0;
-            owner = 2;
-
-            newState = reducer(initialState, {
-                type: ADD_CARD,
-                payload: {
-                    id: id,
-                    owner: owner
-                }
-            });
-        });
-
-        it('should handle ADD_CARD by updating card in deck with new owner', () => {
-            expect(newState.get('deck').find(card => card.get('id') === id).get('owner')).toEqual(owner);
+        it('should call setPhase', () => {
+            expect(setPhase).toHaveBeenCalled();
         });
     });
 
-    describe("Selecting a card", () => {
+    describe("When handling ADD_CARD", () => {
 
-        let id, newState;
-        beforeEach(() => {
-            id = 0;
+        let addCard = expect.createSpy();
+        __RewireAPI__.__Rewire__('addCard', addCard);
 
-            newState = reducer(initialState, {
-                type: SELECT_CARD,
-                payload: {
-                    id: id
-                }
-            });
+        reducer(initialState, {
+            type: ADD_CARD,
+            payload: {
+                id: 20,
+                owner: 1
+            }
         });
 
-        it('should handle SELECT_CARD', () => {
-            expect(newState.get('selectedCard')).toEqual(id);
-        });
-    });
-
-    describe("Selecting a piece by the player", () => {
-
-        let index, newState;
-        beforeEach(() => {
-            index = 0;
-
-            newState = reducer(initialState, {
-                type: SELECT_PIECE,
-                payload: {
-                    index: index
-                }
-            });
-        });
-
-        it('should handle SELECT_PIECE', () => {
-            expect(newState.get('selectedPiece')).toEqual(index);
+        it('should call addCard', () => {
+            expect(addCard).toHaveBeenCalled();
         });
     });
 
-    describe("updating the board when a card is flipped", () => {
+    describe("When handling SELECT_CARD", () => {
 
-        let newState, owner, index;
-        beforeEach(() => {
-            owner = 2; index = 5;
+        let selectCard = expect.createSpy();
+        __RewireAPI__.__Rewire__('selectCard', selectCard);
 
-            let deck = initialState.get('deck');
-            deck = deck.update(
-                deck.findIndex(
-                    card => card.get('id') === 0
-                ),
-                card => card.set('boardIndex', index)
-            );
-
-            initialState = initialState.set('deck', deck);
-
-            newState = reducer(initialState, {
-                type: UPDATE_BOARD,
-                payload: {
-                    index: index,
-                    owner: owner
-                }
-            });
+        reducer(initialState, {
+            type: SELECT_CARD,
+            payload: {
+                id: 20
+            }
         });
 
-        it('should handle UPDATE_BOARD', () => {
-            expect(newState.get('deck').find(card => card.get('boardIndex') === index).get('owner')).toEqual(owner);
+        it('should call selectCard', () => {
+            expect(selectCard).toHaveBeenCalled();
         });
     });
 
+    describe("When handling SELECT_PIECE", () => {
 
-    describe('opponent turn in progress game', () => {
+        let selectPiece = expect.createSpy();
+        __RewireAPI__.__Rewire__('selectPiece', selectPiece);
 
-        it('should handle START_AI_TURN by setting current turn to the opponent', () => {
-            let newState = reducer(initialState, {
-                type: START_AI_TURN
-            });
-            expect(newState).toEqual(initialState);
+        reducer(initialState, {
+            type: SELECT_PIECE,
+            payload: {
+                index: 20
+            }
         });
 
-        it('should handle END_AI_TURN by setting the current turn to the player', () => {
-            let newState = reducer(initialState, {
-                type: END_AI_TURN
-            });
-            expect(newState).toEqual(initialState);
-        });
-    });
-
-    describe('resetting the game', () => {
-
-        it('should handle RESET_GAME by setting current turn to the opponent', () => {
-            let newState = reducer(initialState, {
-                type: RESET_GAME
-            });
-            expect(newState).toEqual(initialState);
+        it('should call selectPiece', () => {
+            expect(selectPiece).toHaveBeenCalled();
         });
     });
 
+    describe("When handling UPDATE_BOARD", () => {
+
+        let updateBoard = expect.createSpy();
+        __RewireAPI__.__Rewire__('updateBoard', updateBoard);
+
+        reducer(initialState, {
+            type: UPDATE_BOARD,
+            payload: {
+                index: 20,
+                owner: 1
+            }
+        });
+
+        it('should call updateBoard', () => {
+            expect(updateBoard).toHaveBeenCalled();
+        });
+    });
+
+    describe("When handling START_AI_TURN", () => {
+
+        let startAiTurn = expect.createSpy();
+        __RewireAPI__.__Rewire__('startAiTurn', startAiTurn);
+
+        reducer(initialState, {
+            type: START_AI_TURN
+        });
+
+        it('should call startAiTurn', () => {
+            expect(startAiTurn).toHaveBeenCalled();
+        });
+    });
+
+    describe("When handling END_AI_TURN", () => {
+
+        let endAiTurn = expect.createSpy();
+        __RewireAPI__.__Rewire__('endAiTurn', endAiTurn);
+
+        reducer(initialState, {
+            type: END_AI_TURN
+        });
+
+        it('should call endAiTurn', () => {
+            expect(endAiTurn).toHaveBeenCalled();
+        });
+    });
+
+    describe("When handling RESET_GAME", () => {
+
+        let resetGame = expect.createSpy();
+        __RewireAPI__.__Rewire__('resetGame', resetGame);
+
+        reducer(initialState, {
+            type: RESET_GAME
+        });
+
+        it('should call resetGame', () => {
+            expect(resetGame).toHaveBeenCalled();
+        });
+    });
 });
