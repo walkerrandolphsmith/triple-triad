@@ -1,0 +1,1 @@
+export default (state, payload) => state.set('phase', payload.phase);
