@@ -14,8 +14,8 @@ describe('Given game state', () => {
     describe('When resetting a game', () => {
         let actual;
         beforeEach(() => {
-            let nextState = state.set('prop', 'newValue');
-            actual = resetGame(nextState)
+            state.set('prop', 'newValue');
+            actual = resetGame(state)
         });
 
         it('should return the initial state', () => {
