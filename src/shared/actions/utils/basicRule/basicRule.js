@@ -1,4 +1,5 @@
 import { getBoard } from './../../../selectors/board/boardSelector';
+import sort from './../sort/objectsByNumericPropValues'
 
 export function basicRule(i, game){
     const board = getBoard(game.get('deck'));
@@ -40,7 +41,7 @@ export function basicRule(i, game){
     if(shouldFLip(card, cardAtRight, 'right', 'left'))
         tuples.push({index: right, owner: card.get('owner')});
 
-    tuples = tuples.sort((x, y) => { return x.index > y.index});
+    tuples = sort(tuples);
 
     if(shouldFLip(cardAbove, card, 'bottom', 'top')
         || shouldFLip(cardBelow, card, 'top', 'bottom')

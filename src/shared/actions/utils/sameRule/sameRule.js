@@ -1,4 +1,5 @@
 import { getBoard } from './../../../selectors/board/boardSelector';
+import sort from './../sort/objectsByNumericPropValues';
 
 export function sameRule(i, game){
 
@@ -45,7 +46,7 @@ export function sameRule(i, game){
         indexes = indexes.concat([below, right]);
 
     let tuples = indexes.map(index => ({index: index, owner: card.get('owner')}) );
-    return tuples.sort((x, y) => { return x.index > y.index})
+    return sort(tuples);
 }
 
 function shouldApplySameRule(card, firstCard, secondCard, d1, d2, d3, d4){
