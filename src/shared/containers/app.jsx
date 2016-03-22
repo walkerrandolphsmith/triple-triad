@@ -2,7 +2,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as Actions from './../actions/';
 import KEY_CODE from './../constants/keyCodes';
-import App from './../components';
+import { App } from './../components';
 
 function mapStateToProps(state) {
     return {
