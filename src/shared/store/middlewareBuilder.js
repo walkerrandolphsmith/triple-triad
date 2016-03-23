@@ -13,7 +13,7 @@ export default function middlewareBuilder(history) {
     );
     let composeElms = [];
 
-    if(process.browser){
+    if(env.isBrowser){
         if(env.nodeEnv !== 'production'){
             composeElms = [
                 middleware,
