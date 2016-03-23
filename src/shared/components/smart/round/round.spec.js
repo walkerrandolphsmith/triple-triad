@@ -3,65 +3,63 @@ import { Map, List } from 'immutable';
 import expect from 'expect';
 import expectJSX from 'expect-jsx';
 import {createRenderer} from 'react-addons-test-utils';
-import { Round, __RewireAPI__ as roundRewireAPI } from './round';
+import { Round, __RewireAPI__ } from './round';
 
 expect.extend(expectJSX);
 
 describe('ROUND component', () => {
-
     let renderer;
+    let props, handStyles, bannerStyle, bannerScrimStyle, phrase;
     beforeEach(() => {
         renderer = createRenderer();
+        props = {
+            game: new Map({
+                selectedCard: 0
+            }),
+            board: new List([
 
+            ]),
+            hand: new List([
+
+            ]),
+            opponentHand: new List([
+
+            ]),
+            settings: new Map({
+                visibleHand: true
+            }),
+            validPieces: [0,1,2,3,4,5,6,7,8],
+            score: {
+                blue: 5,
+                red: 5
+            },
+            winner: 1,
+            winnerType: {
+                NONE: 1,
+                TIE: 2,
+                BLUE: 3,
+                RED: 4
+            },
+            selectCard: () => {},
+            selectedPieceByClick: () => {},
+            endPhase: () => {}
+        };
+
+        handStyles = {};
+        bannerStyle = {};
+        bannerScrimStyle = {};
+        phrase = "";
     });
 
-    describe('Given a round in progress', () => {
-        let props, handStyles, bannerStyle, bannerScrimStyle, phrase;
+    describe('Given a round with no winner', () => {
         beforeEach(() => {
-            props = {
-                game: new Map({
-                  selectedCard: 0
-                }),
-                board: new List([
-
-                ]),
-                hand: new List([
-
-                ]),
-                opponentHand: new List([
-
-                ]),
-                settings: new Map({
-                  visibleHand: true
-                }),
-                validPieces: [0,1,2,3,4,5,6,7,8],
-                score: {
-                    blue: 5,
-                    red: 5
-                },
-                winner: 1,
-                selectCard: () => {},
-                selectedPieceByClick: () => {},
-                endPhase: () => {}
-            };
-
-            handStyles = {
-                visibility: 'visible'
-            };
-
-            bannerStyle = {
-                display: 'none'
-            };
-
-            bannerScrimStyle = {
-
-            };
-
+            props.winner = 1;
+            handStyles.visibility = 'visible';
+            bannerStyle.display = 'none';
             phrase = "";
         });
 
         it('should render a the first row with visibility and second row has no display', () => {
-
             class Board extends React.Component {
                 render() {
                     return (<div></div>)
@@ -72,19 +70,10 @@ describe('ROUND component', () => {
                     return (<div></div>)
                 }
             }
-            roundRewireAPI.__Rewire__('Board', Board);
-            roundRewireAPI.__Rewire__('Hand', Hand);
-            roundRewireAPI.__Rewire__('WINNER', {
-                NONE: 1,
-                TIE: 2,
-                BLUE: 3,
-                RED: 4
-            });
-
-
+            __RewireAPI__.__Rewire__('Board', Board);
+            __RewireAPI__.__Rewire__('Hand', Hand);
             renderer.render(
-                <Round game={props.game} board={props.board} hand={props.hand} opponentHand={props.opponentHand} settings={props.settings} validPieces={props.validPieces} score={props.score} winner={props.winner}
-                    selectCard={props.selectCard} selectedPieceByClick={props.selectedPieceByClick} endPhase={props.endPhase} />
+                <Round {...props} />
             );
             const actualElement = renderer.getRenderOutput();
             const expectedElement =
@@ -127,53 +116,15 @@ describe('ROUND component', () => {
 
     });
 
-    describe('Given a round in over and their is a tie', () => {
-        let props, handStyles, bannerStyle, bannerScrimStyle, phrase;
+    describe('Given a round with a tie', () => {
         beforeEach(() => {
-            props = {
-                game: new Map({
-                    selectedCard: 0
-                }),
-                board: new List([
-
-                ]),
-                hand: new List([
-
-                ]),
-                opponentHand: new List([
-
-                ]),
-                settings: new Map({
-                    visibleHand: true
-                }),
-                validPieces: [0,1,2,3,4,5,6,7,8],
-                score: {
-                    blue: 5,
-                    red: 5
-                },
-                winner: 2,
-                selectCard: () => {},
-                selectedPieceByClick: () => {},
-                endPhase: () => {}
-            };
-
-            handStyles = {
-                visibility: 'hidden'
-            };
-
-            bannerStyle = {
-
-            };
-
-            bannerScrimStyle = {
-                background: 'repeating-linear-gradient(45deg, #5d9634, #5d9634 10px, #538c2b 10px, #538c2b 20px)'
-            };
-
+            props.winner = 2;
+            handStyles.visibility = 'hidden';
+            bannerScrimStyle.background = 'repeating-linear-gradient(45deg, #5d9634, #5d9634 10px, #538c2b 10px, #538c2b 20px)';
             phrase = "Tie";
         });
 
         it('should render a the first row with visibility and second row has no display', () => {
-
             class Board extends React.Component {
                 render() {
                     return (<div></div>)
@@ -184,19 +135,10 @@ describe('ROUND component', () => {
                     return (<div></div>)
                 }
             }
-            roundRewireAPI.__Rewire__('Board', Board);
-            roundRewireAPI.__Rewire__('Hand', Hand);
-            roundRewireAPI.__Rewire__('WINNER', {
-                NONE: 1,
-                TIE: 2,
-                BLUE: 3,
-                RED: 4
-            });
-
-
+            __RewireAPI__.__Rewire__('Board', Board);
+            __RewireAPI__.__Rewire__('Hand', Hand);
             renderer.render(
-                <Round game={props.game} board={props.board} hand={props.hand} opponentHand={props.opponentHand} settings={props.settings} validPieces={props.validPieces} score={props.score} winner={props.winner}
-                    selectCard={props.selectCard} selectedPieceByClick={props.selectedPieceByClick} endPhase={props.endPhase} />
+                <Round {...props} />
             );
             const actualElement = renderer.getRenderOutput();
             const expectedElement =
@@ -240,52 +182,14 @@ describe('ROUND component', () => {
     });
 
     describe('Given a round in over and player won', () => {
-        let props, handStyles, bannerStyle, bannerScrimStyle, phrase;
         beforeEach(() => {
-            props = {
-                game: new Map({
-                    selectedCard: 0
-                }),
-                board: new List([
-
-                ]),
-                hand: new List([
-
-                ]),
-                opponentHand: new List([
-
-                ]),
-                settings: new Map({
-                    visibleHand: true
-                }),
-                validPieces: [0,1,2,3,4,5,6,7,8],
-                score: {
-                    blue: 5,
-                    red: 5
-                },
-                winner: 3,
-                selectCard: () => {},
-                selectedPieceByClick: () => {},
-                endPhase: () => {}
-            };
-
-            handStyles = {
-                visibility: 'hidden'
-            };
-
-            bannerStyle = {
-
-            };
-
-            bannerScrimStyle = {
-                background: 'repeating-linear-gradient(45deg, #606dbc, #606dbc 10px, #465298 10px, #465298 20px)'
-            };
-
+            props.winner = 3;
+            handStyles.visibility = 'hidden';
+            bannerScrimStyle.background = 'repeating-linear-gradient(45deg, #606dbc, #606dbc 10px, #465298 10px, #465298 20px)';
             phrase = "Player 1";
         });
 
         it('should render a the first row with visibility and second row has no display', () => {
-
             class Board extends React.Component {
                 render() {
                     return (<div></div>)
@@ -296,19 +200,10 @@ describe('ROUND component', () => {
                     return (<div></div>)
                 }
             }
-            roundRewireAPI.__Rewire__('Board', Board);
-            roundRewireAPI.__Rewire__('Hand', Hand);
-            roundRewireAPI.__Rewire__('WINNER', {
-                NONE: 1,
-                TIE: 2,
-                BLUE: 3,
-                RED: 4
-            });
-
-
+            __RewireAPI__.__Rewire__('Board', Board);
+            __RewireAPI__.__Rewire__('Hand', Hand);
             renderer.render(
-                <Round game={props.game} board={props.board} hand={props.hand} opponentHand={props.opponentHand} settings={props.settings} validPieces={props.validPieces} score={props.score} winner={props.winner}
-                    selectCard={props.selectCard} selectedPieceByClick={props.selectedPieceByClick} endPhase={props.endPhase} />
+                <Round {...props} />
             );
             const actualElement = renderer.getRenderOutput();
             const expectedElement =
@@ -352,52 +247,14 @@ describe('ROUND component', () => {
     });
 
     describe('Given a round in over and opponent won', () => {
-        let props, handStyles, bannerStyle, bannerScrimStyle, phrase;
         beforeEach(() => {
-            props = {
-                game: new Map({
-                    selectedCard: 0
-                }),
-                board: new List([
-
-                ]),
-                hand: new List([
-
-                ]),
-                opponentHand: new List([
-
-                ]),
-                settings: new Map({
-                    visibleHand: true
-                }),
-                validPieces: [0,1,2,3,4,5,6,7,8],
-                score: {
-                    blue: 5,
-                    red: 5
-                },
-                winner: 4,
-                selectCard: () => {},
-                selectedPieceByClick: () => {},
-                endPhase: () => {}
-            };
-
-            handStyles = {
-                visibility: 'hidden'
-            };
-
-            bannerStyle = {
-
-            };
-
-            bannerScrimStyle = {
-                background: 'repeating-linear-gradient(45deg, red, red 10px, #FF2850 10px, #FF2850 20px)'
-            };
-
+            props.winner = 4;
+            handStyles.visibility = 'hidden';
+            bannerScrimStyle.background = 'repeating-linear-gradient(45deg, red, red 10px, #FF2850 10px, #FF2850 20px)';
             phrase = "Player 2";
         });
 
         it('should render a the first row with visibility and second row has no display', () => {
-
             class Board extends React.Component {
                 render() {
                     return (<div></div>)
@@ -408,19 +265,10 @@ describe('ROUND component', () => {
                     return (<div></div>)
                 }
             }
-            roundRewireAPI.__Rewire__('Board', Board);
-            roundRewireAPI.__Rewire__('Hand', Hand);
-            roundRewireAPI.__Rewire__('WINNER', {
-                NONE: 1,
-                TIE: 2,
-                BLUE: 3,
-                RED: 4
-            });
-
-
+            __RewireAPI__.__Rewire__('Board', Board);
+            __RewireAPI__.__Rewire__('Hand', Hand);
             renderer.render(
-                <Round game={props.game} board={props.board} hand={props.hand} opponentHand={props.opponentHand} settings={props.settings} validPieces={props.validPieces} score={props.score} winner={props.winner}
-                    selectCard={props.selectCard} selectedPieceByClick={props.selectedPieceByClick} endPhase={props.endPhase} />
+                <Round {...props} />
             );
             const actualElement = renderer.getRenderOutput();
             const expectedElement =
