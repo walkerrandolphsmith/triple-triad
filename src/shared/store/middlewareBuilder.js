@@ -6,7 +6,11 @@ import promiseMiddleware from './../middleware/promiseMiddleware';
 import env from './../../shared/config/environment';
 
 export default function middlewareBuilder(history) {
-    let middleware = applyMiddleware(thunk, promiseMiddleware, routerMiddleware(history));
+    let middleware = applyMiddleware(
+        thunk,
+        promiseMiddleware,
+        routerMiddleware(history)
+    );
     let composeElms = [];
 
     if(process.browser){
