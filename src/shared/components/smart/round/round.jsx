@@ -1,12 +1,11 @@
 import React from 'react';
 import { Board } from './../board/board';
 import { Hand } from './../hand/hand';
-import WINNER from './../../../constants/winner';
 
 export class Round extends React.Component {
 
     render() {
-        let { game, board, hand, opponentHand, settings, validPieces, score, winner } = this.props;
+        let { game, board, hand, opponentHand, settings, validPieces, score, winner, winnerType } = this.props;
         let { selectCard, selectedPieceByClick, endPhase } = this.props;
 
         let phrase = "";
@@ -15,19 +14,19 @@ export class Round extends React.Component {
         let bannerScrimStyle={};
 
         switch(winner){
-            case WINNER.NONE:
+            case winnerType.NONE:
                 handStyles.visibility = 'visible';
                 bannerStyle.display = 'none';
                 break;
-            case WINNER.TIE:
+            case winnerType.TIE:
                 phrase = "Tie";
                 bannerScrimStyle.background = 'repeating-linear-gradient(45deg, #5d9634, #5d9634 10px, #538c2b 10px, #538c2b 20px)';
                 break;
-            case WINNER.BLUE:
+            case winnerType.BLUE:
                 phrase = "Player 1";
                 bannerScrimStyle.background = 'repeating-linear-gradient(45deg, #606dbc, #606dbc 10px, #465298 10px, #465298 20px)';
                 break;
-            case WINNER.RED:
+            case winnerType.RED:
                 phrase = "Player 2";
                 bannerScrimStyle.background = 'repeating-linear-gradient(45deg, red, red 10px, #FF2850 10px, #FF2850 20px)';
                 break;
