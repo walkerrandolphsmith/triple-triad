@@ -14,18 +14,18 @@ mongoose.connect(mongoUri);
 
 let app = express();
 export default app;
+let io = Socket();
 
 configurePassport(passport);
-const routers = configureRoutes(passport);
+const routers = configureRoutes(passport, io);
 configureServer(app, passport, routers);
 
 let server = http.Server(app);
-let io = Socket.listen(server);
-
+io.attach(server);
 io.on('connection', socket => {
-  socket.emit('serverEvent', { hello: 'world' });
-  socket.on('clientEvent', data => {
-    console.log(data);
+  console.log("Socket connected: " + socket.id);
+  socket.on('action', action => {
+      console.log('Got hello data!', action.data);
   });
 });
 

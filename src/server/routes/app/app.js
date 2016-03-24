@@ -8,10 +8,14 @@ import { receiveSignIn } from './../../../shared/actions/action-creators';
 import routes from './../../../shared/routes';
 import configureStore from './../../../shared/store/store';
 
-export function app(request, response) {
+export function app(request, response, socket) {
     const location = createLocation(request.url);
 
-    const store = configureStore();
+    const store = configureStore({
+        initialState: undefined,
+        history: undefined,
+        socket: socket
+    });
 
     if(request.session
         && request.session.passport

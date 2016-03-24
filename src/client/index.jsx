@@ -20,7 +20,13 @@ const browserHistory = useRouterHistory(createBrowserHistory)({
 let initialState = window.__INITIAL_STATE__;
 Object.keys(initialState).forEach(key => { initialState[key] = fromJS(initialState[key]);  });
 
-const store = configureStore(initialState, browserHistory);
+const socket = io('http://localhost:3000');
+
+const store = configureStore({
+    initialState: initialState,
+    history: browserHistory,
+    socket: socket
+});
 
 const history = syncHistoryWithStore(browserHistory, store, {
     selectLocationState: (state) => state.routing
@@ -43,10 +49,8 @@ browserHistory.listen(location => {
     }
 });
 
-const socket = io.connect('http://localhost:3001');
-socket.on('serverEvent', data => {
-  console.log(data);
-  socket.emit('clientEvent', { my: 'data' });
+store.subscribe(()=>{
+    console.log('new client state', store.getState());
 });
 
 if (env.nodeEnv !== 'production') {

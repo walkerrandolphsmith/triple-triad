@@ -15,10 +15,10 @@ import {
     invite
 } from './../routes';
 
-export default function(passport) {
+export default function(passport, socket) {
     return {
         authRouter: configureAuthRoutes(passport),
-        gameRouter: configureGameRoutes(passport)
+        gameRouter: configureGameRoutes(passport, socket)
     }
 }
 
@@ -109,13 +109,13 @@ function configureAuthRoutes(passport) {
     return router;
 }
 
-function configureGameRoutes(passport){
+function configureGameRoutes(passport, socket){
     const router = express.Router();
 
     router.use(
         '/*',
         (req, res) => {
-            app(req, res);
+            app(req, res, socket);
         }
     );
 

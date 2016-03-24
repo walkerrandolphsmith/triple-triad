@@ -2,14 +2,16 @@ import { applyMiddleware } from 'redux'
 import DevTools from './../../dev-tools/devTools';
 import { routerMiddleware } from 'react-router-redux'
 import thunk from 'redux-thunk';
+import socketMiddleware from './../middleware/socketMiddleware';
 import promiseMiddleware from './../middleware/promiseMiddleware';
 import env from './../../shared/config/environment';
 
-export default function middlewareBuilder(history) {
+export default function middlewareBuilder(history, socket) {
     let middleware = applyMiddleware(
         thunk,
         promiseMiddleware,
-        routerMiddleware(history)
+        routerMiddleware(history),
+        socketMiddleware(socket)
     );
     let composeElms = [];
 
