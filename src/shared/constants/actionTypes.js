@@ -2,11 +2,13 @@ export const UPDATE_SETTINGS = 'UpdateSettings';
 export const UPDATE_FOCUS_SETTING = 'UpdateFocusSetting';
 
 export const RESET_GAME = 'ResetGame';
-export const SET_PHASE = 'SetPhase';
-export const ADD_CARD = 'AddCard';
-export const SELECT_CARD = 'SelectCard';
-export const SELECT_PIECE = 'SelectPiece';
-export const PLACE_CARD = 'PlaceCard';
+export const SET_PHASE = 'server/SetPhase';
+export const ADD_CARD = 'server/AddCard';
+export const SELECT_CARD = 'server/SelectCard';
+export const SELECT_PIECE = 'server/SelectPiece';
+export const PLACE_CARD = 'server/PlaceCard';
+
+
 export const SIGN_IN_FORM_ERROR_RESET = 'SIGN_IN_FORM_ERROR_RESET';
 export const SIGN_IN_FORM_ERROR = 'SIGN_IN_FORM_ERROR';
 export const SIGN_UP_FORM_ERROR = 'SIGN_UP_FORM_ERROR';

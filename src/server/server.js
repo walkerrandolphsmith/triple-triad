@@ -25,7 +25,10 @@ io.attach(server);
 io.on('connection', socket => {
   console.log("Socket connected: " + socket.id);
   socket.on('action', action => {
-      console.log('Got hello data!', action.data);
+      socket.emit('action', {
+        type: action.type.split('server/')[1],
+        payload: action.payload
+      });
   });
 });
 
