@@ -49,10 +49,6 @@ browserHistory.listen(location => {
     }
 });
 
-store.subscribe(()=>{
-    console.log('new client state', store.getState());
-});
-
 if (env.nodeEnv !== 'production') {
   const showDevTools = require('./../dev-tools/showDevTools').default;
   showDevTools(store);
