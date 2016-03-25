@@ -22,10 +22,11 @@ configureServer(app, passport, routers);
 
 let server = http.Server(app);
 io.attach(server);
+
 io.on('connection', socket => {
   console.log("Socket connected: " + socket.id);
   socket.on('action', action => {
-      socket.emit('action', {
+      io.sockets.emit('action', {
         type: action.type.split('server/')[1],
         payload: action.payload
       });
