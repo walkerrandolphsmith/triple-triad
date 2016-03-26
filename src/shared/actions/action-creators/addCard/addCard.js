@@ -1,8 +1,8 @@
-import { ADD_CARD } from './../../../constants/actionTypes';
+import { SERVER, ADD_CARD } from './../../../constants/actionTypes';
 
 export function addCard(id, owner) {
     return {
-        type: ADD_CARD,
+        type: SERVER + ADD_CARD,
         payload: {
             id: id,
             owner: owner

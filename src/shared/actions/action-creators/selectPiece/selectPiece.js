@@ -1,8 +1,8 @@
-import { SELECT_PIECE } from './../../../constants/actionTypes';
+import { SERVER, SELECT_PIECE } from './../../../constants/actionTypes';
 
 export function selectPiece(index) {
     return {
-        type: SELECT_PIECE,
+        type: SERVER + SELECT_PIECE,
         payload: {
             index: index
         }

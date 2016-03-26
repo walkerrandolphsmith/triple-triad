@@ -1,3 +1,5 @@
+export const SERVER = 'SERVER/';
+
 export const UPDATE_SETTINGS = 'UpdateSettings';
 export const UPDATE_FOCUS_SETTING = 'UpdateFocusSetting';
 
@@ -7,13 +9,12 @@ export const ADD_CARD = 'ADD_CARD';
 export const SELECT_CARD = 'SELECT_CARD';
 export const SELECT_PIECE = 'SELECT_PIECE';
 export const PLACE_CARD = 'PLACE_CARD';
+export const UPDATE_BOARD = 'UPDATE_BOARD';
+export const START_AI_TURN = 'START_AI_TURN';
+export const END_AI_TURN = 'END_AI_TURN';
 
 export const SIGN_IN_FORM_ERROR = 'SIGN_IN_FORM_ERROR';
 export const SIGN_UP_FORM_ERROR = 'SIGN_UP_FORM_ERROR';
-export const UPDATE_BOARD = 'UPDATE_BOARD';
-
-export const START_AI_TURN = 'START_AI_TURN';
-export const END_AI_TURN = 'END_AI_TURN';
 
 export const CLEAR_FORM_ERRORS = 'CLEAR_FORM_ERRORS';
 

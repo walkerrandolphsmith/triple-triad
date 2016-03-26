@@ -1,8 +1,8 @@
-import { SELECT_CARD } from './../../../constants/actionTypes';
+import { SERVER, SELECT_CARD } from './../../../constants/actionTypes';
 
 export function selectCard(id) {
     return {
-        type: SELECT_CARD,
+        type: SERVER + SELECT_CARD,
         payload: {
             id: id
         }

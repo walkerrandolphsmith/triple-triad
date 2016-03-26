@@ -7,6 +7,7 @@ import configurePassport from './config/passport';
 import configureRoutes from './config/routes';
 import configureServer from './config/express';
 import env from './../shared/config/environment';
+import { SERVER } from './../shared/constants/actionTypes';
 
 const { port, mongoUri } = env;
 
@@ -27,7 +28,7 @@ io.on('connection', socket => {
   console.log("Socket connected: " + socket.id);
   socket.on('action', action => {
       io.sockets.emit('action', {
-        type: action.type.split('server/')[1],
+        type: action.type.split(SERVER)[1],
         payload: action.payload
       });
   });
