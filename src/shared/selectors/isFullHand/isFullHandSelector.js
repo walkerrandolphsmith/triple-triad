@@ -1,1 +1,1 @@
-export const getIsFullHand = hand => { return hand.size >= 5 }
+export const getIsFullHand = hand => hand.size >= 5;

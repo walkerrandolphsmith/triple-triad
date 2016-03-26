@@ -30,7 +30,6 @@ const INITIAL_STATE = new Map({
 });
 
 export default function user(state = INITIAL_STATE, action = {}) {
-
     const { type, payload } = action;
 
     switch (type) {
@@ -49,7 +48,7 @@ export default function user(state = INITIAL_STATE, action = {}) {
     }
 }
 
-function userProfile(state, payload) {
+function userProfile(state) {
     state = state.set('loaded', false);
     return state.set('loading', true);
 }
@@ -60,49 +59,49 @@ function userProfileSuccess(state, payload) {
     return state.setIn('user.verified'.split('.'), payload.user.verified);
 }
 
-function resendVerificationEmail(state, payload) {
+function resendVerificationEmail(state) {
     state = state.set('resending', true);
     state = state.set('resendingSuccess', false);
     return state.set('resendingFailure', false);
 }
 
-function resendVerificationEmailSuccess(state, payload) {
+function resendVerificationEmailSuccess(state) {
     state = state.set('resending', false);
     state = state.set('resendingSuccess', true);
     return state.set('resendingFailure', false);
 }
 
-function resendVerificationEmailFailure(state, payload) {
+function resendVerificationEmailFailure(state) {
     state = state.set('resending', false);
     state = state.set('resendingSuccess', false);
     return state.set('resendingFailure', true);
 }
 
-function resendVerificationEmailClear(state, payload) {
+function resendVerificationEmailClear(state) {
     state = state.set('resending', false);
     state = state.set('resendingSuccess', false);
     return state.set('resendingFailure', false);
 }
 
-function resetPasswordSuccess(state, payload){
+function resetPasswordSuccess(state){
     state = state.setIn('passwordReset.failed'.split('.'), false);
     state = state.setIn('passwordReset.loaded'.split('.'), true);
     return state.setIn('passwordReset.loading'.split('.'), false);
 }
 
-function resetPasswordRequest(state, payload){
+function resetPasswordRequest(state){
     state = state.setIn('passwordReset.failed'.split('.'), false);
     state = state.setIn('passwordReset.loaded'.split('.'), false);
     return state.setIn('passwordReset.loading'.split('.'), true);
 }
 
-function resetPasswordFailure(state, payload){
+function resetPasswordFailure(state){
     state = state.setIn('passwordReset.failed'.split('.'), true);
     state = state.setIn('passwordReset.loaded'.split('.'), false);
     return state.setIn('passwordReset.loading'.split('.'), false);
 }
 
-function resetPasswordClear(state, payload){
+function resetPasswordClear(state){
     state = state.setIn('passwordReset.failed'.split('.'), false);
     state = state.setIn('passwordReset.loaded'.split('.'), false);
     return state.setIn('passwordReset.loading'.split('.'), false);

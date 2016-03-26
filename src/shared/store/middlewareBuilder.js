@@ -1,6 +1,6 @@
-import { applyMiddleware } from 'redux'
+import { applyMiddleware } from 'redux';
 import DevTools from './../../dev-tools/devTools';
-import { routerMiddleware } from 'react-router-redux'
+import { routerMiddleware } from 'react-router-redux';
 import thunk from 'redux-thunk';
 import socketMiddleware from './../middleware/socketMiddleware';
 import promiseMiddleware from './../middleware/promiseMiddleware';
@@ -15,21 +15,20 @@ export default function middlewareBuilder(history, socket) {
     );
     let composeElms = [];
 
-    if(env.isBrowser){
-        if(env.nodeEnv !== 'production'){
+    if(env.isBrowser) {
+        if(env.nodeEnv !== 'production') {
             composeElms = [
                 middleware,
                 DevTools.instrument()
-            ]
-        }else{
+            ];
+        } else {
             composeElms = [
                 middleware
-            ]
+            ];
         }
-
-    }else{
+    } else {
         composeElms = [middleware];
     }
 
     return composeElms;
-};
+}

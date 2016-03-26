@@ -14,13 +14,12 @@ const INITIAL_STATE = new Map({
 });
 
 export default function reducer(state = INITIAL_STATE, action = {}) {
+    let { type, payload } = action;
 
-  let {type, payload} = action;
+    switch(type) {
+      case UPDATE_SETTINGS: return updateSettings(state, payload);
+      case UPDATE_FOCUS_SETTING: return updateFocusSetting(state, payload);
+    }
 
-  switch(type){
-    case UPDATE_SETTINGS: return updateSettings(state, payload);
-    case UPDATE_FOCUS_SETTING: return updateFocusSetting(state, payload);
-  }
-
-  return state;
+    return state;
 }

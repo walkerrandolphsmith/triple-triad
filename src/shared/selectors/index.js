@@ -9,15 +9,15 @@ import { getWinner } from './winner/winnerSelector';
 import { getValidPieces } from './validPieces/validPiecesSelector';
 
 
-const deckSelector = state => state.get('deck')
-const playerSelector = state => 1
-const opponentSelector = state => 2
-const unownedSelector = state => 0
+const deckSelector = state => state.get('deck');
+const playerSelector = state => 1;
+const opponentSelector = state => 2;
+const unownedSelector = state => 0;
 
 export const availableDeckSelector = createSelector(
     [deckSelector, opponentSelector],
     getAvailableDeck
-)
+);
 
 export const boardSelector = createSelector(
     [deckSelector],

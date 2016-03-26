@@ -59,8 +59,8 @@ describe("Blue Score selector", () => {
         });
 
         it('should have a score of 6 v 4', () => {
-            expect(getScoreForOwner(deck, 1)).toEqual(6)
-            expect(getScoreForOwner(deck, 2)).toEqual(4)
+            expect(getScoreForOwner(deck, 1)).toEqual(6);
+            expect(getScoreForOwner(deck, 2)).toEqual(4);
         });
     });
 
