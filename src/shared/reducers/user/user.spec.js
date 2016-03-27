@@ -1,6 +1,7 @@
 import expect from 'expect';
 import { Map } from 'immutable';
 import reducer from './user';
+import { __RewireAPI__ } from './user';
 import {
     RESEND_EMAIL_VERIFICATION,
     RESEND_EMAIL_VERIFICATION_SUCCESS,
@@ -14,7 +15,7 @@ import {
     PASSWORD_RESET_CLEAR
     } from './../../constants/actionTypes';
 
-describe("User reducer", () => {
+describe("Given user state", () => {
 
     let initialState;
     beforeEach(() => {
@@ -35,138 +36,139 @@ describe("User reducer", () => {
         });
     });
 
-    describe("Given no state", () => {
+    describe("When given no state", () => {
         it('should return the initial state', () => {
             expect(reducer(undefined, {})).toEqual(initialState)
         });
     });
 
-    describe("Given fetching user profile data is initiated", () => {
+    describe("When handling USER_PROFILE", () => {
+        let userProfileRequest = expect.createSpy();
+        __RewireAPI__.__Rewire__('userProfileRequest', userProfileRequest);
 
-        it('should handle USER_PROFILE action', () => {
-            let newState = reducer(initialState, {
-                type: USER_PROFILE
-            });
-            expect(newState.get('loading')).toEqual(true);
+        reducer(initialState, {
+            type: USER_PROFILE
+        });
+
+        it('should call userProfileRequest', () => {
+            expect(userProfileRequest).toHaveBeenCalled();
         });
     });
 
-    describe("Given fetching user profile data is successful", () => {
+    describe("When handling USER_PROFILE_SUCCESS", () => {
+        let userProfileSuccess = expect.createSpy();
+        __RewireAPI__.__Rewire__('userProfileSuccess', userProfileSuccess);
 
-        let user;
-        beforeEach(() => {
-            user = {
-                verified: true
-            };
+        reducer(initialState, {
+            type: USER_PROFILE_SUCCESS
         });
 
-        it('should handle USER_PROFILE_SUCCESS action', () => {
-            let newState = reducer(initialState, {
-                type: USER_PROFILE_SUCCESS,
-                payload: {
-                    user: user
-                }
-            });
-            expect(newState.get('loading')).toEqual(false);
-            expect(newState.get('loaded')).toEqual(true);
-            expect(newState.get('user').get('verified')).toEqual(user.verified);
+        it('should call userProfileSuccess', () => {
+            expect(userProfileSuccess).toHaveBeenCalled();
         });
     });
 
-    describe("Given resending the verification email is initiated", () => {
+    describe("When handling RESEND_EMAIL_VERIFICATION", () => {
+        let resendVerificationEmailRequest = expect.createSpy();
+        __RewireAPI__.__Rewire__('resendVerificationEmailRequest', resendVerificationEmailRequest);
 
-        it('should handle RESEND_EMAIL_VERIFICATION action', () => {
-            let newState = reducer(initialState, {
-                type: RESEND_EMAIL_VERIFICATION
-            });
-            expect(newState.get('resending')).toEqual(true);
-            expect(newState.get('resendingSuccess')).toEqual(false);
-            expect(newState.get('resendingFailure')).toEqual(false);
+        reducer(initialState, {
+            type: RESEND_EMAIL_VERIFICATION
+        });
+
+        it('should call resendVerificationEmailRequest', () => {
+            expect(resendVerificationEmailRequest).toHaveBeenCalled();
         });
     });
 
-    describe("Given resending the verification email was successful", () => {
+    describe("When handling RESEND_EMAIL_VERIFICATION_SUCCESS", () => {
+        let resendVerificationEmailSuccess = expect.createSpy();
+        __RewireAPI__.__Rewire__('resendVerificationEmailSuccess', resendVerificationEmailSuccess);
 
-        it('should handle RESEND_EMAIL_VERIFICATION_SUCCESS action', () => {
-            let newState = reducer(initialState, {
-                type: RESEND_EMAIL_VERIFICATION_SUCCESS
-            });
-            expect(newState.get('resending')).toEqual(false);
-            expect(newState.get('resendingSuccess')).toEqual(true);
-            expect(newState.get('resendingFailure')).toEqual(false);
+        reducer(initialState, {
+            type: RESEND_EMAIL_VERIFICATION_SUCCESS
+        });
+
+        it('should call resendVerificationEmailSuccess', () => {
+            expect(resendVerificationEmailSuccess).toHaveBeenCalled();
         });
     });
 
-    describe("Given resending the verification email was unsuccessful", () => {
+    describe("When handling RESEND_EMAIL_VERIFICATION_FAILED", () => {
+        let resendVerificationEmailFailure = expect.createSpy();
+        __RewireAPI__.__Rewire__('resendVerificationEmailFailure', resendVerificationEmailFailure);
 
-        it('should handle RESEND_EMAIL_VERIFICATION_FAILED action', () => {
-            let newState = reducer(initialState, {
-                type: RESEND_EMAIL_VERIFICATION_FAILED
-            });
-            expect(newState.get('resending')).toEqual(false);
-            expect(newState.get('resendingSuccess')).toEqual(false);
-            expect(newState.get('resendingFailure')).toEqual(true);
+        reducer(initialState, {
+            type: RESEND_EMAIL_VERIFICATION_FAILED
+        });
+
+        it('should call resendVerificationEmailFailure', () => {
+            expect(resendVerificationEmailFailure).toHaveBeenCalled();
         });
     });
 
-    describe("Given the resending of email verification state is cleared ", () => {
+    describe("When handling RESEND_EMAIL_VERIFICATION_CLEAR", () => {
+        let resendVerificationEmailClear = expect.createSpy();
+        __RewireAPI__.__Rewire__('resendVerificationEmailClear', resendVerificationEmailClear);
 
-        it('should handle RESEND_EMAIL_VERIFICATION_CLEAR action', () => {
-            let newState = reducer(initialState, {
-                type: RESEND_EMAIL_VERIFICATION_CLEAR
-            });
-            expect(newState.get('resending')).toEqual(false);
-            expect(newState.get('resendingSuccess')).toEqual(false);
-            expect(newState.get('resendingFailure')).toEqual(false);
+        reducer(initialState, {
+            type: RESEND_EMAIL_VERIFICATION_CLEAR
+        });
+
+        it('should call resendVerificationEmailClear', () => {
+            expect(resendVerificationEmailClear).toHaveBeenCalled();
         });
     });
 
-    describe('requesting to reset password', () => {
+    describe("When handling PASSWORD_RESET_REQUEST", () => {
+        let resetPasswordRequest = expect.createSpy();
+        __RewireAPI__.__Rewire__('resetPasswordRequest', resetPasswordRequest);
 
-        it('should handle PASSWORD_RESET_REQUEST by settings the loading state to true', () => {
-            let newState = reducer(initialState, {
-                type: PASSWORD_RESET_REQUEST
-            });
-            expect(newState.get('passwordReset').get('loading')).toEqual(true);
-            expect(newState.get('passwordReset').get('loaded')).toEqual(false);
-            expect(newState.get('passwordReset').get('failed')).toEqual(false);
+        reducer(initialState, {
+            type: PASSWORD_RESET_REQUEST
+        });
+
+        it('should call resetPasswordRequest', () => {
+            expect(resetPasswordRequest).toHaveBeenCalled();
         });
     });
 
-    describe('resetting a password is successful', () => {
+    describe("When handling PASSWORD_RESET_SUCCESS", () => {
+        let resetPasswordSuccess = expect.createSpy();
+        __RewireAPI__.__Rewire__('resetPasswordSuccess', resetPasswordSuccess);
 
-        it('should handle PASSWORD_RESET_SUCCESS by settings the loaded state to true', () => {
-            let newState = reducer(initialState, {
-                type: PASSWORD_RESET_SUCCESS
-            });
-            expect(newState.get('passwordReset').get('loading')).toEqual(false);
-            expect(newState.get('passwordReset').get('loaded')).toEqual(true);
-            expect(newState.get('passwordReset').get('failed')).toEqual(false);
+        reducer(initialState, {
+            type: PASSWORD_RESET_SUCCESS
+        });
+
+        it('should call resetPasswordSuccess', () => {
+            expect(resetPasswordSuccess).toHaveBeenCalled();
         });
     });
 
-    describe('resetting the password failed', () => {
+    describe("When handling PASSWORD_RESET_FAILED", () => {
+        let resetPasswordFailure = expect.createSpy();
+        __RewireAPI__.__Rewire__('resetPasswordFailure', resetPasswordFailure);
 
-        it('should handle PASSWORD_RESET_FAILED by settings the failed state to true', () => {
-            let newState = reducer(initialState, {
-                type: PASSWORD_RESET_FAILED
-            });
-            expect(newState.get('passwordReset').get('loading')).toEqual(false);
-            expect(newState.get('passwordReset').get('loaded')).toEqual(false);
-            expect(newState.get('passwordReset').get('failed')).toEqual(true);
+        reducer(initialState, {
+            type: PASSWORD_RESET_FAILED
+        });
+
+        it('should call resetPasswordFailure', () => {
+            expect(resetPasswordFailure).toHaveBeenCalled();
         });
     });
 
-    describe('clearing the password reset state', () => {
+    describe("When handling PASSWORD_RESET_CLEAR", () => {
+        let resetPasswordClear = expect.createSpy();
+        __RewireAPI__.__Rewire__('resetPasswordClear', resetPasswordClear);
 
-        it('should handle PASSWORD_RESET_CLEAR by settings all the loaded, loading, and failed to false', () => {
-            let newState = reducer(initialState, {
-                type: PASSWORD_RESET_CLEAR
-            });
-            expect(newState.get('passwordReset').get('loading')).toEqual(false);
-            expect(newState.get('passwordReset').get('loaded')).toEqual(false);
-            expect(newState.get('passwordReset').get('failed')).toEqual(false);
+        reducer(initialState, {
+            type: PASSWORD_RESET_CLEAR
+        });
+
+        it('should call resetPasswordClear', () => {
+            expect(resetPasswordClear).toHaveBeenCalled();
         });
     });
-
 });
