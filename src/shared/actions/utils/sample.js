@@ -1,7 +1,7 @@
 import { List } from 'immutable';
 
 export default function sample(list, size) {
-    if(size === undefined) {
+    if(typeof size === 'undefined') {
         let index = getIndex(list.size);
         return list.get(index);
     }
