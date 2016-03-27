@@ -6,5 +6,5 @@ export function createGameSuccess(game) {
         payload: {
             game: game
         }
-    }
+    };
 }

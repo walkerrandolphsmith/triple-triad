@@ -1,6 +1,6 @@
 import request from 'superagent';
 import { push } from 'react-router-redux';
-import { requestSignIn, receiveSignIn, signinFormError } from './../../action-creators'
+import { requestSignIn, receiveSignIn, signinFormError } from './../../action-creators';
 import {
     isValidUsername,
     isValidPassword
@@ -19,7 +19,7 @@ export function signIn(user) {
             error = true;
         }
 
-        if(!isValidPassword(user.password)){
+        if(!isValidPassword(user.password)) {
             dispatch(signinFormError({
                 field: 'password',
                 error: 'Invalid Password'
@@ -27,22 +27,22 @@ export function signIn(user) {
             error = true;
         }
 
-        if(error){
-            return
+        if(error) {
+            return;
         }
 
-        return request
+        request
         .post('/api/sign_in')
         .send(JSON.stringify(user))
         .set('Accept', 'application/json')
         .set('Content-Type', 'application/json')
-        .end((error, response) => {
+        .end((err, response) => {
             if(response.status === 200) {
                 dispatch(receiveSignIn(response.body));
                 dispatch(push('/games'));
-            }else{
-                let error = JSON.parse(response.text);
-                dispatch(signinFormError(error));
+            } else {
+                let message = JSON.parse(response.text);
+                dispatch(signinFormError(message));
             }
         });
     };

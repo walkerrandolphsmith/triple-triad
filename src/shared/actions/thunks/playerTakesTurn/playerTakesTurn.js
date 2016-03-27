@@ -14,7 +14,7 @@ export const playerTakesTurn = (isPlayer) => (dispatch, getState) => {
     dispatch(selectCard(-1));
     dispatch(selectPiece(-1));
 
-    if(isPlayer && !gameOver){
+    if(isPlayer && !gameOver) {
         setTimeout(() => {
             dispatch(aiTurn());
             dispatch(getNextSelectedCard());

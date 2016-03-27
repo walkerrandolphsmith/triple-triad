@@ -16,11 +16,11 @@ export function getGames() {
         .set('Accept', 'application/json')
         .set('Content-Type', 'application/json')
         .end((err, response) => {
-            if(response.status === 200){
+            if(response.status === 200) {
                 dipatch(getGamesSuccess(response.body));
-            }else{
+            } else {
                 dipatch(getGamesFailed());
             }
         });
-    }
+    };
 }

@@ -11,17 +11,17 @@ export function resendEmailVerification(id) {
         dispatch(resendEmailVerificationRequest());
         return request
         .post('/api/resend_verification_email')
-        .send(JSON.stringify({userId: id}))
+        .send(JSON.stringify({ userId: id }))
         .set('Accept', 'application/json')
         .set('Content-Type', 'application/json')
         .end((error, response) => {
-            if(response.status === 200)
+            if(response.status === 200) {
                 dispatch(resendEmailVerificationSuccess());
-            else
+            } else {
                 dispatch(resendEmailVerificationFailed());
-
+            }
             setTimeout(() => {
-                dispatch(resendEmailVerificationClear())
+                dispatch(resendEmailVerificationClear());
             }, 2500);
         });
     };

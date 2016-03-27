@@ -20,9 +20,9 @@ export function sendInvite(gameId, email) {
         .set('Accept', 'application/json')
         .set('Content-Type', 'application/json')
         .end((error, response) => {
-            if(response.status === 200){
+            if(response.status === 200) {
                 dispatch(sendInviteSuccess());
-            }else{
+            } else {
                 dispatch(sendInviteFailed());
             }
         });

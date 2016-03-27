@@ -6,5 +6,5 @@ export function placeCard(index) {
         payload: {
             index: index
         }
-    }
+    };
 }

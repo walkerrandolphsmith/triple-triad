@@ -1,7 +1,7 @@
 import crypto from 'crypto';
 
 export default function(userId) {
-   return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
         crypto.randomBytes(48, (ex, buf) => {
             let token = buf.toString('base64')
                 .replace(/\//g, '_')
@@ -11,4 +11,4 @@ export default function(userId) {
             resolve(`${userId}-${token}`);
         });
     });
-};
+}

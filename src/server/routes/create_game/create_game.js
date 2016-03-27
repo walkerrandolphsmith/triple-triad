@@ -12,9 +12,8 @@ export function create_game(req, res) {
     game.accepted = false;
     game.save((err, newGame) => {
         if(err) {
-            return  res.status(500).send();
-        }
-        else{
+            return res.status(500).send();
+        } else {
             return res.status(200).send(newGame);
         }
     });

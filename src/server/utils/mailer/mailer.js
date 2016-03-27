@@ -21,7 +21,7 @@ export function send_invite_email(toEmail, fromEmail, token, fn) {
 
 export function send_verification_email(email, token, fn) {
     const data = {
-        from: "tripletriad@gmail.com",
+        from: 'tripletriad@gmail.com',
         to: email,
         subject: 'Play Triple Triad',
         html: `
@@ -35,7 +35,7 @@ export function send_verification_email(email, token, fn) {
 
 export function send_reset_password_email(email, token, fn) {
     const data = {
-        from: "tripletriad@gmail.com",
+        from: 'tripletriad@gmail.com',
         to: email,
         subject: 'Reset password for Triple Triad',
         html: `
@@ -48,29 +48,24 @@ export function send_reset_password_email(email, token, fn) {
 }
 
 export function sendEmail(data, fn) {
-
     if(!data.from) {
         return fn(new Error('Email address required'));
-
     }
-    if(!data.to){
+    if(!data.to) {
         return fn(new Error('Email address required'));
     }
-
-    if(!data.subject){
+    if(!data.subject) {
         return fn(new Error('Must contain a subject'));
     }
-
-    if(!data.html){
+    if(!data.html) {
         return fn(new Error('Must contain a message'));
     }
-
-    if(env.nodeEnv === 'test'){
+    if(env.nodeEnv === 'test') {
         return fn(null, 'OK');
     }
 
     mailgun.messages().send(data, (err, body) => {
         if (err) return fn(err);
         else return fn(null, body);
-    })
+    });
 }

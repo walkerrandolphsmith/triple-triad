@@ -19,7 +19,7 @@ export default function(passport, socket) {
     return {
         authRouter: configureAuthRoutes(passport),
         gameRouter: configureGameRoutes(passport, socket)
-    }
+    };
 }
 
 function configureAuthRoutes(passport) {
@@ -42,7 +42,7 @@ function configureAuthRoutes(passport) {
     router.post(
         '/verify_email',
         (req, res) => {
-            verify_email(req, res)
+            verify_email(req, res);
         }
     );
 
@@ -74,42 +74,42 @@ function configureAuthRoutes(passport) {
     router.post(
         '/user_profile',
         (req, res) => {
-            user_profile(req, res)
+            user_profile(req, res);
         }
     );
 
     router.post(
         '/create_game',
         (req, res) => {
-            create_game(req,res)
+            create_game(req,res);
         }
     );
 
     router.post(
         '/get_game',
         (req, res) => {
-            get_game(req,res)
+            get_game(req, res);
         }
     );
 
     router.post(
         '/get_games',
         (req, res) => {
-            get_games(req,res)
+            get_games(req,res);
         }
     );
 
     router.post(
         '/invite',
         (req, res) => {
-            invite(req,res)
+            invite(req, res);
         }
     );
 
     return router;
 }
 
-function configureGameRoutes(passport, socket){
+function configureGameRoutes(passport, socket) {
     const router = express.Router();
 
     router.use(

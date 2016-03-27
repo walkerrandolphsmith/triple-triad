@@ -1,6 +1,6 @@
 export function getNextPhase(currentPhase, randomHand) {
     let nextPhase;
-    switch(currentPhase){
+    switch(currentPhase) {
         case 'settingsSelection':
             nextPhase = 'invite';
             break;
@@ -16,6 +16,7 @@ export function getNextPhase(currentPhase, randomHand) {
         case 'pieceSelection':
             nextPhase = 'settingsSelection';
             break;
+        default: nextPhase = 'settingsSelection';
     }
     return nextPhase;
 }

@@ -6,5 +6,5 @@ export function setPhase(phase) {
         payload: {
             phase: phase
         }
-    }
+    };
 }

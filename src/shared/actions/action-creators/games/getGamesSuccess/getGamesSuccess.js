@@ -6,5 +6,5 @@ export function getGamesSuccess(games) {
         payload: {
             games: games
         }
-    }
+    };
 }

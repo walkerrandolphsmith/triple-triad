@@ -5,7 +5,6 @@ import { setPhase, resetGame } from './../../action-creators';
 import { getNextPhase } from './../../utils/getNextPhase/getNextPhase';
 
 export const endPhase = () => (dispatch, getState) => {
-
     const state = getState();
 
     let randomHand = state.settings.get('randomHand');
@@ -13,11 +12,11 @@ export const endPhase = () => (dispatch, getState) => {
 
     let nextPhase = getNextPhase(currentPhase, randomHand);
 
-    if(currentPhase === 'cardSelection' || currentPhase === 'pieceSelection'){
+    if(currentPhase === 'cardSelection' || currentPhase === 'pieceSelection') {
         dispatch(resetGame());
     }
 
-    if(nextPhase === 'handSelection'){
+    if(nextPhase === 'handSelection') {
         dispatch(getNextCardForHand());
     }
 

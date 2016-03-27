@@ -4,22 +4,22 @@ import tokenGenerator from './../../utils/token/tokenGenerator/tokenGenerator';
 let Token;
 
 let TokenSchema = new mongoose.Schema({
-    userId: { 
-        type: mongoose.Schema.ObjectId, 
-        index: true 
+    userId: {
+        type: mongoose.Schema.ObjectId,
+        index: true
     },
     token: {
-        type: String, 
-        index: true 
+        type: String,
+        index: true
     },
-    type: { 
+    type: {
         type: String
     }
 });
 
-TokenSchema.statics.new = function (userId, type, fn) {
+TokenSchema.statics.new = function(userId, type, fn) {
     let user = new Token();
-    tokenGenerator(userId).then((token, err) => {
+    tokenGenerator(userId).then(token => {
         user.token = token;
         user.userId = userId;
         user.type = type;

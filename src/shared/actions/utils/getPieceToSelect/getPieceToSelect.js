@@ -2,8 +2,7 @@ import { List } from 'immutable';
 import { getBoard } from './../../../selectors/board/boardSelector';
 import { getValidPieces } from './../../../selectors/validPieces/validPiecesSelector';
 
-export function getPieceToSelect(game, keyCode){
-
+export function getPieceToSelect(game, keyCode) {
     const board = getBoard(game.get('deck'));
 
     let validPieces = getValidPieces(board);
@@ -12,14 +11,14 @@ export function getPieceToSelect(game, keyCode){
 
     let nextEmptyPiece = selectedPiece === -1 ? validPieces.get(0) : selectedPiece;
 
-    switch(keyCode){
+    switch(keyCode) {
         case 'left': nextEmptyPiece = getNextEmptyPieceHorizontally(nextEmptyPiece, validPieces, validPieces.size - 1); break;
         case 'right': nextEmptyPiece = getNextEmptyPieceHorizontally(nextEmptyPiece, validPieces, 1); break;
         case 'up': nextEmptyPiece = getNextEmptyPieceVertically(nextEmptyPiece, validPieces, 6); break;
         case 'down': nextEmptyPiece = getNextEmptyPieceVertically(nextEmptyPiece, validPieces, 3); break;
         case 'enter': break;
+        default: break;
     }
-    debugger;
     return nextEmptyPiece;
 }
 
@@ -30,26 +29,24 @@ function getNextEmptyPieceHorizontally(emptyPieceIndex, validPieces, direction) 
 }
 
 function getNextEmptyPieceVertically(currentIndex, validPieces, direction) {
-
-
     let board = getBoardWithAllTiles(validPieces);
 
     let nextIndex = (currentIndex + direction) % board.size;
 
     if(board.get(nextIndex) === null) {
         nextIndex = (nextIndex + direction) % board.size;
-        if (board.get(nextIndex) === null){
+        if (board.get(nextIndex) === null) {
             return currentIndex;
-        }else{
+        } else {
             return board.get(nextIndex);
         }
-    }
-    else
+    } else {
         return board.get(nextIndex);
+    }
 }
 
 function getBoardWithAllTiles(validPieces) {
-    return [0,1,2,3,4,5,6,7,8].reduce((board, idx, i) => {
+    return [0, 1, 2, 3, 4, 5, 6, 7, 8].reduce((board, idx, i) => {
         let piece = validPieces.find(index => index === idx) > -1 ? idx : null;
         return board.set(i, piece);
     }, new List([]));

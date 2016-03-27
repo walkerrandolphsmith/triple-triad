@@ -6,5 +6,5 @@ export function selectPiece(index) {
         payload: {
             index: index
         }
-    }
+    };
 }

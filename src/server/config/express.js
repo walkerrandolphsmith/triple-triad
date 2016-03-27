@@ -1,7 +1,6 @@
 import path from 'path';
 import express from 'express';
 import cors from 'cors';
-import passport from 'passport';
 import bodyparser from 'body-parser';
 import cookieSession from 'cookie-session';
 import cookieParser from 'cookie-parser';
@@ -13,23 +12,25 @@ import env from './../../shared/config/environment';
 var config = require('./../../../webpack.config');
 
 export default function(app, passport, routers) {
-
     const { nodeEnv, devPort } = env;
 
     app.use(cors());
 
-    if(nodeEnv === 'development'){
+    if(nodeEnv === 'development') {
         app.use(express.static(path.join(__dirname, './../../../src')));
 
         const compiler = webpack(config);
         app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }));
         app.use(webpackHotMiddleware(compiler));
 
-        new WebpackDevServer(webpack(config), config.devServer).listen(devPort, 'localhost', (err, result) => {
-            if (err) console.error(err);
-            console.info(`==> 🌎 Listening on port ${devPort}`);
+        new WebpackDevServer(webpack(config), config.devServer).listen(devPort, 'localhost', err => {
+            if (err) {
+                console.error(err);
+            } else {
+                console.info(`==> 🌎 Listening on port ${devPort}`);
+            }
         });
-    }else{
+    } else {
         app.use(express.static(path.join(__dirname, './../../../../dist')));
     }
 

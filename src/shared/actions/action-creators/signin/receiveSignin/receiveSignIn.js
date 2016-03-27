@@ -9,5 +9,5 @@ export function receiveSignIn(user) {
                 id: user.id
             }
         }
-    }
+    };
 }

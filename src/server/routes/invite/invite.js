@@ -7,25 +7,22 @@ export function invite(req, res, next) {
     const { gameId, invitee, gameOwner } = req.body;
 
     Game.findById(gameId, (err, game) => {
-        if(err || game === null){
+        if(err || game === null) {
             res.status(500).send();
-        }
-        else{
+        } else {
             Token.new(game._id, 'INVITE', (err, token) => {
-                if(err){
+                if(err) {
                     res.status(500).send();
-                }
-                else{
+                } else {
                     User.findById(gameOwner, (err, user) => {
-                       if(err){
+                       if(err) {
                            res.status(500).send();
-                       }else{
+                       } else {
                            send_invite_email(invitee, user.local.email, token.token, err => {
-                               if (err) {
+                               if(err) {
                                    return res.status(500).send();
-                               }
-                               else {
-                                   return res.status(200).json({sent: true});
+                               } else {
+                                   return res.status(200).json({ sent: true });
                                }
                            });
                        }

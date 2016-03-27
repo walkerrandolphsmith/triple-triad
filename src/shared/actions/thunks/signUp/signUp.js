@@ -10,7 +10,6 @@ import {
 
 export function signUp(user) {
     return dispatch => {
-
         dispatch(requestSignUp());
 
         const { username, password, confirmPassword, email } = user;
@@ -25,7 +24,7 @@ export function signUp(user) {
             error = true;
         }
 
-        if(!isValidPassword(password)){
+        if(!isValidPassword(password)) {
             dispatch(signUpFormError({
                 field: 'password',
                 error: 'Invalid Password'
@@ -33,7 +32,7 @@ export function signUp(user) {
             error = true;
         }
 
-        if(!passwordsMatch(password, confirmPassword)){
+        if(!passwordsMatch(password, confirmPassword)) {
             dispatch(signUpFormError({
                 field: 'username',
                 error: 'Passwords must match'
@@ -41,7 +40,7 @@ export function signUp(user) {
             error = true;
         }
 
-        if(!isValidEmail(email)){
+        if(!isValidEmail(email)) {
             dispatch(signUpFormError({
                 field: 'email',
                 error: 'Invalid email address'
@@ -49,22 +48,22 @@ export function signUp(user) {
             error = true;
         }
 
-        if(error){
-            return
+        if(error) {
+            return;
         }
 
-        return request
+        request
             .post('/api/sign_up')
             .send(JSON.stringify(user))
             .set('Accept', 'application/json')
             .set('Content-Type', 'application/json')
-            .end((error, response) => {
+            .end((err, response) => {
                 if(response.status === 200) {
                     dispatch(receiveUser(response.body));
                     dispatch(push('/games'));
                 }else{
-                    let error = JSON.parse(response.text);
-                    dispatch(signUpFormError(error));
+                    let message = JSON.parse(response.text);
+                    dispatch(signUpFormError(message));
                 }
             });
     };

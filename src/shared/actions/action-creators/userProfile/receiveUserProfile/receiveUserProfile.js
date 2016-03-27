@@ -6,5 +6,5 @@ export function receiveUserProfile(user) {
         payload: {
             user: user
         }
-    }
+    };
 }

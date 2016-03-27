@@ -25,17 +25,20 @@ let server = http.Server(app);
 io.attach(server);
 
 io.on('connection', socket => {
-  console.log("Socket connected: " + socket.id);
-  socket.on('action', action => {
-      io.sockets.emit('action', {
-        type: action.type.split(SERVER)[1],
-        payload: action.payload
-      });
-  });
+    console.log('Socket connected: ' + socket.id);
+    socket.on('action', action => {
+        io.sockets.emit('action', {
+            type: action.type.split(SERVER)[1],
+            payload: action.payload
+        });
+    });
 });
 
 
-server.listen(port, (error) => {
-  if (error) console.error(error);
-  else console.info(`==> 🌎  Listening on port ${port}. Open up http://localhost:${port}/ in your browser.`);
+server.listen(port, error => {
+    if(error){
+        console.error(error);
+    } else {
+        console.info(`==> 🌎  Listening on port ${port}. Open up http://localhost:${port}/ in your browser.`);
+    }
 });

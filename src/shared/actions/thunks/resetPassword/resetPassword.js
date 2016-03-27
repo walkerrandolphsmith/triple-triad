@@ -17,7 +17,7 @@ export function resetPassword(token, password, confirmPassword) {
         dispatch(passwordResetRequest());
 
         let error;
-        if(!isValidPassword(password)){
+        if(!isValidPassword(password)) {
             dispatch(resetPasswordFormError({
                 field: 'password',
                 error: 'Invalid Password'
@@ -25,7 +25,7 @@ export function resetPassword(token, password, confirmPassword) {
             error = true;
         }
 
-        if(!passwordsMatch(password, confirmPassword)){
+        if(!passwordsMatch(password, confirmPassword)) {
             dispatch(resetPasswordFormError({
                 field: 'password',
                 error: 'Passwords must match'
@@ -33,11 +33,11 @@ export function resetPassword(token, password, confirmPassword) {
             error = true;
         }
 
-        if(error){
-            return
+        if(error) {
+            return;
         }
 
-        return request
+        request
             .post('/api/reset_password')
             .send(JSON.stringify({
                 token: token,
@@ -47,14 +47,13 @@ export function resetPassword(token, password, confirmPassword) {
             .set('Accept', 'application/json')
             .set('Content-Type', 'application/json')
             .end((error, response) => {
-                if(response.status === 200){
-                    dispatch(passwordResetSuccess())
-                }else{
-                    dispatch(passwordResetFailed())
+                if(response.status === 200) {
+                    dispatch(passwordResetSuccess());
+                } else {
+                    dispatch(passwordResetFailed());
                 }
-
                 setTimeout(() => {
-                    dispatch(passwordResetClear())
+                    dispatch(passwordResetClear());
                 }, 1000);
             });
     };

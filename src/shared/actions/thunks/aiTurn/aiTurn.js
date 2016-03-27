@@ -1,5 +1,5 @@
 import { getValidPiece, selectCardForOpponent } from './../../utils';
-import { selectCard, selectPiece, startAiTurn, endAiTurn } from './../../action-creators'
+import { selectCard, selectPiece, startAiTurn, endAiTurn } from './../../action-creators';
 import { playerTakesTurn } from './../playerTakesTurn/playerTakesTurn';
 
 export const aiTurn = () => (dispatch, getState) => {

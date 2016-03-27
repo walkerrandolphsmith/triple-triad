@@ -6,5 +6,5 @@ export function updateFocusSetting(setting) {
         payload: {
             setting: setting
         }
-    }
+    };
 }

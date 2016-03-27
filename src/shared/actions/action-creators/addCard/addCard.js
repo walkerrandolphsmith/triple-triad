@@ -7,5 +7,5 @@ export function addCard(id, owner) {
             id: id,
             owner: owner
         }
-    }
+    };
 }

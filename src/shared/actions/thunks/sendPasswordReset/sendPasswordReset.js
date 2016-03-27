@@ -12,15 +12,14 @@ export function sendPasswordReset(email) {
         dispatch(sendPasswordResetSuccess());
         return request
         .post('/api/forgot_password')
-        .send(JSON.stringify({email: email}))
+        .send(JSON.stringify({ email: email }))
         .set('Accept', 'application/json')
         .set('Content-Type', 'application/json')
         .end((error, response) => {
             if(response.status === 200) {
                 dispatch(sendPasswordResetRequest());
-            }
-            else {
-                if(response.body.invalidEmail){
+            } else {
+                if(response.body.invalidEmail) {
                     dispatch(forgotPasswordFormError({
                         field: 'email',
                         error: 'This user does not exist'
@@ -30,7 +29,7 @@ export function sendPasswordReset(email) {
             }
 
             setTimeout(() => {
-                dispatch(sendPasswordResetClear())
+                dispatch(sendPasswordResetClear());
             }, 2500);
         });
     };

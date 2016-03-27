@@ -9,5 +9,5 @@ export function receiveUser(user) {
                 id: user.id
             }
         }
-    }
+    };
 }

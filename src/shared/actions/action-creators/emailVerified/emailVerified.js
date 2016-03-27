@@ -6,5 +6,5 @@ export function emailVerified(isVerified) {
         payload: {
             isVerified: isVerified
         }
-    }
+    };
 }

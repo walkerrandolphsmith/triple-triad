@@ -9,10 +9,10 @@ export function basicRule(i, game){
 
     const card = board.filter(card => card && card.get('boardIndex') === i).get(0);
 
-    const above = i-3;
-    const below = i+3;
-    const left = i-1;
-    const right = i+1;
+    const above = i - 3;
+    const below = i + 3;
+    const left = i - 1;
+    const right = i + 1;
 
     const isNotFirstRow = row > 0;
     const isNotLastRow = row < 2;
@@ -21,7 +21,7 @@ export function basicRule(i, game){
 
     const cardAbove = isNotFirstRow ? board.filter(card => card.get('boardIndex') === above).get(0) : null;
     const cardBelow = isNotLastRow ? board.filter(card => card.get('boardIndex') === below).get(0) : null;
-    const cardAtLeft = isNotFirstColumn? board.filter(card => card.get('boardIndex') === left).get(0) : null;
+    const cardAtLeft = isNotFirstColumn ? board.filter(card => card.get('boardIndex') === left).get(0) : null;
     const cardAtRight = isNotLastColumn ? board.filter(card => card.get('boardIndex') === right).get(0): null;
 
     let owner = card.get('owner');
@@ -29,25 +29,25 @@ export function basicRule(i, game){
 
     let tuples = [];
 
-    if(shouldFLip(card, cardAbove, 'top', 'bottom'))
+    if(shouldFLip(card, cardAbove, 'top', 'bottom')) {
         tuples.push({index: above, owner: card.get('owner')});
-
-    if(shouldFLip(card, cardBelow, 'bottom', 'top'))
+    }
+    if(shouldFLip(card, cardBelow, 'bottom', 'top')) {
         tuples.push({index: below, owner: card.get('owner')});
-
-    if(shouldFLip(card, cardAtLeft, 'left', 'right'))
+    }
+    if(shouldFLip(card, cardAtLeft, 'left', 'right')) {
         tuples.push({index: left, owner: card.get('owner')});
-
-    if(shouldFLip(card, cardAtRight, 'right', 'left'))
+    }
+    if(shouldFLip(card, cardAtRight, 'right', 'left')) {
         tuples.push({index: right, owner: card.get('owner')});
-
+    }
     tuples = sort(tuples);
 
     if(shouldFLip(cardAbove, card, 'bottom', 'top')
         || shouldFLip(cardBelow, card, 'top', 'bottom')
         || shouldFLip(cardAtLeft, card, 'right', 'left')
         || shouldFLip(cardAtRight, card, 'left', 'right')
-    ) tuples.push({index: i, owner: other});
+    ) { tuples.push({index: i, owner: other}); }
 
     return tuples;
 }

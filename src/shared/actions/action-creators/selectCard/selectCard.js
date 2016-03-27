@@ -6,5 +6,5 @@ export function selectCard(id) {
         payload: {
             id: id
         }
-    }
+    };
 }
