@@ -6,6 +6,32 @@ const mailgun = new Mailgun({
     domain: env.keys.mailgun.domain
 });
 
+export function sendEmail(data, fn) {
+    if(!data.from) {
+        return fn(new Error('Email address required'));
+    }
+    if(!data.to) {
+        return fn(new Error('Email address required'));
+    }
+    if(!data.subject) {
+        return fn(new Error('Must contain a subject'));
+    }
+    if(!data.html) {
+        return fn(new Error('Must contain a message'));
+    }
+    if(env.nodeEnv === 'test') {
+        return fn(null, 'OK');
+    }
+
+    mailgun.messages().send(data, (err, body) => {
+        if(err) {
+            return fn(err);
+        } else {
+            return fn(null, body);
+        }
+    });
+}
+
 export function sendInviteEmail(toEmail, fromEmail, token, fn) {
     const data = {
         from: fromEmail,
@@ -45,30 +71,4 @@ export function sendResetPasswordEmail(email, token, fn) {
         `
     };
     sendEmail(data, fn);
-}
-
-export function sendEmail(data, fn) {
-    if(!data.from) {
-        return fn(new Error('Email address required'));
-    }
-    if(!data.to) {
-        return fn(new Error('Email address required'));
-    }
-    if(!data.subject) {
-        return fn(new Error('Must contain a subject'));
-    }
-    if(!data.html) {
-        return fn(new Error('Must contain a message'));
-    }
-    if(env.nodeEnv === 'test') {
-        return fn(null, 'OK');
-    }
-
-    mailgun.messages().send(data, (err, body) => {
-        if(err) {
-            return fn(err);
-        } else {
-            return fn(null, body);
-        }
-    });
 }

@@ -1,12 +1,7 @@
 import { List } from 'immutable';
 
-export default function sample(list, size) {
-    if(typeof size === 'undefined') {
-        let index = getIndex(list.size);
-        return list.get(index);
-    }
-    let indexes = getIndexes(list.size, size);
-    return indexes.map(i => list.get(i));
+function getIndex(listSize) {
+    return Math.floor(Math.random() * (listSize - 1));
 }
 
 function getIndexes(listSize, size) {
@@ -22,10 +17,14 @@ function getIndexes(listSize, size) {
     return indexes;
 }
 
-function getIndex(listSize) {
-    return Math.floor(Math.random() * (listSize - 1));
+export default function sample(list, size) {
+    if(typeof size === 'undefined') {
+        let index = getIndex(list.size);
+        return list.get(index);
+    }
+    let indexes = getIndexes(list.size, size);
+    return indexes.map(i => list.get(i));
 }
-
 
 /*
 export default function sample(list, size){

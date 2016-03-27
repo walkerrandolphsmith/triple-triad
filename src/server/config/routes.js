@@ -15,13 +15,6 @@ import {
     invite
 } from './../routes';
 
-export default function(passport, socket) {
-    return {
-        authRouter: configureAuthRoutes(passport),
-        gameRouter: configureGameRoutes(passport, socket)
-    };
-}
-
 function configureAuthRoutes(passport) {
     const router = express.Router();
 
@@ -120,4 +113,11 @@ function configureGameRoutes(passport, socket) {
     );
 
     return router;
+}
+
+export default function(passport, socket) {
+    return {
+        authRouter: configureAuthRoutes(passport),
+        gameRouter: configureGameRoutes(passport, socket)
+    };
 }

@@ -1,6 +1,15 @@
 import { getBoard } from './../../../selectors/board/boardSelector';
 import sort from './../sort/objectsByNumericPropValues';
 
+function shouldFLip(card, otherCard, attackDirection, defenseDirection) {
+    return (
+        card
+        && otherCard
+        && card.get('owner') !== otherCard.get('owner')
+        && card.get('rank').get(attackDirection) > otherCard.get('rank').get(defenseDirection)
+    );
+}
+
 export function basicRule(i, game) {
     const board = getBoard(game.get('deck'));
 
@@ -51,13 +60,4 @@ export function basicRule(i, game) {
         tuples.push({ index: i, owner: other });
     }
     return tuples;
-}
-
-function shouldFLip(card, otherCard, attackDirection, defenseDirection) {
-    return (
-    card
-    && otherCard
-    && card.get('owner') !== otherCard.get('owner')
-    && card.get('rank').get(attackDirection) > otherCard.get('rank').get(defenseDirection)
-    );
 }

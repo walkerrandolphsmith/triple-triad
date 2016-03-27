@@ -1,6 +1,17 @@
 import { getBoard } from './../../../selectors/board/boardSelector';
 import sort from './../sort/objectsByNumericPropValues';
 
+function shouldApplySameRule(card, firstCard, secondCard, d1, d2, d3, d4) {
+    return (
+        firstCard
+        && secondCard
+        && firstCard.get('owner') !== card.get('owner')
+        && secondCard.get('owner') !== card.get('owner')
+        && card.get('rank').get(d1) === firstCard.get('rank').get(d3)
+        && card.get('rank').get(d2) === secondCard.get('rank').get(d4)
+    );
+}
+
 export function sameRule(i, game) {
     const board = getBoard(game.get('deck'));
 
@@ -52,15 +63,4 @@ export function sameRule(i, game) {
 
     let tuples = indexes.map(index => ({ index: index, owner: card.get('owner') }));
     return sort(tuples);
-}
-
-function shouldApplySameRule(card, firstCard, secondCard, d1, d2, d3, d4) {
-    return (
-    firstCard
-    && secondCard
-    && firstCard.get('owner') !== card.get('owner')
-    && secondCard.get('owner') !== card.get('owner')
-    && card.get('rank').get(d1) === firstCard.get('rank').get(d3)
-    && card.get('rank').get(d2) === secondCard.get('rank').get(d4)
-    );
 }
