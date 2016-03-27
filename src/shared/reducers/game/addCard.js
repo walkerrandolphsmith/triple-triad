@@ -5,7 +5,7 @@ export default (state, payload) => {
         deck.findIndex(
             card => card.get('id') === payload.id
         ),
-        card => card.set("owner", payload.owner)
+        card => card.set('owner', payload.owner)
     );
     return state.set('deck', deck);
-}
+};

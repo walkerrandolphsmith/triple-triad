@@ -9,4 +9,4 @@ export default state => {
     );
 
     return state.set('deck', deck);
-}
+};

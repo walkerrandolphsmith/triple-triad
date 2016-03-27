@@ -1,6 +1,6 @@
 const CARD_TYPES = [
     {
-        name: "Aeris",
+        name: 'Aeris',
         level: 7,
         element: null,
         rank: {
@@ -11,7 +11,7 @@ const CARD_TYPES = [
         }
     },
     {
-        name: "Barret",
+        name: 'Barret',
         level: 7,
         element: null,
         owner: 0,
@@ -23,7 +23,7 @@ const CARD_TYPES = [
         }
     },
     {
-        name: "CaitSith",
+        name: 'CaitSith',
         level: 7,
         element: null,
         rank: {
@@ -34,7 +34,7 @@ const CARD_TYPES = [
         }
     },
     /*{
-     name: "Cid",
+     name: 'Cid',
      level: 7,
      element: null,
      rank: {
@@ -45,7 +45,7 @@ const CARD_TYPES = [
      }
      },*/
     {
-        name: "Cloud",
+        name: 'Cloud',
         level: 7,
         element: null,
         rank: {
@@ -56,7 +56,7 @@ const CARD_TYPES = [
         }
     },
     {
-        name: "Nanaki",
+        name: 'Nanaki',
         level: 7,
         element: null,
         rank: {
@@ -67,7 +67,7 @@ const CARD_TYPES = [
         }
     },
     {
-        name: "Rufus",
+        name: 'Rufus',
         level: 7,
         element: null,
         rank: {
@@ -78,7 +78,7 @@ const CARD_TYPES = [
         }
     },
     {
-        name: "Sephiroth",
+        name: 'Sephiroth',
         level: 7,
         element: null,
         rank: {
@@ -89,7 +89,7 @@ const CARD_TYPES = [
         }
     },
     {
-        name: "Tifa",
+        name: 'Tifa',
         level: 7,
         element: null,
         rank: {
@@ -100,7 +100,7 @@ const CARD_TYPES = [
         }
     },
     /*{
-     name: "Vincent",
+     name: 'Vincent',
      level: 7,
      element: null,
      rank: {
@@ -111,7 +111,7 @@ const CARD_TYPES = [
      }
      },*/
     {
-        name: "Yuffie",
+        name: 'Yuffie',
         level: 7,
         element: null,
         rank: {
@@ -122,7 +122,7 @@ const CARD_TYPES = [
         }
     },
     {
-        name: "Ward",
+        name: 'Ward',
         level: 8,
         element: null,
         rank: {
@@ -133,7 +133,7 @@ const CARD_TYPES = [
         }
     },
     {
-        name: "Kiros",
+        name: 'Kiros',
         level: 8,
         element: null,
         rank: {
@@ -144,7 +144,7 @@ const CARD_TYPES = [
         }
     },
     /*{
-     name: "Laguna",
+     name: 'Laguna',
      level: 8,
      element: null,
      rank: {
@@ -155,7 +155,7 @@ const CARD_TYPES = [
      }
      },*/
     {
-        name: "Selphie",
+        name: 'Selphie',
         level: 8,
         element: null,
         rank: {
@@ -166,7 +166,7 @@ const CARD_TYPES = [
         }
     },
     {
-        name: "Quistis",
+        name: 'Quistis',
         level: 8,
         element: null,
         rank: {
@@ -177,7 +177,7 @@ const CARD_TYPES = [
         }
     },
     {
-        name: "Irvine",
+        name: 'Irvine',
         level: 8,
         element: null,
         rank: {
@@ -188,7 +188,7 @@ const CARD_TYPES = [
         }
     },
     {
-        name: "Zell",
+        name: 'Zell',
         level: 8,
         element: null,
         rank: {
@@ -199,7 +199,7 @@ const CARD_TYPES = [
         }
     },
     /*{
-     name: "Rinoa",
+     name: 'Rinoa',
      level: 8,
      element: null,
      rank: {
@@ -210,7 +210,7 @@ const CARD_TYPES = [
      }
      },*/
     {
-        name: "Edea",
+        name: 'Edea',
         level: 8,
         element: null,
         rank: {
@@ -221,7 +221,7 @@ const CARD_TYPES = [
         }
     },
     {
-        name: "Seifer",
+        name: 'Seifer',
         level: 8,
         element: null,
         rank: {
@@ -232,7 +232,7 @@ const CARD_TYPES = [
         }
     },
     {
-        name: "Squall",
+        name: 'Squall',
         level: 8,
         element: null,
         rank: {
@@ -243,7 +243,7 @@ const CARD_TYPES = [
         }
     },
     {
-        name: "Amarant",
+        name: 'Amarant',
         level: 9,
         element: null,
         rank: {
@@ -254,7 +254,7 @@ const CARD_TYPES = [
         }
     },
     /*{
-     name: "Eiko",
+     name: 'Eiko',
      level: 9,
      element: null,
      rank: {
@@ -265,7 +265,7 @@ const CARD_TYPES = [
      }
      },*/
     {
-        name: "Freya",
+        name: 'Freya',
         level: 9,
         element: null,
         rank: {
@@ -276,7 +276,7 @@ const CARD_TYPES = [
         }
     },
     {
-        name: "Garnet",
+        name: 'Garnet',
         level: 9,
         element: null,
         rank: {
@@ -287,7 +287,7 @@ const CARD_TYPES = [
         }
     },
     {
-        name: "Kuja",
+        name: 'Kuja',
         level: 9,
         element: null,
         rank: {
@@ -298,7 +298,7 @@ const CARD_TYPES = [
         }
     },
     {
-        name: "Quina",
+        name: 'Quina',
         level: 9,
         element: null,
         rank: {
@@ -309,7 +309,7 @@ const CARD_TYPES = [
         }
     },
     {
-        name: "Steiner",
+        name: 'Steiner',
         level: 9,
         element: null,
         rank: {
@@ -320,7 +320,7 @@ const CARD_TYPES = [
         }
     },
     {
-        name: "Vivi",
+        name: 'Vivi',
         level: 9,
         element: null,
         rank: {
@@ -331,7 +331,7 @@ const CARD_TYPES = [
         }
     },
     {
-        name: "Zidane",
+        name: 'Zidane',
         level: 9,
         element: null,
         rank: {
@@ -342,7 +342,7 @@ const CARD_TYPES = [
         }
     },
     {
-        name: "Auron",
+        name: 'Auron',
         level: 10,
         element: null,
         rank: {
@@ -353,7 +353,7 @@ const CARD_TYPES = [
         }
     },
     {
-        name: "Jecht",
+        name: 'Jecht',
         level: 10,
         element: null,
         rank: {
@@ -364,7 +364,7 @@ const CARD_TYPES = [
         }
     },
     {
-        name: "Kimahri",
+        name: 'Kimahri',
         level: 10,
         element: null,
         rank: {
@@ -375,7 +375,7 @@ const CARD_TYPES = [
         }
     },
     /*{
-     name: "Lulu",
+     name: 'Lulu',
      level: 10,
      element: null,
      rank: {
@@ -386,7 +386,7 @@ const CARD_TYPES = [
      }
      },
      {
-     name: "Rikku",
+     name: 'Rikku',
      level: 10,
      element: null,
      rank: {
@@ -397,7 +397,7 @@ const CARD_TYPES = [
      }
      },*/
     {
-        name: "Seymour",
+        name: 'Seymour',
         level: 10,
         element: null,
         rank: {
@@ -408,7 +408,7 @@ const CARD_TYPES = [
         }
     },
     {
-        name: "Sin",
+        name: 'Sin',
         level: 10,
         element: null,
         rank: {
@@ -419,7 +419,7 @@ const CARD_TYPES = [
         }
     },
     {
-        name: "Tidus",
+        name: 'Tidus',
         level: 10,
         element: null,
         rank: {
@@ -430,7 +430,7 @@ const CARD_TYPES = [
         }
     },
     /*{
-     name: "Wakka",
+     name: 'Wakka',
      level: 10,
      element: null,
      rank: {
@@ -441,7 +441,7 @@ const CARD_TYPES = [
      }
      },
      {
-     name: "Yuna",
+     name: 'Yuna',
      level: 10,
      element: null,
      rank: {

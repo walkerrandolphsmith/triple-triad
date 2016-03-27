@@ -1,1 +1,1 @@
-export default (state, payload) => state.set('signingOut', true);
+export default state => state.set('signingOut', true);

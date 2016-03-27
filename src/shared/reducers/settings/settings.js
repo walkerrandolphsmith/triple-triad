@@ -19,7 +19,6 @@ export default function reducer(state = INITIAL_STATE, action = {}) {
     switch(type) {
         case UPDATE_SETTINGS: return updateSettings(state, payload);
         case UPDATE_FOCUS_SETTING: return updateFocusSetting(state, payload);
+        default: return state;
     }
-
-    return state;
 }

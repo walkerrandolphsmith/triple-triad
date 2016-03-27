@@ -1,1 +1,1 @@
-export default (state, payload) => state.set(payload['field'], payload['error']);
+export default (state, payload) => state.set(payload.field, payload.error);

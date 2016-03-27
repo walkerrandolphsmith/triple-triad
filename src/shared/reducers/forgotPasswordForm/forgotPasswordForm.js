@@ -11,7 +11,6 @@ const INITIAL_STATE = new Map({
 });
 
 export default function forgotPasswordFormErrors(state = INITIAL_STATE, action = {}) {
-
     const { type, payload } = action;
 
     switch (type) {
