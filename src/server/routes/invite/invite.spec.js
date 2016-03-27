@@ -6,15 +6,20 @@ describe('/api/invite', () => {
 
     let req, res;
 
+    beforeEach(() => {
+        req = {
+            body: {
+                gameId: 20,
+                gameOwner: 1,
+                invitee: 'tester@gmail.com'
+            }
+        };
+    });
+
     describe('Given a request containing a game id and a response', () => {
 
         let findById = expect.createSpy();
         beforeEach(() => {
-            req = {
-                body: {
-                    gameId: 20
-                }
-            };
             res = {
                 status: function() { return this; },
                 send: function() { return this; }
@@ -34,12 +39,6 @@ describe('/api/invite', () => {
     describe('Given a game is not found', () => {
         let status, send;
         beforeEach(() => {
-            req = {
-                body: {
-                    gameId: 20
-                }
-            };
-
             send = expect.createSpy();
             res = {
                 status: () => ({
@@ -66,12 +65,6 @@ describe('/api/invite', () => {
     describe('Given an error is thrown when retrieving a game', () => {
         let status, send;
         beforeEach(() => {
-            req = {
-                body: {
-                    gameId: 20
-                }
-            };
-
             send = expect.createSpy();
             res = {
                 status: () => ({
@@ -98,12 +91,6 @@ describe('/api/invite', () => {
     describe('Given a game is found', () => {
         let status, send;
         beforeEach(() => {
-            req = {
-                body: {
-                    gameId: 20
-                }
-            };
-
             send = expect.createSpy();
             res = {
                 status: () => ({
@@ -141,7 +128,7 @@ describe('/api/invite', () => {
                 newSpy = expect.createSpy();
                 Invite.__Rewire__('Token', {
                     new: (id, type, cb) => {
-                        cb(new Error(), {})
+                        cb(new Error(), {});
                     }
                 });
 
