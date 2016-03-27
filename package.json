@@ -118,6 +118,7 @@
     "supertest": "^1.1.0",
     "transfer-webpack-plugin": "^0.1.4",
     "url-loader": "^0.5.7",
+    "wallaby-webpack": "0.0.21",
     "webpack": "^1.12.9",
     "webpack-dev-middleware": "^1.2.0",
     "webpack-dev-server": "^1.11.0",
