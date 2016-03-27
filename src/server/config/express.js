@@ -24,7 +24,7 @@ export default function(app, passport, routers) {
         app.use(webpackHotMiddleware(compiler));
 
         new WebpackDevServer(webpack(config), config.devServer).listen(devPort, 'localhost', err => {
-            if (err) {
+            if(err) {
                 console.error(err);
             } else {
                 console.info(`==> 🌎 Listening on port ${devPort}`);

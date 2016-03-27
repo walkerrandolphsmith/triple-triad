@@ -6,7 +6,7 @@ const mailgun = new Mailgun({
     domain: env.keys.mailgun.domain
 });
 
-export function send_invite_email(toEmail, fromEmail, token, fn) {
+export function sendInviteEmail(toEmail, fromEmail, token, fn) {
     const data = {
         from: fromEmail,
         to: toEmail,
@@ -19,7 +19,7 @@ export function send_invite_email(toEmail, fromEmail, token, fn) {
     sendEmail(data, fn);
 }
 
-export function send_verification_email(email, token, fn) {
+export function sendVerificationEmail(email, token, fn) {
     const data = {
         from: 'tripletriad@gmail.com',
         to: email,
@@ -33,7 +33,7 @@ export function send_verification_email(email, token, fn) {
     sendEmail(data, fn);
 }
 
-export function send_reset_password_email(email, token, fn) {
+export function sendResetPasswordEmail(email, token, fn) {
     const data = {
         from: 'tripletriad@gmail.com',
         to: email,
@@ -65,7 +65,7 @@ export function sendEmail(data, fn) {
     }
 
     mailgun.messages().send(data, (err, body) => {
-        if(err){
+        if(err) {
             return fn(err);
         } else {
             return fn(null, body);

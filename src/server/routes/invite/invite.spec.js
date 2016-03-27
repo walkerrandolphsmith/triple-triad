@@ -214,7 +214,7 @@ describe('/api/invite', () => {
                             }
                         });
                         sendInvite = expect.createSpy();
-                        Invite.__Rewire__('send_invite_email', sendInvite);
+                        Invite.__Rewire__('sendInviteEmail', sendInvite);
                         invite(req, res);
                     });
 
@@ -226,7 +226,7 @@ describe('/api/invite', () => {
                         describe('When email is sent without error', () => {
                             let json;
                             beforeEach(() => {
-                                Invite.__Rewire__('send_invite_email', (toEmail, fromEmail, token, cb) => {
+                                Invite.__Rewire__('sendInviteEmail', (toEmail, fromEmail, token, cb) => {
                                     cb(null);
                                 });
                                 json = expect.createSpy();
@@ -247,7 +247,7 @@ describe('/api/invite', () => {
 
                         describe('When there is an error sending email', () => {
                             beforeEach(() => {
-                                Invite.__Rewire__('send_invite_email', (toEmail, fromEmail, token, cb) => {
+                                Invite.__Rewire__('sendInviteEmail', (toEmail, fromEmail, token, cb) => {
                                     cb(new Error());
                                 });
                                 invite(req, res);

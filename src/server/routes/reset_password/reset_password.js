@@ -12,20 +12,20 @@ export function resetPassword(req, res) {
         if(err || token === null) {
             return res.status(500).send();
         } else {
-            User.findById(token.userId, (err, user) => {
-                if(err || user === null) {
-                    return res.status(500).send()
+            User.findById(token.userId, (userErr, user) => {
+                if(userErr || user === null) {
+                    return res.status(500).send();
                 } else {
                     user.local.password = user.generateHash(password);
-                    user.save((err, updatedUser) => {
-                        if(err || updatedUser === null) {
+                    user.save((saveErr, updatedUser) => {
+                        if(saveErr || updatedUser === null) {
                             return res.status(500).send();
                         } else {
                             return res.status(200).send();
                         }
-                    })
+                    });
                 }
             });
         }
-    })
+    });
 }

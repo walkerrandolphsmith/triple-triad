@@ -36,7 +36,7 @@ io.on('connection', socket => {
 
 
 server.listen(port, error => {
-    if(error){
+    if(error) {
         console.error(error);
     } else {
         console.info(`==> 🌎  Listening on port ${port}. Open up http://localhost:${port}/ in your browser.`);

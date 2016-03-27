@@ -81,7 +81,7 @@ function configureAuthRoutes(passport) {
     router.post(
         '/createGame',
         (req, res) => {
-            createGame(req,res);
+            createGame(req, res);
         }
     );
 
@@ -95,7 +95,7 @@ function configureAuthRoutes(passport) {
     router.post(
         '/getGames',
         (req, res) => {
-            getGames(req,res);
+            getGames(req, res);
         }
     );
 

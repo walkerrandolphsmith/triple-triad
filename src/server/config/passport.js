@@ -1,7 +1,7 @@
 import PassportLocal from 'passport-local';
 import User from './../models/user/user';
 import Token from './../models/token/token';
-import { send_verification_email } from './../utils/mailer/mailer';
+import { sendVerificationEmail } from './../utils/mailer/mailer';
 
 export default function(passport) {
     const LocalStrategy = PassportLocal.Strategy;
@@ -34,17 +34,17 @@ export default function(passport) {
                 newUser.local.username = username;
                 newUser.local.email = req.body.email;
                 newUser.local.password = newUser.generateHash(password);
-                newUser.save(function(err, user) {
-                    if (err) {
-                        return done(err);
+                newUser.save(saveErr => {
+                    if(saveErr) {
+                        return done(saveErr);
                     } else {
-                        Token.new(newUser._id, 'USER', (err, token) => {
-                            if (err) {
-                                return done(err);
+                        Token.new(newUser._id, 'USER', (tokenErr, token) => {
+                            if(tokenErr) {
+                                return done(tokenErr);
                             } else {
-                                send_verification_email(newUser.local.email, token.token, err => {
-                                    if (err) {
-                                        return done(err);
+                                sendVerificationEmail(newUser.local.email, token.token, emailErr => {
+                                    if(emailErr) {
+                                        return done(emailErr);
                                     } else {
                                         return done(null, newUser);
                                     }
@@ -64,13 +64,13 @@ export default function(passport) {
     },
     function(req, username, password, done) {
         User.findOne({ 'local.username': username }, function(err, user) {
-            if (err) {
+            if(err) {
                 return done(err);
             }
-            if (!user) {
+            if(!user) {
                 return done(null, false, { message: `${username} does not exist` });
             }
-            if (!user.validPassword(password)) {
+            if(!user.validPassword(password)) {
                 return done(null, false, { message: 'Username and password do not exist' });
             }
             return done(null, user);

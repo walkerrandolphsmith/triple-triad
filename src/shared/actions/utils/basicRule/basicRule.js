@@ -47,12 +47,13 @@ export function basicRule(i, game) {
         || shouldFLip(cardBelow, card, 'top', 'bottom')
         || shouldFLip(cardAtLeft, card, 'right', 'left')
         || shouldFLip(cardAtRight, card, 'left', 'right')
-    ) { tuples.push({index: i, owner: other}); }
-
+    ) {
+        tuples.push({ index: i, owner: other });
+    }
     return tuples;
 }
 
-function shouldFLip(card, otherCard, attackDirection, defenseDirection){
+function shouldFLip(card, otherCard, attackDirection, defenseDirection) {
     return (
     card
     && otherCard
