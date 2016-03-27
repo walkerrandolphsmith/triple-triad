@@ -29,31 +29,27 @@ export default function(passport) {
             }
             if(user) {
                 return done(null, false, { message: 'User already exists.' });
-            } else {
-                newUser = new User();
-                newUser.local.username = username;
-                newUser.local.email = req.body.email;
-                newUser.local.password = newUser.generateHash(password);
-                newUser.save(saveErr => {
-                    if(saveErr) {
-                        return done(saveErr);
-                    } else {
-                        Token.new(newUser._id, 'USER', (tokenErr, token) => {
-                            if(tokenErr) {
-                                return done(tokenErr);
-                            } else {
-                                sendVerificationEmail(newUser.local.email, token.token, emailErr => {
-                                    if(emailErr) {
-                                        return done(emailErr);
-                                    } else {
-                                        return done(null, newUser);
-                                    }
-                                });
-                            }
-                        });
-                    }
-                });
             }
+            newUser = new User();
+            newUser.local.username = username;
+            newUser.local.email = req.body.email;
+            newUser.local.password = newUser.generateHash(password);
+            newUser.save(saveErr => {
+                if(saveErr) {
+                    return done(saveErr);
+                }
+                Token.new(newUser._id, 'USER', (tokenErr, token) => {
+                    if(tokenErr) {
+                        return done(tokenErr);
+                    }
+                    sendVerificationEmail(newUser.local.email, token.token, emailErr => {
+                        if(emailErr) {
+                            return done(emailErr);
+                        }
+                        return done(null, newUser);
+                    });
+                });
+            });
         });
     }));
 

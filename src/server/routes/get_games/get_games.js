@@ -6,8 +6,7 @@ export function getGames(req, res) {
     Game.find({ owner: userId }, (err, games) => {
         if(err) {
             return res.status(500).send();
-        } else {
-            return res.status(200).send(games);
         }
+        return res.status(200).send(games);
     });
 }

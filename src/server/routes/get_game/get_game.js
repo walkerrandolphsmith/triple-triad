@@ -6,8 +6,7 @@ export function getGame(req, res) {
     Game.findById(gameId, (err, game) => {
         if(err) {
             return res.status(500).send();
-        } else {
-            return res.status(200).send(game);
         }
+        return res.status(200).send(game);
     });
 }

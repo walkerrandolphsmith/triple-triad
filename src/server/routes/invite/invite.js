@@ -21,9 +21,8 @@ export function invite(req, res) {
                             sendInviteEmail(invitee, user.local.email, token.token, emailErr => {
                                 if(emailErr) {
                                     return res.status(500).send();
-                                } else {
-                                    return res.status(200).json({ sent: true });
                                 }
+                                return res.status(200).json({ sent: true });
                             });
                         }
                     });

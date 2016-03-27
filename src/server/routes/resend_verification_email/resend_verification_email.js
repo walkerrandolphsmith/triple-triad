@@ -7,20 +7,17 @@ export function resendVerificationEmail(req, res) {
     Token.findOne({ userId: userId, type: 'USER' }, (err, token) => {
         if(err || token === null) {
             return res.status(500).send();
-        } else {
-            User.findById(userId, (userErr, user) => {
-                if(userErr || user === null) {
-                    return res.status(500).send();
-                } else {
-                    sendVerificationEmail(user.local.email, token.token, emailErr => {
-                        if(emailErr) {
-                            return res.status(500).send();
-                        } else {
-                            return res.json({ sent: true });
-                        }
-                    });
-                }
-            });
         }
+        User.findById(userId, (userErr, user) => {
+            if(userErr || user === null) {
+                return res.status(500).send();
+            }
+            sendVerificationEmail(user.local.email, token.token, emailErr => {
+                if(emailErr) {
+                    return res.status(500).send();
+                }
+                return res.json({ sent: true });
+            });
+        });
     });
 }

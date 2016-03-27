@@ -13,8 +13,7 @@ export function createGame(req, res) {
     game.save((err, newGame) => {
         if(err) {
             return res.status(500).send();
-        } else {
-            return res.status(200).send(newGame);
         }
+        return res.status(200).send(newGame);
     });
 }

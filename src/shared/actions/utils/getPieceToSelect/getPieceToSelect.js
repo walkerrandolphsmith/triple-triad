@@ -24,12 +24,10 @@ function getNextEmptyPieceVertically(currentIndex, validPieces, direction) {
         nextIndex = (nextIndex + direction) % board.size;
         if(board.get(nextIndex) === null) {
             return currentIndex;
-        } else {
-            return board.get(nextIndex);
         }
-    } else {
         return board.get(nextIndex);
     }
+    return board.get(nextIndex);
 }
 
 export function getPieceToSelect(game, keyCode) {

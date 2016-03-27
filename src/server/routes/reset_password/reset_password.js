@@ -11,21 +11,18 @@ export function resetPassword(req, res) {
     Token.findOne({ token: req.body.token, type: 'RESET' }, (err, token) => {
         if(err || token === null) {
             return res.status(500).send();
-        } else {
-            User.findById(token.userId, (userErr, user) => {
-                if(userErr || user === null) {
-                    return res.status(500).send();
-                } else {
-                    user.local.password = user.generateHash(password);
-                    user.save((saveErr, updatedUser) => {
-                        if(saveErr || updatedUser === null) {
-                            return res.status(500).send();
-                        } else {
-                            return res.status(200).send();
-                        }
-                    });
-                }
-            });
         }
+        User.findById(token.userId, (userErr, user) => {
+            if(userErr || user === null) {
+                return res.status(500).send();
+            }
+            user.local.password = user.generateHash(password);
+            user.save((saveErr, updatedUser) => {
+                if(saveErr || updatedUser === null) {
+                    return res.status(500).send();
+                }
+                return res.status(200).send();
+            });
+        });
     });
 }
