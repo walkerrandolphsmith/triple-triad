@@ -1,4 +1,4 @@
-export function sign_in(req, res, next, passport) {
+export function signIn(req, res, next, passport) {
     passport.authenticate('local-login', (err, user, info) => {
         if (user) {
             req.logIn(user, () => {

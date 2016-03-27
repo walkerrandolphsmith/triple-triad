@@ -1,17 +1,17 @@
 import express from 'express';
 import {
     app,
-    sign_in,
-    sign_up,
-    sign_out,
-    verify_email,
-    resend_verification_email,
-    forgot_password,
-    reset_password,
-    user_profile,
-    create_game,
-    get_game,
-    get_games,
+    signIn,
+    signUp,
+    signOut,
+    verifyEmail,
+    resendVerificationEmail,
+    forgotPassword,
+    resetPassword,
+    userProfile,
+    createGame,
+    getGame,
+    getGames,
     invite
 } from './../routes';
 
@@ -26,76 +26,76 @@ function configureAuthRoutes(passport) {
     const router = express.Router();
 
     router.post(
-        '/sign_up',
+        '/signUp',
         (req, res, next) => {
-            sign_up(req, res, next, passport);
+            signUp(req, res, next, passport);
         }
     );
 
     router.post(
-        '/sign_in',
+        '/signIn',
         (req, res, next) => {
-            sign_in(req, res, next, passport);
+            signIn(req, res, next, passport);
         }
     );
 
     router.post(
-        '/verify_email',
+        '/verifyEmail',
         (req, res) => {
-            verify_email(req, res);
+            verifyEmail(req, res);
         }
     );
 
     router.post(
-        '/resend_verification_email',
+        '/resendVerificationEmail',
         (req, res) => {
-            resend_verification_email(req, res);
+            resendVerificationEmail(req, res);
         }
     );
 
     router.post(
-        '/forgot_password',
+        '/forgotPassword',
         (req, res) => {
-            forgot_password(req, res);
+            forgotPassword(req, res);
         }
     );
 
     router.post(
-        '/reset_password',
+        '/resetPassword',
         (req, res) => {
-            reset_password(req, res);
+            resetPassword(req, res);
         }
     );
 
-    router.get('/sign_out', (req, res) => {
-        sign_out(req, res);
+    router.get('/signOut', (req, res) => {
+        signOut(req, res);
     });
 
     router.post(
-        '/user_profile',
+        '/userProfile',
         (req, res) => {
-            user_profile(req, res);
+            userProfile(req, res);
         }
     );
 
     router.post(
-        '/create_game',
+        '/createGame',
         (req, res) => {
-            create_game(req,res);
+            createGame(req,res);
         }
     );
 
     router.post(
-        '/get_game',
+        '/getGame',
         (req, res) => {
-            get_game(req, res);
+            getGame(req, res);
         }
     );
 
     router.post(
-        '/get_games',
+        '/getGames',
         (req, res) => {
-            get_games(req,res);
+            getGames(req,res);
         }
     );
 

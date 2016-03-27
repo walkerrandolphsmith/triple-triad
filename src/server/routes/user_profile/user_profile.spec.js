@@ -1,8 +1,8 @@
 import expect from 'expect';
 import User_Profile from './user_profile';
-import { user_profile, __RewireAPI__ as user_profileRewireAPI } from './user_profile';
+import { userProfile, __RewireAPI__ as user_profileRewireAPI } from './user_profile';
 
-describe('user_profile', () => {
+describe('userProfile', () => {
 
     let req, res, userId;
     beforeEach(() => {
@@ -27,7 +27,7 @@ describe('user_profile', () => {
             });
 
             it('should look up the user by id', () => {
-               user_profile(req, res);
+               userProfile(req, res);
                expect(findById).toHaveBeenCalled();
             });
         });
@@ -59,7 +59,7 @@ describe('user_profile', () => {
                 });
 
                 it('should return a status of 200 and the user\'s id and name', () => {
-                    user_profile(req, res);
+                    userProfile(req, res);
                     expect(status).toHaveBeenCalledWith(200);
                     expect(json).toHaveBeenCalledWith({ verified: user.local.verified });
                 });
@@ -88,7 +88,7 @@ describe('user_profile', () => {
                 });
 
                 it('should return a status of 500', () => {
-                    user_profile(req, res);
+                    userProfile(req, res);
                     expect(status).toHaveBeenCalledWith(500);
                     expect(send).toHaveBeenCalled();
                 });
@@ -117,7 +117,7 @@ describe('user_profile', () => {
                 });
 
                 it('should return a status of 500', () => {
-                    user_profile(req, res);
+                    userProfile(req, res);
                     expect(status).toHaveBeenCalledWith(500);
                     expect(send).toHaveBeenCalled();
                 });

@@ -43,8 +43,8 @@ describe('SIGN_UP async action creator', () => {
             signUp(user)(dispatch);
         });
 
-        it('should request to /api/sign_up endpoint', () => {
-            expect(post).toHaveBeenCalledWith('/api/sign_up');
+        it('should request to /api/signUp endpoint', () => {
+            expect(post).toHaveBeenCalledWith('/api/signUp');
         });
 
         it('should send the user with post data', () => {
@@ -85,7 +85,7 @@ describe('SIGN_UP async action creator', () => {
         });
     });
 
-    describe('When /sign_up is unsuccessful', () => {
+    describe('When /signUp is unsuccessful', () => {
         beforeEach(() => {
             let request = SignUp.__Rewire__('request', {
                 post: function(endpoint) { return this; },

@@ -31,8 +31,8 @@ describe('SIGN_OUT async action creator', () => {
             signOut()(dispatch);
         });
 
-        it('should request to /api/sign_out endpoint', () => {
-            expect(get).toHaveBeenCalledWith('/api/sign_out');
+        it('should request to /api/signOut endpoint', () => {
+            expect(get).toHaveBeenCalledWith('/api/signOut');
         });
     });
 

@@ -1,8 +1,8 @@
 import expect from 'expect';
 import Get_Game from './get_game';
-import { get_game, __RewireAPI__ } from './get_game';
+import { getGame, __RewireAPI__ } from './get_game';
 
-describe('get_game', () => {
+describe('getGame', () => {
 
     let req, res;
 
@@ -26,7 +26,7 @@ describe('get_game', () => {
             });
 
             it('should attempt to findById a game for that id', () => {
-                get_game(req, res);
+                getGame(req, res);
                 expect(findById).toHaveBeenCalled();
             });
         });
@@ -61,7 +61,7 @@ describe('get_game', () => {
             });
 
             it('should return the game in the 200 response', () => {
-                get_game(req, res);
+                getGame(req, res);
                 expect(status).toHaveBeenCalledWith(200);
                 expect(send).toHaveBeenCalledWith(game)
             });
@@ -96,7 +96,7 @@ describe('get_game', () => {
             });
 
             it('should return a 500 response', () => {
-                get_game(req, res);
+                getGame(req, res);
                 expect(status).toHaveBeenCalledWith(500);
                 expect(send).toHaveBeenCalled()
             });

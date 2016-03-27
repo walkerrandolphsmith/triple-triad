@@ -6,12 +6,12 @@ import app from './../../src/server/server';
 import Token from './../../src/server/models/token/token';
 import User from './../../src/server/models/user/user';
 
-describe('/api/forgot_password', () => {
+describe('/api/forgotPassword', () => {
 
     beforeEach(connectionManager.connect);
     afterEach(connectionManager.disconnect);
 
-    describe('POST /forgot_password given an email of existing user', () => {
+    describe('POST /forgotPassword given an email of existing user', () => {
         let email, id;
         beforeEach(done => {
             email = "walkerrandolphsmith@gamil.com";
@@ -31,7 +31,7 @@ describe('/api/forgot_password', () => {
 
         it('should create a new token and send an email', done => {
             request(app)
-                .post('/api/forgot_password')
+                .post('/api/forgotPassword')
                 .send({email: email})
                 .set('Content-Type', 'application/json')
                 .set('Accept', 'application/json')
@@ -43,11 +43,11 @@ describe('/api/forgot_password', () => {
         });
     });
 
-    describe('POST /forgot_password given an email of that is not associated with an existing user', () => {
+    describe('POST /forgotPassword given an email of that is not associated with an existing user', () => {
 
         it('should create a new token and send an email', done => {
             request(app)
-                .post('/api/forgot_password')
+                .post('/api/forgotPassword')
                 .send({email: 'nonuser@gmail.com'})
                 .set('Content-Type', 'application/json')
                 .set('Accept', 'application/json')

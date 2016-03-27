@@ -1,6 +1,6 @@
 import Game from './../../models/game/game';
 
-export function get_games(req, res) {
+export function getGames(req, res) {
     const userId = req.body.userId;
 
     Game.find({owner: userId}, (err, games) => {

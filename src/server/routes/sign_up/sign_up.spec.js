@@ -1,7 +1,7 @@
 import expect from 'expect';
-import { sign_up } from './sign_up';
+import { signUp } from './sign_up';
 
-describe('sign_up', () => {
+describe('signUp', () => {
 
     let req, res, passport;
 
@@ -30,7 +30,7 @@ describe('sign_up', () => {
         });
 
         it('should return a status of 200 and the user\'s id and name', () => {
-           sign_up(req, res, {}, passport);
+           signUp(req, res, {}, passport);
            expect(status).toHaveBeenCalledWith(200);
            expect(json).toHaveBeenCalledWith({
                id: user._id,
@@ -65,7 +65,7 @@ describe('sign_up', () => {
         });
 
         it('should return a status of 200 and the user\'s id and name', () => {
-            sign_up(req, res, {}, passport);
+            signUp(req, res, {}, passport);
             expect(status).toHaveBeenCalledWith(500);
             expect(json).toHaveBeenCalledWith({
                 field: 'username',
@@ -100,7 +100,7 @@ describe('sign_up', () => {
         });
 
         it('should return a status of 200 and the user\'s id and name', () => {
-            sign_up(req, res, {}, passport);
+            signUp(req, res, {}, passport);
             expect(status).toHaveBeenCalledWith(500);
             expect(json).toHaveBeenCalledWith({
                 field: 'username',

@@ -6,12 +6,12 @@ import app from './../../src/server/server';
 import Token from './../../src/server/models/token/token';
 import User from './../../src/server/models/user/user';
 
-describe('/api/verify_email', () => {
+describe('/api/verifyEmail', () => {
 
     beforeEach(connectionManager.connect);
     afterEach(connectionManager.disconnect);
 
-    describe('POST /verify_email given a valid token ', () => {
+    describe('POST /verifyEmail given a valid token ', () => {
 
         let id, token;
         beforeEach(done => {
@@ -32,7 +32,7 @@ describe('/api/verify_email', () => {
 
         it('should altered the verified state of the user', done => {
             request(app)
-                .post('/api/verify_email')
+                .post('/api/verifyEmail')
                 .send({
                     token: token
                 })
@@ -46,7 +46,7 @@ describe('/api/verify_email', () => {
         });
     });
 
-    describe('POST /verify_email given a invalid token ', () => {
+    describe('POST /verifyEmail given a invalid token ', () => {
 
         let id, token;
         beforeEach(done => {
@@ -67,7 +67,7 @@ describe('/api/verify_email', () => {
 
         it('should return a 500 server error', done => {
             request(app)
-                .post('/api/verify_email')
+                .post('/api/verifyEmail')
                 .send({
                     token: token + "bad token"
                 })

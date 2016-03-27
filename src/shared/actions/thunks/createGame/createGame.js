@@ -14,7 +14,7 @@ export function createGame() {
         });
 
         return request
-        .post('/api/create_game')
+        .post('/api/createGame')
         .send(game)
         .set('Accept', 'application/json')
         .set('Content-Type', 'application/json')

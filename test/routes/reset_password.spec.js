@@ -6,12 +6,12 @@ import app from './../../src/server/server';
 import Token from './../../src/server/models/token/token';
 import User from './../../src/server/models/user/user';
 
-describe('/api/reset_password', () => {
+describe('/api/resetPassword', () => {
 
     beforeEach(connectionManager.connect);
     afterEach(connectionManager.disconnect);
 
-    describe('POST /reset_password given a valid token and a passwords that match', () => {
+    describe('POST /resetPassword given a valid token and a passwords that match', () => {
 
         let token;
         beforeEach(done =>  {
@@ -36,7 +36,7 @@ describe('/api/reset_password', () => {
 
         it('should return a status of 200 OK', done => {
             request(app)
-                .post('/api/reset_password')
+                .post('/api/resetPassword')
                 .send({
                     token: token,
                     password: 'newPassword',
@@ -50,7 +50,7 @@ describe('/api/reset_password', () => {
         });
     });
 
-    describe('POST /reset_password given an invalid token and a passwords that match', () => {
+    describe('POST /resetPassword given an invalid token and a passwords that match', () => {
 
         let token;
         beforeEach(done =>  {
@@ -75,7 +75,7 @@ describe('/api/reset_password', () => {
 
         it('should return a status of 500 server error', done => {
             request(app)
-                .post('/api/reset_password')
+                .post('/api/resetPassword')
                 .send({
                     token: `invalid${token}`,
                     password: 'newPassword',
@@ -89,7 +89,7 @@ describe('/api/reset_password', () => {
         });
     });
 
-    describe('POST /reset_password given a valid token and mismatching passwords', () => {
+    describe('POST /resetPassword given a valid token and mismatching passwords', () => {
 
         let token;
         beforeEach(done =>  {
@@ -114,7 +114,7 @@ describe('/api/reset_password', () => {
 
         it('should return a status of 500 server error', done => {
             request(app)
-                .post('/api/reset_password')
+                .post('/api/resetPassword')
                 .send({
                     token: token,
                     password: 'newPassword',
@@ -128,7 +128,7 @@ describe('/api/reset_password', () => {
         });
     });
 
-    describe('POST /reset_password given an invalid token and mismatching passwords', () => {
+    describe('POST /resetPassword given an invalid token and mismatching passwords', () => {
 
         let token;
         beforeEach(done =>  {
@@ -153,7 +153,7 @@ describe('/api/reset_password', () => {
 
         it('should return a status of 500 server error', done => {
             request(app)
-                .post('/api/reset_password')
+                .post('/api/resetPassword')
                 .send({
                     token: `invalid${token}`,
                     password: 'newPassword',

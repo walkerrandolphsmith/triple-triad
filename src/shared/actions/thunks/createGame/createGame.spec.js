@@ -53,8 +53,8 @@ describe('Create Game async action creator', () => {
             createGame()(dispatch, getState);
         });
 
-        it('should request to /api/create_game endpoint', () => {
-            expect(post).toHaveBeenCalledWith('/api/create_game');
+        it('should request to /api/createGame endpoint', () => {
+            expect(post).toHaveBeenCalledWith('/api/createGame');
         });
 
         it('should send the user id and deck with post data', () => {

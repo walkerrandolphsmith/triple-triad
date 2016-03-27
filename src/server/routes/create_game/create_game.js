@@ -1,6 +1,6 @@
 import Game from './../../models/game/game';
 
-export function create_game(req, res) {
+export function createGame(req, res) {
     const deck = req.body.deck;
     const userId = req.body.userId;
 

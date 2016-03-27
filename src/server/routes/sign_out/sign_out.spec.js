@@ -1,7 +1,7 @@
 import expect from 'expect';
-import { sign_out } from './sign_out';
+import { signOut } from './sign_out';
 
-describe('sign_out', () => {
+describe('signOut', () => {
 
     describe('Given a request and a response, when signing out', () => {
 
@@ -20,7 +20,7 @@ describe('sign_out', () => {
 
             status = expect.spyOn(res, 'status').andCallThrough();
 
-            sign_out(req, res);
+            signOut(req, res);
         });
 
         it('should call log out', () => {

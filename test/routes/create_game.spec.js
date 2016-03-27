@@ -5,12 +5,12 @@ import app from './../../src/server/server';
 
 import Game from './../../src/server/models/game/game';
 
-describe('/api/create_game', () => {
+describe('/api/createGame', () => {
 
     beforeEach(connectionManager.connect);
     afterEach(connectionManager.disconnect);
 
-    describe('POST /create_game given a user id and deck', () => {
+    describe('POST /createGame given a user id and deck', () => {
 
         let id, deck;
         beforeEach(() =>  {
@@ -23,7 +23,7 @@ describe('/api/create_game', () => {
                 and a current player set to given owner
                 and a phase set to settings-selection`, done => {
             request(app)
-                .post('/api/create_game')
+                .post('/api/createGame')
                 .send({
                     userId: id,
                     deck: deck

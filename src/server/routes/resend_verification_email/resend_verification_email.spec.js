@@ -1,8 +1,8 @@
 import expect from 'expect';
 import ResendVerificationEmail from './resend_verification_email';
-import { resend_verification_email, __RewireAPI__ as resend_verification_emailRewireAPI } from './resend_verification_email';
+import { resendVerificationEmail, __RewireAPI__ as resend_verification_emailRewireAPI } from './resend_verification_email';
 
-describe('/api/resend_verification_email', () => {
+describe('/api/resendVerificationEmail', () => {
 
     let req, res;
 
@@ -23,7 +23,7 @@ describe('/api/resend_verification_email', () => {
                 findOne: findOne
             });
 
-            resend_verification_email(req, res);
+            resendVerificationEmail(req, res);
         });
 
         it('should try to find one token', () => {

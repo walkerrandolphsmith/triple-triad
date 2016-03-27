@@ -10,7 +10,7 @@ export function resendEmailVerification(id) {
     return dispatch => {
         dispatch(resendEmailVerificationRequest());
         return request
-        .post('/api/resend_verification_email')
+        .post('/api/resendVerificationEmail')
         .send(JSON.stringify({ userId: id }))
         .set('Accept', 'application/json')
         .set('Content-Type', 'application/json')

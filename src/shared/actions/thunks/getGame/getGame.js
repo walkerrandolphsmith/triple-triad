@@ -10,7 +10,7 @@ export function getGame(id) {
         });
 
         return request
-        .post('/api/get_game')
+        .post('/api/getGame')
         .send(data)
         .set('Accept', 'application/json')
         .set('Content-Type', 'application/json')

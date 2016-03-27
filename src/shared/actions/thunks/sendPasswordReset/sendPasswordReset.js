@@ -11,7 +11,7 @@ export function sendPasswordReset(email) {
     return dispatch => {
         dispatch(sendPasswordResetSuccess());
         return request
-        .post('/api/forgot_password')
+        .post('/api/forgotPassword')
         .send(JSON.stringify({ email: email }))
         .set('Accept', 'application/json')
         .set('Content-Type', 'application/json')

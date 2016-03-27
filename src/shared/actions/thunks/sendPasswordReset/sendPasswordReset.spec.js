@@ -41,8 +41,8 @@ describe('SEND PASSWORD RESET async action creator', () => {
             sendPasswordReset(email)(dispatch);
         });
 
-        it('should request to /api/forgot_password endpoint', () => {
-            expect(post).toHaveBeenCalledWith('/api/forgot_password');
+        it('should request to /api/forgotPassword endpoint', () => {
+            expect(post).toHaveBeenCalledWith('/api/forgotPassword');
         });
 
         it('should send the user id with post data', () => {

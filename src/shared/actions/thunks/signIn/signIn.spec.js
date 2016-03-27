@@ -45,8 +45,8 @@ describe('SIGN_IN async action creator', () => {
             signIn(user)(dispatch);
         });
 
-        it('should request to /api/sign_in endpoint', () => {
-            expect(post).toHaveBeenCalledWith('/api/sign_in');
+        it('should request to /api/signIn endpoint', () => {
+            expect(post).toHaveBeenCalledWith('/api/signIn');
         });
 
         it('should send the user with post data', () => {

@@ -46,8 +46,8 @@ describe('Get Games async action creator', () => {
             getGames()(dispatch, getState);
         });
 
-        it('should request to /api/get_games endpoint', () => {
-            expect(post).toHaveBeenCalledWith('/api/get_games');
+        it('should request to /api/getGames endpoint', () => {
+            expect(post).toHaveBeenCalledWith('/api/getGames');
         });
 
         it('should send the user with post data', () => {
@@ -60,7 +60,7 @@ describe('Get Games async action creator', () => {
         });
     });
 
-    describe('When /get_games is successful', () => {
+    describe('When /getGames is successful', () => {
         beforeEach(() => {
             GetGames.__Rewire__('request', {
                 post: function(endpoint) { return this; },
@@ -79,7 +79,7 @@ describe('Get Games async action creator', () => {
         });
     });
 
-    describe('When /get_games is unsuccessful', () => {
+    describe('When /getGames is unsuccessful', () => {
         beforeEach(() => {
             GetGames.__Rewire__('request', {
                 post: function(endpoint) { return this; },

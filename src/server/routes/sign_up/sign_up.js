@@ -1,4 +1,4 @@
-export function sign_up(req, res, next, passport) {
+export function signUp(req, res, next, passport) {
     passport.authenticate('local-signup', (err, user, info) => {
         if(user) {
             res.status(200).json({

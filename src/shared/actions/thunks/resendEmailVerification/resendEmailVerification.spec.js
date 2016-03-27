@@ -39,8 +39,8 @@ describe('RESEND EMAIL VERIFICATION async action creator', () => {
             resendEmailVerification(id)(dispatch);
         });
 
-        it('should request to /api/resend_verification_email endpoint', () => {
-            expect(post).toHaveBeenCalledWith('/api/resend_verification_email');
+        it('should request to /api/resendVerificationEmail endpoint', () => {
+            expect(post).toHaveBeenCalledWith('/api/resendVerificationEmail');
         });
 
         it('should send the user id with post data', () => {

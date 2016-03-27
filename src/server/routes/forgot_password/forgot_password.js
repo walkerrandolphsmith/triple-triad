@@ -2,7 +2,7 @@ import Token from './../../models/token/token';
 import User from './../../models/user/user';
 import { send_reset_password_email } from './../../utils/mailer/mailer';
 
-export function forgot_password(req, res) {
+export function forgotPassword(req, res) {
     const email = req.body.email;
     User.findOne({ 'local.email': email }, (err, user) => {
         if(err) {

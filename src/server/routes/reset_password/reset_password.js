@@ -1,7 +1,7 @@
 import Token from './../../models/token/token';
 import User from './../../models/user/user';
 
-export function reset_password(req, res) {
+export function resetPassword(req, res) {
     const { password, confirmPassword } = req.body;
 
     if(password !== confirmPassword) {

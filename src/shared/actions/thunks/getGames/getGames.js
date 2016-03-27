@@ -11,7 +11,7 @@ export function getGames() {
             userId: ownerId
         });
         return request
-        .post('/api/get_games')
+        .post('/api/getGames')
         .send(game)
         .set('Accept', 'application/json')
         .set('Content-Type', 'application/json')

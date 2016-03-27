@@ -53,7 +53,7 @@ export function signUp(user) {
         }
 
         request
-            .post('/api/sign_up')
+            .post('/api/signUp')
             .send(JSON.stringify(user))
             .set('Accept', 'application/json')
             .set('Content-Type', 'application/json')

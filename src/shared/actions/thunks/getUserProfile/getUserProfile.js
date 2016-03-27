@@ -5,7 +5,7 @@ export function getUserProfile(id) {
     return dispatch => {
         dispatch(requestUserProfile());
         return request
-            .post('/api/user_profile')
+            .post('/api/userProfile')
             .send(JSON.stringify({ userId: id }))
             .set('Accept', 'application/json')
             .set('Content-Type', 'application/json')

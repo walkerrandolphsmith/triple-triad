@@ -1,7 +1,7 @@
 import Token from './../../models/token/token';
 import User from './../../models/user/user';
 
-export function verify_email(req, res) {
+export function verifyEmail(req, res) {
     Token.findOne({ 'token': req.body.token, type: 'USER' }, (err, token) => {
         if(err || token === null) {
             return res.status(500).send();

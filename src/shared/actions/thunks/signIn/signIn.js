@@ -32,7 +32,7 @@ export function signIn(user) {
         }
 
         request
-        .post('/api/sign_in')
+        .post('/api/signIn')
         .send(JSON.stringify(user))
         .set('Accept', 'application/json')
         .set('Content-Type', 'application/json')

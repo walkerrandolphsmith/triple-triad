@@ -6,12 +6,12 @@ import app from './../../src/server/server';
 import Token from './../../src/server/models/token/token';
 import User from './../../src/server/models/user/user';
 
-describe('/api/user_profile', () => {
+describe('/api/userProfile', () => {
 
     beforeEach(connectionManager.connect);
     afterEach(connectionManager.disconnect);
 
-    describe('POST /user_profile given a valid user id', () => {
+    describe('POST /userProfile given a valid user id', () => {
 
         let id;
         beforeEach(done =>  {
@@ -31,7 +31,7 @@ describe('/api/user_profile', () => {
 
         it('should return the user details', done => {
             request(app)
-                .post('/api/user_profile')
+                .post('/api/userProfile')
                 .send({
                     userId: id
                 })
@@ -45,7 +45,7 @@ describe('/api/user_profile', () => {
         });
     });
 
-    describe('POST /user_profile given an invalid user id', () => {
+    describe('POST /userProfile given an invalid user id', () => {
 
         let id;
         beforeEach(done =>  {
@@ -65,7 +65,7 @@ describe('/api/user_profile', () => {
 
         it('should return a 500 server error status', done => {
             request(app)
-                .post('/api/user_profile')
+                .post('/api/userProfile')
                 .send({
                     userId: 5
                 })
@@ -76,7 +76,7 @@ describe('/api/user_profile', () => {
         });
     });
 
-    describe('POST /user_profile given an invalid user id', () => {
+    describe('POST /userProfile given an invalid user id', () => {
 
         let id;
         beforeEach(done =>  {
@@ -96,7 +96,7 @@ describe('/api/user_profile', () => {
 
         it('should return a 500 server error status', done => {
             request(app)
-                .post('/api/user_profile')
+                .post('/api/userProfile')
                 .send({
                     userId: 5
                 })

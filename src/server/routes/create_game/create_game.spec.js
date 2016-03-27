@@ -1,8 +1,8 @@
 import expect from 'expect';
 import Create_Game from './create_game';
-import { create_game, __RewireAPI__ as create_gameRewireAPI } from './create_game';
+import { createGame, __RewireAPI__ as create_gameRewireAPI } from './create_game';
 
-describe('create_game', () => {
+describe('createGame', () => {
 
     describe('Given a userId and deck in the request body, when creating a new game', () => {
 
@@ -31,7 +31,7 @@ describe('create_game', () => {
         });
 
         it('should call the game\'s save function', () => {
-            create_game(req, res);
+            createGame(req, res);
             expect(save).toHaveBeenCalled();
         });
     });
@@ -71,7 +71,7 @@ describe('create_game', () => {
         });
 
         it('should call save\'s callback responding with a status of 200 and the newGame', () => {
-            create_game(req, res);
+            createGame(req, res);
             expect(status).toHaveBeenCalledWith(200);
             expect(send).toHaveBeenCalledWith(newGame);
         });
@@ -110,7 +110,7 @@ describe('create_game', () => {
         });
 
         it('should call save\'s callback responding with a status of 500', () => {
-            create_game(req, res);
+            createGame(req, res);
             expect(status).toHaveBeenCalledWith(500);
             expect(send).toHaveBeenCalled();
         });

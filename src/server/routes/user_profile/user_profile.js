@@ -1,6 +1,6 @@
 import User from './../../models/user/user';
 
-export function user_profile(req, res) {
+export function userProfile(req, res) {
     const userId = req.body.userId;
     User.findById(userId, (err, user) => {
         if(err || user === null) {

@@ -6,12 +6,12 @@ import app from './../../src/server/server';
 import Token from './../../src/server/models/token/token';
 import User from './../../src/server/models/user/user';
 
-describe('/api/resend_verification_email', () => {
+describe('/api/resendVerificationEmail', () => {
 
     beforeEach(connectionManager.connect);
     afterEach(connectionManager.disconnect);
 
-    describe('POST /resend_verification_email given a valid user id ', () => {
+    describe('POST /resendVerificationEmail given a valid user id ', () => {
 
         let id;
         beforeEach(done => {
@@ -31,7 +31,7 @@ describe('/api/resend_verification_email', () => {
 
         it('should an email is sent', done => {
             request(app)
-                .post('/api/resend_verification_email')
+                .post('/api/resendVerificationEmail')
                 .send({
                     userId: id
                 })
@@ -43,7 +43,7 @@ describe('/api/resend_verification_email', () => {
         });
     });
 
-    describe('POST /resend_verification_email given an invalid user id ', () => {
+    describe('POST /resendVerificationEmail given an invalid user id ', () => {
 
         let id;
         beforeEach(done => {
@@ -63,7 +63,7 @@ describe('/api/resend_verification_email', () => {
 
         it('should not send an email', done => {
             request(app)
-                .post('/api/resend_verification_email')
+                .post('/api/resendVerificationEmail')
                 .send({
                     userId: id + 'bad id'
                 })

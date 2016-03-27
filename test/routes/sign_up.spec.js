@@ -5,15 +5,15 @@ import app from './../../src/server/server';
 
 import User from './../../src/server/models/user/user';
 
-describe('/api/sign_up', () => {
+describe('/api/signUp', () => {
 
     beforeEach(connectionManager.connect);
     afterEach(connectionManager.disconnect);
 
-    describe('POST /sign_up given a valid username and password', () => {
+    describe('POST /signUp given a valid username and password', () => {
         it('should give a status code 200 Ok', done => {
             request(app)
-                .post('/api/sign_up')
+                .post('/api/signUp')
                 .send({
                     username: 'tester',
                     password: 'password',
@@ -27,7 +27,7 @@ describe('/api/sign_up', () => {
         });
     });
 
-    describe('POST /sign_up given an existing username', () => {
+    describe('POST /signUp given an existing username', () => {
         let user, username;
         beforeEach(done => {
             username = 'tester';
@@ -45,7 +45,7 @@ describe('/api/sign_up', () => {
 
         it('should throw a 500 server error', done => {
             request(app)
-                .post('/api/sign_up')
+                .post('/api/signUp')
                 .send({
                     username: username,
                     password: 'password'

@@ -1,8 +1,8 @@
 import expect from 'expect';
 import Get_Games from './get_games';
-import { get_games, __RewireAPI__ as get_gamesRewireAPI } from './get_games';
+import { getGames, __RewireAPI__ as get_gamesRewireAPI } from './get_games';
 
-describe('get_games', () => {
+describe('getGames', () => {
 
     let req, res;
 
@@ -25,7 +25,7 @@ describe('get_games', () => {
         });
 
         it('should attempt to find a game for that user', () => {
-           get_games(req, res);
+           getGames(req, res);
            expect(find).toHaveBeenCalled();
         });
     });
@@ -60,7 +60,7 @@ describe('get_games', () => {
         });
 
         it('should attempt to find a game for that user', () => {
-            get_games(req, res);
+            getGames(req, res);
             expect(status).toHaveBeenCalledWith(200);
             expect(send).toHaveBeenCalledWith(games)
         });
@@ -95,7 +95,7 @@ describe('get_games', () => {
         });
 
         it('should attempt to find a game for that user', () => {
-            get_games(req, res);
+            getGames(req, res);
             expect(status).toHaveBeenCalledWith(500);
             expect(send).toHaveBeenCalled()
         });

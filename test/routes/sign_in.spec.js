@@ -5,12 +5,12 @@ import app from './../../src/server/server';
 
 import User from './../../src/server/models/user/user';
 
-describe('/api/sign_in', () => {
+describe('/api/signIn', () => {
 
     beforeEach(connectionManager.connect);
     afterEach(connectionManager.disconnect);
 
-    describe('POST /sign_in given an existing user with valid credentials', () => {
+    describe('POST /signIn given an existing user with valid credentials', () => {
         let user, username, password;
         beforeEach(done => {
             username = 'tester';
@@ -28,7 +28,7 @@ describe('/api/sign_in', () => {
 
         it('should give a status code of 200 Ok', done => {
             request(app)
-                .post('/api/sign_in')
+                .post('/api/signIn')
                 .send({
                     username: username,
                     password: password
@@ -41,7 +41,7 @@ describe('/api/sign_in', () => {
         });
     });
 
-    describe('POST /sign_in given an existing user with invalid credentials', () => {
+    describe('POST /signIn given an existing user with invalid credentials', () => {
         let user, username, password;
         beforeEach(done => {
             username = 'tester';
@@ -59,7 +59,7 @@ describe('/api/sign_in', () => {
 
         it('should give a status code of 401 unauthorized', done => {
             request(app)
-                .post('/api/sign_in')
+                .post('/api/signIn')
                 .send({
                     username: username,
                     password: 'invalid_password'
@@ -72,11 +72,11 @@ describe('/api/sign_in', () => {
         });
     });
 
-    describe('POST /sign_in given an non-existing user', () => {
+    describe('POST /signIn given an non-existing user', () => {
 
         it('should give a status code of 401 unauthorized', done => {
             request(app)
-                .post('/api/sign_in')
+                .post('/api/signIn')
                 .send({
                     username: 'non-existing-user',
                     password: 'password'

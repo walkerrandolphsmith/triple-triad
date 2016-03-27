@@ -1,8 +1,8 @@
 import expect from 'expect';
 import Verify_Email from './verify_email';
-import { verify_email, __RewireAPI__ as verify_emailRewireAPI } from './verify_email';
+import { verifyEmail, __RewireAPI__ as verify_emailRewireAPI } from './verify_email';
 
-describe('verify_email', () => {
+describe('verifyEmail', () => {
 
     let req, res, token;
     beforeEach(() => {
@@ -24,7 +24,7 @@ describe('verify_email', () => {
                 Verify_Email.__Rewire__('Token', {
                     findOne: findOne
                 });
-                verify_email(req, res);
+                verifyEmail(req, res);
             });
 
             it('should look up the user token', () => {

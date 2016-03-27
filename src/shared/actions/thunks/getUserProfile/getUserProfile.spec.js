@@ -42,8 +42,8 @@ describe('Get User Profile async action creator', () => {
             getUserProfile(id)(dispatch);
         });
 
-        it('should request to /api/user_profile endpoint', () => {
-            expect(post).toHaveBeenCalledWith('/api/user_profile');
+        it('should request to /api/userProfile endpoint', () => {
+            expect(post).toHaveBeenCalledWith('/api/userProfile');
         });
 
         it('should send the user id with post data', () => {

@@ -38,7 +38,7 @@ export function resetPassword(token, password, confirmPassword) {
         }
 
         request
-            .post('/api/reset_password')
+            .post('/api/resetPassword')
             .send(JSON.stringify({
                 token: token,
                 password: password,
