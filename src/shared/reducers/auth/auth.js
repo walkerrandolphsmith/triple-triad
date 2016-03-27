@@ -37,7 +37,7 @@ const INITIAL_STATE = new Map({
 export default function auth(state = INITIAL_STATE, action = {}) {
     const { type, payload } = action;
 
-    switch (type) {
+    switch(type) {
         case AUTH_SIGNIN: return signin(state, payload);
         case AUTH_SIGNIN_SUCCESS: return signinSuccess(state, payload);
         case AUTH_SIGNIN_FAIL: return signinFailure(state, payload);

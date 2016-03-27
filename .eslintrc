@@ -8,7 +8,8 @@
     "plugins": ["react"],
     "parserOptions": {
         "sourceType": "module",
-        "jsx": true
+        "jsx": true,
+        "spread": true
     },
     "ecmaFeatures": {
         "arrowFunctions": true,
@@ -190,7 +191,8 @@
         "keyword-spacing": [2, {"overrides": {
             "if": {"after": false},
             "for": {"after": false},
-            "while": {"after": false}
+            "while": {"after": false},
+            "switch": {"after": false}
         }}], // require a space after return, throw, and case
         "space-unary-ops": [1, {"words": true, "nonwords": false}], // Require or disallow spaces before/after unary operators (words on by default, nonwords off by default)
         "spaced-comment": [1, "always"], // require or disallow a space immediately following the // in a line comment (off by default)

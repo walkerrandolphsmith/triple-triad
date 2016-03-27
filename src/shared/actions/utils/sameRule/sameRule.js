@@ -22,7 +22,7 @@ export function sameRule(i, game) {
     const cardAbove = isNotFirstRow ? board.filter(ca => ca.get('boardIndex') === above).get(0) : null;
     const cardBelow = isNotLastRow ? board.filter(cb => cb.get('boardIndex') === below).get(0) : null;
     const cardAtLeft = isNotFirstColumn ? board.filter(cl => cl.get('boardIndex') === left).get(0) : null;
-    const cardAtRight = isNotLastColumn ? board.filter(cr => cr.get('boardIndex') === right).get(0): null;
+    const cardAtRight = isNotLastColumn ? board.filter(cr => cr.get('boardIndex') === right).get(0) : null;
 
     let indexes = [];
 
@@ -50,7 +50,7 @@ export function sameRule(i, game) {
         indexes = indexes.concat([below, right]);
     }
 
-    let tuples = indexes.map(index => ({ index: index, owner: card.get('owner') }) );
+    let tuples = indexes.map(index => ({ index: index, owner: card.get('owner') }));
     return sort(tuples);
 }
 

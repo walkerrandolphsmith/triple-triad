@@ -32,7 +32,7 @@ const INITIAL_STATE = new Map({
 export default function user(state = INITIAL_STATE, action = {}) {
     const { type, payload } = action;
 
-    switch (type) {
+    switch(type) {
         case GET_GAMES_FAILED: return getGamesFailed(state, payload);
         case GET_GAMES_REQUEST: return getGamesRequest(state, payload);
         case GET_GAMES_SUCCESS: return getGamesSuccess(state, payload);

@@ -46,7 +46,7 @@ export function resetPassword(token, password, confirmPassword) {
             }))
             .set('Accept', 'application/json')
             .set('Content-Type', 'application/json')
-            .end((error, response) => {
+            .end((err, response) => {
                 if(response.status === 200) {
                     dispatch(passwordResetSuccess());
                 } else {

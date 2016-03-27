@@ -1,5 +1,5 @@
 export default state => {
-    state = state.setIn('getGames.failed'.split('.'), false);
-    state = state.setIn('getGames.loading'.split('.'), true);
-    return state.setIn('getGames.loaded'.split('.'), false);
+    let nextState = state.setIn('getGames.failed'.split('.'), false);
+    nextState = nextState.setIn('getGames.loading'.split('.'), true);
+    return nextState.setIn('getGames.loaded'.split('.'), false);
 };

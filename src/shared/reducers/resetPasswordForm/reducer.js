@@ -14,7 +14,7 @@ const INITIAL_STATE = new Map({
 export default function(state = INITIAL_STATE, action = {}) {
     const { type, payload } = action;
 
-    switch (type) {
+    switch(type) {
         case RESET_PASSWORD_FORM_ERROR: return setFormError(state, payload);
         case CLEAR_FORM_ERRORS: return clearFormError(INITIAL_STATE);
         default: return state;

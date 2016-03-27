@@ -65,7 +65,10 @@ export function sendEmail(data, fn) {
     }
 
     mailgun.messages().send(data, (err, body) => {
-        if (err) return fn(err);
-        else return fn(null, body);
+        if(err){
+            return fn(err);
+        } else {
+            return fn(null, body);
+        }
     });
 }

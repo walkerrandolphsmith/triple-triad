@@ -32,7 +32,7 @@ const INITIAL_STATE = new Map({
 export default function user(state = INITIAL_STATE, action = {}) {
     const { type, payload } = action;
 
-    switch (type) {
+    switch(type) {
         case USER_PROFILE: return userProfile(state, payload);
         case USER_PROFILE_SUCCESS: return userProfileSuccess(state, payload);
         case RESEND_EMAIL_VERIFICATION: return resendVerificationEmail(state, payload);
@@ -49,60 +49,60 @@ export default function user(state = INITIAL_STATE, action = {}) {
 }
 
 function userProfile(state) {
-    state = state.set('loaded', false);
-    return state.set('loading', true);
+    let nextState = state.set('loaded', false);
+    return nextState.set('loading', true);
 }
 
 function userProfileSuccess(state, payload) {
-    state = state.set('loading', false);
-    state = state.set('loaded', true);
-    return state.setIn('user.verified'.split('.'), payload.user.verified);
+    let nextState = state.set('loading', false);
+    nextState = nextState.set('loaded', true);
+    return nextState.setIn('user.verified'.split('.'), payload.user.verified);
 }
 
 function resendVerificationEmail(state) {
-    state = state.set('resending', true);
-    state = state.set('resendingSuccess', false);
-    return state.set('resendingFailure', false);
+    let nextState = state.set('resending', true);
+    nextState = nextState.set('resendingSuccess', false);
+    return nextState.set('resendingFailure', false);
 }
 
 function resendVerificationEmailSuccess(state) {
-    state = state.set('resending', false);
-    state = state.set('resendingSuccess', true);
-    return state.set('resendingFailure', false);
+    let nextState = state.set('resending', false);
+    nextState = nextState.set('resendingSuccess', true);
+    return nextState.set('resendingFailure', false);
 }
 
 function resendVerificationEmailFailure(state) {
-    state = state.set('resending', false);
-    state = state.set('resendingSuccess', false);
-    return state.set('resendingFailure', true);
+    let nextState = state.set('resending', false);
+    nextState = nextState.set('resendingSuccess', false);
+    return nextState.set('resendingFailure', true);
 }
 
 function resendVerificationEmailClear(state) {
-    state = state.set('resending', false);
-    state = state.set('resendingSuccess', false);
-    return state.set('resendingFailure', false);
+    let nextState = state.set('resending', false);
+    nextState = nextState.set('resendingSuccess', false);
+    return nextState.set('resendingFailure', false);
 }
 
-function resetPasswordSuccess(state){
-    state = state.setIn('passwordReset.failed'.split('.'), false);
-    state = state.setIn('passwordReset.loaded'.split('.'), true);
-    return state.setIn('passwordReset.loading'.split('.'), false);
+function resetPasswordSuccess(state) {
+    let nextState = state.setIn('passwordReset.failed'.split('.'), false);
+    nextState = nextState.setIn('passwordReset.loaded'.split('.'), true);
+    return nextState.setIn('passwordReset.loading'.split('.'), false);
 }
 
-function resetPasswordRequest(state){
-    state = state.setIn('passwordReset.failed'.split('.'), false);
-    state = state.setIn('passwordReset.loaded'.split('.'), false);
-    return state.setIn('passwordReset.loading'.split('.'), true);
+function resetPasswordRequest(state) {
+    let nextState = state.setIn('passwordReset.failed'.split('.'), false);
+    nextState = nextState.setIn('passwordReset.loaded'.split('.'), false);
+    return nextState.setIn('passwordReset.loading'.split('.'), true);
 }
 
-function resetPasswordFailure(state){
-    state = state.setIn('passwordReset.failed'.split('.'), true);
-    state = state.setIn('passwordReset.loaded'.split('.'), false);
-    return state.setIn('passwordReset.loading'.split('.'), false);
+function resetPasswordFailure(state) {
+    let nextState = state.setIn('passwordReset.failed'.split('.'), true);
+    nextState = nextState.setIn('passwordReset.loaded'.split('.'), false);
+    return nextState.setIn('passwordReset.loading'.split('.'), false);
 }
 
-function resetPasswordClear(state){
-    state = state.setIn('passwordReset.failed'.split('.'), false);
-    state = state.setIn('passwordReset.loaded'.split('.'), false);
-    return state.setIn('passwordReset.loading'.split('.'), false);
+function resetPasswordClear(state) {
+    let nextState = state.setIn('passwordReset.failed'.split('.'), false);
+    nextState = nextState.setIn('passwordReset.loaded'.split('.'), false);
+    return nextState.setIn('passwordReset.loading'.split('.'), false);
 }

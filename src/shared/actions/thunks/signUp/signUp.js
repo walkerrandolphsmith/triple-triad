@@ -61,7 +61,7 @@ export function signUp(user) {
                 if(response.status === 200) {
                     dispatch(receiveUser(response.body));
                     dispatch(push('/games'));
-                }else{
+                } else {
                     let message = JSON.parse(response.text);
                     dispatch(signUpFormError(message));
                 }

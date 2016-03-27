@@ -35,7 +35,7 @@ function getNextEmptyPieceVertically(currentIndex, validPieces, direction) {
 
     if(board.get(nextIndex) === null) {
         nextIndex = (nextIndex + direction) % board.size;
-        if (board.get(nextIndex) === null) {
+        if(board.get(nextIndex) === null) {
             return currentIndex;
         } else {
             return board.get(nextIndex);

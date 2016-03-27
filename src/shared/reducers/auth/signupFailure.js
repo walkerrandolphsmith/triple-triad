@@ -1,5 +1,5 @@
 export default state => {
-    state = state.set('signingUp', false);
-    state = state.setIn('user.username'.split('.'), null);
-    return state.setIn('user.id'.split('.'), null);
+    let nextState = state.set('signingUp', false);
+    nextState = nextState.setIn('user.username'.split('.'), null);
+    return nextState.setIn('user.id'.split('.'), null);
 };
