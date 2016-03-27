@@ -33,17 +33,6 @@ const CARD_TYPES = [
             bottom: 5
         }
     },
-    /*{
-     name: 'Cid',
-     level: 7,
-     element: null,
-     rank: {
-     left: 9,
-     top: 5,
-     right: 10,
-     bottom: 5
-     }
-     },*/
     {
         name: 'Cloud',
         level: 7,
@@ -99,17 +88,6 @@ const CARD_TYPES = [
             bottom: 10
         }
     },
-    /*{
-     name: 'Vincent',
-     level: 7,
-     element: null,
-     rank: {
-     left: 10,
-     top: 1,
-     right: 9,
-     bottom: 7
-     }
-     },*/
     {
         name: 'Yuffie',
         level: 7,
@@ -143,17 +121,6 @@ const CARD_TYPES = [
             bottom: 6
         }
     },
-    /*{
-     name: 'Laguna',
-     level: 8,
-     element: null,
-     rank: {
-     left: 9,
-     top: 5,
-     right: 10,
-     bottom: 3
-     }
-     },*/
     {
         name: 'Selphie',
         level: 8,
@@ -198,17 +165,6 @@ const CARD_TYPES = [
             bottom: 10
         }
     },
-    /*{
-     name: 'Rinoa',
-     level: 8,
-     element: null,
-     rank: {
-     left: 10,
-     top: 4,
-     right: 10,
-     bottom: 2
-     }
-     },*/
     {
         name: 'Edea',
         level: 8,
@@ -253,17 +209,6 @@ const CARD_TYPES = [
             bottom: 4
         }
     },
-    /*{
-     name: 'Eiko',
-     level: 9,
-     element: null,
-     rank: {
-     left: 7,
-     top: 3,
-     right: 8,
-     bottom: 10
-     }
-     },*/
     {
         name: 'Freya',
         level: 9,
@@ -374,28 +319,6 @@ const CARD_TYPES = [
             bottom: 5
         }
     },
-    /*{
-     name: 'Lulu',
-     level: 10,
-     element: null,
-     rank: {
-     left: 6,
-     top: 8,
-     right: 8,
-     bottom: 6
-     }
-     },
-     {
-     name: 'Rikku',
-     level: 10,
-     element: null,
-     rank: {
-     left: 7,
-     top: 7,
-     right: 4,
-     bottom: 10
-     }
-     },*/
     {
         name: 'Seymour',
         level: 10,
@@ -428,29 +351,108 @@ const CARD_TYPES = [
             right: 5,
             bottom: 10
         }
+    }
+    /*
+    {
+        name: 'Wakka',
+        level: 10,
+        element: null,
+        rank: {
+            left: 8,
+            top: 6,
+            right: 6,
+            bottom: 8
+        }
     },
-    /*{
-     name: 'Wakka',
-     level: 10,
-     element: null,
-     rank: {
-     left: 8,
-     top: 6,
-     right: 6,
-     bottom: 8
-     }
-     },
-     {
-     name: 'Yuna',
-     level: 10,
-     element: null,
-     rank: {
-     left: 10,
-     top: 9,
-     right: 6,
-     bottom: 4
-     }
-     },*/
+    {
+        name: 'Yuna',
+        level: 10,
+        element: null,
+        rank: {
+            left: 10,
+            top: 9,
+            right: 6,
+            bottom: 4
+        }
+    },
+    {
+        name: 'Cid',
+        level: 7,
+        element: null,
+        rank: {
+            left: 9,
+            top: 5,
+            right: 10,
+            bottom: 5
+        }
+    },
+    {
+        name: 'Lulu',
+        level: 10,
+        element: null,
+        rank: {
+            left: 6,
+            top: 8,
+            right: 8,
+            bottom: 6
+        }
+    },
+    {
+        name: 'Rikku',
+        level: 10,
+        element: null,
+        rank: {
+            left: 7,
+            top: 7,
+            right: 4,
+            bottom: 10
+        }
+    },
+    {
+        name: 'Eiko',
+        level: 9,
+        element: null,
+        rank: {
+            left: 7,
+            top: 3,
+            right: 8,
+            bottom: 10
+        }
+    },
+    {
+        name: 'Vincent',
+        level: 7,
+        element: null,
+        rank: {
+            left: 10,
+            top: 1,
+            right: 9,
+            bottom: 7
+        }
+    },
+    {
+        name: 'Rinoa',
+        level: 8,
+        element: null,
+        rank: {
+            left: 10,
+            top: 4,
+            right: 10,
+            bottom: 2
+        }
+    },
+    {
+        name: 'Laguna',
+        level: 8,
+        element: null,
+        rank: {
+            left: 9,
+            top: 5,
+            right: 10,
+            bottom: 3
+        }
+    }
+    */
 ];
 
 export default CARD_TYPES;
