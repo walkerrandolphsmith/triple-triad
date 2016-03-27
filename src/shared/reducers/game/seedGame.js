@@ -7,4 +7,4 @@ export default (state, payload) => {
     state = state.set('phase', payload.game.phase);
     state = state.set('accepted', payload.game.accepted);
     return state.set('currentPlayer', payload.game.currentPlayer);
-}
+};

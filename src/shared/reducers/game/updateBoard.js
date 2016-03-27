@@ -1,5 +1,5 @@
 export default (state, payload) => {
-    let deck =  state.get('deck');
+    let deck = state.get('deck');
 
     deck = deck.update(
         deck.findIndex(
@@ -9,4 +9,4 @@ export default (state, payload) => {
     );
 
     return state.set('deck', deck);
-}
+};

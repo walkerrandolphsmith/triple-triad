@@ -22,15 +22,14 @@ const INITIAL_STATE = new Map({
         failed: false
     }),
     newGame: new Map({
-       loading: false,
-       loaded: false,
-       failed: false
+        loading: false,
+        loaded: false,
+        failed: false
     }),
     games: new List([])
 });
 
 export default function user(state = INITIAL_STATE, action = {}) {
-
     const { type, payload } = action;
 
     switch (type) {
