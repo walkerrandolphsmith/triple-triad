@@ -10,8 +10,8 @@ import { getValidPieces } from './validPieces/validPiecesSelector';
 
 
 const deckSelector = state => state.get('deck');
-const playerSelector = state => 1;
-const opponentSelector = state => 2;
+const playerSelector = () => 1;
+const opponentSelector = () => 2;
 
 export const availableDeckSelector = createSelector(
     [deckSelector, opponentSelector],
