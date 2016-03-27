@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDom from 'react-dom/server';
 import { RouterContext, match } from 'react-router';
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
 import createLocation from 'history/lib/createLocation';
 import { receiveSignIn } from './../../../shared/actions/action-creators';
 
@@ -12,8 +12,8 @@ export function app(request, response, socket) {
     const location = createLocation(request.url);
 
     const store = configureStore({
-        initialState: undefined,
-        history: undefined,
+        initialState: null,
+        history: null,
         socket: socket
     });
 
@@ -23,9 +23,13 @@ export function app(request, response, socket) {
         store.dispatch(receiveSignIn(request.session.passport.user));
     }
 
-    match({routes, location}, (err, redirectLocation, renderProps) => {
-        if(err) return response.status(500).end('Internal server error.');
-        if(!renderProps) return response.status(404).end('Not found.');
+    match({ routes, location }, (err, redirectLocation, renderProps) => {
+        if(err) {
+            return response.status(500).end('Internal server error.');
+        }
+        if(!renderProps) {
+            return response.status(404).end('Not found.');
+        }
 
         const InitialComponent = (
             <Provider store={store}>
