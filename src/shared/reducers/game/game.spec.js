@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { Map, List } from 'immutable';
+import { Map } from 'immutable';
 import reducer from './game';
 import { __RewireAPI__ } from './game';
 import {
@@ -15,9 +15,8 @@ import {
 } from './../../constants/actionTypes';
 import deck from './../../constants/deck';
 
-describe("Given initial game state", () => {
-
-    let initialState, ownerType;
+describe('Given initial game state', () => {
+    let initialState;
     beforeEach(() => {
         initialState = new Map({
             gameId: -1,
@@ -32,14 +31,13 @@ describe("Given initial game state", () => {
         });
     });
 
-    describe("When given no state", () => {
+    describe('When given no state', () => {
         it('should return the initial state', () => {
-            expect(reducer(undefined, {})).toEqual(initialState)
+            expect(reducer(undefined, {})).toEqual(initialState);
         });
     });
 
-    describe("When handling SET_PHASE", () => {
-
+    describe('When handling SET_PHASE', () => {
         let setPhase = expect.createSpy();
         __RewireAPI__.__Rewire__('setPhase', setPhase);
 
@@ -55,8 +53,7 @@ describe("Given initial game state", () => {
         });
     });
 
-    describe("When handling ADD_CARD", () => {
-
+    describe('When handling ADD_CARD', () => {
         let addCard = expect.createSpy();
         __RewireAPI__.__Rewire__('addCard', addCard);
 
@@ -73,8 +70,7 @@ describe("Given initial game state", () => {
         });
     });
 
-    describe("When handling SELECT_CARD", () => {
-
+    describe('When handling SELECT_CARD', () => {
         let selectCard = expect.createSpy();
         __RewireAPI__.__Rewire__('selectCard', selectCard);
 
@@ -90,8 +86,7 @@ describe("Given initial game state", () => {
         });
     });
 
-    describe("When handling SELECT_PIECE", () => {
-
+    describe('When handling SELECT_PIECE', () => {
         let selectPiece = expect.createSpy();
         __RewireAPI__.__Rewire__('selectPiece', selectPiece);
 
@@ -107,8 +102,20 @@ describe("Given initial game state", () => {
         });
     });
 
-    describe("When handling UPDATE_BOARD", () => {
+    describe('When handling PLACE_CARD', () => {
+        let placeCard = expect.createSpy();
+        __RewireAPI__.__Rewire__('placeCard', placeCard);
 
+        reducer(initialState, {
+            type: PLACE_CARD
+        });
+
+        it('should call placeCard', () => {
+            expect(placeCard).toHaveBeenCalled();
+        });
+    });
+
+    describe('When handling UPDATE_BOARD', () => {
         let updateBoard = expect.createSpy();
         __RewireAPI__.__Rewire__('updateBoard', updateBoard);
 
@@ -125,8 +132,7 @@ describe("Given initial game state", () => {
         });
     });
 
-    describe("When handling START_AI_TURN", () => {
-
+    describe('When handling START_AI_TURN', () => {
         let startAiTurn = expect.createSpy();
         __RewireAPI__.__Rewire__('startAiTurn', startAiTurn);
 
@@ -139,8 +145,7 @@ describe("Given initial game state", () => {
         });
     });
 
-    describe("When handling END_AI_TURN", () => {
-
+    describe('When handling END_AI_TURN', () => {
         let endAiTurn = expect.createSpy();
         __RewireAPI__.__Rewire__('endAiTurn', endAiTurn);
 
@@ -153,8 +158,7 @@ describe("Given initial game state", () => {
         });
     });
 
-    describe("When handling RESET_GAME", () => {
-
+    describe('When handling RESET_GAME', () => {
         let resetGame = expect.createSpy();
         __RewireAPI__.__Rewire__('resetGame', resetGame);
 

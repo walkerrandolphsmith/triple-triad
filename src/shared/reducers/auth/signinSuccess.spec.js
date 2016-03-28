@@ -15,10 +15,10 @@ describe('Given authentication state', () => {
         });
     });
 
-
     describe('When signing in is successful', () => {
         let actual;
-        let name, id;
+        let name;
+        let id;
         beforeEach(() => {
             name = 'a'; id = 'b';
             actual = signinSuccess(state, {
@@ -26,7 +26,7 @@ describe('Given authentication state', () => {
                     id: id,
                     name: name
                 }
-            })
+            });
         });
 
         it('should set the signingIn state to true', () => {

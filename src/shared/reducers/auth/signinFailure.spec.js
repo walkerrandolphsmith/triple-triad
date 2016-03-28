@@ -16,7 +16,7 @@ describe('Given authentication state', () => {
         let error;
         beforeEach(() => {
             error = 'a';
-            actual = signinFailure(state, {error: error})
+            actual = signinFailure(state, { error: error });
         });
 
         it('should set the signingIn state to false', () => {
@@ -24,7 +24,7 @@ describe('Given authentication state', () => {
         });
 
         it('should set the username to null', () => {
-            expect(actual.get('user').get('username')).toEqual(null)
+            expect(actual.get('user').get('username')).toEqual(null);
         });
 
         it('should set the user id to true', () => {

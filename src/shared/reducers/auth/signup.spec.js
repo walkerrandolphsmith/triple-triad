@@ -11,13 +11,11 @@ describe('Given authentication state', () => {
         });
     });
 
-
     describe('When attempting to signup', () => {
         let actual;
         beforeEach(() => {
-            actual = signup(state)
+            actual = signup(state);
         });
-
 
         it('should set the signingUp state to true', () => {
             expect(actual.get('signingUp')).toEqual(true);

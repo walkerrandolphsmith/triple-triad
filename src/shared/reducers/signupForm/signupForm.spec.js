@@ -7,8 +7,7 @@ import {
     CLEAR_FORM_ERRORS
 } from './../../constants/actionTypes';
 
-describe("Sign up form errors reducer", () => {
-
+describe('Sign up form errors reducer', () => {
     let initialState;
     beforeEach(() => {
         initialState = new Map({
@@ -19,14 +18,13 @@ describe("Sign up form errors reducer", () => {
         });
     });
 
-    describe("Given no state", () => {
+    describe('Given no state', () => {
         it('should return the initial state', () => {
-            expect(reducer(undefined, {})).toEqual(initialState)
+            expect(reducer(undefined, {})).toEqual(initialState);
         });
     });
 
-    describe("When handling SIGN_UP_FORM_ERROR", () => {
-
+    describe('When handling SIGN_UP_FORM_ERROR', () => {
         let setFormError = expect.createSpy();
         __RewireAPI__.__Rewire__('setFormError', setFormError);
 
@@ -43,8 +41,7 @@ describe("Sign up form errors reducer", () => {
         });
     });
 
-    describe("When handling CLEAR_FORM_ERRORS", () => {
-
+    describe('When handling CLEAR_FORM_ERRORS', () => {
         let clearFormError = expect.createSpy();
         __RewireAPI__.__Rewire__('clearFormError', clearFormError);
 

@@ -4,7 +4,8 @@ import { Map } from 'immutable';
 import updateSettings from './updateSettings';
 
 describe('Given settings state and payload with setting of randomHand', () => {
-    let state, payload;
+    let state;
+    let payload;
     let setting = 'randomHand';
     beforeEach(() => {
         state = new Map({
@@ -14,13 +15,13 @@ describe('Given settings state and payload with setting of randomHand', () => {
         });
         payload = {
             setting: setting
-        }
+        };
     });
 
     describe('When updating settings', () => {
         let actual;
         beforeEach(() => {
-            actual = updateSettings(state, payload)
+            actual = updateSettings(state, payload);
         });
 
         it('should set the randomHand state to true', () => {

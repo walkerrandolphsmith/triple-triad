@@ -4,7 +4,8 @@ import { Map } from 'immutable';
 import updateFocusSetting from './updateFocusSetting';
 
 describe('Given settings state and payload with setting of randomHand', () => {
-    let state, payload;
+    let state;
+    let payload;
     let setting = 'randomHand';
     beforeEach(() => {
         state = new Map({
@@ -12,13 +13,13 @@ describe('Given settings state and payload with setting of randomHand', () => {
         });
         payload = {
             setting: setting
-        }
+        };
     });
 
     describe('When updating focused setting', () => {
         let actual;
         beforeEach(() => {
-            actual = updateFocusSetting(state, payload)
+            actual = updateFocusSetting(state, payload);
         });
 
         it('should set the focused state to the given setting', () => {

@@ -16,7 +16,7 @@ describe('Given user state', () => {
     describe('When attempting to resend verification email', () => {
         let actual;
         beforeEach(() => {
-            actual = resendVerificationEmailRequest(state)
+            actual = resendVerificationEmailRequest(state);
         });
 
         it('should set resending to true', () => {

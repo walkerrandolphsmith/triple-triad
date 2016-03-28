@@ -11,13 +11,11 @@ describe('Given authentication state', () => {
         });
     });
 
-
     describe('When attempting to signout', () => {
         let actual;
         beforeEach(() => {
-            actual = signout(state)
+            actual = signout(state);
         });
-
 
         it('should set the signingOut state to true', () => {
             expect(actual.get('signingOut')).toEqual(true);

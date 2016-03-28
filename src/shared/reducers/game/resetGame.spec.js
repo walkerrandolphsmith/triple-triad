@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { Map, List } from 'immutable';
+import { Map } from 'immutable';
 
 import resetGame from './resetGame';
 
@@ -7,7 +7,7 @@ describe('Given game state', () => {
     let state;
     beforeEach(() => {
         state = new Map({
-            prop:'value'
+            prop: 'value'
         });
     });
 
@@ -15,7 +15,7 @@ describe('Given game state', () => {
         let actual;
         beforeEach(() => {
             state.set('prop', 'newValue');
-            actual = resetGame(state)
+            actual = resetGame(state);
         });
 
         it('should return the initial state', () => {

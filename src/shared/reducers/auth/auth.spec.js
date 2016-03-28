@@ -14,7 +14,7 @@ import {
     AUTH_SIGNUP_FAIL
     } from './../../constants/actionTypes';
 
-describe("Given an initial authentication state", () => {
+describe('Given an initial authentication state', () => {
     let initialState;
     beforeEach(() => {
         initialState = new Map({
@@ -30,14 +30,13 @@ describe("Given an initial authentication state", () => {
         });
     });
 
-    describe("When given no state", () => {
+    describe('When given no state', () => {
         it('should return the initial state', () => {
-            expect(reducer(undefined, {})).toEqual(initialState)
+            expect(reducer(undefined, {})).toEqual(initialState);
         });
     });
 
-    describe("When handling AUTH_SIGNIN", () => {
-
+    describe('When handling AUTH_SIGNIN', () => {
         let signin = expect.createSpy();
         __RewireAPI__.__Rewire__('signin', signin);
 
@@ -50,8 +49,7 @@ describe("Given an initial authentication state", () => {
         });
     });
 
-    describe("When handling AUTH_SIGNIN_SUCCESS", () => {
-
+    describe('When handling AUTH_SIGNIN_SUCCESS', () => {
         let signinSuccess = expect.createSpy();
         __RewireAPI__.__Rewire__('signinSuccess', signinSuccess);
 
@@ -70,8 +68,7 @@ describe("Given an initial authentication state", () => {
         });
     });
 
-    describe("When handling AUTH_SIGNIN_FAILED", () => {
-
+    describe('When handling AUTH_SIGNIN_FAILED', () => {
         let signinFailure = expect.createSpy();
         __RewireAPI__.__Rewire__('signinFailure', signinFailure);
 
@@ -87,8 +84,7 @@ describe("Given an initial authentication state", () => {
         });
     });
 
-    describe("When handling AUTH_SIGNUP", () => {
-
+    describe('When handling AUTH_SIGNUP', () => {
         let signup = expect.createSpy();
         __RewireAPI__.__Rewire__('signup', signup);
 
@@ -101,8 +97,7 @@ describe("Given an initial authentication state", () => {
         });
     });
 
-    describe("When handling AUTH_SIGNUP_SUCCESS", () => {
-
+    describe('When handling AUTH_SIGNUP_SUCCESS', () => {
         let signupSuccess = expect.createSpy();
         __RewireAPI__.__Rewire__('signupSuccess', signupSuccess);
 
@@ -121,8 +116,7 @@ describe("Given an initial authentication state", () => {
         });
     });
 
-    describe("When handling AUTH_SIGNUP_FAIL", () => {
-
+    describe('When handling AUTH_SIGNUP_FAIL', () => {
         let signupFailure = expect.createSpy();
         __RewireAPI__.__Rewire__('signupFailure', signupFailure);
 
@@ -135,8 +129,7 @@ describe("Given an initial authentication state", () => {
         });
     });
 
-    describe("When handling AUTH_SIGNOUT", () => {
-
+    describe('When handling AUTH_SIGNOUT', () => {
         let signout = expect.createSpy();
         __RewireAPI__.__Rewire__('signout', signout);
 
@@ -149,8 +142,7 @@ describe("Given an initial authentication state", () => {
         });
     });
 
-    describe("When handling AUTH_SIGNOUT_SUCCESS", () => {
-
+    describe('When handling AUTH_SIGNOUT_SUCCESS', () => {
         let signoutSuccess = expect.createSpy();
         __RewireAPI__.__Rewire__('signoutSuccess', signoutSuccess);
 
@@ -163,8 +155,7 @@ describe("Given an initial authentication state", () => {
         });
     });
 
-    describe("When handling AUTH_SIGNOUT_FAIL", () => {
-
+    describe('When handling AUTH_SIGNOUT_FAIL', () => {
         let signoutFailure = expect.createSpy();
         __RewireAPI__.__Rewire__('signoutFailure', signoutFailure);
 

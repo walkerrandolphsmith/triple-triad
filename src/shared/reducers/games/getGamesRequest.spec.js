@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { Map, List } from 'immutable';
+import { Map } from 'immutable';
 
 import getGamesRequest from './getGamesRequest';
 
@@ -18,7 +18,7 @@ describe('Given games state', () => {
     describe('When attempting to get all games', () => {
         let actual;
         beforeEach(() => {
-            actual = getGamesRequest(state)
+            actual = getGamesRequest(state);
         });
 
         it('should set the getGames loading state to true', () => {

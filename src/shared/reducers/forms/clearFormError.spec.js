@@ -2,14 +2,13 @@ import expect from 'expect';
 import { Map } from 'immutable';
 import clearFormError from './clearFormError';
 
-
 describe('Given an initial state', () => {
-    let state;
-    const initialState = new Map({
-        email: ''
-    });
+    let initialState;
     beforeEach(() => {
-        state = initialState.set('email', 'anything');
+        initialState = new Map({
+            email: ''
+        });
+        initialState.set('email', 'anything');
     });
 
     describe('When clearing all form errors', () => {

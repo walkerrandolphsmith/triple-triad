@@ -2,14 +2,18 @@ import React from 'react';
 import { Map, List } from 'immutable';
 import expect from 'expect';
 import expectJSX from 'expect-jsx';
-import {createRenderer} from 'react-addons-test-utils';
+import { createRenderer } from 'react-addons-test-utils';
 import { Round, __RewireAPI__ } from './round';
 
 expect.extend(expectJSX);
 
 describe('ROUND component', () => {
     let renderer;
-    let props, handStyles, bannerStyle, bannerScrimStyle, phrase;
+    let props;
+    let handStyles;
+    let bannerStyle;
+    let bannerScrimStyle;
+    let phrase;
     beforeEach(() => {
         renderer = createRenderer();
         props = {
@@ -28,7 +32,7 @@ describe('ROUND component', () => {
             settings: new Map({
                 visibleHand: true
             }),
-            validPieces: [0,1,2,3,4,5,6,7,8],
+            validPieces: [0, 1, 2, 3, 4, 5, 6, 7, 8],
             score: {
                 blue: 5,
                 red: 5
@@ -48,7 +52,7 @@ describe('ROUND component', () => {
         handStyles = {};
         bannerStyle = {};
         bannerScrimStyle = {};
-        phrase = "";
+        phrase = '';
     });
 
     describe('Given a round with no winner', () => {
@@ -56,18 +60,18 @@ describe('ROUND component', () => {
             props.winner = 1;
             handStyles.visibility = 'visible';
             bannerStyle.display = 'none';
-            phrase = "";
+            phrase = '';
         });
 
         it('should render a the first row with visibility and second row has no display', () => {
             class Board extends React.Component {
                 render() {
-                    return (<div></div>)
+                    return (<div></div>);
                 }
             }
             class Hand extends React.Component {
                 render() {
-                    return (<div></div>)
+                    return (<div></div>);
                 }
             }
             __RewireAPI__.__Rewire__('Board', Board);
@@ -76,7 +80,7 @@ describe('ROUND component', () => {
                 <Round {...props} />
             );
             const actualElement = renderer.getRenderOutput();
-            const expectedElement =
+            const expectedElement = (
                 <div id="round">
                     <div className="row">
                         <div className="col-xl-1 col-lg-2 col-md-2 col-sm-2 col-xs-12" style={handStyles}>
@@ -110,10 +114,9 @@ describe('ROUND component', () => {
                         <div id="banner-scrim" className="row" style={bannerScrimStyle}></div>
                     </div>
                 </div>
-
+            );
             expect(actualElement).toEqualJSX(expectedElement);
         });
-
     });
 
     describe('Given a round with a tie', () => {
@@ -121,18 +124,18 @@ describe('ROUND component', () => {
             props.winner = 2;
             handStyles.visibility = 'hidden';
             bannerScrimStyle.background = 'repeating-linear-gradient(45deg, #5d9634, #5d9634 10px, #538c2b 10px, #538c2b 20px)';
-            phrase = "Tie";
+            phrase = 'Tie';
         });
 
         it('should render a the first row with visibility and second row has no display', () => {
             class Board extends React.Component {
                 render() {
-                    return (<div></div>)
+                    return (<div></div>);
                 }
             }
             class Hand extends React.Component {
                 render() {
-                    return (<div></div>)
+                    return (<div></div>);
                 }
             }
             __RewireAPI__.__Rewire__('Board', Board);
@@ -141,7 +144,7 @@ describe('ROUND component', () => {
                 <Round {...props} />
             );
             const actualElement = renderer.getRenderOutput();
-            const expectedElement =
+            const expectedElement = (
                 <div id="round">
                     <div className="row">
                         <div className="col-xl-1 col-lg-2 col-md-2 col-sm-2 col-xs-12" style={handStyles}>
@@ -175,10 +178,9 @@ describe('ROUND component', () => {
                         <div id="banner-scrim" className="row" style={bannerScrimStyle}></div>
                     </div>
                 </div>
-
+            );
             expect(actualElement).toEqualJSX(expectedElement);
         });
-
     });
 
     describe('Given a round in over and player won', () => {
@@ -186,18 +188,18 @@ describe('ROUND component', () => {
             props.winner = 3;
             handStyles.visibility = 'hidden';
             bannerScrimStyle.background = 'repeating-linear-gradient(45deg, #606dbc, #606dbc 10px, #465298 10px, #465298 20px)';
-            phrase = "Player 1";
+            phrase = 'Player 1';
         });
 
         it('should render a the first row with visibility and second row has no display', () => {
             class Board extends React.Component {
                 render() {
-                    return (<div></div>)
+                    return (<div></div>);
                 }
             }
             class Hand extends React.Component {
                 render() {
-                    return (<div></div>)
+                    return (<div></div>);
                 }
             }
             __RewireAPI__.__Rewire__('Board', Board);
@@ -206,7 +208,7 @@ describe('ROUND component', () => {
                 <Round {...props} />
             );
             const actualElement = renderer.getRenderOutput();
-            const expectedElement =
+            const expectedElement = (
                 <div id="round">
                     <div className="row">
                         <div className="col-xl-1 col-lg-2 col-md-2 col-sm-2 col-xs-12" style={handStyles}>
@@ -240,10 +242,9 @@ describe('ROUND component', () => {
                         <div id="banner-scrim" className="row" style={bannerScrimStyle}></div>
                     </div>
                 </div>
-
+            );
             expect(actualElement).toEqualJSX(expectedElement);
         });
-
     });
 
     describe('Given a round in over and opponent won', () => {
@@ -251,18 +252,18 @@ describe('ROUND component', () => {
             props.winner = 4;
             handStyles.visibility = 'hidden';
             bannerScrimStyle.background = 'repeating-linear-gradient(45deg, red, red 10px, #FF2850 10px, #FF2850 20px)';
-            phrase = "Player 2";
+            phrase = 'Player 2';
         });
 
         it('should render a the first row with visibility and second row has no display', () => {
             class Board extends React.Component {
                 render() {
-                    return (<div></div>)
+                    return (<div></div>);
                 }
             }
             class Hand extends React.Component {
                 render() {
-                    return (<div></div>)
+                    return (<div></div>);
                 }
             }
             __RewireAPI__.__Rewire__('Board', Board);
@@ -271,7 +272,7 @@ describe('ROUND component', () => {
                 <Round {...props} />
             );
             const actualElement = renderer.getRenderOutput();
-            const expectedElement =
+            const expectedElement = (
                 <div id="round">
                     <div className="row">
                         <div className="col-xl-1 col-lg-2 col-md-2 col-sm-2 col-xs-12" style={handStyles}>
@@ -305,10 +306,8 @@ describe('ROUND component', () => {
                         <div id="banner-scrim" className="row" style={bannerScrimStyle}></div>
                     </div>
                 </div>
-
+            );
             expect(actualElement).toEqualJSX(expectedElement);
         });
-
     });
-
 });

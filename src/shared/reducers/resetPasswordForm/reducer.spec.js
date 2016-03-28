@@ -7,10 +7,10 @@ import {
     CLEAR_FORM_ERRORS
 } from './../../constants/actionTypes';
 
-describe("Given reset password form initial state", () => {
-
+describe('Given reset password form initial state', () => {
     let initialState;
-    let setFormError, clearSpy;
+    let setFormError;
+    let clearSpy;
     beforeEach(() => {
         initialState = new Map({
             password: '',
@@ -23,13 +23,13 @@ describe("Given reset password form initial state", () => {
         __RewireAPI__.__Rewire__('clearFormError', clearSpy);
     });
 
-    describe("Given no state", () => {
+    describe('Given no state', () => {
         it('should return the initial state', () => {
-            expect(reducer(undefined, {})).toEqual(initialState)
+            expect(reducer(undefined, {})).toEqual(initialState);
         });
     });
 
-    describe("Given a field has an error", () => {
+    describe('Given a field has an error', () => {
         beforeEach(() => {
             reducer(initialState, {
                 type: RESET_PASSWORD_FORM_ERROR,
@@ -45,7 +45,7 @@ describe("Given reset password form initial state", () => {
         });
     });
 
-    describe("Given the form errors are reset", () => {
+    describe('Given the form errors are reset', () => {
         beforeEach(() => {
             reducer(initialState, {
                 type: CLEAR_FORM_ERRORS
@@ -56,5 +56,4 @@ describe("Given reset password form initial state", () => {
             expect(clearSpy).toHaveBeenCalled();
         });
     });
-
 });

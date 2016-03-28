@@ -2,14 +2,13 @@ import React from 'react';
 import { Map } from 'immutable';
 import expect from 'expect';
 import expectJSX from 'expect-jsx';
-import {createRenderer} from 'react-addons-test-utils';
+import { createRenderer } from 'react-addons-test-utils';
 
 import { Settings } from './settings';
 
 expect.extend(expectJSX);
 
 describe('SETTINGS component', () => {
-
     let renderer;
     beforeEach(() => {
         renderer = createRenderer();
@@ -24,7 +23,7 @@ describe('SETTINGS component', () => {
                     visibleHand: true
                 }),
                 endPhase: () => {}
-            }
+            };
         });
 
         it('should render a form where every checkbox is checked', () => {
@@ -32,7 +31,7 @@ describe('SETTINGS component', () => {
                 <Settings {...props}/>
             );
             const actualElement = renderer.getRenderOutput();
-            const expectedElement =
+            const expectedElement = (
                 <div id="settings-selection">
                     <div className="row">
                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -58,6 +57,7 @@ describe('SETTINGS component', () => {
                         </div>
                     </div>
                 </div>
+            );
             expect(actualElement).toEqualJSX(expectedElement);
         });
     });
@@ -71,7 +71,7 @@ describe('SETTINGS component', () => {
                     visibleHand: false
                 }),
                 endPhase: () => {}
-            }
+            };
         });
 
         it('should render a form where every checkbox is not checked', () => {
@@ -79,7 +79,7 @@ describe('SETTINGS component', () => {
                 <Settings {...props}/>
             );
             const actualElement = renderer.getRenderOutput();
-            const expectedElement =
+            const expectedElement = (
                 <div id="settings-selection">
                     <div className="row">
                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -105,9 +105,8 @@ describe('SETTINGS component', () => {
                         </div>
                     </div>
                 </div>
+            );
             expect(actualElement).toEqualJSX(expectedElement);
-        })
-
+        });
     });
-
 });

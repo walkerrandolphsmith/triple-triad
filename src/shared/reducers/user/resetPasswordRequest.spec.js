@@ -18,7 +18,7 @@ describe('Given user state', () => {
     describe('When attempting to reset password', () => {
         let actual;
         beforeEach(() => {
-            actual = resetPasswordRequest(state)
+            actual = resetPasswordRequest(state);
         });
 
         it('should set passwordReset.loading to true', () => {

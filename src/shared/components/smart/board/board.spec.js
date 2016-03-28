@@ -2,17 +2,16 @@ import React from 'react';
 import { Map, List } from 'immutable';
 import expect from 'expect';
 import expectJSX from 'expect-jsx';
-import {createRenderer} from 'react-addons-test-utils';
+import { createRenderer } from 'react-addons-test-utils';
 import { Board, __RewireAPI__ as boardRewireAPI } from './board';
 
 expect.extend(expectJSX);
 
 describe('BOARD component', () => {
-
-    let renderer, Card;
+    let renderer;
+    let Card;
     beforeEach(() => {
         renderer = createRenderer();
-
     });
 
     describe('Given an empty board without a selected piece', () => {
@@ -24,24 +23,21 @@ describe('BOARD component', () => {
                 cards: new List([
 
                 ])
-            }
+            };
         });
 
         it('should render a 3 lanes each containing 3 pieces, such that each piece whose id corresponds to a number in the valid pieces gets a cursor style of pointer', () => {
-
             class Card extends React.Component {
                 render() {
-                    return (<div></div>)
+                    return (<div></div>);
                 }
             }
             boardRewireAPI.__Rewire__('Card', Card);
-
-
             renderer.render(
                 <Board validPieces={props.validPieces} selectedPiece={props.selectedPiece} cards={props.cards} />
             );
             const actualElement = renderer.getRenderOutput();
-            const expectedElement =
+            const expectedElement = (
                 <div id="board">
                     <div key={0} className='lane'>
                         <div key={0} id={0} className={'piece '} onClick={() => {}} style={{backgroundImage: `url('../assets/images/board/board-${0}.png')`, cursor: 'pointer'}}>
@@ -77,10 +73,9 @@ describe('BOARD component', () => {
                         </div>
                     </div>
                 </div>
-
+            );
             expect(actualElement).toEqualJSX(expectedElement);
         });
-
     });
 
     describe('Given a board with one card and a selected piece', () => {
@@ -92,24 +87,21 @@ describe('BOARD component', () => {
                 cards: new List([
                     new Map({id: 1, owner: 1, name: "Cloud", boardIndex: 1})
                 ])
-            }
+            };
         });
 
         it('should render a card in the piece whose id corresponds to the cards board index and apply a selected class to the piece whose id corresponds to the selected piece value', () => {
-
             class Card extends React.Component {
                 render() {
-                    return (<div></div>)
+                    return (<div></div>);
                 }
             }
             boardRewireAPI.__Rewire__('Card', Card);
-
-
             renderer.render(
                 <Board validPieces={props.validPieces} selectedPiece={props.selectedPiece} cards={props.cards} />
             );
             const actualElement = renderer.getRenderOutput();
-            const expectedElement =
+            const expectedElement = (
                 <div id="board">
                     <div key={0} className='lane'>
                         <div key={0} id={0} className={'piece selected'} onClick={() => {}} style={{backgroundImage: `url('../assets/images/board/board-${0}.png')`, cursor: 'default'}}>
@@ -147,10 +139,9 @@ describe('BOARD component', () => {
                         </div>
                     </div>
                 </div>
-
+            );
             expect(actualElement).toEqualJSX(expectedElement);
         });
-
     });
 
     describe('Given a full board', () => {
@@ -170,24 +161,21 @@ describe('BOARD component', () => {
                     new Map({id: 7, owner: 1, name: "Cat Sith", boardIndex: 7}),
                     new Map({id: 8, owner: 1, name: "Barret", boardIndex: 8})
                 ])
-            }
+            };
         });
 
         it('should render a card at every piece', () => {
-
             class Card extends React.Component {
                 render() {
-                    return (<div></div>)
+                    return (<div></div>);
                 }
             }
             boardRewireAPI.__Rewire__('Card', Card);
-
-
             renderer.render(
                 <Board validPieces={props.validPieces} selectedPiece={props.selectedPiece} cards={props.cards} />
             );
             const actualElement = renderer.getRenderOutput();
-            const expectedElement =
+            const expectedElement = (
                 <div id="board">
                     <div key={0} className='lane'>
                         <div key={0} id={0} className={'piece selected'} onClick={() => {}} style={{backgroundImage: `url('../assets/images/board/board-${0}.png')`, cursor: 'default'}}>
@@ -241,10 +229,8 @@ describe('BOARD component', () => {
                         </div>
                     </div>
                 </div>
-
+            );
             expect(actualElement).toEqualJSX(expectedElement);
         });
-
     });
-
 });

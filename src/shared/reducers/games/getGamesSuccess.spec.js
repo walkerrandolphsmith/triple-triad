@@ -4,7 +4,8 @@ import { Map, List } from 'immutable';
 import getGamesSuccess from './getGamesSuccess';
 
 describe('Given games state and a payload containing a game', () => {
-    let state, payload;
+    let state;
+    let payload;
     beforeEach(() => {
         state = new Map({
             getGames: new Map({
@@ -16,13 +17,13 @@ describe('Given games state and a payload containing a game', () => {
         });
         payload = {
             games: ['game1', 'game2', 'etc']
-        }
+        };
     });
 
     describe('When getting all games is successful', () => {
         let actual;
         beforeEach(() => {
-            actual = getGamesSuccess(state, payload)
+            actual = getGamesSuccess(state, payload);
         });
 
         it('should set the getGames loading state to false', () => {

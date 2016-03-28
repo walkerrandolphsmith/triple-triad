@@ -11,16 +11,14 @@ describe('Given authentication state', () => {
         });
     });
 
-
     describe('When attempting to signin', () => {
         let actual;
         beforeEach(() => {
-           actual = signin(state)
+            actual = signin(state);
         });
 
-
         it('should set the signingIn state to true', () => {
-           expect(actual.get('signingIn')).toEqual(true);
+            expect(actual.get('signingIn')).toEqual(true);
         });
     });
 });

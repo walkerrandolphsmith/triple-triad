@@ -7,8 +7,7 @@ import {
     CLEAR_FORM_ERRORS
 } from './../../constants/actionTypes';
 
-describe("Given an initial forgot password form state", () => {
-
+describe('Given an initial forgot password form state', () => {
     let initialState;
     beforeEach(() => {
         initialState = new Map({
@@ -16,14 +15,13 @@ describe("Given an initial forgot password form state", () => {
         });
     });
 
-    describe("When given no state", () => {
+    describe('When given no state', () => {
         it('should return the initial state', () => {
-            expect(reducer(undefined, {})).toEqual(initialState)
+            expect(reducer(undefined, {})).toEqual(initialState);
         });
     });
 
-    describe("When handling FORGOT_PASSWORD_FORM_ERROR", () => {
-
+    describe('When handling FORGOT_PASSWORD_FORM_ERROR', () => {
         let setFormError = expect.createSpy();
         __RewireAPI__.__Rewire__('setFormError', setFormError);
 
@@ -40,8 +38,7 @@ describe("Given an initial forgot password form state", () => {
         });
     });
 
-    describe("When handling CLEAR_FORM_ERRORS", () => {
-
+    describe('When handling CLEAR_FORM_ERRORS', () => {
         let clearFormError = expect.createSpy();
         __RewireAPI__.__Rewire__('clearFormError', clearFormError);
 

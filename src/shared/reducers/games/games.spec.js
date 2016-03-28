@@ -11,8 +11,7 @@ import {
     CREATE_GAME_SUCCESS
 } from './../../constants/actionTypes';
 
-describe("Given games state", () => {
-
+describe('Given games state', () => {
     let initialState;
     beforeEach(() => {
         initialState = new Map({
@@ -30,14 +29,13 @@ describe("Given games state", () => {
         });
     });
 
-    describe("When given no state", () => {
+    describe('When given no state', () => {
         it('should return the initial state', () => {
-            expect(reducer(undefined, {})).toEqual(initialState)
+            expect(reducer(undefined, {})).toEqual(initialState);
         });
     });
 
-    describe("When handling GET_GAMES_REQUEST", () => {
-
+    describe('When handling GET_GAMES_REQUEST', () => {
         let getGamesRequest = expect.createSpy();
         __RewireAPI__.__Rewire__('getGamesRequest', getGamesRequest);
 
@@ -50,15 +48,14 @@ describe("Given games state", () => {
         });
     });
 
-    describe("When handling GET_GAMES_SUCCESS", () => {
-
+    describe('When handling GET_GAMES_SUCCESS', () => {
         let getGamesSuccess = expect.createSpy();
         __RewireAPI__.__Rewire__('getGamesSuccess', getGamesSuccess);
 
         reducer(initialState, {
             type: GET_GAMES_SUCCESS,
             payload: {
-                games: [{id: 0}]
+                games: [{ id: 0 }]
             }
         });
 
@@ -67,8 +64,7 @@ describe("Given games state", () => {
         });
     });
 
-    describe("When handling GET_GAMES_FAILED", () => {
-
+    describe('When handling GET_GAMES_FAILED', () => {
         let getGamesFailed = expect.createSpy();
         __RewireAPI__.__Rewire__('getGamesFailed', getGamesFailed);
 
@@ -81,8 +77,7 @@ describe("Given games state", () => {
         });
     });
 
-    describe("When handling CREATE_GAME_REQUEST", () => {
-
+    describe('When handling CREATE_GAME_REQUEST', () => {
         let createGameRequest = expect.createSpy();
         __RewireAPI__.__Rewire__('createGameRequest', createGameRequest);
 
@@ -95,15 +90,14 @@ describe("Given games state", () => {
         });
     });
 
-    describe("When handling CREATE_GAME_SUCCESS", () => {
-
+    describe('When handling CREATE_GAME_SUCCESS', () => {
         let createGameSuccess = expect.createSpy();
         __RewireAPI__.__Rewire__('createGameSuccess', createGameSuccess);
 
         reducer(initialState, {
             type: CREATE_GAME_SUCCESS,
             payload: {
-                game: {id: 0}
+                game: { id: 0 }
             }
         });
 
@@ -112,8 +106,7 @@ describe("Given games state", () => {
         });
     });
 
-    describe("When handling CREATE_GAME_FAILED", () => {
-
+    describe('When handling CREATE_GAME_FAILED', () => {
         let createGameFailed = expect.createSpy();
         __RewireAPI__.__Rewire__('createGameFailed', createGameFailed);
 

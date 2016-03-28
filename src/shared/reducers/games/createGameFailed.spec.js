@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { Map, List } from 'immutable';
+import { Map } from 'immutable';
 
 import createGameFailed from './createGameFailed';
 
@@ -18,7 +18,7 @@ describe('Given games state', () => {
     describe('When creating a new game fails', () => {
         let actual;
         beforeEach(() => {
-            actual = createGameFailed(state)
+            actual = createGameFailed(state);
         });
 
         it('should set the newGame loading state to false', () => {

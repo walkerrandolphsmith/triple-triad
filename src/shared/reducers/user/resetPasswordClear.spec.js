@@ -18,7 +18,7 @@ describe('Given user state', () => {
     describe('When clearing the password reset state', () => {
         let actual;
         beforeEach(() => {
-            actual = resetPasswordClear(state)
+            actual = resetPasswordClear(state);
         });
 
         it('should set passwordReset.loading to false', () => {

@@ -4,7 +4,8 @@ import { Map, List } from 'immutable';
 import endAiTurn from './endAiTurn';
 
 describe('Given game state and a payload containing the id and owner of a card', () => {
-    let state, payload;
+    let state;
+    let payload;
     beforeEach(() => {
         let selectedCard = 20;
         state = new Map({
@@ -19,13 +20,13 @@ describe('Given game state and a payload containing the id and owner of a card',
         payload = {
             id: selectedCard,
             owner: 1
-        }
+        };
     });
 
     describe('When placing a card', () => {
         let actual;
         beforeEach(() => {
-            actual = endAiTurn(state, payload)
+            actual = endAiTurn(state, payload);
         });
 
         it('should get the card in the deck with an index equal to the selected card and set its boardIndex to the selectedPiece', () => {

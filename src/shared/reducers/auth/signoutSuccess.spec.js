@@ -15,11 +15,10 @@ describe('Given authentication state', () => {
         });
     });
 
-
     describe('When signining out is successful', () => {
         let actual;
         beforeEach(() => {
-            actual = signoutSuccess(state)
+            actual = signoutSuccess(state);
         });
 
         it('should set the signingOut state to false', () => {

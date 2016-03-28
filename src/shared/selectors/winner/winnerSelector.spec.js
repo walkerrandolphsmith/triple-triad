@@ -3,57 +3,50 @@ import { List } from 'immutable';
 import { getWinner } from './winnerSelector';
 import WINNER from './../../constants/winner';
 
-describe("winner selector", () => {
-
-    describe("given a game in progress", () => {
-
-        let score, validPieces;
+describe('winner selector', () => {
+    let score;
+    let validPieces;
+    describe('given a game in progress', () => {
         beforeEach(() => {
-            score = {blue: 5, red: 5};
+            score = { blue: 5, red: 5 };
             validPieces = new List([0]);
         });
 
         it('should be not have a winner', () => {
-            expect(getWinner(score, validPieces)).toEqual(WINNER.NONE)
+            expect(getWinner(score, validPieces)).toEqual(WINNER.NONE);
         });
     });
 
-    describe("given a full board with equal blue and red score", () => {
-
-        let score, validPieces;
+    describe('given a full board with equal blue and red score', () => {
         beforeEach(() => {
-            score = {blue: 5, red: 5};
+            score = { blue: 5, red: 5 };
             validPieces = new List([]);
         });
 
         it('should be not have a winner', () => {
-            expect(getWinner(score, validPieces)).toEqual(WINNER.TIE)
+            expect(getWinner(score, validPieces)).toEqual(WINNER.TIE);
         });
     });
 
-    describe("given a full board with a blue score greater than red score", () => {
-
-        let score, validPieces;
+    describe('given a full board with a blue score greater than red score', () => {
         beforeEach(() => {
-            score = {blue: 6, red: 4};
+            score = { blue: 6, red: 4 };
             validPieces = new List([]);
         });
 
         it('should be blue winner', () => {
-            expect(getWinner(score, validPieces)).toEqual(WINNER.BLUE)
+            expect(getWinner(score, validPieces)).toEqual(WINNER.BLUE);
         });
     });
 
-    describe("given a full board with a blue score less than red score", () => {
-
-        let score, validPieces;
+    describe('given a full board with a blue score less than red score', () => {
         beforeEach(() => {
-            score = {blue: 4, red: 6};
+            score = { blue: 4, red: 6 };
             validPieces = new List([]);
         });
 
         it('should be blue winner', () => {
-            expect(getWinner(score, validPieces)).toEqual(WINNER.RED)
+            expect(getWinner(score, validPieces)).toEqual(WINNER.RED);
         });
     });
 });

@@ -2,7 +2,8 @@
     "env": {
         "browser": true,
         "node": true,
-        "es6": true
+        "es6": true,
+        "mocha": true
     },
     "ecmaFeatures": {
         "arrowFunctions": true,
@@ -142,7 +143,7 @@
         "no-spaced-func": 1,
         "no-ternary": 0,
         "no-trailing-spaces": 1,
-        "no-underscore-dangle": [2, { "allow": ["_id", "__moduleBundler"] }],
+        "no-underscore-dangle": [2, { "allow": ["_id", "__moduleBundler", "__Rewire__"] }],
         "one-var": [1, "never"],
         "operator-assignment": [1, "never"],
         "padded-blocks": [1, "never"],

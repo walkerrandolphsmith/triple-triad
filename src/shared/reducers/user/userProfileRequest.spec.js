@@ -15,7 +15,7 @@ describe('Given user state', () => {
     describe('When requesting user profile', () => {
         let actual;
         beforeEach(() => {
-            actual = userProfileRequest(state)
+            actual = userProfileRequest(state);
         });
 
         it('should set loading to true', () => {

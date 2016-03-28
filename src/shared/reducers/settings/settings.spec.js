@@ -4,8 +4,7 @@ import reducer from './settings';
 import { __RewireAPI__ } from './settings';
 import { UPDATE_SETTINGS, UPDATE_FOCUS_SETTING } from './../../constants/actionTypes';
 
-describe("Given settings state", () => {
-
+describe('Given settings state', () => {
     let initialState;
     beforeEach(() => {
         initialState = new Map({
@@ -16,21 +15,20 @@ describe("Given settings state", () => {
         });
     });
 
-    describe("When given no state", () => {
+    describe('When given no state', () => {
         it('should return the initial state', () => {
-            expect(reducer(undefined, {})).toEqual(initialState)
+            expect(reducer(undefined, {})).toEqual(initialState);
         });
     });
 
-    describe("When handling UPDATE_SETTINGS", () => {
-
+    describe('When handling UPDATE_SETTINGS', () => {
         let updateSettings = expect.createSpy();
         __RewireAPI__.__Rewire__('updateSettings', updateSettings);
 
         reducer(initialState, {
             type: UPDATE_SETTINGS,
             payload: {
-                setting: "randomHand"
+                setting: 'randomHand'
             }
         });
 
@@ -39,15 +37,14 @@ describe("Given settings state", () => {
         });
     });
 
-    describe("When handling UPDATE_FOCUS_SETTING", () => {
-
+    describe('When handling UPDATE_FOCUS_SETTING', () => {
         let updateFocusSetting = expect.createSpy();
         __RewireAPI__.__Rewire__('updateFocusSetting', updateFocusSetting);
 
         reducer(initialState, {
             type: UPDATE_FOCUS_SETTING,
             payload: {
-                setting: "randomHand"
+                setting: 'randomHand'
             }
         });
 

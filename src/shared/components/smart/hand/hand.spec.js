@@ -2,17 +2,16 @@ import React from 'react';
 import { Map, List } from 'immutable';
 import expect from 'expect';
 import expectJSX from 'expect-jsx';
-import {createRenderer} from 'react-addons-test-utils';
+import { createRenderer } from 'react-addons-test-utils';
 import { Hand, __RewireAPI__ as handRewireAPI } from './hand';
 
 expect.extend(expectJSX);
 
 describe('HAND component', () => {
-
-    let renderer, Card;
+    let renderer;
+    let Card;
     beforeEach(() => {
         renderer = createRenderer();
-
     });
 
     describe('Given show back', () => {
@@ -21,28 +20,26 @@ describe('HAND component', () => {
             props = {
                 score: 10,
                 cards: new List([
-                    new Map({id: 12, name: 'Cloud', owner: 1, boardIndex: -1})
+                    new Map({ id: 12, name: 'Cloud', owner: 1, boardIndex: -1 })
                 ]),
                 selectedCard: 12,
                 showBack: true
-            }
+            };
         });
 
         it('should render a card with the name "back"', () => {
-
             class Card extends React.Component {
                 render() {
-                    return (<div></div>)
+                    return (<div></div>);
                 }
             }
             handRewireAPI.__Rewire__('Card', Card);
 
-
             renderer.render(
-                <Hand score={props.score} cards={props.cards} selectedCard={props.selectedCard} showBack={props.showBack} />
+                <Hand score={ props.score } cards={ props.cards } selectedCard={ props.selectedCard } showBack={ props.showBack } />
             );
             const actualElement = renderer.getRenderOutput();
-            const expectedElement =
+            const expectedElement = (
                 <div className="hand">
                     <div className="score">{props.score}</div>
                     <Card card={new Map({id: 12, name: 'back', owner: 1, boardIndex: -1})}
@@ -51,10 +48,9 @@ describe('HAND component', () => {
                         clickAction={() => {}}>
                     </Card>
                 </div>
-
+            );
             expect(actualElement).toEqualJSX(expectedElement);
-        })
-
+        });
     });
 
     describe('Given one card owned by the player', () => {
@@ -67,24 +63,21 @@ describe('HAND component', () => {
                 ]),
                 selectedCard: 12,
                 showBack: false
-            }
+            };
         });
 
         it('should render a card with a pointer', () => {
-
             class Card extends React.Component {
                 render() {
-                    return (<div></div>)
+                    return (<div></div>);
                 }
             }
             handRewireAPI.__Rewire__('Card', Card);
-
-
             renderer.render(
-                <Hand score={props.score} cards={props.cards} selectedCard={props.selectedCard} showBack={props.showBack} />
+                <Hand score={ props.score } cards={ props.cards } selectedCard={ props.selectedCard } showBack={ props.showBack } />
             );
             const actualElement = renderer.getRenderOutput();
-            const expectedElement =
+            const expectedElement = (
                 <div className="hand">
                     <div className="score">{props.score}</div>
                     <Card card={props.cards.get(0)}
@@ -93,10 +86,9 @@ describe('HAND component', () => {
                         clickAction={() => {}}>
                     </Card>
                 </div>
-
+            );
             expect(actualElement).toEqualJSX(expectedElement);
-        })
-
+        });
     });
 
     describe('Given one card not owned by the player', () => {
@@ -109,24 +101,21 @@ describe('HAND component', () => {
                 ]),
                 selectedCard: 12,
                 showBack: false
-            }
+            };
         });
 
         it('should render a card with a default cursor', () => {
-
             class Card extends React.Component {
                 render() {
-                    return (<div></div>)
+                    return (<div></div>);
                 }
             }
             handRewireAPI.__Rewire__('Card', Card);
-
-
             renderer.render(
-                <Hand score={props.score} cards={props.cards} selectedCard={props.selectedCard} showBack={props.showBack} />
+                <Hand score={ props.score } cards={ props.cards } selectedCard={ props.selectedCard } showBack={ props.showBack } />
             );
             const actualElement = renderer.getRenderOutput();
-            const expectedElement =
+            const expectedElement = (
                 <div className="hand">
                     <div className="score">{props.score}</div>
                     <Card card={props.cards.get(0)}
@@ -135,10 +124,9 @@ describe('HAND component', () => {
                         clickAction={() => {}}>
                     </Card>
                 </div>
-
+            );
             expect(actualElement).toEqualJSX(expectedElement);
-        })
-
+        });
     });
 
     describe('Given many cards in which only one is selected', () => {
@@ -152,24 +140,21 @@ describe('HAND component', () => {
                 ]),
                 selectedCard: 12,
                 showBack: false
-            }
+            };
         });
 
         it('should render a card with selected class and others without a class', () => {
-
             class Card extends React.Component {
                 render() {
-                    return (<div></div>)
+                    return (<div></div>);
                 }
             }
             handRewireAPI.__Rewire__('Card', Card);
-
-
             renderer.render(
-                <Hand score={props.score} cards={props.cards} selectedCard={props.selectedCard} showBack={props.showBack} />
+                <Hand score={ props.score } cards={ props.cards } selectedCard={ props.selectedCard } showBack={ props.showBack } />
             );
             const actualElement = renderer.getRenderOutput();
-            const expectedElement =
+            const expectedElement = (
                 <div className="hand">
                     <div className="score">{props.score}</div>
                     <Card card={props.cards.get(0)}
@@ -183,13 +168,8 @@ describe('HAND component', () => {
                         clickAction={() => {}}>
                     </Card>
                 </div>
-
+            );
             expect(actualElement).toEqualJSX(expectedElement);
-        })
-
+        });
     });
-
-
-
-
 });

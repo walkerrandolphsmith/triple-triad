@@ -1,20 +1,18 @@
 import expect from 'expect';
-import { Map, List } from 'immutable';
+import { Map } from 'immutable';
 
 import startAiTurn from './startAiTurn';
 
 describe('Given game state', () => {
     let state;
     beforeEach(() => {
-        state = new Map({
-
-        });
+        state = new Map({ });
     });
 
     describe('When starting Ai turn', () => {
         let actual;
         beforeEach(() => {
-            actual = startAiTurn(state)
+            actual = startAiTurn(state);
         });
 
         it('should return the given state', () => {

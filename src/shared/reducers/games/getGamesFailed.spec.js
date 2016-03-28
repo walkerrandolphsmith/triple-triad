@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { Map, List } from 'immutable';
+import { Map } from 'immutable';
 
 import getGamesFailed from './getGamesFailed';
 
@@ -18,7 +18,7 @@ describe('Given games state', () => {
     describe('When getting all games fails', () => {
         let actual;
         beforeEach(() => {
-            actual = getGamesFailed(state)
+            actual = getGamesFailed(state);
         });
 
         it('should set the getGames loading state to false', () => {

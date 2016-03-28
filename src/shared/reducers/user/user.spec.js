@@ -15,8 +15,7 @@ import {
     PASSWORD_RESET_CLEAR
     } from './../../constants/actionTypes';
 
-describe("Given user state", () => {
-
+describe('Given user state', () => {
     let initialState;
     beforeEach(() => {
         initialState = new Map({
@@ -36,13 +35,13 @@ describe("Given user state", () => {
         });
     });
 
-    describe("When given no state", () => {
+    describe('When given no state', () => {
         it('should return the initial state', () => {
-            expect(reducer(undefined, {})).toEqual(initialState)
+            expect(reducer(undefined, {})).toEqual(initialState);
         });
     });
 
-    describe("When handling USER_PROFILE", () => {
+    describe('When handling USER_PROFILE', () => {
         let userProfileRequest = expect.createSpy();
         __RewireAPI__.__Rewire__('userProfileRequest', userProfileRequest);
 
@@ -55,7 +54,7 @@ describe("Given user state", () => {
         });
     });
 
-    describe("When handling USER_PROFILE_SUCCESS", () => {
+    describe('When handling USER_PROFILE_SUCCESS', () => {
         let userProfileSuccess = expect.createSpy();
         __RewireAPI__.__Rewire__('userProfileSuccess', userProfileSuccess);
 
@@ -68,7 +67,7 @@ describe("Given user state", () => {
         });
     });
 
-    describe("When handling RESEND_EMAIL_VERIFICATION", () => {
+    describe('When handling RESEND_EMAIL_VERIFICATION', () => {
         let resendVerificationEmailRequest = expect.createSpy();
         __RewireAPI__.__Rewire__('resendVerificationEmailRequest', resendVerificationEmailRequest);
 
@@ -81,7 +80,7 @@ describe("Given user state", () => {
         });
     });
 
-    describe("When handling RESEND_EMAIL_VERIFICATION_SUCCESS", () => {
+    describe('When handling RESEND_EMAIL_VERIFICATION_SUCCESS', () => {
         let resendVerificationEmailSuccess = expect.createSpy();
         __RewireAPI__.__Rewire__('resendVerificationEmailSuccess', resendVerificationEmailSuccess);
 
@@ -94,7 +93,7 @@ describe("Given user state", () => {
         });
     });
 
-    describe("When handling RESEND_EMAIL_VERIFICATION_FAILED", () => {
+    describe('When handling RESEND_EMAIL_VERIFICATION_FAILED', () => {
         let resendVerificationEmailFailure = expect.createSpy();
         __RewireAPI__.__Rewire__('resendVerificationEmailFailure', resendVerificationEmailFailure);
 
@@ -107,7 +106,7 @@ describe("Given user state", () => {
         });
     });
 
-    describe("When handling RESEND_EMAIL_VERIFICATION_CLEAR", () => {
+    describe('When handling RESEND_EMAIL_VERIFICATION_CLEAR', () => {
         let resendVerificationEmailClear = expect.createSpy();
         __RewireAPI__.__Rewire__('resendVerificationEmailClear', resendVerificationEmailClear);
 
@@ -120,7 +119,7 @@ describe("Given user state", () => {
         });
     });
 
-    describe("When handling PASSWORD_RESET_REQUEST", () => {
+    describe('When handling PASSWORD_RESET_REQUEST', () => {
         let resetPasswordRequest = expect.createSpy();
         __RewireAPI__.__Rewire__('resetPasswordRequest', resetPasswordRequest);
 
@@ -133,7 +132,7 @@ describe("Given user state", () => {
         });
     });
 
-    describe("When handling PASSWORD_RESET_SUCCESS", () => {
+    describe('When handling PASSWORD_RESET_SUCCESS', () => {
         let resetPasswordSuccess = expect.createSpy();
         __RewireAPI__.__Rewire__('resetPasswordSuccess', resetPasswordSuccess);
 
@@ -146,7 +145,7 @@ describe("Given user state", () => {
         });
     });
 
-    describe("When handling PASSWORD_RESET_FAILED", () => {
+    describe('When handling PASSWORD_RESET_FAILED', () => {
         let resetPasswordFailure = expect.createSpy();
         __RewireAPI__.__Rewire__('resetPasswordFailure', resetPasswordFailure);
 
@@ -159,7 +158,7 @@ describe("Given user state", () => {
         });
     });
 
-    describe("When handling PASSWORD_RESET_CLEAR", () => {
+    describe('When handling PASSWORD_RESET_CLEAR', () => {
         let resetPasswordClear = expect.createSpy();
         __RewireAPI__.__Rewire__('resetPasswordClear', resetPasswordClear);
 

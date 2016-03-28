@@ -15,10 +15,10 @@ describe('Given authentication state', () => {
         });
     });
 
-
     describe('When signing up is successful', () => {
         let actual;
-        let name, id;
+        let name;
+        let id;
         beforeEach(() => {
             name = 'a'; id = 'b';
             actual = signupSuccess(state, {
@@ -26,7 +26,7 @@ describe('Given authentication state', () => {
                     id: id,
                     name: name
                 }
-            })
+            });
         });
 
         it('should set the signingUp state to true', () => {
@@ -34,7 +34,7 @@ describe('Given authentication state', () => {
         });
 
         it('should set the username to null', () => {
-            expect(actual.get('user').get('username')).toEqual(name)
+            expect(actual.get('user').get('username')).toEqual(name);
         });
 
         it('should set the user id to true', () => {

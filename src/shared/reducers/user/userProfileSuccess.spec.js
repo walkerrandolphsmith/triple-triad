@@ -4,7 +4,8 @@ import { Map } from 'immutable';
 import userProfileSuccess from './userProfileSuccess';
 
 describe('Given user state and payload containing a user', () => {
-    let state, payload;
+    let state;
+    let payload;
     beforeEach(() => {
         state = new Map({
             loading: true,
@@ -17,13 +18,13 @@ describe('Given user state and payload containing a user', () => {
             user: {
                 verified: true
             }
-        }
+        };
     });
 
     describe('When requesting user profile is successful', () => {
         let actual;
         beforeEach(() => {
-            actual = userProfileSuccess(state, payload)
+            actual = userProfileSuccess(state, payload);
         });
 
         it('should set loading to false', () => {

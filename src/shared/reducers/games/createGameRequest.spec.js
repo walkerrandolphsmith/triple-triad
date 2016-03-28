@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { Map, List } from 'immutable';
+import { Map } from 'immutable';
 
 import createGameRequest from './createGameRequest';
 
@@ -18,7 +18,7 @@ describe('Given games state', () => {
     describe('When attempting to create a new game', () => {
         let actual;
         beforeEach(() => {
-            actual = createGameRequest(state)
+            actual = createGameRequest(state);
         });
 
         it('should set the newGame loading state to true', () => {
