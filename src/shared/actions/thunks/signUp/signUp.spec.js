@@ -1,45 +1,51 @@
 import expect from 'expect';
-import SignUp from './signUp';
-import { signUp, __RewireAPI__ as signUpRewireAPI } from './signUp';
+import { signUp, __RewireAPI__ } from './signUp';
 
 describe('SIGN_UP async action creator', () => {
-
-    let dispatch, user;
-    let post, send, set;
+    let dispatch;
+    let user;
+    let post;
+    let send;
+    let set;
+    let request;
     beforeEach(() => {
-       dispatch = expect.createSpy();
-       user = {username: 'walkerrandolphsmith', password: 'password', confirmPassword: 'password', email: 'email'};
+        dispatch = expect.createSpy();
+        user = { username: 'walkerrandolphsmith', password: 'password', confirmPassword: 'password', email: 'email' };
 
-       SignUp.__Rewire__('isValidUsername', () => true);
-       SignUp.__Rewire__('isValidPassword', () => true);
-       SignUp.__Rewire__('passwordsMatch', () => true);
-       SignUp.__Rewire__('isValidEmail', () => true);
-       SignUp.__Rewire__('requestSignUp', () => 1);
-       SignUp.__Rewire__('signUpFormError', () => 2);
-       SignUp.__Rewire__('receiveUser', () => 3);
-       SignUp.__Rewire__('push', () => 4);
+        __RewireAPI__.__Rewire__('isValidUsername', () => true);
+        __RewireAPI__.__Rewire__('isValidPassword', () => true);
+        __RewireAPI__.__Rewire__('passwordsMatch', () => true);
+        __RewireAPI__.__Rewire__('isValidEmail', () => true);
+        __RewireAPI__.__Rewire__('requestSignUp', () => 1);
+        __RewireAPI__.__Rewire__('signUpFormError', () => 2);
+        __RewireAPI__.__Rewire__('receiveUser', () => 3);
+        __RewireAPI__.__Rewire__('push', () => 4);
+
+        request = __RewireAPI__.__Rewire__('request', {
+            post: function() {
+                return this;
+            },
+            send: function() {
+                return this;
+            },
+            set: function() {
+                return this;
+            }
+        });
+        post = expect.spyOn(request, 'post').andCallThrough();
+        send = expect.spyOn(request, 'send').andCallThrough();
+        set = expect.spyOn(request, 'set').andCallThrough();
     });
 
     it('should be a function', () => {
-       expect(signUp()).toBeA('function')
+        expect(signUp()).toBeA('function');
     });
 
     describe('Given a request is made to sign up', () => {
-
         beforeEach(() => {
-            let request = SignUp.__Rewire__('request', {
-                post: function(endpoint) { return this; },
-                send: function(data) { return this },
-                set: function(key, value) { return this },
-                end: (fn) => {
-                    fn(null, { status: 200 });
-                }
-            });
-
-            post = expect.spyOn(request, 'post').andCallThrough();
-            send = expect.spyOn(request, 'send').andCallThrough();
-            set = expect.spyOn(request, 'set').andCallThrough();
-
+            request.end = fn => {
+                fn(null, { status: 200 });
+            };
             signUp(user)(dispatch);
         });
 
@@ -59,16 +65,9 @@ describe('SIGN_UP async action creator', () => {
 
     describe('when sign up is successful', () => {
         beforeEach(() => {
-            let request = SignUp.__Rewire__('request', {
-                post: function(endpoint) { return this; },
-                send: function(data) { return this },
-                set: function(key, value) { return this },
-                end: (fn) => {
-                    fn(null, {
-                        status: 200
-                    });
-                }
-            });
+            request.end = fn => {
+                fn(null, { status: 200 });
+            };
             signUp(user)(dispatch);
         });
 
@@ -87,17 +86,12 @@ describe('SIGN_UP async action creator', () => {
 
     describe('When /signUp is unsuccessful', () => {
         beforeEach(() => {
-            let request = SignUp.__Rewire__('request', {
-                post: function(endpoint) { return this; },
-                send: function(data) { return this },
-                set: function(key, value) { return this },
-                end: (fn) => {
-                    fn(null, {
-                        status: 500,
-                        text: `{ "field": "username", "error": "Username already exists" }`
-                    });
-                }
-            });
+            request.end = fn => {
+                fn(null, {
+                    status: 500,
+                    text: `{ "field": "username", "error": "Username already exists" }`
+                });
+            };
             signUp(user)(dispatch);
         });
 
@@ -109,7 +103,7 @@ describe('SIGN_UP async action creator', () => {
 
     describe('Given an invalid username', () => {
         beforeEach(() => {
-            SignUp.__Rewire__('isValidUsername', () => false);
+            __RewireAPI__.__Rewire__('isValidUsername', () => false);
         });
 
         it('should dispatch signUpFormError action', () => {
@@ -121,7 +115,7 @@ describe('SIGN_UP async action creator', () => {
 
     describe('Given an invalid password', () => {
         beforeEach(() => {
-            SignUp.__Rewire__('isValidPassword', () => false);
+            __RewireAPI__.__Rewire__('isValidPassword', () => false);
         });
 
         it('should dispatch signUpFormError action', () => {
@@ -133,7 +127,7 @@ describe('SIGN_UP async action creator', () => {
 
     describe('Given password does not match the confirm password', () => {
         beforeEach(() => {
-            SignUp.__Rewire__('passwordsMatch', () => false);
+            __RewireAPI__.__Rewire__('passwordsMatch', () => false);
         });
 
         it('should dispatch signUpFormError action', () => {
@@ -145,7 +139,7 @@ describe('SIGN_UP async action creator', () => {
 
     describe('Given an invalid email', () => {
         beforeEach(() => {
-            SignUp.__Rewire__('isValidEmail', () => false);
+            __RewireAPI__.__Rewire__('isValidEmail', () => false);
         });
 
         it('should dispatch signUpFormError action', () => {

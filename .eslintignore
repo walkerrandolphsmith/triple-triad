@@ -3,4 +3,3 @@ node_modules
 test/
 dist/
 src/assets
-src/**/*.spec.js

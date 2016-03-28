@@ -1,14 +1,14 @@
 import expect from 'expect';
-import SelectedPieceByClick from './selectedPieceByClick';
-import { selectedPieceByClick, __RewireAPI__ as selectedPieceByClickRewireAPI } from './selectedPieceByClick';
+import { selectedPieceByClick, __RewireAPI__ } from './selectedPieceByClick';
 
 describe('SELECTED_PIECE_BY_CLICK async action creator', () => {
-
-    let getState, dispatch, index;
+    let getState;
+    let dispatch;
+    let index;
     beforeEach(() => {
-       getState = () => ({});
-       dispatch = expect.createSpy();
-       index = 0;
+        getState = () => ({});
+        dispatch = expect.createSpy();
+        index = 0;
     });
 
     it('should be a function', () => {
@@ -16,26 +16,20 @@ describe('SELECTED_PIECE_BY_CLICK async action creator', () => {
     });
 
     it('should dispatch getNextSelectedCard action', () => {
-        SelectedPieceByClick.__Rewire__('selectPiece', () => {
-            return 1;
-        });
+        __RewireAPI__.__Rewire__('selectPiece', () => 1);
         selectedPieceByClick(index)(dispatch, getState);
-        expect(dispatch).toHaveBeenCalledWith(1)
+        expect(dispatch).toHaveBeenCalledWith(1);
     });
 
     it('should dispatch PLayerTakesTurn action', () => {
-        SelectedPieceByClick.__Rewire__('playerTakesTurn', () => {
-            return 2;
-        });
+        __RewireAPI__.__Rewire__('playerTakesTurn', () => 2);
         selectedPieceByClick(index)(dispatch, getState);
-        expect(dispatch).toHaveBeenCalledWith(2)
+        expect(dispatch).toHaveBeenCalledWith(2);
     });
 
     it('should dispatch SET_PHASE action', () => {
-        SelectedPieceByClick.__Rewire__('setPhase', () => {
-            return 3;
-        });
+        __RewireAPI__.__Rewire__('setPhase', () => 3);
         selectedPieceByClick(index)(dispatch, getState);
-        expect(dispatch).toHaveBeenCalledWith(3)
+        expect(dispatch).toHaveBeenCalledWith(3);
     });
 });

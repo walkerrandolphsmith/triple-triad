@@ -1,48 +1,55 @@
 import expect from 'expect';
-import ResetPassword from './resetPassword';
-import { resetPassword, __RewireAPI__ as resetPasswordRewireAPI } from './resetPassword';
+import { resetPassword, __RewireAPI__ } from './resetPassword';
 
 describe('RESET PASSWORD async action creator', () => {
-
     let dispatch;
-    let token, password, confirmPassword;
-    let post, send, set;
+    let token;
+    let password;
+    let confirmPassword;
+    let post;
+    let send;
+    let set;
+    let request;
     beforeEach(() => {
         dispatch = expect.createSpy();
         token = 100;
         password = 'password';
         confirmPassword = 'password';
 
-        ResetPassword.__Rewire__('passwordResetRequest', () => 1);
-        ResetPassword.__Rewire__('passwordResetSuccess', () => 2);
-        ResetPassword.__Rewire__('passwordResetFailed', () => 3);
-        ResetPassword.__Rewire__('passwordResetClear', () => 4);
-        ResetPassword.__Rewire__('resetPasswordFormError', () => 5);
+        __RewireAPI__.__Rewire__('passwordResetRequest', () => 1);
+        __RewireAPI__.__Rewire__('passwordResetSuccess', () => 2);
+        __RewireAPI__.__Rewire__('passwordResetFailed', () => 3);
+        __RewireAPI__.__Rewire__('passwordResetClear', () => 4);
+        __RewireAPI__.__Rewire__('resetPasswordFormError', () => 5);
 
-        ResetPassword.__Rewire__('isValidPassword', () => true);
-        ResetPassword.__Rewire__('passwordsMatch', () => true);
+        __RewireAPI__.__Rewire__('isValidPassword', () => true);
+        __RewireAPI__.__Rewire__('passwordsMatch', () => true);
+
+        request = __RewireAPI__.__Rewire__('request', {
+            post: function() {
+                return this;
+            },
+            send: function() {
+                return this;
+            },
+            set: function() {
+                return this;
+            }
+        });
+        post = expect.spyOn(request, 'post').andCallThrough();
+        send = expect.spyOn(request, 'send').andCallThrough();
+        set = expect.spyOn(request, 'set').andCallThrough();
     });
 
     it('should be a function', () => {
-        expect(resetPassword()).toBeA('function')
+        expect(resetPassword()).toBeA('function');
     });
 
     describe('Given a request is made to get reset password', () => {
-
         beforeEach(() => {
-            let request = ResetPassword.__Rewire__('request', {
-                post: function(endpoint) { return this; },
-                send: function(data) { return this },
-                set: function(key, value) { return this },
-                end: (fn) => {
-                    fn(null, { status: 200 });
-                }
-            });
-
-            post = expect.spyOn(request, 'post').andCallThrough();
-            send = expect.spyOn(request, 'send').andCallThrough();
-            set = expect.spyOn(request, 'set').andCallThrough();
-
+            request.end = fn => {
+                fn(null, { status: 200 });
+            };
             resetPassword(token, password, confirmPassword)(dispatch);
         });
 
@@ -62,14 +69,9 @@ describe('RESET PASSWORD async action creator', () => {
 
     describe('When reset password is successful', () => {
         beforeEach(() => {
-            ResetPassword.__Rewire__('request', {
-                post: function(endpoint) { return this; },
-                send: function(data) { return this },
-                set: function(key, value) { return this },
-                end: (fn) => {
-                    fn(null, { status: 200 });
-                }
-            });
+            request.end = fn => {
+                fn(null, { status: 200 });
+            };
             resetPassword(token, password, confirmPassword)(dispatch);
         });
 
@@ -84,14 +86,9 @@ describe('RESET PASSWORD async action creator', () => {
 
     describe('When resend email verification is unsuccessful', () => {
         beforeEach(() => {
-            ResetPassword.__Rewire__('request', {
-                post: function(endpoint) { return this; },
-                send: function(data) { return this },
-                set: function(key, value) { return this },
-                end: (fn) => {
-                    fn(null, { status: 500 });
-                }
-            });
+            request.end = fn => {
+                fn(null, { status: 500 });
+            };
             resetPassword(token, password, confirmPassword)(dispatch);
         });
 
@@ -106,7 +103,7 @@ describe('RESET PASSWORD async action creator', () => {
 
     describe('When password is not valid', () => {
         beforeEach(() => {
-            ResetPassword.__Rewire__('isValidPassword', () => false);
+            __RewireAPI__.__Rewire__('isValidPassword', () => false);
             resetPassword(token, password, confirmPassword)(dispatch);
         });
 
@@ -117,7 +114,7 @@ describe('RESET PASSWORD async action creator', () => {
 
     describe('When passwords do not match', () => {
         beforeEach(() => {
-            ResetPassword.__Rewire__('passwordsMatch', () => false);
+            __RewireAPI__.__Rewire__('passwordsMatch', () => false);
             resetPassword(token, password, confirmPassword)(dispatch);
         });
 
@@ -125,5 +122,4 @@ describe('RESET PASSWORD async action creator', () => {
             expect(dispatch).toHaveBeenCalledWith(5);
         });
     });
-
 });

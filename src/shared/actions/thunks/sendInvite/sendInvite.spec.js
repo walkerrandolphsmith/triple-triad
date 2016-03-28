@@ -1,12 +1,17 @@
 import expect from 'expect';
 import { Map } from 'immutable';
-import SendInvite from './sendInvite';
-import { sendInvite, __RewireAPI__ as sendInviteRewireAPI } from './sendInvite';
+import { sendInvite, __RewireAPI__ } from './sendInvite';
 
 describe('SEND INVITE async action creator', () => {
-
-    let dispatch, getState, request;
-    let gameId, email, gameOwner;
+    let dispatch;
+    let getState;
+    let gameId;
+    let email;
+    let gameOwner;
+    let post;
+    let send;
+    let set;
+    let request;
     beforeEach(() => {
         gameId = '1234';
         email = 'tester@gamil.com';
@@ -22,38 +27,41 @@ describe('SEND INVITE async action creator', () => {
             })
         });
 
-        request = SendInvite.__Rewire__('request', {
-            post: function(endpoint) { return this; },
-            send: function(data) { return this },
-            set: function(key, value) { return this },
-            end: (fn) => {
-                fn(null, { status: 200 });
+        request = __RewireAPI__.__Rewire__('request', {
+            post: function() {
+                return this;
+            },
+            send: function() {
+                return this;
+            },
+            set: function() {
+                return this;
+            },
+            end: function() {
+                return this;
             }
         });
+        post = expect.spyOn(request, 'post').andCallThrough();
+        send = expect.spyOn(request, 'send').andCallThrough();
+        set = expect.spyOn(request, 'set').andCallThrough();
 
-        SendInvite.__Rewire__('sendInviteRequest', () => 1);
-        SendInvite.__Rewire__('sendInviteFailed', () => 2);
-        SendInvite.__Rewire__('sendInviteSuccess', () => 3);
+        __RewireAPI__.__Rewire__('sendInviteRequest', () => 1);
+        __RewireAPI__.__Rewire__('sendInviteFailed', () => 2);
+        __RewireAPI__.__Rewire__('sendInviteSuccess', () => 3);
     });
 
     it('should be a function', () => {
-        expect(sendInvite()).toBeA('function')
+        expect(sendInvite()).toBeA('function');
     });
 
     it('should be a dispatch endPhase', () => {
         sendInvite()(dispatch, getState);
-        expect(dispatch).toHaveBeenCalledWith(1)
+        expect(dispatch).toHaveBeenCalledWith(1);
     });
 
     describe('Given a request is made to get reset password', () => {
-        let post, send, set;
         let data;
         beforeEach(() => {
-            post = expect.spyOn(request, 'post').andCallThrough();
-            send = expect.spyOn(request, 'send').andCallThrough();
-            set = expect.spyOn(request, 'set').andCallThrough();
-
-
             data = {
                 gameId: gameId,
                 invitee: email,
@@ -79,15 +87,9 @@ describe('SEND INVITE async action creator', () => {
 
     describe('Given a request is made and is successful', () => {
         beforeEach(() => {
-            let request = SendInvite.__Rewire__('request', {
-                post: function(endpoint) { return this; },
-                send: function(data) { return this },
-                set: function(key, value) { return this },
-                end: (fn) => {
-                    fn(null, { status: 200 });
-                }
-            });
-
+            request.end = fn => {
+                fn(null, { status: 200 });
+            };
             sendInvite(gameId, email)(dispatch, getState);
         });
 
@@ -102,15 +104,9 @@ describe('SEND INVITE async action creator', () => {
 
     describe('Given a request is made and is unsuccessful', () => {
         beforeEach(() => {
-            let request = SendInvite.__Rewire__('request', {
-                post: function(endpoint) { return this; },
-                send: function(data) { return this },
-                set: function(key, value) { return this },
-                end: (fn) => {
-                    fn(null, { status: 500 });
-                }
-            });
-
+            request.end = fn => {
+                fn(null, { status: 500 });
+            };
             sendInvite(gameId, email)(dispatch, getState);
         });
 
@@ -122,5 +118,4 @@ describe('SEND INVITE async action creator', () => {
             expect(dispatch).toHaveBeenCalledWith(2);
         });
     });
-
 });

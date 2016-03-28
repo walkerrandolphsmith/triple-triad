@@ -1,21 +1,36 @@
 import expect from 'expect';
-import SendPasswordReset from './../sendPasswordReset/sendPasswordReset';
-import { sendPasswordReset, __RewireAPI__ as sendPasswordResetRewireAPI } from './sendPasswordReset';
+import { sendPasswordReset, __RewireAPI__ } from './sendPasswordReset';
 
 describe('SEND PASSWORD RESET async action creator', () => {
-
     let dispatch;
     let email;
-    let post, send, set;
+    let post;
+    let send;
+    let set;
+    let request;
     beforeEach(() => {
         dispatch = expect.createSpy();
         email = 'walkerrandolphsmith@gmail.com';
+        __RewireAPI__.__Rewire__('sendPasswordResetRequest', () => 1);
+        __RewireAPI__.__Rewire__('sendPasswordResetSuccess', () => 2);
+        __RewireAPI__.__Rewire__('sendPasswordResetFailed', () => 3);
+        __RewireAPI__.__Rewire__('sendPasswordResetClear', () => 4);
+        __RewireAPI__.__Rewire__('forgotPasswordFormError', () => 5);
 
-        SendPasswordReset.__Rewire__('sendPasswordResetRequest', () => 1);
-        SendPasswordReset.__Rewire__('sendPasswordResetSuccess', () => 2);
-        SendPasswordReset.__Rewire__('sendPasswordResetFailed', () => 3);
-        SendPasswordReset.__Rewire__('sendPasswordResetClear', () => 4);
-        SendPasswordReset.__Rewire__('forgotPasswordFormError', () => 5);
+        request = __RewireAPI__.__Rewire__('request', {
+            post: function() {
+                return this;
+            },
+            send: function() {
+                return this;
+            },
+            set: function() {
+                return this;
+            }
+        });
+        post = expect.spyOn(request, 'post').andCallThrough();
+        send = expect.spyOn(request, 'send').andCallThrough();
+        set = expect.spyOn(request, 'set').andCallThrough();
     });
 
     it('should be a function', () => {
@@ -23,21 +38,10 @@ describe('SEND PASSWORD RESET async action creator', () => {
     });
 
     describe('Given a request is made to get reset password', () => {
-
         beforeEach(() => {
-            let request = SendPasswordReset.__Rewire__('request', {
-                post: function(endpoint) { return this; },
-                send: function(data) { return this },
-                set: function(key, value) { return this },
-                end: (fn) => {
-                    fn(null, { status: 200 });
-                }
-            });
-
-            post = expect.spyOn(request, 'post').andCallThrough();
-            send = expect.spyOn(request, 'send').andCallThrough();
-            set = expect.spyOn(request, 'set').andCallThrough();
-
+            request.end = (fn) => {
+                fn(null, { status: 200 });
+            };
             sendPasswordReset(email)(dispatch);
         });
 
@@ -57,14 +61,9 @@ describe('SEND PASSWORD RESET async action creator', () => {
 
     describe('When reset password is successful', () => {
         beforeEach(() => {
-            SendPasswordReset.__Rewire__('request', {
-                post: function(endpoint) { return this; },
-                send: function(data) { return this },
-                set: function(key, value) { return this },
-                end: (fn) => {
-                    fn(null, { status: 200 });
-                }
-            });
+            request.end = (fn) => {
+                fn(null, { status: 200 });
+            };
             sendPasswordReset(email)(dispatch);
         });
 
@@ -79,19 +78,14 @@ describe('SEND PASSWORD RESET async action creator', () => {
 
     describe('Given the email is valid, When resend email verification is unsuccessful', () => {
         beforeEach(() => {
-            SendPasswordReset.__Rewire__('request', {
-                post: function(endpoint) { return this; },
-                send: function(data) { return this },
-                set: function(key, value) { return this },
-                end: (fn) => {
-                    fn(null, {
-                        status: 500,
-                        body: {
-                            invalidEmail: false
-                        }
-                    });
-                }
-            });
+            request.end = (fn) => {
+                fn(null, {
+                    status: 500,
+                    body: {
+                        invalidEmail: false
+                    }
+                });
+            };
             sendPasswordReset(email)(dispatch);
         });
 
@@ -102,19 +96,14 @@ describe('SEND PASSWORD RESET async action creator', () => {
 
     describe('Given the email is invalid, When resend email verification is unsuccessful', () => {
         beforeEach(() => {
-            SendPasswordReset.__Rewire__('request', {
-                post: function(endpoint) { return this; },
-                send: function(data) { return this },
-                set: function(key, value) { return this },
-                end: (fn) => {
-                    fn(null, {
-                        status: 500,
-                        body: {
-                            invalidEmail: true
-                        }
-                    });
-                }
-            });
+            request.end = (fn) => {
+                fn(null, {
+                    status: 500,
+                    body: {
+                        invalidEmail: true
+                    }
+                });
+            };
             sendPasswordReset(email)(dispatch);
         });
 

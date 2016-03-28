@@ -1,41 +1,47 @@
 import expect from 'expect';
-import ResendEmailVerification from './resendEmailVerification';
-import { resendEmailVerification, __RewireAPI__ as resendEmailVerificationRewireAPI } from './resendEmailVerification';
+import { resendEmailVerification, __RewireAPI__ } from './resendEmailVerification';
 
 describe('RESEND EMAIL VERIFICATION async action creator', () => {
-
-    let dispatch, id;
-    let post, send, set;
+    let dispatch;
+    let id;
+    let post;
+    let send;
+    let set;
+    let request;
     beforeEach(() => {
-       dispatch = expect.createSpy();
+        dispatch = expect.createSpy();
         id = 100;
 
-        ResendEmailVerification.__Rewire__('resendEmailVerificationRequest', () => 1);
-        ResendEmailVerification.__Rewire__('resendEmailVerificationSuccess', () => 2);
-        ResendEmailVerification.__Rewire__('resendEmailVerificationFailed', () => 3);
-        ResendEmailVerification.__Rewire__('resendEmailVerificationClear', () => 4);
+        __RewireAPI__.__Rewire__('resendEmailVerificationRequest', () => 1);
+        __RewireAPI__.__Rewire__('resendEmailVerificationSuccess', () => 2);
+        __RewireAPI__.__Rewire__('resendEmailVerificationFailed', () => 3);
+        __RewireAPI__.__Rewire__('resendEmailVerificationClear', () => 4);
+
+        request = __RewireAPI__.__Rewire__('request', {
+            post: function() {
+                return this;
+            },
+            send: function() {
+                return this;
+            },
+            set: function() {
+                return this;
+            }
+        });
+        post = expect.spyOn(request, 'post').andCallThrough();
+        send = expect.spyOn(request, 'send').andCallThrough();
+        set = expect.spyOn(request, 'set').andCallThrough();
     });
 
     it('should be a function', () => {
-       expect(resendEmailVerification()).toBeA('function')
+        expect(resendEmailVerification()).toBeA('function');
     });
 
     describe('Given a request is made to get resend email verification', () => {
-
         beforeEach(() => {
-            let request = ResendEmailVerification.__Rewire__('request', {
-                post: function(endpoint) { return this; },
-                send: function(data) { return this },
-                set: function(key, value) { return this },
-                end: (fn) => {
-                    fn(null, { status: 200 });
-                }
-            });
-
-            post = expect.spyOn(request, 'post').andCallThrough();
-            send = expect.spyOn(request, 'send').andCallThrough();
-            set = expect.spyOn(request, 'set').andCallThrough();
-
+            request.end = fn => {
+                fn(null, { status: 200 });
+            };
             resendEmailVerification(id)(dispatch);
         });
 
@@ -55,14 +61,9 @@ describe('RESEND EMAIL VERIFICATION async action creator', () => {
 
     describe('When resend email verification is successful', () => {
         beforeEach(() => {
-            ResendEmailVerification.__Rewire__('request', {
-                post: function(endpoint) { return this; },
-                send: function(data) { return this },
-                set: function(key, value) { return this },
-                end: (fn) => {
-                    fn(null, { status: 200 });
-                }
-            });
+            request.end = fn => {
+                fn(null, { status: 200 });
+            };
             resendEmailVerification(id)(dispatch);
         });
 
@@ -77,14 +78,9 @@ describe('RESEND EMAIL VERIFICATION async action creator', () => {
 
     describe('When resend email verification is unsuccessful', () => {
         beforeEach(() => {
-            ResendEmailVerification.__Rewire__('request', {
-                post: function(endpoint) { return this; },
-                send: function(data) { return this },
-                set: function(key, value) { return this },
-                end: (fn) => {
-                    fn(null, { status: 500 });
-                }
-            });
+            request.end = fn => {
+                fn(null, { status: 500 });
+            };
             resendEmailVerification(id)(dispatch);
         });
 
@@ -96,5 +92,4 @@ describe('RESEND EMAIL VERIFICATION async action creator', () => {
             expect(dispatch).toHaveBeenCalledWith(3);
         });
     });
-
 });

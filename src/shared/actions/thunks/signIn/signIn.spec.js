@@ -1,11 +1,13 @@
 import expect from 'expect';
-import SignIn from './signIn';
-import { signIn, __RewireAPI__ as signInRewireAPI } from './signIn';
+import { signIn, __RewireAPI__ } from './signIn';
 
 describe('SIGN_IN async action creator', () => {
-
-    let dispatch, user;
-    let post, send, set;
+    let dispatch;
+    let user;
+    let post;
+    let send;
+    let set;
+    let request;
     beforeEach(() => {
         dispatch = expect.createSpy();
         user = {
@@ -13,35 +15,38 @@ describe('SIGN_IN async action creator', () => {
             password: 'password'
         };
 
-        SignIn.__Rewire__('isValidUsername', () => true);
-        SignIn.__Rewire__('isValidPassword', () => true);
-        SignIn.__Rewire__('requestSignIn', () => 1);
-        SignIn.__Rewire__('signinFormError', () => 2);
-        SignIn.__Rewire__('receiveSignIn', () => 3);
-        SignIn.__Rewire__('push', () => 4);
+        __RewireAPI__.__Rewire__('isValidUsername', () => true);
+        __RewireAPI__.__Rewire__('isValidPassword', () => true);
+        __RewireAPI__.__Rewire__('requestSignIn', () => 1);
+        __RewireAPI__.__Rewire__('signinFormError', () => 2);
+        __RewireAPI__.__Rewire__('receiveSignIn', () => 3);
+        __RewireAPI__.__Rewire__('push', () => 4);
+
+        request = __RewireAPI__.__Rewire__('request', {
+            post: function() {
+                return this;
+            },
+            send: function() {
+                return this;
+            },
+            set: function() {
+                return this;
+            }
+        });
+        post = expect.spyOn(request, 'post').andCallThrough();
+        send = expect.spyOn(request, 'send').andCallThrough();
+        set = expect.spyOn(request, 'set').andCallThrough();
     });
 
     it('should be a function', () => {
-       expect(signIn()).toBeA('function')
+        expect(signIn()).toBeA('function');
     });
 
-
     describe('Given a request is made to sign in', () => {
-
         beforeEach(() => {
-            let request = SignIn.__Rewire__('request', {
-                post: function(endpoint) { return this; },
-                send: function(data) { return this },
-                set: function(key, value) { return this },
-                end: (fn) => {
-                    fn(null, { status: 200 });
-                }
-            });
-
-            post = expect.spyOn(request, 'post').andCallThrough();
-            send = expect.spyOn(request, 'send').andCallThrough();
-            set = expect.spyOn(request, 'set').andCallThrough();
-
+            request.end = fn => {
+                fn(null, { status: 200 });
+            };
             signIn(user)(dispatch);
         });
 
@@ -61,14 +66,9 @@ describe('SIGN_IN async action creator', () => {
 
     describe('Signing in is successful', () => {
         beforeEach(() => {
-            let request = SignIn.__Rewire__('request', {
-                post: function(endpoint) { return this; },
-                send: function(data) { return this },
-                set: function(key, value) { return this },
-                end: (fn) => {
-                    fn(null, { status: 200 });
-                }
-            });
+            request.end = fn => {
+                fn(null, { status: 200 });
+            };
             signIn(user)(dispatch);
         });
 
@@ -83,14 +83,9 @@ describe('SIGN_IN async action creator', () => {
 
     describe('Signing in is unsuccessful', () => {
         beforeEach(() => {
-            let request = SignIn.__Rewire__('request', {
-                post: function(endpoint) { return this; },
-                send: function(data) { return this },
-                set: function(key, value) { return this },
-                end: (fn) => {
-                    fn(null, { status: 500, text: '{"field": "username", "error": "message"}' });
-                }
-            });
+            request.end = fn => {
+                fn(null, { status: 500, text: '{"field": "username", "error": "message"}' });
+            };
             signIn(user)(dispatch);
         });
 
@@ -105,7 +100,7 @@ describe('SIGN_IN async action creator', () => {
 
     describe('Given an invalid username', () => {
         beforeEach(() => {
-            SignIn.__Rewire__('isValidUsername', () => false);
+            __RewireAPI__.__Rewire__('isValidUsername', () => false);
             signIn(user)(dispatch);
         });
 
@@ -120,7 +115,7 @@ describe('SIGN_IN async action creator', () => {
 
     describe('Given an invalid password', () => {
         beforeEach(() => {
-            SignIn.__Rewire__('isValidPassword', () => false);
+            __RewireAPI__.__Rewire__('isValidPassword', () => false);
             signIn(user)(dispatch);
         });
 

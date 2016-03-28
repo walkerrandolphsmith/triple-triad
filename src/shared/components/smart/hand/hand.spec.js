@@ -9,7 +9,6 @@ expect.extend(expectJSX);
 
 describe('HAND component', () => {
     let renderer;
-    let Card;
     beforeEach(() => {
         renderer = createRenderer();
     });
@@ -42,11 +41,10 @@ describe('HAND component', () => {
             const expectedElement = (
                 <div className="hand">
                     <div className="score">{props.score}</div>
-                    <Card card={new Map({id: 12, name: 'back', owner: 1, boardIndex: -1})}
-                        cardStyle={{cursor: 'pointer'}}
-                        classes="selected"
-                        clickAction={() => {}}>
-                    </Card>
+                    <Card card={new Map({ id: 12, name: 'back', owner: 1, boardIndex: -1 })}
+                        cardStyle={{ cursor: 'pointer' }}
+                        classes='selected'
+                        clickAction={() => {}} />
                 </div>
             );
             expect(actualElement).toEqualJSX(expectedElement);
@@ -59,7 +57,7 @@ describe('HAND component', () => {
             props = {
                 score: 10,
                 cards: new List([
-                    new Map({id: 12, name: 'Cloud', owner: 1, boardIndex: -1})
+                    new Map({ id: 12, name: 'Cloud', owner: 1, boardIndex: -1 })
                 ]),
                 selectedCard: 12,
                 showBack: false
@@ -81,10 +79,9 @@ describe('HAND component', () => {
                 <div className="hand">
                     <div className="score">{props.score}</div>
                     <Card card={props.cards.get(0)}
-                        cardStyle={{cursor: 'pointer'}}
-                        classes="selected"
-                        clickAction={() => {}}>
-                    </Card>
+                        cardStyle={{ cursor: 'pointer' }}
+                        classes='selected'
+                        clickAction={() => {}} />
                 </div>
             );
             expect(actualElement).toEqualJSX(expectedElement);
@@ -97,7 +94,7 @@ describe('HAND component', () => {
             props = {
                 score: 10,
                 cards: new List([
-                    new Map({id: 12, name: 'Cloud', owner: 2, boardIndex: -1})
+                    new Map({ id: 12, name: 'Cloud', owner: 2, boardIndex: -1 })
                 ]),
                 selectedCard: 12,
                 showBack: false
@@ -119,10 +116,9 @@ describe('HAND component', () => {
                 <div className="hand">
                     <div className="score">{props.score}</div>
                     <Card card={props.cards.get(0)}
-                        cardStyle={{cursor: 'default'}}
-                        classes="selected"
-                        clickAction={() => {}}>
-                    </Card>
+                        cardStyle={{ cursor: 'default' }}
+                        classes='selected'
+                        clickAction={() => {}} />
                 </div>
             );
             expect(actualElement).toEqualJSX(expectedElement);
@@ -135,8 +131,8 @@ describe('HAND component', () => {
             props = {
                 score: 10,
                 cards: new List([
-                    new Map({id: 12, name: 'Cloud', owner: 2, boardIndex: -1}),
-                    new Map({id: 2, name: 'Cloud', owner: 2, boardIndex: -1})
+                    new Map({ id: 12, name: 'Cloud', owner: 2, boardIndex: -1 }),
+                    new Map({ id: 2, name: 'Cloud', owner: 2, boardIndex: -1 })
                 ]),
                 selectedCard: 12,
                 showBack: false
@@ -158,15 +154,13 @@ describe('HAND component', () => {
                 <div className="hand">
                     <div className="score">{props.score}</div>
                     <Card card={props.cards.get(0)}
-                        cardStyle={{cursor: 'default'}}
-                        classes="selected"
-                        clickAction={() => {}}>
-                    </Card>
+                        cardStyle={{ cursor: 'default' }}
+                        classes='selected'
+                        clickAction={() => {}} />
                     <Card card={props.cards.get(1)}
-                        cardStyle={{cursor: 'default'}}
-                        classes=""
-                        clickAction={() => {}}>
-                    </Card>
+                        cardStyle={{ cursor: 'default' }}
+                        classes=''
+                        clickAction={() => {}} />
                 </div>
             );
             expect(actualElement).toEqualJSX(expectedElement);

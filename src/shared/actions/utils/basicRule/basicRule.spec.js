@@ -3,13 +3,17 @@ import { Map, List } from 'immutable';
 import { basicRule } from './basicRule';
 
 describe('BASIC RULE utility', () => {
-
-    let index, player, opponent, card;
+    let index;
+    let player;
+    let opponent;
+    let card;
+    let game;
+    let deck;
     beforeEach(() => {
         index = 4;
         player = 1;
         opponent = 2;
-        card = new Map({ boardIndex: 4, owner:  player, rank: new Map({ left: 4, top: 4, right: 5, bottom: 5}) });
+        card = new Map({ boardIndex: 4, owner: player, rank: new Map({ left: 4, top: 4, right: 5, bottom: 5 }) });
     });
 
     it('should be a function', () => {
@@ -17,12 +21,10 @@ describe('BASIC RULE utility', () => {
     });
 
     describe('Given you place the first card', () => {
-
-        let game;
         beforeEach(() => {
-            let deck = [card];
+            deck = [card];
             game = new Map({
-                deck : new List(deck)
+                deck: new List(deck)
             });
         });
 
@@ -32,13 +34,11 @@ describe('BASIC RULE utility', () => {
     });
 
     describe('Given one adjacent card with no flips', () => {
-
-        let game;
         beforeEach(() => {
-            let adjacentCard = new Map({ boardIndex: 3, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 4, bottom: 5}) });
-            let deck = [adjacentCard, card];
+            let adjacentCard = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 4, bottom: 5 }) });
+            deck = [adjacentCard, card];
             game = new Map({
-                deck : new List(deck)
+                deck: new List(deck)
             });
         });
 
@@ -48,52 +48,45 @@ describe('BASIC RULE utility', () => {
     });
 
     describe('Given one adjacent card where you flip', () => {
-
-        let game;
         beforeEach(() => {
-            let adjacentCard = new Map({ boardIndex: 3, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 3, bottom: 5}) });
-            let deck = [adjacentCard, card];
+            let adjacentCard = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 3, bottom: 5 }) });
+            deck = [adjacentCard, card];
             game = new Map({
-                deck : new List(deck)
+                deck: new List(deck)
             });
         });
 
         it('should contain a tuple with index of card to flip and player owner', () => {
             let expected = [
-                {index: 3, owner: player}
+                { index: 3, owner: player }
             ];
-
             expect(basicRule(index, game)) .toEqual(expected);
         });
     });
 
     describe('Given one adjacent card where you get flipped', () => {
-
-        let game;
         beforeEach(() => {
-            let adjacentCard = new Map({ boardIndex: 3, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 6, bottom: 5}) });
-            let deck = [adjacentCard, card];
+            let adjacentCard = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 6, bottom: 5 }) });
+            deck = [adjacentCard, card];
             game = new Map({
-                deck : new List(deck)
+                deck: new List(deck)
             });
         });
 
         it('should contain a tuple with the index of your card and opponent owner', () => {
             expect(basicRule(index, game)) .toEqual([
-                {index: index, owner: opponent}
+                { index: index, owner: opponent }
             ]);
         });
     });
 
     describe('Given two adjacent cards with no flips', () => {
-
-        let game;
         beforeEach(() => {
-            let adjacentCardOne = new Map({ boardIndex: 3, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 4, bottom: 5}) });
-            let adjacentCardTwo = new Map({ boardIndex: 5, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 5, bottom: 5}) });
-            let deck = [adjacentCardOne, card, adjacentCardTwo];
+            let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 4, bottom: 5 }) });
+            let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5 }) });
+            deck = [adjacentCardOne, card, adjacentCardTwo];
             game = new Map({
-                deck : new List(deck)
+                deck: new List(deck)
             });
         });
 
@@ -103,93 +96,83 @@ describe('BASIC RULE utility', () => {
     });
 
     describe('Given two adjacent cards where you flip one', () => {
-
-        let game;
         beforeEach(() => {
-            let adjacentCardOne = new Map({ boardIndex: 3, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 3, bottom: 5}) });
-            let adjacentCardTwo = new Map({ boardIndex: 5, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 5, bottom: 5}) });
-            let deck = [adjacentCardOne, card, adjacentCardTwo];
+            let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 3, bottom: 5 }) });
+            let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5 }) });
+            deck = [adjacentCardOne, card, adjacentCardTwo];
             game = new Map({
-                deck : new List(deck)
+                deck: new List(deck)
             });
         });
 
         it('should contain a tuple with the index of card to flip and player owner', () => {
             expect(basicRule(index, game)) .toEqual([
-                {index: 3, owner: player}
+                { index: 3, owner: player }
             ]);
         });
     });
 
     describe('Given two adjacent cards where you flip two', () => {
-
-        let game;
         beforeEach(() => {
-            let adjacentCardOne = new Map({ boardIndex: 3, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 3, bottom: 5}) });
-            let adjacentCardTwo = new Map({ boardIndex: 5, owner:  opponent, rank: new Map ({ left: 4, top: 5, right: 5, bottom: 5}) });
-            let deck = [adjacentCardOne, card, adjacentCardTwo];
+            let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 3, bottom: 5 }) });
+            let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 4, top: 5, right: 5, bottom: 5 }) });
+            deck = [adjacentCardOne, card, adjacentCardTwo];
             game = new Map({
-                deck : new List(deck)
+                deck: new List(deck)
             });
         });
 
         it('should contain two tuples with the index of first and second card to flip and player owner', () => {
             expect(basicRule(index, game)) .toEqual([
-                {index: 3, owner: player},
-                {index: 5, owner: player}
+                { index: 3, owner: player },
+                { index: 5, owner: player }
             ]);
         });
     });
 
     describe('Given two adjacent cards where you flip one and get flipped', () => {
-
-        let game;
         beforeEach(() => {
-            let adjacentCardOne = new Map({ boardIndex: 3, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 3, bottom: 5}) });
-            let adjacentCardTwo = new Map({ boardIndex: 5, owner:  opponent, rank: new Map ({ left: 6, top: 5, right: 5, bottom: 5}) });
-            let deck = [adjacentCardOne, card, adjacentCardTwo];
+            let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 3, bottom: 5 }) });
+            let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 6, top: 5, right: 5, bottom: 5 }) });
+            deck = [adjacentCardOne, card, adjacentCardTwo];
             game = new Map({
-                deck : new List(deck)
+                deck: new List(deck)
             });
         });
 
         it('should contain two tuples with the index, owner of first card to flip and the placed cards index,owner ', () => {
             expect(basicRule(index, game)) .toEqual([
-                {index: 3, owner: player},
-                {index: index, owner: opponent}
+                { index: 3, owner: player },
+                { index: index, owner: opponent }
             ]);
         });
     });
 
     describe('Given two adjacent cards where you only get flipped', () => {
-
-        let game;
         beforeEach(() => {
-            let adjacentCardOne = new Map({ boardIndex: 3, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 6, bottom: 5}) });
-            let adjacentCardTwo = new Map({ boardIndex: 5, owner:  opponent, rank: new Map ({ left: 6, top: 5, right: 5, bottom: 5}) });
-            let deck = [adjacentCardOne, card, adjacentCardTwo];
+            let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 6, bottom: 5 }) });
+            let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 6, top: 5, right: 5, bottom: 5 }) });
+            deck = [adjacentCardOne, card, adjacentCardTwo];
             game = new Map({
-                deck : new List(deck)
+                deck: new List(deck)
             });
         });
 
         it('should contain a tuple with the placed cards index,owner', () => {
             expect(basicRule(index, game)) .toEqual([
-                {index: index, owner: opponent}
+                { index: index, owner: opponent }
             ]);
         });
     });
 
     describe('Given three adjacent cards with no flips', () => {
-
-        let game;
         beforeEach(() => {
-            let adjacentCardOne = new Map({ boardIndex: 3, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 4, bottom: 5}) });
-            let adjacentCardTwo = new Map({ boardIndex: 5, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 5, bottom: 5}) });
-            let adjacentCardThree = new Map({ boardIndex: 1, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 5, bottom: 4}) });
-            let deck = [adjacentCardThree,  adjacentCardOne, card, adjacentCardTwo];
+            let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 4, bottom: 5 }) });
+            let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5 }) });
+            let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 4 }) });
+            deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo];
             game = new Map({
-                deck : new List(deck)
+                deck: new List(deck)
             });
         });
 
@@ -199,33 +182,29 @@ describe('BASIC RULE utility', () => {
     });
 
     describe('Given three adjacent cards where you flip one', () => {
-
-        let game;
         beforeEach(() => {
-            let adjacentCardOne = new Map({ boardIndex: 3, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 3, bottom: 5}) });
-            let adjacentCardTwo = new Map({ boardIndex: 5, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 5, bottom: 5}) });
-            let adjacentCardThree = new Map({ boardIndex: 1, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 5, bottom: 4}) });
-            let deck = [adjacentCardThree,  adjacentCardOne, card, adjacentCardTwo];
+            let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 3, bottom: 5 }) });
+            let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5 }) });
+            let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 4 }) });
+            deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo];
             game = new Map({
-                deck : new List(deck)
+                deck: new List(deck)
             });
         });
 
         it('should contain a tuple with the index, owner of the card to flip', () => {
             expect(basicRule(index, game)) .toEqual([
-                {index: 3, owner: player}
+                { index: 3, owner: player }
             ]);
         });
     });
 
     describe('Given three adjacent cards where you flip two', () => {
-
-        let game;
         beforeEach(() => {
-            let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map ({left: 5, top: 5, right: 3, bottom: 5}) });
-            let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map ({left: 4, top: 5, right: 5, bottom: 5}) });
-            let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map ({left: 5, top: 5, right: 5, bottom: 4}) });
-            let deck = [adjacentCardThree,  adjacentCardOne, card, adjacentCardTwo];
+            let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 3, bottom: 5 }) });
+            let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 4, top: 5, right: 5, bottom: 5 }) });
+            let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 4 }) });
+            deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo];
             game = new Map({
                 deck: new List(deck)
             });
@@ -233,109 +212,99 @@ describe('BASIC RULE utility', () => {
 
         it('should contain two tuples with the index, owner of first and second card to flip', () => {
             expect(basicRule(index, game)).toEqual([
-                {index: 3, owner: player},
-                {index: 5, owner: player}
+                { index: 3, owner: player },
+                { index: 5, owner: player }
             ]);
         });
     });
 
 
     describe('Given three adjacent cards where you flip three', () => {
-
-        let game;
         beforeEach(() => {
-            let adjacentCardOne = new Map({ boardIndex: 3, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 3, bottom: 5}) });
-            let adjacentCardTwo = new Map({ boardIndex: 5, owner:  opponent, rank: new Map ({ left: 3, top: 5, right: 5, bottom: 5}) });
-            let adjacentCardThree = new Map({ boardIndex: 1, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 5, bottom: 3}) });
-            let deck = [adjacentCardThree,  adjacentCardOne, card, adjacentCardTwo];
+            let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 3, bottom: 5 }) });
+            let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 3, top: 5, right: 5, bottom: 5 }) });
+            let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 3 }) });
+            deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo];
             game = new Map({
-                deck : new List(deck)
+                deck: new List(deck)
             });
         });
 
         it('should contain two tuples with the index, owner of first, second, and third card to flip', () => {
             expect(basicRule(index, game)) .toEqual([
-                {index: 1, owner: player},
-                {index: 3, owner: player},
-                {index: 5, owner: player}
+                { index: 1, owner: player },
+                { index: 3, owner: player },
+                { index: 5, owner: player }
             ]);
         });
     });
 
     describe('Given three adjacent cards where you flip one and you get flipped', () => {
-
-        let game;
         beforeEach(() => {
-            let adjacentCardOne = new Map({ boardIndex: 3, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 3, bottom: 5}) });
-            let adjacentCardTwo = new Map({ boardIndex: 5, owner:  opponent, rank: new Map ({ left: 6, top: 5, right: 5, bottom: 5}) });
-            let adjacentCardThree = new Map({ boardIndex: 1, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 5, bottom: 4}) });
-            let deck = [adjacentCardThree,  adjacentCardOne, card, adjacentCardTwo];
+            let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 3, bottom: 5 }) });
+            let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 6, top: 5, right: 5, bottom: 5 }) });
+            let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 4 }) });
+            deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo];
             game = new Map({
-                deck : new List(deck)
+                deck: new List(deck)
             });
         });
 
         it('should contain two tuples with the index, owner of first card to flip and the placed cards index,owner', () => {
             expect(basicRule(index, game)) .toEqual([
-                {index: 3, owner: player},
-                {index: index, owner: opponent}
+                { index: 3, owner: player },
+                { index: index, owner: opponent }
             ]);
         });
     });
 
     describe('Given three adjacent cards where you flip two and you get flipped', () => {
-
-        let game;
         beforeEach(() => {
-            let adjacentCardOne = new Map({ boardIndex: 3, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 3, bottom: 5}) });
-            let adjacentCardTwo = new Map({ boardIndex: 5, owner:  opponent, rank: new Map ({ left: 4, top: 5, right: 5, bottom: 5}) });
-            let adjacentCardThree = new Map({ boardIndex: 1, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 5, bottom: 6}) });
-            let deck = [adjacentCardThree,  adjacentCardOne, card, adjacentCardTwo];
+            let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 3, bottom: 5 }) });
+            let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 4, top: 5, right: 5, bottom: 5 }) });
+            let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 6 }) });
+            deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo];
             game = new Map({
-                deck : new List(deck)
+                deck: new List(deck)
             });
         });
 
         it('should contain three tuples with the index, owner of first and second card to flip and the placed cards index,owner', () => {
             expect(basicRule(index, game)) .toEqual([
-                {index: 3, owner: player},
-                {index: 5, owner: player},
-                {index: index, owner: opponent}
+                { index: 3, owner: player },
+                { index: 5, owner: player },
+                { index: index, owner: opponent }
             ]);
         });
     });
 
     describe('Given three adjacent cards where you only get flipped', () => {
-
-        let game;
         beforeEach(() => {
-            let adjacentCardOne = new Map({ boardIndex: 3, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 5, bottom: 5}) });
-            let adjacentCardTwo = new Map({ boardIndex: 5, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 5, bottom: 5}) });
-            let adjacentCardThree = new Map({ boardIndex: 1, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 5, bottom: 6}) });
-            let deck = [adjacentCardThree,  adjacentCardOne, card, adjacentCardTwo];
+            let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5 }) });
+            let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5 }) });
+            let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 6 }) });
+            deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo];
             game = new Map({
-                deck : new List(deck)
+                deck: new List(deck)
             });
         });
 
         it('should contain a tuple with the index, owner of the placed card', () => {
             expect(basicRule(index, game)) .toEqual([
-                {index: index, owner: opponent}
+                { index: index, owner: opponent }
             ]);
         });
     });
 
     describe('Given four adjacent cards with no flips', () => {
-
-        let game;
         beforeEach(() => {
-            let adjacentCardOne = new Map({ boardIndex: 3, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 4, bottom: 5}) });
-            let adjacentCardTwo = new Map({ boardIndex: 5, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 5, bottom: 5}) });
-            let adjacentCardThree = new Map({ boardIndex: 1, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 5, bottom: 4}) });
-            let adjacentCardFour = new Map({ boardIndex: 7, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 5, bottom: 5}) });
-            let deck = [adjacentCardThree,  adjacentCardOne, card, adjacentCardTwo,  adjacentCardFour];
+            let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 4, bottom: 5 }) });
+            let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5 }) });
+            let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 4 }) });
+            let adjacentCardFour = new Map({ boardIndex: 7, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5 }) });
+            deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo, adjacentCardFour];
             game = new Map({
-                deck : new List(deck)
+                deck: new List(deck)
             });
         });
 
@@ -344,185 +313,168 @@ describe('BASIC RULE utility', () => {
         });
     });
     describe('Given four adjacent cards where you flip one', () => {
-
-        let game;
         beforeEach(() => {
-            let adjacentCardOne = new Map({ boardIndex: 3, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 3, bottom: 5}) });
-            let adjacentCardTwo = new Map({ boardIndex: 5, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 5, bottom: 5}) });
-            let adjacentCardThree = new Map({ boardIndex: 1, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 5, bottom: 4}) });
-            let adjacentCardFour = new Map({ boardIndex: 7, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 5, bottom: 5}) });
-            let deck = [adjacentCardThree,  adjacentCardOne, card, adjacentCardTwo,  adjacentCardFour];
+            let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 3, bottom: 5 }) });
+            let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5 }) });
+            let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 4 }) });
+            let adjacentCardFour = new Map({ boardIndex: 7, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5 }) });
+            deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo, adjacentCardFour];
             game = new Map({
-                deck : new List(deck)
+                deck: new List(deck)
             });
         });
 
         it('should contain a tuple with the index, owner of first card to flip', () => {
             expect(basicRule(index, game)) .toEqual([
-                {index: 3, owner: player}
+                { index: 3, owner: player }
             ]);
         });
     });
 
     describe('Given four adjacent cards where you flip two', () => {
-
-        let game;
         beforeEach(() => {
-            let adjacentCardOne = new Map({ boardIndex: 3, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 3, bottom: 5}) });
-            let adjacentCardTwo = new Map({ boardIndex: 5, owner:  opponent, rank: new Map ({ left: 4, top: 5, right: 5, bottom: 5}) });
-            let adjacentCardThree = new Map({ boardIndex: 1, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 5, bottom: 4}) });
-            let adjacentCardFour = new Map({ boardIndex: 7, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 5, bottom: 5}) });
-            let deck = [adjacentCardThree,  adjacentCardOne, card, adjacentCardTwo,  adjacentCardFour];
+            let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 3, bottom: 5 }) });
+            let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 4, top: 5, right: 5, bottom: 5 }) });
+            let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 4 }) });
+            let adjacentCardFour = new Map({ boardIndex: 7, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5 }) });
+            deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo, adjacentCardFour];
             game = new Map({
-                deck : new List(deck)
+                deck: new List(deck)
             });
         });
 
         it('should contain two tuples with the index, owner of first and second card to flip', () => {
             expect(basicRule(index, game)) .toEqual([
-                {index: 3, owner: player},
-                {index: 5, owner: player}
+                { index: 3, owner: player },
+                { index: 5, owner: player }
             ]);
         });
     });
 
 
     describe('Given three adjacent cards where you flip three', () => {
-
-        let game;
         beforeEach(() => {
-            let adjacentCardOne = new Map({ boardIndex: 3, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 3, bottom: 5}) });
-            let adjacentCardTwo = new Map({ boardIndex: 5, owner:  opponent, rank: new Map ({ left: 4, top: 5, right: 5, bottom: 5}) });
-            let adjacentCardThree = new Map({ boardIndex: 1, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 5, bottom: 3}) });
-            let adjacentCardFour = new Map({ boardIndex: 7, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 5, bottom: 5}) });
-            let deck = [adjacentCardThree,  adjacentCardOne, card, adjacentCardTwo,  adjacentCardFour];
+            let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 3, bottom: 5 }) });
+            let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 4, top: 5, right: 5, bottom: 5 }) });
+            let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 3 }) });
+            let adjacentCardFour = new Map({ boardIndex: 7, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5 }) });
+            deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo, adjacentCardFour];
             game = new Map({
-                deck : new List(deck)
+                deck: new List(deck)
             });
         });
 
         it('should contain three tuples with the index, owner of first, second, and third card to flip', () => {
             expect(basicRule(index, game)) .toEqual([
-                {index: 1, owner: player},
-                {index: 3, owner: player},
-                {index: 5, owner: player}
+                { index: 1, owner: player },
+                { index: 3, owner: player },
+                { index: 5, owner: player }
             ]);
         });
     });
 
     describe('Given three adjacent cards where you flip four', () => {
-
-        let game;
         beforeEach(() => {
-            let adjacentCardOne = new Map({ boardIndex: 3, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 3, bottom: 5}) });
-            let adjacentCardTwo = new Map({ boardIndex: 5, owner:  opponent, rank: new Map ({ left: 4, top: 5, right: 5, bottom: 5}) });
-            let adjacentCardThree = new Map({ boardIndex: 1, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 5, bottom: 3}) });
-            let adjacentCardFour = new Map({ boardIndex: 7, owner:  opponent, rank: new Map ({ left: 5, top: 4, right: 5, bottom: 5}) });
-            let deck = [adjacentCardThree,  adjacentCardOne, card, adjacentCardTwo,  adjacentCardFour];
+            let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 3, bottom: 5 }) });
+            let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 4, top: 5, right: 5, bottom: 5 }) });
+            let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 3 }) });
+            let adjacentCardFour = new Map({ boardIndex: 7, owner: opponent, rank: new Map({ left: 5, top: 4, right: 5, bottom: 5 }) });
+            deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo, adjacentCardFour];
             game = new Map({
-                deck : new List(deck)
+                deck: new List(deck)
             });
         });
 
         it('should contain two tuples with the index, owner of first, second, third, and forth card to flip', () => {
             expect(basicRule(index, game)).toEqual([
-                {index: 1, owner: player},
-                {index: 3, owner: player},
-                {index: 5, owner: player},
-                {index: 7, owner: player}
+                { index: 1, owner: player },
+                { index: 3, owner: player },
+                { index: 5, owner: player },
+                { index: 7, owner: player }
             ]);
         });
     });
 
     describe('Given four adjacent cards where you flip one and you get flipped', () => {
-
-        let game;
         beforeEach(() => {
-            let adjacentCardOne = new Map({ boardIndex: 3, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 3, bottom: 5}) });
-            let adjacentCardTwo = new Map({ boardIndex: 5, owner:  opponent, rank: new Map ({ left: 6, top: 5, right: 5, bottom: 5}) });
-            let adjacentCardThree = new Map({ boardIndex: 1, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 5, bottom: 4}) });
-            let adjacentCardFour = new Map({ boardIndex: 7, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 5, bottom: 5}) });
-            let deck = [adjacentCardThree,  adjacentCardOne, card, adjacentCardTwo,  adjacentCardFour];
+            let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 3, bottom: 5 }) });
+            let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 6, top: 5, right: 5, bottom: 5 }) });
+            let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 4 }) });
+            let adjacentCardFour = new Map({ boardIndex: 7, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5 }) });
+            deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo, adjacentCardFour];
             game = new Map({
-                deck : new List(deck)
+                deck: new List(deck)
             });
         });
 
         it('should contain two tuples with the index, owner of first card to flip and the index,owner of the card placed', () => {
             expect(basicRule(index, game)) .toEqual([
-                {index: 3, owner: player},
-                {index: index, owner: opponent}
+                { index: 3, owner: player },
+                { index: index, owner: opponent }
             ]);
         });
     });
 
     describe('Given four adjacent cards where you flip two and you get flipped', () => {
-
-        let game;
         beforeEach(() => {
-            let adjacentCardOne = new Map({ boardIndex: 3, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 3, bottom: 5}) });
-            let adjacentCardTwo = new Map({ boardIndex: 5, owner:  opponent, rank: new Map ({ left: 4, top: 5, right: 5, bottom: 5}) });
-            let adjacentCardThree = new Map({ boardIndex: 1, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 5, bottom: 6}) });
-            let adjacentCardFour = new Map({ boardIndex: 7, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 5, bottom: 5}) });
-            let deck = [adjacentCardThree,  adjacentCardOne, card, adjacentCardTwo,  adjacentCardFour];
+            let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 3, bottom: 5 }) });
+            let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 4, top: 5, right: 5, bottom: 5 }) });
+            let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 6 }) });
+            let adjacentCardFour = new Map({ boardIndex: 7, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5 }) });
+            deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo, adjacentCardFour];
             game = new Map({
-                deck : new List(deck)
+                deck: new List(deck)
             });
         });
 
         it('should contain three tuples with the index, owner of first and second card to flip and the index,owner of the card placed', () => {
             expect(basicRule(index, game)) .toEqual([
-                {index: 3, owner: player},
-                {index: 5, owner: player},
-                {index: index, owner: opponent}
+                { index: 3, owner: player },
+                { index: 5, owner: player },
+                { index: index, owner: opponent }
             ]);
         });
     });
 
 
     describe('Given four adjacent cards where you flip three and you get flipped', () => {
-
-        let game;
         beforeEach(() => {
-            let adjacentCardOne = new Map({ boardIndex: 3, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 3, bottom: 5}) });
-            let adjacentCardTwo = new Map({ boardIndex: 5, owner:  opponent, rank: new Map ({ left: 4, top: 5, right: 5, bottom: 5}) });
-            let adjacentCardThree = new Map({ boardIndex: 1, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 5, bottom: 3}) });
-            let adjacentCardFour = new Map({ boardIndex: 7, owner:  opponent, rank: new Map ({ left: 5, top: 6, right: 5, bottom: 5}) });
-            let deck = [adjacentCardThree,  adjacentCardOne, card, adjacentCardTwo,  adjacentCardFour];
+            let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 3, bottom: 5 }) });
+            let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 4, top: 5, right: 5, bottom: 5 }) });
+            let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 3 }) });
+            let adjacentCardFour = new Map({ boardIndex: 7, owner: opponent, rank: new Map({ left: 5, top: 6, right: 5, bottom: 5 }) });
+            deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo, adjacentCardFour];
             game = new Map({
-                deck : new List(deck)
+                deck: new List(deck)
             });
         });
 
         it('should contain two tuples with the index, owner of first, second, and third card to flip and the index,owner of the card placed', () => {
             expect(basicRule(index, game)) .toEqual([
-                {index: 1, owner: player},
-                {index: 3, owner: player},
-                {index: 5, owner: player},
-                {index: index, owner: opponent}
+                { index: 1, owner: player },
+                { index: 3, owner: player },
+                { index: 5, owner: player },
+                { index: index, owner: opponent }
             ]);
         });
     });
 
     describe('Given four adjacent cards where you only get flipped', () => {
-
-        let game;
         beforeEach(() => {
-            let adjacentCardOne = new Map({ boardIndex: 3, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 6, bottom: 5}) });
-            let adjacentCardTwo = new Map({ boardIndex: 5, owner:  opponent, rank: new Map ({ left: 6, top: 5, right: 5, bottom: 5}) });
-            let adjacentCardThree = new Map({ boardIndex: 1, owner:  opponent, rank: new Map ({ left: 5, top: 5, right: 5, bottom: 6}) });
-            let adjacentCardFour = new Map({ boardIndex: 7, owner:  opponent, rank: new Map ({ left: 5, top: 6, right: 5, bottom: 5}) });
-            let deck = [adjacentCardThree,  adjacentCardOne, card, adjacentCardTwo,  adjacentCardFour];
+            let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 6, bottom: 5 }) });
+            let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 6, top: 5, right: 5, bottom: 5 }) });
+            let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 6 }) });
+            let adjacentCardFour = new Map({ boardIndex: 7, owner: opponent, rank: new Map({ left: 5, top: 6, right: 5, bottom: 5 }) });
+            deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo, adjacentCardFour];
             game = new Map({
-                deck : new List(deck)
+                deck: new List(deck)
             });
         });
 
         it('should contain two tuples with the index, owner of card placed', () => {
             expect(basicRule(index, game)) .toEqual([
-                {index: index, owner: opponent}
+                { index: index, owner: opponent }
             ]);
         });
     });
-
 });

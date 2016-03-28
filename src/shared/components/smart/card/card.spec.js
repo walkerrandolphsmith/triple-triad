@@ -41,7 +41,7 @@ describe('CARD component', () => {
             const actualElement = renderer.getRenderOutput();
             const expectedElement = (
                 <div id="card-12" className="card-wrapper classOne classTwo" onClick={() => {}}>
-                    <div className="card" style={{backgroundImage: 'url(../assets/images/cards/Cloud.png), linear-gradient( 45deg, white, #608FC6 )'}}></div>
+                    <div className="card" style={{ backgroundImage: 'url(../assets/images/cards/Cloud.png), linear-gradient( 45deg, white, #608FC6 )' }}></div>
                 </div>
             );
             expect(actualElement).toEqualJSX(expectedElement);
@@ -75,7 +75,7 @@ describe('CARD component', () => {
             const actualElement = renderer.getRenderOutput();
             const expectedElement = (
                 <div id="card-12" className="card-wrapper classOne classTwo" onClick={() => {}}>
-                    <div className="card" style={{backgroundImage: 'url(../assets/images/cards/Cloud.png), linear-gradient( 45deg, white, #CC181E )'}}></div>
+                    <div className="card" style={{ backgroundImage: 'url(../assets/images/cards/Cloud.png), linear-gradient( 45deg, white, #CC181E )' }}></div>
                 </div>
             );
             expect(actualElement).toEqualJSX(expectedElement);

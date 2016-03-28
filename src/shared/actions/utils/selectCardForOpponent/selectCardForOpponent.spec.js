@@ -5,7 +5,7 @@ import { selectCardForOpponent, __RewireAPI__ } from './selectCardForOpponent';
 describe('selectCardForOpponent utility', () => {
     let game;
     let deck;
-    deck =  new List([
+    deck = new List([
         new Map({ id: 1, name: '1', owner: 0 }),
         new Map({ id: 2, name: '2', owner: 0 }),
         new Map({ id: 3, name: '3', owner: 0 }),
@@ -35,5 +35,4 @@ describe('selectCardForOpponent utility', () => {
     it('should return the id of the card sample returns', () => {
         expect(selectCardForOpponent(game)).toEqual(1);
     });
-
 });

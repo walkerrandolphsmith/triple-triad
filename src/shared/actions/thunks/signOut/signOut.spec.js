@@ -1,33 +1,33 @@
 import expect from 'expect';
-import SignOut from './signOut';
-import { signOut, __RewireAPI__ as signOutRewireAPI } from './signOut';
+import { signOut, __RewireAPI__ } from './signOut';
 
 describe('SIGN_OUT async action creator', () => {
-
-    let dispatch, get;
+    let dispatch;
+    let get;
+    let request;
     beforeEach(() => {
-       dispatch = expect.createSpy();
-       SignOut.__Rewire__('requestSignOut', () => 1);
-       SignOut.__Rewire__('receiveSignOut', () => 2);
-       SignOut.__Rewire__('push', () => 3);
+        dispatch = expect.createSpy();
+        __RewireAPI__.__Rewire__('requestSignOut', () => 1);
+        __RewireAPI__.__Rewire__('receiveSignOut', () => 2);
+        __RewireAPI__.__Rewire__('push', () => 3);
+
+        request = __RewireAPI__.__Rewire__('request', {
+            get: function() {
+                return this;
+            }
+        });
+        get = expect.spyOn(request, 'get').andCallThrough();
     });
 
     it('should be a function', () => {
-       expect(signOut()).toBeA('function')
+        expect(signOut()).toBeA('function');
     });
 
     describe('Given a request is made to sign out', () => {
-
         beforeEach(() => {
-            let request = SignOut.__Rewire__('request', {
-                get: function(endpoint) { return this; },
-                end: (fn) => {
-                    fn(null, { status: 200 });
-                }
-            });
-
-            get = expect.spyOn(request, 'get').andCallThrough();
-
+            request.end = fn => {
+                fn(null, { status: 200 });
+            };
             signOut()(dispatch);
         });
 
@@ -38,14 +38,9 @@ describe('SIGN_OUT async action creator', () => {
 
     describe('Signing out is successful', () => {
         beforeEach(() => {
-            let request = SignOut.__Rewire__('request', {
-                get: function(endpoint) { return this; },
-                send: function(data) { return this },
-                set: function(key, value) { return this },
-                end: (fn) => {
-                    fn(null, { status: 200 });
-                }
-            });
+            request.end = fn => {
+                fn(null, { status: 200 });
+            };
             signOut()(dispatch);
         });
 
@@ -64,14 +59,9 @@ describe('SIGN_OUT async action creator', () => {
 
     describe('Signing out is unsuccessful', () => {
         beforeEach(() => {
-            let request = SignOut.__Rewire__('request', {
-                get: function(endpoint) { return this; },
-                send: function(data) { return this },
-                set: function(key, value) { return this },
-                end: (fn) => {
-                    fn(null, { status: 500 });
-                }
-            });
+            request.end = fn => {
+                fn(null, { status: 500 });
+            };
             signOut()(dispatch);
         });
 

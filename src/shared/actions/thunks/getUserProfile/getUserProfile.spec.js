@@ -1,17 +1,32 @@
 import expect from 'expect';
-import GetUserProfile from './getUserProfile';
-import { getUserProfile, __RewireAPI__ as getUserProfileRewireAPI } from './getUserProfile';
+import { getUserProfile, __RewireAPI__ } from './getUserProfile';
 
 describe('Get User Profile async action creator', () => {
-
-    let dispatch, id;
-    let post, send, set;
+    let dispatch;
+    let id;
+    let post;
+    let send;
+    let set;
+    let request;
     beforeEach(() => {
-       dispatch = expect.createSpy();
-       id = 100;
-
-       GetUserProfile.__Rewire__('requestUserProfile', () => 1);
-       GetUserProfile.__Rewire__('receiveUserProfile', (user) => 2);
+        dispatch = expect.createSpy();
+        id = 100;
+        __RewireAPI__.__Rewire__('requestUserProfile', () => 1);
+        __RewireAPI__.__Rewire__('receiveUserProfile', (user) => 2);
+        request = __RewireAPI__.__Rewire__('request', {
+            post: function() {
+                return this;
+            },
+            send: function() {
+                return this;
+            },
+            set: function() {
+                return this;
+            }
+        });
+        post = expect.spyOn(request, 'post').andCallThrough();
+        send = expect.spyOn(request, 'send').andCallThrough();
+        set = expect.spyOn(request, 'set').andCallThrough();
     });
 
     it('should be a function', () => {
@@ -21,24 +36,14 @@ describe('Get User Profile async action creator', () => {
     describe('Given a request is made to get user profile', () => {
 
         beforeEach(() => {
-            let request = GetUserProfile.__Rewire__('request', {
-                post: function(endpoint) { return this; },
-                send: function(data) { return this },
-                set: function(key, value) { return this },
-                end: (fn) => {
-                    fn(null, {
-                        status: 200,
-                        body: {
-                            verified: true
-                        }
-                    });
-                }
-            });
-
-            post = expect.spyOn(request, 'post').andCallThrough();
-            send = expect.spyOn(request, 'send').andCallThrough();
-            set = expect.spyOn(request, 'set').andCallThrough();
-
+            request.end = fn => {
+                fn(null, {
+                    status: 200,
+                    body: {
+                        verified: true
+                    }
+                });
+            };
             getUserProfile(id)(dispatch);
         });
 
@@ -58,19 +63,14 @@ describe('Get User Profile async action creator', () => {
 
     describe('WHen retrieving user profile is successful', () => {
         beforeEach(() => {
-            GetUserProfile.__Rewire__('request', {
-                post: function(endpoint) { return this; },
-                send: function(data) { return this },
-                set: function(key, value) { return this },
-                end: (fn) => {
-                    fn(null, {
-                        status: 200,
-                        body: {
-                            verified: true
-                        }
-                    });
-                }
-            });
+            request.end = fn => {
+                fn(null, {
+                    status: 200,
+                    body: {
+                        verified: true
+                    }
+                });
+            };
             getUserProfile(id)(dispatch);
         });
 
