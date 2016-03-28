@@ -3,14 +3,14 @@ import mongoose from 'mongoose';
 import connectionManager from './../connectionManager';
 import User from './../../src/server/models/user/user';
 
-describe('User', function() {
+describe('User', () => {
 
     beforeEach(connectionManager.connect);
     afterEach(connectionManager.disconnect);
 
     describe('Given a account is created with a unique username', () => {
         let user;
-        beforeEach(function(done) {
+        beforeEach(done => {
             user = new User({
                 local: {
                     username: 'tester',
@@ -22,7 +22,7 @@ describe('User', function() {
             user.save(error => { done(); });
         });
 
-        it('should find a user by username', function(done) {
+        it('should find a user by username', done => {
             User.findOne({ "local.username": 'tester' }, (err, user) => {
                 expect(user.local.username).toEqual('tester');
                 expect(user.local.email).toEqual('testbot@gmail.com');
@@ -33,28 +33,22 @@ describe('User', function() {
     });
 
     describe('Given a account is created with a username that already exists', () => {
-        let user, duplicateUser;
-        beforeEach(function(done) {
-            user = new User({
+        let user, duplicateUser, userProfile;
+        beforeEach(done => {
+            userProfile = {
                 local: {
                     username: 'tester',
                     password: 'password',
                     email: 'testbot@gmail.com'
                 }
-            });
-
-            duplicateUser = new User({
-                local: {
-                    username: 'tester',
-                    password: 'password',
-                    email: 'testbot@gmail.com'
-                }
-            });
+            };
+            user = new User(userProfile);
+            duplicateUser = new User(userProfile);
 
             user.save(error => { done(); });
         });
 
-        it('should throw an error', function(done) {
+        it('should throw an error', done => {
             duplicateUser.save(error => {
                 expect(error).toNotEqual(null);
                 done();
