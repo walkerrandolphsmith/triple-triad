@@ -34,7 +34,7 @@ describe('SEND PASSWORD RESET async action creator', () => {
     });
 
     it('should be a function', () => {
-        expect(sendPasswordReset()).toBeA('function')
+        expect(sendPasswordReset()).toBeA('function');
     });
 
     describe('Given a request is made to get reset password', () => {

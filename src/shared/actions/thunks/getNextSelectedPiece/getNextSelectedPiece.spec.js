@@ -1,11 +1,11 @@
 import expect from 'expect';
 import { Map, List } from 'immutable';
-import GetNextSelectedPiece from './getNextSelectedPiece';
-import { getNextSelectedPiece, __RewireAPI__ as getNextSelectedPieceRewireAPI } from './getNextSelectedPiece';
+import { getNextSelectedPiece, __RewireAPI__ } from './getNextSelectedPiece';
 
 describe('GET_NEXT_SELECTED_PIECE async action creator', () => {
-
-    let getState, dispatch, keyCode;
+    let getState;
+    let dispatch;
+    let keyCode;
     beforeEach(() => {
         keyCode = 13;
         getState = () => ({
@@ -14,23 +14,16 @@ describe('GET_NEXT_SELECTED_PIECE async action creator', () => {
             })
         });
         dispatch = expect.createSpy();
+        __RewireAPI__.__Rewire__('getPieceToSelect', () => 1);
+        __RewireAPI__.__Rewire__('selectPiece', () => 2);
     });
 
-   it('should be a function', () => {
-       expect(getNextSelectedPiece(keyCode)).toBeA('function');
-   });
+    it('should be a function', () => {
+        expect(getNextSelectedPiece(keyCode)).toBeA('function');
+    });
 
     it('should dispatch the SELECT_PIECE action', () => {
-        GetNextSelectedPiece.__Rewire__('getPieceToSelect', () => {
-            return 1;
-        });
-
-        GetNextSelectedPiece.__Rewire__('selectPiece', () => {
-            return 2;
-        });
-
         getNextSelectedPiece(keyCode)(dispatch, getState);
-        expect(dispatch).toHaveBeenCalledWith(2)
+        expect(dispatch).toHaveBeenCalledWith(2);
     });
-
 });

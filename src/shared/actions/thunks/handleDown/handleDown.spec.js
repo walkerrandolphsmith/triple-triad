@@ -1,14 +1,15 @@
 import expect from 'expect';
 import { Map } from 'immutable';
-import HandleDown from './handleDown';
-import { handleDown, __RewireAPI__ as handleDownRewireAPI } from './handleDown';
+import { handleDown, __RewireAPI__ } from './handleDown';
 
 describe('HANDLE_DOWN async action creator', () => {
-
-    let getState, dispatch;
+    let getState;
+    let dispatch;
     beforeEach(() => {
-       getState = () => ({});
-       dispatch = expect.createSpy();
+        getState = () => ({});
+        dispatch = expect.createSpy();
+        __RewireAPI__.__Rewire__('getNextSelectedCard', () => 1);
+        __RewireAPI__.__Rewire__('getNextSelectedPiece', () => 2);
     });
 
     it('should be a function', () => {
@@ -16,44 +17,32 @@ describe('HANDLE_DOWN async action creator', () => {
     });
 
     describe('given it is not the piece selection phase', () => {
-
-        let getState;
         beforeEach(() => {
             getState = () => ({
                 game: new Map({
-                    phase: "cardSelection"
+                    phase: 'cardSelection'
                 })
             });
         });
 
         it('should dispatch the getNextSelectedCard action', () => {
-            HandleDown.__Rewire__('getNextSelectedCard', () => {
-                return 1;
-            });
             handleDown()(dispatch, getState);
-            expect(dispatch).toHaveBeenCalledWith(1)
+            expect(dispatch).toHaveBeenCalledWith(1);
         });
     });
 
     describe('given it is the piece selection phase', () => {
-
-        let getState;
         beforeEach(() => {
             getState = () => ({
                 game: new Map({
-                    phase: "pieceSelection"
+                    phase: 'pieceSelection'
                 })
             });
         });
 
         it('should dispatch the GET_NEXT_SELECTED_PIECE action', () => {
-            HandleDown.__Rewire__('getNextSelectedPiece', () => {
-                return 2;
-            });
             handleDown()(dispatch, getState);
-            expect(dispatch).toHaveBeenCalledWith(2)
+            expect(dispatch).toHaveBeenCalledWith(2);
         });
     });
-
-
 });

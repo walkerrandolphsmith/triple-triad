@@ -12,7 +12,7 @@ describe('Get User Profile async action creator', () => {
         dispatch = expect.createSpy();
         id = 100;
         __RewireAPI__.__Rewire__('requestUserProfile', () => 1);
-        __RewireAPI__.__Rewire__('receiveUserProfile', (user) => 2);
+        __RewireAPI__.__Rewire__('receiveUserProfile', () => 2);
         request = __RewireAPI__.__Rewire__('request', {
             post: function() {
                 return this;
@@ -30,11 +30,10 @@ describe('Get User Profile async action creator', () => {
     });
 
     it('should be a function', () => {
-       expect(getUserProfile()).toBeA('function')
+        expect(getUserProfile()).toBeA('function');
     });
 
     describe('Given a request is made to get user profile', () => {
-
         beforeEach(() => {
             request.end = fn => {
                 fn(null, {
@@ -79,12 +78,11 @@ describe('Get User Profile async action creator', () => {
         });
 
         it('should call receiveUserProfile given user info from response body', () => {
-            //expect(receiveUserProfileSpy).toHaveBeenCalledWith({ verified: true })
+            // expect(receiveUserProfileSpy).toHaveBeenCalledWith({ verified: true })
         });
 
         it('should dispatch receiveUserProfile action', () => {
             expect(dispatch).toHaveBeenCalledWith(2);
         });
-
     });
 });

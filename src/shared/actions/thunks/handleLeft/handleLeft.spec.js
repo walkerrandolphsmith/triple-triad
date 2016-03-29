@@ -1,16 +1,44 @@
 import expect from 'expect';
-import { handleLeft } from './handleLeft';
+import { Map } from 'immutable';
+import { handleLeft, __RewireAPI__ } from './handleRight';
 
-describe('HANDLE_LEFT async action creator', () => {
-
-    let getState, dispatch;
+describe('Given getState, dispatch', () => {
+    let getState;
+    let dispatch;
     beforeEach(() => {
-       getState = () => ({});
-       dispatch = expect.createSpy();
+        getState = () => ({});
+        dispatch = expect.createSpy();
+        __RewireAPI__.__Rewire__('getNextCardForHand', () => 1);
+        __RewireAPI__.__Rewire__('getNextSelectedPiece', () => 2);
     });
 
     it('should be a function', () => {
         expect(handleLeft()).toBeA('function');
     });
 
+    describe('When the getState returns state containing a game with phase handSelection', () => {
+        getState = () => ({
+            game: new Map({
+                phase: 'handSelection'
+            })
+        });
+
+        it('should dispatch the result of getNextCardForHand', () => {
+            handleLeft()(dispatch, getState);
+            expect(dispatch).toHaveBeenCalled(1);
+        });
+    });
+
+    describe('When the getState returns state containing a game with phase pieceSelection', () => {
+        getState = () => ({
+            game: new Map({
+                phase: 'pieceSelection'
+            })
+        });
+
+        it('should dispatch the result of getNextSelectedPiece', () => {
+            handleLeft()(dispatch, getState);
+            expect(dispatch).toHaveBeenCalled(2);
+        });
+    });
 });
