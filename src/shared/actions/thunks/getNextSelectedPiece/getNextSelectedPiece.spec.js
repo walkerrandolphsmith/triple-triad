@@ -10,7 +10,7 @@ describe('GET_NEXT_SELECTED_PIECE async action creator', () => {
         keyCode = 13;
         getState = () => ({
             game: new Map({
-               deck: new List([])
+                deck: new List([])
             })
         });
         dispatch = expect.createSpy();

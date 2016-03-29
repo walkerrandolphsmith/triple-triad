@@ -1,11 +1,10 @@
 import expect from 'expect';
 import { Map } from 'immutable';
-import AiTurn from './aiTurn';
-import { aiTurn, __RewireAPI__ as aiTurnRewireAPI } from './aiTurn';
+import { aiTurn, __RewireAPI__ } from './aiTurn';
 
 describe('AI_TURN async action creator', () => {
-
-    let dispatch, getState;
+    let dispatch;
+    let getState;
     beforeEach(() => {
        dispatch = expect.createSpy();
        getState = () => ({
@@ -14,34 +13,13 @@ describe('AI_TURN async action creator', () => {
            })
        });
 
-        AiTurn.__Rewire__('startAiTurn', () => {
-            return 'startAI';
-        });
-
-        AiTurn.__Rewire__('selectCardForOpponent', () => {
-            return {index: 1, owner: 1};
-        });
-
-        AiTurn.__Rewire__('selectCard', () => {
-            return 'selectCard';
-        });
-
-        AiTurn.__Rewire__('getValidPiece', () => {
-            return 'getValidPiece';
-        });
-
-        AiTurn.__Rewire__('selectPiece', () => {
-            return 'selectPiece';
-        });
-
-        AiTurn.__Rewire__('playerTakesTurn', () => {
-            return 'playerTakesTurn';
-        });
-
-        AiTurn.__Rewire__('endAiTurn', () => {
-            return 'endAI';
-        });
-
+       __RewireAPI__.__Rewire__('startAiTurn', () => 'startAI');
+       __RewireAPI__.__Rewire__('selectCardForOpponent', () => ({ index: 1, owner: 1 }));
+       __RewireAPI__.__Rewire__('selectCard', () => 'selectCard');
+       __RewireAPI__.__Rewire__('getValidPiece', () => 'getValidPiece');
+       __RewireAPI__.__Rewire__('selectPiece', () => 'selectPiece');
+       __RewireAPI__.__Rewire__('playerTakesTurn', () => 'playerTakesTurn');
+       __RewireAPI__.__Rewire__('endAiTurn', () => 'endAI');
     });
 
     it('should be a function', () => {
@@ -49,73 +27,42 @@ describe('AI_TURN async action creator', () => {
     });
 
     it('should dispatch START_AI_TURN action', () => {
-
-
         aiTurn()(dispatch, getState);
-        expect(dispatch).toHaveBeenCalledWith('startAI')
+        expect(dispatch).toHaveBeenCalledWith('startAI');
     });
 
 
     it('should dispatch SELECT_CARD action for the card selected for opponent', () => {
-
-
         aiTurn()(dispatch, getState);
-        expect(dispatch).toHaveBeenCalledWith('selectCard')
+        expect(dispatch).toHaveBeenCalledWith('selectCard');
     });
 
     describe('Given there is a valid piece', () => {
-
         beforeEach(() =>{
-            AiTurn.__Rewire__('getValidPiece', () => {
-                return 1;
-            });
-
-            AiTurn.__Rewire__('playerTakesTurn', () => {
-                return 'playerTakesTurn';
-            });
-
-            AiTurn.__Rewire__('endAiTurn', () => {
-                return 'endAI';
-            });
+            __RewireAPI__.__Rewire__('getValidPiece', () => 1);
         });
 
         it('should dispatch SELECT_PIECE and PLAYER_TAKES_TURN actions', () => {
-
             aiTurn()(dispatch, getState);
             expect(dispatch).toHaveBeenCalledWith('selectPiece');
             expect(dispatch).toHaveBeenCalledWith('playerTakesTurn');
-            expect(dispatch.calls.length).toEqual(5)
+            expect(dispatch.calls.length).toEqual(5);
         });
     });
 
     describe('Given there is a not a valid piece', () => {
-
         beforeEach(() =>{
-            AiTurn.__Rewire__('getValidPiece', () => {
-                return -1;
-            });
-
-            AiTurn.__Rewire__('playerTakesTurn', () => {
-                return 'playerTakesTurn';
-            });
-
-            AiTurn.__Rewire__('endAiTurn', () => {
-                return 'endAI';
-            });
+            __RewireAPI__.__Rewire__('getValidPiece', () => -1);
         });
 
         it('should dispatch SELECT_PIECE and PLAYER_TAKES_TURN actions', () => {
-
             aiTurn()(dispatch, getState);
-            expect(dispatch.calls.length).toEqual(3)
+            expect(dispatch.calls.length).toEqual(3);
         });
     });
 
     it('should dispatch END_AI_TURN action', () => {
         aiTurn()(dispatch, getState);
-        expect(dispatch).toHaveBeenCalledWith('endAI')
+        expect(dispatch).toHaveBeenCalledWith('endAI');
     });
-
-
-
 });

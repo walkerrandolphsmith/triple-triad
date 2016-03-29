@@ -1,18 +1,20 @@
 import expect from 'expect';
 import { List, Map } from 'immutable';
-import CreateGame from './createGame';
-import { createGame, __RewireAPI__ as createGameRewireAPI } from './createGame';
+import { createGame, __RewireAPI__ } from './createGame';
 
 describe('Create Game async action creator', () => {
-
-    let dispatch, getState;
-    let deck, ownerId;
+    let dispatch;
+    let getState;
+    let deck;
+    let ownerId;
+    let post;
+    let send;
+    let set;
+    let request;
     beforeEach(() => {
         deck = [1,2,3];
         ownerId = 20;
-
         dispatch = expect.createSpy();
-
         getState = () => ({
             game: new Map({
                 deck: new List(deck)
@@ -24,32 +26,28 @@ describe('Create Game async action creator', () => {
             })
         });
 
-        CreateGame.__Rewire__('createGameRequest', () =>  1);
-        CreateGame.__Rewire__('createGameSuccess', () => 2);
-        CreateGame.__Rewire__('createGameFailed', () => 3);
+        __RewireAPI__.__Rewire__('createGameRequest', () =>  1);
+        __RewireAPI__.__Rewire__('createGameSuccess', () => 2);
+        __RewireAPI__.__Rewire__('createGameFailed', () => 3);
+
+        request = __RewireAPI__.__Rewire__('request', {
+            post: function() { return this; },
+            send: function() { return this },
+            set: function() { return this }
+        });
+
+        post = expect.spyOn(request, 'post').andCallThrough();
+        send = expect.spyOn(request, 'send').andCallThrough();
+        set = expect.spyOn(request, 'set').andCallThrough();
     });
 
     it('should be a function', () => {
-       expect(createGame()).toBeA('function')
+       expect(createGame()).toBeA('function');
     });
 
     describe('Given a request is made to create a game', () => {
-
-        let post, send, set;
         beforeEach(() => {
-            let request = CreateGame.__Rewire__('request', {
-                post: function(endpoint) { return this; },
-                send: function(data) { return this },
-                set: function(key, value) { return this },
-                end: (fn) => {
-                    fn(null, { status: 200 });
-                }
-            });
-
-            post = expect.spyOn(request, 'post').andCallThrough();
-            send = expect.spyOn(request, 'send').andCallThrough();
-            set = expect.spyOn(request, 'set').andCallThrough();
-
+            request.end = (fn) => fn(null, { status: 200 });
             createGame()(dispatch, getState);
         });
 
@@ -71,17 +69,8 @@ describe('Create Game async action creator', () => {
     });
 
     describe('Given game creation is successful', () => {
-
-        let post, send, set;
         beforeEach(() => {
-            let request = CreateGame.__Rewire__('request', {
-                post: function(endpoint) { return this; },
-                send: function(data) { return this },
-                set: function(key, value) { return this },
-                end: (fn) => {
-                    fn(null, { status: 200 });
-                }
-            });
+            request.end = (fn) => fn(null, { status: 200 });
         });
 
         it('should dispatch createGameSuccess', () => {
@@ -92,17 +81,8 @@ describe('Create Game async action creator', () => {
     });
 
     describe('Given game creation is unsuccessful', () => {
-
-        let post, send, set;
         beforeEach(() => {
-            let request = CreateGame.__Rewire__('request', {
-                post: function(endpoint) { return this; },
-                send: function(data) { return this },
-                set: function(key, value) { return this },
-                end: (fn) => {
-                    fn(null, { status: 500 });
-                }
-            });
+            request.end = (fn) => fn(null, { status: 500 });
         });
 
         it('should dispatch createGameFailed', () => {

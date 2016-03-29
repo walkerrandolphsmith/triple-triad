@@ -1,48 +1,50 @@
 import expect from 'expect';
 import { Map } from 'immutable';
-import GetGames from './getGames';
-import { getGames, __RewireAPI__ as getGamesRewireAPI } from './getGames';
+import { getGames, __RewireAPI__ } from './getGames';
 
 describe('Get Games async action creator', () => {
-
-    let dispatch, getState, ownerId;
-    let post, send, set;
+    let dispatch;
+    let getState;
+    let ownerId;
+    let post;
+    let send;
+    let set;
+    let request;
     beforeEach(() => {
         ownerId = 20;
         dispatch = expect.createSpy();
         getState = () => ({
-          auth: new Map({
-              user: new Map({
-                  id: ownerId
-              })
-          })
+            auth: new Map({
+                user: new Map({
+                    id: ownerId
+                })
+            })
         });
 
-        GetGames.__Rewire__('getGamesRequest', () => 1);
-        GetGames.__Rewire__('getGamesSuccess', () => 2);
-        GetGames.__Rewire__('getGamesFailed', () => 3);
+        __RewireAPI__.__Rewire__('getGamesRequest', () => 1);
+        __RewireAPI__.__Rewire__('getGamesSuccess', () => 2);
+        __RewireAPI__.__Rewire__('getGamesFailed', () => 3);
+
+        request = __RewireAPI__.__Rewire__('request', {
+            post: function() { return this; },
+            send: function() { return this; },
+            set: function() { return this; }
+        });
+
+        post = expect.spyOn(request, 'post').andCallThrough();
+        send = expect.spyOn(request, 'send').andCallThrough();
+        set = expect.spyOn(request, 'set').andCallThrough();
     });
 
     it('should be a function', () => {
-       expect(getGames()).toBeA('function')
+        expect(getGames()).toBeA('function');
     });
 
     describe('Given a request is made', () => {
-
         beforeEach(() => {
-            let request = GetGames.__Rewire__('request', {
-                post: function(endpoint) { return this; },
-                send: function(data) { return this },
-                set: function(key, value) { return this },
-                end: (fn) => {
-                    fn(null, { status: 200 });
-                }
-            });
-
-            post = expect.spyOn(request, 'post').andCallThrough();
-            send = expect.spyOn(request, 'send').andCallThrough();
-            set = expect.spyOn(request, 'set').andCallThrough();
-
+            request.end = (fn) => {
+                fn(null, { status: 200 });
+            };
             getGames()(dispatch, getState);
         });
 
@@ -51,7 +53,7 @@ describe('Get Games async action creator', () => {
         });
 
         it('should send the user with post data', () => {
-            expect(send).toHaveBeenCalledWith(JSON.stringify({userId: ownerId}));
+            expect(send).toHaveBeenCalledWith(JSON.stringify({ userId: ownerId }));
         });
 
         it('should set the Accept and Content-Type headers', () => {
@@ -62,14 +64,9 @@ describe('Get Games async action creator', () => {
 
     describe('When /getGames is successful', () => {
         beforeEach(() => {
-            GetGames.__Rewire__('request', {
-                post: function(endpoint) { return this; },
-                send: function(data) { return this },
-                set: function(key, value) { return this },
-                end: (fn) => {
-                    fn(null, { status: 200 });
-                }
-            });
+            request.end = (fn) => {
+                fn(null, { status: 200 });
+            };
             getGames()(dispatch, getState);
         });
 
@@ -81,14 +78,9 @@ describe('Get Games async action creator', () => {
 
     describe('When /getGames is unsuccessful', () => {
         beforeEach(() => {
-            GetGames.__Rewire__('request', {
-                post: function(endpoint) { return this; },
-                send: function(data) { return this },
-                set: function(key, value) { return this },
-                end: (fn) => {
-                    fn(null, { status: 500 });
-                }
-            });
+            request.end = (fn) => {
+                fn(null, { status: 500 });
+            };
             getGames()(dispatch, getState);
         });
 

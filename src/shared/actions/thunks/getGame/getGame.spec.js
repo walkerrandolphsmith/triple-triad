@@ -1,48 +1,48 @@
 import expect from 'expect';
 import { Map } from 'immutable';
-import GetGame from './getGame';
 import { getGame, __RewireAPI__ } from './getGame';
 
 describe('Get Games async action creator', () => {
-
-    let dispatch, getState, gameId;
-    let post, send, set;
+    let dispatch;
+    let getState;
+    let gameId;
+    let post;
+    let send;
+    let set;
+    let request;
     beforeEach(() => {
         gameId = 20;
         dispatch = expect.createSpy();
         getState = () => ({
-          auth: new Map({
-              user: new Map({
-                  id: gameId
-              })
-          })
+            auth: new Map({
+                user: new Map({
+                    id: gameId
+                })
+            })
         });
 
-        GetGame.__Rewire__('getGameRequest', () => 1);
-        GetGame.__Rewire__('getGameSuccess', () => 2);
-        GetGame.__Rewire__('getGameFailed', () => 3);
+        __RewireAPI__.__Rewire__('getGameRequest', () => 1);
+        __RewireAPI__.__Rewire__('getGameSuccess', () => 2);
+        __RewireAPI__.__Rewire__('getGameFailed', () => 3);
+
+        request = __RewireAPI__.__Rewire__('request', {
+            post: function() { return this; },
+            send: function() { return this; },
+            set: function() { return this; }
+        });
+
+        post = expect.spyOn(request, 'post').andCallThrough();
+        send = expect.spyOn(request, 'send').andCallThrough();
+        set = expect.spyOn(request, 'set').andCallThrough();
     });
 
     it('should be a function', () => {
-       expect(getGame(gameId)).toBeA('function')
+        expect(getGame(gameId)).toBeA('function');
     });
 
     describe('Given a request is made', () => {
-
         beforeEach(() => {
-            let request = GetGame.__Rewire__('request', {
-                post: function(endpoint) { return this; },
-                send: function(data) { return this },
-                set: function(key, value) { return this },
-                end: (fn) => {
-                    fn(null, { status: 200 });
-                }
-            });
-
-            post = expect.spyOn(request, 'post').andCallThrough();
-            send = expect.spyOn(request, 'send').andCallThrough();
-            set = expect.spyOn(request, 'set').andCallThrough();
-
+            request.end = (fn) => fn(null, { status: 200 });
             getGame(gameId)(dispatch, getState);
         });
 
@@ -51,7 +51,7 @@ describe('Get Games async action creator', () => {
         });
 
         it('should send the game id with post data', () => {
-            expect(send).toHaveBeenCalledWith(JSON.stringify({gameId: gameId}));
+            expect(send).toHaveBeenCalledWith(JSON.stringify({ gameId: gameId }));
         });
 
         it('should set the Accept and Content-Type headers', () => {
@@ -62,14 +62,7 @@ describe('Get Games async action creator', () => {
 
     describe('When /getGame is successful', () => {
         beforeEach(() => {
-            GetGame.__Rewire__('request', {
-                post: function(endpoint) { return this; },
-                send: function(data) { return this },
-                set: function(key, value) { return this },
-                end: (fn) => {
-                    fn(null, { status: 200 });
-                }
-            });
+            request.end = (fn) => fn(null, { status: 200 });
             getGame(gameId)(dispatch, getState);
         });
 
@@ -81,14 +74,7 @@ describe('Get Games async action creator', () => {
 
     describe('When /getGame is unsuccessful', () => {
         beforeEach(() => {
-            GetGame.__Rewire__('request', {
-                post: function(endpoint) { return this; },
-                send: function(data) { return this },
-                set: function(key, value) { return this },
-                end: (fn) => {
-                    fn(null, { status: 500 });
-                }
-            });
+            request.end = (fn) => fn(null, { status: 500 });
             getGame(gameId)(dispatch, getState);
         });
 
