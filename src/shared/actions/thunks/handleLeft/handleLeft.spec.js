@@ -1,6 +1,6 @@
 import expect from 'expect';
 import { Map } from 'immutable';
-import { handleLeft, __RewireAPI__ } from './handleRight';
+import { handleLeft, __RewireAPI__ } from './handleLeft';
 
 describe('Given getState, dispatch', () => {
     let getState;
@@ -17,10 +17,12 @@ describe('Given getState, dispatch', () => {
     });
 
     describe('When the getState returns state containing a game with phase handSelection', () => {
-        getState = () => ({
-            game: new Map({
-                phase: 'handSelection'
-            })
+        beforeEach(() => {
+            getState = () => ({
+                game: new Map({
+                    phase: 'handSelection'
+                })
+            });
         });
 
         it('should dispatch the result of getNextCardForHand', () => {
@@ -30,10 +32,12 @@ describe('Given getState, dispatch', () => {
     });
 
     describe('When the getState returns state containing a game with phase pieceSelection', () => {
-        getState = () => ({
-            game: new Map({
-                phase: 'pieceSelection'
-            })
+        beforeEach(() => {
+            getState = () => ({
+                game: new Map({
+                    phase: 'pieceSelection'
+                })
+            });
         });
 
         it('should dispatch the result of getNextSelectedPiece', () => {
