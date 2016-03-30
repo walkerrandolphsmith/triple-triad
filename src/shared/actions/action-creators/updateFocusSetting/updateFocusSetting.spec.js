@@ -3,15 +3,18 @@ import { UPDATE_FOCUS_SETTING } from './../../../constants/actionTypes';
 import { updateFocusSetting } from './updateFocusSetting';
 
 describe('UPDATE_FOCUS_SETTING', () => {
-
-    it('should create an action to set the focused setting', () => {
-        const expectedAction = {
+    let setting;
+    let expectedAction;
+    beforeEach(() => {
+        setting = 'mulitplayer';
+        expectedAction = {
             type: UPDATE_FOCUS_SETTING,
             payload: {
-                setting: "multiplayer"
+                setting: setting
             }
         };
-        expect(updateFocusSetting("multiplayer")).toEqual(expectedAction)
     });
-
+    it('should create an action to set the focused setting', () => {
+        expect(updateFocusSetting(setting)).toEqual(expectedAction);
+    });
 });

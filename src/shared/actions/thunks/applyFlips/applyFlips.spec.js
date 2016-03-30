@@ -6,19 +6,19 @@ describe('APPLY_FLIPS async action creator', () => {
     let dispatch;
     let getState;
     beforeEach(() => {
-       dispatch = expect.createSpy();
-       getState = () => ({
-           game: new Map({
-               selectedPiece: 1
-           })
-       });
-       __RewireAPI__.__Rewire__('updateBoard', () => 1);
-       __RewireAPI__.__Rewire__('applyFlipRules', () => [
-           {index: 1, owner: 1},
-           {index: 3, owner: 2},
-           {index: 5, owner: 1},
-           {index: 7, owner: 1}
-       ]);
+        dispatch = expect.createSpy();
+        getState = () => ({
+            game: new Map({
+                selectedPiece: 1
+            })
+        });
+        __RewireAPI__.__Rewire__('updateBoard', () => 1);
+        __RewireAPI__.__Rewire__('applyFlipRules', () => [
+            { index: 1, owner: 1 },
+            { index: 3, owner: 2 },
+            { index: 5, owner: 1 },
+            { index: 7, owner: 1 }
+        ]);
     });
 
     it('should be a function', () => {

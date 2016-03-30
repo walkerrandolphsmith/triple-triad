@@ -6,20 +6,20 @@ describe('AI_TURN async action creator', () => {
     let dispatch;
     let getState;
     beforeEach(() => {
-       dispatch = expect.createSpy();
-       getState = () => ({
-           game: new Map({
-               selectedPiece: 1
-           })
-       });
+        dispatch = expect.createSpy();
+        getState = () => ({
+            game: new Map({
+                selectedPiece: 1
+            })
+        });
 
-       __RewireAPI__.__Rewire__('startAiTurn', () => 'startAI');
-       __RewireAPI__.__Rewire__('selectCardForOpponent', () => ({ index: 1, owner: 1 }));
-       __RewireAPI__.__Rewire__('selectCard', () => 'selectCard');
-       __RewireAPI__.__Rewire__('getValidPiece', () => 'getValidPiece');
-       __RewireAPI__.__Rewire__('selectPiece', () => 'selectPiece');
-       __RewireAPI__.__Rewire__('playerTakesTurn', () => 'playerTakesTurn');
-       __RewireAPI__.__Rewire__('endAiTurn', () => 'endAI');
+        __RewireAPI__.__Rewire__('startAiTurn', () => 'startAI');
+        __RewireAPI__.__Rewire__('selectCardForOpponent', () => ({ index: 1, owner: 1 }));
+        __RewireAPI__.__Rewire__('selectCard', () => 'selectCard');
+        __RewireAPI__.__Rewire__('getValidPiece', () => 'getValidPiece');
+        __RewireAPI__.__Rewire__('selectPiece', () => 'selectPiece');
+        __RewireAPI__.__Rewire__('playerTakesTurn', () => 'playerTakesTurn');
+        __RewireAPI__.__Rewire__('endAiTurn', () => 'endAI');
     });
 
     it('should be a function', () => {

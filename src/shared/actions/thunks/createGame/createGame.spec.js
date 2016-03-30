@@ -12,7 +12,7 @@ describe('Create Game async action creator', () => {
     let set;
     let request;
     beforeEach(() => {
-        deck = [1,2,3];
+        deck = [1, 2, 3];
         ownerId = 20;
         dispatch = expect.createSpy();
         getState = () => ({
@@ -26,14 +26,20 @@ describe('Create Game async action creator', () => {
             })
         });
 
-        __RewireAPI__.__Rewire__('createGameRequest', () =>  1);
+        __RewireAPI__.__Rewire__('createGameRequest', () => 1);
         __RewireAPI__.__Rewire__('createGameSuccess', () => 2);
         __RewireAPI__.__Rewire__('createGameFailed', () => 3);
 
         request = __RewireAPI__.__Rewire__('request', {
-            post: function() { return this; },
-            send: function() { return this },
-            set: function() { return this }
+            post: function() {
+                return this;
+            },
+            send: function() {
+                return this;
+            },
+            set: function() {
+                return this;
+            }
         });
 
         post = expect.spyOn(request, 'post').andCallThrough();
@@ -42,7 +48,7 @@ describe('Create Game async action creator', () => {
     });
 
     it('should be a function', () => {
-       expect(createGame()).toBeA('function');
+        expect(createGame()).toBeA('function');
     });
 
     describe('Given a request is made to create a game', () => {

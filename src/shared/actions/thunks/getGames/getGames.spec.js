@@ -26,9 +26,15 @@ describe('Get Games async action creator', () => {
         __RewireAPI__.__Rewire__('getGamesFailed', () => 3);
 
         request = __RewireAPI__.__Rewire__('request', {
-            post: function() { return this; },
-            send: function() { return this; },
-            set: function() { return this; }
+            post: function() {
+                return this;
+            },
+            send: function() {
+                return this;
+            },
+            set: function() {
+                return this;
+            }
         });
 
         post = expect.spyOn(request, 'post').andCallThrough();

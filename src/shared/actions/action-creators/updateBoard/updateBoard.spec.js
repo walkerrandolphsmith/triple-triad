@@ -3,7 +3,6 @@ import { SERVER, UPDATE_BOARD } from './../../../constants/actionTypes';
 import { updateBoard } from './updateBoard';
 
 describe('UPDATE_BOARD', () => {
-
     it('should create an action to update the board when a card is placed', () => {
         const expectedAction = {
             type: SERVER + UPDATE_BOARD,
@@ -12,7 +11,6 @@ describe('UPDATE_BOARD', () => {
                 owner: 0
             }
         };
-        expect(updateBoard(0, 0)).toEqual(expectedAction)
+        expect(updateBoard(0, 0)).toEqual(expectedAction);
     });
-
 });

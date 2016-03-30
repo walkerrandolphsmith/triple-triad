@@ -3,22 +3,14 @@ import { AUTH_SIGNUP_SUCCESS } from './../../../../constants/actionTypes';
 import { receiveUser } from './receiveUser';
 
 describe('ReceiveSignUp', () => {
-
     let user;
+    let expectedAction;
     beforeEach(() => {
         user = {
-            name: "walker",
+            name: 'walker',
             id: 12
         };
-    });
-
-    it('should be a function', () => {
-        expect(receiveUser).toBeA('function');
-    });
-
-    it('should create an action to initiate signing out', () => {
-
-        const expectedAction = {
+        expectedAction = {
             type: AUTH_SIGNUP_SUCCESS,
             payload: {
                 user: {
@@ -27,7 +19,13 @@ describe('ReceiveSignUp', () => {
                 }
             }
         };
-        expect(receiveUser(user)).toEqual(expectedAction)
     });
 
+    it('should be a function', () => {
+        expect(receiveUser).toBeA('function');
+    });
+
+    it('should create an action to initiate signing out', () => {
+        expect(receiveUser(user)).toEqual(expectedAction);
+    });
 });
