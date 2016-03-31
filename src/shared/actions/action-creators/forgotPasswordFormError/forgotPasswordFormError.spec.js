@@ -3,21 +3,20 @@ import { FORGOT_PASSWORD_FORM_ERROR } from './../../../constants/actionTypes';
 import { forgotPasswordFormError } from './forgotPasswordFormError';
 
 describe('FORGOT_PASSWORD_FORM_ERROR', () => {
-
     let payload;
+    let expectedAction;
     beforeEach(() => {
         payload = {
             field: 'email',
             error: 'This user does not exist'
-        }
-    });
-
-    it('should create an action to set a form error for a given field', () => {
-        const expectedAction = {
+        };
+        expectedAction = {
             type: FORGOT_PASSWORD_FORM_ERROR,
             payload: payload
         };
-        expect(forgotPasswordFormError(payload)).toEqual(expectedAction)
     });
 
+    it('should create an action to set a form error for a given field', () => {
+        expect(forgotPasswordFormError(payload)).toEqual(expectedAction);
+    });
 });

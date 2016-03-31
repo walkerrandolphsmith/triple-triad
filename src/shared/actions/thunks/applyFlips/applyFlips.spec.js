@@ -22,7 +22,7 @@ describe('APPLY_FLIPS async action creator', () => {
     });
 
     it('should be a function', () => {
-       expect(applyFlips()).toBeA('function');
+        expect(applyFlips()).toBeA('function');
     });
 
     it('should dispatch UPDATE_BOARD action for each tuple (index, owner)', () => {

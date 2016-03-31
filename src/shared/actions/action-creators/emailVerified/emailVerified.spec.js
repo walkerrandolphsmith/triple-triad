@@ -3,41 +3,31 @@ import { EMAIL_VERIFIED } from './../../../constants/actionTypes';
 import { emailVerified } from './emailVerified';
 
 describe('EMAIL VERIFIED', () => {
-
+    let isVerified;
+    let expectedAction;
     describe('Given the email is verified', () => {
-
-        let isVerified;
-        beforeEach(() => {
-            isVerified = true;
-        });
-
         it('should create an action to set user email to verified', () => {
-            const expectedAction = {
+            isVerified = true;
+            expectedAction = {
                 type: EMAIL_VERIFIED,
                 payload: {
                     isVerified: isVerified
                 }
             };
-            expect(emailVerified(isVerified)).toEqual(expectedAction)
+            expect(emailVerified(isVerified)).toEqual(expectedAction);
         });
     });
 
     describe('Given the email is not verified', () => {
-
-        let isVerified;
-        beforeEach(() => {
-            isVerified = false;
-        });
-
         it('should create an action to set user email to not verfied', () => {
-            const expectedAction = {
+            isVerified = false;
+            expectedAction = {
                 type: EMAIL_VERIFIED,
                 payload: {
                     isVerified: isVerified
                 }
             };
-            expect(emailVerified(isVerified)).toEqual(expectedAction)
+            expect(emailVerified(isVerified)).toEqual(expectedAction);
         });
     });
-
 });

@@ -23,7 +23,7 @@ describe('AI_TURN async action creator', () => {
     });
 
     it('should be a function', () => {
-       expect(aiTurn()).toBeA('function');
+        expect(aiTurn()).toBeA('function');
     });
 
     it('should dispatch START_AI_TURN action', () => {

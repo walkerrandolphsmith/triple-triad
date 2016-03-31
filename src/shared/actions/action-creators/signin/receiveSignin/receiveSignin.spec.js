@@ -7,7 +7,7 @@ describe('ReceiveSignIn', () => {
     let expectedAction;
     beforeEach(() => {
         user = {
-            name: "walker",
+            name: 'walker',
             id: 12
         };
         expectedAction = {
