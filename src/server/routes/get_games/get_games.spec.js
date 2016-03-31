@@ -3,11 +3,11 @@ import Get_Games from './get_games';
 import { getGames, __RewireAPI__ as get_gamesRewireAPI } from './get_games';
 
 describe('getGames', () => {
-
-    let req, res;
-
+    let req;
+    let res;
+    let status;
+    let send;
     describe('Given a request containing a user id and a response, when retrieving games for associated with a user', () => {
-
         let find;
         beforeEach(() => {
             find = expect.createSpy();
@@ -31,11 +31,9 @@ describe('getGames', () => {
     });
 
     describe('Given a request containing a user id, when retrieving games for associated with a user throws an error', () => {
-
-        let games, send, status;
+        let games;
         beforeEach(() => {
-
-            games = [1,2,3,4];
+            games = [1, 2, 3, 4];
             Get_Games.__Rewire__('Game', {
                 find: (schema, fn) => {
                     fn(null, games)
@@ -62,15 +60,12 @@ describe('getGames', () => {
         it('should attempt to find a game for that user', () => {
             getGames(req, res);
             expect(status).toHaveBeenCalledWith(200);
-            expect(send).toHaveBeenCalledWith(games)
+            expect(send).toHaveBeenCalledWith(games);
         });
     });
 
     describe('Given a request containing a user id, when retrieving games for associated with a user throws an error', () => {
-
-        let send, status;
         beforeEach(() => {
-
             Get_Games.__Rewire__('Game', {
                 find: (schema, fn) => {
                     fn(new Error(), {})
@@ -97,7 +92,7 @@ describe('getGames', () => {
         it('should attempt to find a game for that user', () => {
             getGames(req, res);
             expect(status).toHaveBeenCalledWith(500);
-            expect(send).toHaveBeenCalled()
+            expect(send).toHaveBeenCalled();
         });
     });
 });

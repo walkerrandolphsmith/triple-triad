@@ -1,11 +1,11 @@
 import expect from 'expect';
-import Invite from './invite';
-import { invite, __RewireAPI__ as inviteRewireAPI } from './invite';
+import { invite, __RewireAPI__ } from './invite';
 
 describe('/api/invite', () => {
-
-    let req, res;
-
+    let req;
+    let res;
+    let status;
+    let send;
     beforeEach(() => {
         req = {
             body: {
@@ -17,14 +17,17 @@ describe('/api/invite', () => {
     });
 
     describe('Given a request containing a game id and a response', () => {
-
         let findById = expect.createSpy();
         beforeEach(() => {
             res = {
-                status: function() { return this; },
-                send: function() { return this; }
+                status: function() {
+                    return this;
+                },
+                send: function() {
+                    return this;
+                }
             };
-            Invite.__Rewire__('Game', {
+            __RewireAPI__.__Rewire__('Game', {
                 findById: findById
             });
 
@@ -37,7 +40,6 @@ describe('/api/invite', () => {
     });
 
     describe('Given a game is not found', () => {
-        let status, send;
         beforeEach(() => {
             send = expect.createSpy();
             res = {
@@ -47,9 +49,9 @@ describe('/api/invite', () => {
             };
             status = expect.spyOn(res, 'status').andCallThrough();
 
-            Invite.__Rewire__('Game', {
+            __RewireAPI__.__Rewire__('Game', {
                 findById: (schema, cb) => {
-                    cb(null, null)
+                    cb(null, null);
                 }
             });
 
@@ -63,7 +65,6 @@ describe('/api/invite', () => {
     });
 
     describe('Given an error is thrown when retrieving a game', () => {
-        let status, send;
         beforeEach(() => {
             send = expect.createSpy();
             res = {
@@ -73,9 +74,9 @@ describe('/api/invite', () => {
             };
             status = expect.spyOn(res, 'status').andCallThrough();
 
-            Invite.__Rewire__('Game', {
+            __RewireAPI__.__Rewire__('Game', {
                 findById: (schema, cb) => {
-                    cb(new Error(), {})
+                    cb(new Error(), {});
                 }
             });
 
@@ -89,7 +90,7 @@ describe('/api/invite', () => {
     });
 
     describe('Given a game is found', () => {
-        let status, send;
+        let newSpy;
         beforeEach(() => {
             send = expect.createSpy();
             res = {
@@ -99,18 +100,17 @@ describe('/api/invite', () => {
             };
             status = expect.spyOn(res, 'status').andCallThrough();
 
-            Invite.__Rewire__('Game', {
+            __RewireAPI__.__Rewire__('Game', {
                 findById: (schema, cb) => {
-                    cb(null, {})
+                    cb(null, {});
                 }
             });
         });
 
         describe('When creating a token', () => {
-            let newSpy;
             beforeEach(() => {
                 newSpy = expect.createSpy();
-                Invite.__Rewire__('Token', {
+                __RewireAPI__.__Rewire__('Token', {
                     new: newSpy
                 });
 
@@ -123,10 +123,9 @@ describe('/api/invite', () => {
         });
 
         describe('When there is an error creating a token', () => {
-            let newSpy;
             beforeEach(() => {
                 newSpy = expect.createSpy();
-                Invite.__Rewire__('Token', {
+                __RewireAPI__.__Rewire__('Token', {
                     new: (id, type, cb) => {
                         cb(new Error(), {});
                     }
@@ -144,9 +143,9 @@ describe('/api/invite', () => {
 
         describe('Given a game is found, and a token is successfully created', () => {
             beforeEach(() => {
-                Invite.__Rewire__('Token', {
+                __RewireAPI__.__Rewire__('Token', {
                     new: (id, type, cb) => {
-                        cb(null, {})
+                        cb(null, {});
                     }
                 });
             });
@@ -155,7 +154,7 @@ describe('/api/invite', () => {
                 let findById;
                 beforeEach(() => {
                     findById = expect.createSpy();
-                    Invite.__Rewire__('User', {
+                    __RewireAPI__.__Rewire__('User', {
                         findById: findById
                     });
                     invite(req, res);
@@ -167,13 +166,12 @@ describe('/api/invite', () => {
             });
 
             describe('Given the user can not be found', () => {
-
                 describe('When sending the email', () => {
                     let sendInvite;
                     beforeEach(() => {
-                        Invite.__Rewire__('User', {
+                        __RewireAPI__.__Rewire__('User', {
                             findById: (id, cb) => {
-                                cb(new Error(), null)
+                                cb(new Error(), null);
                             }
                         });
                         invite(req, res);
@@ -187,33 +185,32 @@ describe('/api/invite', () => {
             });
 
             describe('Given the user can be found', () => {
-
                 describe('When sending the email', () => {
                     let sendInvite;
                     beforeEach(() => {
-                        Invite.__Rewire__('User', {
+                        __RewireAPI__.__Rewire__('User', {
                             findById: (id, cb) => {
                                 cb(null, {
                                     local: {
                                         email: 'tester@gmail.com'
                                     }
-                                })
+                                });
                             }
                         });
                         sendInvite = expect.createSpy();
-                        Invite.__Rewire__('sendInviteEmail', sendInvite);
+                        __RewireAPI__.__Rewire__('sendInviteEmail', sendInvite);
                         invite(req, res);
                     });
 
                     it('should attempt to send an invite email', () => {
-                        expect(sendInvite).toHaveBeenCalled()
+                        expect(sendInvite).toHaveBeenCalled();
                     });
 
                     describe('When sending an email', () => {
                         describe('When email is sent without error', () => {
                             let json;
                             beforeEach(() => {
-                                Invite.__Rewire__('sendInviteEmail', (toEmail, fromEmail, token, cb) => {
+                                __RewireAPI__.__Rewire__('sendInviteEmail', (toEmail, fromEmail, token, cb) => {
                                     cb(null);
                                 });
                                 json = expect.createSpy();
@@ -228,13 +225,13 @@ describe('/api/invite', () => {
 
                             it('should respond with json', () => {
                                 expect(status).toHaveBeenCalledWith(200);
-                                expect(json).toHaveBeenCalledWith({ sent: true })
+                                expect(json).toHaveBeenCalledWith({ sent: true });
                             })
                         });
 
                         describe('When there is an error sending email', () => {
                             beforeEach(() => {
-                                Invite.__Rewire__('sendInviteEmail', (toEmail, fromEmail, token, cb) => {
+                                __RewireAPI__.__Rewire__('sendInviteEmail', (toEmail, fromEmail, token, cb) => {
                                     cb(new Error());
                                 });
                                 invite(req, res);
@@ -243,7 +240,7 @@ describe('/api/invite', () => {
                             it('should respond with status 500', () => {
                                 expect(status).toHaveBeenCalledWith(500);
                                 expect(send).toHaveBeenCalled();
-                            })
+                            });
                         });
                     });
                 });

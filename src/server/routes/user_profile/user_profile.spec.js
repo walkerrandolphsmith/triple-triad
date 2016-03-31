@@ -1,10 +1,14 @@
 import expect from 'expect';
-import User_Profile from './user_profile';
-import { userProfile, __RewireAPI__ as user_profileRewireAPI } from './user_profile';
+import { userProfile, __RewireAPI__ } from './user_profile';
 
 describe('userProfile', () => {
-
-    let req, res, userId;
+    let req;
+    let res;
+    let userId;
+    let user;
+    let status;
+    let send;
+    let json;
     beforeEach(() => {
         userId = 20;
         req = {
@@ -15,33 +19,29 @@ describe('userProfile', () => {
     });
 
     describe('Given a request containing a user id, and a response', () => {
-
         describe('When retrieving the user profile', () => {
             let findById;
             beforeEach(() => {
                 res = {};
                 findById = expect.createSpy();
-                User_Profile.__Rewire__('User', {
+                __RewireAPI__.__Rewire__('User', {
                     findById: findById
                 });
             });
 
             it('should look up the user by id', () => {
-               userProfile(req, res);
-               expect(findById).toHaveBeenCalled();
+                userProfile(req, res);
+                expect(findById).toHaveBeenCalled();
             });
         });
 
         describe('Given retrieving the user by id and exercising the callback', () => {
-
-
             describe('When the user is found with no error', () => {
-                let user, status, json;
                 beforeEach(() => {
-                    user = {id: userId, local: { verified: true } };
-                    User_Profile.__Rewire__('User', {
+                    user = { id: userId, local: { verified: true } };
+                    __RewireAPI__.__Rewire__('User', {
                         findById: (id, fn) => {
-                            fn(null, user)
+                            fn(null, user);
                         }
                     });
 
@@ -55,7 +55,6 @@ describe('userProfile', () => {
                     };
 
                     status = expect.spyOn(res, 'status').andCallThrough();
-
                 });
 
                 it('should return a status of 200 and the user\'s id and name', () => {
@@ -66,11 +65,10 @@ describe('userProfile', () => {
             });
 
             describe('When an error occurs', () => {
-                let status, send;
                 beforeEach(() => {
-                    User_Profile.__Rewire__('User', {
+                    __RewireAPI__.__Rewire__('User', {
                         findById: (id, fn) => {
-                            fn(new Error(), {})
+                            fn(new Error(), {});
                         }
                     });
 
@@ -84,7 +82,6 @@ describe('userProfile', () => {
                     };
 
                     status = expect.spyOn(res, 'status').andCallThrough();
-
                 });
 
                 it('should return a status of 500', () => {
@@ -95,11 +92,10 @@ describe('userProfile', () => {
             });
 
             describe('When no user is found by given id', () => {
-                let status, send;
                 beforeEach(() => {
-                    User_Profile.__Rewire__('User', {
+                    __RewireAPI__.__Rewire__('User', {
                         findById: (id, fn) => {
-                            fn(null, null)
+                            fn(null, null);
                         }
                     });
 
@@ -113,7 +109,6 @@ describe('userProfile', () => {
                     };
 
                     status = expect.spyOn(res, 'status').andCallThrough();
-
                 });
 
                 it('should return a status of 500', () => {
@@ -122,7 +117,6 @@ describe('userProfile', () => {
                     expect(send).toHaveBeenCalled();
                 });
             });
-
         });
     });
 });

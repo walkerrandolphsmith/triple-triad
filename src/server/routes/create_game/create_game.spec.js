@@ -3,10 +3,12 @@ import Create_Game from './create_game';
 import { createGame, __RewireAPI__ as create_gameRewireAPI } from './create_game';
 
 describe('createGame', () => {
-
+    let req;
+    let res;
+    let status;
+    let send;
     describe('Given a userId and deck in the request body, when creating a new game', () => {
-
-        let save, req, res;
+        let save;
         beforeEach(() => {
 
             save = expect.createSpy();
@@ -38,8 +40,7 @@ describe('createGame', () => {
 
 
     describe('Given a userId and deck in the request body, when creating a new game without error', () => {
-
-        let status, send, newGame, req, res;
+        let newGame;
         beforeEach(() => {
 
             newGame = { id: 20 };
@@ -79,10 +80,7 @@ describe('createGame', () => {
 
 
     describe('Given a userId and deck in the request body, when creating a new game with error', () => {
-
-        let status, send, req, res;
         beforeEach(() => {
-
             Create_Game.__Rewire__('Game', () => {
                 return {
                     save: (fn) => {

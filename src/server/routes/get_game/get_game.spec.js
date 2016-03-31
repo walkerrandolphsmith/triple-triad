@@ -1,18 +1,17 @@
 import expect from 'expect';
-import Get_Game from './get_game';
 import { getGame, __RewireAPI__ } from './get_game';
 
 describe('getGame', () => {
-
-    let req, res;
-
+    let req;
+    let res;
+    let status;
+    let send;
     describe('Given a request containing a game id and a response', () => {
         describe('When retrieving a game by id', () => {
-
             let findById;
             beforeEach(() => {
                 findById = expect.createSpy();
-                Get_Game.__Rewire__('Game', {
+                __RewireAPI__.__Rewire__('Game', {
                     findById: findById
                 });
 
@@ -32,12 +31,10 @@ describe('getGame', () => {
         });
 
         describe('When retrieving game is successful', () => {
-
-            let game, send, status;
+            let game;
             beforeEach(() => {
-
                 game = { _id: 1};
-                Get_Game.__Rewire__('Game', {
+                __RewireAPI__.__Rewire__('Game', {
                     findById: (id, fn) => {
                         fn(null, game)
                     }
@@ -63,16 +60,13 @@ describe('getGame', () => {
             it('should return the game in the 200 response', () => {
                 getGame(req, res);
                 expect(status).toHaveBeenCalledWith(200);
-                expect(send).toHaveBeenCalledWith(game)
+                expect(send).toHaveBeenCalledWith(game);
             });
         });
 
         describe('When retrieving a game throws an error', () => {
-
-            let send, status;
             beforeEach(() => {
-
-                Get_Game.__Rewire__('Game', {
+                __RewireAPI__.__Rewire__('Game', {
                     findById: (schema, fn) => {
                         fn(new Error(), {})
                     }
@@ -98,7 +92,7 @@ describe('getGame', () => {
             it('should return a 500 response', () => {
                 getGame(req, res);
                 expect(status).toHaveBeenCalledWith(500);
-                expect(send).toHaveBeenCalled()
+                expect(send).toHaveBeenCalled();
             });
         });
     });

@@ -2,10 +2,12 @@ import expect from 'expect';
 import { signOut } from './sign_out';
 
 describe('signOut', () => {
-
     describe('Given a request and a response, when signing out', () => {
-
-        let req, res, logOut, status, end;
+        let req;
+        let res;
+        let logOut;
+        let status;
+        let end;
         beforeEach(() => {
             logOut = expect.createSpy();
             end = expect.createSpy();
@@ -34,7 +36,5 @@ describe('signOut', () => {
         it('should call end', () => {
             expect(end).toHaveBeenCalled();
         });
-
     });
-
 });

@@ -2,17 +2,15 @@ import expect from 'expect';
 import { sendEmail } from './mailer';
 
 describe('Mailer', () => {
-
+    let data;
     describe('Sending an email with valid from, to, subject, and message', () => {
-
-        let data;
         beforeEach(() => {
-           data = {
-               from: 'walker',
-               to: 'recipient',
-               subject: 'subject',
-               html: 'message'
-           }
+            data = {
+                from: 'walker',
+                to: 'recipient',
+                subject: 'subject',
+                html: 'message'
+            };
         });
 
         it('should get a status of OK', () => {
@@ -24,77 +22,69 @@ describe('Mailer', () => {
     });
 
     describe('Sending an email without sender', () => {
-
-        let data;
         beforeEach(() => {
             data = {
                 from: '',
                 to: 'recipient',
                 subject: 'subject',
                 html: 'message'
-            }
+            };
         });
 
         it('should have an error', () => {
-            sendEmail(data, (err, status) => {
-                expect(err).toExist;
+            sendEmail(data, err => {
+                expect(err).toExist();
             });
         });
     });
 
     describe('Sending an email without to address', () => {
-
-        let data;
         beforeEach(() => {
             data = {
                 from: 'sender',
                 to: '',
                 subject: 'subject',
                 html: 'message'
-            }
+            };
         });
 
         it('should have an error', () => {
-            sendEmail(data, (err, status) => {
-                expect(err).toExist;
+            sendEmail(data, err => {
+                expect(err).toExist();
             });
         });
     });
 
     describe('Sending an email without a subject', () => {
-
-        let data;
         beforeEach(() => {
             data = {
                 from: 'sender',
                 to: 'to',
                 subject: '',
                 html: 'message'
-            }
+            };
         });
 
         it('should have an error', () => {
-            sendEmail(data, (err, status) => {
-                expect(err).toExist;
+            sendEmail(data, err => {
+                expect(err).toExist();
             });
         });
     });
 
     describe('Sending an email without a message', () => {
-
-        let data;
         beforeEach(() => {
             data = {
                 from: 'sender',
                 to: 'to',
                 subject: 'subject',
                 html: ''
-            }
+            };
         });
 
         it('should have an error', () => {
-            sendEmail(data, (err, status) => {
-                expect(err).toExist;
+            sendEmail(data, err => {
+                expect(err).toExist();
             });
         });
     });

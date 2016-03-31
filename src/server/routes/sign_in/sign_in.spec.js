@@ -2,18 +2,22 @@ import expect from 'expect';
 import { signIn } from './sign_in';
 
 describe('signIn', () => {
-
-    let req, res, passport;
-    req = {};
+    let req = {};
+    let res;
+    let passport;
+    let status;
+    let json;
+    let logIn;
+    let user;
+    let info;
+    let error;
     describe('Given a request and response and passport, when passport successfully authenticates', () => {
-
-        let user, status, json, logIn;
         beforeEach(() => {
             user = { _id: 20, local: { username: 'tester' } };
             passport = {
                 authenticate: (strategy, fn) => {
                     fn(null, user, null);
-                    return (req, res, next) => {};
+                    return () => {};
                 }
             };
 
@@ -33,26 +37,23 @@ describe('signIn', () => {
         });
 
         it('should return a status of 200 and the user\'s id and name', () => {
-           signIn(req, res, {}, passport);
-           expect(logIn).toHaveBeenCalled();
-           expect(status).toHaveBeenCalledWith(200);
-           expect(json).toHaveBeenCalledWith({
-               id: user._id,
-               name: user.local.username
-           });
+            signIn(req, res, {}, passport);
+            expect(logIn).toHaveBeenCalled();
+            expect(status).toHaveBeenCalledWith(200);
+            expect(json).toHaveBeenCalledWith({
+                id: user._id,
+                name: user.local.username
+            });
         });
-
     });
 
     describe('Given a request and response and passport, when passport throws an error', () => {
-
-        let error, status, json;
         beforeEach(() => {
             error = new Error();
             passport = {
                 authenticate: (strategy, fn) => {
                     fn(error, null, null);
-                    return (req, res, next) => {};
+                    return () => {};
                 }
             };
             json = expect.createSpy();
@@ -73,18 +74,15 @@ describe('signIn', () => {
                 error: error
             });
         });
-
     });
 
     describe('Given a request and response and passport, when passport is not successful in authenticating', () => {
-
-        let info, status, json;
         beforeEach(() => {
             info = { message: 'error message' };
             passport = {
                 authenticate: (strategy, fn) => {
                     fn(null, null, info);
-                    return (req, res, next) => {};
+                    return () => {};
                 }
             };
             json = expect.createSpy();
@@ -105,9 +103,5 @@ describe('signIn', () => {
                 error: info.message
             });
         });
-
     });
-
-
-
 });
