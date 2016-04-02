@@ -1,6 +1,5 @@
 import expect from 'expect';
-import Create_Game from './create_game';
-import { createGame, __RewireAPI__ as create_gameRewireAPI } from './create_game';
+import { createGame, __RewireAPI__ } from './create_game';
 
 describe('createGame', () => {
     let req;
@@ -12,7 +11,7 @@ describe('createGame', () => {
         beforeEach(() => {
 
             save = expect.createSpy();
-            Create_Game.__Rewire__('Game', () => {
+            __RewireAPI__.__Rewire__('Game', () => {
                 return {
                     save: save
                 }
@@ -45,7 +44,7 @@ describe('createGame', () => {
 
             newGame = { id: 20 };
 
-            Create_Game.__Rewire__('Game', () => {
+            __RewireAPI__.__Rewire__('Game', () => {
                 return {
                     save: (fn) => {
                         fn(null, newGame)
@@ -81,7 +80,7 @@ describe('createGame', () => {
 
     describe('Given a userId and deck in the request body, when creating a new game with error', () => {
         beforeEach(() => {
-            Create_Game.__Rewire__('Game', () => {
+            __RewireAPI__.__Rewire__('Game', () => {
                 return {
                     save: (fn) => {
                         fn(new Error(), {})
