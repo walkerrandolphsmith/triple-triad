@@ -28,15 +28,9 @@ module.exports = {
         new webpack.NoErrorsPlugin(),
         new ExtractTextPlugin('styles.css')
     ],
-    eslint: {
-        configFile: '.eslintrc'
-    },
     module: {
-        preLoaders: [
-            { test: /\.jsx?$/, loaders: ['eslint-loader'], exclude: /node_modules/ }
-        ],
         loaders: [
-            { test: /\.jsx?$/, loaders: ['react-hot-loader', 'babel-loader', 'eslint-loader'], exclude: /node_modules/ },
+            { test: /\.jsx?$/, loaders: ['react-hot-loader', 'babel-loader'], exclude: /node_modules/ },
             { test: /\.(png|jpg|gif|jpeg)$/, loader: 'url-loader?limit=8192' },
             { test: /\.less$/, loaders: ['style-loader', 'css-loader', 'less-loader'] },
             { test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=10000&minetype=application/font-woff' },
