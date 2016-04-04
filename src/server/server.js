@@ -9,7 +9,7 @@ import configureServer from './config/express';
 import env from './../shared/config/environment';
 import { SERVER } from './../shared/constants/actionTypes';
 
-const { port, mongoUri } = env;
+const { host, port, mongoUri } = env;
 
 mongoose.connect(mongoUri);
 
@@ -39,6 +39,6 @@ server.listen(port, error => {
     if(error) {
         console.error(error);
     } else {
-        console.info(`==> 🌎  Listening on port ${port}. Open up http://localhost:${port}/ in your browser.`);
+        console.info(`==> 🌎  Listening on port ${port}. Open up http://${host}:${port}/ in your browser.`);
     }
 });

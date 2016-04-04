@@ -20,7 +20,7 @@ const browserHistory = useRouterHistory(createBrowserHistory)({
 let initialState = window.__INITIAL_STATE__;
 Object.keys(initialState).forEach(key => { initialState[key] = fromJS(initialState[key]);  });
 
-const socket = io('http://localhost:3000');
+const socket = io(`http://${env.host}:${env.port}`);
 
 const store = configureStore({
     initialState: initialState,
