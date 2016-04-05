@@ -12,8 +12,8 @@ export function app(request, response, socket) {
     const location = createLocation(request.url);
 
     const store = configureStore({
-        initialState: null,
-        history: null,
+        initialState: undefined,
+        history: undefined,
         socket: socket
     });
 
