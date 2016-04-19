@@ -3,10 +3,6 @@ import { DumbUser } from './../../dumb/';
 
 export class User extends React.Component {
 
-    componentDidMount() {
-        this.props.getUserProfile(this.props.id);
-    }
-
     resendEmailVerification() {
         this.props.resendEmailVerification(this.props.id);
     }
