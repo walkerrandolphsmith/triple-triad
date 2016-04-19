@@ -46,7 +46,7 @@ browserHistory.listen(location => {
     if(location.pathname.startsWith('game/')) {
         const id = location.pathname.split('game/')[1];
         store.dispatch(Actions.getGame(id));
-    }else if(location.pathname === 'user'){
+    }else if(location.pathname === 'user') {
         let userId = store.getState().auth.get('user').get('id');
         store.dispatch(Actions.getUserProfile(userId));
     }
