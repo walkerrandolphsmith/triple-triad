@@ -1,6 +1,12 @@
-import { Map } from 'immutable';
-import deck from './../../constants/deck';
+import { Map, List } from 'immutable';
+
 import {
+    GET_GAMES_FAILED,
+    GET_GAMES_REQUEST,
+    GET_GAMES_SUCCESS,
+    CREATE_GAME_FAILED,
+    CREATE_GAME_REQUEST,
+    CREATE_GAME_SUCCESS,
     GET_GAME_SUCCESS,
     SET_PHASE,
     ADD_CARD,
@@ -13,6 +19,12 @@ import {
     RESET_GAME
 } from './../../constants/actionTypes';
 
+import createGameFailed from './createGameFailed';
+import createGameRequest from './createGameRequest';
+import createGameSuccess from './createGameSuccess';
+import getGamesFailed from './getGamesFailed';
+import getGamesRequest from './getGamesRequest';
+import getGamesSuccess from './getGamesSuccess';
 import addCard from './addCard';
 import endAiTurn from './endAiTurn';
 import placeCard from './placeCard';
@@ -25,21 +37,31 @@ import startAiTurn from './startAiTurn';
 import updateBoard from './updateBoard';
 
 const INITIAL_STATE = new Map({
-    gameId: -1,
-    owner: -1,
-    opponent: -1,
-    accepted: false,
-    currentPlayer: -1,
-    deck: deck,
-    selectedCard: -1,
-    selectedPiece: -1,
-    phase: 'settingsSelection'
+    gameRoute: -1,
+    getGames: new Map({
+        loading: false,
+        loaded: false,
+        failed: false
+    }),
+    newGame: new Map({
+        loading: false,
+        loaded: false,
+        failed: false
+    }),
+    games: new List([])
 });
 
 export default function reducer(state = INITIAL_STATE, action = {}) {
     let { type, payload } = action;
 
     switch(type) {
+        case GET_GAMES_FAILED: return getGamesFailed(state, payload);
+        case GET_GAMES_REQUEST: return getGamesRequest(state, payload);
+        case GET_GAMES_SUCCESS: return getGamesSuccess(state, payload);
+        case CREATE_GAME_FAILED: return createGameFailed(state, payload);
+        case CREATE_GAME_REQUEST: return createGameRequest(state, payload);
+        case CREATE_GAME_SUCCESS: return createGameSuccess(state, payload);
+        
         case GET_GAME_SUCCESS: return seedGame(state, payload);
         case SET_PHASE: return setPhase(state, payload);
         case ADD_CARD: return addCard(state, payload);

@@ -3,15 +3,9 @@ import { Game } from './../game/game';
 
 export class Games extends React.Component {
 
-    componentDidMount() {
-        this.props.getGames();
-    }
-
     render() {
-        let { games } = this.props;
-
-        const gamesList = games.map((game, index) => {
-            return (<Game key={index} id={game._id} push={this.props.push} />);
+        const gamesList = this.props.games.map(game => {
+            return (<Game key={game} id={game} push={this.props.push} />);
         });
 
         return (

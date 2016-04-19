@@ -43,7 +43,10 @@ ReactDom.render(
 );
 
 browserHistory.listen(location => {
-    if(location.pathname.startsWith('game/')) {
+    if(location.pathname === 'games') {
+        store.dispatch(Actions.getGames());
+    }
+    else if(location.pathname.startsWith('game/')) {
         const id = location.pathname.split('game/')[1];
         store.dispatch(Actions.getGame(id));
     }else if(location.pathname === 'user') {

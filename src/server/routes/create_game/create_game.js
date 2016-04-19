@@ -10,6 +10,8 @@ export function createGame(req, res) {
     game.deck = deck;
     game.phase = 'settingsSelection';
     game.accepted = false;
+    game.selectedCard = -1;
+    game.selectedPiece = -1;
     game.save((err, newGame) => {
         if(err) {
             return res.status(500).send();

@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import getCurrentGame from './../actions/utils/getCurrentGame';
 
 export default function(Settings, Invite, Cards, Round) {
 
@@ -17,10 +18,14 @@ export default function(Settings, Invite, Cards, Round) {
         }
     }
 
-    const mapStateToProps = (state) => ({
-        rollupPhase: getRollupPhase(state.game.get('phase')),
-        path: state.routing.locationBeforeTransitions.pathname
-    });
+    const mapStateToProps = (state) => {
+        const currentGame = getCurrentGame(state);
+        const currentPhase = currentGame ? currentGame.get('phase') : 'settingsSelection';
+        return {
+            rollupPhase: getRollupPhase(currentPhase),
+            path: state.routing.locationBeforeTransitions.pathname
+        }
+    };
 
     return connect(mapStateToProps)(PhaseEnforcerComponent);
 }

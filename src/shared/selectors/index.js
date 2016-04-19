@@ -8,10 +8,14 @@ import { getIsFullHand } from './isFullHand/isFullHandSelector';
 import { getWinner } from './winner/winnerSelector';
 import { getValidPieces } from './validPieces/validPiecesSelector';
 
-
-const deckSelector = state => state.get('deck');
+export const gameSelector = state => state.game.get('games').find(game => game.get('id') === state.game.get('gameRoute'));
 const playerSelector = () => 1;
 const opponentSelector = () => 2;
+
+export const deckSelector = createSelector(
+    [gameSelector],
+    game => game.get('deck')
+);
 
 export const availableDeckSelector = createSelector(
     [deckSelector, opponentSelector],

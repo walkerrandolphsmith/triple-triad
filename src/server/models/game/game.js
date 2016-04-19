@@ -6,7 +6,10 @@ let GameSchema = new mongoose.Schema({
     accepted: Boolean,
     currentPlayer: String,
     deck: Array,
-    phase: String
+    phase: String,
+    selectedCard: Number,
+    selectedPiece: Number
+
 });
 
 export default mongoose.model('Game', GameSchema);

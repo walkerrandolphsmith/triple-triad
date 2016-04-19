@@ -1,11 +1,12 @@
 import { applyFlipRules } from './../../utils';
 import { updateBoard } from './../../action-creators';
+import getCurrentGame from './../../utils/getCurrentGame';
 
 export const applyFlips = () => (dispatch, getState) => {
     const state = getState();
-
-    const i = state.game.get('selectedPiece');
-    const tuples = applyFlipRules(i, state.game);
+    const currentGame = getCurrentGame(state);
+    const i = currentGame.get('selectedPiece');
+    const tuples = applyFlipRules(i, currentGame);
 
     tuples.forEach(tuple => {
         dispatch(updateBoard(tuple.index, tuple.owner));

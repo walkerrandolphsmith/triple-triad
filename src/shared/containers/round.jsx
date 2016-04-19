@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { boardSelector, handSelector, opponentHandSelector, scoreSelector, winnerSelector, validPiecesSelector, cardSelectedSelector } from './../selectors/index';
+import { gameSelector, boardSelector, handSelector, opponentHandSelector, scoreSelector, winnerSelector, validPiecesSelector, cardSelectedSelector } from './../selectors/index';
 import * as Actions from './../actions/';
 import WINNER_TYPE from './../constants/winner';
 
@@ -8,17 +8,17 @@ import React from 'react';
 import { Round } from './../components';
 
 function mapStateToProps(state) {
-    const { game, settings } = state;
+    const { settings } = state;
 
     return {
-        game: game,
+        game: gameSelector(state),
         settings: settings,
-        board: boardSelector(game),
-        hand: handSelector(game),
-        opponentHand: opponentHandSelector(game),
-        validPieces: validPiecesSelector(game),
-        score: scoreSelector(game),
-        winner: winnerSelector(game),
+        board: boardSelector(state),
+        hand: handSelector(state),
+        opponentHand: opponentHandSelector(state),
+        validPieces: validPiecesSelector(state),
+        score: scoreSelector(state),
+        winner: winnerSelector(state),
         winnerType: WINNER_TYPE
     }
 }

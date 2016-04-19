@@ -1,11 +1,11 @@
 import request from 'superagent';
+import deck from './../../../constants/deck';
 import { createGameRequest, createGameSuccess, createGameFailed } from './../../action-creators';
 
 export function createGame() {
     return (dipatch, getState) => {
         dipatch(createGameRequest());
         const state = getState();
-        const deck = state.game.get('deck').toJS();
         const ownerId = state.auth.get('user').get('id');
 
         const game = JSON.stringify({
