@@ -12,15 +12,18 @@ export const endPhase = () => (dispatch, getState) => {
     const currentPhase = currentGame.get('phase');
     const nextPhase = getNextPhase(currentPhase, randomHand);
     
-    if(currentPhase === 'cardSelection' || currentPhase === 'pieceSelection') {
+    if(isRollupPhaseRound(currentPhase)) {
         dispatch(resetGame());
     }
 
-    if(nextPhase === 'handSelection') {
+    if(willBePhaseHandSelection(nextPhase)) {
         dispatch(getNextCardForHand());
     }
     
-    if(nextPhase === 'round') {
+    if(willBePhaseRound(nextPhase)) {
+        //doesn't will be phase x imply the phase will be x and not cardSelection
+        //This mess is probably why I have to return early
+        //How did I ever get in this mess? smelly aye?
         dispatch(setPhase('cardSelection'));
         dispatch(setHands());
         dispatch(getNextSelectedCard());
@@ -29,5 +32,17 @@ export const endPhase = () => (dispatch, getState) => {
 
     dispatch(setPhase(nextPhase));
 };
+
+function willBePhaseHandSelection(nextPhase) {
+    return nextPhase === 'handSelection'
+}
+
+function willBePhaseRound(nextPhase) {
+    return nextPhase === 'round'
+}
+
+function isRollupPhaseRound(currentPhase) {
+    return currentPhase === 'cardSelection' || currentPhase === 'pieceSelection'
+}
 
 
