@@ -5,20 +5,32 @@ import getCurrentGame from './../../utils/getCurrentGame';
 
 export const aiTurn = () => (dispatch, getState) => {
     dispatch(startAiTurn());
+    dispatch(selectCard(getSelectedCard(getState)));
 
-    let state = getState();
-    let currentGame = getCurrentGame(state);
+    let piece = getPiece(getState);
 
-    let selectedCard = selectCardForOpponent(currentGame);
-    dispatch(selectCard(selectedCard));
-
-    state = getState();
-    currentGame = getCurrentGame(state);
-
-    let piece = getValidPiece(currentGame);
-    if(piece >= 0) {
-        dispatch(selectPiece(piece));
-        dispatch(playerTakesTurn(false));
+    if(isPieceValid(piece)) {
+        takeAiTurn(piece, dispatch);
     }
     dispatch(endAiTurn());
 };
+
+function isPieceValid(piece) {
+    return piece >= 0;
+}
+
+function takeAiTurn(piece, dispatch) {
+    dispatch(selectPiece(piece));
+    dispatch(playerTakesTurn(false));
+}
+
+function getSelectedCard(getState) {
+    let currentGame = getCurrentGame(getState());
+    return selectCardForOpponent(currentGame);
+}
+
+function getPiece(getState) {
+    let currentGame = getCurrentGame(getState());
+    return getValidPiece(currentGame);
+}
+
