@@ -1,13 +1,12 @@
 import expect from 'expect';
 import { Map, List } from 'immutable';
-import { basicRule } from './basicRule';
+import { basicRule, __RewireAPI__ } from './basicRule';
 
 describe('BASIC RULE utility', () => {
     let index;
     let player;
     let opponent;
     let card;
-    let game;
     let deck;
     beforeEach(() => {
         index = 4;
@@ -23,13 +22,11 @@ describe('BASIC RULE utility', () => {
     describe('Given you place the first card', () => {
         beforeEach(() => {
             deck = [card];
-            game = new Map({
-                deck: new List(deck)
-            });
+            __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
 
         it('should not contain tuples', () => {
-            expect(basicRule(index, game)).toEqual([]);
+            expect(basicRule(index, deck)).toEqual([]);
         });
     });
 
@@ -37,13 +34,11 @@ describe('BASIC RULE utility', () => {
         beforeEach(() => {
             let adjacentCard = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 4, bottom: 5 }) });
             deck = [adjacentCard, card];
-            game = new Map({
-                deck: new List(deck)
-            });
+            __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
 
         it('should not contain tuples', () => {
-            expect(basicRule(index, game)).toEqual([]);
+            expect(basicRule(index, deck)).toEqual([]);
         });
     });
 
@@ -51,16 +46,14 @@ describe('BASIC RULE utility', () => {
         beforeEach(() => {
             let adjacentCard = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 3, bottom: 5 }) });
             deck = [adjacentCard, card];
-            game = new Map({
-                deck: new List(deck)
-            });
+            __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
 
         it('should contain a tuple with index of card to flip and player owner', () => {
             let expected = [
                 { index: 3, owner: player }
             ];
-            expect(basicRule(index, game)) .toEqual(expected);
+            expect(basicRule(index, deck)) .toEqual(expected);
         });
     });
 
@@ -68,13 +61,11 @@ describe('BASIC RULE utility', () => {
         beforeEach(() => {
             let adjacentCard = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 6, bottom: 5 }) });
             deck = [adjacentCard, card];
-            game = new Map({
-                deck: new List(deck)
-            });
+            __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
 
         it('should contain a tuple with the index of your card and opponent owner', () => {
-            expect(basicRule(index, game)) .toEqual([
+            expect(basicRule(index, deck)) .toEqual([
                 { index: index, owner: opponent }
             ]);
         });
@@ -85,13 +76,11 @@ describe('BASIC RULE utility', () => {
             let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 4, bottom: 5 }) });
             let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5 }) });
             deck = [adjacentCardOne, card, adjacentCardTwo];
-            game = new Map({
-                deck: new List(deck)
-            });
+            __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
 
         it('should not contain tuples', () => {
-            expect(basicRule(index, game)) .toEqual([]);
+            expect(basicRule(index, deck)) .toEqual([]);
         });
     });
 
@@ -100,13 +89,11 @@ describe('BASIC RULE utility', () => {
             let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 3, bottom: 5 }) });
             let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5 }) });
             deck = [adjacentCardOne, card, adjacentCardTwo];
-            game = new Map({
-                deck: new List(deck)
-            });
+            __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
 
         it('should contain a tuple with the index of card to flip and player owner', () => {
-            expect(basicRule(index, game)) .toEqual([
+            expect(basicRule(index, deck)) .toEqual([
                 { index: 3, owner: player }
             ]);
         });
@@ -117,13 +104,11 @@ describe('BASIC RULE utility', () => {
             let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 3, bottom: 5 }) });
             let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 4, top: 5, right: 5, bottom: 5 }) });
             deck = [adjacentCardOne, card, adjacentCardTwo];
-            game = new Map({
-                deck: new List(deck)
-            });
+            __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
 
         it('should contain two tuples with the index of first and second card to flip and player owner', () => {
-            expect(basicRule(index, game)) .toEqual([
+            expect(basicRule(index, deck)) .toEqual([
                 { index: 3, owner: player },
                 { index: 5, owner: player }
             ]);
@@ -135,13 +120,11 @@ describe('BASIC RULE utility', () => {
             let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 3, bottom: 5 }) });
             let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 6, top: 5, right: 5, bottom: 5 }) });
             deck = [adjacentCardOne, card, adjacentCardTwo];
-            game = new Map({
-                deck: new List(deck)
-            });
+            __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
 
         it('should contain two tuples with the index, owner of first card to flip and the placed cards index,owner ', () => {
-            expect(basicRule(index, game)) .toEqual([
+            expect(basicRule(index, deck)) .toEqual([
                 { index: 3, owner: player },
                 { index: index, owner: opponent }
             ]);
@@ -153,13 +136,11 @@ describe('BASIC RULE utility', () => {
             let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 6, bottom: 5 }) });
             let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 6, top: 5, right: 5, bottom: 5 }) });
             deck = [adjacentCardOne, card, adjacentCardTwo];
-            game = new Map({
-                deck: new List(deck)
-            });
+            __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
 
         it('should contain a tuple with the placed cards index,owner', () => {
-            expect(basicRule(index, game)) .toEqual([
+            expect(basicRule(index, deck)) .toEqual([
                 { index: index, owner: opponent }
             ]);
         });
@@ -171,13 +152,11 @@ describe('BASIC RULE utility', () => {
             let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5 }) });
             let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 4 }) });
             deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo];
-            game = new Map({
-                deck: new List(deck)
-            });
+            __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
 
         it('should not contain tuples', () => {
-            expect(basicRule(index, game)) .toEqual([]);
+            expect(basicRule(index, deck)) .toEqual([]);
         });
     });
 
@@ -187,13 +166,11 @@ describe('BASIC RULE utility', () => {
             let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5 }) });
             let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 4 }) });
             deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo];
-            game = new Map({
-                deck: new List(deck)
-            });
+            __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
 
         it('should contain a tuple with the index, owner of the card to flip', () => {
-            expect(basicRule(index, game)) .toEqual([
+            expect(basicRule(index, deck)) .toEqual([
                 { index: 3, owner: player }
             ]);
         });
@@ -205,13 +182,11 @@ describe('BASIC RULE utility', () => {
             let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 4, top: 5, right: 5, bottom: 5 }) });
             let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 4 }) });
             deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo];
-            game = new Map({
-                deck: new List(deck)
-            });
+            __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
 
         it('should contain two tuples with the index, owner of first and second card to flip', () => {
-            expect(basicRule(index, game)).toEqual([
+            expect(basicRule(index, deck)).toEqual([
                 { index: 3, owner: player },
                 { index: 5, owner: player }
             ]);
@@ -225,13 +200,11 @@ describe('BASIC RULE utility', () => {
             let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 3, top: 5, right: 5, bottom: 5 }) });
             let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 3 }) });
             deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo];
-            game = new Map({
-                deck: new List(deck)
-            });
+            __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
 
         it('should contain two tuples with the index, owner of first, second, and third card to flip', () => {
-            expect(basicRule(index, game)) .toEqual([
+            expect(basicRule(index, deck)) .toEqual([
                 { index: 1, owner: player },
                 { index: 3, owner: player },
                 { index: 5, owner: player }
@@ -245,13 +218,11 @@ describe('BASIC RULE utility', () => {
             let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 6, top: 5, right: 5, bottom: 5 }) });
             let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 4 }) });
             deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo];
-            game = new Map({
-                deck: new List(deck)
-            });
+            __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
 
         it('should contain two tuples with the index, owner of first card to flip and the placed cards index,owner', () => {
-            expect(basicRule(index, game)) .toEqual([
+            expect(basicRule(index, deck)) .toEqual([
                 { index: 3, owner: player },
                 { index: index, owner: opponent }
             ]);
@@ -264,13 +235,11 @@ describe('BASIC RULE utility', () => {
             let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 4, top: 5, right: 5, bottom: 5 }) });
             let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 6 }) });
             deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo];
-            game = new Map({
-                deck: new List(deck)
-            });
+            __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
 
         it('should contain three tuples with the index, owner of first and second card to flip and the placed cards index,owner', () => {
-            expect(basicRule(index, game)) .toEqual([
+            expect(basicRule(index, deck)) .toEqual([
                 { index: 3, owner: player },
                 { index: 5, owner: player },
                 { index: index, owner: opponent }
@@ -284,13 +253,11 @@ describe('BASIC RULE utility', () => {
             let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5 }) });
             let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 6 }) });
             deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo];
-            game = new Map({
-                deck: new List(deck)
-            });
+            __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
 
         it('should contain a tuple with the index, owner of the placed card', () => {
-            expect(basicRule(index, game)) .toEqual([
+            expect(basicRule(index, deck)) .toEqual([
                 { index: index, owner: opponent }
             ]);
         });
@@ -303,13 +270,11 @@ describe('BASIC RULE utility', () => {
             let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 4 }) });
             let adjacentCardFour = new Map({ boardIndex: 7, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5 }) });
             deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo, adjacentCardFour];
-            game = new Map({
-                deck: new List(deck)
-            });
+            __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
 
         it('should not contain tuples', () => {
-            expect(basicRule(index, game)) .toEqual([]);
+            expect(basicRule(index, deck)) .toEqual([]);
         });
     });
     describe('Given four adjacent cards where you flip one', () => {
@@ -319,13 +284,11 @@ describe('BASIC RULE utility', () => {
             let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 4 }) });
             let adjacentCardFour = new Map({ boardIndex: 7, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5 }) });
             deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo, adjacentCardFour];
-            game = new Map({
-                deck: new List(deck)
-            });
+            __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
 
         it('should contain a tuple with the index, owner of first card to flip', () => {
-            expect(basicRule(index, game)) .toEqual([
+            expect(basicRule(index, deck)) .toEqual([
                 { index: 3, owner: player }
             ]);
         });
@@ -338,13 +301,11 @@ describe('BASIC RULE utility', () => {
             let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 4 }) });
             let adjacentCardFour = new Map({ boardIndex: 7, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5 }) });
             deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo, adjacentCardFour];
-            game = new Map({
-                deck: new List(deck)
-            });
+            __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
 
         it('should contain two tuples with the index, owner of first and second card to flip', () => {
-            expect(basicRule(index, game)) .toEqual([
+            expect(basicRule(index, deck)) .toEqual([
                 { index: 3, owner: player },
                 { index: 5, owner: player }
             ]);
@@ -359,13 +320,11 @@ describe('BASIC RULE utility', () => {
             let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 3 }) });
             let adjacentCardFour = new Map({ boardIndex: 7, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5 }) });
             deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo, adjacentCardFour];
-            game = new Map({
-                deck: new List(deck)
-            });
+            __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
 
         it('should contain three tuples with the index, owner of first, second, and third card to flip', () => {
-            expect(basicRule(index, game)) .toEqual([
+            expect(basicRule(index, deck)) .toEqual([
                 { index: 1, owner: player },
                 { index: 3, owner: player },
                 { index: 5, owner: player }
@@ -380,13 +339,11 @@ describe('BASIC RULE utility', () => {
             let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 3 }) });
             let adjacentCardFour = new Map({ boardIndex: 7, owner: opponent, rank: new Map({ left: 5, top: 4, right: 5, bottom: 5 }) });
             deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo, adjacentCardFour];
-            game = new Map({
-                deck: new List(deck)
-            });
+            __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
 
         it('should contain two tuples with the index, owner of first, second, third, and forth card to flip', () => {
-            expect(basicRule(index, game)).toEqual([
+            expect(basicRule(index, deck)).toEqual([
                 { index: 1, owner: player },
                 { index: 3, owner: player },
                 { index: 5, owner: player },
@@ -402,13 +359,11 @@ describe('BASIC RULE utility', () => {
             let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 4 }) });
             let adjacentCardFour = new Map({ boardIndex: 7, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5 }) });
             deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo, adjacentCardFour];
-            game = new Map({
-                deck: new List(deck)
-            });
+            __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
 
         it('should contain two tuples with the index, owner of first card to flip and the index,owner of the card placed', () => {
-            expect(basicRule(index, game)) .toEqual([
+            expect(basicRule(index, deck)) .toEqual([
                 { index: 3, owner: player },
                 { index: index, owner: opponent }
             ]);
@@ -422,13 +377,11 @@ describe('BASIC RULE utility', () => {
             let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 6 }) });
             let adjacentCardFour = new Map({ boardIndex: 7, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5 }) });
             deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo, adjacentCardFour];
-            game = new Map({
-                deck: new List(deck)
-            });
+            __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
 
         it('should contain three tuples with the index, owner of first and second card to flip and the index,owner of the card placed', () => {
-            expect(basicRule(index, game)) .toEqual([
+            expect(basicRule(index, deck)) .toEqual([
                 { index: 3, owner: player },
                 { index: 5, owner: player },
                 { index: index, owner: opponent }
@@ -444,13 +397,11 @@ describe('BASIC RULE utility', () => {
             let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 3 }) });
             let adjacentCardFour = new Map({ boardIndex: 7, owner: opponent, rank: new Map({ left: 5, top: 6, right: 5, bottom: 5 }) });
             deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo, adjacentCardFour];
-            game = new Map({
-                deck: new List(deck)
-            });
+            __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
 
         it('should contain two tuples with the index, owner of first, second, and third card to flip and the index,owner of the card placed', () => {
-            expect(basicRule(index, game)) .toEqual([
+            expect(basicRule(index, deck)) .toEqual([
                 { index: 1, owner: player },
                 { index: 3, owner: player },
                 { index: 5, owner: player },
@@ -466,13 +417,11 @@ describe('BASIC RULE utility', () => {
             let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 6 }) });
             let adjacentCardFour = new Map({ boardIndex: 7, owner: opponent, rank: new Map({ left: 5, top: 6, right: 5, bottom: 5 }) });
             deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo, adjacentCardFour];
-            game = new Map({
-                deck: new List(deck)
-            });
+            __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
 
         it('should contain two tuples with the index, owner of card placed', () => {
-            expect(basicRule(index, game)) .toEqual([
+            expect(basicRule(index, deck)) .toEqual([
                 { index: index, owner: opponent }
             ]);
         });
