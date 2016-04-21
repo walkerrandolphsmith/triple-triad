@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { List, Map } from 'immutable';
+import { Map } from 'immutable';
 import { createGame, __RewireAPI__ } from './createGame';
 
 describe('Create Game async action creator', () => {
@@ -13,12 +13,10 @@ describe('Create Game async action creator', () => {
     let request;
     beforeEach(() => {
         deck = [1, 2, 3];
+        __RewireAPI__.__Rewire__('deck', deck);
         ownerId = 20;
         dispatch = expect.createSpy();
         getState = () => ({
-            game: new Map({
-                deck: new List(deck)
-            }),
             auth: new Map({
                 user: new Map({
                     id: ownerId
