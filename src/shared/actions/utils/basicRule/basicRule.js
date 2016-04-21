@@ -10,8 +10,8 @@ function shouldFLip(card, otherCard, attackDirection, defenseDirection) {
     );
 }
 
-export function basicRule(i, game) {
-    const board = getBoard(game.get('deck'));
+export function basicRule(i, deck) {
+    const board = getBoard(deck);
 
     const row = i / 3;
     const column = i % 3;
