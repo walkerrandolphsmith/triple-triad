@@ -1,8 +1,7 @@
 import expect from 'expect';
-import { Map } from 'immutable';
 import { aiTurn, __RewireAPI__ } from './aiTurn';
 
-describe.only('AI_TURN async action creator', () => {
+describe('AI_TURN async action creator', () => {
     let dispatch;
     let getState;
     beforeEach(() => {
