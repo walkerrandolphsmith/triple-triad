@@ -2,13 +2,18 @@ import expect from 'expect';
 import { Map } from 'immutable';
 import { handleRight, __RewireAPI__ } from './handleRight';
 
-describe('handleRight', () => {
+describe('HANDLE_RIGHT', () => {
     describe('Given getState, dispatch', () => {
         let getState;
         let dispatch;
+        let game;
         beforeEach(() => {
             getState = () => ({});
             dispatch = expect.createSpy();
+            game = new Map({
+                phase: 'handSelection'
+            });
+            __RewireAPI__.__Rewire__('getCurrentGame', () => game);
             __RewireAPI__.__Rewire__('getNextCardForHand', () => 1);
             __RewireAPI__.__Rewire__('getNextSelectedPiece', () => 2);
         });
@@ -19,11 +24,10 @@ describe('handleRight', () => {
 
         describe('When the getState returns state containing a game with phase handSelection', () => {
             beforeEach(() => {
-                getState = () => ({
-                    game: new Map({
-                        phase: 'handSelection'
-                    })
+                game = new Map({
+                    phase: 'handSelection'
                 });
+                __RewireAPI__.__Rewire__('getCurrentGame', () => game);
             });
 
             it('should dispatch the result of getNextCardForHand', () => {
@@ -34,11 +38,10 @@ describe('handleRight', () => {
 
         describe('When the getState returns state containing a game with phase pieceSelection', () => {
             beforeEach(() => {
-                getState = () => ({
-                    game: new Map({
-                        phase: 'pieceSelection'
-                    })
+                game = new Map({
+                    phase: 'pieceSelection'
                 });
+                __RewireAPI__.__Rewire__('getCurrentGame', () => game);
             });
 
             it('should dispatch the result of getNextSelectedPiece', () => {
