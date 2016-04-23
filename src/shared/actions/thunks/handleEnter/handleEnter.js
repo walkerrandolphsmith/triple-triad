@@ -11,19 +11,10 @@ export const handleEnter = () => (dispatch, getState) => {
     
     switch(currentGame.get('phase')) {
         case 'settingsSelection':
-            const focusedSetting = state.settings.get('focused');
-            if(focusedSetting !== -1) {
-                dispatch(updateSettings(focusedSetting));
-            }
+            selectSetting(dispatch, state);
             break;
         case 'handSelection':
-            const id = state.game.get('selectedCard');
-            const hand = getHand(state.game.get('deck'), 1);
-            const isOwned = hand.find(card => card.get('id') === id);
-            const owner = isOwned ? 0 : 1;
-            if(!getIsFullHand(hand) || isOwned) {
-                dispatch(addCard(id, owner));
-            }
+            selectCardToAddToHand(dispatch, currentGame);
             break;
         case 'cardSelection':
             dispatch(setPhase('pieceSelection'));
@@ -36,3 +27,24 @@ export const handleEnter = () => (dispatch, getState) => {
         default: return;
     }
 };
+
+function selectCardToAddToHand(dispatch, currentGame) {
+    const id = currentGame.get('selectedCard');
+    const hand = getHand(currentGame.get('deck'), 1);
+    const isOwned = hand.find(card => card.get('id') === id);
+    const owner = isOwned ? 0 : 1;
+    if(!getIsFullHand(hand) || isOwned) {
+        dispatch(addCard(id, owner));
+    }
+}
+
+function selectSetting(dispatch, state) {
+    const focusedSetting = state.settings.get('focused');
+    if(isAnySettingFocused(focusedSetting)) {
+        dispatch(updateSettings(focusedSetting));
+    }
+}
+
+function isAnySettingFocused(focusedSetting) {
+    return focusedSetting !== -1;
+}

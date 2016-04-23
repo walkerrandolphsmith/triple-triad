@@ -1,5 +1,4 @@
 import expect from 'expect';
-import { Map, List } from 'immutable';
 import { getNextSelectedPiece, __RewireAPI__ } from './getNextSelectedPiece';
 
 describe('GET_NEXT_SELECTED_PIECE async action creator', () => {
@@ -8,12 +7,9 @@ describe('GET_NEXT_SELECTED_PIECE async action creator', () => {
     let keyCode;
     beforeEach(() => {
         keyCode = 13;
-        getState = () => ({
-            game: new Map({
-                deck: new List([])
-            })
-        });
+        getState = () => ({});
         dispatch = expect.createSpy();
+        __RewireAPI__.__Rewire__('getCurrentGame', () => 'game');
         __RewireAPI__.__Rewire__('getPieceToSelect', () => 1);
         __RewireAPI__.__Rewire__('selectPiece', () => 2);
     });

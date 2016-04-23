@@ -5,10 +5,11 @@ import { handleEnter, __RewireAPI__ } from './handleEnter';
 describe('HANDLE_ENTER async action creator', () => {
     let getState;
     let dispatch;
+    let game;
     beforeEach(() => {
         getState = () => ({});
         dispatch = expect.createSpy();
-
+        __RewireAPI__.__Rewire__('getCurrentGame', () => new Map({}));
         __RewireAPI__.__Rewire__('setPhase', () => 1);
         __RewireAPI__.__Rewire__('getNextSelectedPiece', () => 2);
         __RewireAPI__.__Rewire__('playerTakesTurn', () => 3);
@@ -22,10 +23,9 @@ describe('HANDLE_ENTER async action creator', () => {
 
     describe('given it is settings selection phase and no setting is focused', () => {
         beforeEach(() => {
+            game = new Map({ phase: 'settingsSelection' });
+            __RewireAPI__.__Rewire__('getCurrentGame', () => game);
             getState = () => ({
-                game: new Map({
-                    phase: 'settingsSelection'
-                }),
                 settings: new Map({
                     focused: -1
                 })
@@ -40,10 +40,8 @@ describe('HANDLE_ENTER async action creator', () => {
 
     describe('given it is settings selection phase and a setting is focused', () => {
         beforeEach(() => {
+            __RewireAPI__.__Rewire__('getCurrentGame', () => new Map({ phase: 'settingsSelection' }));
             getState = () => ({
-                game: new Map({
-                    phase: 'settingsSelection'
-                }),
                 settings: new Map({
                     focused: 'randomHand'
                 })
@@ -60,16 +58,16 @@ describe('HANDLE_ENTER async action creator', () => {
     describe('given it is hand selection phase and your hand is not full', () => {
         beforeEach(() => {
             let cardIndex = 12;
-            getState = () => ({
-                game: new Map({
-                    phase: 'handSelection',
-                    selectedCard: cardIndex,
-                    deck: new List([
-                        new Map({ id: cardIndex, owner: 0, name: 'Cloud', boardIndex: -1 }),
-                        new Map({ id: 0, owner: 0, name: 'Tifa', boardIndex: -1 })
-                    ])
-                })
+            game = new Map({
+                phase: 'handSelection',
+                selectedCard: cardIndex,
+                deck: new List([
+                    new Map({ id: cardIndex, owner: 0, name: 'Cloud', boardIndex: -1 }),
+                    new Map({ id: 0, owner: 0, name: 'Tifa', boardIndex: -1 })
+                ])
             });
+            __RewireAPI__.__Rewire__('getCurrentGame', () => game);
+            getState = () => ({});
         });
 
         it('should dispatch the ADD_CARD action', () => {
@@ -80,19 +78,19 @@ describe('HANDLE_ENTER async action creator', () => {
 
     describe('given it is hand selection phase and your hand is full and the selected card is not owned', () => {
         beforeEach(() => {
-            getState = () => ({
-                game: new Map({
-                    phase: 'handSelection',
-                    selectedCard: 12,
-                    deck: new List([
-                        new Map({ id: 0, owner: 1, name: '0', boardIndex: -1 }),
-                        new Map({ id: 1, owner: 1, name: '1', boardIndex: -1 }),
-                        new Map({ id: 2, owner: 1, name: '2', boardIndex: -1 }),
-                        new Map({ id: 3, owner: 1, name: '3', boardIndex: -1 }),
-                        new Map({ id: 4, owner: 1, name: '4', boardIndex: -1 })
-                    ])
-                })
+            game = new Map({
+                phase: 'handSelection',
+                selectedCard: 12,
+                deck: new List([
+                    new Map({ id: 0, owner: 1, name: '0', boardIndex: -1 }),
+                    new Map({ id: 1, owner: 1, name: '1', boardIndex: -1 }),
+                    new Map({ id: 2, owner: 1, name: '2', boardIndex: -1 }),
+                    new Map({ id: 3, owner: 1, name: '3', boardIndex: -1 }),
+                    new Map({ id: 4, owner: 1, name: '4', boardIndex: -1 })
+                ])
             });
+            __RewireAPI__.__Rewire__('getCurrentGame', () => game);
+            getState = () => ({});
         });
 
         it('should do nothing', () => {
@@ -103,19 +101,19 @@ describe('HANDLE_ENTER async action creator', () => {
 
     describe('given it is hand selection phase and your hand is full but the selected card is owned', () => {
         beforeEach(() => {
-            getState = () => ({
-                game: new Map({
-                    phase: 'handSelection',
-                    selectedCard: 4,
-                    deck: new List([
-                        new Map({ id: 0, owner: 1, name: '0', boardIndex: -1 }),
-                        new Map({ id: 1, owner: 1, name: '1', boardIndex: -1 }),
-                        new Map({ id: 2, owner: 1, name: '2', boardIndex: -1 }),
-                        new Map({ id: 3, owner: 1, name: '3', boardIndex: -1 }),
-                        new Map({ id: 4, owner: 1, name: '4', boardIndex: -1 })
-                    ])
-                })
+            game = new Map({
+                phase: 'handSelection',
+                selectedCard: 4,
+                deck: new List([
+                    new Map({ id: 0, owner: 1, name: '0', boardIndex: -1 }),
+                    new Map({ id: 1, owner: 1, name: '1', boardIndex: -1 }),
+                    new Map({ id: 2, owner: 1, name: '2', boardIndex: -1 }),
+                    new Map({ id: 3, owner: 1, name: '3', boardIndex: -1 }),
+                    new Map({ id: 4, owner: 1, name: '4', boardIndex: -1 })
+                ])
             });
+            __RewireAPI__.__Rewire__('getCurrentGame', () => game);
+            getState = () => ({});
         });
 
         it('should dispatch ADD_CARD action', () => {
@@ -126,11 +124,11 @@ describe('HANDLE_ENTER async action creator', () => {
 
     describe('given it is not the piece selection phase', () => {
         beforeEach(() => {
-            getState = () => ({
-                game: new Map({
-                    phase: 'cardSelection'
-                })
+            game = new Map({
+                phase: 'cardSelection'
             });
+            getState = () => ({});
+            __RewireAPI__.__Rewire__('getCurrentGame', () => game);
         });
 
         it('should dispatch the SET_PHASE action setting the phase to pieceSelection', () => {
@@ -146,12 +144,12 @@ describe('HANDLE_ENTER async action creator', () => {
 
     describe('given it is the piece selection phase', () => {
         beforeEach(() => {
-            getState = () => ({
-                game: new Map({
-                    phase: 'pieceSelection',
-                    selectedPiece: 0
-                })
+            game = new Map({
+                phase: 'pieceSelection',
+                selectedPiece: 0
             });
+            __RewireAPI__.__Rewire__('getCurrentGame', () => game);
+            getState = () => ({});
         });
 
         it('should dispatch the PlayerTakesTurn action', () => {

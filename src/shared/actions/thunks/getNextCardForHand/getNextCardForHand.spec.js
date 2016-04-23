@@ -2,7 +2,7 @@ import expect from 'expect';
 import { Map, List } from 'immutable';
 import { getNextCardForHand, __RewireAPI__ } from './getNextCardForHand';
 
-describe.only('GET_NEXT_CARD_FOR_HAND async action creator', () => {
+describe('GET_NEXT_CARD_FOR_HAND async action creator', () => {
     let getState;
     let dispatch;
     beforeEach(() => {
