@@ -2,7 +2,7 @@ import expect from 'expect';
 import { Map, List } from 'immutable';
 import { setHand, __RewireAPI__ } from './setHand';
 
-describe('SET_HAND async action creator', () => {
+describe('src/shared/actions/thunks/setHand', () => {
     let dispatch;
     let getState;
     let player;
@@ -17,6 +17,7 @@ describe('SET_HAND async action creator', () => {
     });
 
     it('should dispatch ADD_CARD action for each card in hand', () => {
+        __RewireAPI__.__Rewire__('getCurrentGame', () => 'game');
         __RewireAPI__.__Rewire__('getRandomHand', () => {
             return new List([
                 new Map({ id: 1, name: '1', owner: 1, boardIndex: -1 }),
