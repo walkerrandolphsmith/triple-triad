@@ -3,9 +3,7 @@ import { getNextSelectedPiece } from './../getNextSelectedPiece/getNextSelectedP
 import getCurrentGame from './../../utils/getCurrentGame';
 
 export const handleUp = () => (dispatch, getState) => {
-    const state = getState();
-    const currentGame = getCurrentGame(state);
-
+    const currentGame = getCurrentGame(getState());
     if(currentGame.get('phase') === 'pieceSelection') {
         dispatch(getNextSelectedPiece('up'));
     } else {

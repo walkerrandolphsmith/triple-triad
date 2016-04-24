@@ -2,9 +2,10 @@ import expect from 'expect';
 import { Map } from 'immutable';
 import { handleUp, __RewireAPI__ } from './handleUp';
 
-describe('HANDLE_UP async action creator', () => {
+describe('src/shared/actions/action-creators/handleUp', () => {
     let getState;
     let dispatch;
+    let game;
     beforeEach(() => {
         getState = () => ({});
         dispatch = expect.createSpy();
@@ -16,11 +17,10 @@ describe('HANDLE_UP async action creator', () => {
 
     describe('given it is not the piece selection phase', () => {
         beforeEach(() => {
-            getState = () => ({
-                game: new Map({
-                    phase: 'cardSelection'
-                })
+            game = new Map({
+                phase: 'cardSelection'
             });
+            __RewireAPI__.__Rewire__('getCurrentGame', () => game);
         });
 
         it('should dispatch the GET_NEXT_SELECTED_CARD action', () => {
@@ -32,11 +32,10 @@ describe('HANDLE_UP async action creator', () => {
 
     describe('given it is the piece selection phase', () => {
         beforeEach(() => {
-            getState = () => ({
-                game: new Map({
-                    phase: 'pieceSelection'
-                })
+            game = new Map({
+                phase: 'pieceSelection'
             });
+            __RewireAPI__.__Rewire__('getCurrentGame', () => game);
         });
 
         it('should dispatch the GET_NEXT_SELECTED_PIECE action', () => {
