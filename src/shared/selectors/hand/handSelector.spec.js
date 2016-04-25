@@ -2,7 +2,7 @@ import expect from 'expect';
 import { Map, List } from 'immutable';
 import { getHand } from './handSelector';
 
-describe('Hand selector', () => {
+describe('src/shared/selectors/handSelector', () => {
     let deck;
     let cardOne;
     let cardTwo;

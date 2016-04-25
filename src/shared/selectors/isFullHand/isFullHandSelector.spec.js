@@ -2,7 +2,7 @@ import expect from 'expect';
 import { Map, List } from 'immutable';
 import { getIsFullHand } from './isFullHandSelector';
 
-describe('isFullHand selector', () => {
+describe('src/shared/selectors/ifFullHandSelector', () => {
     let deck;
     beforeEach(() => {
         deck = new List([

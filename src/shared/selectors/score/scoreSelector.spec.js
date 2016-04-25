@@ -2,7 +2,7 @@ import expect from 'expect';
 import { Map, List } from 'immutable';
 import { getScoreForOwner } from './scoreSelector';
 
-describe('Blue Score selector', () => {
+describe('src/shared/selectors/scoreSelector', () => {
     describe('given a new game', () => {
         let deck;
         beforeEach(() => {

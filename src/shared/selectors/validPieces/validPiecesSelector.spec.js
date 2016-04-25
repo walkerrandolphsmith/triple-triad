@@ -2,7 +2,7 @@ import expect from 'expect';
 import { Map, List } from 'immutable';
 import { getValidPieces } from './validPiecesSelector';
 
-describe('validPieces selector', () => {
+describe('src/shared/selectors/validPiecesSelector', () => {
     let deck;
     beforeEach(() => {
         deck = new List([

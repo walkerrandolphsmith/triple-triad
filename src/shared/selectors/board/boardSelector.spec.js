@@ -2,7 +2,7 @@ import expect from 'expect';
 import { Map, List } from 'immutable';
 import { getBoard } from './boardSelector';
 
-describe('Board selector', () => {
+describe('src/shared/selectors/boardSelector', () => {
     let deck;
     let zero;
     let one;

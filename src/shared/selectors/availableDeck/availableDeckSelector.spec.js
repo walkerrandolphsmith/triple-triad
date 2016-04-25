@@ -2,7 +2,7 @@ import expect from 'expect';
 import { Map, List } from 'immutable';
 import { getAvailableDeck } from './availableDeckSelector';
 
-describe('Available Deck selector', () => {
+describe('src/shared/selectors/availableDeckSelector', () => {
     let deck;
     let TifaOne;
     let TifaTwo;

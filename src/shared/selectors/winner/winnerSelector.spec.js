@@ -3,7 +3,7 @@ import { List } from 'immutable';
 import { getWinner } from './winnerSelector';
 import WINNER from './../../constants/winner';
 
-describe('winner selector', () => {
+describe('src/shared/selectors/winnerSelector', () => {
     let score;
     let validPieces;
     describe('given a game in progress', () => {
