@@ -2,7 +2,7 @@ import expect from 'expect';
 import { Map, List } from 'immutable';
 import selectPiece from './selectPiece';
 
-describe('src/shared/reducers/selectPiece', () => {
+describe('src/shared/reducers/game/selectPiece', () => {
     describe('Given game state and a payload containing the index of a piece', () => {
         let state;
         let payload;

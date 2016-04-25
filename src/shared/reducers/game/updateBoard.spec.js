@@ -2,7 +2,7 @@ import expect from 'expect';
 import { Map, List } from 'immutable';
 import updateBoard from './updateBoard';
 
-describe('src/shared/reducers/updateBoard', () => {
+describe('src/shared/reducers/game/updateBoard', () => {
     describe('Given game state and a payload containing the index and owner of a card', () => {
         let state;
         let payload;

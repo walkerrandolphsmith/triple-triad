@@ -3,7 +3,7 @@ import { Map, List } from 'immutable';
 import getGamesSuccess from './getGamesSuccess';
 import { __RewireAPI__ } from './getGamesSuccess';
 
-describe('src/reducers/getGamesSuccess', () => {
+describe('src/shared/reducers/game/getGamesSuccess', () => {
     describe('Given games state and a payload containing a game', () => {
         let state;
         let payload;

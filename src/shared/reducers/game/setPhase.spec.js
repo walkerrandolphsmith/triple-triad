@@ -2,7 +2,7 @@ import expect from 'expect';
 import { Map, List } from 'immutable';
 import setPhase from './setPhase';
 
-describe('src/shared/reducers/setPhase', () => {
+describe('src/shared/reducers/game/setPhase', () => {
     describe('Given game state and a payload containing the phase of the game', () => {
         let state;
         let payload;
