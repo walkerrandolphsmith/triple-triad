@@ -1,28 +1,35 @@
 import expect from 'expect';
-import { Map } from 'immutable';
-
+import { Map, List } from 'immutable';
 import selectCard from './selectCard';
 
-describe('Given game state and a payload containing the id of a card', () => {
-    let state;
-    let payload;
-    beforeEach(() => {
-        state = new Map({
-            selectedCard: -1
-        });
-        payload = {
-            id: 20
-        };
-    });
-
-    describe('When selecting a card', () => {
-        let actual;
+describe('src/shared/reducers/selectCard', () => {
+    describe('Given game state and a payload containing the id of a card', () => {
+        let state;
+        let payload;
         beforeEach(() => {
-            actual = selectCard(state, payload);
+            let gameId = 20;
+            let game = new Map({
+                id: gameId,
+                selectedCard: -1
+            });
+            state = new Map({
+                gameRoute: gameId,
+                games: new List([game])
+            });
+            payload = {
+                id: 20
+            };
         });
 
-        it('should set the selectedCard to the id in the payload', () => {
-            expect(actual.get('selectedCard')).toEqual(payload.id);
+        describe('When selecting a card', () => {
+            let actual;
+            beforeEach(() => {
+                actual = selectCard(state, payload);
+            });
+
+            it('should set the selectedCard to the id in the payload', () => {
+                expect(actual.get('games').first().get('selectedCard')).toEqual(payload.id);
+            });
         });
     });
 });
