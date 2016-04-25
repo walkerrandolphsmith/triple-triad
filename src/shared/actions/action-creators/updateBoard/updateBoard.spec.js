@@ -2,15 +2,35 @@ import expect from 'expect';
 import { SERVER, UPDATE_BOARD } from './../../../constants/actionTypes';
 import { updateBoard } from './updateBoard';
 
-describe('UPDATE_BOARD', () => {
-    it('should create an action to update the board when a card is placed', () => {
-        const expectedAction = {
-            type: SERVER + UPDATE_BOARD,
-            payload: {
-                index: 0,
-                owner: 0
-            }
-        };
-        expect(updateBoard(0, 0)).toEqual(expectedAction);
+describe('src/shared/actions/action-creators/updateBoard', () => {
+    describe('Given UPDATE_BOARD action type', () => {
+        let index;
+        let owner;
+        let expectedAction;
+        beforeEach(() => {
+            index = 20;
+            owner = 1;
+            expectedAction = {
+                type: SERVER + UPDATE_BOARD,
+                payload: {
+                    index: index,
+                    owner: owner
+                }
+            };
+        });
+
+        describe('When invoking the updateBoard action creator', () => {
+            it('should create an action', () => {
+                expect(updateBoard(index, owner)).toEqual(expectedAction);
+            });
+
+            it('should set its first parameter to the payload index field', () => {
+                expect(updateBoard(index, owner).payload.index).toEqual(index);
+            });
+
+            it('should set its second parameter to the payload owner field', () => {
+                expect(updateBoard(index, owner).payload.owner).toEqual(owner);
+            });
+        });
     });
 });

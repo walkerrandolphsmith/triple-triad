@@ -2,20 +2,29 @@ import expect from 'expect';
 import { SIGN_UP_FORM_ERROR } from './../../../constants/actionTypes';
 import { signUpFormError } from './signUpFormError';
 
-describe('SIGN_UP_FORM_ERROR', () => {
-    let payload;
-    beforeEach(() => {
-        payload = {
-            field: 'username',
-            error: 'invalid username'
-        };
-    });
+describe('src/shared/actions/action-creators/signupFormError', () => {
+    describe('Given SIGN_UP_FORM_ERROR action type', () => {
+        let payload;
+        let expectedAction;
+        beforeEach(() => {
+            payload = {
+                field: 'username',
+                error: 'invalid username'
+            };
+            expectedAction = {
+                type: SIGN_UP_FORM_ERROR,
+                payload: payload
+            };
+        });
 
-    it('should create an action to set a form error for a given field', () => {
-        const expectedAction = {
-            type: SIGN_UP_FORM_ERROR,
-            payload: payload
-        };
-        expect(signUpFormError(payload)).toEqual(expectedAction);
+        describe('When invoking the signUpFormError action creator', () => {
+            it('should create an action', () => {
+                expect(signUpFormError(payload)).toEqual(expectedAction);
+            });
+
+            it('should set its first parameter to the payload', () => {
+                expect(signUpFormError(payload).payload).toEqual(payload);
+            });
+        });
     });
 });

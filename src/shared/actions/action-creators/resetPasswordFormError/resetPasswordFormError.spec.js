@@ -2,20 +2,29 @@ import expect from 'expect';
 import { RESET_PASSWORD_FORM_ERROR } from './../../../constants/actionTypes';
 import { resetPasswordFormError } from './resetPasswordFormError';
 
-describe('RESET_PASSWORD_FORM_ERROR', () => {
-    let payload;
-    beforeEach(() => {
-        payload = {
-            field: 'username',
-            error: 'invalid username'
-        };
-    });
+describe('src/shared/actions/action-creators/resetPasswordFormError', () => {
+    describe('Given RESET_PASSWORD_FORM_ERROR action type', () => {
+        let payload;
+        let expectedAction;
+        beforeEach(() => {
+            payload = {
+                field: 'username',
+                error: 'invalid username'
+            };
+            expectedAction = {
+                type: RESET_PASSWORD_FORM_ERROR,
+                payload: payload
+            };
+        });
 
-    it('should create an action to set a form error for a given field', () => {
-        const expectedAction = {
-            type: RESET_PASSWORD_FORM_ERROR,
-            payload: payload
-        };
-        expect(resetPasswordFormError(payload)).toEqual(expectedAction);
+        describe('When invoking the placeCard action creator', () => {
+            it('should create an action', () => {
+                expect(resetPasswordFormError(payload)).toEqual(expectedAction);
+            });
+
+            it('should set its first parameter to the payload', () => {
+                expect(resetPasswordFormError(payload).payload).toEqual(payload);
+            });
+        });
     });
 });

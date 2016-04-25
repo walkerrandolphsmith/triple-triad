@@ -2,11 +2,15 @@ import expect from 'expect';
 import { RESET_GAME } from './../../../constants/actionTypes';
 import { resetGame } from './resetGame';
 
-describe('RESET_GAME', () => {
-    it('should create an action to trigger a rest of the board', () => {
-        const expectedAction = {
-            type: RESET_GAME
-        };
-        expect(resetGame()).toEqual(expectedAction);
+describe('src/shared/actions/action-creators/resetGame', () => {
+    describe('Given RESET_GAME action type', () => {
+        describe('When invoking the resetGame action creator', () => {
+            it('should create an action', () => {
+                const expectedAction = {
+                    type: RESET_GAME
+                };
+                expect(resetGame()).toEqual(expectedAction);
+            });
+        });
     });
 });
