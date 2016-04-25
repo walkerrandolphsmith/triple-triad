@@ -2,7 +2,7 @@ import expect from 'expect';
 import { EMAIL_VERIFIED } from './../../../constants/actionTypes';
 import { emailVerified } from './emailVerified';
 
-describe('EMAIL VERIFIED', () => {
+describe('src/shared/actions/action-creators/emailVerified', () => {
     let isVerified;
     let expectedAction;
     describe('Given the email is verified', () => {

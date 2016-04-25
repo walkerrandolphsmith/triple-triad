@@ -2,7 +2,7 @@ import expect from 'expect';
 import { SERVER, ADD_CARD } from './../../../constants/actionTypes';
 import { addCard } from './addCard';
 
-describe('ADD_CARD', () => {
+describe('src/shared/actions/action-creators/addCard', () => {
     let expectedAction;
     it('should create an action to add a card to a owners hand', () => {
         expectedAction = {

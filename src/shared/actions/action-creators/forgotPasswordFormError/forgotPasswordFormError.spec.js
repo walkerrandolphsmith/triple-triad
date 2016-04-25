@@ -2,7 +2,7 @@ import expect from 'expect';
 import { FORGOT_PASSWORD_FORM_ERROR } from './../../../constants/actionTypes';
 import { forgotPasswordFormError } from './forgotPasswordFormError';
 
-describe('FORGOT_PASSWORD_FORM_ERROR', () => {
+describe('src/shared/actions/action-creators/forgotPasswordFormError', () => {
     let payload;
     let expectedAction;
     beforeEach(() => {

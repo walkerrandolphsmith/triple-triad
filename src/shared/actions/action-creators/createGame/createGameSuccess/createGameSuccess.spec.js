@@ -2,7 +2,7 @@ import expect from 'expect';
 import { CREATE_GAME_SUCCESS } from './../../../../constants/actionTypes';
 import { createGameSuccess } from './createGameSuccess';
 
-describe('RECEIVE_NEW_GAME', () => {
+describe('src/shared/actions/action-creators/createGame/success', () => {
     let game;
     it('should create an action to indicate creating a game was successful', () => {
         game = 1;
