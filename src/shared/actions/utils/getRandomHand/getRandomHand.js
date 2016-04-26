@@ -1,4 +1,4 @@
-import sample from './../sample';
+import sample from './../sample/sample';
 import { getAvailableDeck } from './../../../selectors/availableDeck/availableDeckSelector';
 
 export function getRandomHand(game) {

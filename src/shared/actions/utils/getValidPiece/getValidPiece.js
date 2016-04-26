@@ -1,4 +1,4 @@
-import sample from './../sample';
+import sample from './../sample/sample';
 import { getBoard } from './../../../selectors/board/boardSelector';
 import { getValidPieces } from './../../../selectors/validPieces/validPiecesSelector';
 

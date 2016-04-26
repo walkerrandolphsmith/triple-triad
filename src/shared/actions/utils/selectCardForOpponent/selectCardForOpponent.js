@@ -1,4 +1,4 @@
-import sample from './../sample';
+import sample from './../sample/sample';
 import { getHand } from './../../../selectors/hand/handSelector';
 
 export function selectCardForOpponent(game) {
