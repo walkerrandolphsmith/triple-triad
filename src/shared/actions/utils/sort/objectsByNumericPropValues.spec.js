@@ -1,5 +1,5 @@
 import expect from 'expect';
-import sort from './objectsByNumericPropValues';
+import { sort } from './objectsByNumericPropValues';
 
 describe('src/shared/actions/utils/sort/objectsByNumericPropValue', () => {
    describe('Given a collection of objects that share a common numeric property', () => {

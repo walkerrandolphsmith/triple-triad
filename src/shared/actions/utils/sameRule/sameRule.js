@@ -1,5 +1,5 @@
 import { getBoard } from './../../../selectors/board/boardSelector';
-import sort from './../sort/objectsByNumericPropValues';
+import { sort } from './../../utils';
 
 function shouldApplySameRule(card, firstCard, secondCard, d1, d2, d3, d4) {
     return (

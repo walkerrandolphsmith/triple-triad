@@ -1,4 +1,4 @@
-export default (tuples) => {
+export const sort = (tuples) => {
     return tuples.sort((x, y) => {
         if(x.index > y.index) {
             return 1;
