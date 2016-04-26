@@ -1,6 +1,6 @@
 import expect from 'expect';
 import { getGame, __RewireAPI__ } from './get_game';
-describe('getGame', () => {
+describe('src/server/routes/getGame', () => {
     let req;
     let res;
     let status;

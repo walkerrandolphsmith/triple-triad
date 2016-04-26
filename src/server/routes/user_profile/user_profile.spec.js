@@ -1,7 +1,7 @@
 import expect from 'expect';
 import { userProfile, __RewireAPI__ } from './user_profile';
 
-describe('userProfile', () => {
+describe('src/server/routes/userProfile', () => {
     let req;
     let res;
     let userId;

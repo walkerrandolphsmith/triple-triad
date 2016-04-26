@@ -1,7 +1,7 @@
 import expect from 'expect';
 import { sendEmail } from './mailer';
 
-describe('Mailer', () => {
+describe('src/server/utils/mailer', () => {
     let data;
     describe('Sending an email with valid from, to, subject, and message', () => {
         beforeEach(() => {

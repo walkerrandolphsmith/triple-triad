@@ -1,7 +1,7 @@
 import expect from 'expect';
 import { verifyEmail, __RewireAPI__ } from './verify_email';
 
-describe('verifyEmail', () => {
+describe('src/server/routes/verifyEmail', () => {
     let req;
     let res;
     let token;

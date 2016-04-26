@@ -1,7 +1,7 @@
 import expect from 'expect';
 import { invite, __RewireAPI__ } from './invite';
 
-describe('/api/invite', () => {
+describe('src/server/routes/invite', () => {
     let req;
     let res;
     let status;

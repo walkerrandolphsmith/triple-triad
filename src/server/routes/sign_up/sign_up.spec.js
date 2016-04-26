@@ -1,7 +1,7 @@
 import expect from 'expect';
 import { signUp } from './sign_up';
 
-describe('signUp', () => {
+describe('src/server/routes/signUp', () => {
     let req;
     let res;
     let passport;

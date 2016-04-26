@@ -1,7 +1,7 @@
 import expect from 'expect';
 import { signOut } from './sign_out';
 
-describe('signOut', () => {
+describe('src/server/routes/signOut', () => {
     describe('Given a request and a response, when signing out', () => {
         let req;
         let res;

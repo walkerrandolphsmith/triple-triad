@@ -1,7 +1,7 @@
 import expect from 'expect';
 import tokenGenerator from './tokenGenerator';
 
-describe('token generator', () => {
+describe('src/server/utils/token/tokenGenerator', () => {
     describe('Given a user id, when generating a token', () => {
         let id;
         beforeEach(() => {
