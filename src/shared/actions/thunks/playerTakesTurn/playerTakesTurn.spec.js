@@ -11,7 +11,7 @@ describe('src/shared/actions/thunks/playerTakesTurn', () => {
         game = new Map({
             deck: new List([])
         });
-        __RewireAPI__.__Rewire__('getCurrentGame', () => game);
+        __RewireAPI__.__Rewire__('currentGameSelector', () => game);
         getState = () => ({});
         dispatch = expect.createSpy();
     });

@@ -13,7 +13,7 @@ describe('HANDLE_RIGHT', () => {
             game = new Map({
                 phase: 'handSelection'
             });
-            __RewireAPI__.__Rewire__('getCurrentGame', () => game);
+            __RewireAPI__.__Rewire__('currentGameSelector', () => game);
             __RewireAPI__.__Rewire__('getNextCardForHand', () => 1);
             __RewireAPI__.__Rewire__('getNextSelectedPiece', () => 2);
         });
@@ -27,7 +27,7 @@ describe('HANDLE_RIGHT', () => {
                 game = new Map({
                     phase: 'handSelection'
                 });
-                __RewireAPI__.__Rewire__('getCurrentGame', () => game);
+                __RewireAPI__.__Rewire__('currentGameSelector', () => game);
             });
 
             it('should dispatch the result of getNextCardForHand', () => {
@@ -41,7 +41,7 @@ describe('HANDLE_RIGHT', () => {
                 game = new Map({
                     phase: 'pieceSelection'
                 });
-                __RewireAPI__.__Rewire__('getCurrentGame', () => game);
+                __RewireAPI__.__Rewire__('currentGameSelector', () => game);
             });
 
             it('should dispatch the result of getNextSelectedPiece', () => {

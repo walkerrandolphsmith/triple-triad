@@ -1,13 +1,14 @@
 import { getValidPiece, selectCardForOpponent } from './../../utils';
 import { selectCard, selectPiece, startAiTurn, endAiTurn } from './../../action-creators';
 import { playerTakesTurn } from './../playerTakesTurn/playerTakesTurn';
-import getCurrentGame from './../../utils/getCurrentGame';
+import { currentGameSelector } from './../../../selectors/currentGame/currentGameSelector';
 
 export const aiTurn = () => (dispatch, getState) => {
     dispatch(startAiTurn());
-    dispatch(selectCard(getSelectedCard(getState)));
+    let currentGame = currentGameSelector(getState());
+    dispatch(selectCard(selectCardForOpponent(currentGame)));
 
-    let piece = getPiece(getState);
+    let piece = getValidPiece(currentGame);
 
     if(isPieceValid(piece)) {
         takeAiTurn(piece, dispatch);
@@ -23,14 +24,3 @@ function takeAiTurn(piece, dispatch) {
     dispatch(selectPiece(piece));
     dispatch(playerTakesTurn(false));
 }
-
-function getSelectedCard(getState) {
-    let currentGame = getCurrentGame(getState());
-    return selectCardForOpponent(currentGame);
-}
-
-function getPiece(getState) {
-    let currentGame = getCurrentGame(getState());
-    return getValidPiece(currentGame);
-}
-

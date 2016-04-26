@@ -21,7 +21,7 @@ describe('END_PHASE async action creator', () => {
 
     describe('Given the current phase is card selection, When the phase is ended', () => {
         beforeEach(() => {
-            __RewireAPI__.__Rewire__('getCurrentGame', () => new Map({
+            __RewireAPI__.__Rewire__('currentGameSelector', () => new Map({
                 phase: 'cardSelection'
             }));
             getState = () => ({
@@ -40,7 +40,7 @@ describe('END_PHASE async action creator', () => {
 
     describe('Given the current phase is piece selection, When the phase is ended', () => {
         beforeEach(() => {
-            __RewireAPI__.__Rewire__('getCurrentGame', () => new Map({
+            __RewireAPI__.__Rewire__('currentGameSelector', () => new Map({
                 phase: 'pieceSelection'
             }));
             getState = () => ({
@@ -59,7 +59,7 @@ describe('END_PHASE async action creator', () => {
 
     describe('Given the next phase will be hand selection, When the phase is ended', () => {
         beforeEach(() => {
-            __RewireAPI__.__Rewire__('getCurrentGame', () => new Map({
+            __RewireAPI__.__Rewire__('currentGameSelector', () => new Map({
                 phase: 'pieceSelection'
             }));
             getState = () => ({
@@ -79,7 +79,7 @@ describe('END_PHASE async action creator', () => {
 
     describe('Given the next phase will be round, When the phase is ended', () => {
         beforeEach(() => {
-            __RewireAPI__.__Rewire__('getCurrentGame', () => new Map({
+            __RewireAPI__.__Rewire__('currentGameSelector', () => new Map({
                 phase: 'pieceSelection'
             }));
             getState = () => ({

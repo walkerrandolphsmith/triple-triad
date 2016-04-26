@@ -9,7 +9,7 @@ describe('HANDLE_ENTER async action creator', () => {
     beforeEach(() => {
         getState = () => ({});
         dispatch = expect.createSpy();
-        __RewireAPI__.__Rewire__('getCurrentGame', () => new Map({}));
+        __RewireAPI__.__Rewire__('currentGameSelector', () => new Map({}));
         __RewireAPI__.__Rewire__('setPhase', () => 1);
         __RewireAPI__.__Rewire__('getNextSelectedPiece', () => 2);
         __RewireAPI__.__Rewire__('playerTakesTurn', () => 3);
@@ -24,7 +24,7 @@ describe('HANDLE_ENTER async action creator', () => {
     describe('given it is settings selection phase and no setting is focused', () => {
         beforeEach(() => {
             game = new Map({ phase: 'settingsSelection' });
-            __RewireAPI__.__Rewire__('getCurrentGame', () => game);
+            __RewireAPI__.__Rewire__('currentGameSelector', () => game);
             getState = () => ({
                 settings: new Map({
                     focused: -1
@@ -40,7 +40,7 @@ describe('HANDLE_ENTER async action creator', () => {
 
     describe('given it is settings selection phase and a setting is focused', () => {
         beforeEach(() => {
-            __RewireAPI__.__Rewire__('getCurrentGame', () => new Map({ phase: 'settingsSelection' }));
+            __RewireAPI__.__Rewire__('currentGameSelector', () => new Map({ phase: 'settingsSelection' }));
             getState = () => ({
                 settings: new Map({
                     focused: 'randomHand'
@@ -66,7 +66,7 @@ describe('HANDLE_ENTER async action creator', () => {
                     new Map({ id: 0, owner: 0, name: 'Tifa', boardIndex: -1 })
                 ])
             });
-            __RewireAPI__.__Rewire__('getCurrentGame', () => game);
+            __RewireAPI__.__Rewire__('currentGameSelector', () => game);
             getState = () => ({});
         });
 
@@ -89,7 +89,7 @@ describe('HANDLE_ENTER async action creator', () => {
                     new Map({ id: 4, owner: 1, name: '4', boardIndex: -1 })
                 ])
             });
-            __RewireAPI__.__Rewire__('getCurrentGame', () => game);
+            __RewireAPI__.__Rewire__('currentGameSelector', () => game);
             getState = () => ({});
         });
 
@@ -112,7 +112,7 @@ describe('HANDLE_ENTER async action creator', () => {
                     new Map({ id: 4, owner: 1, name: '4', boardIndex: -1 })
                 ])
             });
-            __RewireAPI__.__Rewire__('getCurrentGame', () => game);
+            __RewireAPI__.__Rewire__('currentGameSelector', () => game);
             getState = () => ({});
         });
 
@@ -128,7 +128,7 @@ describe('HANDLE_ENTER async action creator', () => {
                 phase: 'cardSelection'
             });
             getState = () => ({});
-            __RewireAPI__.__Rewire__('getCurrentGame', () => game);
+            __RewireAPI__.__Rewire__('currentGameSelector', () => game);
         });
 
         it('should dispatch the SET_PHASE action setting the phase to pieceSelection', () => {
@@ -148,7 +148,7 @@ describe('HANDLE_ENTER async action creator', () => {
                 phase: 'pieceSelection',
                 selectedPiece: 0
             });
-            __RewireAPI__.__Rewire__('getCurrentGame', () => game);
+            __RewireAPI__.__Rewire__('currentGameSelector', () => game);
             getState = () => ({});
         });
 

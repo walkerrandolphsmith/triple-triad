@@ -9,7 +9,7 @@ describe('GET_NEXT_SELECTED_PIECE async action creator', () => {
         keyCode = 13;
         getState = () => ({});
         dispatch = expect.createSpy();
-        __RewireAPI__.__Rewire__('getCurrentGame', () => 'game');
+        __RewireAPI__.__Rewire__('currentGameSelector', () => 'game');
         __RewireAPI__.__Rewire__('getPieceToSelect', () => 1);
         __RewireAPI__.__Rewire__('selectPiece', () => 2);
     });

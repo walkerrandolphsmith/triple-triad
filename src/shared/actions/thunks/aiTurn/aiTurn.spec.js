@@ -15,7 +15,7 @@ describe('AI_TURN async action creator', () => {
         __RewireAPI__.__Rewire__('selectPiece', () => 'selectPiece');
         __RewireAPI__.__Rewire__('playerTakesTurn', () => 'playerTakesTurn');
         __RewireAPI__.__Rewire__('endAiTurn', () => 'endAI');
-        __RewireAPI__.__Rewire__('getCurrentGame', () => 'getCurrentGame');
+        __RewireAPI__.__Rewire__('currentGameSelector', () => 'currentGameSelector');
         __RewireAPI__.__Rewire__('getSelectedCard', () => 'XXX');
     });
 

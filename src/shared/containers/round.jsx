@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { gameSelector, boardSelector, handSelector, opponentHandSelector, scoreSelector, winnerSelector, validPiecesSelector, cardSelectedSelector } from './../selectors/index';
+import { boardSelector, handSelector, opponentHandSelector, scoreSelector, winnerSelector, validPiecesSelector } from './../selectors/index';
+import { currentGameSelector } from './../selectors/currentGame/currentGameSelector';
 import * as Actions from './../actions/';
 import WINNER_TYPE from './../constants/winner';
 
@@ -11,7 +12,7 @@ function mapStateToProps(state) {
     const { settings } = state;
 
     return {
-        game: gameSelector(state),
+        game: currentGameSelector(state),
         settings: settings,
         board: boardSelector(state),
         hand: handSelector(state),

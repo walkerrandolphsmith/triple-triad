@@ -12,7 +12,7 @@ describe('GET_NEXT_CARD_FOR_HAND async action creator', () => {
             })
         });
         dispatch = expect.createSpy();
-        __RewireAPI__.__Rewire__('getCurrentGame', () => 'game');
+        __RewireAPI__.__Rewire__('currentGameSelector', () => 'game');
         __RewireAPI__.__Rewire__('getCardToAdd', () => new Map({ id: 12 }));
         __RewireAPI__.__Rewire__('selectCard', () => 12);
     });

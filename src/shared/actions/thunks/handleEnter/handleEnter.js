@@ -3,11 +3,11 @@ import { getNextSelectedPiece } from './../getNextSelectedPiece/getNextSelectedP
 import { playerTakesTurn } from './../playerTakesTurn/playerTakesTurn';
 import { getHand } from './../../../selectors/hand/handSelector';
 import { getIsFullHand } from './../../../selectors/isFullHand/isFullHandSelector';
-import getCurrentGame from './../../utils/getCurrentGame';
+import { currentGameSelector } from './../../../selectors/currentGame/currentGameSelector';
 
 export const handleEnter = () => (dispatch, getState) => {
     const state = getState();
-    const currentGame = getCurrentGame(state);
+    const currentGame = currentGameSelector(state);
     
     switch(currentGame.get('phase')) {
         case 'settingsSelection':

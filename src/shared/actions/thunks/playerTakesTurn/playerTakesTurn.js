@@ -3,10 +3,10 @@ import { placeCard, selectCard, selectPiece } from './../../action-creators';
 import { getNextSelectedCard } from './../getNextSelectedCard/getNextSelectedCard';
 import { applyFlips } from './../applyFlips/applyFlips';
 import { getBoard } from './../../../selectors/board/boardSelector';
-import getCurrentGame from './../../utils/getCurrentGame';
+import { currentGameSelector } from './../../../selectors/currentGame/currentGameSelector';
 
 export const playerTakesTurn = (isPlayer) => (dispatch, getState) => {
-    const currentGame = getCurrentGame(getState());
+    const currentGame = currentGameSelector(getState());
 
     dispatch(placeCard());
 

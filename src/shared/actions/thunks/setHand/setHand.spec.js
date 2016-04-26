@@ -17,7 +17,7 @@ describe('src/shared/actions/thunks/setHand', () => {
     });
 
     it('should dispatch ADD_CARD action for each card in hand', () => {
-        __RewireAPI__.__Rewire__('getCurrentGame', () => 'game');
+        __RewireAPI__.__Rewire__('currentGameSelector', () => 'game');
         __RewireAPI__.__Rewire__('getRandomHand', () => {
             return new List([
                 new Map({ id: 1, name: '1', owner: 1, boardIndex: -1 }),

@@ -1,6 +1,6 @@
 import { applyFlipRules } from './../../utils';
 import { updateBoard } from './../../action-creators';
-import getCurrentGame from './../../utils/getCurrentGame';
+import { currentGameSelector } from './../../../selectors/currentGame/currentGameSelector';
 
 export const applyFlips = () => (dispatch, getState) => {
     getFlips(getState).forEach(tuple => {
@@ -9,7 +9,7 @@ export const applyFlips = () => (dispatch, getState) => {
 };
 
 function getFlips(getState) {
-    const currentGame = getCurrentGame(getState());
+    const currentGame = currentGameSelector(getState());
     const i = currentGame.get('selectedPiece');
     const deck = currentGame.get('deck');
     return applyFlipRules(i, deck);

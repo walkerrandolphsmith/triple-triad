@@ -10,7 +10,7 @@ describe('HANDLE_DOWN async action creator', () => {
         getState = () => ({});
         dispatch = expect.createSpy();
         game = new Map({ phase: 'comePhase' });
-        __RewireAPI__.__Rewire__('getCurrentGame', () => game);
+        __RewireAPI__.__Rewire__('currentGameSelector', () => game);
         __RewireAPI__.__Rewire__('getNextSelectedCard', () => 1);
         __RewireAPI__.__Rewire__('getNextSelectedPiece', () => 2);
     });
@@ -22,7 +22,7 @@ describe('HANDLE_DOWN async action creator', () => {
     describe('given it is not the piece selection phase', () => {
         beforeEach(() => {
             game = new Map({ phase: 'cardSelection' });
-            __RewireAPI__.__Rewire__('getCurrentGame', () => game);
+            __RewireAPI__.__Rewire__('currentGameSelector', () => game);
         });
 
         it('should dispatch the getNextSelectedCard action', () => {
@@ -34,7 +34,7 @@ describe('HANDLE_DOWN async action creator', () => {
     describe('given it is the piece selection phase', () => {
         beforeEach(() => {
             game = new Map({ phase: 'pieceSelection' });
-            __RewireAPI__.__Rewire__('getCurrentGame', () => game);
+            __RewireAPI__.__Rewire__('currentGameSelector', () => game);
         });
 
         it('should dispatch the GET_NEXT_SELECTED_PIECE action', () => {

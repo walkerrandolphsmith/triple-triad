@@ -1,8 +1,8 @@
 import { setPhase, selectPiece } from './../../action-creators';
-import getCurrentGame from './../../utils/getCurrentGame';
+import { currentGameSelector } from './../../../selectors/currentGame/currentGameSelector';
 
 export const handleEscape = () => (dispatch, getState) => {
-    const currentGame = getCurrentGame(getState());
+    const currentGame = currentGameSelector(getState());
     if(isPieceSelectionPhase(currentGame)) {
         dispatch(setPhase('cardSelection'));
         dispatch(selectPiece(-1));

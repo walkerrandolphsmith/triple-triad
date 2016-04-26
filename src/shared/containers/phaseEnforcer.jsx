@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import getCurrentGame from './../actions/utils/getCurrentGame';
+import { currentGameSelector } from './../selectors/currentGame/currentGameSelector';
 
 export default function(Settings, Invite, Cards, Round) {
 
@@ -19,7 +19,7 @@ export default function(Settings, Invite, Cards, Round) {
     }
 
     const mapStateToProps = (state) => {
-        const currentGame = getCurrentGame(state);
+        const currentGame = currentGameSelector(state);
         const currentPhase = currentGame ? currentGame.get('phase') : 'settingsSelection';
         return {
             rollupPhase: getRollupPhase(currentPhase),

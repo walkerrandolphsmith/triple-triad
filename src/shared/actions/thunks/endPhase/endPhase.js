@@ -3,11 +3,12 @@ import { getNextSelectedCard } from './../getNextSelectedCard/getNextSelectedCar
 import { getNextCardForHand } from './../getNextCardForHand/getNextCardForHand';
 import { setPhase, resetGame } from './../../action-creators';
 import { getNextPhase } from './../../utils/getNextPhase/getNextPhase';
-import getCurrentGame from './../../utils/getCurrentGame';
+import { currentGameSelector } from './../../../selectors/currentGame/currentGameSelector';
+
 
 export const endPhase = () => (dispatch, getState) => {
     const state = getState();
-    const currentGame = getCurrentGame(state);
+    const currentGame = currentGameSelector(state);
     const randomHand = state.settings.get('randomHand');
     const currentPhase = currentGame.get('phase');
     const nextPhase = getNextPhase(currentPhase, randomHand);

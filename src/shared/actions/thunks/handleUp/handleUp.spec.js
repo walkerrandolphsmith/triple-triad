@@ -20,7 +20,7 @@ describe('src/shared/actions/action-creators/handleUp', () => {
             game = new Map({
                 phase: 'cardSelection'
             });
-            __RewireAPI__.__Rewire__('getCurrentGame', () => game);
+            __RewireAPI__.__Rewire__('currentGameSelector', () => game);
         });
 
         it('should dispatch the GET_NEXT_SELECTED_CARD action', () => {
@@ -35,7 +35,7 @@ describe('src/shared/actions/action-creators/handleUp', () => {
             game = new Map({
                 phase: 'pieceSelection'
             });
-            __RewireAPI__.__Rewire__('getCurrentGame', () => game);
+            __RewireAPI__.__Rewire__('currentGameSelector', () => game);
         });
 
         it('should dispatch the GET_NEXT_SELECTED_PIECE action', () => {

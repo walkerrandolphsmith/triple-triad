@@ -7,7 +7,7 @@ describe('HANDLE_ESCAPE async action creator', () => {
     beforeEach(() => {
         getState = () => ({});
         dispatch = expect.createSpy();
-        __RewireAPI__.__Rewire__('getCurrentGame', () => 'game');
+        __RewireAPI__.__Rewire__('currentGameSelector', () => 'game');
         __RewireAPI__.__Rewire__('isPieceSelectionPhase', () => true)
     });
 

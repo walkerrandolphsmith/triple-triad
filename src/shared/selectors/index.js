@@ -1,5 +1,6 @@
 import { createSelector } from 'reselect';
 
+import { currentGameSelector } from './currentGame/currentGameSelector';
 import { getAvailableDeck } from './availableDeck/availableDeckSelector';
 import { getBoard } from './board/boardSelector';
 import { getHand } from './hand/handSelector';
@@ -8,12 +9,11 @@ import { getIsFullHand } from './isFullHand/isFullHandSelector';
 import { getWinner } from './winner/winnerSelector';
 import { getValidPieces } from './validPieces/validPiecesSelector';
 
-export const gameSelector = state => state.game.get('games').find(game => game.get('id') === state.game.get('gameRoute'));
 const playerSelector = () => 1;
 const opponentSelector = () => 2;
 
 export const deckSelector = createSelector(
-    [gameSelector],
+    [currentGameSelector],
     game => game.get('deck')
 );
 
