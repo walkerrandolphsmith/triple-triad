@@ -1,5 +1,5 @@
-import sample from './../sample/sample';
 import { getHand } from './../../../selectors/hand/handSelector';
+import { sample } from './../../utils';
 
 export function selectCardForOpponent(game) {
     let opponentHand = getHand(game.get('deck'), 2);

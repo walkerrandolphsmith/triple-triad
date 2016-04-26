@@ -1,5 +1,5 @@
-import sample from './../sample/sample';
 import { getAvailableDeck } from './../../../selectors/availableDeck/availableDeckSelector';
+import { sample } from './../../utils';
 
 export function getRandomHand(game) {
     let deck = getAvailableDeck(game.get('deck'), 1);
