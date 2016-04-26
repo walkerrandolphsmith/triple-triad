@@ -2,7 +2,7 @@ import expect from 'expect';
 import { Map, List } from 'immutable';
 import { selectCardForOpponent, __RewireAPI__ } from './selectCardForOpponent';
 
-describe('selectCardForOpponent utility', () => {
+describe('src/shared/actions/utils/selectCardForOpponent', () => {
     let game;
     let deck;
     deck = new List([

@@ -2,7 +2,7 @@ import expect from 'expect';
 import { getNextPhase } from './getNextPhase';
 import PHASE from './../../../constants/phases';
 
-describe('getNextPhase action creator utility', () => {
+describe('src/shared/actions/utils/getNextPhase', () => {
     let currentPhase;
     let randomHand;
     it('should be a function', () => {

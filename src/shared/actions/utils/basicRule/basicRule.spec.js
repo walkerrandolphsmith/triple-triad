@@ -2,7 +2,7 @@ import expect from 'expect';
 import { Map, List } from 'immutable';
 import { basicRule, __RewireAPI__ } from './basicRule';
 
-describe('BASIC RULE utility', () => {
+describe('src/shared/actions/utils/basicRule', () => {
     let index;
     let player;
     let opponent;

@@ -2,7 +2,7 @@ import expect from 'expect';
 import { Map, List } from 'immutable';
 import { getCardToSelect } from './getCardToSelect';
 
-describe('getCardToSelect utility', () => {
+describe('src/shared/actions/utils/getCardToSelect', () => {
     let deck;
     let game;
     let selectedCard;

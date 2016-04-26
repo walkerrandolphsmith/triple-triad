@@ -2,7 +2,7 @@ import expect from 'expect';
 import { Map, List } from 'immutable';
 import { sameRule, __RewireAPI__ } from './sameRule';
 
-describe('SAME_RULE async action creator', () => {
+describe('src/shared/actions/utils/sameRule', () => {
     let index;
     let player;
     let opponent;

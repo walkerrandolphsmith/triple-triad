@@ -2,7 +2,7 @@ import expect from 'expect';
 import { Map, List } from 'immutable';
 import { getValidPiece, __RewireAPI__ } from './getValidPiece';
 
-describe('getValidPiece utility', () => {
+describe('src/shared/actions/utils/getValidPiece', () => {
     it('should be a function', () => {
         expect(getValidPiece).toBeA('function');
     });

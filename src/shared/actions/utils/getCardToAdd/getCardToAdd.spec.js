@@ -2,7 +2,7 @@ import expect from 'expect';
 import { Map, List } from 'immutable';
 import { getCardToAdd, __RewireAPI__ } from './getCardToAdd';
 
-describe('getCardToAdd utility', () => {
+describe('src/shared/actions/utils/getCardToAdd', () => {
     let deck;
     let game;
     let selectedCard;

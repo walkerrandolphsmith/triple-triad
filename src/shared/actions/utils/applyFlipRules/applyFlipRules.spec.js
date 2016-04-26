@@ -1,7 +1,7 @@
 import expect from 'expect';
 import { applyFlipRules, __RewireAPI__ } from './applyFlipRules';
 
-describe('applyFlipRules utility', () => {
+describe('src/shared/actions/utils/applyFlipRules', () => {
     beforeEach(() => {
         __RewireAPI__.__Rewire__('basicRule', () => [0, 1, 5]);
         __RewireAPI__.__Rewire__('sameRule', () => [0, 1, 2, 3, 4]);

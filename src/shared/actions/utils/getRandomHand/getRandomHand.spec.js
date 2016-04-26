@@ -2,7 +2,7 @@ import expect from 'expect';
 import { Map, List } from 'immutable';
 import { getRandomHand, __RewireAPI__ } from './getRandomHand';
 
-describe('getRandomHand utility', () => {
+describe('src/shared/actions/utils/getRandomHand', () => {
     let game;
     let deck;
     beforeEach(() => {
