@@ -1,6 +1,7 @@
 import expect from 'expect';
 import { Map } from 'immutable';
 import { endPhase, __RewireAPI__ } from './endPhase';
+import PHASE from './../../../constants/phases';
 
 describe('END_PHASE async action creator', () => {
     let dispatch;
@@ -22,7 +23,7 @@ describe('END_PHASE async action creator', () => {
     describe('Given the current phase is card selection, When the phase is ended', () => {
         beforeEach(() => {
             __RewireAPI__.__Rewire__('currentGameSelector', () => new Map({
-                phase: 'cardSelection'
+                phase: PHASE.CARD_SELECTION
             }));
             getState = () => ({
                 settings: new Map({
@@ -41,7 +42,7 @@ describe('END_PHASE async action creator', () => {
     describe('Given the current phase is piece selection, When the phase is ended', () => {
         beforeEach(() => {
             __RewireAPI__.__Rewire__('currentGameSelector', () => new Map({
-                phase: 'pieceSelection'
+                phase: PHASE.PIECE_SELECTION
             }));
             getState = () => ({
                 settings: new Map({
@@ -60,14 +61,14 @@ describe('END_PHASE async action creator', () => {
     describe('Given the next phase will be hand selection, When the phase is ended', () => {
         beforeEach(() => {
             __RewireAPI__.__Rewire__('currentGameSelector', () => new Map({
-                phase: 'pieceSelection'
+                phase: PHASE.PIECE_SELECTION
             }));
             getState = () => ({
                 settings: new Map({
                     randomHand: false
                 })
             });
-            __RewireAPI__.__Rewire__('getNextPhase', () => 'handSelection');
+            __RewireAPI__.__Rewire__('getNextPhase', () => PHASE.HAND_SELECTION);
         });
 
         it('should dispatch setPhase and getNextCardForHand', () => {
@@ -80,7 +81,7 @@ describe('END_PHASE async action creator', () => {
     describe('Given the next phase will be round, When the phase is ended', () => {
         beforeEach(() => {
             __RewireAPI__.__Rewire__('currentGameSelector', () => new Map({
-                phase: 'pieceSelection'
+                phase: PHASE.PIECE_SELECTION
             }));
             getState = () => ({
                 settings: new Map({

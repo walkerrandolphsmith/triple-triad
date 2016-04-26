@@ -1,6 +1,7 @@
 import expect from 'expect';
 import { Map } from 'immutable';
 import { handleEscape, __RewireAPI__ } from './handleEscape';
+import PHASE from './../../../constants/phases';
 
 describe('HANDLE_ESCAPE async action creator', () => {
     let getState;
@@ -9,7 +10,7 @@ describe('HANDLE_ESCAPE async action creator', () => {
         getState = () => ({});
         dispatch = expect.createSpy();
         let game = new Map ({
-            phase: 'pieceSelection'
+            phase: PHASE.PIECE_SELECTION
         });
         __RewireAPI__.__Rewire__('currentGameSelector', () => game);
     });

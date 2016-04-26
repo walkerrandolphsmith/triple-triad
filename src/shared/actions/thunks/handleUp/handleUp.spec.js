@@ -1,7 +1,7 @@
 import expect from 'expect';
 import { Map } from 'immutable';
 import { handleUp, __RewireAPI__ } from './handleUp';
-
+import PHASE from './../../../constants/phases';
 describe('src/shared/actions/action-creators/handleUp', () => {
     let getState;
     let dispatch;
@@ -18,7 +18,7 @@ describe('src/shared/actions/action-creators/handleUp', () => {
     describe('given it is not the piece selection phase', () => {
         beforeEach(() => {
             game = new Map({
-                phase: 'cardSelection'
+                phase: PHASE.CARD_SELECTION
             });
             __RewireAPI__.__Rewire__('currentGameSelector', () => game);
         });
@@ -33,7 +33,7 @@ describe('src/shared/actions/action-creators/handleUp', () => {
     describe('given it is the piece selection phase', () => {
         beforeEach(() => {
             game = new Map({
-                phase: 'pieceSelection'
+                phase: PHASE.PIECE_SELECTION
             });
             __RewireAPI__.__Rewire__('currentGameSelector', () => game);
         });

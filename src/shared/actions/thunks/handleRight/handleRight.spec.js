@@ -1,7 +1,7 @@
 import expect from 'expect';
 import { Map } from 'immutable';
 import { handleRight, __RewireAPI__ } from './handleRight';
-
+import PHASE from './../../../constants/phases';
 describe('HANDLE_RIGHT', () => {
     describe('Given getState, dispatch', () => {
         let getState;
@@ -11,7 +11,7 @@ describe('HANDLE_RIGHT', () => {
             getState = () => ({});
             dispatch = expect.createSpy();
             game = new Map({
-                phase: 'handSelection'
+                phase: PHASE.HAND_SELECTION
             });
             __RewireAPI__.__Rewire__('currentGameSelector', () => game);
             __RewireAPI__.__Rewire__('getNextCardForHand', () => 1);
@@ -25,7 +25,7 @@ describe('HANDLE_RIGHT', () => {
         describe('When the getState returns state containing a game with phase handSelection', () => {
             beforeEach(() => {
                 game = new Map({
-                    phase: 'handSelection'
+                    phase: PHASE.HAND_SELECTION
                 });
                 __RewireAPI__.__Rewire__('currentGameSelector', () => game);
             });
@@ -39,7 +39,7 @@ describe('HANDLE_RIGHT', () => {
         describe('When the getState returns state containing a game with phase pieceSelection', () => {
             beforeEach(() => {
                 game = new Map({
-                    phase: 'pieceSelection'
+                    phase: PHASE.PIECE_SELECTION
                 });
                 __RewireAPI__.__Rewire__('currentGameSelector', () => game);
             });

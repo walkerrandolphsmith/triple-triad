@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { currentGameSelector } from './../selectors/currentGame/currentGameSelector';
+import PHASE from './../constants/phases';
 
 export default function(Settings, Invite, Cards, Round) {
 
@@ -20,7 +21,7 @@ export default function(Settings, Invite, Cards, Round) {
 
     const mapStateToProps = (state) => {
         const currentGame = currentGameSelector(state);
-        const currentPhase = currentGame ? currentGame.get('phase') : 'settingsSelection';
+        const currentPhase = currentGame ? currentGame.get('phase') : PHASE.SETTINGS_SELECTION;
         return {
             rollupPhase: getRollupPhase(currentPhase),
             path: state.routing.locationBeforeTransitions.pathname
@@ -31,30 +32,25 @@ export default function(Settings, Invite, Cards, Round) {
 }
 
 function getRollupPhase(phase) {
-    return (phase === 'cardSelection' || phase === 'pieceSelection') ? 'round' : phase;
+    return (phase === PHASE.CARD_SELECTION || phase === PHASE.PIECE_SELECTION) ? 'round' : phase;
 }
 
 function GetComponentForRoute(rollupPhase, Settings, Invite, Cards, Round) {
-    switch(rollupPhase) {
-        case 'settingsSelection':
-            return (<Settings />);
-            break;
-        case 'invite':
-            return (<Invite />);
-            break;
-        case 'handSelection':
-            return (<Cards />);
-            break;
-        case 'round':
-            return (<Round />);
-            break;
-    }
+    
+    let componentMap = {
+        [PHASE.SETTINGS_SELECTION]: <Settings />,
+        [PHASE.INVITE]: <Invite />,
+        [PHASE.HAND_SELECTION]: <Cards />,
+        ['round']: <Round />
+    };
+    
+    return componentMap[rollupPhase];
 }
 
 function createBreadcrumb(phase) {
-    const settingsClass = phase === 'settingsSelection' ? 'active' : '';
-    const inviteClass = phase === 'invite' ? 'active' : '';
-    const handClass = phase === 'handSelection' ? 'active' : '';
+    const settingsClass = phase === PHASE.SETTINGS_SELECTION ? 'active' : '';
+    const inviteClass = phase === PHASE.INVITE ? 'active' : '';
+    const handClass = phase === PHASE.HAND_SELECTION ? 'active' : '';
     const roundClass = phase === 'round' ? 'active' : '';
     return (
         <ol className="breadcrumb">

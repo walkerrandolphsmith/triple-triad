@@ -4,25 +4,26 @@ import { playerTakesTurn } from './../playerTakesTurn/playerTakesTurn';
 import { getHand } from './../../../selectors/hand/handSelector';
 import { getIsFullHand } from './../../../selectors/isFullHand/isFullHandSelector';
 import { currentGameSelector } from './../../../selectors/currentGame/currentGameSelector';
+import PHASE from './../../../constants/phases';
 
 export const handleEnter = () => (dispatch, getState) => {
     const state = getState();
     const currentGame = currentGameSelector(state);
     
     let cases = {
-        'settingsSelection': () => {
+        [PHASE.SETTINGS_SELECTION]: () => {
             selectSetting(dispatch, state);
         },
-        'handSelection': () => {
+        [PHASE.HAND_SELECTION]: () => {
             selectCardToAddToHand(dispatch, currentGame);
         },
-        'cardSelection': () => {
-            dispatch(setPhase('pieceSelection'));
+        [PHASE.CARD_SELECTION]: () => {
+            dispatch(setPhase(PHASE.PIECE_SELECTION));
             dispatch(getNextSelectedPiece('enter'));
         },
-        'pieceSelection': () => {
+        [PHASE.PIECE_SELECTION]: () => {
             dispatch(playerTakesTurn(true));
-            dispatch(setPhase('cardSelection'));
+            dispatch(setPhase(PHASE.CARD_SELECTION));
         }
     };
     

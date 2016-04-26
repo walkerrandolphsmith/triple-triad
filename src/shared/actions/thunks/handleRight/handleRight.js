@@ -1,15 +1,15 @@
 import { getNextCardForHand } from './../getNextCardForHand/getNextCardForHand';
 import { getNextSelectedPiece } from './../getNextSelectedPiece/getNextSelectedPiece';
 import { currentGameSelector } from './../../../selectors/currentGame/currentGameSelector';
-
+import PHASE from './../../../constants/phases';
 export const handleRight = () => (dispatch, getState) => {
     const currentGame = currentGameSelector(getState());
 
     let cases = {
-        'handSelection': () => {
+        [PHASE.HAND_SELECTION]: () => {
             dispatch(getNextCardForHand('right'));
         },
-        'pieceSelection': () => {
+        [PHASE.PIECE_SELECTION]: () => {
             dispatch(getNextSelectedPiece('right'));
         }
     };

@@ -1,6 +1,7 @@
 import expect from 'expect';
 import { Map, List } from 'immutable';
 import { handleDown, __RewireAPI__ } from './handleDown';
+import PHASE from './../../../constants/phases';
 
 describe('HANDLE_DOWN async action creator', () => {
     let getState;
@@ -21,7 +22,7 @@ describe('HANDLE_DOWN async action creator', () => {
 
     describe('given it is not the piece selection phase', () => {
         beforeEach(() => {
-            game = new Map({ phase: 'cardSelection' });
+            game = new Map({ phase: PHASE.CARD_SELECTION });
             __RewireAPI__.__Rewire__('currentGameSelector', () => game);
         });
 
@@ -33,7 +34,7 @@ describe('HANDLE_DOWN async action creator', () => {
 
     describe('given it is the piece selection phase', () => {
         beforeEach(() => {
-            game = new Map({ phase: 'pieceSelection' });
+            game = new Map({ phase: PHASE.PIECE_SELECTION });
             __RewireAPI__.__Rewire__('currentGameSelector', () => game);
         });
 

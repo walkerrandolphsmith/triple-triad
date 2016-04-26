@@ -1,18 +1,18 @@
 import { getNextSelectedCard } from './../getNextSelectedCard/getNextSelectedCard';
 import { getNextSelectedPiece } from './../getNextSelectedPiece/getNextSelectedPiece';
 import { currentGameSelector } from './../../../selectors/currentGame/currentGameSelector';
-
+import PHASE from './../../../constants/phases';
 export const handleUp = () => (dispatch, getState) => {
     const currentGame = currentGameSelector(getState());
 
     let cases = {
-        'handSelection': () => {
+        [PHASE.HAND_SELECTION]: () => {
             dispatch(getNextSelectedCard('up'));
         },
-        'cardSelection': () => {
+        [PHASE.CARD_SELECTION]: () => {
             dispatch(getNextSelectedCard('up'));
         },
-        'pieceSelection': () => {
+        [PHASE.PIECE_SELECTION]: () => {
             dispatch(getNextSelectedPiece('up'));
         }
     };

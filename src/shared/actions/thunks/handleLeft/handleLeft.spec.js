@@ -1,7 +1,7 @@
 import expect from 'expect';
 import { Map } from 'immutable';
 import { handleLeft, __RewireAPI__ } from './handleLeft';
-
+import PHASE from './../../../constants/phases';
 describe('HANDLE_LEFT', () => {
     describe('Given getState, dispatch', () => {
         let getState;
@@ -23,7 +23,7 @@ describe('HANDLE_LEFT', () => {
         describe('When the getState returns state containing a game with phase handSelection', () => {
             beforeEach(() => {
                 game = new Map({
-                    phase: 'handSelection'
+                    phase: PHASE.HAND_SELECTION
                 });
                 __RewireAPI__.__Rewire__('currentGameSelector', () => game);
             });
@@ -37,7 +37,7 @@ describe('HANDLE_LEFT', () => {
         describe('When the getState returns state containing a game with phase pieceSelection', () => {
             beforeEach(() => {
                 game = new Map({
-                    phase: 'pieceSelection'
+                    phase: PHASE.PIECE_SELECTION
                 });
                 __RewireAPI__.__Rewire__('currentGameSelector', () => game);
             });

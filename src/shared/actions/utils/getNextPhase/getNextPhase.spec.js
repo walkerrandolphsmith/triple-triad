@@ -1,5 +1,6 @@
 import expect from 'expect';
 import { getNextPhase } from './getNextPhase';
+import PHASE from './../../../constants/phases';
 
 describe('getNextPhase action creator utility', () => {
     let currentPhase;
@@ -10,18 +11,18 @@ describe('getNextPhase action creator utility', () => {
 
     describe('Given the settings selection phase and random hand is enabled, when getting the next phase', () => {
         beforeEach(() => {
-            currentPhase = 'settingsSelection';
+            currentPhase = PHASE.SETTINGS_SELECTION;
             randomHand = true;
         });
 
         it('should return invite phase', () => {
-            expect(getNextPhase(currentPhase, randomHand)).toEqual('invite');
+            expect(getNextPhase(currentPhase, randomHand)).toEqual(PHASE.INVITE);
         });
     });
 
     describe('Given the invite phase and random hand is enabled, when getting the next phase', () => {
         beforeEach(() => {
-            currentPhase = 'invite';
+            currentPhase = PHASE.INVITE;
             randomHand = true;
         });
 
@@ -32,18 +33,18 @@ describe('getNextPhase action creator utility', () => {
 
     describe('Given the invite phase and random hand is disabled, when getting the next phase', () => {
         beforeEach(() => {
-            currentPhase = 'invite';
+            currentPhase = PHASE.INVITE;
             randomHand = false;
         });
 
         it('should return round phase', () => {
-            expect(getNextPhase(currentPhase, randomHand)).toEqual('handSelection');
+            expect(getNextPhase(currentPhase, randomHand)).toEqual(PHASE.HAND_SELECTION);
         });
     });
 
     describe('Given the hand selection phase and random hand is enabled, when getting the next phase', () => {
         beforeEach(() => {
-            currentPhase = 'handSelection';
+            currentPhase = PHASE.HAND_SELECTION;
             randomHand = true;
         });
 
@@ -54,23 +55,23 @@ describe('getNextPhase action creator utility', () => {
 
     describe('Given the card selection phase and random hand is enabled, when getting the next phase', () => {
         beforeEach(() => {
-            currentPhase = 'cardSelection';
+            currentPhase = PHASE.CARD_SELECTION;
             randomHand = true;
         });
 
         it('should return round phase', () => {
-            expect(getNextPhase(currentPhase, randomHand)).toEqual('settingsSelection');
+            expect(getNextPhase(currentPhase, randomHand)).toEqual(PHASE.SETTINGS_SELECTION);
         });
     });
 
     describe('Given the piece selection phase and random hand is enabled, when getting the next phase', () => {
         beforeEach(() => {
-            currentPhase = 'pieceSelection';
+            currentPhase = PHASE.PIECE_SELECTION;
             randomHand = true;
         });
 
         it('should return round phase', () => {
-            expect(getNextPhase(currentPhase, randomHand)).toEqual('settingsSelection');
+            expect(getNextPhase(currentPhase, randomHand)).toEqual(PHASE.SETTINGS_SELECTION);
         });
     });
 });

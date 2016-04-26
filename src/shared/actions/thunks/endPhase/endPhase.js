@@ -4,6 +4,7 @@ import { getNextCardForHand } from './../getNextCardForHand/getNextCardForHand';
 import { setPhase, resetGame } from './../../action-creators';
 import { getNextPhase } from './../../utils/getNextPhase/getNextPhase';
 import { currentGameSelector } from './../../../selectors/currentGame/currentGameSelector';
+import PHASE from './../../../constants/phases';
 
 
 export const endPhase = () => (dispatch, getState) => {
@@ -25,7 +26,7 @@ export const endPhase = () => (dispatch, getState) => {
         //doesn't will be phase x imply the phase will be x and not cardSelection
         //This mess is probably why I have to return early
         //How did I ever get in this mess? smelly aye?
-        dispatch(setPhase('cardSelection'));
+        dispatch(setPhase(PHASE.CARD_SELECTION));
         dispatch(setHands());
         dispatch(getNextSelectedCard());
         return;
@@ -35,7 +36,7 @@ export const endPhase = () => (dispatch, getState) => {
 };
 
 function willBePhaseHandSelection(nextPhase) {
-    return nextPhase === 'handSelection'
+    return nextPhase === PHASE.HAND_SELECTION
 }
 
 function willBePhaseRound(nextPhase) {
@@ -43,7 +44,7 @@ function willBePhaseRound(nextPhase) {
 }
 
 function isRollupPhaseRound(currentPhase) {
-    return currentPhase === 'cardSelection' || currentPhase === 'pieceSelection'
+    return currentPhase === PHASE.CARD_SELECTION || currentPhase === PHASE.PIECE_SELECTION
 }
 
 
