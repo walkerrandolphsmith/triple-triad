@@ -9,23 +9,24 @@ export const handleEnter = () => (dispatch, getState) => {
     const state = getState();
     const currentGame = currentGameSelector(state);
     
-    switch(currentGame.get('phase')) {
-        case 'settingsSelection':
+    let cases = {
+        'settingsSelection': () => {
             selectSetting(dispatch, state);
-            break;
-        case 'handSelection':
+        },
+        'handSelection': () => {
             selectCardToAddToHand(dispatch, currentGame);
-            break;
-        case 'cardSelection':
+        },
+        'cardSelection': () => {
             dispatch(setPhase('pieceSelection'));
             dispatch(getNextSelectedPiece('enter'));
-            break;
-        case 'pieceSelection':
+        },
+        'pieceSelection': () => {
             dispatch(playerTakesTurn(true));
             dispatch(setPhase('cardSelection'));
-            break;
-        default: return;
-    }
+        }
+    };
+    
+    cases[currentGame.get('phase')]();
 };
 
 function selectCardToAddToHand(dispatch, currentGame) {

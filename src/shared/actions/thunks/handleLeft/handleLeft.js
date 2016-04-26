@@ -4,13 +4,15 @@ import { currentGameSelector } from './../../../selectors/currentGame/currentGam
 
 export const handleLeft = () => (dispatch, getState) => {
     const currentGame = currentGameSelector(getState());
-    switch(currentGame.get('phase')) {
-        case 'handSelection':
+
+    let cases = {
+        'handSelection': () => {
             dispatch(getNextCardForHand('left'));
-            break;
-        case 'pieceSelection':
+        },
+        'pieceSelection': () => {
             dispatch(getNextSelectedPiece('left'));
-            break;
-        default: return;
-    }
+        }
+    };
+
+    cases[currentGame.get('phase')]();
 };

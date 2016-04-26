@@ -3,12 +3,13 @@ import { currentGameSelector } from './../../../selectors/currentGame/currentGam
 
 export const handleEscape = () => (dispatch, getState) => {
     const currentGame = currentGameSelector(getState());
-    if(isPieceSelectionPhase(currentGame)) {
-        dispatch(setPhase('cardSelection'));
-        dispatch(selectPiece(-1));
-    }
-};
 
-function isPieceSelectionPhase(currentGame) {
-    return currentGame.get('phase') === 'pieceSelection';
-}
+    let cases = {
+        'pieceSelection': () => {
+            dispatch(setPhase('cardSelection'));
+            dispatch(selectPiece(-1));
+        }
+    };
+
+    cases[currentGame.get('phase')]();
+};
