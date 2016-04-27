@@ -2,7 +2,7 @@
 
 Web application for playing the card game, triple triad.
 
-##Issues [![](https://img.shields.io/github/issues-raw/badges/shields.svg?maxAge=2592000?style=flat-square)](https://github.com/walkerrandolphsmith/triple-triad/issues)
+##Issues [![GitHub issues](https://img.shields.io/github/issues/walkerrandolphsmith/triple-triad.svg?style=flat-square)](https://github.com/walkerrandolphsmith/triple-triad/issues)
 Please file issues [here][issues]
 
 ##Prerequesites
