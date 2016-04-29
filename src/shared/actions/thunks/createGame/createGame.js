@@ -1,5 +1,7 @@
 import request from 'superagent';
 import deck from './../../../constants/deck';
+import PHASES from './../../../constants/phases';
+
 import { createGameRequest, createGameSuccess, createGameFailed } from './../../action-creators';
 
 export function createGame() {
@@ -10,7 +12,8 @@ export function createGame() {
 
         const game = JSON.stringify({
             userId: ownerId,
-            deck: deck
+            deck: deck,
+            phase: PHASES.SETTINGS_SELECTION
         });
 
         return request

@@ -6,6 +6,7 @@ describe('Create Game async action creator', () => {
     let dispatch;
     let getState;
     let deck;
+    let phase;
     let ownerId;
     let post;
     let send;
@@ -13,7 +14,9 @@ describe('Create Game async action creator', () => {
     let request;
     beforeEach(() => {
         deck = [1, 2, 3];
+        phase = 'S';
         __RewireAPI__.__Rewire__('deck', deck);
+        __RewireAPI__.__Rewire__('PHASES', { SETTINGS_SELECTION: phase });
         ownerId = 20;
         dispatch = expect.createSpy();
         getState = () => ({
@@ -62,7 +65,8 @@ describe('Create Game async action creator', () => {
         it('should send the user id and deck with post data', () => {
             expect(send).toHaveBeenCalledWith(JSON.stringify({
                 userId: ownerId,
-                deck: deck
+                deck: deck,
+                phase: phase
             }));
         });
 
