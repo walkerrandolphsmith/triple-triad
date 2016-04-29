@@ -1,4 +1,4 @@
-# Triple Triad [![Codeship](https://img.shields.io/codeship/d6c1ddd0-16a3-0132-5f85-2e35c05e22b1.svg?maxAge=2592000?style=flat-square)](https://codeship.com/projects/132884)
+# Triple Triad [![Codeship](http://img.shields.io/codeship/7a0d0880-b10c-0133-3c40-7ee430441c87.svg?style=flat-square)](https://codeship.com/projects/132884)
 
 Web application for playing the card game, triple triad.
 
