@@ -2,6 +2,9 @@
 
 Web application for playing the card game, triple triad.
 
+Play the game by cloning the repo and following the instructions below or if using docker get the latest image from:
+```docker pull walkerrandolphsmith/triple-triad```
+
 ##Issues [![GitHub issues](https://img.shields.io/github/issues/walkerrandolphsmith/triple-triad.svg?style=flat-square)](https://github.com/walkerrandolphsmith/triple-triad/issues)
 Please file issues [here][issues]
 
