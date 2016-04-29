@@ -31,7 +31,7 @@ export default function(app, passport, routers) {
             }
         });
     } else {
-        app.use(express.static(path.join(__dirname, './../../../../dist')));
+        app.use(express.static('dist/public'));
     }
 
     app.use(bodyparser.json());
