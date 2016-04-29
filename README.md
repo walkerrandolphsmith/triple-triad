@@ -9,28 +9,17 @@ Please file issues [here][issues]
 
 At the moment there are a couple of ways to play the game.
 
-1. Get the latest docker image by issuing: 
-```bash
-docker pull walkerrandolphsmith/triple-triad
-```
-2. Clone the repo and build your own image.
-```bash
-git clone github.com/walkerrandolphsmith/triple-triad
-docker-compose up
-```
-3. Clone the repo and build the application using npm scripts.
-```bash
-git clone github.com/walkerrandolphsmith/triple-triad
-npm install
-mongod //in a separate terminal
-npm start
-```
+1. Get the latest docker image by issuing:   
+  `docker pull walkerrandolphsmith/triple-triad`
+2. Clone the repo and build your own image.  
+  `docker-compose up`
+3. Clone the repo and build following the development section of this readme.  
 
 
 ##Development
 This application requires Node and Mongo.
 
-###Install Node
+####Install Node
 
 Add the following line to `.bash_profile`
 
@@ -47,7 +36,7 @@ sudo make install
 node --version
 ```
 
-###Install Mongo
+####Install Mongo
 
 Add the following lines to `.bash_profile`
 
@@ -66,24 +55,31 @@ sudo chown <username> /data/db
 mongo -version
 ```
 
-###Install node modules
+####Install Node Modules
 ```bash
 npm install
 ```
 
-###Run
+####Start App
 ```bash
 mongod
 #In another terminal
 npm start
 ```
 
-###Specs
+####Run Linter
+```bash
+npm run lint
+```
+
+####Run Tests
 ```bash
 npm test
 npm run test:unit # runs unit tests
 rpm run test:integration # runs integration tests
 ```
+
+[Wallaby](https://wallabyjs.com/) is also supported as a testing tool to continuously run your test and see the results immediately as you change the code.
 
 
 [ci]: http://img.shields.io/codeship/7a0d0880-b10c-0133-3c40-7ee430441c87.svg?style=flat-square
