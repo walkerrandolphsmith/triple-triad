@@ -4,16 +4,17 @@
   "description": "implementation of final fantasy 8's card game for the web",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint -c .eslintrc --cache .",
-    "clean": "rm -rf dist",
     "start": "better-npm-run start",
-    "build": "better-npm-run build",
-    "build:prod": "better-npm-run build:prod",
-    "build:server": "better-npm-run build:server",
+    "start:prod": "better-npm-run start:prod",
+    "clean": "rm -rf dist",
+    "lint": "eslint -c .eslintrc --cache .",
     "test": "better-npm-run test",
     "test:unit": "better-npm-run test:unit",
     "test:integration": "better-npm-run test:integration",
     "test:watch": "npm run test:unit -- --watch",
+    "build:prod": "better-npm-run build",
+    "build:prod:client": "better-npm-run build:prod:client",
+    "build:prod:server": "better-npm-run build:prod:server",
     "deploy": "git push heroku master"
   },
   "betterScripts": {
@@ -23,20 +24,8 @@
         "NODE_ENV": "development"
       }
     },
-    "build:prod": {
-      "command": "webpack -p --config webpack.production.config.js",
-      "env": {
-        "NODE_ENV": "production"
-      }
-    },
-    "build:server": {
-      "command": "babel ./src -d ./dist",
-      "env": {
-        "NODE_ENV": "production"
-      }
-    },
-    "build": {
-      "command": "npm run clean && npm run build:prod && npm run build:server",
+    "start:prod": {
+      "command": "node dist/server/server.js",
       "env": {
         "NODE_ENV": "production"
       }
@@ -57,6 +46,24 @@
       "command": "find ./test -name '*.spec.js' | xargs mocha --compilers js:babel-core/register",
       "env": {
         "NODE_ENV": "test"
+      }
+    },
+    "build:prod:client": {
+      "command": "webpack -p --config webpack.production.config.js",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    },
+    "build:prod:server": {
+      "command": "babel ./src -d ./dist",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    },
+    "build:prod": {
+      "command": "npm run clean && npm run build:prod:client && npm run build:prod:server",
+      "env": {
+        "NODE_ENV": "production"
       }
     }
   },
