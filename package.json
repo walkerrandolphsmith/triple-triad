@@ -8,6 +8,8 @@
     "clean": "rm -rf dist",
     "start": "better-npm-run start",
     "build": "better-npm-run build",
+    "build:prod": "better-npm-run build:prod",
+    "build:server": "better-npm-run build:server",
     "test": "better-npm-run test",
     "test:unit": "better-npm-run test:unit",
     "test:integration": "better-npm-run test:integration",
@@ -21,8 +23,20 @@
         "NODE_ENV": "development"
       }
     },
+    "build:prod": {
+      "command": "webpack -p --config webpack.production.config.js",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    },
+    "build:server": {
+      "command": "babel ./src -d ./dist",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    },
     "build": {
-      "command": "npm run clean && webpack -p --config webpack.production.config.js",
+      "command": "npm run clean && npm run build:prod && npm run build:server",
       "env": {
         "NODE_ENV": "production"
       }
