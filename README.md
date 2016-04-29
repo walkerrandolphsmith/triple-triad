@@ -1,14 +1,33 @@
-# Triple Triad [![Codeship](http://img.shields.io/codeship/7a0d0880-b10c-0133-3c40-7ee430441c87.svg?style=flat-square)](https://codeship.com/projects/132884)
+# Triple Triad [![Codeship][ci-badge]][ci]
 
 Web application for playing the card game, triple triad.
 
-Play the game by cloning the repo and following the instructions below or if using docker get the latest image from:
-```docker pull walkerrandolphsmith/triple-triad```
-
-##Issues [![GitHub issues](https://img.shields.io/github/issues/walkerrandolphsmith/triple-triad.svg?style=flat-square)](https://github.com/walkerrandolphsmith/triple-triad/issues)
+##Issues [![GitHub issues][issues-badge]][issues]
 Please file issues [here][issues]
 
-##Prerequesites
+##Playing the game
+
+At the moment there are a couple of ways to play the game.
+
+1. Get the latest docker image by issuing: 
+```bash
+docker pull walkerrandolphsmith/triple-triad
+```
+2. Clone the repo and build your own image.
+```bash
+git clone github.com/walkerrandolphsmith/triple-triad
+docker-compose up
+```
+3. Clone the repo and build the application using npm scripts.
+```bash
+git clone github.com/walkerrandolphsmith/triple-triad
+npm install
+mongod //in a separate terminal
+npm start
+```
+
+
+##Development
 This application requires Node and Mongo.
 
 ###Install Node
@@ -47,12 +66,10 @@ sudo chown <username> /data/db
 mongo -version
 ```
 
-##Getting Started
+###Install node modules
 ```bash
 npm install
 ```
-
-##Development
 
 ###Run
 ```bash
@@ -68,36 +85,11 @@ npm run test:unit # runs unit tests
 rpm run test:integration # runs integration tests
 ```
 
-##Docker
 
-```bash
-#aggregates the output of each container
-docker-compose up
-```
-
-List containers and show container logs:
-
-```bash
-#List containers
-docker ps
-#View log
-docker logs <container id>
-```
-
-Stopping containers, deleting containers and images:
-
-```bash
-#Stop all containers
-docker stop $(docker ps -a -q)
-#Delete all containers
-docker rm $(docker ps -a -q)
-#Delete all images
-docker rmi $(docker images -q)
-```
-
-Reset
-
-```bash
-docker-machine restart default
-eval $(docker-machine env default)
-```
+[ci]: http://img.shields.io/codeship/7a0d0880-b10c-0133-3c40-7ee430441c87.svg?style=flat-square
+[ci]: https://codeship.com/projects/7a0d0880-b10c-0133-3c40-7ee430441c87/status?branch=master
+[ci-badge]: http://img.shields.io/codeship/7a0d0880-b10c-0133-3c40-7ee430441c87.svg?style=flat-square
+  
+[issues]: https://img.shields.io/github/issues/walkerrandolphsmith/triple-triad.svg?style=flat-square
+[issues]: https://github.com/walkerrandolphsmith/triple-triad/issues
+[issues-badge]: https://img.shields.io/github/issues/walkerrandolphsmith/triple-triad.svg?style=flat-square
