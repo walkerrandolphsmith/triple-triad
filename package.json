@@ -12,7 +12,7 @@
     "test:unit": "better-npm-run test:unit",
     "test:integration": "better-npm-run test:integration",
     "test:watch": "npm run test:unit -- --watch",
-    "build:prod": "better-npm-run build",
+    "build:prod": "better-npm-run build:prod",
     "build:prod:client": "better-npm-run build:prod:client",
     "build:prod:server": "better-npm-run build:prod:server",
     "deploy": "git push heroku master"

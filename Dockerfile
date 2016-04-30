@@ -2,10 +2,11 @@ FROM node:argon
 
 MAINTAINER Walker Randolph Smith, walkerrandolphsmith@gmail.com
 
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
-COPY package.json /usr/src/app/
+RUN mkdir -p /usr/triple-triad
+WORKDIR /usr/triple-triad
+COPY package.json /usr/triple-triad
+COPY webpack.production.json /usr/triple-triad
 RUN npm install
-RUN npm install -g babel-cli
-COPY . /usr/src/app
-CMD [ "npm", "start" ]
+COPY ./src /usr/triple-triad/src
+CMD [ "npm", "run build" ]
+CMD [ "npm ", "run start:prod" ]
