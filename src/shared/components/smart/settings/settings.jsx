@@ -38,7 +38,7 @@ export class Settings extends React.Component {
     }
 
     update(setting) {
-        this.props.updateSettings(setting);
+        this.props.updateSetting(setting);
     }
 
     focus(setting) {

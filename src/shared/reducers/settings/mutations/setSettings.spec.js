@@ -1,29 +1,31 @@
 import expect from 'expect';
 import { Map } from 'immutable';
-import updateFocusSetting from './updateFocusSetting';
+import { setSetting } from './../settings';
 
-describe('src/shared/reducers/settings/updateFocusSettings', () => {
+describe('src/shared/reducers/settings/setSetting', () => {
     describe('Given settings state and payload with setting of randomHand', () => {
         let state;
         let payload;
         let setting = 'randomHand';
         beforeEach(() => {
             state = new Map({
-                focused: -1
+                randomHand: false,
+                multiplayer: false,
+                visibleHand: false
             });
             payload = {
                 setting: setting
             };
         });
 
-        describe('When updating focused setting', () => {
+        describe('When updating settings', () => {
             let actual;
             beforeEach(() => {
-                actual = updateFocusSetting(state, payload);
+                actual = setSetting(state, payload);
             });
 
-            it('should set the focused state to the given setting', () => {
-                expect(actual.get('focused')).toEqual(setting);
+            it('should set the randomHand state to true', () => {
+                expect(actual.get(setting)).toEqual(!state.get(setting));
             });
         });
     });

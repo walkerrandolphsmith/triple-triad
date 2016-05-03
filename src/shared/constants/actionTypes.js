@@ -1,8 +1,5 @@
 export const SERVER = 'SERVER/';
 
-export const UPDATE_SETTINGS = 'UpdateSettings';
-export const UPDATE_FOCUS_SETTING = 'UpdateFocusSetting';
-
 export const RESET_GAME = 'RESET_GAME';
 export const SET_PHASE = 'SET_PHASE';
 export const ADD_CARD = 'ADD_CARD';

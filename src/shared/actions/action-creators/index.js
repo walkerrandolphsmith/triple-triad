@@ -1,5 +1,3 @@
-
-
 export { createGameFailed } from './createGame/createGameFailed/createGameFailed';
 export { createGameSuccess } from './createGame/createGameSuccess/createGameSuccess';
 export { createGameRequest } from './createGame/createGameRequest/createGameRequest';
@@ -35,9 +33,6 @@ export { receiveUserProfile } from './userProfile/receiveUserProfile/receiveUser
 export { requestUserProfile } from './userProfile/requestUserProfile/requestUserProfile';
 
 export { emailVerified } from './emailVerified/emailVerified';
-
-export { updateSettings } from './updateSettings/updateSettings';
-export { updateFocusSetting } from './updateFocusSetting/updateFocusSetting';
 
 export { resetGame } from './resetGame/resetGame';
 export { addCard } from './addCard/addCard';

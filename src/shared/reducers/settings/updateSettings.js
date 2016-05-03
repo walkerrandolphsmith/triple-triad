@@ -1,1 +1,0 @@
-export default (state, payload) => state.set(payload.setting, !state.get(payload.setting));

@@ -1,8 +1,7 @@
 import expect from 'expect';
 import { Map } from 'immutable';
 import reducer from './settings';
-import { __RewireAPI__ } from './settings';
-import { UPDATE_SETTINGS, UPDATE_FOCUS_SETTING } from './../../constants/actionTypes';
+import { UPDATE_SETTINGS, UPDATE_FOCUS_SETTING, __RewireAPI__ } from './settings';
 
 describe('src/shared/reducers/settings/settings', () => {
     describe('Given settings state', () => {
@@ -24,7 +23,7 @@ describe('src/shared/reducers/settings/settings', () => {
 
         describe('When handling UPDATE_SETTINGS', () => {
             let updateSettings = expect.createSpy();
-            __RewireAPI__.__Rewire__('updateSettings', updateSettings);
+            __RewireAPI__.__Rewire__('setSetting', updateSettings);
 
             reducer(initialState, {
                 type: UPDATE_SETTINGS,
@@ -33,14 +32,14 @@ describe('src/shared/reducers/settings/settings', () => {
                 }
             });
 
-            it('should call updateSettings', () => {
+            it('should call setSetting', () => {
                 expect(updateSettings).toHaveBeenCalled();
             });
         });
 
         describe('When handling UPDATE_FOCUS_SETTING', () => {
             let updateFocusSetting = expect.createSpy();
-            __RewireAPI__.__Rewire__('updateFocusSetting', updateFocusSetting);
+            __RewireAPI__.__Rewire__('setFocusSetting', updateFocusSetting);
 
             reducer(initialState, {
                 type: UPDATE_FOCUS_SETTING,
@@ -49,7 +48,7 @@ describe('src/shared/reducers/settings/settings', () => {
                 }
             });
 
-            it('should call updateFocusSetting', () => {
+            it('should call setFocusSetting', () => {
                 expect(updateFocusSetting).toHaveBeenCalled();
             });
         });

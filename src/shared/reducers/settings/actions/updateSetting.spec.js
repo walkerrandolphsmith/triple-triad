@@ -1,8 +1,7 @@
 import expect from 'expect';
-import { UPDATE_SETTINGS } from './../../../constants/actionTypes';
-import { updateSettings } from './updateSettings';
+import { UPDATE_SETTINGS, updateSetting } from './../settings';
 
-describe('src/shared/actions/action-creators/updateSettings', () => {
+describe('src/shared/reducers/settings/updateSetting', () => {
     describe('Given UPDATE_SETTINGS action type', () => {
         let setting;
         let expectedAction;
@@ -18,11 +17,11 @@ describe('src/shared/actions/action-creators/updateSettings', () => {
 
         describe('When invoking the updateSettings action creator', () => {
             it('should create an action', () => {
-                expect(updateSettings(setting)).toEqual(expectedAction);
+                expect(updateSetting(setting)).toEqual(expectedAction);
             });
 
             it('should set its first parameter to the payload setting field', () => {
-                expect(updateSettings(setting).payload.setting).toEqual(setting);
+                expect(updateSetting(setting).payload.setting).toEqual(setting);
             });
         });
     });

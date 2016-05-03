@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as Actions from './../actions/';
+import { endPhase } from './../actions/';
+import { updateFocusSetting, updateSetting } from './../reducers/settings/settings';
 
 import React from 'react';
 import { Settings } from './../components';
@@ -12,7 +13,8 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators(Actions,dispatch);
+    let actions = { endPhase: endPhase, updateFocusSetting: updateFocusSetting, updateSetting: updateSetting };
+    return bindActionCreators(actions,dispatch);
 }
 
 
