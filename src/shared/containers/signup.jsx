@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { clearFormErrors } from './../actions';
+import { clearFormErrors } from './../reducers/forms';
 import { signUp } from './../reducers/auth/auth';
 
 import React from 'react';
@@ -9,10 +9,10 @@ import { SignUp } from './../components';
 function mapStateToProps(state) {
     return {
         errors: {
-            username: state.signupForm.get('username'),
-            password: state.signupForm.get('password'),
-            confirmPassword: state.signupForm.get('confirmPassword'),
-            email: state.signupForm.get('email')
+            username: state.forms.get('signUp').get('username'),
+            password: state.forms.get('signUp').get('password'),
+            confirmPassword: state.forms.get('signUp').get('confirmPassword'),
+            email: state.forms.get('signUp').get('email')
         }
     }
 }

@@ -18,7 +18,7 @@ describe('src/shared/reducers/auth/thunks/signUp', () => {
         __RewireAPI__.__Rewire__('passwordsMatch', () => true);
         __RewireAPI__.__Rewire__('isValidEmail', () => true);
         __RewireAPI__.__Rewire__('requestSignUp', () => 1);
-        __RewireAPI__.__Rewire__('signUpFormError', () => 2);
+        __RewireAPI__.__Rewire__('setFormError', () => 2);
         __RewireAPI__.__Rewire__('receiveUser', () => 3);
         __RewireAPI__.__Rewire__('push', () => 4);
 
@@ -96,7 +96,7 @@ describe('src/shared/reducers/auth/thunks/signUp', () => {
             signUp(user)(dispatch);
         });
 
-        it('should dispatch signUpFormError action', () => {
+        it('should dispatch setFormError action', () => {
             expect(dispatch).toHaveBeenCalledWith(1);
             expect(dispatch).toHaveBeenCalledWith(2);
         });
@@ -107,7 +107,7 @@ describe('src/shared/reducers/auth/thunks/signUp', () => {
             __RewireAPI__.__Rewire__('isValidUsername', () => false);
         });
 
-        it('should dispatch signUpFormError action', () => {
+        it('should dispatch setFormError action', () => {
             signUp(user)(dispatch);
             expect(dispatch).toHaveBeenCalledWith(1);
             expect(dispatch).toHaveBeenCalledWith(2);
@@ -119,7 +119,7 @@ describe('src/shared/reducers/auth/thunks/signUp', () => {
             __RewireAPI__.__Rewire__('isValidPassword', () => false);
         });
 
-        it('should dispatch signUpFormError action', () => {
+        it('should dispatch setFormError action', () => {
             signUp(user)(dispatch);
             expect(dispatch).toHaveBeenCalledWith(1);
             expect(dispatch).toHaveBeenCalledWith(2);
@@ -131,7 +131,7 @@ describe('src/shared/reducers/auth/thunks/signUp', () => {
             __RewireAPI__.__Rewire__('passwordsMatch', () => false);
         });
 
-        it('should dispatch signUpFormError action', () => {
+        it('should dispatch setFormError action', () => {
             signUp(user)(dispatch);
             expect(dispatch).toHaveBeenCalledWith(1);
             expect(dispatch).toHaveBeenCalledWith(2);
@@ -143,7 +143,7 @@ describe('src/shared/reducers/auth/thunks/signUp', () => {
             __RewireAPI__.__Rewire__('isValidEmail', () => false);
         });
 
-        it('should dispatch signUpFormError action', () => {
+        it('should dispatch setFormError action', () => {
             signUp(user)(dispatch);
             expect(dispatch).toHaveBeenCalledWith(1);
             expect(dispatch).toHaveBeenCalledWith(2);

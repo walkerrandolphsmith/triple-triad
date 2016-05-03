@@ -1,25 +1,30 @@
 import expect from 'expect';
 import { Map } from 'immutable';
-import clearFormError from './clearFormError';
+import { clearFormError } from './../index';
 
 describe('src/shared/reducers/forms/clearFormError', () => {
     describe('Given an initial state', () => {
-        let initialState;
+        let initialState, newState, payload;
         beforeEach(() => {
             initialState = new Map({
-                email: ''
+                forgotPassword: new Map({
+                    email: ''
+                })
             });
-            initialState.set('email', 'anything');
+            newState = initialState.setIn('forgotPassword.email'.split('.'), 'anything');
+            payload = {
+                form: 'forgotPassword'
+            };
         });
 
         describe('When clearing all form errors', () => {
             let actual;
             beforeEach(() => {
-                actual = clearFormError(initialState);
+                actual = clearFormError(newState, payload);
             });
 
             it('should set the return the initial state', () => {
-                expect(actual).toEqual(initialState);
+                expect(actual.toJS()).toEqual(initialState.toJS());
             });
         });
     });

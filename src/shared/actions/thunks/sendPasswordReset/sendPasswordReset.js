@@ -3,9 +3,10 @@ import {
     sendPasswordResetClear,
     sendPasswordResetFailed,
     sendPasswordResetRequest,
-    sendPasswordResetSuccess,
-    forgotPasswordFormError
+    sendPasswordResetSuccess
 } from './../../action-creators';
+
+import { setFormError } from './../../../reducers/forms';
 
 export function sendPasswordReset(email) {
     return dispatch => {
@@ -20,7 +21,8 @@ export function sendPasswordReset(email) {
                 dispatch(sendPasswordResetRequest());
             } else {
                 if(response.body.invalidEmail) {
-                    dispatch(forgotPasswordFormError({
+                    dispatch(setFormError({
+                        form: 'resetPassword',
                         field: 'email',
                         error: 'This user does not exist'
                     }));

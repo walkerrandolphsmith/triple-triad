@@ -3,9 +3,11 @@ import {
     passwordResetClear,
     passwordResetFailed,
     passwordResetRequest,
-    passwordResetSuccess,
-    resetPasswordFormError
+    passwordResetSuccess
 } from './../../action-creators';
+
+import { setFormError } from './../../../reducers/forms';
+
 
 import {
     isValidPassword,
@@ -18,7 +20,8 @@ export function resetPassword(token, password, confirmPassword) {
 
         let error;
         if(!isValidPassword(password)) {
-            dispatch(resetPasswordFormError({
+            dispatch(setFormError({
+                form: 'resetPassword',
                 field: 'password',
                 error: 'Invalid Password'
             }));
@@ -26,7 +29,8 @@ export function resetPassword(token, password, confirmPassword) {
         }
 
         if(!passwordsMatch(password, confirmPassword)) {
-            dispatch(resetPasswordFormError({
+            dispatch(setFormError({
+                form: 'resetPassword',
                 field: 'password',
                 error: 'Passwords must match'
             }));

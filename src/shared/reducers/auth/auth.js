@@ -5,9 +5,7 @@ import {
     isValidUsername, isValidPassword, passwordsMatch, isValidEmail
 } from './../../utils/formValidation/formValidation';
 
-import { signinFormError } from './../../actions/action-creators/signinFormError/signinFormError';
-import { signUpFormError } from './../../actions/action-creators/signUpFormError/signUpFormError';
-
+import { setFormError } from './../../reducers/forms';
 
 export const AUTH_SIGNIN = 'AUTH_SIGNIN';
 export const AUTH_SIGNIN_SUCCESS = 'AUTH_SIGNIN_SUCCESS';
@@ -39,7 +37,8 @@ export function signIn(user) {
 
         let error;
         if(!isValidUsername(user.username)) {
-            dispatch(signinFormError({
+            dispatch(setFormError({
+                form: 'signIn',
                 field: 'username',
                 error: 'Invalid Username'
             }));
@@ -47,7 +46,8 @@ export function signIn(user) {
         }
 
         if(!isValidPassword(user.password)) {
-            dispatch(signinFormError({
+            dispatch(setFormError({
+                form: 'signIn',
                 field: 'password',
                 error: 'Invalid Password'
             }));
@@ -69,7 +69,8 @@ export function signIn(user) {
                     dispatch(push('/games'));
                 } else {
                     let message = JSON.parse(response.text);
-                    dispatch(signinFormError(message));
+                    message.form = 'signIn';
+                    dispatch(setFormError(message));
                 }
             });
     };
@@ -96,7 +97,8 @@ export function signUp(user) {
         let error = false;
 
         if(!isValidUsername(username)) {
-            dispatch(signUpFormError({
+            dispatch(setFormError({
+                form: 'signUp',
                 field: 'username',
                 error: 'Invalid Username'
             }));
@@ -104,7 +106,8 @@ export function signUp(user) {
         }
 
         if(!isValidPassword(password)) {
-            dispatch(signUpFormError({
+            dispatch(setFormError({
+                form: 'signUp',
                 field: 'password',
                 error: 'Invalid Password'
             }));
@@ -112,15 +115,17 @@ export function signUp(user) {
         }
 
         if(!passwordsMatch(password, confirmPassword)) {
-            dispatch(signUpFormError({
-                field: 'username',
+            dispatch(setFormError({
+                form: 'signUp',
+                field: 'confirmPassword',
                 error: 'Passwords must match'
             }));
             error = true;
         }
 
         if(!isValidEmail(email)) {
-            dispatch(signUpFormError({
+            dispatch(setFormError({
+                form: 'signUp',
                 field: 'email',
                 error: 'Invalid email address'
             }));
@@ -142,7 +147,8 @@ export function signUp(user) {
                     dispatch(push('/games'));
                 } else {
                     let message = JSON.parse(response.text);
-                    dispatch(signUpFormError(message));
+                    message.form = 'signUp';
+                    dispatch(setFormError(message));
                 }
             });
     };

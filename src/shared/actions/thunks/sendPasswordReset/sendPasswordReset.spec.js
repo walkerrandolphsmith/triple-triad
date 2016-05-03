@@ -15,7 +15,7 @@ describe('SEND PASSWORD RESET async action creator', () => {
         __RewireAPI__.__Rewire__('sendPasswordResetSuccess', () => 2);
         __RewireAPI__.__Rewire__('sendPasswordResetFailed', () => 3);
         __RewireAPI__.__Rewire__('sendPasswordResetClear', () => 4);
-        __RewireAPI__.__Rewire__('forgotPasswordFormError', () => 5);
+        __RewireAPI__.__Rewire__('setFormError', () => 5);
 
         request = __RewireAPI__.__Rewire__('request', {
             post: function() {
@@ -107,7 +107,7 @@ describe('SEND PASSWORD RESET async action creator', () => {
             sendPasswordReset(email)(dispatch);
         });
 
-        it('should dispatch forgotPasswordFormError action', () => {
+        it('should dispatch setFormError action', () => {
             expect(dispatch).toHaveBeenCalledWith(5);
         });
 

@@ -19,7 +19,7 @@ describe('src/shared/reducers/auth/thunks/signIn', () => {
         __RewireAPI__.__Rewire__('isValidUsername', () => true);
         __RewireAPI__.__Rewire__('isValidPassword', () => true);
         __RewireAPI__.__Rewire__('requestSignIn', () => 1);
-        __RewireAPI__.__Rewire__('signinFormError', () => 2);
+        __RewireAPI__.__Rewire__('setFormError', () => 2);
         __RewireAPI__.__Rewire__('receiveSignIn', () => 3);
         __RewireAPI__.__Rewire__('push', () => 4);
 

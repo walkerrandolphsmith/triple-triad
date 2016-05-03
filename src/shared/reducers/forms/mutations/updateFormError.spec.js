@@ -1,6 +1,6 @@
 import expect from 'expect';
 import { Map } from 'immutable';
-import setFormError from './setFormError';
+import { updateFormError } from './../';
 
 describe('src/shared/reducers/forms/setFormError', () => {
     describe('Given a state and a payload with field value of email', () => {
@@ -8,9 +8,12 @@ describe('src/shared/reducers/forms/setFormError', () => {
         let payload;
         beforeEach(() => {
             state = new Map({
-                email: ''
+                signIn: new Map({
+                    email: ''
+                })
             });
             payload = {
+                form: 'signIn',
                 field: 'email',
                 error: 'message'
             };
@@ -19,11 +22,11 @@ describe('src/shared/reducers/forms/setFormError', () => {
         describe('When setting a form error', () => {
             let actual;
             beforeEach(() => {
-                actual = setFormError(state, payload);
+                actual = updateFormError(state, payload);
             });
 
             it('should set the value of the state key, corresponding to the payload field, to the payload error value', () => {
-                expect(actual.get(payload.field)).toEqual(payload.error);
+                expect(actual.get(payload.form).get(payload.field)).toEqual(payload.error);
             });
         });
     });

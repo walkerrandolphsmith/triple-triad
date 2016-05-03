@@ -20,7 +20,7 @@ describe('RESET PASSWORD async action creator', () => {
         __RewireAPI__.__Rewire__('passwordResetSuccess', () => 2);
         __RewireAPI__.__Rewire__('passwordResetFailed', () => 3);
         __RewireAPI__.__Rewire__('passwordResetClear', () => 4);
-        __RewireAPI__.__Rewire__('resetPasswordFormError', () => 5);
+        __RewireAPI__.__Rewire__('setFormError', () => 5);
 
         __RewireAPI__.__Rewire__('isValidPassword', () => true);
         __RewireAPI__.__Rewire__('passwordsMatch', () => true);
@@ -107,7 +107,7 @@ describe('RESET PASSWORD async action creator', () => {
             resetPassword(token, password, confirmPassword)(dispatch);
         });
 
-        it('should dispatch resetPasswordFormError action', () => {
+        it('should dispatch setFormError action', () => {
             expect(dispatch).toHaveBeenCalledWith(5);
         });
     });
@@ -118,7 +118,7 @@ describe('RESET PASSWORD async action creator', () => {
             resetPassword(token, password, confirmPassword)(dispatch);
         });
 
-        it('should dispatch resetPasswordFormError action', () => {
+        it('should dispatch setFormError action', () => {
             expect(dispatch).toHaveBeenCalledWith(5);
         });
     });
