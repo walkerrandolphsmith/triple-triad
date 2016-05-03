@@ -1,7 +1,7 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as Actions from './../actions/';
-
+import { signOut } from './../reducers/auth/auth';
 import React from 'react';
 import { User } from './../components';
 
@@ -18,6 +18,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
+    Actions.signOut = signOut;
     return bindActionCreators(Actions,dispatch);
 }
 

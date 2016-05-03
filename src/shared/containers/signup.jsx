@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as Actions from './../actions';
+import { clearFormErrors } from './../actions';
+import { signUp } from './../reducers/auth/auth';
 
 import React from 'react';
 import { SignUp } from './../components';
@@ -17,7 +18,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators(Actions,dispatch);
+    return bindActionCreators({clearFormErrors, signUp},dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUp)

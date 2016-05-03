@@ -3,7 +3,7 @@ import ReactDom from 'react-dom/server';
 import { RouterContext, match } from 'react-router';
 import { Provider } from 'react-redux';
 import createLocation from 'history/lib/createLocation';
-import { receiveSignIn } from './../../../shared/actions/action-creators';
+import { receiveSignIn } from './../../../shared/reducers/auth/auth';
 
 import routes from './../../../shared/routes';
 import configureStore from './../../../shared/store/store';

@@ -34,15 +34,6 @@ export { sendPasswordResetFailed } from './sendPasswordReset/sendPasswordResetFa
 export { sendPasswordResetRequest } from './sendPasswordReset/sendPasswordResetRequest/sendPasswordResetRequest';
 export { sendPasswordResetSuccess } from './sendPasswordReset/sendPasswordResetSuccess/sendPasswordResetSuccess';
 
-export { receiveSignIn } from './signin/receiveSignin/receiveSignIn';
-export { requestSignIn } from './signin/requestSignin/requestSignIn';
-
-export { receiveSignOut } from './signout/receiveSignout/receiveSignOut';
-export { requestSignOut } from './signout/requestSignout/requestSignOut';
-
-export { receiveUser } from './signup/receiveSignup/receiveUser';
-export { requestSignUp } from './signup/requestSignup/requestSignUp';
-
 export { receiveUserProfile } from './userProfile/receiveUserProfile/receiveUserProfile';
 export { requestUserProfile } from './userProfile/requestUserProfile/requestUserProfile';
 

@@ -12,7 +12,7 @@ import {
     AUTH_SIGNUP,
     AUTH_SIGNUP_SUCCESS,
     AUTH_SIGNUP_FAIL
-    } from './../../constants/actionTypes';
+} from './auth';
 
 describe('src/shared/reducers/auth/auth', () => {
     describe('Given an initial authentication state', () => {

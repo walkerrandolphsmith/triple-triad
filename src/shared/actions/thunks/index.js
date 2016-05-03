@@ -22,7 +22,4 @@ export { sendInvite } from './sendInvite/sendInvite';
 export { sendPasswordReset } from './sendPasswordReset/sendPasswordReset';
 export { setHand } from './setHand/setHand';
 export { setHands } from './setHands/setHands';
-export { signIn } from './signIn/signIn';
-export { signOut } from './signOut/signOut';
-export { signUp } from './signUp/signUp';
 export { verifyEmail } from './verifyEmail/verifyEmail';
