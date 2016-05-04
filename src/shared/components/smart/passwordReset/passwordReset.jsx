@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-export class ResetPassword extends React.Component {
+export class PasswordReset extends React.Component {
 
     constructor(props, context) {
         super(props, context);
@@ -28,7 +28,7 @@ export class ResetPassword extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        this.props.resetPassword(this.props.token, this.state.password, this.state.confirmPassword);
+        this.props.passwordReset(this.props.token, this.state.password, this.state.confirmPassword);
     }
 
     render() {

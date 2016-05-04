@@ -8,12 +8,8 @@ import {
     RESEND_EMAIL_VERIFICATION_FAILED,
     RESEND_EMAIL_VERIFICATION_CLEAR,
     USER_PROFILE,
-    USER_PROFILE_SUCCESS,
-    PASSWORD_RESET_SUCCESS,
-    PASSWORD_RESET_REQUEST,
-    PASSWORD_RESET_FAILED,
-    PASSWORD_RESET_CLEAR
-    } from './../../constants/actionTypes';
+    USER_PROFILE_SUCCESS
+} from './../../constants/actionTypes';
 
 describe('src/shared/reducers/user/user', () => {
     describe('Given user state', () => {
@@ -27,12 +23,7 @@ describe('src/shared/reducers/user/user', () => {
                 }),
                 resending: false,
                 resendingSuccess: false,
-                resendingFailure: false,
-                passwordReset: new Map({
-                    loading: false,
-                    loaded: false,
-                    failed: false
-                })
+                resendingFailure: false
             });
         });
 
@@ -117,58 +108,6 @@ describe('src/shared/reducers/user/user', () => {
 
             it('should call resendVerificationEmailClear', () => {
                 expect(resendVerificationEmailClear).toHaveBeenCalled();
-            });
-        });
-
-        describe('When handling PASSWORD_RESET_REQUEST', () => {
-            let resetPasswordRequest = expect.createSpy();
-            __RewireAPI__.__Rewire__('resetPasswordRequest', resetPasswordRequest);
-
-            reducer(initialState, {
-                type: PASSWORD_RESET_REQUEST
-            });
-
-            it('should call resetPasswordRequest', () => {
-                expect(resetPasswordRequest).toHaveBeenCalled();
-            });
-        });
-
-        describe('When handling PASSWORD_RESET_SUCCESS', () => {
-            let resetPasswordSuccess = expect.createSpy();
-            __RewireAPI__.__Rewire__('resetPasswordSuccess', resetPasswordSuccess);
-
-            reducer(initialState, {
-                type: PASSWORD_RESET_SUCCESS
-            });
-
-            it('should call resetPasswordSuccess', () => {
-                expect(resetPasswordSuccess).toHaveBeenCalled();
-            });
-        });
-
-        describe('When handling PASSWORD_RESET_FAILED', () => {
-            let resetPasswordFailure = expect.createSpy();
-            __RewireAPI__.__Rewire__('resetPasswordFailure', resetPasswordFailure);
-
-            reducer(initialState, {
-                type: PASSWORD_RESET_FAILED
-            });
-
-            it('should call resetPasswordFailure', () => {
-                expect(resetPasswordFailure).toHaveBeenCalled();
-            });
-        });
-
-        describe('When handling PASSWORD_RESET_CLEAR', () => {
-            let resetPasswordClear = expect.createSpy();
-            __RewireAPI__.__Rewire__('resetPasswordClear', resetPasswordClear);
-
-            reducer(initialState, {
-                type: PASSWORD_RESET_CLEAR
-            });
-
-            it('should call resetPasswordClear', () => {
-                expect(resetPasswordClear).toHaveBeenCalled();
             });
         });
     });

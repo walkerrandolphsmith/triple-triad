@@ -4,7 +4,7 @@ import * as Actions from './../actions';
 import { clearFormErrors } from './../reducers/forms';
 
 import React from 'react';
-import { ResetPassword } from './../components';
+import { PasswordReset } from './../components';
 
 function mapStateToProps(state) {
     return {
@@ -21,4 +21,4 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators(Actions, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ResetPassword)
+export default connect(mapStateToProps, mapDispatchToProps)(PasswordReset)

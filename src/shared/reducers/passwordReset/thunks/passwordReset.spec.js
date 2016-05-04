@@ -1,7 +1,7 @@
 import expect from 'expect';
-import { resetPassword, __RewireAPI__ } from './resetPassword';
+import { passwordReset, __RewireAPI__ } from './../index';
 
-describe('RESET PASSWORD async action creator', () => {
+describe('src/shared/reducers/passwordReset/thunks/passwordReset', () => {
     let dispatch;
     let token;
     let password;
@@ -18,7 +18,7 @@ describe('RESET PASSWORD async action creator', () => {
 
         __RewireAPI__.__Rewire__('passwordResetRequest', () => 1);
         __RewireAPI__.__Rewire__('passwordResetSuccess', () => 2);
-        __RewireAPI__.__Rewire__('passwordResetFailed', () => 3);
+        __RewireAPI__.__Rewire__('passwordResetFailure', () => 3);
         __RewireAPI__.__Rewire__('passwordResetClear', () => 4);
         __RewireAPI__.__Rewire__('setFormError', () => 5);
 
@@ -42,7 +42,7 @@ describe('RESET PASSWORD async action creator', () => {
     });
 
     it('should be a function', () => {
-        expect(resetPassword()).toBeA('function');
+        expect(passwordReset()).toBeA('function');
     });
 
     describe('Given a request is made to get reset password', () => {
@@ -50,7 +50,7 @@ describe('RESET PASSWORD async action creator', () => {
             request.end = fn => {
                 fn(null, { status: 200 });
             };
-            resetPassword(token, password, confirmPassword)(dispatch);
+            passwordReset(token, password, confirmPassword)(dispatch);
         });
 
         it('should request to /api/resetPassword endpoint', () => {
@@ -72,7 +72,7 @@ describe('RESET PASSWORD async action creator', () => {
             request.end = fn => {
                 fn(null, { status: 200 });
             };
-            resetPassword(token, password, confirmPassword)(dispatch);
+            passwordReset(token, password, confirmPassword)(dispatch);
         });
 
         it('should dispatch passwordResetRequest action', () => {
@@ -89,7 +89,7 @@ describe('RESET PASSWORD async action creator', () => {
             request.end = fn => {
                 fn(null, { status: 500 });
             };
-            resetPassword(token, password, confirmPassword)(dispatch);
+            passwordReset(token, password, confirmPassword)(dispatch);
         });
 
         it('should dispatch passwordResetRequest action', () => {
@@ -104,7 +104,7 @@ describe('RESET PASSWORD async action creator', () => {
     describe('When password is not valid', () => {
         beforeEach(() => {
             __RewireAPI__.__Rewire__('isValidPassword', () => false);
-            resetPassword(token, password, confirmPassword)(dispatch);
+            passwordReset(token, password, confirmPassword)(dispatch);
         });
 
         it('should dispatch setFormError action', () => {
@@ -115,7 +115,7 @@ describe('RESET PASSWORD async action creator', () => {
     describe('When passwords do not match', () => {
         beforeEach(() => {
             __RewireAPI__.__Rewire__('passwordsMatch', () => false);
-            resetPassword(token, password, confirmPassword)(dispatch);
+            passwordReset(token, password, confirmPassword)(dispatch);
         });
 
         it('should dispatch setFormError action', () => {
