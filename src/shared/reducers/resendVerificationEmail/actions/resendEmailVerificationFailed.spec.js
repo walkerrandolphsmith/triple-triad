@@ -1,8 +1,7 @@
 import expect from 'expect';
-import { RESEND_EMAIL_VERIFICATION_FAILED } from './../../../../constants/actionTypes';
-import { resendEmailVerificationFailed } from './resendEmailVerificationFailed';
+import { RESEND_EMAIL_VERIFICATION_FAILED, resendEmailVerificationFailed } from './../index';
 
-describe('src/shared/actions/action-creators/resendEmailVerification/failed', () => {
+describe('src/shared/reducers/resendEmailVerification/actions/failed', () => {
     describe('Given RESEND_EMAIL_VERIFICATION_FAILED action type', () => {
         describe('When invoking the resendEmailVerificationFailed action creator', () => {
             it('should create an action', () => {

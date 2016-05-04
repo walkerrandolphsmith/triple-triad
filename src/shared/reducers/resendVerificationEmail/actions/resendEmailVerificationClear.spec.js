@@ -1,8 +1,7 @@
 import expect from 'expect';
-import { RESEND_EMAIL_VERIFICATION_CLEAR } from './../../../../constants/actionTypes';
-import { resendEmailVerificationClear } from './resendEmailVerificationClear';
+import { RESEND_EMAIL_VERIFICATION_CLEAR, resendEmailVerificationClear } from './../index';
 
-describe('src/shared/actions/action-creators/resendEmailVerification/clear', () => {
+describe('src/shared/reducers/resendEmailVerification/actions/clear', () => {
     describe('Given RESEND_EMAIL_VERIFICATION_CLEAR action type', () => {
         describe('When invoking the resendEmailVerificationClear action creator', () => {
             it('should create an action', () => {

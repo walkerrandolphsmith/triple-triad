@@ -10,11 +10,6 @@ export { getGamesFailed } from './games/getGamesFailed/getGamesFailed';
 export { getGamesSuccess } from './games/getGamesSuccess/getGamesSuccess';
 export { getGamesRequest } from './games/getGamesRequest/getGamesRequest';
 
-export { resendEmailVerificationClear } from './resendEmailVerification/resendEmailVerificationClear/resendEmailVerificationClear';
-export { resendEmailVerificationFailed } from './resendEmailVerification/resendEmailVerificationFailed/resendEmailVerificationFailed';
-export { resendEmailVerificationSuccess } from './resendEmailVerification/resendEmailVerificationSuccess/resendEmailVerificationSuccess';
-export { resendEmailVerificationRequest } from './resendEmailVerification/resendEmailVerificationRequest/resendEmailVerificationRequest';
-
 export { sendInviteFailed } from './sendInvite/sendInviteFailed/sendInviteFailed';
 export { sendInviteRequest } from './sendInvite/sendInviteRequest/sendInviteRequest';
 export { sendInviteSuccess } from './sendInvite/sendInviteSuccess/sendInviteSuccess';

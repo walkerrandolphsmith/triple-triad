@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { resendEmailVerification, __RewireAPI__ } from './resendEmailVerification';
+import { resendEmailVerification, __RewireAPI__ } from './../index';
 
 describe('RESEND EMAIL VERIFICATION async action creator', () => {
     let dispatch;
