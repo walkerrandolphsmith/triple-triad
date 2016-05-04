@@ -16,7 +16,6 @@ export { handleUp } from './handleUp/handleUp';
 export { playerTakesTurn } from './playerTakesTurn/playerTakesTurn';
 export { selectedPieceByClick } from './selectedPieceByClick/selectedPieceByClick';
 export { sendInvite } from './sendInvite/sendInvite';
-export { sendPasswordReset } from './sendPasswordReset/sendPasswordReset';
 export { setHand } from './setHand/setHand';
 export { setHands } from './setHands/setHands';
 export { verifyEmail } from './verifyEmail/verifyEmail';
