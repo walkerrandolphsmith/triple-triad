@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { verifyEmail } from './verifyEmail';
+import { verifyEmail } from './../index';
 
 describe('VERIFY EMAIL async action creator', () => {
     let token;

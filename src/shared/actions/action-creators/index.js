@@ -14,8 +14,6 @@ export { sendInviteFailed } from './sendInvite/sendInviteFailed/sendInviteFailed
 export { sendInviteRequest } from './sendInvite/sendInviteRequest/sendInviteRequest';
 export { sendInviteSuccess } from './sendInvite/sendInviteSuccess/sendInviteSuccess';
 
-export { emailVerified } from './emailVerified/emailVerified';
-
 export { resetGame } from './resetGame/resetGame';
 export { addCard } from './addCard/addCard';
 export { placeCard } from './placeCard/placeCard';

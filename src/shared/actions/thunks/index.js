@@ -18,4 +18,3 @@ export { selectedPieceByClick } from './selectedPieceByClick/selectedPieceByClic
 export { sendInvite } from './sendInvite/sendInvite';
 export { setHand } from './setHand/setHand';
 export { setHands } from './setHands/setHands';
-export { verifyEmail } from './verifyEmail/verifyEmail';

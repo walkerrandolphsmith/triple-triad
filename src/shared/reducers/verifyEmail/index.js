@@ -1,9 +1,16 @@
 import request from 'superagent';
-import { emailVerified } from './../../action-creators';
 
-export function verifyEmail(token) {
-    return dispatch => {
-        return request
+export const EMAIL_VERIFIED = 'EMAIL_VERIFIED';
+
+export const emailVerified = isVerified => ({
+    type: EMAIL_VERIFIED,
+    payload: {
+        isVerified: isVerified
+    }
+});
+
+export const verifyEmail = token => dispatch => {
+    return request
         .post('/api/verifyEmail')
         .send(JSON.stringify({ token: token }))
         .set('Accept', 'application/json')
@@ -15,5 +22,4 @@ export function verifyEmail(token) {
                 dispatch(emailVerified(false));
             }
         });
-    };
-}
+};

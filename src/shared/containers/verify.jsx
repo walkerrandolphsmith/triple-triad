@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as Actions from './../actions';
+import { verifyEmail } from './../reducers/verifyEmail';
 
 class Verify extends React.Component {
 
@@ -25,7 +25,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators(Actions, dispatch);
+    return bindActionCreators({ verifyEmail }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Verify)
