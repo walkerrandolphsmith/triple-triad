@@ -1,8 +1,8 @@
 import expect from 'expect';
 import { Map } from 'immutable';
-import userProfileSuccess from './userProfileSuccess';
+import { userProfileSucceeded } from './../user';
 
-describe('src/shared/reducers/user/userProfileSuccess', () => {
+describe('src/shared/reducers/user/userProfileSucceeded', () => {
     describe('Given user state and payload containing a user', () => {
         let state;
         let payload;
@@ -10,6 +10,7 @@ describe('src/shared/reducers/user/userProfileSuccess', () => {
             state = new Map({
                 loading: true,
                 loaded: false,
+                failed: false,
                 user: new Map({
                     verified: false
                 })
@@ -24,7 +25,7 @@ describe('src/shared/reducers/user/userProfileSuccess', () => {
         describe('When requesting user profile is successful', () => {
             let actual;
             beforeEach(() => {
-                actual = userProfileSuccess(state, payload);
+                actual = userProfileSucceeded(state, payload);
             });
 
             it('should set loading to false', () => {
@@ -33,6 +34,10 @@ describe('src/shared/reducers/user/userProfileSuccess', () => {
 
             it('should set loaded to true', () => {
                 expect(actual.get('loaded')).toEqual(true);
+            });
+
+            it('should set failed to false', () => {
+                expect(actual.get('failed')).toEqual(false);
             });
 
             it('should set the user to the payload user', () => {

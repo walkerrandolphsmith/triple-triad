@@ -8,6 +8,7 @@ import { fromJS } from 'immutable';
 import io from 'socket.io-client';
 
 import * as Actions from './../shared/actions';
+import { userProfile } from './../shared/reducers/user/user';
 import Routes from './../shared/routes';
 import configureStore from './../shared/store/store';
 import env from './../shared/config/environment';
@@ -51,7 +52,7 @@ browserHistory.listen(location => {
         store.dispatch(Actions.getGame(id));
     }else if(location.pathname === 'user') {
         let userId = store.getState().auth.get('user').get('id');
-        store.dispatch(Actions.getUserProfile(userId));
+        store.dispatch(userProfile(userId));
     }
 });
 

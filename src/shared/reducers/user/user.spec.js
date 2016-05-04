@@ -1,11 +1,12 @@
 import expect from 'expect';
 import { Map } from 'immutable';
 import reducer from './user';
-import { __RewireAPI__ } from './user';
 import {
-    USER_PROFILE,
-    USER_PROFILE_SUCCESS
-} from './../../constants/actionTypes';
+    USER_PROFILE_FAILED,
+    USER_PROFILE_REQUEST,
+    USER_PROFILE_SUCCESS,
+    __RewireAPI__
+} from './user';
 
 describe('src/shared/reducers/user/user', () => {
     describe('Given user state', () => {
@@ -14,6 +15,7 @@ describe('src/shared/reducers/user/user', () => {
             initialState = new Map({
                 loading: false,
                 loaded: false,
+                failed: false,
                 user: new Map({
                     verified: null
                 })
@@ -27,28 +29,28 @@ describe('src/shared/reducers/user/user', () => {
         });
 
         describe('When handling USER_PROFILE', () => {
-            let userProfileRequest = expect.createSpy();
-            __RewireAPI__.__Rewire__('userProfileRequest', userProfileRequest);
+            let userProfileRequested = expect.createSpy();
+            __RewireAPI__.__Rewire__('userProfileRequested', userProfileRequested);
 
             reducer(initialState, {
-                type: USER_PROFILE
+                type: USER_PROFILE_REQUEST
             });
 
-            it('should call userProfileRequest', () => {
-                expect(userProfileRequest).toHaveBeenCalled();
+            it('should call userProfileRequested', () => {
+                expect(userProfileRequested).toHaveBeenCalled();
             });
         });
 
         describe('When handling USER_PROFILE_SUCCESS', () => {
-            let userProfileSuccess = expect.createSpy();
-            __RewireAPI__.__Rewire__('userProfileSuccess', userProfileSuccess);
+            let userProfileSucceeded = expect.createSpy();
+            __RewireAPI__.__Rewire__('userProfileSucceeded', userProfileSucceeded);
 
             reducer(initialState, {
                 type: USER_PROFILE_SUCCESS
             });
 
-            it('should call userProfileSuccess', () => {
-                expect(userProfileSuccess).toHaveBeenCalled();
+            it('should call userProfileSucceeded', () => {
+                expect(userProfileSucceeded).toHaveBeenCalled();
             });
         });
     });

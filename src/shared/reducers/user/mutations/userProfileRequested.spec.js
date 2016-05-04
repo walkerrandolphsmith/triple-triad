@@ -1,21 +1,22 @@
 import expect from 'expect';
 import { Map } from 'immutable';
-import userProfileRequest from './userProfileRequest';
+import { userProfileRequested } from './../user';
 
-describe('src/shared/reducers/user/userProfileRequest', () => {
+describe('src/shared/reducers/user/userProfileRequested', () => {
     describe('Given user state', () => {
         let state;
         beforeEach(() => {
             state = new Map({
                 loading: false,
-                loaded: true
+                loaded: true,
+                failed: false
             });
         });
 
         describe('When requesting user profile', () => {
             let actual;
             beforeEach(() => {
-                actual = userProfileRequest(state);
+                actual = userProfileRequested(state);
             });
 
             it('should set loading to true', () => {
@@ -24,6 +25,10 @@ describe('src/shared/reducers/user/userProfileRequest', () => {
 
             it('should set loaded to false', () => {
                 expect(actual.get('loaded')).toEqual(false);
+            });
+
+            it('should set failed to false', () => {
+                expect(actual.get('failed')).toEqual(false);
             });
         });
     });

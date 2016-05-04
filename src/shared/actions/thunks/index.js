@@ -7,7 +7,6 @@ export { getGames } from './getGames/getGames';
 export { getNextCardForHand } from './getNextCardForHand/getNextCardForHand';
 export { getNextSelectedCard } from './getNextSelectedCard/getNextSelectedCard';
 export { getNextSelectedPiece } from './getNextSelectedPiece/getNextSelectedPiece';
-export { getUserProfile } from './getUserProfile/getUserProfile';
 export { handleDown } from './handleDown/handleDown';
 export { handleEnter } from './handleEnter/handleEnter';
 export { handleEscape } from './handleEscape/handleEscape';

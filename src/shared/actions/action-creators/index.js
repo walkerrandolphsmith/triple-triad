@@ -19,9 +19,6 @@ export { sendPasswordResetFailed } from './sendPasswordReset/sendPasswordResetFa
 export { sendPasswordResetRequest } from './sendPasswordReset/sendPasswordResetRequest/sendPasswordResetRequest';
 export { sendPasswordResetSuccess } from './sendPasswordReset/sendPasswordResetSuccess/sendPasswordResetSuccess';
 
-export { receiveUserProfile } from './userProfile/receiveUserProfile/receiveUserProfile';
-export { requestUserProfile } from './userProfile/requestUserProfile/requestUserProfile';
-
 export { emailVerified } from './emailVerified/emailVerified';
 
 export { resetGame } from './resetGame/resetGame';

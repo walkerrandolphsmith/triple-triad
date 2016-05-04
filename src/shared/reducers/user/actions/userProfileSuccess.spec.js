@@ -1,8 +1,7 @@
 import expect from 'expect';
-import { USER_PROFILE_SUCCESS } from './../../../../constants/actionTypes';
-import { receiveUserProfile } from './receiveUserProfile';
+import { USER_PROFILE_SUCCESS, userProfileSuccess } from './../user';
 
-describe('src/shared/actions/action-creators/userProfile/receiveUserProfile', () => {
+describe('src/shared/reducers/users/actions/userProfileSuccess', () => {
     describe('Given USER_PROFILE_SUCCESS action type', () => {
         let user;
         let expectedAction;
@@ -21,11 +20,11 @@ describe('src/shared/actions/action-creators/userProfile/receiveUserProfile', ()
 
         describe('When invoking the receiveUserProfile action creator', () => {
             it('should create an action', () => {
-                expect(receiveUserProfile(user)).toEqual(expectedAction);
+                expect(userProfileSuccess(user)).toEqual(expectedAction);
             });
 
             it('should set its first parameter to the payload user field', () => {
-                expect(receiveUserProfile(user).payload.user).toEqual(user);
+                expect(userProfileSuccess(user).payload.user).toEqual(user);
             });
         });
     });

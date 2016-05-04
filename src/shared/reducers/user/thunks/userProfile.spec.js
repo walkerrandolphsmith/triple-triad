@@ -1,7 +1,7 @@
 import expect from 'expect';
-import { getUserProfile, __RewireAPI__ } from './getUserProfile';
+import { userProfile, __RewireAPI__ } from './../user';
 
-describe('Get User Profile async action creator', () => {
+describe('src/shared/reducers/user/thunks/userProfile', () => {
     let dispatch;
     let id;
     let post;
@@ -11,8 +11,8 @@ describe('Get User Profile async action creator', () => {
     beforeEach(() => {
         dispatch = expect.createSpy();
         id = 100;
-        __RewireAPI__.__Rewire__('requestUserProfile', () => 1);
-        __RewireAPI__.__Rewire__('receiveUserProfile', () => 2);
+        __RewireAPI__.__Rewire__('userProfileRequest', () => 1);
+        __RewireAPI__.__Rewire__('userProfileSuccess', () => 2);
         request = __RewireAPI__.__Rewire__('request', {
             post: function() {
                 return this;
@@ -30,7 +30,7 @@ describe('Get User Profile async action creator', () => {
     });
 
     it('should be a function', () => {
-        expect(getUserProfile()).toBeA('function');
+        expect(userProfile()).toBeA('function');
     });
 
     describe('Given a request is made to get user profile', () => {
@@ -43,7 +43,7 @@ describe('Get User Profile async action creator', () => {
                     }
                 });
             };
-            getUserProfile(id)(dispatch);
+            userProfile(id)(dispatch);
         });
 
         it('should request to /api/userProfile endpoint', () => {
@@ -70,7 +70,7 @@ describe('Get User Profile async action creator', () => {
                     }
                 });
             };
-            getUserProfile(id)(dispatch);
+            userProfile(id)(dispatch);
         });
 
         it('should dispatch requestUserProfile action', () => {
