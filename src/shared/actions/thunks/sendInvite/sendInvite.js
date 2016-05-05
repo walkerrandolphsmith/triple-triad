@@ -1,5 +1,5 @@
 import request from 'superagent';
-import { sendInviteRequest, sendInviteSuccess, sendInviteFailed } from './../../action-creators';
+import { sendInviteRequest, sendInviteSuccess, sendInviteFailed } from './../../../reducers/game';
 
 export function sendInvite(gameId, email) {
     return (dispatch, getState) => {

@@ -19,6 +19,9 @@ export const RESET_GAME = 'RESET_GAME';
 export const START_AI_TURN = 'START_AI_TURN';
 export const SELECT_CARD = 'SELECT_CARD';
 export const SELECT_PIECE = 'SELECT_PIECE';
+export const SEND_INVITE_REQUEST = 'SEND_INVITE_REQUEST';
+export const SEND_INVITE_SUCCESS = 'SEND_INVITE_SUCCESS';
+export const SEND_INVITE_FAILED = 'SEND_INVITE_FAILED';
 export const SET_PHASE = 'SET_PHASE';
 export const UPDATE_BOARD = 'UPDATE_BOARD';
 
@@ -85,6 +88,12 @@ export const selectPiece = index => ({
         index: index
     }
 });
+
+export const sendInviteFailure = () => ({ type: SEND_INVITE_FAILED });
+
+export const sendInviteRequest = () => ({ type: SEND_INVITE_REQUEST });
+
+export const sendInviteSuccess = () => ({ type: SEND_INVITE_SUCCESS });
 
 export const setPhase = phase => ({
     type: SERVER + SET_PHASE,

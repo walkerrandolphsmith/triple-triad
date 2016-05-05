@@ -1,8 +1,7 @@
 import expect from 'expect';
-import { SEND_INVITE_SUCCESS } from './../../../../constants/actionTypes';
-import { sendInviteSuccess } from './sendInviteSuccess';
+import { SEND_INVITE_SUCCESS, sendInviteSuccess } from './../index';
 
-describe('src/shared/actions/action-creators/sendInvite/sendInviteSuccess', () => {
+describe('src/shared/reducers/game/sendInviteSuccess', () => {
     describe('Given SEND_INVITE_SUCCESS action type', () => {
         describe('When invoking the sendInviteSuccess action creator', () => {
             it('should create an action', () => {
