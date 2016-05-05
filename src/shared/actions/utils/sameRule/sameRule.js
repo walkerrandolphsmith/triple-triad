@@ -1,4 +1,4 @@
-import { getBoard } from './../../../selectors/board/boardSelector';
+import { getBoard } from './../../../reducers/game';
 import { sort } from './../../utils';
 
 function shouldApplySameRule(card, firstCard, secondCard, d1, d2, d3, d4) {

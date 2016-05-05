@@ -1,9 +1,7 @@
 import { aiTurn } from './../aiTurn/aiTurn';
-import { placeCard, selectCard, selectPiece } from './../../action-creators';
 import { getNextSelectedCard } from './../getNextSelectedCard/getNextSelectedCard';
 import { applyFlips } from './../applyFlips/applyFlips';
-import { getBoard } from './../../../selectors/board/boardSelector';
-import { currentGameSelector } from './../../../selectors/currentGame/currentGameSelector';
+import { placeCard, selectCard, selectPiece, getBoard, currentGameSelector } from './../../../reducers/game';
 
 export const playerTakesTurn = (isPlayer) => (dispatch, getState) => {
     const currentGame = currentGameSelector(getState());

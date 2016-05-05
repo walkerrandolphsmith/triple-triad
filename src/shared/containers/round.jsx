@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { boardSelector, handSelector, opponentHandSelector, scoreSelector, winnerSelector, validPiecesSelector } from './../selectors/index';
-import { currentGameSelector } from './../selectors/currentGame/currentGameSelector';
+import { boardSelector, handSelector, opponentHandSelector, scoreSelector, winnerSelector, validPiecesSelector, currentGameSelector } from './../reducers/game';
 import * as Actions from './../actions/';
 import WINNER_TYPE from './../constants/winner';
 

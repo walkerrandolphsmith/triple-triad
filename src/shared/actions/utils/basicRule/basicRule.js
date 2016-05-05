@@ -1,4 +1,4 @@
-import { getBoard } from './../../../selectors/board/boardSelector';
+import { getBoard } from './../../../reducers/game';
 import { sort } from './../../utils';
 
 function shouldFLip(card, otherCard, attackDirection, defenseDirection) {

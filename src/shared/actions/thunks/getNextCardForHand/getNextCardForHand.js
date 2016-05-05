@@ -1,6 +1,5 @@
 import { getCardToAdd } from './../../utils';
-import { selectCard } from './../../action-creators';
-import { currentGameSelector } from './../../../selectors/currentGame/currentGameSelector';
+import { selectCard, currentGameSelector } from './../../../reducers/game';
 
 export const getNextCardForHand = (directionInLoop) => (dispatch, getState) => {
     const currentGame = currentGameSelector(getState());

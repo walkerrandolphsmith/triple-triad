@@ -1,6 +1,5 @@
 import { applyFlipRules } from './../../utils';
-import { updateBoard } from './../../action-creators';
-import { currentGameSelector } from './../../../selectors/currentGame/currentGameSelector';
+import { updateBoard, currentGameSelector } from './../../../reducers/game';
 
 export const applyFlips = () => (dispatch, getState) => {
     getFlips(getState).forEach(tuple => {

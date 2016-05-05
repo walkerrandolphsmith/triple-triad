@@ -1,6 +1,5 @@
 import { getRandomHand } from './../../utils';
-import { addCard } from './../../action-creators';
-import { currentGameSelector } from './../../../selectors/currentGame/currentGameSelector';
+import { addCard, currentGameSelector } from './../../../reducers/game';
 
 export const setHand = (owner) => (dispatch, getState) => {
     const currentGame = currentGameSelector(getState());

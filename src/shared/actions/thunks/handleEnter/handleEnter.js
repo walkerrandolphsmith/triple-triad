@@ -1,10 +1,8 @@
-import { addCard, updateSettings, setPhase } from './../../action-creators';
+import PHASE from './../../../constants/phases';
 import { getNextSelectedPiece } from './../getNextSelectedPiece/getNextSelectedPiece';
 import { playerTakesTurn } from './../playerTakesTurn/playerTakesTurn';
-import { getHand } from './../../../selectors/hand/handSelector';
-import { getIsFullHand } from './../../../selectors/isFullHand/isFullHandSelector';
-import { currentGameSelector } from './../../../selectors/currentGame/currentGameSelector';
-import PHASE from './../../../constants/phases';
+import { addCard, setPhase, getHand, getIsFullHand, currentGameSelector } from './../../../reducers/game';
+import { updateSetting } from './../../../reducers/settings/settings';
 
 export const handleEnter = () => (dispatch, getState) => {
     const state = getState();
@@ -43,7 +41,7 @@ function selectCardToAddToHand(dispatch, currentGame) {
 function selectSetting(dispatch, state) {
     const focusedSetting = state.settings.get('focused');
     if(isAnySettingFocused(focusedSetting)) {
-        dispatch(updateSettings(focusedSetting));
+        dispatch(updateSetting(focusedSetting));
     }
 }
 

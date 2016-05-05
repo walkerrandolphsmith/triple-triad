@@ -1,8 +1,7 @@
 import request from 'superagent';
 import deck from './../../../constants/deck';
 import PHASES from './../../../constants/phases';
-
-import { createGameRequest, createGameSuccess, createGameFailed } from './../../action-creators';
+import { createGameRequest, createGameSuccess, createGameFailed } from './../../../reducers/game';
 
 export function createGame() {
     return (dipatch, getState) => {

@@ -1,11 +1,9 @@
+import PHASE from './../../../constants/phases';
 import { setHands } from './../setHands/setHands';
 import { getNextSelectedCard } from './../getNextSelectedCard/getNextSelectedCard';
 import { getNextCardForHand } from './../getNextCardForHand/getNextCardForHand';
-import { setPhase, resetGame } from './../../action-creators';
+import { setPhase, resetGame, currentGameSelector } from './../../../reducers/game';
 import { getNextPhase } from './../../utils/getNextPhase/getNextPhase';
-import { currentGameSelector } from './../../../selectors/currentGame/currentGameSelector';
-import PHASE from './../../../constants/phases';
-
 
 export const endPhase = () => (dispatch, getState) => {
     const state = getState();

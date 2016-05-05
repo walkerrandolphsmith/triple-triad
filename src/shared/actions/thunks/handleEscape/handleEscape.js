@@ -1,6 +1,5 @@
-import { setPhase, selectPiece } from './../../action-creators';
-import { currentGameSelector } from './../../../selectors/currentGame/currentGameSelector';
 import PHASE from './../../../constants/phases';
+import { setPhase, selectPiece, currentGameSelector } from './../../../reducers/game';
 
 export const handleEscape = () => (dispatch, getState) => {
     const currentGame = currentGameSelector(getState());

@@ -14,7 +14,7 @@ describe('HANDLE_ENTER async action creator', () => {
         __RewireAPI__.__Rewire__('getNextSelectedPiece', () => 2);
         __RewireAPI__.__Rewire__('playerTakesTurn', () => 3);
         __RewireAPI__.__Rewire__('addCard', () => 5);
-        __RewireAPI__.__Rewire__('updateSettings', () => 6);
+        __RewireAPI__.__Rewire__('updateSetting', () => 6);
     });
 
     it('should be a function', () => {

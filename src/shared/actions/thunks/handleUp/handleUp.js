@@ -1,7 +1,8 @@
+import PHASE from './../../../constants/phases';
 import { getNextSelectedCard } from './../getNextSelectedCard/getNextSelectedCard';
 import { getNextSelectedPiece } from './../getNextSelectedPiece/getNextSelectedPiece';
-import { currentGameSelector } from './../../../selectors/currentGame/currentGameSelector';
-import PHASE from './../../../constants/phases';
+import { currentGameSelector } from './../../../reducers/game';
+
 export const handleUp = () => (dispatch, getState) => {
     const currentGame = currentGameSelector(getState());
 

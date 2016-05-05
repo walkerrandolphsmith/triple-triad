@@ -1,7 +1,6 @@
 import { getValidPiece, selectCardForOpponent } from './../../utils';
-import { selectCard, selectPiece, startAiTurn, endAiTurn } from './../../action-creators';
+import { selectCard, selectPiece, startAiTurn, endAiTurn, currentGameSelector } from './../../../reducers/game';
 import { playerTakesTurn } from './../playerTakesTurn/playerTakesTurn';
-import { currentGameSelector } from './../../../selectors/currentGame/currentGameSelector';
 
 export const aiTurn = () => (dispatch, getState) => {
     dispatch(startAiTurn());

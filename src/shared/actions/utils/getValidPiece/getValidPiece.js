@@ -1,5 +1,5 @@
-import { getBoard } from './../../../selectors/board/boardSelector';
-import { getValidPieces } from './../../../selectors/validPieces/validPiecesSelector';
+import { getBoard } from './../../../reducers/game';
+import { getValidPieces } from './../../../reducers/game';
 import { sample } from './../../utils';
 
 export function getValidPiece(game) {

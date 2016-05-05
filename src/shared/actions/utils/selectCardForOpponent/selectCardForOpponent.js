@@ -1,4 +1,4 @@
-import { getHand } from './../../../selectors/hand/handSelector';
+import { getHand } from './../../../reducers/game';
 import { sample } from './../../utils';
 
 export function selectCardForOpponent(game) {

@@ -1,5 +1,5 @@
 import request from 'superagent';
-import { getGamesRequest, getGamesSuccess, getGamesFailed } from './../../../actions/action-creators';
+import { getGamesRequest, getGamesSuccess, getGamesFailed } from './../../../reducers/game';
 
 export function getGames() {
     return (dipatch, getState) => {

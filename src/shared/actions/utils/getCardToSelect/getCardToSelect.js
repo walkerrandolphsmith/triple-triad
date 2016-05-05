@@ -1,4 +1,4 @@
-import { getHand } from './../../../selectors/hand/handSelector';
+import { getHand } from './../../../reducers/game';
 
 export function getCardToSelect(game, directionInLoop) {
     const hand = getHand(game.get('deck'), 1);

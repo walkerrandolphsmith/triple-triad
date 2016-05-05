@@ -1,7 +1,7 @@
+import PHASE from './../../../constants/phases';
 import { getNextCardForHand } from './../getNextCardForHand/getNextCardForHand';
 import { getNextSelectedPiece } from './../getNextSelectedPiece/getNextSelectedPiece';
-import { currentGameSelector } from './../../../selectors/currentGame/currentGameSelector';
-import PHASE from './../../../constants/phases';
+import { currentGameSelector } from './../../../reducers/game';
 
 export const handleLeft = () => (dispatch, getState) => {
     const currentGame = currentGameSelector(getState());

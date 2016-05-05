@@ -1,6 +1,5 @@
 import { getPieceToSelect } from './../../utils';
-import { selectPiece } from './../../action-creators';
-import { currentGameSelector } from './../../../selectors/currentGame/currentGameSelector';
+import { selectPiece, currentGameSelector } from './../../../reducers/game';
 
 export const getNextSelectedPiece = (keyCode) => (dispatch, getState) => {
     const currentGame = currentGameSelector(getState());

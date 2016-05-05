@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { handSelector, isFullHandSelector, availableDeckSelector } from './../selectors/index';
-import { currentGameSelector } from './../selectors/currentGame/currentGameSelector';
+import { handSelector, isFullHandSelector, availableDeckSelector, currentGameSelector } from './../reducers/game';
 import * as Actions from './../actions/';
 
 import React from 'react';
