@@ -1,6 +1,6 @@
 import expect from 'expect';
 import { Map } from 'immutable';
-import { signoutSuccess } from './../auth';
+import { signoutSuccess } from './../index';
 
 describe('src/shared/reducers/auth/mutations/signoutSuccess', () => {
     describe('Given authentication state', () => {

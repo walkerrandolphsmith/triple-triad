@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { AUTH_SIGNIN, requestSignIn } from './../auth';
+import { AUTH_SIGNIN, requestSignIn } from './../index';
 
 describe('src/shared/reducers/auth/actions/requestSignIn', () => {
     describe('Given AUTH_SIGNIN action type', () => {

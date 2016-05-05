@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { routerReducer as router } from 'react-router-redux';
 
-import auth from './auth/auth';
+import auth from './auth';
 import forms from './forms';
 import game from './game/game';
 import passwordReset from './passwordReset'

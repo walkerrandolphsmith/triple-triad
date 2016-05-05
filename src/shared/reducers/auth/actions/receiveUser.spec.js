@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { AUTH_SIGNUP_SUCCESS, receiveUser } from './../auth';
+import { AUTH_SIGNUP_SUCCESS, receiveUser } from './../index';
 
 describe('src/shared/reducers/auth/actions/receiveUser', () => {
     describe('Given AUTH_SIGNUP_SUCCESS action type', () => {

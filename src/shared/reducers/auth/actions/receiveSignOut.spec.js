@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { AUTH_SIGNOUT_SUCCESS, receiveSignOut } from './../auth';
+import { AUTH_SIGNOUT_SUCCESS, receiveSignOut } from './../index';
 
 describe('src/shared/reducers/auth/actions/receiveSignOut', () => {
     describe('Given AUTH_SIGNOUT_SUCCESS action type', () => {

@@ -1,7 +1,6 @@
 import expect from 'expect';
 import { Map } from 'immutable';
-import reducer from './auth';
-import { __RewireAPI__ } from './auth';
+import reducer from './index';
 import {
     AUTH_SIGNIN,
     AUTH_SIGNIN_SUCCESS,
@@ -11,10 +10,11 @@ import {
     AUTH_SIGNOUT_FAIL,
     AUTH_SIGNUP,
     AUTH_SIGNUP_SUCCESS,
-    AUTH_SIGNUP_FAIL
-} from './auth';
+    AUTH_SIGNUP_FAIL,
+    __RewireAPI__
+} from './index';
 
-describe('src/shared/reducers/auth/auth', () => {
+describe('src/shared/reducers/auth', () => {
     describe('Given an initial authentication state', () => {
         let initialState;
         beforeEach(() => {

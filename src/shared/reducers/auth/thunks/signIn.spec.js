@@ -1,6 +1,6 @@
 import expect from 'expect';
-import { signIn } from './../auth';
-import { __RewireAPI__ } from './../auth';
+import { signIn } from './../index';
+import { __RewireAPI__ } from './../index';
 
 describe('src/shared/reducers/auth/thunks/signIn', () => {
     let dispatch;

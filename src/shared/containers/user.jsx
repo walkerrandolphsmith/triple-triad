@@ -1,7 +1,7 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as Actions from './../actions/';
-import { signOut } from './../reducers/auth/auth';
+import { signOut } from './../reducers/auth';
 import { resendEmailVerification } from './../reducers/resendVerificationEmail';
 import React from 'react';
 import { User } from './../components';
