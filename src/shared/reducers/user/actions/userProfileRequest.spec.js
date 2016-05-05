@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { USER_PROFILE_REQUEST, userProfileRequest } from './../user';
+import { USER_PROFILE_REQUEST, userProfileRequest } from './../index';
 
 describe('src/shared/reducers/user/actions/userProfileRequest', () => {
     describe('Given USER_PROFILE action type', () => {

@@ -1,6 +1,6 @@
 import expect from 'expect';
 import { Map } from 'immutable';
-import { userProfileRequested } from './../user';
+import { userProfileRequested } from './../index';
 
 describe('src/shared/reducers/user/userProfileRequested', () => {
     describe('Given user state', () => {

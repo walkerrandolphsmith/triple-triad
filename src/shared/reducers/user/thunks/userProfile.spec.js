@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { userProfile, __RewireAPI__ } from './../user';
+import { userProfile, __RewireAPI__ } from './../index';
 
 describe('src/shared/reducers/user/thunks/userProfile', () => {
     let dispatch;

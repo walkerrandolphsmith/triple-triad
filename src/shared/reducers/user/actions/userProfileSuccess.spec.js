@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { USER_PROFILE_SUCCESS, userProfileSuccess } from './../user';
+import { USER_PROFILE_SUCCESS, userProfileSuccess } from './../index';
 
 describe('src/shared/reducers/users/actions/userProfileSuccess', () => {
     describe('Given USER_PROFILE_SUCCESS action type', () => {

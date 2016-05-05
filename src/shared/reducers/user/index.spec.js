@@ -1,14 +1,14 @@
 import expect from 'expect';
 import { Map } from 'immutable';
-import reducer from './user';
+import reducer from './index';
 import {
     USER_PROFILE_FAILED,
     USER_PROFILE_REQUEST,
     USER_PROFILE_SUCCESS,
     __RewireAPI__
-} from './user';
+} from './index';
 
-describe('src/shared/reducers/user/user', () => {
+describe('src/shared/reducers/user', () => {
     describe('Given user state', () => {
         let initialState;
         beforeEach(() => {

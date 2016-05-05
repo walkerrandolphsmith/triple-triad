@@ -3,11 +3,11 @@ import { routerReducer as router } from 'react-router-redux';
 
 import auth from './auth';
 import forms from './forms';
-import game from './game/game';
+import game from './game';
 import passwordReset from './passwordReset'
 import resendVerificationEmail from './resendVerificationEmail';
 import settings from './settings/settings';
-import user from './user/user';
+import user from './user';
 
 export default combineReducers({
     auth,

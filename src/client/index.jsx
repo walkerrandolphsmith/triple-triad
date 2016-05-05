@@ -8,7 +8,7 @@ import { fromJS } from 'immutable';
 import io from 'socket.io-client';
 
 import * as Actions from './../shared/actions';
-import { userProfile } from './../shared/reducers/user/user';
+import { userProfile } from './../shared/reducers/user';
 import Routes from './../shared/routes';
 import configureStore from './../shared/store/store';
 import env from './../shared/config/environment';
