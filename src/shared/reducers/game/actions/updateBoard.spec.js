@@ -1,6 +1,6 @@
 import expect from 'expect';
 import { UPDATE_BOARD, updateBoard } from './../index';
-import { SERVER } from './../../../constants/actionTypes';
+import SERVER from './../../../constants/socketActionPrefix';
 
 describe('src/shared/reducers/game/actions/updateBoard', () => {
     describe('Given UPDATE_BOARD action type', () => {

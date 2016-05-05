@@ -1,6 +1,6 @@
 import expect from 'expect';
 import { SELECT_PIECE, selectPiece } from './../index';
-import { SERVER } from './../../../constants/actionTypes';
+import SERVER from './../../../constants/socketActionPrefix';
 
 describe('src/shared/reducers/game/actions/selectPiece', () => {
     describe('Given SELECT_PIECE action type', () => {

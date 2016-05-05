@@ -1,6 +1,6 @@
 import expect from 'expect';
 import { SELECT_CARD, selectCard } from './../index';
-import { SERVER } from './../../../constants/actionTypes';
+import SERVER from './../../../constants/socketActionPrefix';
 
 describe('src/shared/reducers/game/actions/selectCard', () => {
     describe('Given SELECT_CARD action type', () => {

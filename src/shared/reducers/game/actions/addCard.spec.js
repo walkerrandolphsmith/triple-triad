@@ -1,6 +1,6 @@
 import expect from 'expect';
 import { ADD_CARD, addCard } from './../index';
-import { SERVER } from './../../../constants/actionTypes'; 
+import SERVER from './../../../constants/socketActionPrefix'; 
 
 describe('src/shared/reducers/game/actions/addCard', () => {
     describe('Given ADD_CARD action type', () => {

@@ -7,7 +7,7 @@ import configurePassport from './config/passport';
 import configureRoutes from './config/routes';
 import configureServer from './config/express';
 import env from './../shared/config/environment';
-import { SERVER } from './../shared/constants/actionTypes';
+import SERVER from './../shared/constants/socketActionPrefix';
 
 const { host, port, mongoUri } = env;
 

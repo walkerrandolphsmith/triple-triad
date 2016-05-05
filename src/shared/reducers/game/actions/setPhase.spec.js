@@ -1,6 +1,6 @@
 import expect from 'expect';
 import { SET_PHASE, setPhase } from './../index';
-import { SERVER } from './../../../constants/actionTypes';
+import SERVER from './../../../constants/socketActionPrefix';
 
 describe('src/shared/reducers/game/actions/setPhase', () => {
     describe('Given SET_PHASE action type', () => {

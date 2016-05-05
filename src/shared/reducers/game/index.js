@@ -1,6 +1,6 @@
 import { fromJS, Map, List } from 'immutable';
 import { createSelector } from 'reselect';
-import { SERVER } from './../../constants/actionTypes';
+import SERVER from './../../constants/socketActionPrefix';
 import WINNER from './../../constants/winner';
 
 export const ADD_CARD = 'ADD_CARD';
