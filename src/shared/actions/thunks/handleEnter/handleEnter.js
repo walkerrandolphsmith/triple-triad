@@ -2,7 +2,7 @@ import PHASE from './../../../constants/phases';
 import { getNextSelectedPiece } from './../getNextSelectedPiece/getNextSelectedPiece';
 import { playerTakesTurn } from './../playerTakesTurn/playerTakesTurn';
 import { addCard, setPhase, getHand, getIsFullHand, currentGameSelector } from './../../../reducers/game';
-import { updateSetting } from './../../../reducers/settings/settings';
+import { updateSetting } from './../../../reducers/settings';
 
 export const handleEnter = () => (dispatch, getState) => {
     const state = getState();

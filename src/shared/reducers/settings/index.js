@@ -1,7 +1,7 @@
 import { Map } from 'immutable';
 
-export const UPDATE_FOCUS_SETTING = 'UpdateFocusSetting';
-export const UPDATE_SETTINGS = 'UpdateSettings';
+export const UPDATE_FOCUS_SETTING = 'UPDATE_FOCUS_SETTING';
+export const UPDATE_SETTING = 'UPDATE_SETTING';
 
 export const updateFocusSetting = setting => ({
     type: UPDATE_FOCUS_SETTING,
@@ -11,7 +11,7 @@ export const updateFocusSetting = setting => ({
 });
 
 export const updateSetting = setting => ({
-    type: UPDATE_SETTINGS,
+    type: UPDATE_SETTING,
     payload: {
         setting: setting
     }
@@ -28,11 +28,11 @@ export default function reducer(state = INITIAL_STATE, action = {}) {
     let { type, payload } = action;
 
     switch(type) {
-        case UPDATE_FOCUS_SETTING: return setFocusSetting(state, payload);
-        case UPDATE_SETTINGS: return setSetting(state, payload);
+        case UPDATE_FOCUS_SETTING: return focusSettingUpdated(state, payload);
+        case UPDATE_SETTING: return settingUpdated(state, payload);
         default: return state;
     }
 }
 
-export const setFocusSetting = (state, payload) => state.set('focused', payload.setting);
-export const setSetting = (state, payload) => state.set(payload.setting, !state.get(payload.setting));
+export const focusSettingUpdated = (state, payload) => state.set('focused', payload.setting);
+export const settingUpdated = (state, payload) => state.set(payload.setting, !state.get(payload.setting));

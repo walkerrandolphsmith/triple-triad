@@ -1,14 +1,14 @@
 import expect from 'expect';
-import { UPDATE_SETTINGS, updateSetting } from './../settings';
+import { UPDATE_SETTING, updateSetting } from './../index';
 
-describe('src/shared/reducers/settings/updateSetting', () => {
+describe('src/shared/reducers/settings/actions/updateSetting', () => {
     describe('Given UPDATE_SETTINGS action type', () => {
         let setting;
         let expectedAction;
         beforeEach(() => {
             setting = 'visibleHand';
             expectedAction = {
-                type: UPDATE_SETTINGS,
+                type: UPDATE_SETTING,
                 payload: {
                     setting: setting
                 }

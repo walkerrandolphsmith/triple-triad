@@ -1,8 +1,8 @@
 import expect from 'expect';
 import { Map } from 'immutable';
-import { setFocusSetting } from './../settings';
+import { focusSettingUpdated } from './../index';
 
-describe('src/shared/reducers/settings/setFocusSetting', () => {
+describe('src/shared/reducers/settings/mutations/focusSettingUpdated', () => {
     describe('Given settings state and payload with setting of randomHand', () => {
         let state;
         let payload;
@@ -19,7 +19,7 @@ describe('src/shared/reducers/settings/setFocusSetting', () => {
         describe('When updating focused setting', () => {
             let actual;
             beforeEach(() => {
-                actual = setFocusSetting(state, payload);
+                actual = focusSettingUpdated(state, payload);
             });
 
             it('should set the focused state to the given setting', () => {

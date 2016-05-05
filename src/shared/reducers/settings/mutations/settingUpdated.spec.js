@@ -1,8 +1,8 @@
 import expect from 'expect';
 import { Map } from 'immutable';
-import { setSetting } from './../settings';
+import { settingUpdated } from './../index';
 
-describe('src/shared/reducers/settings/setSetting', () => {
+describe('src/shared/reducers/settings/mutations/settingUpdated', () => {
     describe('Given settings state and payload with setting of randomHand', () => {
         let state;
         let payload;
@@ -21,7 +21,7 @@ describe('src/shared/reducers/settings/setSetting', () => {
         describe('When updating settings', () => {
             let actual;
             beforeEach(() => {
-                actual = setSetting(state, payload);
+                actual = settingUpdated(state, payload);
             });
 
             it('should set the randomHand state to true', () => {

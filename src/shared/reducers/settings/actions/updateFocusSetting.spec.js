@@ -1,7 +1,7 @@
 import expect from 'expect';
-import { UPDATE_FOCUS_SETTING, updateFocusSetting } from './../settings';
+import { UPDATE_FOCUS_SETTING, updateFocusSetting } from './../index';
 
-describe('src/shared/reducers/settings/updateFocusSettings', () => {
+describe('src/shared/reducers/settings/actions/updateFocusSettings', () => {
     describe('Given UPDATE_FOCUS_SETTING action type', () => {
         let setting;
         let expectedAction;
