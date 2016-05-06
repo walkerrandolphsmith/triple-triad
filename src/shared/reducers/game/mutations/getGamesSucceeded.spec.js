@@ -8,7 +8,7 @@ describe('src/shared/reducers/game/mutations/getGamesSucceeded', () => {
         let payload;
         let games;
         beforeEach(() => {
-            games = [0, 1, 2];
+            games = [{ id: 0 }, { id: 1}];
             state = new Map({
                 getGames: new Map({
                     loading: false,

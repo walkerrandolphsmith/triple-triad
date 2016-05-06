@@ -49,7 +49,7 @@ describe('Get Games async action creator', () => {
     describe('Given a request is made', () => {
         beforeEach(() => {
             request.end = (fn) => {
-                fn(null, { status: 200 });
+                fn(null, { status: 200, body: [] });
             };
             getGames()(dispatch, getState);
         });
@@ -71,7 +71,7 @@ describe('Get Games async action creator', () => {
     describe('When /getGames is successful', () => {
         beforeEach(() => {
             request.end = (fn) => {
-                fn(null, { status: 200 });
+                fn(null, { status: 200, body: [] });
             };
             getGames()(dispatch, getState);
         });
