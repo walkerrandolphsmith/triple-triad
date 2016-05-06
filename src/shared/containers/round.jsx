@@ -1,12 +1,9 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Round } from './../components';
+import WINNER_TYPE from './../constants/winner';
 import { boardSelector, handSelector, opponentHandSelector, scoreSelector, winnerSelector, validPiecesSelector, currentGameSelector } from '../ducks/game';
 import { selectCard, selectedPieceByClick, endPhase } from '../ducks/game';
-
-import WINNER_TYPE from './../constants/winner';
-
-import React from 'react';
-import { Round } from './../components';
 
 function mapStateToProps(state) {
     const { settings } = state;

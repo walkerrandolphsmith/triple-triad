@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { currentGameSelector } from '../ducks/game';
-import PHASE from './../constants/phases';
 import { BreadCrumb } from './../components';
+import PHASE from './../constants/phases';
+import { currentGameSelector } from '../ducks/game';
 
 export default function(Settings, Invite, Cards, Round) {
 

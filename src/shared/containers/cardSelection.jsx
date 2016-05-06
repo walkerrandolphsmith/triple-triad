@@ -1,11 +1,8 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { CardSelection } from './../components';
 import { handSelector, isFullHandSelector, availableDeckSelector, currentGameSelector } from '../ducks/game';
 import { addCard, endPhase, selectCard } from '../ducks/game';
-
-import React from 'react';
-import { CardSelection } from './../components';
-
 
 function mapStateToProps(state) {
     const { settings } = state;

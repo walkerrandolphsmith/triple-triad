@@ -1,10 +1,8 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Settings } from './../components';
 import { endPhase } from './../ducks/game';
 import { updateFocusSetting, updateSetting } from '../ducks/settings';
-
-import React from 'react';
-import { Settings } from './../components';
 
 function mapStateToProps(state) {
     return {

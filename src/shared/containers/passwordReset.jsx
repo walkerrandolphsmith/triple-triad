@@ -1,9 +1,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { clearFormErrors } from '../ducks/forms';
-
-import React from 'react';
 import { PasswordReset } from './../components';
+import { clearFormErrors } from '../ducks/forms';
 
 function mapStateToProps(state) {
     return {

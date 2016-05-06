@@ -1,10 +1,8 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { SignUp } from './../components';
 import { clearFormErrors } from '../ducks/forms';
 import { signUp } from '../ducks/auth';
-
-import React from 'react';
-import { SignUp } from './../components';
 
 function mapStateToProps(state) {
     return {

@@ -1,8 +1,7 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { verifyEmail } from '../ducks/verifyEmail';
 import { Verify } from './../components';
+import { verifyEmail } from '../ducks/verifyEmail';
 
 function mapStateToProps(state) {
     return {

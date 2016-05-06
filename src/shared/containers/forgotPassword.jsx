@@ -1,9 +1,8 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { ForgotPassword } from './../components';
 import { sendPasswordReset } from '../ducks/sendPasswordReset';
 import { clearFormErrors } from '../ducks/forms';
-import React from 'react';
-import { ForgotPassword } from './../components';
 
 function mapStateToProps(state) {
     return {

@@ -1,9 +1,8 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { Games } from './../components';
 import { push } from 'react-router-redux';
 import { createGame, deleteGame } from './../ducks/game';
-import React from 'react';
-import { Games } from './../components';
 
 function mapStateToProps(state) {
     return {

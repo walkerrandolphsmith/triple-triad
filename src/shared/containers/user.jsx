@@ -1,9 +1,8 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { User } from './../components';
 import { signOut } from '../ducks/auth';
 import { resendEmailVerification } from '../ducks/resendVerificationEmail';
-import React from 'react';
-import { User } from './../components';
 
 function mapStateToProps(state) {
     return {
