@@ -15,6 +15,7 @@ export { InviteForm } from './inviteForm';
 export { Navigation } from './navigation';
 export { NotFound } from './notFound';
 export { PasswordReset } from './passwordReset';
+export { PhaseEnforcer } from './phaseEnforcer';
 export { Round } from './round';
 export { Settings } from './settings';
 export { SignIn } from './signIn';
