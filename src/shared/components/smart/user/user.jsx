@@ -1,5 +1,4 @@
 import React from 'react';
-import { DumbUser } from './../../dumb/';
 
 export class User extends React.Component {
 
@@ -8,22 +7,47 @@ export class User extends React.Component {
     }
 
     render() {
-        let { id, username, verified } = this.props;
-        let resendVerificationEmail = verified
-            ? (<div></div>)
-            : (
-            <div>
-                <button className="btn btn-main" onClick={this.resendEmailVerification.bind(this)}>
-                Resend Verifcation Email
-                </button>
+        let { id, username, email, verified } = this.props;
+
+        let verifyEmail = verified
+            ? (<i className="fa fa-email" onClick={this.resendEmailVerification.bind(this)}></i>)
+            : (<i className="fa fa-check"></i>);
+
+        let message =  'email@gmail.com';
+        message = this.props.resendingVerificationEmail ? 'Sending verification email' : message;
+        message =  this.props.verificationEmailSent ? 'Verification email sent' : message;
+        message = this.props.failedToSendVerificationEmail ? 'Failed to send verification email' : message;
+
+        return (
+            <div id="profile">
+                <div id="user">
+                    <div className="header">
+                        <h3 className="title">
+                            {verifyEmail}
+                            <span>{username}</span>
+                        </h3>
+                    </div>
+                    <div className="detail">
+                        <div className="content">
+                            <img heigth="150px" width="150px" src="assets/images/default-user.png"/>
+                        </div>
+                        <div className="content-info">
+                            <div className="sub-note">
+                                <span>5 Friends</span>
+                            </div>
+                            <div className="sub-note">
+                                <span>10/35</span>
+                            </div>
+                        </div>
+                        <div className="footer">
+                            <span>{message}</span>
+                        </div>
+                    </div>
+                    <div className="more" onClick={this.props.signOut}>
+                        <span>SignOut</span>
+                    </div>
+                </div>
             </div>
-        );
-
-        let message = '';
-        message = this.props.resendingVerificationEmail ? 'Sending...' : message;
-        message =  this.props.verificationEmailSent ? 'Success' : message;
-        message = this.props.failedToSendVerificationEmail ? 'Failed to send' : message;
-
-        return DumbUser(username, resendVerificationEmail, message, this.props.signOut);
+        )
     }
 }

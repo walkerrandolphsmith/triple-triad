@@ -10,17 +10,18 @@ function mapStateToProps(state) {
     return {
         id: state.auth.get('user').get('id'),
         username: state.auth.get('user').get('username'),
+        email: state.user.get('user').get('email'),
         verified: state.user.get('user').get('verified'),
-        resendingVerificationEmail: state.resendEmailVerification.get('loading'),
-        verificationEmailSent: state.resendEmailVerification.get('loaded'),
-        failedToSendVerificationEmail: state.resendEmailVerification.get('failed')
+        resendingVerificationEmail: state.resendVerificationEmail.get('loading'),
+        verificationEmailSent: state.resendVerificationEmail.get('loaded'),
+        failedToSendVerificationEmail: state.resendVerificationEmail.get('failed')
 
     }
 }
 
 function mapDispatchToProps(dispatch) {
     Actions.signOut = signOut;
-    Actions.resendEmailVerification = resendEmailVerification;
+    Actions.resendVerificationEmail = resendEmailVerification;
     return bindActionCreators(Actions,dispatch);
 }
 
