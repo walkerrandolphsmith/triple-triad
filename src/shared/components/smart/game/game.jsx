@@ -6,6 +6,10 @@ export class Game extends React.Component {
         this.props.push(`/game/${id}`);
     }
 
+    deleteGame(id) {
+        this.props.deleteGame(id);
+    }
+
     render() {
         let { id, owner, opponent, currentPlayer, phase } = this.props.game;
         let waitingOnPlayerText = currentPlayer === this.props.loggedInAs ? 'you' : 'opponent';
@@ -16,9 +20,10 @@ export class Game extends React.Component {
         return (
             <div id={id} className="game">
                 <div className="header">
-                    <h3 className="title" onClick={this.selectGame.bind(this, id)}>
+                    <h3 className="title">
                         <i className="fa fa-star-o"></i>
-                        Game
+                        <span onClick={this.selectGame.bind(this, id)}>Game</span>
+                        <i className="fa fa-trash-o" onClick={this.deleteGame.bind(this, id)}></i>
                     </h3>
                 </div>
                 <div className="detail">

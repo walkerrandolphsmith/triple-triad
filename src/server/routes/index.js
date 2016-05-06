@@ -1,4 +1,5 @@
 export { createGame } from './create_game/create_game';
+export { deleteGame } from './delete_game/delete_game';
 export { forgotPassword } from './forgot_password/forgot_password';
 export { getGame } from './get_game/get_game';
 export { getGames } from './get_games/get_games';

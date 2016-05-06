@@ -10,6 +10,7 @@ import {
     resetPassword,
     userProfile,
     createGame,
+    deleteGame,
     getGame,
     getGames,
     invite
@@ -75,6 +76,13 @@ function configureAuthRoutes(passport) {
         '/createGame',
         (req, res) => {
             createGame(req, res);
+        }
+    );
+
+    router.post(
+        '/deleteGame',
+        (req, res) => {
+            deleteGame(req, res);
         }
     );
 

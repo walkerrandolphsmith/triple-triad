@@ -7,6 +7,9 @@ export const ADD_CARD = 'ADD_CARD';
 export const CREATE_GAME_FAILED = 'CREATE_GAME_FAILED';
 export const CREATE_GAME_REQUEST = 'CREATE_GAME_REQUEST';
 export const CREATE_GAME_SUCCESS = 'CREATE_GAME_SUCCESS';
+export const DELETE_GAME_FAILURE = 'DELETE_GAME_FAILURE';
+export const DELETE_GAME_REQUEST = 'DELETE_GAME_REQUEST';
+export const DELETE_GAME_SUCCESS = 'DELETE_GAME_SUCCESS';
 export const END_AI_TURN = 'END_AI_TURN';
 export const GET_GAME_FAILED = 'GET_GAME_FAILED';
 export const GET_GAME_REQUEST = 'GET_GAME_REQUEST';
@@ -37,6 +40,15 @@ export const addCard = (id, owner) => ({
     payload: {
         id: id,
         owner: owner
+    }
+});
+
+export const deleteGameFailure = () => ({ type: DELETE_GAME_FAILURE });
+export const deleteGameRequest = () => ({ type: DELETE_GAME_REQUEST });
+export const deleteGameSuccess = id => ({
+    type: DELETE_GAME_SUCCESS,
+    payload: {
+        gameId: id
     }
 });
 
@@ -139,6 +151,9 @@ export default function reducer(state = INITIAL_STATE, action = {}) {
         case CREATE_GAME_FAILED: return createGameFailed(state, payload);
         case CREATE_GAME_REQUEST: return createGameRequested(state, payload);
         case CREATE_GAME_SUCCESS: return createGameSucceeded(state, payload);
+        case DELETE_GAME_FAILURE: return gameDeletionFailed(state, payload);
+        case DELETE_GAME_REQUEST: return gameDeletionRequested(state, payload);
+        case DELETE_GAME_SUCCESS: return gameDeletionSucceeded(state, payload);
         case END_AI_TURN: return aiTurnEnded(state);
         case GET_GAME_SUCCESS: return getGameSucceeded(state, payload);
         case GET_GAMES_FAILED: return getGamesFailed(state, payload);
@@ -198,6 +213,10 @@ export const createGameSucceeded = (state, payload) => state
     .set('games', state.get('games').push(new Map(payload.game)));
 
 export const aiTurnEnded = state => state;
+
+export const gameDeletionFailed = state => state;
+export const gameDeletionRequested = state => state;
+export const gameDeletionSucceeded = (state, payload) => state.set('games', state.get('games').filter(game => game.get('id') !== payload.gameId));
 
 export const getGameSucceeded = (state, payload) => {
     let id = payload.game._id;

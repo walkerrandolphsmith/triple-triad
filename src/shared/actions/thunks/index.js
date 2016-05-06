@@ -1,6 +1,7 @@
 export { aiTurn } from './aiTurn/aiTurn';
 export { applyFlips } from './applyFlips/applyFlips';
 export { createGame } from './createGame/createGame';
+export { deleteGame } from './deleteGame/deleteGame';
 export { endPhase } from './endPhase/endPhase';
 export { getGame } from './getGame/getGame';
 export { getGames } from './getGames/getGames';
