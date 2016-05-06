@@ -3,6 +3,27 @@ import { createSelector } from 'reselect';
 import SERVER from './../../constants/socketActionPrefix';
 import WINNER from './../../constants/winner';
 
+import { aiTurnEnded } from './mutations/aiTurnEnded';
+import { aiTurnStarted } from './mutations/aiTurnStarted';
+import { boardUpdated } from './mutations/boardUpdated';
+import { cardAdded } from './mutations/cardAdded';
+import { cardPlaced } from './mutations/cardPlaced';
+import { cardSelected } from './mutations/cardSelected';
+import { createGameFailed } from './mutations/createGameFailed';
+import { createGameRequested } from './mutations/createGameRequested';
+import { createGameSucceeded } from './mutations/createGameSucceeded';
+import { gameDeletionFailed } from './mutations/gameDeletionFailed';
+import { gameDeletionRequested } from './mutations/gameDeletionRequested';
+import { gameDeletionSucceeded } from './mutations/gameDeletionSucceeded';
+import { gameReset } from './mutations/gameReset';
+import { getGamesFailed } from './mutations/getGamesFailed';
+import { getGamesRequested } from './mutations/getGamesRequested';
+import { getGamesSucceeded } from './mutations/getGamesSucceeded';
+import { getGameRequested } from './mutations/getGamesRequested';
+import { getGameSucceeded } from './mutations/getGameSucceeded';
+import { phaseSet } from './mutations/phaseSet';
+import { pieceSelected } from './mutations/pieceSelected';
+
 export const ADD_CARD = 'ADD_CARD';
 export const CREATE_GAME_FAILED = 'CREATE_GAME_FAILED';
 export const CREATE_GAME_REQUEST = 'CREATE_GAME_REQUEST';
@@ -28,99 +49,30 @@ export const SEND_INVITE_FAILED = 'SEND_INVITE_FAILED';
 export const SET_PHASE = 'SET_PHASE';
 export const UPDATE_BOARD = 'UPDATE_BOARD';
 
-
-/**
- * 
- * ACTION CREATORS
- * 
- */
-
-export const addCard = (id, owner) => ({
-    type: SERVER + ADD_CARD,
-    payload: {
-        id: id,
-        owner: owner
-    }
-});
-
-export const deleteGameFailure = () => ({ type: DELETE_GAME_FAILURE });
-export const deleteGameRequest = () => ({ type: DELETE_GAME_REQUEST });
-export const deleteGameSuccess = id => ({
-    type: DELETE_GAME_SUCCESS,
-    payload: {
-        gameId: id
-    }
-});
-
-export const endAiTurn = () => ({ type: END_AI_TURN });
-
-export const createGameFailure = () => ({ type: CREATE_GAME_FAILED });
-export const createGameRequest = () => ({ type: CREATE_GAME_REQUEST });
-export const createGameSuccess = game => ({ 
-    type: CREATE_GAME_SUCCESS,
-    payload: {
-        game: game
-    }
-});
-
-export const getGameFailure = () => ({ type: GET_GAME_FAILED });
-export const getGameRequest = () => ({ type: GET_GAME_REQUEST });
-export const getGameSuccess = game => ({
-    type: GET_GAME_SUCCESS,
-    payload: {
-        game: game
-    }
-});
-
-export const getGamesFailure = () => ({ type: GET_GAMES_FAILED });
-export const getGamesRequest = () => ({ type: GET_GAMES_REQUEST });
-export const getGamesSuccess = games => ({ 
-    type: GET_GAMES_SUCCESS,
-    payload: {
-        games: games
-    }
-});
-
-export const placeCard = index => ({ type: SERVER + PLACE_CARD });
-
-export const resetGame = () => ({ type: RESET_GAME });
-
-export const startAiTurn= () => ({ type: START_AI_TURN });
-
-export const selectCard = id => ({
-    type: SERVER + SELECT_CARD,
-    payload: {
-        id: id
-    }
-});
-
-export const selectPiece = index => ({
-    type: SERVER + SELECT_PIECE,
-    payload: {
-        index: index
-    }
-});
-
-export const sendInviteFailure = () => ({ type: SEND_INVITE_FAILED });
-
-export const sendInviteRequest = () => ({ type: SEND_INVITE_REQUEST });
-
-export const sendInviteSuccess = () => ({ type: SEND_INVITE_SUCCESS });
-
-export const setPhase = phase => ({
-    type: SERVER + SET_PHASE,
-    payload: {
-        phase: phase
-    }
-});
-
-export const updateBoard = (index, owner) => ({
-    type: SERVER + UPDATE_BOARD,
-    payload: {
-        index: index,
-        owner: owner
-    }
-});
+export { addCard } from './actions/addCard';
+export { deleteGameFailure } from './actions/deleteGameFailure';
+export { deleteGameRequest } from './actions/deleteGameRequest';
+export { deleteGameSuccess } from './actions/deleteGameSuccess';
+export { endAiTurn } from './actions/endAiTurn';
+export { createGameFailure } from './actions/createGameFailure';
+export { createGameRequest } from './actions/createGameRequest';
+export { createGameSuccess } from './actions/createGameSuccess';
+export { getGameFailure } from './actions/getGameFailure';
+export { getGameRequest } from './actions/getGameRequest';
+export { getGameSuccess } from './actions/getGameSuccess';
+export { getGamesFailure } from './actions/getGamesFailure';
+export { getGamesRequest } from './actions/getGamesRequest';
+export { getGamesSuccess } from './actions/getGamesSuccess';
+export { placeCard } from './actions/placeCard';
+export { resetGame } from './actions/resetGame';
+export { startAiTurn } from './actions/startAiTurn';
+export { selectCard } from './actions/selectCard';
+export { selectPiece } from './actions/selectPiece';
+export { sendInviteFailure } from './actions/sendInviteFailure';
+export { sendInviteRequest } from './actions/sendInviteRequest';
+export { sendInviteSuccess } from './actions/sendInviteSuccess';
+export { setPhase } from './actions/setPhase';
+export { updateBoard } from './actions/updateBoard';
 
 const INITIAL_STATE = new Map({
     getGames: new Map({
@@ -137,13 +89,7 @@ const INITIAL_STATE = new Map({
     games: new List([])
 });
 
-/**
- *
- * REDUCER
- *
- */
-
-export default function reducer(state = INITIAL_STATE, action = {}) {
+export default function(state = INITIAL_STATE, action = {}) {
     let { type, payload } = action;
 
     switch(type) {
@@ -169,183 +115,6 @@ export default function reducer(state = INITIAL_STATE, action = {}) {
         default: return state;
     }
 }
-
-/**
- * 
- * REDUCERS
- * 
- */
-
-export const cardAdded = (state, payload) => {
-    let newGames = state.get('games').update(
-        state.get('games').findIndex(
-            game => game.get('id') === state.get('gameRoute')
-        ),
-        game => {
-            let deck = game.get('deck');
-
-            deck = deck.update(
-                deck.findIndex(
-                    card => card.get('id') === payload.id
-                ),
-                card => card.set('owner', payload.owner)
-            );
-            return game.set('deck', deck);
-        }
-    );
-    return state.set('games', newGames);
-};
-
-export const createGameFailed = state => state
-    .setIn('newGame.failed'.split('.'), true)
-    .setIn('newGame.loading'.split('.'), false)
-    .setIn('newGame.loaded'.split('.'), false);
-
-export const createGameRequested = state => state
-    .setIn('newGame.failed'.split('.'), false)
-    .setIn('newGame.loading'.split('.'), true)
-    .setIn('newGame.loaded'.split('.'), false);
-
-export const createGameSucceeded = (state, payload) => state
-    .setIn('newGame.failed'.split('.'), false)
-    .setIn('newGame.loading'.split('.'), false)
-    .setIn('newGame.loaded'.split('.'), true)
-    .set('games', state.get('games').push(new Map(payload.game)));
-
-export const aiTurnEnded = state => state;
-
-export const gameDeletionFailed = state => state;
-export const gameDeletionRequested = state => state;
-export const gameDeletionSucceeded = (state, payload) => state.set('games', state.get('games').filter(game => game.get('id') !== payload.gameId));
-
-export const getGameSucceeded = (state, payload) => {
-    let id = payload.game._id;
-    let nextState = state.set('gameRoute', id);
-
-    let isKnownGame = state.get('games').find(game => game.get('id') === id);
-
-    let newGame = new Map({
-        'id': id,
-        'owner': payload.game.owner,
-        'deck': fromJS(payload.game.deck),
-        'phase': payload.game.phase,
-        'accepted': payload.game.accepted,
-        'currentPlayer': payload.game.currentPlayer,
-        'selectedCard': payload.game.selectedCard,
-        'selectedPiece': payload.game.selectedPiece
-    });
-
-    let newGames;
-
-    if(isKnownGame) {
-        newGames = state.get('games').update(
-            state.get('games').findIndex(
-                game => game.get('id') === id
-            ),
-            game => newGame
-        );
-    }else {
-        newGames = state.get('games').push(newGame)
-    }
-
-    return nextState.set('games', newGames);
-};
-
-
-export const getGamesFailed = state => state
-    .setIn('getGames.failed'.split('.'), true)
-    .setIn('getGames.loading'.split('.'), false)
-    .setIn('getGames.loaded'.split('.'), false);
-
-export const getGamesRequested = state => state
-    .setIn('getGames.failed'.split('.'), false)
-    .setIn('getGames.loading'.split('.'), true)
-    .setIn('getGames.loaded'.split('.'), false);
-
-export const getGamesSucceeded = (state, payload) => {
-    let games = payload.games.map(game => new Map(game));
-    return state
-        .setIn('getGames.failed'.split('.'), false)
-        .setIn('getGames.loading'.split('.'), false)
-        .setIn('getGames.loaded'.split('.'), true)
-        .set('games', new List(games));
-};
-
-export const cardPlaced = state => {
-    let newGames = state.get('games').update(
-        state.get('games').findIndex(
-            game => game.get('id') === state.get('gameRoute')
-        ),
-        game => {
-            let deck = game.get('deck');
-
-            deck = deck.update(
-                deck.findIndex(
-                    card => card.get('id') === game.get('selectedCard')
-                ),
-                card => card.set('boardIndex', game.get('selectedPiece'))
-            );
-            return game.set('deck', deck);
-        }
-    );
-    return state.set('games', newGames);
-};
-
-export const gameReset = initialState => initialState;
-
-export const cardSelected = (state, payload) => {
-    let newGames = state.get('games').update(
-        state.get('games').findIndex(
-            game => game.get('id') === state.get('gameRoute')
-        ),
-        game => game.set('selectedCard', payload.id)
-    );
-    return state.set('games', newGames);
-};
-
-export const pieceSelected = (state, payload) => {
-    let newGames = state.get('games').update(
-        state.get('games').findIndex(
-            game => game.get('id') === state.get('gameRoute')
-        ),
-        game => game.set('selectedPiece', payload.index)
-    );
-    return state.set('games', newGames);
-};
-
-export const phaseSet = (state, payload) => {
-    let newGames = state.get('games').update(
-        state.get('games').findIndex(
-            game => game.get('id') === state.get('gameRoute')
-        ),
-        game => game.set('phase', payload.phase)
-    );
-    return state.set('games', newGames);
-};
-
-export const aiTurnStarted = state => state;
-
-export const boardUpdated = (state, payload) => {
-    let newGames = state.get('games').update(
-        state.get('games').findIndex(
-            game => game.get('id') === state.get('gameRoute')
-        ),
-        game => {
-            let deck = game.get('deck');
-
-            deck = deck.update(
-                deck.findIndex(
-                    card => card.get('boardIndex') === payload.index
-                ),
-                card => card.set('owner', payload.owner)
-            );
-            return game.set('deck', deck);
-        }
-    );
-
-    return state.set('games', newGames);
-};
-
 
 /**
  *

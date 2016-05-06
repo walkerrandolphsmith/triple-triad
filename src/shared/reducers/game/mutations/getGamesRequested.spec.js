@@ -1,6 +1,6 @@
 import expect from 'expect';
 import { Map } from 'immutable';
-import { getGamesRequested } from './../index';
+import { getGamesRequested } from './getGamesRequested';
 
 describe('src/shared/reducers/game/mutations/getGamesRequested', () => {
     describe('Given games state', () => {

@@ -1,6 +1,6 @@
 import expect from 'expect';
 import { Map, List } from 'immutable';
-import { createGameSucceeded } from './../index';
+import { createGameSucceeded } from './createGameSucceeded';
 
 describe('src/shared/reducers/game/mutations/createGameSucceeded', () => {
     describe('Given games state and a payload containing a game', () => {

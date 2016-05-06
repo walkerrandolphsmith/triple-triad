@@ -1,6 +1,6 @@
 import expect from 'expect';
 import { Map } from 'immutable';
-import { gameReset } from './../index';
+import { gameReset } from './gameReset';
 
 describe('src/shared/reducers/game/mutations/gameReset', () => {
     describe('Given game state', () => {

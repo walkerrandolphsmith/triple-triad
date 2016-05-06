@@ -1,6 +1,6 @@
 import expect from 'expect';
 import { Map } from 'immutable';
-import { aiTurnStarted } from './../index';
+import { aiTurnStarted } from './aiTurnStarted';
 
 describe('src/shared/reducers/game/mutations/aiTurnStarted', () => {
     describe('Given game state', () => {

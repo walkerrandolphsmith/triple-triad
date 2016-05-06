@@ -1,6 +1,6 @@
 import expect from 'expect';
 import { Map, List } from 'immutable';
-import { phaseSet } from './../index';
+import { phaseSet } from './phaseSet';
 
 describe('src/shared/reducers/game/phaseSet', () => {
     describe('Given game state and a payload containing the phase of the game', () => {

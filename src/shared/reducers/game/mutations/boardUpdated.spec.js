@@ -1,6 +1,6 @@
 import expect from 'expect';
 import { Map, List } from 'immutable';
-import { boardUpdated } from './../index';
+import { boardUpdated } from './boardUpdated';
 
 describe('src/shared/reducers/game/mutations/boardUpdated', () => {
     describe('Given game state and a payload containing the index and owner of a card', () => {

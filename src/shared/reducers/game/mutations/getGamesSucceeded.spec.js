@@ -1,6 +1,6 @@
 import expect from 'expect';
 import { Map, List } from 'immutable';
-import { getGamesSucceeded, __RewireAPI__ } from './../index';
+import { getGamesSucceeded } from './getGamesSucceeded';
 
 describe('src/shared/reducers/game/mutations/getGamesSucceeded', () => {
     describe('Given games state and a payload containing a game', () => {
@@ -18,7 +18,6 @@ describe('src/shared/reducers/game/mutations/getGamesSucceeded', () => {
                 games: new List([])
             });
             payload = { games: games };
-            __RewireAPI__.__Rewire__('getGamesFromPayload', () => games);
         });
 
         describe('When getting all games is successful', () => {
