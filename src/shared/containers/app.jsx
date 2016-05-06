@@ -1,8 +1,8 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as Actions from './../actions/';
 import KEY_CODE from './../constants/keyCodes';
 import { App } from './../components';
+import { handleDown, handleEnter, handleEscape, handleLeft, handleRight, handleUp } from './../ducks/game';
 
 function mapStateToProps(state) {
     return {
@@ -13,7 +13,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators(Actions,dispatch);
+    return bindActionCreators({ handleDown, handleEnter, handleEscape, handleLeft, handleRight, handleUp },dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

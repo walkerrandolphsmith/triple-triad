@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { push } from 'react-router-redux';
-import * as Actions from './../actions/';
 
 export default function(Component) {
 
@@ -35,7 +34,7 @@ export default function(Component) {
     });
 
     const mapDispatchToProps = (dispatch) => {
-        return bindActionCreators({...Actions, push: push}, dispatch);
+        return bindActionCreators({push: push}, dispatch);
     };
 
     return connect(mapStateToProps, mapDispatchToProps)(AuthenticationComponent);

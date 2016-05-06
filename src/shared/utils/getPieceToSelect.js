@@ -1,5 +1,5 @@
 import { List } from 'immutable';
-import { getBoard, getValidPieces } from './../reducers/game';
+import { getBoard, getValidPieces } from '../ducks/game';
 
 function getBoardWithAllTiles(validPieces) {
     return [0, 1, 2, 3, 4, 5, 6, 7, 8].reduce((board, idx, i) => {

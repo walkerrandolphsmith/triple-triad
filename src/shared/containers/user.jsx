@@ -1,8 +1,7 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as Actions from './../actions/';
-import { signOut } from './../reducers/auth';
-import { resendEmailVerification } from './../reducers/resendVerificationEmail';
+import { signOut } from '../ducks/auth';
+import { resendEmailVerification } from '../ducks/resendVerificationEmail';
 import React from 'react';
 import { User } from './../components';
 
@@ -20,9 +19,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    Actions.signOut = signOut;
-    Actions.resendVerificationEmail = resendEmailVerification;
-    return bindActionCreators(Actions,dispatch);
+    return bindActionCreators({ signOut, resendEmailVerification }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(User);

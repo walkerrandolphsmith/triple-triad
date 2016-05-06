@@ -1,4 +1,4 @@
-import { getAvailableDeck } from './../reducers/game';
+import { getAvailableDeck } from '../ducks/game';
 
 export function getCardToAdd(game, directionInLoop) {
     const deck = getAvailableDeck(game.get('deck'));

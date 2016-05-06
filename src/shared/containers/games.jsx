@@ -1,8 +1,7 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import * as Actions from './../actions/';
-
+import { createGame, deleteGame } from './../ducks/game';
 import React from 'react';
 import { Games } from './../components';
 
@@ -20,7 +19,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({...Actions, push: push},dispatch);
+    return bindActionCreators({ createGame, deleteGame, push }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Games);

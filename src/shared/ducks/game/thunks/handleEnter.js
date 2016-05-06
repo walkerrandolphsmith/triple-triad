@@ -1,5 +1,5 @@
 import PHASE from './../../../constants/phases';
-import { updateSetting } from './../../../reducers/settings';
+import { updateSetting } from '../..//settings';
 import { getNextSelectedPiece } from './getNextSelectedPiece';
 import { playerTakesTurn } from './playerTakesTurn';
 import { addCard, setPhase, getHand, getIsFullHand, currentGameSelector } from './../index';

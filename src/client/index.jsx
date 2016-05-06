@@ -7,8 +7,8 @@ import { Provider } from 'react-redux';
 import { fromJS } from 'immutable';
 import io from 'socket.io-client';
 
-import * as Actions from './../shared/actions';
-import { userProfile } from './../shared/reducers/user';
+import { userProfile } from './../shared/ducks/user';
+import { getGame, getGames } from './../shared/ducks/game';
 import Routes from './../shared/routes';
 import configureStore from './../shared/store/store';
 import env from './../shared/config/environment';
@@ -45,11 +45,11 @@ ReactDom.render(
 
 browserHistory.listen(location => {
     if(location.pathname === 'games') {
-        store.dispatch(Actions.getGames());
+        store.dispatch(getGames());
     }
     else if(location.pathname.startsWith('game/')) {
         const id = location.pathname.split('game/')[1];
-        store.dispatch(Actions.getGame(id));
+        store.dispatch(getGame(id));
     }else if(location.pathname === 'user') {
         let userId = store.getState().auth.get('user').get('id');
         store.dispatch(userProfile(userId));

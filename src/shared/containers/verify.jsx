@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { verifyEmail } from './../reducers/verifyEmail';
+import { verifyEmail } from '../ducks/verifyEmail';
 
 class Verify extends React.Component {
 

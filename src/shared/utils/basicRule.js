@@ -1,4 +1,4 @@
-import { getBoard } from './../reducers/game';
+import { getBoard } from '../ducks/game';
 import { sort } from './objectsByNumericPropValues';
 
 function shouldFLip(card, otherCard, attackDirection, defenseDirection) {

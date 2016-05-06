@@ -38,6 +38,7 @@ export class Settings extends React.Component {
     }
 
     update(setting) {
+        debugger;
         this.props.updateSetting(setting);
     }
 

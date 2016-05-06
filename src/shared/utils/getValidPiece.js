@@ -1,4 +1,4 @@
-import { getBoard, getValidPieces } from './../reducers/game';
+import { getBoard, getValidPieces } from '../ducks/game';
 import { sample } from './sample';
 
 export function getValidPiece(game) {

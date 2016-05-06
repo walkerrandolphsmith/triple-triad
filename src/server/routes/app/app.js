@@ -3,7 +3,7 @@ import ReactDom from 'react-dom/server';
 import { RouterContext, match } from 'react-router';
 import { Provider } from 'react-redux';
 import createLocation from 'history/lib/createLocation';
-import { receiveSignIn } from './../../../shared/reducers/auth';
+import { signInSuccess } from '../../../shared/ducks/auth';
 
 import routes from './../../../shared/routes';
 import configureStore from './../../../shared/store/store';
@@ -20,7 +20,7 @@ export function app(request, response, socket) {
     if(request.session
         && request.session.passport
         && request.session.passport.user) {
-        store.dispatch(receiveSignIn(request.session.passport.user));
+        store.dispatch(signInSuccess(request.session.passport.user));
     }
 
     match({ routes, location }, (err, redirectLocation, renderProps) => {

@@ -1,4 +1,4 @@
-import { getBoard } from './../reducers/game';
+import { getBoard } from '../ducks/game';
 import { sort } from './objectsByNumericPropValues';
 
 function shouldApplySameRule(card, firstCard, secondCard, d1, d2, d3, d4) {

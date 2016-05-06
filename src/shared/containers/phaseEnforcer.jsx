@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { currentGameSelector } from './../reducers/game';
+import { currentGameSelector } from '../ducks/game';
 import PHASE from './../constants/phases';
 
 export default function(Settings, Invite, Cards, Round) {

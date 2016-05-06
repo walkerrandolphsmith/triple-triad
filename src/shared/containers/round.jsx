@@ -1,8 +1,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { boardSelector, handSelector, opponentHandSelector, scoreSelector, winnerSelector, validPiecesSelector, currentGameSelector } from './../reducers/game';
-import * as Actions from './../actions/';
-import { selectCard } from './../reducers/game';
+import { boardSelector, handSelector, opponentHandSelector, scoreSelector, winnerSelector, validPiecesSelector, currentGameSelector } from '../ducks/game';
+import { selectCard, selectedPieceByClick, endPhase } from '../ducks/game';
 
 import WINNER_TYPE from './../constants/winner';
 
@@ -26,8 +25,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    Actions.selectCard = selectCard;
-    return bindActionCreators(Actions,dispatch);
+    return bindActionCreators({ selectCard, selectedPieceByClick, endPhase }, dispatch);
 }
 
 

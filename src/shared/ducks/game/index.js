@@ -74,6 +74,28 @@ export { sendInviteSuccess } from './actions/sendInviteSuccess';
 export { setPhase } from './actions/setPhase';
 export { updateBoard } from './actions/updateBoard';
 
+export { aiTurn } from './thunks/aiTurn';
+export { applyFlips } from './thunks/applyFlips';
+export { createGame } from './thunks/createGame';
+export { deleteGame } from './thunks/deleteGame';
+export { endPhase } from './thunks/endPhase';
+export { getGame } from './thunks/getGame';
+export { getGames } from './thunks/getGames';
+export { getNextCardForHand } from './thunks/getNextCardForHand';
+export { getNextSelectedCard } from './thunks/getNextSelectedCard';
+export { getNextSelectedPiece } from './thunks/getNextSelectedPiece';
+export { handleDown } from './thunks/handleDown';
+export { handleEnter } from './thunks/handleEnter';
+export { handleEscape } from './thunks/handleEscape';
+export { handleLeft } from './thunks/handleLeft';
+export { handleRight } from './thunks/handleRight';
+export { handleUp } from './thunks/handleUp';
+export { playerTakesTurn } from './thunks/playerTakesTurn';
+export { selectedPieceByClick } from './thunks/selectedPieceByClick';
+export { sendInvite } from './thunks/sendInvite';
+export { setHand } from './thunks/setHand';
+export { setHands } from './thunks/setHands';
+
 const INITIAL_STATE = new Map({
     getGames: new Map({
         loading: false,

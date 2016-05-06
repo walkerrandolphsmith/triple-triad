@@ -1,4 +1,4 @@
-import { Map } from 'immutable';
+import { Map, fromJS } from 'immutable';
 
 export const getGameSucceeded = (state, payload) => {
     let id = payload.game._id;
