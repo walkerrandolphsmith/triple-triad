@@ -1,0 +1,1 @@
+export const settingUpdated = (state, payload) => state.set(payload.setting, !state.get(payload.setting));

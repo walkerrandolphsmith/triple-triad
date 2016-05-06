@@ -1,21 +1,13 @@
 import { Map } from 'immutable';
 
+import { focusSettingUpdated } from './mutations/focusSettingUpdated';
+import { settingUpdated } from './mutations/settingUpdated';
+
 export const UPDATE_FOCUS_SETTING = 'UPDATE_FOCUS_SETTING';
 export const UPDATE_SETTING = 'UPDATE_SETTING';
 
-export const updateFocusSetting = setting => ({
-    type: UPDATE_FOCUS_SETTING,
-    payload: {
-        setting: setting
-    }
-});
-
-export const updateSetting = setting => ({
-    type: UPDATE_SETTING,
-    payload: {
-        setting: setting
-    }
-});
+export { updateFocusSetting } from './actions/updateFocusSetting';
+export { updateSetting } from './actions/updateSetting';
 
 const INITIAL_STATE = new Map({
     randomHand: false,
@@ -33,6 +25,3 @@ export default function reducer(state = INITIAL_STATE, action = {}) {
         default: return state;
     }
 }
-
-export const focusSettingUpdated = (state, payload) => state.set('focused', payload.setting);
-export const settingUpdated = (state, payload) => state.set(payload.setting, !state.get(payload.setting));

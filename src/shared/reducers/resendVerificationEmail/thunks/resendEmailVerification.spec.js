@@ -1,7 +1,7 @@
 import expect from 'expect';
-import { resendEmailVerification, __RewireAPI__ } from './../index';
+import { resendEmailVerification, __RewireAPI__ } from './resendEmailVerificaiton';
 
-describe('RESEND EMAIL VERIFICATION async action creator', () => {
+describe('/src/shared/reducers/resendVerificationEmail/thunks/resendVerificationEmail', () => {
     let dispatch;
     let id;
     let post;
@@ -14,7 +14,7 @@ describe('RESEND EMAIL VERIFICATION async action creator', () => {
 
         __RewireAPI__.__Rewire__('resendEmailVerificationRequest', () => 1);
         __RewireAPI__.__Rewire__('resendEmailVerificationSuccess', () => 2);
-        __RewireAPI__.__Rewire__('resendEmailVerificationFailed', () => 3);
+        __RewireAPI__.__Rewire__('resendEmailVerificationFailure', () => 3);
         __RewireAPI__.__Rewire__('resendEmailVerificationClear', () => 4);
 
         request = __RewireAPI__.__Rewire__('request', {
@@ -88,7 +88,7 @@ describe('RESEND EMAIL VERIFICATION async action creator', () => {
             expect(dispatch).toHaveBeenCalledWith(1);
         });
 
-        it('should dispatch resendEmailVerificationFailed action', () => {
+        it('should dispatch resendEmailVerificationFailure action', () => {
             expect(dispatch).toHaveBeenCalledWith(3);
         });
     });

@@ -1,6 +1,6 @@
 import expect from 'expect';
 import { Map } from 'immutable';
-import { passwordResetFailed } from './../index';
+import { passwordResetFailed } from './passwordResetFailed';
 
 describe('src/shared/reducers/passwordReset/mutations/passwordResetFailed', () => {
     describe('Given user state', () => {

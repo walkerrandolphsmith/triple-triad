@@ -38,21 +38,21 @@ describe('src/shared/reducers/auth', () => {
         });
 
         describe('When handling AUTH_SIGNIN', () => {
-            let signin = expect.createSpy();
-            __RewireAPI__.__Rewire__('signin', signin);
+            let signInRequested = expect.createSpy();
+            __RewireAPI__.__Rewire__('signInRequested', signInRequested);
 
             reducer(initialState, {
                 type: AUTH_SIGNIN
             });
 
-            it('should call signin', () => {
-                expect(signin).toHaveBeenCalled();
+            it('should call signInRequested', () => {
+                expect(signInRequested).toHaveBeenCalled();
             });
         });
 
         describe('When handling AUTH_SIGNIN_SUCCESS', () => {
-            let signinSuccess = expect.createSpy();
-            __RewireAPI__.__Rewire__('signinSuccess', signinSuccess);
+            let signInSucceeded = expect.createSpy();
+            __RewireAPI__.__Rewire__('signInSucceeded', signInSucceeded);
 
             reducer(initialState, {
                 type: AUTH_SIGNIN_SUCCESS,
@@ -64,14 +64,14 @@ describe('src/shared/reducers/auth', () => {
                 }
             });
 
-            it('should call signinSuccess', () => {
-                expect(signinSuccess).toHaveBeenCalled();
+            it('should call signInSucceeded', () => {
+                expect(signInSucceeded).toHaveBeenCalled();
             });
         });
 
         describe('When handling AUTH_SIGNIN_FAILED', () => {
-            let signinFailure = expect.createSpy();
-            __RewireAPI__.__Rewire__('signinFailure', signinFailure);
+            let signInFailed = expect.createSpy();
+            __RewireAPI__.__Rewire__('signInFailed', signInFailed);
 
             reducer(initialState, {
                 type: AUTH_SIGNIN_FAIL,
@@ -80,27 +80,27 @@ describe('src/shared/reducers/auth', () => {
                 }
             });
 
-            it('should call signinFailure', () => {
-                expect(signinFailure).toHaveBeenCalled();
+            it('should call signInFailed', () => {
+                expect(signInFailed).toHaveBeenCalled();
             });
         });
 
         describe('When handling AUTH_SIGNUP', () => {
-            let signup = expect.createSpy();
-            __RewireAPI__.__Rewire__('signup', signup);
+            let signUpRequested = expect.createSpy();
+            __RewireAPI__.__Rewire__('signUpRequested', signUpRequested);
 
             reducer(initialState, {
                 type: AUTH_SIGNUP
             });
 
-            it('should call signup', () => {
-                expect(signup).toHaveBeenCalled();
+            it('should call signUpRequested', () => {
+                expect(signUpRequested).toHaveBeenCalled();
             });
         });
 
         describe('When handling AUTH_SIGNUP_SUCCESS', () => {
-            let signupSuccess = expect.createSpy();
-            __RewireAPI__.__Rewire__('signupSuccess', signupSuccess);
+            let signUpSucceeded = expect.createSpy();
+            __RewireAPI__.__Rewire__('signUpSucceeded', signUpSucceeded);
 
             reducer(initialState, {
                 type: AUTH_SIGNUP_SUCCESS,
@@ -112,53 +112,53 @@ describe('src/shared/reducers/auth', () => {
                 }
             });
 
-            it('should call signupSuccess', () => {
-                expect(signupSuccess).toHaveBeenCalled();
+            it('should call signUpSucceeded', () => {
+                expect(signUpSucceeded).toHaveBeenCalled();
             });
         });
 
         describe('When handling AUTH_SIGNUP_FAIL', () => {
-            let signupFailure = expect.createSpy();
-            __RewireAPI__.__Rewire__('signupFailure', signupFailure);
+            let signUpFailed = expect.createSpy();
+            __RewireAPI__.__Rewire__('signUpFailed', signUpFailed);
 
             reducer(initialState, {
                 type: AUTH_SIGNUP_FAIL
             });
 
-            it('should call signupFailure', () => {
-                expect(signupFailure).toHaveBeenCalled();
+            it('should call signUpFailed', () => {
+                expect(signUpFailed).toHaveBeenCalled();
             });
         });
 
         describe('When handling AUTH_SIGNOUT', () => {
-            let signout = expect.createSpy();
-            __RewireAPI__.__Rewire__('signout', signout);
+            let signOutRequested = expect.createSpy();
+            __RewireAPI__.__Rewire__('signOutRequested', signOutRequested);
 
             reducer(initialState, {
                 type: AUTH_SIGNOUT
             });
 
-            it('should call signout', () => {
-                expect(signout).toHaveBeenCalled();
+            it('should call signOutRequested', () => {
+                expect(signOutRequested).toHaveBeenCalled();
             });
         });
 
         describe('When handling AUTH_SIGNOUT_SUCCESS', () => {
-            let signoutSuccess = expect.createSpy();
-            __RewireAPI__.__Rewire__('signoutSuccess', signoutSuccess);
+            let signOutSucceeded = expect.createSpy();
+            __RewireAPI__.__Rewire__('signOutSucceeded', signOutSucceeded);
 
             reducer(initialState, {
                 type: AUTH_SIGNOUT_SUCCESS
             });
 
-            it('should call signoutSuccess', () => {
-                expect(signoutSuccess).toHaveBeenCalled();
+            it('should call signOutSucceeded', () => {
+                expect(signOutSucceeded).toHaveBeenCalled();
             });
         });
 
         describe('When handling AUTH_SIGNOUT_FAIL', () => {
-            let signoutFailure = expect.createSpy();
-            __RewireAPI__.__Rewire__('signoutFailure', signoutFailure);
+            let signOutFailed = expect.createSpy();
+            __RewireAPI__.__Rewire__('signOutFailed', signOutFailed);
 
             reducer(initialState, {
                 type: AUTH_SIGNOUT_FAIL,
@@ -167,8 +167,8 @@ describe('src/shared/reducers/auth', () => {
                 }
             });
 
-            it('should call signoutFailure', () => {
-                expect(signoutFailure).toHaveBeenCalled();
+            it('should call signOutFailed', () => {
+                expect(signOutFailed).toHaveBeenCalled();
             });
         });
     });

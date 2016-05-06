@@ -1,0 +1,1 @@
+export const signInRequested = state => state.set('signingIn', true);

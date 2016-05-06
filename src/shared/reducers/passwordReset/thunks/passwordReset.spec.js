@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { passwordReset, __RewireAPI__ } from './../index';
+import { passwordReset, __RewireAPI__ } from './passwordReset';
 
 describe('src/shared/reducers/passwordReset/thunks/passwordReset', () => {
     let dispatch;

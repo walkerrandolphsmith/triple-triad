@@ -1,6 +1,6 @@
 import expect from 'expect';
 import { Map } from 'immutable';
-import { settingUpdated } from './../index';
+import { settingUpdated } from './settingUpdated';
 
 describe('src/shared/reducers/settings/mutations/settingUpdated', () => {
     describe('Given settings state and payload with setting of randomHand', () => {

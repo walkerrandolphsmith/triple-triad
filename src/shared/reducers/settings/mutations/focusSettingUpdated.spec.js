@@ -1,6 +1,6 @@
 import expect from 'expect';
 import { Map } from 'immutable';
-import { focusSettingUpdated } from './../index';
+import { focusSettingUpdated } from './focusSettingUpdated';
 
 describe('src/shared/reducers/settings/mutations/focusSettingUpdated', () => {
     describe('Given settings state and payload with setting of randomHand', () => {

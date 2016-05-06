@@ -1,6 +1,6 @@
 import expect from 'expect';
 import { Map } from 'immutable';
-import { userProfileSucceeded } from './../index';
+import { userProfileSucceeded } from './userProfileSucceeded';
 
 describe('src/shared/reducers/user/userProfileSucceeded', () => {
     describe('Given user state and payload containing a user', () => {

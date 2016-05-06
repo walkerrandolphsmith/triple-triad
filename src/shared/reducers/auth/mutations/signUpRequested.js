@@ -1,0 +1,1 @@
+export const signUpRequested = state => state.set('signingUp', true);

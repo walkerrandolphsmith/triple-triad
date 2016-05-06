@@ -1,6 +1,6 @@
 import expect from 'expect';
 import { Map } from 'immutable';
-import { resendVerificationEmailCleared } from './../index';
+import { resendVerificationEmailCleared } from './resendVerificationEmailCleared';
 
 describe('src/shared/reducers/resendVerificationEmail/cleared', () => {
     describe('Given user state', () => {

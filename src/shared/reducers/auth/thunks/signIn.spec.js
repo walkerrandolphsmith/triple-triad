@@ -1,6 +1,5 @@
 import expect from 'expect';
-import { signIn } from './../index';
-import { __RewireAPI__ } from './../index';
+import { signIn, __RewireAPI__ } from './signIn';
 
 describe('src/shared/reducers/auth/thunks/signIn', () => {
     let dispatch;
@@ -18,9 +17,9 @@ describe('src/shared/reducers/auth/thunks/signIn', () => {
 
         __RewireAPI__.__Rewire__('isValidUsername', () => true);
         __RewireAPI__.__Rewire__('isValidPassword', () => true);
-        __RewireAPI__.__Rewire__('requestSignIn', () => 1);
+        __RewireAPI__.__Rewire__('signInRequest', () => 1);
         __RewireAPI__.__Rewire__('setFormError', () => 2);
-        __RewireAPI__.__Rewire__('receiveSignIn', () => 3);
+        __RewireAPI__.__Rewire__('signInSuccess', () => 3);
         __RewireAPI__.__Rewire__('push', () => 4);
 
         request = __RewireAPI__.__Rewire__('request', {
