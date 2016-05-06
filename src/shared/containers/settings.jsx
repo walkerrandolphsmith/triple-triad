@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { endPhase } from './../actions/';
-import { updateFocusSetting, updateSetting } from './../reducers/settings/settings';
+import { updateFocusSetting, updateSetting } from './../reducers/settings';
 
 import React from 'react';
 import { Settings } from './../components';

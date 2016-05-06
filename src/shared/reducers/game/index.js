@@ -243,11 +243,14 @@ export const getGamesRequested = state => state
     .setIn('getGames.loading'.split('.'), true)
     .setIn('getGames.loaded'.split('.'), false);
 
-export const getGamesSucceeded = (state, payload) => state
-    .setIn('getGames.failed'.split('.'), false)
-    .setIn('getGames.loading'.split('.'), false)
-    .setIn('getGames.loaded'.split('.'), true)
-    .set('games', state.get('games').concat(payload.games));
+export const getGamesSucceeded = (state, payload) => {
+    let games = payload.games.map(game => new Map(game));
+    return state
+        .setIn('getGames.failed'.split('.'), false)
+        .setIn('getGames.loading'.split('.'), false)
+        .setIn('getGames.loaded'.split('.'), true)
+        .set('games', new List(games));
+}
 
 export const cardPlaced = state => {
     let newGames = state.get('games').update(

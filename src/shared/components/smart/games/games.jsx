@@ -4,9 +4,7 @@ import { Game } from './../game/game';
 export class Games extends React.Component {
 
     render() {
-        const gamesList = this.props.games.map(game => {
-            return (<Game key={game} id={game} push={this.props.push} />);
-        });
+        const gamesList = this.props.games.map(game => (<Game key={game} id={game} push={this.props.push} />));
 
         return (
             <div id="games">

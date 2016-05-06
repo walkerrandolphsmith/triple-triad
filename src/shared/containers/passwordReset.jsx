@@ -4,7 +4,7 @@ import * as Actions from './../actions';
 import { clearFormErrors } from './../reducers/forms';
 
 import React from 'react';
-import { PasswordReset } from './../components';
+import { PasswordReset } from './../components/smart/passwordReset/passwordReset';
 
 function mapStateToProps(state) {
     return {

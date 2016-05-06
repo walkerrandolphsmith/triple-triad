@@ -10,7 +10,7 @@ export { Hold } from './hold/hold';
 export { Invite } from './invite/invite';
 export { InviteForm } from './inviteForm/inviteForm';
 export { Navigation } from './navigation/navigation';
-export { PasswordReset } from 'passwordReset/passwordReset';
+export { PasswordReset } from './passwordReset/passwordReset';
 export { Round } from './round/round';
 export { Settings } from './settings/settings';
 export { SignIn } from './signIn/signIn';

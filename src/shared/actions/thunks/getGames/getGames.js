@@ -17,7 +17,11 @@ export function getGames() {
         .set('Content-Type', 'application/json')
         .end((err, response) => {
             if(response.status === 200) {
-                dipatch(getGamesSuccess(response.body));
+                let games = response.body.map(game => {
+                    game.id = game._id;
+                    return game;
+                });
+                dipatch(getGamesSuccess(games));
             } else {
                 dipatch(getGamesFailed());
             }
