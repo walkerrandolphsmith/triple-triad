@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { clearFormErrors } from '../ducks/forms';
 
 import React from 'react';
-import { PasswordReset } from './../components/smart/passwordReset/passwordReset';
+import { PasswordReset } from './../components';
 
 function mapStateToProps(state) {
     return {
@@ -16,8 +16,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    Actions.clearFormErrors = clearFormErrors;
-    return bindActionCreators({ }, dispatch);
+    return bindActionCreators({ clearFormErrors }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PasswordReset)

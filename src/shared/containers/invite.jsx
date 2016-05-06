@@ -4,7 +4,7 @@ import { endPhase } from './../ducks/game';
 import { updateFocusSetting, updateSetting } from '../ducks/settings';
 
 import React from 'react';
-import { Invite } from './../components/';
+import { Invite } from './../components';
 
 function mapStateToProps(state) {
     return {

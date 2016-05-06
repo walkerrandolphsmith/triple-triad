@@ -1,6 +1,6 @@
 import React from 'react';
-import { Board } from './../board/board';
-import { Hand } from './../hand/hand';
+import { Board } from './board';
+import { Hand } from './hand';
 
 export class Round extends React.Component {
 

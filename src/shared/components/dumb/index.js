@@ -1,1 +1,0 @@
-export { DumbHold } from './hold/hold';

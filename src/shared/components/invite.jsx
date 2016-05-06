@@ -1,5 +1,5 @@
 import React from 'react';
-import { InviteForm } from './../inviteForm/inviteForm';
+import { InviteForm } from './inviteForm';
 
 export class Invite extends React.Component {
 
