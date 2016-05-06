@@ -195,7 +195,7 @@ export const createGameSucceeded = (state, payload) => state
     .setIn('newGame.failed'.split('.'), false)
     .setIn('newGame.loading'.split('.'), false)
     .setIn('newGame.loaded'.split('.'), true)
-    .set('games', state.get('games').push(payload.game));
+    .set('games', state.get('games').push(new Map(payload.game)));
 
 export const aiTurnEnded = state => state;
 
@@ -250,7 +250,7 @@ export const getGamesSucceeded = (state, payload) => {
         .setIn('getGames.loading'.split('.'), false)
         .setIn('getGames.loaded'.split('.'), true)
         .set('games', new List(games));
-}
+};
 
 export const cardPlaced = state => {
     let newGames = state.get('games').update(

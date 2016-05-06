@@ -22,7 +22,9 @@ export function createGame() {
         .set('Content-Type', 'application/json')
         .end((err, response) => {
             if(response.status === 200) {
-                dipatch(createGameSuccess(response.body));
+                let game = response.body;
+                game.id = game._id;
+                dipatch(createGameSuccess(game));
             } else {
                 dipatch(createGameFailed());
             }

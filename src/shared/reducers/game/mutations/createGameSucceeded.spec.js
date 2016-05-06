@@ -16,7 +16,7 @@ describe('src/shared/reducers/game/mutations/createGameSucceeded', () => {
                 games: new List([])
             });
             payload = {
-                game: 'i am a game'
+                game: { _id: 1 }
             };
         });
 
@@ -39,7 +39,7 @@ describe('src/shared/reducers/game/mutations/createGameSucceeded', () => {
             });
 
             it('should add the game in payload to the games list', () => {
-                expect(actual.get('games').first()).toEqual(payload.game);
+                expect(actual.get('games').first().toJS()).toEqual(payload.game);
             });
         });
     });

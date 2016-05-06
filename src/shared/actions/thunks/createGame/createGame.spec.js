@@ -54,7 +54,7 @@ describe('Create Game async action creator', () => {
 
     describe('Given a request is made to create a game', () => {
         beforeEach(() => {
-            request.end = (fn) => fn(null, { status: 200 });
+            request.end = (fn) => fn(null, { status: 200, body: { _id: 1 } });
             createGame()(dispatch, getState);
         });
 
@@ -78,7 +78,7 @@ describe('Create Game async action creator', () => {
 
     describe('Given game creation is successful', () => {
         beforeEach(() => {
-            request.end = (fn) => fn(null, { status: 200 });
+            request.end = (fn) => fn(null, { status: 200, body: { _id: 1 } });
         });
 
         it('should dispatch createGameSuccess', () => {
