@@ -8,7 +8,14 @@ import { Games } from './../components';
 
 function mapStateToProps(state) {
     return {
-        games: state.game.get('games').map(game => game.get('id'))
+        games: state.game.get('games').map(game => ({
+            id: game.get('id'),
+            owner: game.get('owner'),
+            opponent: 'opponent',
+            currentPlayer: game.get('currentPlayer'),
+            phase: game.get('phase')
+        })),
+        id: state.auth.get('user').get('id')
     }
 }
 
