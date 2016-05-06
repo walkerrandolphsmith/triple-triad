@@ -5,6 +5,9 @@ Web application for playing the card game, triple triad.
 ##Issues [![GitHub issues][issues-badge]][issues]
 Please file issues [here][issues]
 
+Include `closes`, `fixes`, or `resolves` in a commit message to close the issue.  
+For example `git commit -m "This closes #34, and closes #23"`  
+
 ##Playing the game
 
 At the moment there are a couple of ways to play the game.
