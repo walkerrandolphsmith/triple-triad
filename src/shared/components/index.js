@@ -1,4 +1,5 @@
 export { App } from './app';
+export { Authentication } from './authentication';
 export { Board } from './board';
 export { BreadCrumb } from './breadCrumb';
 export { Card } from './card';
