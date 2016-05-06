@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { currentGameSelector } from '../ducks/game';
 import PHASE from './../constants/phases';
+import { BreadCrumb } from './../components';
 
 export default function(Settings, Invite, Cards, Round) {
 
@@ -9,10 +10,9 @@ export default function(Settings, Invite, Cards, Round) {
 
         render() {
             const component = GetComponentForRoute(this.props.rollupPhase, Settings, Invite, Cards, Round);
-            const breadCrumb = createBreadcrumb(this.props.rollupPhase);
             return (
                 <div>
-                    {breadCrumb}
+                    <BreadCrumb phase={this.props.rollupPhase} phases={PHASE} />
                     {component}
                 </div>
             )
@@ -45,19 +45,4 @@ function GetComponentForRoute(rollupPhase, Settings, Invite, Cards, Round) {
     };
     
     return componentMap[rollupPhase];
-}
-
-function createBreadcrumb(phase) {
-    const settingsClass = phase === PHASE.SETTINGS_SELECTION ? 'active' : '';
-    const inviteClass = phase === PHASE.INVITE ? 'active' : '';
-    const handClass = phase === PHASE.HAND_SELECTION ? 'active' : '';
-    const roundClass = phase === 'round' ? 'active' : '';
-    return (
-        <ol className="breadcrumb">
-            <li className={settingsClass}>Settings</li>
-            <li className={inviteClass}>Invite</li>
-            <li className={handClass}>Hand</li>
-            <li className={roundClass}>Round</li>
-        </ol>
-    )
 }
