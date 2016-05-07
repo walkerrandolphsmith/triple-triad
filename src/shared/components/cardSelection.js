@@ -5,7 +5,7 @@ import { Deck } from './deck';
 export class CardSelection extends React.Component {
 
     render() {
-        let {availableDeck, selectedCard, hand, isHandSelected, addCard} = this.props;
+        let { availableDeck, selectedCard, hand, isHandSelected, addCard, shiftCardSelectionLeft } = this.props;
 
         return (
             <div id="card-selection">
@@ -15,6 +15,7 @@ export class CardSelection extends React.Component {
                               selectedCard={selectedCard}
                               isHandSelected={isHandSelected}
                               addCard={addCard}
+                              shiftCardSelectionLeft={shiftCardSelectionLeft}
                         />
                         <Hand cards={hand}
                               showBack={false}

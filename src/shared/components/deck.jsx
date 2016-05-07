@@ -37,14 +37,16 @@ export class Deck extends React.Component {
 
         let innerStyles = {
             position: 'relative',
-            width: `${cards.length * 100}px`,
-            display: 'inline-block'
+            width: `${cards.size * 100}px`,
+            display: 'inline-block',
+            left: `0px`
         };
 
         let arrowStyles = {
             width: `${arrowWidth}px`,
             display: 'inline-block',
-            verticalAlign: 'top'
+            verticalAlign: 'top',
+            pointer: 'cursor'
         };
 
         let arrowIcon = {
@@ -58,7 +60,7 @@ export class Deck extends React.Component {
 
         return (
             <div>
-                <div className="arrow" style={arrowStyles}>
+                <div className="arrow" style={arrowStyles} onClick={this.props.shiftCardSelectionLeft}>
                     <i className="fa fa-angle-left" style={arrowIcon}></i>
                 </div>
                 <div className="cards" style={containerStyles}>

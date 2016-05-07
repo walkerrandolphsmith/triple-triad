@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { CardSelection } from './../components';
-import { handSelector, isFullHandSelector, availableDeckSelector, currentGameSelector } from '../ducks/game';
-import { addCard, endPhase, selectCard } from '../ducks/game';
+import { handSelector, isFullHandSelector, visibleDeckSelector, currentGameSelector } from '../ducks/game';
+import { addCard, endPhase, selectCard, shiftCardSelectionLeft } from '../ducks/game';
 
 function mapStateToProps(state) {
     const { settings } = state;
@@ -12,14 +12,14 @@ function mapStateToProps(state) {
     return {
         selectedCard: game.get('selectedCard'),
         settings: settings,
-        availableDeck: availableDeckSelector(state),
+        availableDeck: visibleDeckSelector(state),
         hand: handSelector(state),
         isHandSelected: isFullHandSelector(state)
     }
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ addCard, endPhase, selectCard },dispatch);
+    return bindActionCreators({ addCard, endPhase, selectCard, shiftCardSelectionLeft },dispatch);
 }
 
 
