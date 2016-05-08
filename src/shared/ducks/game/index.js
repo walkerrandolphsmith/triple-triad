@@ -9,7 +9,6 @@ import { boardUpdated } from './mutations/boardUpdated';
 import { cardAdded } from './mutations/cardAdded';
 import { cardPlaced } from './mutations/cardPlaced';
 import { cardSelected } from './mutations/cardSelected';
-import { cardSelectionShiftedLeft } from './mutations/cardSelectionShiftedLeft';
 import { createGameFailed } from './mutations/createGameFailed';
 import { createGameRequested } from './mutations/createGameRequested';
 import { createGameSucceeded } from './mutations/createGameSucceeded';
@@ -48,8 +47,6 @@ export const SEND_INVITE_REQUEST = 'SEND_INVITE_REQUEST';
 export const SEND_INVITE_SUCCESS = 'SEND_INVITE_SUCCESS';
 export const SEND_INVITE_FAILED = 'SEND_INVITE_FAILED';
 export const SET_PHASE = 'SET_PHASE';
-export const SHIFT_CARD_SELECTION_LEFT = 'SHIFT_CARD_SELECTION_LEFT';
-export const SHIFT_CARD_SELECTION_RIGHT = 'SHIFT_CARD_SELECTION_RIGHT';
 export const UPDATE_BOARD = 'UPDATE_BOARD';
 
 export { addCard } from './actions/addCard';
@@ -75,7 +72,6 @@ export { sendInviteFailure } from './actions/sendInviteFailure';
 export { sendInviteRequest } from './actions/sendInviteRequest';
 export { sendInviteSuccess } from './actions/sendInviteSuccess';
 export { setPhase } from './actions/setPhase';
-export { shiftCardSelectionLeft } from './actions/shiftCardSelectionLeft';
 export { updateBoard } from './actions/updateBoard';
 
 export { aiTurn } from './thunks/aiTurn';
@@ -137,7 +133,6 @@ export default function(state = INITIAL_STATE, action = {}) {
         case SELECT_CARD: return cardSelected(state, payload);
         case SELECT_PIECE: return pieceSelected(state, payload);
         case SET_PHASE: return phaseSet(state, payload);
-        case SHIFT_CARD_SELECTION_LEFT: return cardSelectionShiftedLeft(state, payload);
         case START_AI_TURN: return aiTurnStarted(state);
         case UPDATE_BOARD: return boardUpdated(state, payload);
         default: return state;
@@ -177,60 +172,6 @@ export const getScoreForOwner = (deck, owner) => {
     return deck.filter(card => card.get('owner') === owner).size;
 };
 
-export const getVisibleDeck = (availableDeck, shiftFactor) => {
-
-    let list = availableDeck.toJS();
-
-    function LinkedList() {}
-    LinkedList.prototype = {
-        length: 0,
-        first: null,
-        last: null
-    };
-
-    LinkedList.Circular = function() {};
-    LinkedList.Circular.prototype = new LinkedList();
-
-    LinkedList.Circular.prototype.append = function(node) {
-        if (this.first === null) {
-            node.prev = node;
-            node.next = node;
-            this.first = node;
-            this.last = node;
-        } else {
-            node.prev = this.last;
-            node.next = this.first;
-            this.first.prev = node;
-            this.last.next = node;
-            this.last = node;
-        }
-        this.length++;
-    };
-
-    var clist = new LinkedList.Circular();
-    list.forEach(e => clist.append(e));
-
-    var absoluteDirectionOfShift = Math.abs(shiftFactor);
-    var markerOfStart = clist.first;
-    for(var i = 0; i < absoluteDirectionOfShift; i++){
-        if(shiftFactor >= 0){
-            markerOfStart = markerOfStart.next;
-        }
-        else {
-            markerOfStart = markerOfStart.prev;
-        }
-    }
-
-    var finalList = [new Map(markerOfStart)];
-    var itemToAdd = markerOfStart;
-    for(var j = 0; j < 12; j++) {
-        itemToAdd = itemToAdd.next;
-        finalList.push(new Map(itemToAdd));
-    }
-
-    return new List(finalList);
-};
-
 export const getValidPieces = board => {
     let boardIndexes = board.map(card => card.get('boardIndex'));
     return new List([0, 1, 2, 3, 4, 5, 6, 7, 8]).filter(index => boardIndexes.indexOf(index) < 0);
@@ -260,11 +201,6 @@ export const deckSelector = createSelector(
 export const availableDeckSelector = createSelector(
     [deckSelector, opponentSelector],
     getAvailableDeck
-);
-
-export const visibleDeckSelector = createSelector(
-    [availableDeckSelector, shiftFactorSelector],
-    getVisibleDeck
 );
 
 export const boardSelector = createSelector(
