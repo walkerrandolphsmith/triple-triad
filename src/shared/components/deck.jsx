@@ -42,6 +42,7 @@ export class Deck extends React.Component {
         
         const settings = {
             className: 'center',
+            centerMode: true,
             infinite: true,
             arrows: true,
             nextArrow: nextArrow,
