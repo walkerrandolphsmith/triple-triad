@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card } from './card';
+import Slider from 'react-slick';
 
 export class Deck extends React.Component {
 
@@ -9,47 +10,25 @@ export class Deck extends React.Component {
     };
 
     render() {
-        let {cards, selectedCard, isHandSelected} = this.props;
+        const {cards, selectedCard, isHandSelected} = this.props;
 
-        let cardsMarkup = cards.map(card => {
-
+        const cardsMarkup = cards.map((card, i) => {
             const isSelectable = (card.get('owner') === 1) || (!isHandSelected && card.get('owner') === 0);
-
+            const classes = card.get('id') === selectedCard ? 'selected' : '';
             const cardStyle = {
                 opacity: card.get('owner') === 0 ? '1' : '0.5',
                 cursor: isSelectable ? 'pointer' : 'default'
             };
-
-            const classes = card.get('id') === selectedCard ? 'selected' : '';
-
+            const action = isSelectable ? this.click.bind(this, card) : ()=> {};
+            //Adding a key breaks react-slick...
             return (
-                <Card key={card.get('id')} card={card} cardStyle={cardStyle} classes={classes} clickAction={isSelectable ? this.click.bind(this, card) : ()=> {} } />
+                <div>
+                    <Card card={card} cardStyle={cardStyle} classes={classes} clickAction={action} />
+                </div>
             );
         });
 
-        let arrowWidth = 50;
-        let containerStyles = {
-            width: `calc(100% - ${arrowWidth * 2}px)`,
-            overflow: 'hidden',
-            display: 'inline-block'
-
-        };
-
-        let innerStyles = {
-            position: 'relative',
-            width: `${cards.size * 100}px`,
-            display: 'inline-block',
-            left: `0px`
-        };
-
-        let arrowStyles = {
-            width: `${arrowWidth}px`,
-            display: 'inline-block',
-            verticalAlign: 'top',
-            pointer: 'cursor'
-        };
-
-        let arrowIcon = {
+        const arrowIcon = {
             lineHeight: '127px',
             height: '127px',
             textAlign: 'center',
@@ -57,20 +36,39 @@ export class Deck extends React.Component {
             fontWeight: 200,
             fontSize: '2em'
         };
-
+        
+        const nextArrow = (<div><i className="fa fa-angle-right" style={arrowIcon}></i></div>);
+        const prevArrow = (<div><i className="fa fa-angle-left" style={arrowIcon}></i></div>);
+        
+        const settings = {
+            className: 'center',
+            infinite: true,
+            arrows: true,
+            nextArrow: nextArrow,
+            prevArrow: prevArrow,
+            dots: false,
+            variableWidth: true,
+            slidesToShow: 8,
+            slidesToScroll: 8,
+            responsive: [{
+                breakpoint: 1200,
+                settings: { slidesToScroll: 7 }
+            }, {
+                breakpoint: 1024,
+                settings: { slidesToScroll: 5 }
+            }, {
+                breakpoint: 768,
+                settings: { slidesToScroll: 3 }
+            }, {
+                breakpoint: 480,
+                settings: { slidesToScroll: 1 }
+            }]
+        };
         return (
             <div>
-                <div className="arrow" style={arrowStyles} onClick={this.props.shiftCardSelectionLeft}>
-                    <i className="fa fa-angle-left" style={arrowIcon}></i>
-                </div>
-                <div className="cards" style={containerStyles}>
-                    <div style={innerStyles}>
-                        {cardsMarkup}
-                    </div>
-                </div>
-                <div className="arrow" style={arrowStyles}>
-                    <i className="fa fa-angle-right" style={arrowIcon}></i>
-                </div>
+                <Slider {...settings}>
+                    {cardsMarkup}
+                </Slider>
             </div>
         );
     }

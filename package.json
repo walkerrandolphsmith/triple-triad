@@ -98,6 +98,7 @@
     "react-redux": "^4.0.0",
     "react-router": "^2.0.0",
     "react-router-redux": "^4.0.0",
+    "react-slick": "^0.12.1",
     "redux": "^3.0.4",
     "redux-socket.io": "^1.2.0",
     "redux-thunk": "^1.0.2",
