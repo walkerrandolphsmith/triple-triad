@@ -1,6 +1,6 @@
 import expect from 'expect';
 import { Map, List } from 'immutable';
-import { getAvailableDeck } from './../index';
+import { getAvailableDeck } from './getAvailableDeck';
 
 describe('src/shared/selectors/availableDeckSelector', () => {
     let deck;

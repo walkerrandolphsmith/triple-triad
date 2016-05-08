@@ -1,8 +1,10 @@
 import PHASE from './../../../constants/phases';
-import { updateSetting } from '../..//settings';
+import { updateSetting } from '../../settings';
 import { getNextSelectedPiece } from './getNextSelectedPiece';
 import { playerTakesTurn } from './playerTakesTurn';
-import { addCard, setPhase, getHand, getIsFullHand, currentGameSelector } from './../index';
+import { addCard, setPhase, currentGameSelector } from './../index';
+import { getHand } from './../../../utils/getHand';
+import { getIsFullHand } from './../../../utils/getIsFullHand';
 
 export const handleEnter = () => (dispatch, getState) => {
     const state = getState();

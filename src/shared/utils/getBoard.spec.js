@@ -1,6 +1,6 @@
 import expect from 'expect';
 import { Map, List } from 'immutable';
-import { getBoard } from './../index';
+import { getBoard } from './getBoard';
 
 describe('src/shared/selectors/boardSelector', () => {
     let deck;

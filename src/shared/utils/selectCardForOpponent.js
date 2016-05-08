@@ -1,4 +1,4 @@
-import { getHand } from '../ducks/game';
+import { getHand } from './getHand';
 import { sample } from './sample';
 
 export function selectCardForOpponent(game) {

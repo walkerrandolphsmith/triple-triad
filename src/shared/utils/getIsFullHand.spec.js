@@ -1,6 +1,6 @@
 import expect from 'expect';
 import { Map, List } from 'immutable';
-import { getIsFullHand } from './../index';
+import { getIsFullHand } from './getIsFullHand';
 
 describe('src/shared/selectors/ifFullHandSelector', () => {
     let deck;

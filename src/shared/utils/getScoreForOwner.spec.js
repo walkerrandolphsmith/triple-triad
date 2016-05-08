@@ -1,6 +1,6 @@
 import expect from 'expect';
 import { Map, List } from 'immutable';
-import { getScoreForOwner } from './../index';
+import { getScoreForOwner } from './getScoreForOwner';
 
 describe('src/shared/selectors/scoreSelector', () => {
     describe('given a new game', () => {

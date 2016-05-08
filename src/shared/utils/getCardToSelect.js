@@ -1,4 +1,4 @@
-import { getHand } from '../ducks/game';
+import { getHand } from './getHand';
 
 export function getCardToSelect(game, directionInLoop) {
     const hand = getHand(game.get('deck'), 1);

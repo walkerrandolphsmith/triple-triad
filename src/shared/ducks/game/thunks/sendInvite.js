@@ -1,5 +1,5 @@
 import request from 'superagent';
-import { sendInviteRequest, sendInviteSuccess, sendInviteFailed } from './../index';
+import { sendInviteRequest, sendInviteSuccess, sendInviteFailure } from './../index';
 
 export function sendInvite(gameId, email) {
     return (dispatch, getState) => {
@@ -23,7 +23,7 @@ export function sendInvite(gameId, email) {
             if(response.status === 200) {
                 dispatch(sendInviteSuccess());
             } else {
-                dispatch(sendInviteFailed());
+                dispatch(sendInviteFailure());
             }
         });
     };

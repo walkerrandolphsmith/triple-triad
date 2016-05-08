@@ -1,0 +1,1 @@
+export const getScore = (blue, red) => ({ blue: blue, red: red });

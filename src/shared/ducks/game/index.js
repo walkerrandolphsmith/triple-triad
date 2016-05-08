@@ -1,7 +1,5 @@
 import { fromJS, Map, List } from 'immutable';
-import { createSelector } from 'reselect';
 import SERVER from './../../constants/socketActionPrefix';
-import WINNER from './../../constants/winner';
 
 import { aiTurnEnded } from './mutations/aiTurnEnded';
 import { aiTurnStarted } from './mutations/aiTurnStarted';
@@ -96,6 +94,17 @@ export { sendInvite } from './thunks/sendInvite';
 export { setHand } from './thunks/setHand';
 export { setHands } from './thunks/setHands';
 
+export { availableDeckSelector } from './selectors';
+export { boardSelector } from './selectors';
+export { currentGameSelector } from './selectors';
+export { deckSelector } from './selectors';
+export { handSelector } from './selectors';
+export { isFullHandSelector } from './selectors';
+export { opponentHandSelector } from './selectors';
+export { scoreSelector } from './selectors';
+export { validPiecesSelector } from './selectors';
+export { winnerSelector } from './selectors';
+
 const INITIAL_STATE = new Map({
     getGames: new Map({
         loading: false,
@@ -138,112 +147,3 @@ export default function(state = INITIAL_STATE, action = {}) {
         default: return state;
     }
 }
-
-/**
- *
- * SELECTORS
- * 
- */
-
-export const getAvailableDeck = (deck, owner) => {
-    let unique = {};
-    let distinct = [];
-    let i;
-    for(i = 0; i < deck.size; i++) {
-        if(!unique[deck.get(i).get('name')] && deck.get(i).get('owner') !== owner) {
-            distinct.push(deck.get(i));
-            unique[deck.get(i).get('name')] = true;
-        }
-    }
-    return new List(distinct);
-};
-
-export const getBoard = (deck) => deck.filter(card => card.get('boardIndex') >= 0);
-
-export const currentGameSelector = state => state.game.get('games').find(game => game.get('id') === state.game.get('gameRoute'));
-
-export const getHand = (deck, owner) => deck.filter(card => card.get('owner') === owner && card.get('boardIndex') < 0);
-
-export const getIsFullHand = hand => hand.size >= 5;
-
-export const getScore = (blue, red) => ({ blue: blue, red: red });
-
-export const getScoreForOwner = (deck, owner) => {
-    return deck.filter(card => card.get('owner') === owner).size;
-};
-
-export const getValidPieces = board => {
-    let boardIndexes = board.map(card => card.get('boardIndex'));
-    return new List([0, 1, 2, 3, 4, 5, 6, 7, 8]).filter(index => boardIndexes.indexOf(index) < 0);
-};
-
-export const getWinner = (score, validPieces) => {
-    let winner = WINNER.NONE;
-    if(validPieces.size <= 0) {
-        if(score.blue === score.red) {
-            winner = WINNER.TIE;
-        } else {
-            winner = score.blue > score.red ? WINNER.BLUE : WINNER.RED;
-        }
-    }
-    return winner;
-};
-
-const playerSelector = () => 1;
-const opponentSelector = () => 2;
-const shiftFactorSelector = state => state.game.get('shiftFactor');
-
-export const deckSelector = createSelector(
-    [currentGameSelector],
-    game => game.get('deck')
-);
-
-export const availableDeckSelector = createSelector(
-    [deckSelector, opponentSelector],
-    getAvailableDeck
-);
-
-export const boardSelector = createSelector(
-    [deckSelector],
-    getBoard
-);
-
-export const handSelector = createSelector(
-    [deckSelector, playerSelector],
-    getHand
-);
-
-export const opponentHandSelector = createSelector(
-    [deckSelector, opponentSelector],
-    getHand
-);
-
-const blueScoreSelector = createSelector(
-    [deckSelector, playerSelector],
-    getScoreForOwner
-);
-
-const redScoreSelector = createSelector(
-    [deckSelector, opponentSelector],
-    getScoreForOwner
-);
-
-export const scoreSelector = createSelector(
-    [blueScoreSelector, redScoreSelector],
-    getScore
-);
-
-export const validPiecesSelector = createSelector(
-    [boardSelector],
-    getValidPieces
-);
-
-export const winnerSelector = createSelector(
-    [scoreSelector, validPiecesSelector],
-    getWinner
-);
-
-export const isFullHandSelector = createSelector(
-    [handSelector],
-    getIsFullHand
-);

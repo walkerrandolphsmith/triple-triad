@@ -7,8 +7,6 @@ import Round from './round';
 import PHASE from './../constants/phases';
 import { currentGameSelector } from '../ducks/game';
 
-
-
 export default function() {
 
     const mapStateToProps = (state) => {

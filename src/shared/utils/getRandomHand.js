@@ -1,4 +1,4 @@
-import { getAvailableDeck } from '../ducks/game';
+import { getAvailableDeck } from './getAvailableDeck';
 import { sample } from './sample';
 
 export function getRandomHand(game) {

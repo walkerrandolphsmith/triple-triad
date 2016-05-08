@@ -1,6 +1,6 @@
 import expect from 'expect';
 import { Map, List } from 'immutable';
-import { getHand } from './../index';
+import { getHand } from './getHand';
 
 describe('src/shared/selectors/handSelector', () => {
     let deck;

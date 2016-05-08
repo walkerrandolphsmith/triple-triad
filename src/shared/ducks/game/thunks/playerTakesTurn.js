@@ -1,4 +1,8 @@
-import { placeCard, selectCard, selectPiece, getBoard, currentGameSelector } from './../index';
+import { placeCard } from './../actions/placeCard';
+import { selectCard } from './../actions/selectCard';
+import { selectPiece } from './../actions/selectPiece';
+import { getBoard } from './../../../utils/getBoard';
+import { currentGameSelector } from './../selectors';
 import { aiTurn } from './aiTurn';
 import { getNextSelectedCard } from './getNextSelectedCard';
 import { applyFlips } from './applyFlips';

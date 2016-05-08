@@ -1,7 +1,7 @@
 import expect from 'expect';
 import { List } from 'immutable';
-import WINNER from './../../../constants/winner';
-import { getWinner } from './../index';
+import WINNER from './../constants/winner';
+import { getWinner } from './getWinner';
 
 describe('src/shared/selectors/winnerSelector', () => {
     let score;

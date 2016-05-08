@@ -1,4 +1,4 @@
-import { getAvailableDeck } from '../ducks/game';
+import { getAvailableDeck } from './getAvailableDeck';
 
 export function getCardToAdd(game, directionInLoop) {
     const deck = getAvailableDeck(game.get('deck'));
