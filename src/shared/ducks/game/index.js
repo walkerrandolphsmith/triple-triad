@@ -74,6 +74,7 @@ export { updateBoard } from './actions/updateBoard';
 
 export { aiTurn } from './thunks/aiTurn';
 export { applyFlips } from './thunks/applyFlips';
+export { completeTurn } from './thunks/completeTurn';
 export { createGame } from './thunks/createGame';
 export { deleteGame } from './thunks/deleteGame';
 export { endPhase } from './thunks/endPhase';
@@ -88,8 +89,6 @@ export { handleEscape } from './thunks/handleEscape';
 export { handleLeft } from './thunks/handleLeft';
 export { handleRight } from './thunks/handleRight';
 export { handleUp } from './thunks/handleUp';
-export { playerTakesTurn } from './thunks/playerTakesTurn';
-export { selectedPieceByClick } from './thunks/selectedPieceByClick';
 export { sendInvite } from './thunks/sendInvite';
 export { setHand } from './thunks/setHand';
 export { setHands } from './thunks/setHands';

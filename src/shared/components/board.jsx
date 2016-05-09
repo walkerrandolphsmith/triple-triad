@@ -4,7 +4,7 @@ import { Card } from './card';
 export class Board extends React.Component {
 
     click(index) {
-        this.props.selectedPieceByClick(index);
+        this.props.completeTurn(index, true);
     };
 
     render() {

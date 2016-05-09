@@ -46,7 +46,7 @@ describe('SEND INVITE async action creator', () => {
         set = expect.spyOn(request, 'set').andCallThrough();
 
         __RewireAPI__.__Rewire__('sendInviteRequest', () => 1);
-        __RewireAPI__.__Rewire__('sendInviteFailed', () => 2);
+        __RewireAPI__.__Rewire__('sendInviteFailure', () => 2);
         __RewireAPI__.__Rewire__('sendInviteSuccess', () => 3);
     });
 

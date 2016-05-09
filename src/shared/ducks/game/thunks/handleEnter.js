@@ -1,7 +1,7 @@
 import PHASE from './../../../constants/phases';
 import { updateSetting } from '../../settings';
 import { getNextSelectedPiece } from './getNextSelectedPiece';
-import { playerTakesTurn } from './playerTakesTurn';
+import { completeTurn } from './completeTurn';
 import { addCard, setPhase, currentGameSelector } from './../index';
 import { getHand } from './../../../utils/getHand';
 import { getIsFullHand } from './../../../utils/getIsFullHand';
@@ -22,8 +22,7 @@ export const handleEnter = () => (dispatch, getState) => {
             dispatch(getNextSelectedPiece('enter'));
         },
         [PHASE.PIECE_SELECTION]: () => {
-            dispatch(playerTakesTurn(true));
-            dispatch(setPhase(PHASE.CARD_SELECTION));
+            dispatch(completeTurn(-1, true));
         }
     };
     

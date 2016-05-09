@@ -1,18 +1,22 @@
-import { placeCard } from './../actions/placeCard';
+import PHASE from './../../../constants/phases';
 import { selectCard } from './../actions/selectCard';
 import { selectPiece } from './../actions/selectPiece';
-import { getBoard } from './../../../utils/getBoard';
-import { currentGameSelector } from './../selectors';
-import { aiTurn } from './aiTurn';
-import { getNextSelectedCard } from './getNextSelectedCard';
+import { setPhase } from './../actions/setPhase';
+import { placeCard } from './../actions/placeCard';
 import { applyFlips } from './applyFlips';
+import { aiTurn } from './aiTurn';
+import { currentGameSelector } from './../selectors';
+import { getBoard } from './../../../utils/getBoard';
 
-export const playerTakesTurn = (isPlayer) => (dispatch, getState) => {
-    const currentGame = currentGameSelector(getState());
+export const completeTurn = (indexOfPiece, isPlayer) => (dispatch, getState) => {
+    let currentGame = currentGameSelector(getState());
+
+    if(indexOfPiece >= 0) {
+        dispatch(selectPiece(indexOfPiece));
+    }
 
     dispatch(placeCard());
 
-    //Wait for the socket to propagate the card placement
     setTimeout(() => {
         dispatch(applyFlips());
         dispatch(selectCard(-1));
@@ -21,10 +25,11 @@ export const playerTakesTurn = (isPlayer) => (dispatch, getState) => {
         if(shouldAiTakeTurnAfterPlayer(currentGame, isPlayer)) {
             setTimeout(() => {
                 dispatch(aiTurn());
-                dispatch(getNextSelectedCard());
             });
         }
     }, 500);
+
+    dispatch(setPhase(PHASE.CARD_SELECTION));
 };
 
 function shouldAiTakeTurnAfterPlayer(currentGame, isPlayer) {

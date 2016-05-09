@@ -6,7 +6,7 @@ export class Round extends React.Component {
 
     render() {
         let { game, board, hand, opponentHand, settings, validPieces, score, winner, winnerType } = this.props;
-        let { selectCard, selectedPieceByClick, endPhase } = this.props;
+        let { selectCard, completeTurn, endPhase } = this.props;
 
         let phrase = "";
         let handStyles={visibility: 'hidden'};
@@ -40,7 +40,7 @@ export class Round extends React.Component {
                     </div>
 
                     <div className="col-xl-10 col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                        <Board cards={board} validPieces={validPieces} selectedPiece={game.get('selectedPiece')} selectedPieceByClick={selectedPieceByClick} />
+                        <Board cards={board} validPieces={validPieces} selectedPiece={game.get('selectedPiece')} completeTurn={completeTurn} />
                     </div>
 
                     <div className="col-xl-1 col-lg-2 col-md-2 col-sm-2 col-xs-12" style={handStyles}>

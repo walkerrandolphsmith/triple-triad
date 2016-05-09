@@ -12,7 +12,7 @@ describe('HANDLE_ENTER async action creator', () => {
         __RewireAPI__.__Rewire__('currentGameSelector', () => new Map({}));
         __RewireAPI__.__Rewire__('setPhase', () => 1);
         __RewireAPI__.__Rewire__('getNextSelectedPiece', () => 2);
-        __RewireAPI__.__Rewire__('playerTakesTurn', () => 3);
+        __RewireAPI__.__Rewire__('completeTurn', () => 3);
         __RewireAPI__.__Rewire__('addCard', () => 5);
         __RewireAPI__.__Rewire__('updateSetting', () => 6);
     });
@@ -152,14 +152,9 @@ describe('HANDLE_ENTER async action creator', () => {
             getState = () => ({});
         });
 
-        it('should dispatch the PlayerTakesTurn action', () => {
+        it('should dispatch the completeTurn action', () => {
             handleEnter()(dispatch, getState);
             expect(dispatch).toHaveBeenCalledWith(3);
-        });
-
-        it('should dispatch the SET_PHASE action setting the phase to cardSelection', () => {
-            handleEnter()(dispatch, getState);
-            expect(dispatch).toHaveBeenCalledWith(1);
         });
     });
 });
