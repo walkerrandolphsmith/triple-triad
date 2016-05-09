@@ -1,5 +1,6 @@
 import PHASE from './../../../constants/phases';
-import { setPhase, resetGame, currentGameSelector } from './../index';
+import { currentGameSelector } from './../index';
+import { setPhase } from './../actions/setPhase';
 import { setHands } from './setHands';
 import { getNextSelectedCard } from './getNextSelectedCard';
 import { getNextCardForHand } from './getNextCardForHand';
@@ -13,7 +14,8 @@ export const endPhase = () => (dispatch, getState) => {
     const nextPhase = getNextPhase(currentPhase, randomHand);
     
     if(isRollupPhaseRound(currentPhase)) {
-        dispatch(resetGame());
+        dispatch(setPhase(PHASE.GAME_OVER));
+        return
     }
 
     if(willBePhaseHandSelection(nextPhase)) {

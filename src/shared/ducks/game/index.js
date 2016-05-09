@@ -62,7 +62,6 @@ export { getGamesFailure } from './actions/getGamesFailure';
 export { getGamesRequest } from './actions/getGamesRequest';
 export { getGamesSuccess } from './actions/getGamesSuccess';
 export { placeCard } from './actions/placeCard';
-export { resetGame } from './actions/resetGame';
 export { startAiTurn } from './actions/startAiTurn';
 export { selectCard } from './actions/selectCard';
 export { selectPiece } from './actions/selectPiece';

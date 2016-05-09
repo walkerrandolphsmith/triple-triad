@@ -6,7 +6,7 @@ export class BreadCrumb extends React.Component {
         const settingsClass = phase === phases.SETTINGS_SELECTION ? 'active' : '';
         const inviteClass = phase === phases.INVITE ? 'active' : '';
         const handClass = phase === phases.HAND_SELECTION ? 'active' : '';
-        const roundClass = phase === 'round' ? 'active' : '';
+        const roundClass = phase === (phases.CARD_SELECTION | phases.PIECE_SELECTION) ? 'active' : '';
 
         return (
             <ol className="breadcrumb">

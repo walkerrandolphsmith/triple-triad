@@ -4,12 +4,12 @@ import { BreadCrumb } from './breadCrumb';
 export class PhaseEnforcer extends React.Component {
 
     render() {
-        const { rollupPhase, phases, componentMap } = this.props;
-        const Component = componentMap[rollupPhase];
+        const { phase, phases, componentMap } = this.props;
+        const Component = componentMap[phase];
 
         return (
             <div>
-                <BreadCrumb phase={rollupPhase} phases={phases} />
+                <BreadCrumb phase={phase} phases={phases} />
                 <Component />
             </div>
         )

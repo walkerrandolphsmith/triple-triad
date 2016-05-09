@@ -7,6 +7,7 @@ export { CardSelection } from './cardSelection';
 export { Deck } from './deck';
 export { ForgotPassword } from './forgotPassword';
 export { Game } from './game';
+export { GameDetails } from './gameDetails';
 export { Games } from './games';
 export { Hand } from './hand';
 export { Hold } from './hold';
