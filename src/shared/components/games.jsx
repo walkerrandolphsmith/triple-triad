@@ -4,9 +4,16 @@ import { Game } from './game';
 export class Games extends React.Component {
 
     render() {
-        const gamesList = this.props.games.map(game => (
-            <Game key={game.id} loggedInAs={this.props.id} game={game} push={this.props.push} deleteGame={this.props.deleteGame} />
-        ));
+        let { id, games } = this.props;
+        const gamesList = games.map(game => {
+            const userCanDeleteGame = id === game.owner;
+            return (<Game key={game.id}
+                   loggedInAs={this.props.id}
+                   game={game}
+                   push={this.props.push}
+                   canDelete={userCanDeleteGame}
+                   deleteGame={this.props.deleteGame} />)
+        });
 
         return (
             <div id="game-selection">

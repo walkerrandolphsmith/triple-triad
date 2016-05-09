@@ -6,6 +6,7 @@ import { createGame, deleteGame } from './../ducks/game';
 
 function mapStateToProps(state) {
     return {
+        id: state.auth.get('user').get('id'),
         games: state.game.get('games').map(game => ({
             id: game.get('id'),
             owner: game.get('owner'),

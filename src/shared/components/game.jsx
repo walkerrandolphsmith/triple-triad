@@ -17,13 +17,15 @@ export class Game extends React.Component {
         let blueScore = 5;
         let redScore = 5;
 
+        let gameAction = this.props.canDelete ? (<i className="fa fa-trash-o" onClick={this.deleteGame.bind(this, id)}></i>) : (<i></i>);
+
         return (
             <div id={id} className="game">
                 <div className="header">
                     <h3 className="title">
                         <i className="fa fa-star-o"></i>
                         <span onClick={this.selectGame.bind(this, id)}>Game</span>
-                        <i className="fa fa-trash-o" onClick={this.deleteGame.bind(this, id)}></i>
+                        {gameAction}
                     </h3>
                 </div>
                 <div className="detail">
