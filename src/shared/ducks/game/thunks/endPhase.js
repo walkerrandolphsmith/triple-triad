@@ -12,11 +12,6 @@ export const endPhase = () => (dispatch, getState) => {
     const randomHand = state.settings.get('randomHand');
     const currentPhase = currentGame.get('phase');
     const nextPhase = getNextPhase(currentPhase, randomHand);
-    
-    if(isRollupPhaseRound(currentPhase)) {
-        dispatch(setPhase(PHASE.GAME_OVER));
-        return
-    }
 
     if(willBePhaseHandSelection(nextPhase)) {
         dispatch(getNextCardForHand());
@@ -42,9 +37,4 @@ function willBePhaseHandSelection(nextPhase) {
 function willBePhaseRound(nextPhase) {
     return nextPhase === 'round'
 }
-
-function isRollupPhaseRound(currentPhase) {
-    return currentPhase === PHASE.CARD_SELECTION || currentPhase === PHASE.PIECE_SELECTION
-}
-
 

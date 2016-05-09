@@ -30,15 +30,19 @@ export const completeTurn = (indexOfPiece, isPlayer) => (dispatch, getState) => 
         dispatch(selectCard(-1));
         dispatch(selectPiece(-1));
 
-        if(shouldAiTakeTurnAfterPlayer(currentGame, isPlayer)) {
-            setTimeout(() => {
-                dispatch(aiTurn());
-            });
+        if(gameOver(currentGame)) {
+            dispatch(setPhase(PHASE.GAME_OVER));
+        } else if(isPlayer) {
+            setTimeout(() => { dispatch(aiTurn()); });
         }
     }, 500);
 
     dispatch(setPhase(PHASE.CARD_SELECTION));
 };
+
+function gameOver(currentGame) {
+    return getBoard(currentGame.get('deck')).size === 9;
+}
 
 function shouldAiTakeTurnAfterPlayer(currentGame, isPlayer) {
     let gameOver = getBoard(currentGame.get('deck')).size === 9;

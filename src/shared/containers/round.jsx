@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { Round } from './../components';
 import WINNER_TYPE from './../constants/winner';
 import { boardSelector, handSelector, opponentHandSelector, scoreSelector, winnerSelector, validPiecesSelector, currentGameSelector } from '../ducks/game';
-import { selectCard, completeTurn, endPhase } from '../ducks/game';
+import { selectCard, completeTurn } from '../ducks/game';
 
 function mapStateToProps(state) {
     const { settings } = state;
@@ -22,7 +22,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ selectCard, completeTurn, endPhase }, dispatch);
+    return bindActionCreators({ selectCard, completeTurn }, dispatch);
 }
 
 
