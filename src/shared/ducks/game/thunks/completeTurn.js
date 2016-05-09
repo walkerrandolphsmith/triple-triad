@@ -3,10 +3,11 @@ import { selectCard } from './../actions/selectCard';
 import { selectPiece } from './../actions/selectPiece';
 import { setPhase } from './../actions/setPhase';
 import { placeCard } from './../actions/placeCard';
-import { applyFlips } from './applyFlips';
+import { updateBoard } from './../actions/updateBoard';
 import { aiTurn } from './aiTurn';
 import { currentGameSelector } from './../selectors';
 import { getBoard } from './../../../utils/getBoard';
+import { getFlips } from './../../../utils/getFlips';
 
 export const completeTurn = (indexOfPiece, isPlayer) => (dispatch, getState) => {
     let currentGame = currentGameSelector(getState());
@@ -16,9 +17,16 @@ export const completeTurn = (indexOfPiece, isPlayer) => (dispatch, getState) => 
     }
 
     dispatch(placeCard());
-
+    
     setTimeout(() => {
-        dispatch(applyFlips());
+        currentGame = currentGameSelector(getState());
+        const i = currentGame.get('selectedPiece');
+        const deck = currentGame.get('deck');
+
+        getFlips(i, deck).forEach(tuple => {
+            dispatch(updateBoard(tuple.index, tuple.owner));
+        });
+
         dispatch(selectCard(-1));
         dispatch(selectPiece(-1));
 

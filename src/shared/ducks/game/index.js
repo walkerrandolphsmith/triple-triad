@@ -73,7 +73,6 @@ export { setPhase } from './actions/setPhase';
 export { updateBoard } from './actions/updateBoard';
 
 export { aiTurn } from './thunks/aiTurn';
-export { applyFlips } from './thunks/applyFlips';
 export { completeTurn } from './thunks/completeTurn';
 export { createGame } from './thunks/createGame';
 export { deleteGame } from './thunks/deleteGame';
