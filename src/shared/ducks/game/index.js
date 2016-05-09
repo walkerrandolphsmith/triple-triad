@@ -13,7 +13,6 @@ import { createGameSucceeded } from './mutations/createGameSucceeded';
 import { gameDeletionFailed } from './mutations/gameDeletionFailed';
 import { gameDeletionRequested } from './mutations/gameDeletionRequested';
 import { gameDeletionSucceeded } from './mutations/gameDeletionSucceeded';
-import { gameReset } from './mutations/gameReset';
 import { getGamesFailed } from './mutations/getGamesFailed';
 import { getGamesRequested } from './mutations/getGamesRequested';
 import { getGamesSucceeded } from './mutations/getGamesSucceeded';
@@ -135,7 +134,6 @@ export default function(state = INITIAL_STATE, action = {}) {
         case GET_GAMES_REQUEST: return getGamesRequested(state, payload);
         case GET_GAMES_SUCCESS: return getGamesSucceeded(state, payload);
         case PLACE_CARD: return cardPlaced(state, payload);
-        case RESET_GAME: return gameReset(state);
         case SELECT_CARD: return cardSelected(state, payload);
         case SELECT_PIECE: return pieceSelected(state, payload);
         case SET_PHASE: return phaseSet(state, payload);

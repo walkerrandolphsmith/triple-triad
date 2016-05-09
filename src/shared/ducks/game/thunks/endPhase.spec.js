@@ -13,7 +13,6 @@ describe('END_PHASE async action creator', () => {
         __RewireAPI__.__Rewire__('setHands', () => 2);
         __RewireAPI__.__Rewire__('getNextSelectedCard', () => 3);
         __RewireAPI__.__Rewire__('getNextCardForHand', () => 4);
-        __RewireAPI__.__Rewire__('resetGame', () => 5);
     });
 
     it('should be a function', () => {
@@ -35,7 +34,6 @@ describe('END_PHASE async action creator', () => {
         it('should dispatch setPhase and resetGame', () => {
             endPhase()(dispatch, getState);
             expect(dispatch).toHaveBeenCalledWith(1);
-            expect(dispatch).toHaveBeenCalledWith(5);
         });
     });
 
@@ -54,7 +52,6 @@ describe('END_PHASE async action creator', () => {
         it('should dispatch setPhase and resetGame', () => {
             endPhase()(dispatch, getState);
             expect(dispatch).toHaveBeenCalledWith(1);
-            expect(dispatch).toHaveBeenCalledWith(5);
         });
     });
 
