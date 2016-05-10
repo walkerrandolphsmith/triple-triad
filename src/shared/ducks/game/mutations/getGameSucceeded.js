@@ -1,12 +1,12 @@
 import { Map, fromJS } from 'immutable';
 
 export const getGameSucceeded = (state, payload) => {
-    let id = payload.game._id;
-    let nextState = state.set('gameRoute', id);
+    const id = payload.game._id;
+    const nextState = state.set('gameRoute', id);
 
-    let isKnownGame = state.get('games').find(game => game.get('id') === id);
-
-    let newGame = new Map({
+    const isKnownGame = state.get('games').find(game => game.get('id') === id);
+    let newGames;
+    const newGame = new Map({
         'id': id,
         'owner': payload.game.owner,
         'deck': fromJS(payload.game.deck),
@@ -16,8 +16,6 @@ export const getGameSucceeded = (state, payload) => {
         'selectedCard': payload.game.selectedCard,
         'selectedPiece': payload.game.selectedPiece
     });
-
-    let newGames;
 
     if(isKnownGame) {
         newGames = state.get('games').update(
