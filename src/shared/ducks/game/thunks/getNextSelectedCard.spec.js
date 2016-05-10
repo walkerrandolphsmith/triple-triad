@@ -2,7 +2,7 @@ import expect from 'expect';
 import { Map, List } from 'immutable';
 import { getNextSelectedCard, __RewireAPI__ } from './getNextSelectedCard';
 
-describe('GET_NEXT_SELECTED_CARD async action creator', () => {
+describe('src/shared/reducers/game/thunks/getNextSelectedCard', () => {
     let getState;
     let dispatch;
     beforeEach(() => {

@@ -2,7 +2,7 @@ import expect from 'expect';
 import { Map, List } from 'immutable';
 import { handleEnter, __RewireAPI__ } from './handleEnter';
 import PHASE from './../../../constants/phases';
-describe('HANDLE_ENTER async action creator', () => {
+describe('src/shared/reducers/game/thunks/handleEnter', () => {
     let getState;
     let dispatch;
     let game;

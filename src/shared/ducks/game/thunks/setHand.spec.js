@@ -2,7 +2,7 @@ import expect from 'expect';
 import { Map, List } from 'immutable';
 import { setHand, __RewireAPI__ } from './setHand';
 
-describe('src/shared/actions/thunks/setHand', () => {
+describe('src/shared/reducers/game/thunks/setHand', () => {
     let dispatch;
     let getState;
     let player;

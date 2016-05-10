@@ -3,7 +3,7 @@ import { Map } from 'immutable';
 import { handleEscape, __RewireAPI__ } from './handleEscape';
 import PHASE from './../../../constants/phases';
 
-describe('HANDLE_ESCAPE async action creator', () => {
+describe('src/shared/reducers/game/thunks/handleEscape', () => {
     let getState;
     let dispatch;
     beforeEach(() => {

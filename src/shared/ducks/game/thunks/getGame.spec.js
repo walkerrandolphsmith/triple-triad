@@ -2,7 +2,7 @@ import expect from 'expect';
 import { Map } from 'immutable';
 import { getGame, __RewireAPI__ } from './getGame';
 
-describe('Get Games async action creator', () => {
+describe('src/shared/reducers/game/thunks/getGame', () => {
     let dispatch;
     let getState;
     let gameId;

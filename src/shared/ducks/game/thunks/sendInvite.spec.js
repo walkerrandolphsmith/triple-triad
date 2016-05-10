@@ -2,7 +2,7 @@ import expect from 'expect';
 import { Map } from 'immutable';
 import { sendInvite, __RewireAPI__ } from './sendInvite';
 
-describe('SEND INVITE async action creator', () => {
+describe('src/shared/reducers/game/thunks/sendInvite', () => {
     let dispatch;
     let getState;
     let gameId;

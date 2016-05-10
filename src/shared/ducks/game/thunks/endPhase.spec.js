@@ -3,7 +3,7 @@ import { Map } from 'immutable';
 import { endPhase, __RewireAPI__ } from './endPhase';
 import PHASE from './../../../constants/phases';
 
-describe('END_PHASE async action creator', () => {
+describe('src/shared/reducers/game/thunks/endPhase', () => {
     let dispatch;
     let getState;
     beforeEach(() => {

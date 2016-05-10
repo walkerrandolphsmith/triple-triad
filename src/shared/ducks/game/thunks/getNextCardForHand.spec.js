@@ -2,7 +2,7 @@ import expect from 'expect';
 import { Map, List } from 'immutable';
 import { getNextCardForHand, __RewireAPI__ } from './getNextCardForHand';
 
-describe('GET_NEXT_CARD_FOR_HAND async action creator', () => {
+describe('src/shared/reducers/game/thunks/getNextCardForHand', () => {
     let getState;
     let dispatch;
     beforeEach(() => {

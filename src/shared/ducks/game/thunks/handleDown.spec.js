@@ -3,7 +3,7 @@ import { Map, List } from 'immutable';
 import { handleDown, __RewireAPI__ } from './handleDown';
 import PHASE from './../../../constants/phases';
 
-describe('HANDLE_DOWN async action creator', () => {
+describe('src/shared/reducers/game/thunks/handleDown', () => {
     let getState;
     let dispatch;
     let game;

@@ -1,7 +1,7 @@
 import expect from 'expect';
 import { aiTurn, __RewireAPI__ } from './aiTurn';
 
-describe('AI_TURN async action creator', () => {
+describe('src/shared/reducers/game/thunks/aiTurn', () => {
     let dispatch;
     let getState;
     beforeEach(() => {

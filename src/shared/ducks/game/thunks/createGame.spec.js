@@ -2,7 +2,7 @@ import expect from 'expect';
 import { Map } from 'immutable';
 import { createGame, __RewireAPI__ } from './createGame';
 
-describe('Create Game async action creator', () => {
+describe('src/shared/reducers/game/thunks/createGame', () => {
     let dispatch;
     let getState;
     let deck;

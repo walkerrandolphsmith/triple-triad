@@ -1,7 +1,7 @@
 import expect from 'expect';
 import { getNextSelectedPiece, __RewireAPI__ } from './getNextSelectedPiece';
 
-describe('GET_NEXT_SELECTED_PIECE async action creator', () => {
+describe('src/shared/reducers/game/thunks/getNextSelectedPiece', () => {
     let getState;
     let dispatch;
     let keyCode;

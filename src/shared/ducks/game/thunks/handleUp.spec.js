@@ -2,7 +2,7 @@ import expect from 'expect';
 import { Map } from 'immutable';
 import { handleUp, __RewireAPI__ } from './handleUp';
 import PHASE from './../../../constants/phases';
-describe('src/shared/actions/action-creators/handleUp', () => {
+describe('src/shared/reducers/game/thunks/handleUp', () => {
     let getState;
     let dispatch;
     let game;

@@ -1,7 +1,7 @@
 import expect from 'expect';
 import { verifyEmail } from './verifyEmail';
 
-describe('VERIFY EMAIL async action creator', () => {
+describe('src/shared/reducers/verifyEmail/thunks/verifyEmail', () => {
     let token;
     beforeEach(() => {
         token = 'token';
