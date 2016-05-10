@@ -1,6 +1,5 @@
 import expect from 'expect';
 import { PLACE_CARD, placeCard } from './../index';
-import SERVER from './../../../constants/socketActionPrefix';
 
 describe('src/shared/reducers/game/actions/placeCard', () => {
     describe('Given PLACE_CARD action type', () => {
@@ -9,7 +8,7 @@ describe('src/shared/reducers/game/actions/placeCard', () => {
         beforeEach(() => {
             index = 20;
             expectedAction = {
-                type: SERVER + PLACE_CARD
+                type: PLACE_CARD
             };
         });
 

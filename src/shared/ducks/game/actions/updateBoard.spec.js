@@ -1,6 +1,5 @@
 import expect from 'expect';
 import { UPDATE_BOARD, updateBoard } from './../index';
-import SERVER from './../../../constants/socketActionPrefix';
 
 describe('src/shared/reducers/game/actions/updateBoard', () => {
     describe('Given UPDATE_BOARD action type', () => {
@@ -11,7 +10,7 @@ describe('src/shared/reducers/game/actions/updateBoard', () => {
             index = 20;
             owner = 1;
             expectedAction = {
-                type: SERVER + UPDATE_BOARD,
+                type: UPDATE_BOARD,
                 payload: {
                     index: index,
                     owner: owner

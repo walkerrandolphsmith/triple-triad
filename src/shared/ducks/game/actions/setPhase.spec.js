@@ -1,6 +1,5 @@
 import expect from 'expect';
 import { SET_PHASE, setPhase } from './../index';
-import SERVER from './../../../constants/socketActionPrefix';
 
 describe('src/shared/reducers/game/actions/setPhase', () => {
     describe('Given SET_PHASE action type', () => {
@@ -9,7 +8,7 @@ describe('src/shared/reducers/game/actions/setPhase', () => {
         beforeEach(() => {
             phase = 'phase1';
             expectedAction = {
-                type: SERVER + SET_PHASE,
+                type: SET_PHASE,
                 payload: {
                     phase: phase
                 }

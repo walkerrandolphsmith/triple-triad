@@ -1,5 +1,4 @@
-import { fromJS, Map, List } from 'immutable';
-import SERVER from './../../constants/socketActionPrefix';
+import { List, Map } from 'immutable';
 
 import { aiTurnEnded } from './mutations/aiTurnEnded';
 import { aiTurnStarted } from './mutations/aiTurnStarted';

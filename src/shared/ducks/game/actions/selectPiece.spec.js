@@ -1,6 +1,5 @@
 import expect from 'expect';
 import { SELECT_PIECE, selectPiece } from './../index';
-import SERVER from './../../../constants/socketActionPrefix';
 
 describe('src/shared/reducers/game/actions/selectPiece', () => {
     describe('Given SELECT_PIECE action type', () => {
@@ -9,7 +8,7 @@ describe('src/shared/reducers/game/actions/selectPiece', () => {
         beforeEach(() => {
             index = 20;
             expectedAction = {
-                type: SERVER + SELECT_PIECE,
+                type: SELECT_PIECE,
                 payload: {
                     index: index
                 }

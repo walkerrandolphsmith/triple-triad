@@ -110,22 +110,22 @@ function configureAuthRoutes(passport) {
     return router;
 }
 
-function configureGameRoutes(passport, socket) {
+function configureGameRoutes(passport) {
     const router = express.Router();
 
     router.use(
         '/*',
         (req, res) => {
-            app(req, res, socket);
+            app(req, res);
         }
     );
 
     return router;
 }
 
-export default function(passport, socket) {
+export default function(passport) {
     return {
         authRouter: configureAuthRoutes(passport),
-        gameRouter: configureGameRoutes(passport, socket)
+        gameRouter: configureGameRoutes(passport)
     };
 }

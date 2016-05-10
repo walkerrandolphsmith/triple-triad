@@ -1,6 +1,5 @@
 import expect from 'expect';
 import { SELECT_CARD, selectCard } from './../index';
-import SERVER from './../../../constants/socketActionPrefix';
 
 describe('src/shared/reducers/game/actions/selectCard', () => {
     describe('Given SELECT_CARD action type', () => {
@@ -9,7 +8,7 @@ describe('src/shared/reducers/game/actions/selectCard', () => {
         beforeEach(() => {
             id = 20;
             expectedAction = {
-                type: SERVER + SELECT_CARD,
+                type: SELECT_CARD,
                 payload: {
                     id: id
                 }

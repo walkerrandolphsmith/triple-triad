@@ -8,13 +8,12 @@ import { signInSuccess } from '../../../shared/ducks/auth';
 import routes from './../../../shared/routes';
 import configureStore from './../../../shared/store/store';
 
-export function app(request, response, socket) {
+export function app(request, response) {
     const location = createLocation(request.url);
 
     const store = configureStore({
         initialState: undefined,
-        history: undefined,
-        socket: socket
+        history: undefined
     });
 
     if(request.session

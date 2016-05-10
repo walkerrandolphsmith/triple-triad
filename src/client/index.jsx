@@ -5,7 +5,6 @@ import { Router, useRouterHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import { Provider } from 'react-redux';
 import { fromJS } from 'immutable';
-import io from 'socket.io-client';
 
 import { userProfile } from './../shared/ducks/user';
 import { getGame, getGames } from './../shared/ducks/game';
@@ -21,12 +20,9 @@ const browserHistory = useRouterHistory(createBrowserHistory)({
 let initialState = window.__INITIAL_STATE__;
 Object.keys(initialState).forEach(key => { initialState[key] = fromJS(initialState[key]);  });
 
-const socket = io(`http://${env.host}:${env.port}`);
-
 const store = configureStore({
     initialState: initialState,
-    history: browserHistory,
-    socket: socket
+    history: browserHistory
 });
 
 const history = syncHistoryWithStore(browserHistory, store, {
