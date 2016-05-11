@@ -10,7 +10,6 @@ import configureStore from './../shared/store/store';
 import Firebase from 'firebase';
 import { FIREBASE } from './../shared/constants/firebase';
 import { setRef, listenToGames, listenToAuth } from './../shared/ducks/firebase';
-import { userProfile } from './../shared/ducks/user';
 import { getGame, getGames } from './../shared/ducks/game';
 
 import env from './../shared/config/environment';
@@ -58,9 +57,6 @@ browserHistory.listen(location => {
     else if(location.pathname.startsWith('game/')) {
         const id = location.pathname.split('game/')[1];
         store.dispatch(getGame(id));
-    }else if(location.pathname === 'user') {
-        let userId = store.getState().auth.get('user').get('id');
-        store.dispatch(userProfile(userId));
     }
 });
 

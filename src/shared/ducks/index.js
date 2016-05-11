@@ -8,7 +8,6 @@ import game from './game';
 import passwordReset from './passwordReset'
 import resendVerificationEmail from './resendVerificationEmail';
 import settings from './settings';
-import user from './user';
 
 export default combineReducers({
     auth,
@@ -18,6 +17,5 @@ export default combineReducers({
     passwordReset,
     resendVerificationEmail,
     settings,
-    user,
     routing: router
 });

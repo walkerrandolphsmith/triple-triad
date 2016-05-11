@@ -48,13 +48,6 @@ function configureAuthRoutes(passport) {
     );
 
     router.post(
-        '/userProfile',
-        (req, res) => {
-            userProfile(req, res);
-        }
-    );
-
-    router.post(
         '/invite',
         (req, res) => {
             invite(req, res);

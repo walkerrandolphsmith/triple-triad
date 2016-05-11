@@ -8,12 +8,11 @@ function mapStateToProps(state) {
     return {
         id: state.auth.get('user').get('id'),
         username: state.auth.get('user').get('username'),
-        email: state.user.get('user').get('email'),
-        verified: state.user.get('user').get('verified'),
+        email: state.auth.get('user').get('email'),
+        verified: state.auth.get('user').get('isVerified'),
         resendingVerificationEmail: state.resendVerificationEmail.get('loading'),
         verificationEmailSent: state.resendVerificationEmail.get('loaded'),
         failedToSendVerificationEmail: state.resendVerificationEmail.get('failed')
-
     }
 }
 

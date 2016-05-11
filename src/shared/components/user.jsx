@@ -7,13 +7,13 @@ export class User extends React.Component {
     }
 
     render() {
-        let { id, username, email, verified } = this.props;
+        let { id, username, email, isVerified } = this.props;
 
-        let verifyEmail = verified
-            ? (<i className="fa fa-email" onClick={this.resendEmailVerification.bind(this)}></i>)
-            : (<i className="fa fa-check"></i>);
+        let verifyEmail = isVerified
+            ? (<i className="fa fa-check"></i>)
+            : (<i className="fa fa-envelope" onClick={this.resendEmailVerification.bind(this)}></i>);
 
-        let message =  'email@gmail.com';
+        let message =  email;
         message = this.props.resendingVerificationEmail ? 'Sending verification email' : message;
         message =  this.props.verificationEmailSent ? 'Verification email sent' : message;
         message = this.props.failedToSendVerificationEmail ? 'Failed to send verification email' : message;
