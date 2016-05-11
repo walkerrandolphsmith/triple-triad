@@ -1,22 +1,12 @@
 import express from 'express';
 import {
     app,
-    signIn,
-    signUp,
-    signOut,
     verifyEmail,
     resendVerificationEmail,
-    forgotPassword,
-    resetPassword,
-    userProfile,
-    createGame,
-    deleteGame,
-    getGame,
-    getGames,
     invite
 } from './../routes';
 
-function configureAuthRoutes(passport) {
+function configureAuthRoutes() {
     const router = express.Router();
 
     router.post(
@@ -43,7 +33,7 @@ function configureAuthRoutes(passport) {
     return router;
 }
 
-function configureGameRoutes(passport) {
+function configureGameRoutes() {
     const router = express.Router();
 
     router.use(
@@ -56,9 +46,9 @@ function configureGameRoutes(passport) {
     return router;
 }
 
-export default function(passport) {
+export default function() {
     return {
-        authRouter: configureAuthRoutes(passport),
-        gameRouter: configureGameRoutes(passport)
+        authRouter: configureAuthRoutes(),
+        gameRouter: configureGameRoutes()
     };
 }

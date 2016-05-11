@@ -15,7 +15,8 @@ export function app(request, response) {
         initialState: undefined,
         history: undefined
     });
-
+    
+    //figure out how to store firebase user in session/cookie/etc
     if(request.session
         && request.session.passport
         && request.session.passport.user) {

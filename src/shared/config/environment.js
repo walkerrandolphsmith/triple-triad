@@ -6,7 +6,6 @@ export default {
     apiPort: process.env.API_PORT || 3002,
     isBrowser: process.browser,
     nodeEnv: process.env.NODE_ENV,
-    mongoUri: process.env.MONGOLAB_URI || `mongodb://localhost/${process.env.PORT || 3000}/test` || 'mongodb://db',
     keys: {
         mailgun: {
             apiKey: process.env.MAILGUN_API_KEY,

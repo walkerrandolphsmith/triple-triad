@@ -1,21 +1,15 @@
 import express from 'express';
-import mongoose from 'mongoose';
-import passport from 'passport';
-import configurePassport from './config/passport';
 import configureRoutes from './config/routes';
 import configureServer from './config/express';
 import env from './../shared/config/environment';
 
-const { host, port, mongoUri } = env;
-
-mongoose.connect(mongoUri);
+const { host, port } = env;
 
 let app = express();
 export default app;
 
-configurePassport(passport);
-const routers = configureRoutes(passport);
-configureServer(app, passport, routers);
+const routers = configureRoutes();
+configureServer(app, routers);
 
 app.listen(port, error => {
     if(error) {

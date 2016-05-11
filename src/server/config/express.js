@@ -11,7 +11,7 @@ import webpackHotMiddleware from 'webpack-hot-middleware';
 import env from './../../shared/config/environment';
 var config = require('./../../../webpack.config');
 
-export default function(app, passport, routers) {
+export default function(app, routers) {
     const { nodeEnv, devPort } = env;
 
     app.use(cors());
@@ -40,8 +40,6 @@ export default function(app, passport, routers) {
         secret: 'secret',
         cookie: { maxAge: 3600 }
     }));
-    app.use(passport.initialize());
-    app.use(passport.session());
     app.use('/api', routers.authRouter);
     app.use('/*', routers.gameRouter);
 }
