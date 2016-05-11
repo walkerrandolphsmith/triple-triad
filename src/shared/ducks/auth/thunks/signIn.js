@@ -6,6 +6,7 @@ import { signInRequest } from './../actions/signInRequest';
 import { signInSuccess } from './../actions/signInSuccess';
 
 export const signIn = user => dispatch => {
+    debugger;
     dispatch(signInRequest());
 
     let error;

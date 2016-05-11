@@ -5,16 +5,17 @@ import { Router, useRouterHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import { Provider } from 'react-redux';
 import { fromJS } from 'immutable';
-
-import { userProfile } from './../shared/ducks/user';
-import { getGame, getGames } from './../shared/ducks/game';
 import Routes from './../shared/routes';
 import configureStore from './../shared/store/store';
-import { syncFirebase } from 'refire';
+import Firebase from 'firebase';
 import { FIREBASE } from './../shared/constants/firebase';
-import { fireBaseBindings } from './../shared/ducks/firebase';
+import { setRef, listenToGames } from './../shared/ducks/firebase';
+import { userProfile } from './../shared/ducks/user';
+import { getGame, getGames } from './../shared/ducks/game';
+
 import env from './../shared/config/environment';
 import './../assets/stylesheets/index.less';
+
 
 const browserHistory = useRouterHistory(createBrowserHistory)({
     basename: '/'
@@ -22,9 +23,7 @@ const browserHistory = useRouterHistory(createBrowserHistory)({
 
 let initialState = window.__INITIAL_STATE__;
 Object.keys(initialState).forEach(key => {
-    if(key !== 'firebase') {
-        initialState[key] = fromJS(initialState[key]);
-    }
+    initialState[key] = fromJS(initialState[key]);
 });
 
 const store = configureStore({
@@ -46,6 +45,11 @@ ReactDom.render(
   mountNode
 );
 
+const ref = new Firebase(FIREBASE);
+store.dispatch(setRef(ref));
+store.dispatch(listenToGames());
+
+
 browserHistory.listen(location => {
     if(location.pathname === 'games') {
         store.dispatch(getGames());
@@ -59,17 +63,6 @@ browserHistory.listen(location => {
     }
 });
 
-const { unsubscribe } = syncFirebase({
-    store: store,
-    url: FIREBASE,
-    bindings: fireBaseBindings,
-    onAuth: (authData) => {
-
-    },
-    onCancel: (error) => {
-
-    }
-});
 
 if (env.nodeEnv !== 'production') {
   const showDevTools = require('./../dev-tools/showDevTools').default;
