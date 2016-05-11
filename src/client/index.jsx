@@ -10,6 +10,9 @@ import { userProfile } from './../shared/ducks/user';
 import { getGame, getGames } from './../shared/ducks/game';
 import Routes from './../shared/routes';
 import configureStore from './../shared/store/store';
+import { syncFirebase } from 'refire';
+import { FIREBASE } from './../shared/constants/firebase';
+import { fireBaseBindings } from './../shared/ducks/firebase';
 import env from './../shared/config/environment';
 import './../assets/stylesheets/index.less';
 
@@ -18,7 +21,11 @@ const browserHistory = useRouterHistory(createBrowserHistory)({
 });
 
 let initialState = window.__INITIAL_STATE__;
-Object.keys(initialState).forEach(key => { initialState[key] = fromJS(initialState[key]);  });
+Object.keys(initialState).forEach(key => {
+    if(key !== 'firebase') {
+        initialState[key] = fromJS(initialState[key]);
+    }
+});
 
 const store = configureStore({
     initialState: initialState,
@@ -49,6 +56,18 @@ browserHistory.listen(location => {
     }else if(location.pathname === 'user') {
         let userId = store.getState().auth.get('user').get('id');
         store.dispatch(userProfile(userId));
+    }
+});
+
+const { unsubscribe } = syncFirebase({
+    store: store,
+    url: FIREBASE,
+    bindings: fireBaseBindings,
+    onAuth: (authData) => {
+
+    },
+    onCancel: (error) => {
+
     }
 });
 

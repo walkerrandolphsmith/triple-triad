@@ -12,6 +12,7 @@ import User from './../shared/containers/user';
 import NotFound from './../shared/containers/notFound';
 import RequireAuthentication from './containers/authentication';
 import PhaseEnforcer from './containers/phaseEnforcer';
+import Counter from './containers/counter';
 
 export default (
     <Route path="/" component={App}>
@@ -24,6 +25,7 @@ export default (
       <Route path="games" component={RequireAuthentication(Games)}/>
       <Route path="game/:gameId" component={RequireAuthentication(PhaseEnforcer())} />
       <Route path="user" component={RequireAuthentication(User)}/>
+      <Route path="counter" component={Counter}/>
       <Route path="*" component={NotFound} status={404}/>
     </Route>
 )

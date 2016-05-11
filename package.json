@@ -101,6 +101,7 @@
     "react-slick": "^0.12.1",
     "redux": "^3.0.4",
     "redux-thunk": "^1.0.2",
+    "refire": "^1.0.6",
     "reselect": "^2.0.1",
     "superagent": "^1.7.2"
   },

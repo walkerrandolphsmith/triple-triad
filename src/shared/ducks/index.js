@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import { routerReducer as router } from 'react-router-redux';
 
 import auth from './auth';
+import firebase from './firebase';
 import forms from './forms';
 import game from './game';
 import passwordReset from './passwordReset'
@@ -11,6 +12,7 @@ import user from './user';
 
 export default combineReducers({
     auth,
+    firebase,
     forms,
     game,
     passwordReset,
