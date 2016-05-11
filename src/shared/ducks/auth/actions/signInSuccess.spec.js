@@ -1,13 +1,14 @@
 import expect from 'expect';
 import { AUTH_SIGNIN_SUCCESS, signInSuccess } from './../index';
 
-describe('src/shared/reducers/auth/actions/receiveSignin', () => {
+describe('src/shared/reducers/auth/actions/signInSuccess', () => {
     describe('Given AUTH_SIGNIN_SUCCESS action type', () => {
         let user;
         let expectedAction;
         beforeEach(() => {
             user = {
                 name: 'walker',
+                email: 'tester@gmail.com',
                 id: 12,
                 isVerified: true
             };

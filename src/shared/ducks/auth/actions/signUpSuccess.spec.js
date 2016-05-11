@@ -1,7 +1,7 @@
 import expect from 'expect';
 import { AUTH_SIGNUP_SUCCESS, signUpSuccess } from './../index';
 
-describe('src/shared/reducers/auth/actions/receiveUser', () => {
+describe('src/shared/reducers/auth/actions/signUpSuccess', () => {
     describe('Given AUTH_SIGNUP_SUCCESS action type', () => {
         let user;
         let expectedAction;
