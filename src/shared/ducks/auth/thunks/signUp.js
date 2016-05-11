@@ -57,7 +57,6 @@ export const signUp = user => (dispatch, getState) => {
         email    : email,
         password : password
     }, (error, userData) => {
-        debugger;
         if (error) {
             const message = {
                 form: 'signUp',
@@ -69,7 +68,8 @@ export const signUp = user => (dispatch, getState) => {
             firebaseRef.child('users').child(userData.uid).set({
                 name: username,
                 email: email,
-                avatar: 'assets/images/default-user.png'
+                avatar: 'assets/images/default-user.png',
+                isVerified: false
             });
             dispatch(push('/games'));
         }

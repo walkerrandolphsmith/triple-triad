@@ -5,7 +5,7 @@ import { verifyEmail } from '../ducks/verifyEmail';
 
 function mapStateToProps(state) {
     return {
-        token: state.routing.locationBeforeTransitions.pathname.split('/verify/')[1]
+        token: state.routing.locationBeforeTransitions.pathname.split('verify/')[1]
     }
 }
 

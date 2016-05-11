@@ -12,7 +12,7 @@ export const listenToAuth = () => (dispatch,getState) => {
                     name: user.name,
                     avatar: user.avatar,
                     email: authData.auth.token.email,
-                    isVerified: authData.auth.token.email_verified
+                    isVerified: user.isVerified === 'true' ? true: false
                 }));
             });
         } else {

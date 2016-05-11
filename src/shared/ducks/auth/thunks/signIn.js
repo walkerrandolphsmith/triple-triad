@@ -34,7 +34,6 @@ export const signIn = user => (dispatch, getState) => {
         email    : user.username,
         password : user.password
     }, (error, authData) => {
-        debugger;
         if (error) {
             const message = {
                 form: 'signIn',

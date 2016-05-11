@@ -1,18 +1,18 @@
-import Token from './../../models/token/token';
-import User from './../../models/user/user';
+import Firebase from 'firebase';
+import { FIREBASE } from './../../../shared/constants/firebase';
+import tokenGenerator from './../../utils/token/tokenGenerator/tokenGenerator';
 import { sendVerificationEmail } from './../../utils/mailer/mailer';
 
 export function resendVerificationEmail(req, res) {
     const userId = req.body.userId;
-    Token.findOne({ userId: userId, type: 'USER' }, (err, token) => {
-        if(err || token === null) {
-            return res.status(500).send();
-        }
-        User.findById(userId, (userErr, user) => {
-            if(userErr || user === null) {
-                return res.status(500).send();
-            }
-            sendVerificationEmail(user.local.email, token.token, emailErr => {
+
+    var firebaseRef = new Firebase(FIREBASE);
+
+    tokenGenerator(userId).then(token => {
+        firebaseRef.child('users').child(userId).child('verificationToken').set(token);
+        firebaseRef.child('users').child(userId).once('value', snapshot => {
+            const user = snapshot.val();
+            sendVerificationEmail(user.email, token, emailErr => {
                 if(emailErr) {
                     return res.status(500).send();
                 }

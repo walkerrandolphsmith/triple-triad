@@ -15,20 +15,6 @@ describe('src/server/routes/verifyEmail', () => {
     });
 
     describe('Given a request containing a token, and a response', () => {
-        describe('When retrieving a token', () => {
-            let findOne;
-            beforeEach(() => {
-                res = {};
-                findOne = expect.createSpy();
-                __RewireAPI__.__Rewire__('Token', {
-                    findOne: findOne
-                });
-                verifyEmail(req, res);
-            });
 
-            it('should look up the user token', () => {
-                expect(findOne).toHaveBeenCalled();
-            });
-        });
     });
 });

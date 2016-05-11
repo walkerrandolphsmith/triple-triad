@@ -5,7 +5,6 @@ describe('src/server/routes/resendVerificationEmail', () => {
     let req;
     let res;
     describe('Given a request containing a user id and a response', () => {
-        let findOne = expect.createSpy();
         beforeEach(() => {
             req = {
                 body: {
@@ -20,15 +19,7 @@ describe('src/server/routes/resendVerificationEmail', () => {
                     return this;
                 }
             };
-            __RewireAPI__.__Rewire__('Token', {
-                findOne: findOne
-            });
-
             resendVerificationEmail(req, res);
-        });
-
-        it('should try to find one token', () => {
-            expect(findOne).toHaveBeenCalled();
         });
     });
 });

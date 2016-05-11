@@ -1,22 +1,16 @@
-import Token from './../../models/token/token';
-import User from './../../models/user/user';
+import Firebase from 'firebase';
+import { FIREBASE } from './../../../shared/constants/firebase';
 
 export function verifyEmail(req, res) {
-    Token.findOne({ token: req.body.token, type: 'USER' }, (err, token) => {
-        if(err || token === null) {
+    const firebaseRef = new Firebase(FIREBASE);
+    const token = req.body.token;
+    const userId = token.substring(0, 36);
+    firebaseRef.child('users').child(userId).once('value', snapshot => {
+        if(snapshot.val().verificationToken === token) {
+            firebaseRef.child('users').child(userId).child('isVerified').set(true);
+            return res.status(200).send();
+        } else {
             return res.status(500).send();
         }
-        User.findById(token.userId, (userErr, user) => {
-            if(userErr || user === null) {
-                return res.status(500).send();
-            }
-            user.local.verified = true;
-            user.save(saveErr => {
-                if(saveErr) {
-                    return res.status(500).send();
-                }
-                return res.status(200).send();
-            });
-        });
     });
 }
