@@ -14,8 +14,10 @@ export function getGames() {
                 games[key].id = key;
                 gamesArray.push(games[key]);
             });
-            gamesArray = gamesArray.filter(game => game.owner === ownerId);
+            gamesArray = gamesArray.filter(game => ownerIsRelatedToGame(game, ownerId));
             dipatch(getGamesSuccess(gamesArray));
         });
     };
 }
+
+const ownerIsRelatedToGame = (game, owner) => game.owner === owner || game.opponent === owner;
