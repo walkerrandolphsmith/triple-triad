@@ -8,7 +8,8 @@ describe('src/shared/reducers/auth/actions/receiveSignin', () => {
         beforeEach(() => {
             user = {
                 name: 'walker',
-                id: 12
+                id: 12,
+                isVerified: true
             };
             expectedAction = {
                 type: AUTH_SIGNIN_SUCCESS,

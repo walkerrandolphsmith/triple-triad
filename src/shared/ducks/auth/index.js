@@ -41,8 +41,11 @@ const INITIAL_STATE = new Map({
     signingOut: false,
     signingUp: false,
     user: new Map({
+        id: null,
+        email: null,
         username: null,
-        id: null
+        isVerified: false,
+        avatar: null
     })
 });
 

@@ -64,11 +64,8 @@ export const signUp = user => (dispatch, getState) => {
                 field: 'username',
                 error: error
             };
+            dispatch(setFormError(message));
         } else {
-            dispatch(signUpSuccess({
-                id: userData.uid,
-                name: username
-            }));
             dispatch(push('/games'));
         }
     });

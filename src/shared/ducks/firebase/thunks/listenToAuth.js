@@ -7,7 +7,8 @@ export const listenToAuth = () => (dispatch,getState) => {
         if (authData){
             dispatch(signInSuccess({
                 id: authData.uid,
-                name: 'still unknown'
+                name: authData.auth.token.email,
+                isVerified: authData.auth.token.email_verified
             }));
         } else {
            dispatch(signOutSuccess());

@@ -4,7 +4,8 @@ export const signInSuccess = user => ({
     payload: {
         user: {
             name: user.name,
-            id: user.id
+            id: user.id,
+            isVerified: user.isVerified
         }
     }
 });

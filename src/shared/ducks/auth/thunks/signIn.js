@@ -43,10 +43,6 @@ export const signIn = user => (dispatch, getState) => {
             };
             dispatch(setFormError(message));
         } else {
-            dispatch(signInSuccess({
-                id: authData.uid,
-                name: 'unknown name...'
-            }));
             dispatch(push('/games'));
         }
     });
