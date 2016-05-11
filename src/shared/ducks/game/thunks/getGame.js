@@ -1,25 +1,12 @@
-import request from 'superagent';
 import { getGameRequest, getGameSuccess, getGameFailure } from './../index';
 
-export function getGame(id) {
-    return dispatch => {
-        dispatch(getGameRequest());
+export const getGame = id => (dispatch, getState) => {
+    dispatch(getGameRequest());
 
-        const data = JSON.stringify({
-            gameId: id
-        });
-
-        return request
-        .post('/api/getGame')
-        .send(data)
-        .set('Accept', 'application/json')
-        .set('Content-Type', 'application/json')
-        .end((err, response) => {
-            if(response.status === 200) {
-                dispatch(getGameSuccess(response.body));
-            } else {
-                dispatch(getGameFailure());
-            }
-        });
-    };
-}
+    const firebaseRef = getState().firebase.get('ref');
+    firebaseRef.child('games').child(id).on('value', snapshot => {
+        let game = snapshot.val();
+        game.id = id;
+        dispatch(getGameSuccess(game));
+    });
+};

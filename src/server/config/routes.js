@@ -73,34 +73,6 @@ function configureAuthRoutes(passport) {
     );
 
     router.post(
-        '/createGame',
-        (req, res) => {
-            createGame(req, res);
-        }
-    );
-
-    router.post(
-        '/deleteGame',
-        (req, res) => {
-            deleteGame(req, res);
-        }
-    );
-
-    router.post(
-        '/getGame',
-        (req, res) => {
-            getGame(req, res);
-        }
-    );
-
-    router.post(
-        '/getGames',
-        (req, res) => {
-            getGames(req, res);
-        }
-    );
-
-    router.post(
         '/invite',
         (req, res) => {
             invite(req, res);

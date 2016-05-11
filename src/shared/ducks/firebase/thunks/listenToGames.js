@@ -1,8 +1,7 @@
 export const listenToGames = () => (dispatch, getState) => {
-    debugger;
     const firebaseRef = getState().firebase.get('ref');
-    firebaseRef.child('counter').on('value', snapshot => {
-        let value = snapshot.val();
-        debugger;
+    firebaseRef.child('games').on('value', snapshot => {
+        let games = snapshot.val();
+
     });
 };
