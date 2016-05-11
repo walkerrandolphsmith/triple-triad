@@ -56,7 +56,7 @@ export const signUp = user => (dispatch, getState) => {
     firebaseRef.createUser({
         email    : email,
         password : password
-    }, function(error, userData) {
+    }, (error, userData) => {
         debugger;
         if (error) {
             const message = {
@@ -66,6 +66,11 @@ export const signUp = user => (dispatch, getState) => {
             };
             dispatch(setFormError(message));
         } else {
+            firebaseRef.child('users').child(userData.uid).set({
+                name: username,
+                email: email,
+                avatar: 'assets/images/default-user.png'
+            });
             dispatch(push('/games'));
         }
     });
