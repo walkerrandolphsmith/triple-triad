@@ -9,7 +9,7 @@ import Routes from './../shared/routes';
 import configureStore from './../shared/store/store';
 import Firebase from 'firebase';
 import { FIREBASE } from './../shared/constants/firebase';
-import { setRef, listenToGames } from './../shared/ducks/firebase';
+import { setRef, listenToGames, listenToAuth } from './../shared/ducks/firebase';
 import { userProfile } from './../shared/ducks/user';
 import { getGame, getGames } from './../shared/ducks/game';
 
@@ -48,6 +48,7 @@ ReactDom.render(
 const ref = new Firebase(FIREBASE);
 store.dispatch(setRef(ref));
 store.dispatch(listenToGames());
+store.dispatch(listenToAuth());
 
 
 browserHistory.listen(location => {

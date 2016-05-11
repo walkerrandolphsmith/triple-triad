@@ -1,4 +1,3 @@
-import request from 'superagent';
 import {
     isValidUsername, isValidPassword, passwordsMatch, isValidEmail
 } from './../../../utils/formValidation/formValidation';
@@ -6,7 +5,7 @@ import { push } from 'react-router-redux';
 import { setFormError } from './../../forms/actions/setFormError';
 import { signUpRequest } from './../actions/signUpRequest';
 import { signUpSuccess } from './../actions/signUpSuccess';
-export const signUp = user => dispatch => {
+export const signUp = user => (dispatch, getState) => {
     dispatch(signUpRequest());
 
     const { username, password, confirmPassword, email } = user;
@@ -53,19 +52,24 @@ export const signUp = user => dispatch => {
         return;
     }
 
-    request
-        .post('/api/signUp')
-        .send(JSON.stringify(user))
-        .set('Accept', 'application/json')
-        .set('Content-Type', 'application/json')
-        .end((err, response) => {
-            if(response.status === 200) {
-                dispatch(signUpSuccess(response.body));
-                dispatch(push('/games'));
-            } else {
-                let message = JSON.parse(response.text);
-                message.form = 'signUp';
-                dispatch(setFormError(message));
-            }
-        });
+    const firebaseRef = getState().firebase.get('ref');
+    firebaseRef.createUser({
+        email    : email,
+        password : password
+    }, function(error, userData) {
+        debugger;
+        if (error) {
+            const message = {
+                form: 'signUp',
+                field: 'username',
+                error: error
+            };
+        } else {
+            dispatch(signUpSuccess({
+                id: userData.uid,
+                name: username
+            }));
+            dispatch(push('/games'));
+        }
+    });
 };

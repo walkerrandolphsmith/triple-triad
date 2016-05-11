@@ -20,20 +20,6 @@ function configureAuthRoutes(passport) {
     const router = express.Router();
 
     router.post(
-        '/signUp',
-        (req, res, next) => {
-            signUp(req, res, next, passport);
-        }
-    );
-
-    router.post(
-        '/signIn',
-        (req, res, next) => {
-            signIn(req, res, next, passport);
-        }
-    );
-
-    router.post(
         '/verifyEmail',
         (req, res) => {
             verifyEmail(req, res);
@@ -60,10 +46,6 @@ function configureAuthRoutes(passport) {
             resetPassword(req, res);
         }
     );
-
-    router.get('/signOut', (req, res) => {
-        signOut(req, res);
-    });
 
     router.post(
         '/userProfile',
