@@ -34,20 +34,6 @@ function configureAuthRoutes(passport) {
     );
 
     router.post(
-        '/forgotPassword',
-        (req, res) => {
-            forgotPassword(req, res);
-        }
-    );
-
-    router.post(
-        '/resetPassword',
-        (req, res) => {
-            resetPassword(req, res);
-        }
-    );
-
-    router.post(
         '/invite',
         (req, res) => {
             invite(req, res);

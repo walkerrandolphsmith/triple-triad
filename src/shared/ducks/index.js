@@ -5,7 +5,7 @@ import auth from './auth';
 import firebase from './firebase';
 import forms from './forms';
 import game from './game';
-import passwordReset from './passwordReset'
+import sendPasswordReset from './sendPasswordReset'
 import resendVerificationEmail from './resendVerificationEmail';
 import settings from './settings';
 
@@ -14,7 +14,7 @@ export default combineReducers({
     firebase,
     forms,
     game,
-    passwordReset,
+    sendPasswordReset,
     resendVerificationEmail,
     settings,
     routing: router
