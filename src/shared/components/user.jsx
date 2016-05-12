@@ -7,8 +7,7 @@ export class User extends React.Component {
     }
 
     render() {
-        let { id, username, email, isVerified } = this.props;
-
+        let { id, username, email, isVerified, avatar } = this.props;
         let verifyEmail = isVerified
             ? (<i className="fa fa-check"></i>)
             : (<i className="fa fa-envelope" onClick={this.resendEmailVerification.bind(this)}></i>);
@@ -25,11 +24,14 @@ export class User extends React.Component {
                         <h3 className="title">
                             {verifyEmail}
                             <span>{username}</span>
+                            <i className="fa fa-pencil" style={{float: 'right'}}></i>
                         </h3>
                     </div>
                     <div className="detail">
                         <div className="content">
-                            <img heigth="150px" width="150px" src="assets/images/default-user.png"/>
+
+
+                            <img src={avatar} />
                         </div>
                         <div className="content-info">
                             <div className="sub-note">
