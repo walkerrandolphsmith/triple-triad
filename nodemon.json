@@ -1,0 +1,15 @@
+{
+    "verbose": true,
+    "ignore": [
+        "*.spec.js"
+    ],
+    "watch": [
+        "src/server"
+    ],
+    "env": {
+        "NODE_ENV": "development"
+    },
+    "execMap": {
+        "js": "babel-node"
+    }
+}
