@@ -10,7 +10,8 @@ describe('src/shared/reducers/auth/actions/signInSuccess', () => {
                 name: 'walker',
                 email: 'tester@gmail.com',
                 id: 12,
-                isVerified: true
+                isVerified: true,
+                avatar: 'avatar'
             };
             expectedAction = {
                 type: AUTH_SIGNIN_SUCCESS,

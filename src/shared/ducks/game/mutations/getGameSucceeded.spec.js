@@ -11,7 +11,7 @@ describe('src/shared/reducers/game/mutations/getGameSucceeded', () => {
         beforeEach(() => {
             gameId = 20;
             game = {
-                _id: gameId,
+                id: gameId,
                 deck: [0, 1, 2],
                 owner: 0,
                 phase: 'phase',
@@ -34,12 +34,8 @@ describe('src/shared/reducers/game/mutations/getGameSucceeded', () => {
 
         describe('When getting a game was successful', () => {
             let actual;
-            let expected;
             beforeEach(() => {
                 actual = getGameSucceeded(state, payload);
-                game.id = game._id;
-                delete game._id;
-                expected = game;
             });
 
             it('should overwrite the existing game with the payload data', () => {
@@ -56,7 +52,7 @@ describe('src/shared/reducers/game/mutations/getGameSucceeded', () => {
         beforeEach(() => {
             gameId = 20;
             game = {
-                _id: gameId,
+                id: gameId,
                 deck: [0, 1, 2],
                 owner: 0,
                 phase: 'phase',
@@ -75,12 +71,8 @@ describe('src/shared/reducers/game/mutations/getGameSucceeded', () => {
 
         describe('When getting a game was successful', () => {
             let actual;
-            let expected;
             beforeEach(() => {
                 actual = getGameSucceeded(state, payload);
-                game.id = game._id;
-                delete game._id;
-                expected = game;
             });
 
             it('should append a game in the games list from payload data', () => {
