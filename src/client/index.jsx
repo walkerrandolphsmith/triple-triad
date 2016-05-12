@@ -10,11 +10,8 @@ import configureStore from './../shared/store/store';
 import Firebase from 'firebase';
 import { FIREBASE } from './../shared/constants/firebase';
 import { setRef, listenToGames, listenToAuth } from './../shared/ducks/firebase';
-import { getGame, getGames } from './../shared/ducks/game';
-
 import env from './../shared/config/environment';
 import './../assets/stylesheets/index.less';
-
 
 const browserHistory = useRouterHistory(createBrowserHistory)({
     basename: '/'
@@ -46,20 +43,8 @@ ReactDom.render(
 
 const ref = new Firebase(FIREBASE);
 store.dispatch(setRef(ref));
-store.dispatch(listenToGames());
 store.dispatch(listenToAuth());
-
-
-browserHistory.listen(location => {
-    if(location.pathname === 'games') {
-        store.dispatch(getGames());
-    }
-    else if(location.pathname.startsWith('game/')) {
-        const id = location.pathname.split('game/')[1];
-        store.dispatch(getGame(id));
-    }
-});
-
+store.dispatch(listenToGames());
 
 if (env.nodeEnv !== 'production') {
   const showDevTools = require('./../dev-tools/showDevTools').default;

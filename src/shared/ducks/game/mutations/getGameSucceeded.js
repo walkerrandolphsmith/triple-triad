@@ -1,7 +1,7 @@
 import { Map, fromJS } from 'immutable';
 
 export const getGameSucceeded = (state, payload) => {
-    const id = payload.game._id;
+    const id = payload.game.id;
     const nextState = state.set('gameRoute', id);
 
     const isKnownGame = state.get('games').find(game => game.get('id') === id);
