@@ -72,7 +72,10 @@
     "url": "https://github.com/walkerrandolphsmith/triple-triad.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "walkerrandolphsmith@gmail.com",
+  "contributors": [
+    "walkerrandolphsmith@gmail.com"
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/walkerrandolphsmith/triple-triad/issues"
