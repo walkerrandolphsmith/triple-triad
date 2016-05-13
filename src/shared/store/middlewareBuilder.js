@@ -6,26 +6,17 @@ import promiseMiddleware from './../middleware/promiseMiddleware';
 import env from './../../shared/config/environment';
 
 export default function middlewareBuilder(history) {
-    let middleware = applyMiddleware(
+    const middleware = applyMiddleware(
         thunk,
         promiseMiddleware,
         routerMiddleware(history)
     );
-    let composeElms = [];
+    let composeElms = [middleware];
 
-    if(env.isBrowser) {
-        if(env.nodeEnv !== 'production') {
-            composeElms = [
-                middleware,
-                DevTools.instrument()
-            ];
-        } else {
-            composeElms = [
-                middleware
-            ];
-        }
-    } else {
-        composeElms = [middleware];
+    if(env.isBrowser && env.nodeEnv !== 'production') {
+        composeElms.push(
+            DevTools.instrument()
+        );
     }
 
     return composeElms;
