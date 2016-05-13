@@ -1,4 +1,4 @@
-import env from './../../../shared/config/environment';
+import env from './../../shared/config/environment';
 import Mailgun from 'mailgun-js';
 
 const mailgun = new Mailgun({
