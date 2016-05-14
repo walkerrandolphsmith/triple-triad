@@ -35,7 +35,6 @@ export const GET_GAMES_FAILED = 'GET_GAMES_FAILED';
 export const GET_GAMES_REQUEST = 'GET_GAMES_REQUEST';
 export const GET_GAMES_SUCCESS = 'GET_GAMES_SUCCESS';
 export const PLACE_CARD = 'PLACE_CARD';
-export const RESET_GAME = 'RESET_GAME';
 export const START_AI_TURN = 'START_AI_TURN';
 export const SELECT_CARD = 'SELECT_CARD';
 export const SELECT_PIECE = 'SELECT_PIECE';
