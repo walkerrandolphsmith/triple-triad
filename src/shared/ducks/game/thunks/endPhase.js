@@ -17,14 +17,9 @@ export const endPhase = () => (dispatch, getState) => {
         dispatch(getNextCardForHand());
     }
     
-    if(willBePhaseRound(nextPhase)) {
-        //doesn't will be phase x imply the phase will be x and not cardSelection
-        //This mess is probably why I have to return early
-        //How did I ever get in this mess? smelly aye?
-        dispatch(setPhase(PHASE.CARD_SELECTION));
+    if(willBeCardSelectionRound(nextPhase)) {
         dispatch(setHands());
         dispatch(getNextSelectedCard());
-        return;
     }
 
     dispatch(setPhase(nextPhase));
@@ -34,7 +29,7 @@ function willBePhaseHandSelection(nextPhase) {
     return nextPhase === PHASE.HAND_SELECTION
 }
 
-function willBePhaseRound(nextPhase) {
-    return nextPhase === 'round'
+function willBeCardSelectionRound(nextPhase) {
+    return nextPhase === PHASE.CARD_SELECTION
 }
 
