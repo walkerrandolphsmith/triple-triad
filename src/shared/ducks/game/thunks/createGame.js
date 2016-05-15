@@ -7,7 +7,6 @@ export function createGame() {
         dipatch(createGameRequest());
         const state = getState();
         const ownerId = state.auth.get('user').get('id');
-
         const game = {
             userId: ownerId,
             deck: deck.toJS(),

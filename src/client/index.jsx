@@ -10,6 +10,7 @@ import configureStore from './../shared/store/store';
 import Firebase from 'firebase';
 import { FIREBASE } from './../shared/constants/firebase';
 import { setRef, listenToGames, listenToAuth } from './../shared/ducks/firebase';
+import { observeStore, onChange, select } from './gameObserver';
 import env from './../shared/config/environment';
 import './../assets/stylesheets/index.less';
 
@@ -45,6 +46,8 @@ const ref = new Firebase(FIREBASE);
 store.dispatch(setRef(ref));
 store.dispatch(listenToAuth());
 store.dispatch(listenToGames());
+
+observeStore(store, select, onChange);
 
 if (env.nodeEnv !== 'production') {
   const showDevTools = require('./../dev-tools/showDevTools').default;
