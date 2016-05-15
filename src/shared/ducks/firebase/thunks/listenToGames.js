@@ -1,35 +1,39 @@
-import diff from 'immutablediff';
-import { fromJS } from 'immutable';
-import { currentGameSelector } from './../../game';
-
 import { getGameSuccess } from './../../game/actions/getGameSuccess';
+import { currentGameSelector } from './../../game';
 
 export const listenToGames = () => (dispatch, getState) => {
     const firebaseRef = getState().firebase.get('ref');
     firebaseRef.child('games').on('value', snapshot => {
         let games = snapshot.val();
         if(games) {
-            Object.keys(games).forEach((key) => {
-                firebaseRef.child('games').child(key).on('value', snapshot => {
-                    let game = snapshot.val();
-                    game.id = key;
-                    const immutableGame = fromJS(game);
-                    const index = getState().game.get('games').findIndex(game => game.get('id') === key);
-                    if(index >= 0) {
-                        const localGame = getState().game.get('games').get(index);
-                        const diffs = diff(immutableGame, localGame);
-                        console.log("----------------------SNAPSHOT----------------------");
-                        console.log(diffs);
-                        if(diffs.size >= 0) {
-                            let ddddddd = diffs.toJS();
-                            debugger;
+            const gameIds = Object.keys(games);
+            if(gameIds.length > 0) {
+                gameIds.forEach(gameId => {
+                    let knownGames = getState().game.get('games').map(game => game.get('id'));
+                    let gameIsInLocalState = knownGames.find(id => id === gameId);
+                    let currentGame = currentGameSelector(getState());
+                    let authenticatedUser = getState().auth.get('user').get('id');
+
+                    if(shouldUpdateGame(gameId, currentGame, authenticatedUser, gameIsInLocalState)) {
+                        firebaseRef.child('games').child(gameId).once('value', snapshot => {
+                            let game = snapshot.val();
+                            game.id = gameId;
                             dispatch(getGameSuccess(game));
-                        }
-                    } else {
-                        dispatch(getGameSuccess(game));
+                        });
                     }
                 });
-            });
+            }
         }
     });
 };
+
+function shouldUpdateGame(gameId, currentGame, authenticatedUserOnClient, gameIsInLocalState) {
+    return (
+        !currentGame
+        || !gameIsInLocalState
+        || (
+            currentGame.get('id') === gameId
+            && authenticatedUserOnClient !== currentGame.get('currentPlayer')
+        )
+    )
+}
