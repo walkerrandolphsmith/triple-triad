@@ -26,8 +26,8 @@ describe('src/shared/actions/utils/getNextPhase', () => {
             randomHand = true;
         });
 
-        it('should return round phase', () => {
-            expect(getNextPhase(currentPhase, randomHand)).toEqual('round');
+        it('should return PHASE.CARD_SELECTION phase', () => {
+            expect(getNextPhase(currentPhase, randomHand)).toEqual('PHASE.CARD_SELECTION');
         });
     });
 
@@ -37,7 +37,7 @@ describe('src/shared/actions/utils/getNextPhase', () => {
             randomHand = false;
         });
 
-        it('should return round phase', () => {
+        it('should return PHASE.CARD_SELECTION phase', () => {
             expect(getNextPhase(currentPhase, randomHand)).toEqual(PHASE.HAND_SELECTION);
         });
     });
@@ -48,8 +48,8 @@ describe('src/shared/actions/utils/getNextPhase', () => {
             randomHand = true;
         });
 
-        it('should return round phase', () => {
-            expect(getNextPhase(currentPhase, randomHand)).toEqual('round');
+        it('should return PHASE.CARD_SELECTION phase', () => {
+            expect(getNextPhase(currentPhase, randomHand)).toEqual('PHASE.CARD_SELECTION');
         });
     });
 
@@ -59,7 +59,7 @@ describe('src/shared/actions/utils/getNextPhase', () => {
             randomHand = true;
         });
 
-        it('should return round phase', () => {
+        it('should return PHASE.CARD_SELECTION phase', () => {
             expect(getNextPhase(currentPhase, randomHand)).toEqual(PHASE.SETTINGS_SELECTION);
         });
     });
@@ -70,7 +70,7 @@ describe('src/shared/actions/utils/getNextPhase', () => {
             randomHand = true;
         });
 
-        it('should return round phase', () => {
+        it('should return PHASE.CARD_SELECTION phase', () => {
             expect(getNextPhase(currentPhase, randomHand)).toEqual(PHASE.SETTINGS_SELECTION);
         });
     });

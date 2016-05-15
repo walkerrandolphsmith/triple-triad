@@ -75,7 +75,7 @@ describe('src/shared/reducers/game/thunks/endPhase', () => {
         });
     });
 
-    describe('Given the next phase will be round, When the phase is ended', () => {
+    describe('Given the next phase will be PHASE.CARD_SELECTION, When the phase is ended', () => {
         beforeEach(() => {
             __RewireAPI__.__Rewire__('currentGameSelector', () => new Map({
                 phase: PHASE.PIECE_SELECTION
@@ -85,7 +85,7 @@ describe('src/shared/reducers/game/thunks/endPhase', () => {
                     randomHand: false
                 })
             });
-            __RewireAPI__.__Rewire__('getNextPhase', () => 'round');
+            __RewireAPI__.__Rewire__('getNextPhase', () => PHASE.CARD_SELECTION);
         });
 
         it('should dispatch setPhase and getNextCardForHand', () => {
