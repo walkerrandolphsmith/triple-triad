@@ -11,7 +11,7 @@ describe('src/shared/reducers/game/thunks/handleEnter', () => {
         dispatch = expect.createSpy();
         __RewireAPI__.__Rewire__('currentGameSelector', () => new Map({}));
         __RewireAPI__.__Rewire__('setPhase', () => 1);
-        __RewireAPI__.__Rewire__('getNextSelectedPiece', () => 2);
+        __RewireAPI__.__Rewire__('selectNextPiece', () => 2);
         __RewireAPI__.__Rewire__('completeTurn', () => 3);
         __RewireAPI__.__Rewire__('addCard', () => 5);
         __RewireAPI__.__Rewire__('updateSetting', () => 6);
@@ -136,7 +136,7 @@ describe('src/shared/reducers/game/thunks/handleEnter', () => {
             expect(dispatch).toHaveBeenCalledWith(1);
         });
 
-        it('should dispatch the getNextSelectedPiece action to set the board with a selected piece', () => {
+        it('should dispatch the selectNextPiece action to set the board with a selected piece', () => {
             handleEnter()(dispatch, getState);
             expect(dispatch).toHaveBeenCalledWith(2);
         });

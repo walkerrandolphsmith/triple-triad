@@ -76,7 +76,7 @@ export { endPhase } from './thunks/endPhase';
 export { getGame } from './thunks/getGame';
 export { getGames } from './thunks/getGames';
 export { selectNextCard } from './thunks/selectNextCard';
-export { getNextSelectedPiece } from './thunks/getNextSelectedPiece';
+export { selectNextPiece } from './thunks/selectNextPiece';
 export { handleDown } from './thunks/handleDown';
 export { handleEnter } from './thunks/handleEnter';
 export { handleEscape } from './thunks/handleEscape';

@@ -1,7 +1,7 @@
 import expect from 'expect';
-import { getNextSelectedPiece, __RewireAPI__ } from './getNextSelectedPiece';
+import { selectNextPiece, __RewireAPI__ } from './selectNextPiece';
 
-describe('src/shared/reducers/game/thunks/getNextSelectedPiece', () => {
+describe('src/shared/reducers/game/thunks/selectNextPiece', () => {
     let getState;
     let dispatch;
     let keyCode;
@@ -15,11 +15,11 @@ describe('src/shared/reducers/game/thunks/getNextSelectedPiece', () => {
     });
 
     it('should be a function', () => {
-        expect(getNextSelectedPiece(keyCode)).toBeA('function');
+        expect(selectNextPiece(keyCode)).toBeA('function');
     });
 
     it('should dispatch the SELECT_PIECE action', () => {
-        getNextSelectedPiece(keyCode)(dispatch, getState);
+        selectNextPiece(keyCode)(dispatch, getState);
         expect(dispatch).toHaveBeenCalledWith(2);
     });
 });
