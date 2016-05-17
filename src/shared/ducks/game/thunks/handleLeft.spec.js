@@ -12,7 +12,7 @@ describe('src/shared/reducers/game/thunks/handleLeft', () => {
             dispatch = expect.createSpy();
             game = new Map({});
             __RewireAPI__.__Rewire__('currentGameSelector', () => game);
-            __RewireAPI__.__Rewire__('getNextCardForHand', () => 1);
+            __RewireAPI__.__Rewire__('selectNextCard', () => 1);
             __RewireAPI__.__Rewire__('getNextSelectedPiece', () => 2);
         });
     
@@ -28,7 +28,7 @@ describe('src/shared/reducers/game/thunks/handleLeft', () => {
                 __RewireAPI__.__Rewire__('currentGameSelector', () => game);
             });
     
-            it('should dispatch the result of getNextCardForHand', () => {
+            it('should dispatch the result of selectNextCard', () => {
                 handleLeft()(dispatch, getState);
                 expect(dispatch).toHaveBeenCalled(1);
             });

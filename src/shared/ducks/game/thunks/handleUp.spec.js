@@ -24,7 +24,7 @@ describe('src/shared/reducers/game/thunks/handleUp', () => {
         });
 
         it('should dispatch the GET_NEXT_SELECTED_CARD action', () => {
-            __RewireAPI__.__Rewire__('getNextSelectedCard', () => 1);
+            __RewireAPI__.__Rewire__('selectNextCard', () => 1);
             handleUp()(dispatch, getState);
             expect(dispatch).toHaveBeenCalledWith(1);
         });

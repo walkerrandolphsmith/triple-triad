@@ -1,6 +1,6 @@
 import PHASE from './../../../constants/phases';
 import { currentGameSelector } from './../index';
-import { getNextSelectedCard } from './getNextSelectedCard';
+import { selectNextCard } from './selectNextCard';
 import { getNextSelectedPiece } from './getNextSelectedPiece';
 
 export const handleDown = () => (dispatch, getState) => {
@@ -8,7 +8,7 @@ export const handleDown = () => (dispatch, getState) => {
 
     let cases = {
         [PHASE.CARD_SELECTION]: () => {
-            dispatch(getNextSelectedCard('down'));
+            dispatch(selectNextCard('deck', 'down'));
         },
         [PHASE.PIECE_SELECTION]: () => {
             dispatch(getNextSelectedPiece('down'));

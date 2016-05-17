@@ -1,5 +1,5 @@
 import { completeTurn } from './completeTurn';
-import { getNextSelectedCard } from './getNextSelectedCard';
+import { selectNextCard } from './selectNextCard';
 import { endAiTurn } from './../actions/endAiTurn';
 import { selectCard } from './../actions/selectCard';
 import { startAiTurn } from './../actions/startAiTurn';
@@ -17,6 +17,6 @@ export const aiTurn = () => (dispatch, getState) => {
     if(piece >= 0){
         dispatch(completeTurn(piece, false));
     }
-    dispatch(getNextSelectedCard());
+    dispatch(selectNextCard('hand'));
     dispatch(endAiTurn());
 };

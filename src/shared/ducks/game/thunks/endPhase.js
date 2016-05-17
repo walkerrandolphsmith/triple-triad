@@ -2,8 +2,7 @@ import PHASE from './../../../constants/phases';
 import { currentGameSelector } from './../index';
 import { setPhase } from './../actions/setPhase';
 import { setHands } from './setHands';
-import { getNextSelectedCard } from './getNextSelectedCard';
-import { getNextCardForHand } from './getNextCardForHand';
+import { selectNextCard } from './selectNextCard';
 import { getNextPhase } from './../../../utils/getNextPhase';
 
 export const endPhase = () => (dispatch, getState) => {
@@ -14,12 +13,12 @@ export const endPhase = () => (dispatch, getState) => {
     const nextPhase = getNextPhase(currentPhase, randomHand);
 
     if(willBePhaseHandSelection(nextPhase)) {
-        dispatch(getNextCardForHand());
+        dispatch(selectNextCard('hand'));
     }
     
     if(willBeCardSelectionRound(nextPhase)) {
         dispatch(setHands());
-        dispatch(getNextSelectedCard());
+        dispatch(selectNextCard('deck'));
     }
 
     dispatch(setPhase(nextPhase));

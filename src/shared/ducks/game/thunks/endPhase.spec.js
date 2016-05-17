@@ -11,8 +11,7 @@ describe('src/shared/reducers/game/thunks/endPhase', () => {
         __RewireAPI__.__Rewire__('getNextPhase', () => 0);
         __RewireAPI__.__Rewire__('setPhase', () => 1);
         __RewireAPI__.__Rewire__('setHands', () => 2);
-        __RewireAPI__.__Rewire__('getNextSelectedCard', () => 3);
-        __RewireAPI__.__Rewire__('getNextCardForHand', () => 4);
+        __RewireAPI__.__Rewire__('selectNextCard', () => 3);
     });
 
     it('should be a function', () => {
@@ -71,7 +70,7 @@ describe('src/shared/reducers/game/thunks/endPhase', () => {
         it('should dispatch setPhase and getNextCardForHand', () => {
             endPhase()(dispatch, getState);
             expect(dispatch).toHaveBeenCalledWith(1);
-            expect(dispatch).toHaveBeenCalledWith(4);
+            expect(dispatch).toHaveBeenCalledWith(3);
         });
     });
 
@@ -88,7 +87,7 @@ describe('src/shared/reducers/game/thunks/endPhase', () => {
             __RewireAPI__.__Rewire__('getNextPhase', () => PHASE.CARD_SELECTION);
         });
 
-        it('should dispatch setPhase and getNextCardForHand', () => {
+        it('should dispatch setPhase and selectNextCard', () => {
             endPhase()(dispatch, getState);
             expect(dispatch).toHaveBeenCalledWith(1);
             expect(dispatch).toHaveBeenCalledWith(2);

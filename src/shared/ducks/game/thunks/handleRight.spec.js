@@ -14,7 +14,7 @@ describe('src/shared/reducers/game/thunks/handleRight', () => {
                 phase: PHASE.HAND_SELECTION
             });
             __RewireAPI__.__Rewire__('currentGameSelector', () => game);
-            __RewireAPI__.__Rewire__('getNextCardForHand', () => 1);
+            __RewireAPI__.__Rewire__('selectNextCard', () => 1);
             __RewireAPI__.__Rewire__('getNextSelectedPiece', () => 2);
         });
 
@@ -30,7 +30,7 @@ describe('src/shared/reducers/game/thunks/handleRight', () => {
                 __RewireAPI__.__Rewire__('currentGameSelector', () => game);
             });
 
-            it('should dispatch the result of getNextCardForHand', () => {
+            it('should dispatch the result of selectNextCard', () => {
                 handleRight()(dispatch, getState);
                 expect(dispatch).toHaveBeenCalled(1);
             });

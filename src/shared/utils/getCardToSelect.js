@@ -1,15 +1,14 @@
-import { getHand } from './getHand';
-
-export function getCardToSelect(game, directionInLoop) {
-    const hand = getHand(game.get('deck'), 1);
-    const id = game.get('selectedCard');
-
-    if(id === -1) {
-        return hand.get(0);
+export const getCardToSelect = (selectedCard, cards, directionInLoop) => {
+    if(selectedCard === -1) {
+        return cards.get(0);
     }
 
-    const i = hand.findIndex(card => card.get('id') === id);
-    const amountToIncrement = directionInLoop === 'down' ? 1 : hand.size - 1;
-
-    return hand.get((i + amountToIncrement) % hand.size);
-}
+    const i = cards.findIndex(card => card.get('id') === selectedCard);
+    let amountToIncrement;
+    if(directionInLoop === 'down' || directionInLoop === 'right') {
+        amountToIncrement = 1;
+    } else {
+        amountToIncrement = cards.size - 1;
+    }
+    return cards.get((i + amountToIncrement) % cards.size);
+};
