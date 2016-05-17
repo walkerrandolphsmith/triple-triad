@@ -2,13 +2,12 @@
 
 Web application for playing the card game, triple triad.
 
-##Issues [![GitHub issues][issues-badge]][issues]
-Please file issues [here][issues]
+##Issues [![GitHub issues][issues-badge]][issues] [![Stories in Ready][waffle-badge]][waffle]
+
+Please file bugs [here][issues]. Items are tracked with [waffle.io](https://waffle.io/walkerrandolphsmith/triple-triad).
 
 Include `closes`, `fixes`, or `resolves` in a commit message to close the issue.  
 For example `git commit -m "This closes #34, and closes #23"` 
-
-Issues will be tracked on [waffle.io](https://waffle.io/walkerrandolphsmith/triple-triad).
 
 ##Playing the game
 
@@ -94,3 +93,8 @@ rpm run test:integration # runs integration tests
 [issues]: https://img.shields.io/github/issues/walkerrandolphsmith/triple-triad.svg?style=flat-square
 [issues]: https://github.com/walkerrandolphsmith/triple-triad/issues
 [issues-badge]: https://img.shields.io/github/issues/walkerrandolphsmith/triple-triad.svg?style=flat-square
+
+[waffle]: https://img.shields.io/github/issues/walkerrandolphsmith/triple-triad.svg?style=flat-square
+[waffle]: http://waffle.io/walkerrandolphsmith/triple-triad
+[waffle-badge]: https://img.shields.io/waffle/label/walkerrandolphsmith/triple-triad.svg?style=flat-square
+
