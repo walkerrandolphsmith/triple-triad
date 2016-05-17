@@ -11,13 +11,12 @@ export class Game extends React.Component {
     }
 
     render() {
-        let { id, owner, opponent, currentPlayer, phase } = this.props.game;
+        let { id, owner, opponent, currentPlayer, phase, canDelete } = this.props.game;
         let waitingOnPlayerText = currentPlayer === this.props.loggedInAs ? 'you' : 'opponent';
-        let opponentIsAIText = 'AI' | opponent;
         let blueScore = 5;
         let redScore = 5;
 
-        let gameAction = this.props.canDelete ? (<i className="fa fa-trash-o" onClick={this.deleteGame.bind(this, id)}></i>) : (<i></i>);
+        let gameAction = canDelete ? (<i className="fa fa-trash-o" onClick={this.deleteGame.bind(this, id)}></i>) : (<i></i>);
 
         return (
             <div id={id} className="game">
@@ -44,7 +43,7 @@ export class Game extends React.Component {
                     <div className="footer">
                         <span>{owner}</span>
                         <span> VS </span>
-                        <span>{opponentIsAIText}</span>
+                        <span>{opponent}</span>
                     </div>
                 </div>
                 <div className="more" onClick={this.selectGame.bind(this, id)}>

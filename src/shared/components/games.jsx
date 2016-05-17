@@ -6,12 +6,10 @@ export class Games extends React.Component {
     render() {
         let { id, games } = this.props;
         const gamesList = games.map(game => {
-            const userCanDeleteGame = id === game.owner;
             return (<Game key={game.id}
                    loggedInAs={this.props.id}
                    game={game}
                    push={this.props.push}
-                   canDelete={userCanDeleteGame}
                    deleteGame={this.props.deleteGame} />)
         });
 

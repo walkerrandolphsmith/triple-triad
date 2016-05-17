@@ -5,16 +5,29 @@ import { push } from 'react-router-redux';
 import { createGame, deleteGame } from './../ducks/game';
 
 function mapStateToProps(state) {
-    return {
-        id: state.auth.get('user').get('id'),
-        games: state.game.get('games').map(game => ({
+    const loggedInUser = state.auth.get('user').get('id');
+    const games = state.game.get('games').map(game => {
+        let owner;
+        let canDelete;
+        if(game.get('owner') === loggedInUser) {
+            owner = state.auth.get('user').get('username');
+            canDelete = true;
+        } else {
+            owner = 'AI';
+            canDelete = false;
+        }
+        return {
             id: game.get('id'),
-            owner: game.get('owner'),
-            opponent: 'opponent',
+            owner: owner,
+            canDelete: canDelete,
+            opponent: game.get('opponent'),
             currentPlayer: game.get('currentPlayer'),
             phase: game.get('phase')
-        })),
-        id: state.auth.get('user').get('id')
+        }
+    });
+    return {
+        id: loggedInUser,
+        games: games
     }
 }
 
