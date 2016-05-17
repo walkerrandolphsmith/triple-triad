@@ -9,6 +9,7 @@ export const getGameSucceeded = (state, payload) => {
     const newGame = new Map({
         'id': id,
         'owner': payload.game.owner,
+        'opponent': payload.game.opponent,
         'deck': fromJS(payload.game.deck),
         'phase': payload.game.phase,
         'accepted': payload.game.accepted,
