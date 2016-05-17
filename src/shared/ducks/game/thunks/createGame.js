@@ -12,6 +12,7 @@ export function createGame() {
             deck: deck.toJS(),
             phase: PHASES.SETTINGS_SELECTION,
             owner: ownerId,
+            opponent: 'AI',
             currentPlayer: ownerId,
             accepted: false,
             selectedCard: -1,
