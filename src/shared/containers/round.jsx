@@ -6,12 +6,15 @@ import { selectCard, completeTurn } from '../ducks/game';
 
 function mapStateToProps(state) {
     const { settings } = state;
+    const game = currentGameSelector(state);
+    let message = game.get('currentPlayerMessage');
 
     return {
         game: currentGameSelector(state),
         settings: settings,
         board: boardSelector(state),
         hand: handSelector(state),
+        currentPlayerMessage: message,
         opponentHand: opponentHandSelector(state),
         validPieces: validPiecesSelector(state),
         score: scoreSelector(state)
