@@ -8,9 +8,16 @@ export class Round extends React.Component {
         let { game, board, hand, opponentHand, settings, currentPlayerMessage, validPieces, score } = this.props;
         let { selectCard, completeTurn } = this.props;
 
+        const messageStyles = {
+            display: currentPlayerMessage ? 'block' : 'none'
+        };
+
         return (
             <div id="round">
-                The current player is: {currentPlayerMessage}
+                <div className="currentPlayerMessage"
+                     style={messageStyles}>
+                    {currentPlayerMessage}
+                </div>
                 <div className="row">
                     <div className="col-xl-1 col-lg-2 col-md-2 col-sm-2 col-xs-12">
                         <Hand score={score.blue}
