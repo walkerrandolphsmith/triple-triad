@@ -11,11 +11,8 @@ export class Game extends React.Component {
     }
 
     render() {
-        let { id, owner, opponent, currentPlayer, phase, canDelete } = this.props.game;
+        let { id, owner, opponent, currentPlayer, red, blue, phase, canDelete } = this.props.game;
         let waitingOnPlayerText = currentPlayer === this.props.loggedInAs ? 'you' : 'opponent';
-        let blueScore = 5;
-        let redScore = 5;
-
         let gameAction = canDelete ? (<i className="fa fa-trash-o" onClick={this.deleteGame.bind(this, id)}></i>) : (<i></i>);
 
         return (
@@ -37,7 +34,7 @@ export class Game extends React.Component {
                             <span>{phase}</span>
                         </div>
                         <div className="sub-note">
-                            <span>{blueScore} v {redScore}</span>
+                            <span>{blue} v {red}</span>
                         </div>
                     </div>
                     <div className="footer">
