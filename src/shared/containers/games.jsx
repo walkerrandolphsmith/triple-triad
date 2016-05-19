@@ -4,26 +4,32 @@ import { Games } from './../components';
 import { push } from 'react-router-redux';
 import { createGame, deleteGame } from './../ducks/game';
 import { getScoreForOwner } from './../utils/getScoreForOwner';
+import { isCurrentPlayerMe } from './../utils/isCurrentPlayerMe';
 
 function mapStateToProps(state) {
     const loggedInUser = state.auth.get('user').get('id');
     const games = state.game.get('games').map(game => {
         let owner;
+        let opponent;
         let canDelete;
         if(game.get('owner') === loggedInUser) {
             owner = state.auth.get('user').get('username');
+            opponent = game.get('opponent');
             canDelete = true;
         } else {
             owner = 'AI';
+            opponent = state.auth.get('user').get('username');
             canDelete = false;
         }
         const blue = getScoreForOwner(game.get('deck'), 1);
         const red = getScoreForOwner(game.get('deck'), 2);
+        let isMyTurn = isCurrentPlayerMe(game.get('currentPlayer'), loggedInUser);
         return {
+            isMyTurn: isMyTurn,
             id: game.get('id'),
             owner: owner,
             canDelete: canDelete,
-            opponent: game.get('opponent'),
+            opponent: opponent,
             currentPlayer: game.get('currentPlayer'),
             blue: blue,
             red: red,

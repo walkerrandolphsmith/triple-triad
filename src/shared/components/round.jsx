@@ -5,8 +5,13 @@ import { Hand } from './hand';
 export class Round extends React.Component {
 
     render() {
-        let { game, board, hand, opponentHand, settings, currentPlayerMessage, validPieces, score } = this.props;
+        let { game, isMyTurn, board, hand, opponentHand, settings, currentPlayerMessage, validPieces, score } = this.props;
         let { selectCard, completeTurn } = this.props;
+
+        if(!isMyTurn) {
+            selectCard = () => {};
+            completeTurn = () => {};
+        }
 
         const messageStyles = {
             display: currentPlayerMessage ? 'block' : 'none'
