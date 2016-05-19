@@ -1,0 +1,1 @@
+export const isCurrentPlayerMe = (currentPlayer, player) => currentPlayer === player;

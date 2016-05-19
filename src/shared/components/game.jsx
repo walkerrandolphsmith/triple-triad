@@ -11,8 +11,8 @@ export class Game extends React.Component {
     }
 
     render() {
-        let { id, owner, opponent, currentPlayer, red, blue, phase, canDelete } = this.props.game;
-        let waitingOnPlayerText = currentPlayer === this.props.loggedInAs ? 'you' : 'opponent';
+        let { id, owner, opponent, red, blue, phase, canDelete } = this.props.game;
+        let waitingOnPlayerText = this.props.isMyTurn ? 'you' : 'opponent';
         let gameAction = canDelete ? (<i className="fa fa-trash-o" onClick={this.deleteGame.bind(this, id)}></i>) : (<i></i>);
 
         return (
