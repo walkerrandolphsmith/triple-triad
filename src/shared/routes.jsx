@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
 import App from './../shared/containers/app';
+import LeaderBoard from './../shared/containers/leaderBoard';
 import SignIn from './../shared/containers/signin';
 import SignUp from './../shared/containers/signup';
 import VerifyEmail from './../shared/containers/verify';
@@ -24,6 +25,7 @@ export default (
       <Route path="games" component={RequireAuthentication(Games)}/>
       <Route path="game/:gameId" component={RequireAuthentication(PhaseEnforcer())} />
       <Route path="user" component={RequireAuthentication(User)}/>
+      <Route path="leaderboard" component={LeaderBoard}/>
       <Route path="*" component={NotFound} status={404}/>
     </Route>
 )
