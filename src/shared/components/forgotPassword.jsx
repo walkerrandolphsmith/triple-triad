@@ -55,10 +55,10 @@ export class ForgotPassword extends React.Component {
                         type="submit">
                         Send email
                     </button>
-                    <Link to="/signin">
-                        <span>I remember, sign in</span>
-                    </Link>
                 </form>
+                <Link to="/signin">
+                    <span>I remember, sign in</span>
+                </Link>
             </div>
         );
     }
