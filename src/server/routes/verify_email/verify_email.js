@@ -1,10 +1,11 @@
-import Firebase from 'firebase';
-import { FIREBASE } from './../../../shared/constants/firebase';
+import firebase from 'firebase';
+import env from './../../../shared/config/environment';
 
 export function verifyEmail(req, res) {
-    const firebaseRef = new Firebase(FIREBASE);
+    //const firebaseRef = new firebase(env.firebase.databaseURL);
     const token = req.body.token;
     const userId = token.substring(0, 36);
+    /*
     firebaseRef.child('users').child(userId).once('value', snapshot => {
         if(snapshot.val().verificationToken === token) {
             firebaseRef.child('users').child(userId).child('isVerified').set(true);
@@ -13,4 +14,5 @@ export function verifyEmail(req, res) {
             return res.status(500).send();
         }
     });
+    */
 }

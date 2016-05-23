@@ -1,14 +1,15 @@
-import Firebase from 'firebase';
-import { FIREBASE } from './../../../shared/constants/firebase';
+import firebase from 'firebase';
 import tokenGenerator from './../../utils/tokenGenerator';
 import { sendVerificationEmail } from './../../utils/mailer';
+import env from './../../../shared/config/environment';
 
 export function resendVerificationEmail(req, res) {
     const userId = req.body.userId;
 
-    var firebaseRef = new Firebase(FIREBASE);
+    //var firebaseRef = new firebase(env.firebase.databaseURL);
 
     tokenGenerator(userId).then(token => {
+        /*
         firebaseRef.child('users').child(userId).child('verificationToken').set(token);
         firebaseRef.child('users').child(userId).once('value', snapshot => {
             const user = snapshot.val();
@@ -19,5 +20,6 @@ export function resendVerificationEmail(req, res) {
                 return res.json({ sent: true });
             });
         });
+        */
     });
 }

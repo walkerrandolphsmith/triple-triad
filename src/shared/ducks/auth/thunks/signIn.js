@@ -3,6 +3,7 @@ import { push } from 'react-router-redux';
 import { setFormError } from './../../forms/actions/setFormError';
 import { signInRequest } from './../actions/signInRequest';
 import { signInSuccess } from './../actions/signInSuccess';
+import firebase from 'firebase';
 
 export const signIn = user => (dispatch, getState) => {
     dispatch(signInRequest());
@@ -29,20 +30,17 @@ export const signIn = user => (dispatch, getState) => {
     if(error) {
         return;
     }
-    const firebaseRef = getState().firebase.get('ref');
-    firebaseRef.authWithPassword({
-        email    : user.username,
-        password : user.password
-    }, (error, authData) => {
-        if (error) {
-            const message = {
-                form: 'signIn',
-                field: 'username',
-                error: error
-            };
-            dispatch(setFormError(message));
-        } else {
-            dispatch(push('/games'));
-        }
-    });
+
+    firebase.auth()
+        .signInWithEmailAndPassword(user.username, user.password)
+        .catch(error => {
+            if (error) {
+                const message = {
+                    form: 'signIn',
+                    field: 'username',
+                    error: error
+                };
+                dispatch(setFormError(message));
+            }
+        });
 };

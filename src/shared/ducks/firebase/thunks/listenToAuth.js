@@ -1,20 +1,24 @@
 import { signInSuccess } from './../../auth/actions/signInSuccess';
 import { signOutSuccess } from './../../auth/actions/signOutSuccess';
+import firebase from 'firebase';
 
-export const listenToAuth = () => (dispatch,getState) => {
-    const firebaseRef = getState().firebase.get('ref');
-    firebaseRef.onAuth(authData => {
-        if (authData){
-            firebaseRef.child('users').child(authData.uid).once('value', snapshot => {
-                const user = snapshot.val();
-                dispatch(signInSuccess({
-                    id: authData.uid,
-                    name: user.name,
-                    avatar: user.avatar,
-                    email: authData.auth.token.email,
-                    isVerified: user.isVerified
-                }));
-            });
+export const listenToAuth = () => (dispatch, getState) => {
+    const auth = firebase.auth();
+    auth.onAuthStateChanged(user => {
+        if (user){
+            getState().firebase.get('ref')
+                .child('users')
+                .child(user.uid)
+                .once('value', snapshot => {
+                    const u = snapshot.val();
+                    dispatch(signInSuccess({
+                        id: user.uid,
+                        name: u.name,
+                        avatar: u.avatar,
+                        email: user.email,
+                        isVerified: u.isVerified
+                    }));
+                });
         } else {
            dispatch(signOutSuccess());
         }

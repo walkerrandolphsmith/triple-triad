@@ -5,10 +5,9 @@ import { Router, useRouterHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import { Provider } from 'react-redux';
 import { fromJS } from 'immutable';
+import firebase from 'firebase';
 import Routes from './../shared/routes';
 import configureStore from './../shared/store/store';
-import Firebase from 'firebase';
-import { FIREBASE } from './../shared/constants/firebase';
 import { setRef, listenToGames, listenToAuth } from './../shared/ducks/firebase';
 import { observeStore, onChange, select } from './gameObserver';
 import env from './../shared/config/environment';
@@ -42,7 +41,15 @@ ReactDom.render(
   mountNode
 );
 
-const ref = new Firebase(FIREBASE);
+firebase.initializeApp({
+    apiKey: env.keys.firebase.apiKey,
+    authDomain: env.firebase.authDomain,
+    databaseURL: env.firebase.databaseURL,
+    storageBucket: env.firebase.storageBucket
+});
+
+var ref = firebase.database().ref();
+
 store.dispatch(setRef(ref));
 store.dispatch(listenToAuth());
 store.dispatch(listenToGames());

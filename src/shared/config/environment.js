@@ -10,6 +10,14 @@ export default {
         mailgun: {
             apiKey: process.env.MAILGUN_API_KEY,
             domain: process.env.MAILGUN_DOMAIN
+        },
+        firebase: {
+            apiKey: process.env.FIREBASE_API_KEY
         }
+    },
+    firebase: {
+        authDomain: 'triple-triad.firebaseapp.com',
+        databaseURL: 'https://triple-triad.firebaseio.com',
+        dataStorage: 'firebase-triple-triad.appspot.com'
     }
 };

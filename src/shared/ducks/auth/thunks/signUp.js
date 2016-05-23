@@ -5,6 +5,8 @@ import { push } from 'react-router-redux';
 import { setFormError } from './../../forms/actions/setFormError';
 import { signUpRequest } from './../actions/signUpRequest';
 import { signUpSuccess } from './../actions/signUpSuccess';
+import firebase from 'firebase';
+
 export const signUp = user => (dispatch, getState) => {
     dispatch(signUpRequest());
 
@@ -51,27 +53,16 @@ export const signUp = user => (dispatch, getState) => {
     if(error) {
         return;
     }
-
-    const firebaseRef = getState().firebase.get('ref');
-    firebaseRef.createUser({
-        email    : email,
-        password : password
-    }, (error, userData) => {
-        if (error) {
-            const message = {
-                form: 'signUp',
-                field: 'username',
-                error: error
-            };
-            dispatch(setFormError(message));
-        } else {
-            firebaseRef.child('users').child(userData.uid).set({
-                name: username,
-                email: email,
-                avatar: 'assets/images/default-user.png',
-                isVerified: false
-            });
-            dispatch(push('/games'));
-        }
-    });
+    
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+        .catch(error => {
+            if (error) {
+                const message = {
+                    form: 'signUp',
+                    field: 'username',
+                    error: error
+                };
+                dispatch(setFormError(message));
+            }
+        });
 };
