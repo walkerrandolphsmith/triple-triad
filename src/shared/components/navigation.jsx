@@ -31,8 +31,8 @@ export class Navigation extends React.Component {
             ? (
                 <LinkContainer to={{ pathname: '/user' }}>
                     <NavItem eventKey={1}>
-                        <img style={{width: '24px'}} src="assets/images/default-user.png"/>
-                        <span>{user}</span>
+                        <img style={{width: '24px'}} src={user.get('avatar')}/>
+                        <span>{user.get('username')}</span>
                     </NavItem>
                 </LinkContainer>
             )

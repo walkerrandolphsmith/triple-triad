@@ -1,0 +1,1 @@
+export const avatarUpdated = (state, payload) => state.setIn('user.avatar'.split('.'), payload.avatar);

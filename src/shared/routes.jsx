@@ -10,6 +10,7 @@ import ForgotPassword from './../shared/containers/forgotPassword';
 import PasswordReset from './../shared/containers/passwordReset';
 import Games from './../shared/containers/games';
 import User from './../shared/containers/user';
+import UserEdit from './../shared/containers/userEdit';
 import NotFound from './../shared/containers/notFound';
 import RequireAuthentication from './containers/authentication';
 import PhaseEnforcer from './containers/phaseEnforcer';
@@ -25,6 +26,7 @@ export default (
       <Route path="games" component={RequireAuthentication(Games)}/>
       <Route path="game/:gameId" component={RequireAuthentication(PhaseEnforcer())} />
       <Route path="user" component={RequireAuthentication(User)}/>
+      <Route path="user/edit" component={RequireAuthentication(UserEdit)}/>
       <Route path="leaderboard" component={LeaderBoard}/>
       <Route path="*" component={NotFound} status={404}/>
     </Route>

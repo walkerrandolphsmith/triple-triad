@@ -22,4 +22,5 @@ export { Settings } from './settings';
 export { SignIn } from './signIn';
 export { SignUp } from './signUp';
 export { User } from './user';
+export { UserEdit } from './userEdit';
 export { Verify } from './verify';

@@ -6,7 +6,7 @@ import { handleDown, handleEnter, handleEscape, handleLeft, handleRight, handleU
 
 function mapStateToProps(state) {
     return {
-        user: state.auth.get('user').get('username'),
+        user: state.auth.get('user'),
         activeRoute: state.routing.locationBeforeTransitions ? state.routing.locationBeforeTransitions.pathname : '/',
         keyCodes: KEY_CODE
     }

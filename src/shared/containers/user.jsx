@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { User } from './../components';
 import { signOut } from '../ducks/auth';
 import { resendEmailVerification } from '../ducks/resendVerificationEmail';
+import { push } from 'react-router-redux';
 
 function mapStateToProps(state) {
     return {
@@ -18,7 +19,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ signOut, resendEmailVerification }, dispatch);
+    return bindActionCreators({ signOut, resendEmailVerification, push }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(User);

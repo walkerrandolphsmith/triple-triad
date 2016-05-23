@@ -45,7 +45,7 @@ firebase.initializeApp({
     apiKey: env.keys.firebase.apiKey,
     authDomain: env.firebase.authDomain,
     databaseURL: env.firebase.databaseURL,
-    storageBucket: env.firebase.storageBucket
+    storageBucket: env.firebase.dataStorage
 });
 
 var ref = firebase.database().ref();

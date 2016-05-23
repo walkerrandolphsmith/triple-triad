@@ -14,8 +14,6 @@ export default function(app, routers) {
 
     app.use(cors());
     app.use(bodyparser.json());
-    app.use('/api', routers.authRouter);
-    app.use('/*', routers.gameRouter);
 
     if(nodeEnv === 'development') {
         app.use(express.static(path.join(__dirname, './../../../src')));
@@ -34,4 +32,6 @@ export default function(app, routers) {
     } else {
         app.use(express.static('dist/public'));
     }
+    app.use('/api', routers.authRouter);
+    app.use('/*', routers.gameRouter);
 }

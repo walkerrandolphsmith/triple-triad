@@ -6,6 +6,10 @@ export class User extends React.Component {
         this.props.resendEmailVerification(this.props.id);
     }
 
+    editProfile() {
+        this.props.push('/user/edit');
+    }
+
     render() {
         let { id, username, email, isVerified, avatar } = this.props;
         let verifyEmail = isVerified
@@ -24,7 +28,10 @@ export class User extends React.Component {
                         <h3 className="title">
                             {verifyEmail}
                             <span>{username}</span>
-                            <i className="fa fa-pencil" style={{float: 'right'}}></i>
+                            <i className="fa fa-pencil"
+                               style={{float: 'right'}}
+                               onClick={this.editProfile.bind(this)}>
+                            </i>
                         </h3>
                     </div>
                     <div className="detail">
