@@ -2,8 +2,6 @@ import path from 'path';
 import express from 'express';
 import cors from 'cors';
 import bodyparser from 'body-parser';
-import cookieSession from 'cookie-session';
-import cookieParser from 'cookie-parser';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import webpackDevMiddleware from 'webpack-dev-middleware';
@@ -15,6 +13,9 @@ export default function(app, routers) {
     const { nodeEnv, devPort } = env;
 
     app.use(cors());
+    app.use(bodyparser.json());
+    app.use('/api', routers.authRouter);
+    app.use('/*', routers.gameRouter);
 
     if(nodeEnv === 'development') {
         app.use(express.static(path.join(__dirname, './../../../src')));
@@ -33,13 +34,4 @@ export default function(app, routers) {
     } else {
         app.use(express.static('dist/public'));
     }
-
-    app.use(bodyparser.json());
-    app.use(cookieParser());
-    app.use(cookieSession({
-        secret: 'secret',
-        cookie: { maxAge: 3600 }
-    }));
-    app.use('/api', routers.authRouter);
-    app.use('/*', routers.gameRouter);
 }

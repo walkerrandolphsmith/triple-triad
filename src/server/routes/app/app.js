@@ -16,13 +16,6 @@ export function app(request, response) {
         history: undefined
     });
     
-    //figure out how to store firebase user in session/cookie/etc
-    if(request.session
-        && request.session.passport
-        && request.session.passport.user) {
-        store.dispatch(signInSuccess(request.session.passport.user));
-    }
-
     match({ routes, location }, (err, redirectLocation, renderProps) => {
         if(err) {
             return response.status(500).end('Internal server error.');
