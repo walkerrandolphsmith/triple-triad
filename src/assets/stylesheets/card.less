@@ -1,12 +1,66 @@
 .card-wrapper {
-  display: inline;
+  height: 127px;
+  width: 100px;
+  position: relative;
+  perspective: 800px;
 }
 
 .card {
-  display: inline-block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+  transition: transform 7s;
 }
 
-.card, .piece, .card-placeholder {
+.front, .back {
+  margin: 0;
+  display: block;
+  position: absolute;
+  height: 127px;
+  width: 100px;
+  backface-visibility: hidden;
+  background-size: contain;
+}
+
+.card .front {
+
+}
+
+.card .back {
+  background-image: url(../images/cards/back.png);
+  transform: rotateY( 180deg );
+}
+
+.card.flipped-left {
+  transform: rotateY(-360deg);
+}
+
+.card.flipped-right {
+  transform: rotateY(360deg);
+}
+
+.card.flipped-up {
+  transform: rotateX(360deg);
+}
+
+.card.flipped-down {
+  transform: rotateX(-360deg);
+}
+
+.selected:after {
+  content: " ";
+  width: 25px;
+  height: 30px;
+  position: absolute;
+  left: -25px;
+  top: 50px;
+  transform: rotate(90deg);
+  background-image: url("../images/pointer.png");
+  background-size: contain;
+}
+
+.piece, .card-placeholder {
   height: 127px;
   width: 100px;
   background-size: contain;
@@ -16,25 +70,4 @@
 #card-selection .card-wrapper,
 .piece {
   position: relative;
-}
-
-.selected:after {
-  content: " ";
-  width: 25px;
-  height: 30px;
-  position: absolute;
-  transform: rotate(90deg);
-  background-image: url("../images/pointer.png");
-  background-size: contain;
-}
-
-#round .hand .card-wrapper.selected:after {
-  top: -75px !important;
-}
-
-#card-selection .card-wrapper.selected:after,
-#round .hand .card-wrapper.selected:after,
-.piece.selected:after{
-  left: -25px;
-  top: 50px;
 }

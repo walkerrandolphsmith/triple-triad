@@ -19,7 +19,10 @@ export class Card extends React.Component {
 
         return (
             <div id={cardId} className={className} onClick={clickAction}>
-                <div className='card' style={finalStyles}></div>
+                <div className='card'>
+                    <div className="front" style={finalStyles}></div>
+                    <div className="back"></div>
+                </div>
             </div>
         );
     }
