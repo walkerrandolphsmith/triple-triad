@@ -38,6 +38,7 @@ export { signOut } from './thunks/signOut';
 
 export { updateAvatarSuccess } from './actions/updateAvatarSuccess'
 export { updateAvatar } from './thunks/updateAvatar';
+export { deleteUser } from './thunks/deleteUser';
 
 const INITIAL_STATE = new Map({
     loading: false,

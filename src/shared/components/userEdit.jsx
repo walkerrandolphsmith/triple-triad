@@ -21,8 +21,10 @@ export class UserEdit extends React.Component {
             const file = event.target.files[i];
             this.props.updateAvatar(file);
         }
+    }
 
-
+    deleteUser() {
+        this.props.deleteUser();
     }
 
     render() {
@@ -72,6 +74,9 @@ export class UserEdit extends React.Component {
                     <div className="more" onClick={this.save}>
                         <span>Save</span>
                     </div>
+                </div>
+                <div id="delete-user">
+                    <button className="btn btn-danger" onClick={this.deleteUser.bind(this)}>Delete</button>
                 </div>
             </div>
         )

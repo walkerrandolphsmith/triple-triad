@@ -1,7 +1,7 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { UserEdit } from './../components';
-import { signOut, updateAvatar } from '../ducks/auth';
+import { signOut, deleteUser, updateAvatar } from '../ducks/auth';
 import { resendEmailVerification } from '../ducks/resendVerificationEmail';
 import { push } from 'react-router-redux';
 
@@ -15,7 +15,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ signOut, updateAvatar, resendEmailVerification, push }, dispatch);
+    return bindActionCreators({ signOut, deleteUser, updateAvatar, resendEmailVerification, push }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserEdit);
