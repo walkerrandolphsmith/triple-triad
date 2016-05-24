@@ -1,13 +1,17 @@
 import React from 'react';
 import { Game } from './game';
+import { GameClosed } from './gameClosed';
 
 export class Games extends React.Component {
 
     render() {
         let { games, isMyTurn, push, deleteGame } = this.props;
 
-        const gamesList = games.map(game => <Game key={game.id} game={game} isMyTurn={isMyTurn}
-                                                  push={push} deleteGame={deleteGame} />);
+        const gamesList = games.map(game => {
+            return game.phase !== 'GAME_OVER'
+                ? (<Game key={game.id} game={game} isMyTurn={isMyTurn} push={push} deleteGame={deleteGame} />)
+                : (<GameClosed key={game.id} game={game} />);
+        });
 
         return (
             <div id="game-selection">
