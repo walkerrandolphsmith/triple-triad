@@ -1,7 +1,7 @@
 import firebase from 'firebase';
-import tokenGenerator from './../../utils/tokenGenerator';
-import { sendVerificationEmail } from './../../utils/mailer';
-import env from './../../../shared/config/environment';
+import tokenGenerator from './../utils/tokenGenerator';
+import { sendVerificationEmail } from './../utils/mailer';
+import env from './../../shared/config/environment';
 
 export function resendVerificationEmail(req, res) {
     const userId = req.body.userId;

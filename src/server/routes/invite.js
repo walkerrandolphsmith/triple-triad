@@ -1,4 +1,4 @@
-import { sendInviteEmail } from './../../utils/mailer';
+import { sendInviteEmail } from './../utils/mailer';
 
 export function invite(req, res) {
     const { gameId, invitee, gameOwner } = req.body;

@@ -1,5 +1,5 @@
 import firebase from 'firebase';
-import env from './../../../shared/config/environment';
+import env from './../../shared/config/environment';
 
 export function verifyEmail(req, res) {
     //const firebaseRef = new firebase(env.firebase.databaseURL);
