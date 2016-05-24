@@ -40,25 +40,6 @@ sudo make install
 node --version
 ```
 
-####Install Mongo
-
-Add the following lines to `.bash_profile`
-
-```
-export MONGO_PATH=/usr/local/mongodb
-export PATH=$PATH:$MONGO_PATH/bin
-```
-
-```bash
-cd ~/Downloads
-tar xzf mongodb-osx-x86_64-2.2.3.tgz
-sudo mv mongodb-osx-x86_64-2.2.3 /usr/local/mongodb
-sudo mkdir -p /data/db
-whoami #// => <username>
-sudo chown <username> /data/db
-mongo -version
-```
-
 ####Install Node Modules
 ```bash
 npm install
