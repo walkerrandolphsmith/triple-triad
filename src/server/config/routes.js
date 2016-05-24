@@ -37,7 +37,7 @@ function configureGameRoutes() {
     const router = express.Router();
 
     router.use(
-        '/*',
+        '/',
         (req, res) => {
             app(req, res);
         }

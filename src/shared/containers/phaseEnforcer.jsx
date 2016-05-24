@@ -14,7 +14,6 @@ export default function() {
         const currentGame = currentGameSelector(state);
         const phase = currentGame ? currentGame.get('phase') : PHASE.SETTINGS_SELECTION;
         return {
-            path: state.routing.locationBeforeTransitions.pathname,
             phase: phase,
             phases: PHASE,
             componentMap: {

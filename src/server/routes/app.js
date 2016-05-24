@@ -5,6 +5,9 @@ import { Provider } from 'react-redux';
 import createLocation from 'history/lib/createLocation';
 import routes from './../../shared/routes';
 import configureStore from './../../shared/store/store';
+import { getGame } from './../../shared/ducks/game';
+import { setRef } from './../../shared/ducks/firebase/index';
+import firebase from 'firebase';
 
 export function app(request, response) {
     const location = createLocation(request.url);
@@ -13,6 +16,18 @@ export function app(request, response) {
         initialState: undefined,
         history: undefined
     });
+
+    var ref = firebase.database().ref();
+    store.dispatch(setRef(ref));
+
+    if(request.url.startsWith('/game/-')) {
+        const gameId = request.url.split('/')[2];
+        store.dispatch(getGame(gameId));
+    }
+    //Overwrite firebase ref or JSON.stringify wiill throw
+    //TYPE ERROR circular dependency error
+    store.dispatch(setRef(''));
+
 
     match({ routes, location }, (err, redirectLocation, renderProps) => {
         if(err) {

@@ -1,5 +1,6 @@
 import path from 'path';
 import express from 'express';
+import firebase from 'firebase';
 import cors from 'cors';
 import bodyparser from 'body-parser';
 import webpack from 'webpack';
@@ -14,6 +15,12 @@ export default function(app, routers) {
 
     app.use(cors());
     app.use(bodyparser.json());
+
+    const serviceAccountFilePath = `${__dirname}/service-account.json`;
+    firebase.initializeApp({
+        databaseURL: env.firebase.databaseURL,
+        serviceAccount: serviceAccountFilePath
+    });
 
     if(nodeEnv === 'development') {
         app.use(express.static(path.join(__dirname, './../../../src')));
@@ -33,5 +40,5 @@ export default function(app, routers) {
         app.use(express.static('dist/public'));
     }
     app.use('/api', routers.authRouter);
-    app.use('/*', routers.gameRouter);
+    app.use('/', routers.gameRouter);
 }
