@@ -4,6 +4,7 @@ import { User } from './../components';
 import { signOut } from '../ducks/auth';
 import { resendEmailVerification } from '../ducks/resendVerificationEmail';
 import { push } from 'react-router-redux';
+import { getScoresSelector } from '../ducks/auth/selectors';
 
 function mapStateToProps(state) {
     return {
@@ -12,6 +13,7 @@ function mapStateToProps(state) {
         email: state.auth.get('user').get('email'),
         isVerified: state.auth.get('user').get('isVerified'),
         avatar: state.auth.get('user').get('avatar'),
+        tally: getScoresSelector(state),
         resendingVerificationEmail: state.resendVerificationEmail.get('loading'),
         verificationEmailSent: state.resendVerificationEmail.get('loaded'),
         failedToSendVerificationEmail: state.resendVerificationEmail.get('failed')

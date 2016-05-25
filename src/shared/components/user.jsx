@@ -11,8 +11,12 @@ export class User extends React.Component {
     }
 
     render() {
-        let { id, username, email, isVerified, avatar } = this.props;
-        let verifyEmail = isVerified
+        const { id, username, email, isVerified, avatar, tally } = this.props;
+        const wins = tally ? tally.wins : 0;
+        const loses = tally ? tally.loses : 0;
+        const ties = tally ? tally.ties : 0;
+
+        const verifyEmail = isVerified
             ? (<i className="fa fa-check"></i>)
             : (<i className="fa fa-envelope" onClick={this.resendEmailVerification.bind(this)}></i>);
 
@@ -45,7 +49,7 @@ export class User extends React.Component {
                                 <span>5 Friends</span>
                             </div>
                             <div className="sub-note">
-                                <span>10/35</span>
+                                <span>W-{wins} : L-{loses} : T-{ties}</span>
                             </div>
                         </div>
                         <div className="footer">
