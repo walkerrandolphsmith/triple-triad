@@ -1,4 +1,4 @@
-import { Map, fromJS } from 'immutable';
+import { convertGame } from './../../../utils/convertGameToImmutable';
 
 export const getGameSucceeded = (state, payload) => {
     const id = payload.game.id;
@@ -6,17 +6,8 @@ export const getGameSucceeded = (state, payload) => {
 
     const isKnownGame = state.get('games').find(game => game.get('id') === id);
     let newGames;
-    const newGame = new Map({
-        'id': id,
-        'owner': payload.game.owner,
-        'opponent': payload.game.opponent,
-        'deck': fromJS(payload.game.deck),
-        'phase': payload.game.phase,
-        'accepted': payload.game.accepted,
-        'currentPlayer': payload.game.currentPlayer,
-        'selectedCard': payload.game.selectedCard,
-        'selectedPiece': payload.game.selectedPiece
-    });
+
+    const newGame = convertGame(payload.game);
 
     if(isKnownGame) {
         newGames = state.get('games').update(
