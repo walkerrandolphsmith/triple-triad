@@ -12,7 +12,7 @@ describe('src/shared/reducers/game/mutations/getGameSucceeded', () => {
             gameId = 20;
             game = {
                 id: gameId,
-                deck: [0, 1, 2],
+                deck: [{ id: 0, rank: { top: 0, bottom: 0, left: 0, right: 0 } }],
                 owner: 0,
                 opponent: 1,
                 phase: 'phase',
@@ -54,7 +54,7 @@ describe('src/shared/reducers/game/mutations/getGameSucceeded', () => {
             gameId = 20;
             game = {
                 id: gameId,
-                deck: [0, 1, 2],
+                deck: [{ id: 0, rank: { top: 0, bottom: 0, left: 0, right: 0 } }],
                 owner: 0,
                 opponent: 1,
                 phase: 'phase',

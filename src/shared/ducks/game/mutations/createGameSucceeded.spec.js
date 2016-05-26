@@ -16,7 +16,17 @@ describe('src/shared/reducers/game/mutations/createGameSucceeded', () => {
                 games: new List([])
             });
             payload = {
-                game: { _id: 1 }
+                game: {
+                    id: 1,
+                    owner: 0,
+                    opponent: 0,
+                    phase: 'p',
+                    accepted: false,
+                    currentPlayer: 0,
+                    selectedCard: 0,
+                    selectedPiece: 0,
+                    deck: [{ rank: { bottom: 0, left: 0, right: 0, top: 0 } }]
+                }
             };
         });
 
