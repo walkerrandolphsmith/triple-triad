@@ -9,7 +9,7 @@ export const endPhase = () => (dispatch, getState) => {
     const state = getState();
     const currentGame = currentGameSelector(state);
     const randomHand = state.settings.get('randomHand');
-    const currentPhase = currentGame.get('phase');
+    const currentPhase = currentGame.phase;
     const nextPhase = getNextPhase(currentPhase, randomHand);
 
     if(willBePhaseHandSelection(nextPhase)) {

@@ -20,8 +20,8 @@ export const getScoresSelector = createSelector(
     [meSelector, getGamesAssociatedWithMeSelector],
     (id, games) => {
        const scores = games.map(game => {
-            const isOwner = game.get('owner') === id;
-            const deck = game.get('deck');
+            const isOwner = game.owner === id;
+            const deck = game.deck;
             const board = getBoard(deck);
             const blue = getScoreForOwner(deck, 1);
             const red = getScoreForOwner(deck, 2);

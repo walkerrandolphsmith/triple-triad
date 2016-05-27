@@ -5,6 +5,6 @@ export const setHand = (owner) => (dispatch, getState) => {
     const currentGame = currentGameSelector(getState());
     const randomHand = getRandomHand(currentGame);
     randomHand.forEach(card => {
-        dispatch(addCard(card.get('id'), owner));
+        dispatch(addCard(card.id, owner));
     });
 };

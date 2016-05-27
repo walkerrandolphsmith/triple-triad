@@ -1,6 +1,7 @@
 import expect from 'expect';
 import { Map, List } from 'immutable';
 import { getGamesSucceeded } from './getGamesSucceeded';
+import { GameRecord, CardRecord } from './../../../constants/records';
 
 describe('src/shared/reducers/game/mutations/getGamesSucceeded', () => {
     describe('Given games state and a payload containing a game', () => {
@@ -8,18 +9,9 @@ describe('src/shared/reducers/game/mutations/getGamesSucceeded', () => {
         let payload;
         let games;
         beforeEach(() => {
+            let game = new GameRecord({ id: 20 });
             games = [
-                {
-                    id: 0,
-                    owner: 0,
-                    opponent: 0,
-                    accepted: false,
-                    currentPlayer: 0,
-                    phase: 'p',
-                    deck: [{ rank: { left: 0, top: 0, bottom: 0, right: 0 } }],
-                    selectedCard: 0,
-                    selectedPiece: 0
-                }
+                game.toJS()
             ];
             state = new Map({
                 getGames: new Map({
@@ -51,7 +43,7 @@ describe('src/shared/reducers/game/mutations/getGamesSucceeded', () => {
             });
 
             it('should set the games to the result of getGamesFromPayload', () => {
-                expect(actual.get('games').toJS()).toEqual(games);
+                expect(actual.get('games').first().id).toEqual(games[0].id);
             });
         });
     });

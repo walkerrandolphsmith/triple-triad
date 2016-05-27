@@ -1,7 +1,7 @@
 import expect from 'expect';
-import { Map } from 'immutable';
 import { handleEscape, __RewireAPI__ } from './handleEscape';
 import PHASE from './../../../constants/phases';
+import { GameRecord } from './../../../constants/records';
 
 describe('src/shared/reducers/game/thunks/handleEscape', () => {
     let getState;
@@ -9,7 +9,7 @@ describe('src/shared/reducers/game/thunks/handleEscape', () => {
     beforeEach(() => {
         getState = () => ({});
         dispatch = expect.createSpy();
-        let game = new Map ({
+        let game = new GameRecord ({
             phase: PHASE.PIECE_SELECTION
         });
         __RewireAPI__.__Rewire__('currentGameSelector', () => game);

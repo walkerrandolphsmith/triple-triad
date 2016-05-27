@@ -19,8 +19,8 @@ export const completeTurn = (indexOfPiece, isPlayer) => (dispatch, getState) => 
     dispatch(placeCard());
     
     const currentGame = currentGameSelector(getState());
-    const i = currentGame.get('selectedPiece');
-    const deck = currentGame.get('deck');
+    const i = currentGame.selectedPiece;
+    const deck = currentGame.deck;
 
     getFlips(i, deck).forEach(tuple => {
         dispatch(updateBoard(tuple.index, tuple.owner));
@@ -36,7 +36,7 @@ export const completeTurn = (indexOfPiece, isPlayer) => (dispatch, getState) => 
         return;
     }
 
-    dispatch(showCurrentPlayerMessage(currentGame.get('currentPlayer')));
+    dispatch(showCurrentPlayerMessage(currentGame.currentPlayer));
     setTimeout(() => {
         dispatch(showCurrentPlayerMessage(''));
         let nextPlayer = getNextPlayer(currentGame);
@@ -48,10 +48,10 @@ export const completeTurn = (indexOfPiece, isPlayer) => (dispatch, getState) => 
 };
 
 function gameOver(currentGame) {
-    return getBoard(currentGame.get('deck')).size === 9;
+    return getBoard(currentGame.deck).size === 9;
 }
 
 const getNextPlayer = currentGame => {
-    return currentGame.get('currentPlayer') === currentGame.get('owner') 
-        ? currentGame.get('opponent') : currentGame.get('owner');
+    return currentGame.currentPlayer === currentGame.owner 
+        ? currentGame.opponent : currentGame.owner;
 };

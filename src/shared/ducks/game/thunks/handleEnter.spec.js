@@ -2,6 +2,8 @@ import expect from 'expect';
 import { Map, List } from 'immutable';
 import { handleEnter, __RewireAPI__ } from './handleEnter';
 import PHASE from './../../../constants/phases';
+import { GameRecord, CardRecord } from './../../../constants/records';
+
 describe('src/shared/reducers/game/thunks/handleEnter', () => {
     let getState;
     let dispatch;
@@ -9,7 +11,7 @@ describe('src/shared/reducers/game/thunks/handleEnter', () => {
     beforeEach(() => {
         getState = () => ({});
         dispatch = expect.createSpy();
-        __RewireAPI__.__Rewire__('currentGameSelector', () => new Map({}));
+        __RewireAPI__.__Rewire__('currentGameSelector', () => new GameRecord({}));
         __RewireAPI__.__Rewire__('setPhase', () => 1);
         __RewireAPI__.__Rewire__('selectNextPiece', () => 2);
         __RewireAPI__.__Rewire__('completeTurn', () => 3);
@@ -23,7 +25,7 @@ describe('src/shared/reducers/game/thunks/handleEnter', () => {
 
     describe('given it is settings selection phase and no setting is focused', () => {
         beforeEach(() => {
-            game = new Map({ phase: PHASE.SETTINGS_SELECTION });
+            game = new GameRecord({ phase: PHASE.SETTINGS_SELECTION });
             __RewireAPI__.__Rewire__('currentGameSelector', () => game);
             getState = () => ({
                 settings: new Map({
@@ -40,7 +42,7 @@ describe('src/shared/reducers/game/thunks/handleEnter', () => {
 
     describe('given it is settings selection phase and a setting is focused', () => {
         beforeEach(() => {
-            __RewireAPI__.__Rewire__('currentGameSelector', () => new Map({ phase: PHASE.SETTINGS_SELECTION }));
+            __RewireAPI__.__Rewire__('currentGameSelector', () => new GameRecord({ phase: PHASE.SETTINGS_SELECTION }));
             getState = () => ({
                 settings: new Map({
                     focused: 'randomHand'
@@ -58,12 +60,12 @@ describe('src/shared/reducers/game/thunks/handleEnter', () => {
     describe('given it is hand selection phase and your hand is not full', () => {
         beforeEach(() => {
             let cardIndex = 12;
-            game = new Map({
+            game = new GameRecord({
                 phase: PHASE.HAND_SELECTION,
                 selectedCard: cardIndex,
                 deck: new List([
-                    new Map({ id: cardIndex, owner: 0, name: 'Cloud', boardIndex: -1 }),
-                    new Map({ id: 0, owner: 0, name: 'Tifa', boardIndex: -1 })
+                    new CardRecord({ id: cardIndex, owner: 0, name: 'Cloud', boardIndex: -1 }),
+                    new CardRecord({ id: 0, owner: 0, name: 'Tifa', boardIndex: -1 })
                 ])
             });
             __RewireAPI__.__Rewire__('currentGameSelector', () => game);
@@ -78,15 +80,15 @@ describe('src/shared/reducers/game/thunks/handleEnter', () => {
 
     describe('given it is hand selection phase and your hand is full and the selected card is not owned', () => {
         beforeEach(() => {
-            game = new Map({
+            game = new GameRecord({
                 phase: PHASE.HAND_SELECTION,
                 selectedCard: 12,
                 deck: new List([
-                    new Map({ id: 0, owner: 1, name: '0', boardIndex: -1 }),
-                    new Map({ id: 1, owner: 1, name: '1', boardIndex: -1 }),
-                    new Map({ id: 2, owner: 1, name: '2', boardIndex: -1 }),
-                    new Map({ id: 3, owner: 1, name: '3', boardIndex: -1 }),
-                    new Map({ id: 4, owner: 1, name: '4', boardIndex: -1 })
+                    new CardRecord({ id: 0, owner: 1, name: '0', boardIndex: -1 }),
+                    new CardRecord({ id: 1, owner: 1, name: '1', boardIndex: -1 }),
+                    new CardRecord({ id: 2, owner: 1, name: '2', boardIndex: -1 }),
+                    new CardRecord({ id: 3, owner: 1, name: '3', boardIndex: -1 }),
+                    new CardRecord({ id: 4, owner: 1, name: '4', boardIndex: -1 })
                 ])
             });
             __RewireAPI__.__Rewire__('currentGameSelector', () => game);
@@ -101,15 +103,15 @@ describe('src/shared/reducers/game/thunks/handleEnter', () => {
 
     describe('given it is hand selection phase and your hand is full but the selected card is owned', () => {
         beforeEach(() => {
-            game = new Map({
+            game = new GameRecord({
                 phase: PHASE.HAND_SELECTION,
                 selectedCard: 4,
                 deck: new List([
-                    new Map({ id: 0, owner: 1, name: '0', boardIndex: -1 }),
-                    new Map({ id: 1, owner: 1, name: '1', boardIndex: -1 }),
-                    new Map({ id: 2, owner: 1, name: '2', boardIndex: -1 }),
-                    new Map({ id: 3, owner: 1, name: '3', boardIndex: -1 }),
-                    new Map({ id: 4, owner: 1, name: '4', boardIndex: -1 })
+                    new CardRecord({ id: 0, owner: 1, name: '0', boardIndex: -1 }),
+                    new CardRecord({ id: 1, owner: 1, name: '1', boardIndex: -1 }),
+                    new CardRecord({ id: 2, owner: 1, name: '2', boardIndex: -1 }),
+                    new CardRecord({ id: 3, owner: 1, name: '3', boardIndex: -1 }),
+                    new CardRecord({ id: 4, owner: 1, name: '4', boardIndex: -1 })
                 ])
             });
             __RewireAPI__.__Rewire__('currentGameSelector', () => game);
@@ -124,7 +126,7 @@ describe('src/shared/reducers/game/thunks/handleEnter', () => {
 
     describe('given it is not the piece selection phase', () => {
         beforeEach(() => {
-            game = new Map({
+            game = new GameRecord({
                 phase: PHASE.CARD_SELECTION
             });
             getState = () => ({});
@@ -144,7 +146,7 @@ describe('src/shared/reducers/game/thunks/handleEnter', () => {
 
     describe('given it is the piece selection phase', () => {
         beforeEach(() => {
-            game = new Map({
+            game = new GameRecord({
                 phase: PHASE.PIECE_SELECTION,
                 selectedPiece: 0
             });

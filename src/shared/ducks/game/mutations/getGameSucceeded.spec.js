@@ -1,6 +1,7 @@
 import expect from 'expect';
 import { List, Map } from 'immutable';
 import { getGameSucceeded } from './getGameSucceeded';
+import { GameRecord } from './../../../constants/records';
 
 describe('src/shared/reducers/game/mutations/getGameSucceeded', () => {
     describe('Given game state and a payload containing a game id that is in the games list', () => {
@@ -10,26 +11,14 @@ describe('src/shared/reducers/game/mutations/getGameSucceeded', () => {
         let game;
         beforeEach(() => {
             gameId = 20;
-            game = {
-                id: gameId,
-                deck: [{ id: 0, rank: { top: 0, bottom: 0, left: 0, right: 0 } }],
-                owner: 0,
-                opponent: 1,
-                phase: 'phase',
-                accepted: false,
-                currentPlayer: 2,
-                selectedCard: 2,
-                selectedPiece: 2
-            };
+            game = new GameRecord({ id: gameId });
             state = new Map({
                 games: new List([
-                    new Map({
-                        id: gameId
-                    })
+                    new GameRecord({ id: gameId })
                 ])
             });
             payload = {
-                game: game
+                game: game.toJS()
             };
         });
 
@@ -40,7 +29,7 @@ describe('src/shared/reducers/game/mutations/getGameSucceeded', () => {
             });
 
             it('should overwrite the existing game with the payload data', () => {
-               expect(actual.get('games').first().toJS()).toEqual(game); 
+               expect(actual.get('games').first().id).toEqual(game.id); 
             });
         });
     });
@@ -48,26 +37,16 @@ describe('src/shared/reducers/game/mutations/getGameSucceeded', () => {
     describe('Given game state and a payload containing a game id that is not in the games list', () => {
         let state;
         let payload;
-        let gameId;
         let game;
         beforeEach(() => {
-            gameId = 20;
-            game = {
-                id: gameId,
-                deck: [{ id: 0, rank: { top: 0, bottom: 0, left: 0, right: 0 } }],
-                owner: 0,
-                opponent: 1,
-                phase: 'phase',
-                accepted: false,
-                currentPlayer: 2,
-                selectedCard: 2,
-                selectedPiece: 2
-            };
+            game = new GameRecord({ id: 20 });
             state = new Map({
-                games: new List([])
+                games: new List([
+                    new GameRecord({ id: 21 })
+                ])
             });
             payload = {
-                game: game
+                game: game.toJS()
             };
         });
 
@@ -78,7 +57,7 @@ describe('src/shared/reducers/game/mutations/getGameSucceeded', () => {
             });
 
             it('should append a game in the games list from payload data', () => {
-                expect(actual.get('games').first().toJS()).toEqual(game);
+                expect(actual.get('games').get(1).id).toEqual(game.id);
             });
         });
     });

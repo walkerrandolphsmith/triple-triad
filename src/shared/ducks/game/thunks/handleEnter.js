@@ -26,13 +26,13 @@ export const handleEnter = () => (dispatch, getState) => {
         }
     };
     
-    cases[currentGame.get('phase')]();
+    cases[currentGame.phase]();
 };
 
 function selectCardToAddToHand(dispatch, currentGame) {
-    const id = currentGame.get('selectedCard');
-    const hand = getHand(currentGame.get('deck'), 1);
-    const isOwned = hand.find(card => card.get('id') === id);
+    const id = currentGame.selectedCard;
+    const hand = getHand(currentGame.deck, 1);
+    const isOwned = hand.find(card => card.id === id);
     const owner = isOwned ? 0 : 1;
     if(!getIsFullHand(hand) || isOwned) {
         dispatch(addCard(id, owner));

@@ -1,6 +1,7 @@
 import expect from 'expect';
 import { Map, List } from 'immutable';
 import { cardPlaced } from './cardPlaced';
+import { GameRecord, CardRecord } from './../../../constants/records';
 
 describe('src/shared/reducers/game/mutations/cardPlaced', () => {
     describe('Given game state and a payload containing the id and owner of a card', () => {
@@ -10,12 +11,12 @@ describe('src/shared/reducers/game/mutations/cardPlaced', () => {
             let selectedCard = 5;
             selectedPiece = 2;
             let deck = new List([
-                new Map({
+                new CardRecord({
                     id: 20, owner: 2, boardIndex: -1
                 })
             ]);
             let gameId = 20;
-            let game = new Map({
+            let game = new GameRecord({
                 id: gameId,
                 deck: deck,
                 selectedCard: selectedCard,

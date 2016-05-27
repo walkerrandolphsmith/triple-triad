@@ -14,7 +14,7 @@ export class Board extends React.Component {
         let board = [0,1,2,3,4,5,6,7,8].map(i => {
             let isValidPiece = validPieces.indexOf(i) > -1;
             return {
-                card: cards.find(card => card.get('boardIndex') === i),
+                card: cards.find(card => card.boardIndex === i),
                 style: {
                     backgroundImage: `url('../assets/images/board/board-${i}.png')`,
                     cursor: isValidPiece ? 'pointer' : 'default'

@@ -1,23 +1,24 @@
 import expect from 'expect';
-import { Map, List } from 'immutable';
+import { List } from 'immutable';
 import { getRandomHand, __RewireAPI__ } from './getRandomHand';
+import { GameRecord, CardRecord } from './../constants/records';
 
 describe('src/shared/actions/utils/getRandomHand', () => {
     let game;
     let deck;
     beforeEach(() => {
         deck = new List([
-            new Map({ id: 1, name: '1', owner: 0 }),
-            new Map({ id: 2, name: '2', owner: 0 }),
-            new Map({ id: 3, name: '3', owner: 0 }),
-            new Map({ id: 4, name: '4', owner: 0 }),
-            new Map({ id: 5, name: '5', owner: 0 }),
-            new Map({ id: 6, name: '6', owner: 0 }),
-            new Map({ id: 5, name: '6', owner: 0 }),
-            new Map({ id: 7, name: '7', owner: 1 })
+            new CardRecord({ id: 1, name: '1', owner: 0 }),
+            new CardRecord({ id: 2, name: '2', owner: 0 }),
+            new CardRecord({ id: 3, name: '3', owner: 0 }),
+            new CardRecord({ id: 4, name: '4', owner: 0 }),
+            new CardRecord({ id: 5, name: '5', owner: 0 }),
+            new CardRecord({ id: 6, name: '6', owner: 0 }),
+            new CardRecord({ id: 5, name: '6', owner: 0 }),
+            new CardRecord({ id: 7, name: '7', owner: 1 })
         ]);
 
-        game = new Map({
+        game = new GameRecord({
             deck: deck
         });
 
@@ -38,14 +39,14 @@ describe('src/shared/actions/utils/getRandomHand', () => {
 
     it('should not contain any cards with an owner', () => {
         getRandomHand(game).forEach(card => {
-            expect(card.get('owner')).toEqual(0);
+            expect(card.owner).toEqual(0);
         });
     });
 
     it('should not contain two cards with the same name', () => {
         let names = {};
         getRandomHand(game).forEach(card => {
-            expect(typeof names[card.get('name')] === 'undefined').toEqual(true);
+            expect(typeof names[card.name] === 'undefined').toEqual(true);
         });
     });
 });

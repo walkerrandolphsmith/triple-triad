@@ -2,6 +2,8 @@ import expect from 'expect';
 import { Map } from 'immutable';
 import { handleLeft, __RewireAPI__ } from './handleLeft';
 import PHASE from './../../../constants/phases';
+import { GameRecord } from './../../../constants/records';
+
 describe('src/shared/reducers/game/thunks/handleLeft', () => {
     describe('Given getState, dispatch', () => {
         let getState;
@@ -10,7 +12,7 @@ describe('src/shared/reducers/game/thunks/handleLeft', () => {
         beforeEach(() => {
             getState = () => ({});
             dispatch = expect.createSpy();
-            game = new Map({});
+            game = new GameRecord({});
             __RewireAPI__.__Rewire__('currentGameSelector', () => game);
             __RewireAPI__.__Rewire__('selectNextCard', () => 1);
             __RewireAPI__.__Rewire__('selectNextPiece', () => 2);
@@ -22,7 +24,7 @@ describe('src/shared/reducers/game/thunks/handleLeft', () => {
     
         describe('When the getState returns state containing a game with phase handSelection', () => {
             beforeEach(() => {
-                game = new Map({
+                game = new GameRecord({
                     phase: PHASE.HAND_SELECTION
                 });
                 __RewireAPI__.__Rewire__('currentGameSelector', () => game);
@@ -36,7 +38,7 @@ describe('src/shared/reducers/game/thunks/handleLeft', () => {
     
         describe('When the getState returns state containing a game with phase pieceSelection', () => {
             beforeEach(() => {
-                game = new Map({
+                game = new GameRecord({
                     phase: PHASE.PIECE_SELECTION
                 });
                 __RewireAPI__.__Rewire__('currentGameSelector', () => game);

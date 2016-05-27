@@ -1,6 +1,7 @@
 import expect from 'expect';
-import { Map, List } from 'immutable';
+import { List } from 'immutable';
 import { getAvailableDeck } from './getAvailableDeck';
+import { CardRecord } from './../constants/records';
 
 describe('src/shared/selectors/availableDeckSelector', () => {
     let deck;
@@ -10,10 +11,10 @@ describe('src/shared/selectors/availableDeckSelector', () => {
     let Cid;
     describe('given a deck has several instances of the same card type', () => {
         beforeEach(() => {
-            TifaOne = new Map({ id: 0, name: 'Tifa', owner: 0, boardIndex: -1 });
-            TifaTwo = new Map({ id: 1, name: 'Tifa', owner: 0, boardIndex: -1 });
-            Cloud = new Map({ id: 2, name: 'Cloud', owner: 0, boardIndex: -1 });
-            Cid = new Map({ id: 3, name: 'Cid', owner: 0, boardIndex: -1 });
+            TifaOne = new CardRecord({ id: 0, name: 'Tifa', owner: 0, boardIndex: -1 });
+            TifaTwo = new CardRecord({ id: 1, name: 'Tifa', owner: 0, boardIndex: -1 });
+            Cloud = new CardRecord({ id: 2, name: 'Cloud', owner: 0, boardIndex: -1 });
+            Cid = new CardRecord({ id: 3, name: 'Cid', owner: 0, boardIndex: -1 });
             deck = new List([TifaOne, TifaTwo, Cloud, Cid]);
         });
 

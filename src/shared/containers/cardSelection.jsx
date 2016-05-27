@@ -10,7 +10,7 @@ function mapStateToProps(state) {
     let game = currentGameSelector(state);
 
     return {
-        selectedCard: game.get('selectedCard'),
+        selectedCard: game.selectedCard,
         settings: settings,
         availableDeck: availableDeckSelector(state),
         hand: handSelector(state),

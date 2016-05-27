@@ -1,7 +1,8 @@
 import expect from 'expect';
-import { Map } from 'immutable';
 import { handleUp, __RewireAPI__ } from './handleUp';
 import PHASE from './../../../constants/phases';
+import { GameRecord } from './../../../constants/records';
+
 describe('src/shared/reducers/game/thunks/handleUp', () => {
     let getState;
     let dispatch;
@@ -17,7 +18,7 @@ describe('src/shared/reducers/game/thunks/handleUp', () => {
 
     describe('given it is not the piece selection phase', () => {
         beforeEach(() => {
-            game = new Map({
+            game = new GameRecord({
                 phase: PHASE.CARD_SELECTION
             });
             __RewireAPI__.__Rewire__('currentGameSelector', () => game);
@@ -32,7 +33,7 @@ describe('src/shared/reducers/game/thunks/handleUp', () => {
 
     describe('given it is the piece selection phase', () => {
         beforeEach(() => {
-            game = new Map({
+            game = new GameRecord({
                 phase: PHASE.PIECE_SELECTION
             });
             __RewireAPI__.__Rewire__('currentGameSelector', () => game);

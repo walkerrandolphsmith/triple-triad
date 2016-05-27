@@ -2,6 +2,7 @@ import expect from 'expect';
 import { Map } from 'immutable';
 import { endPhase, __RewireAPI__ } from './endPhase';
 import PHASE from './../../../constants/phases';
+import { GameRecord } from './../../../constants/records';
 
 describe('src/shared/reducers/game/thunks/endPhase', () => {
     let dispatch;
@@ -20,7 +21,7 @@ describe('src/shared/reducers/game/thunks/endPhase', () => {
 
     describe('Given the current phase is card selection, When the phase is ended', () => {
         beforeEach(() => {
-            __RewireAPI__.__Rewire__('currentGameSelector', () => new Map({
+            __RewireAPI__.__Rewire__('currentGameSelector', () => new GameRecord({
                 phase: PHASE.CARD_SELECTION
             }));
             getState = () => ({
@@ -38,7 +39,7 @@ describe('src/shared/reducers/game/thunks/endPhase', () => {
 
     describe('Given the current phase is piece selection, When the phase is ended', () => {
         beforeEach(() => {
-            __RewireAPI__.__Rewire__('currentGameSelector', () => new Map({
+            __RewireAPI__.__Rewire__('currentGameSelector', () => new GameRecord({
                 phase: PHASE.PIECE_SELECTION
             }));
             getState = () => ({
@@ -56,7 +57,7 @@ describe('src/shared/reducers/game/thunks/endPhase', () => {
 
     describe('Given the next phase will be hand selection, When the phase is ended', () => {
         beforeEach(() => {
-            __RewireAPI__.__Rewire__('currentGameSelector', () => new Map({
+            __RewireAPI__.__Rewire__('currentGameSelector', () => new GameRecord({
                 phase: PHASE.PIECE_SELECTION
             }));
             getState = () => ({
@@ -76,7 +77,7 @@ describe('src/shared/reducers/game/thunks/endPhase', () => {
 
     describe('Given the next phase will be PHASE.CARD_SELECTION, When the phase is ended', () => {
         beforeEach(() => {
-            __RewireAPI__.__Rewire__('currentGameSelector', () => new Map({
+            __RewireAPI__.__Rewire__('currentGameSelector', () => new GameRecord({
                 phase: PHASE.PIECE_SELECTION
             }));
             getState = () => ({

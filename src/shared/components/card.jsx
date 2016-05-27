@@ -6,15 +6,15 @@ export class Card extends React.Component {
 
         let { card, classes, cardStyle, clickAction } = this.props;
 
-        const backgroundColor = card.get('owner') < 2 ? 'linear-gradient( 45deg, white, #608FC6 )' : 'linear-gradient( 45deg, white, #CC181E )';
+        const backgroundColor = card.owner < 2 ? 'linear-gradient( 45deg, white, #608FC6 )' : 'linear-gradient( 45deg, white, #CC181E )';
 
         const defaultStyle = {
-            backgroundImage: `url(../assets/images/cards/${card.get('name')}.png), ${backgroundColor}`
+            backgroundImage: `url(../assets/images/cards/${card.name}.png), ${backgroundColor}`
         };
         const overrideStyle = cardStyle || {};
         const finalStyles = Object.assign(defaultStyle, overrideStyle);
 
-        const cardId = `card-${card.get('id')}`;
+        const cardId = `card-${card.id}`;
         const className = `card-wrapper ${classes}`;
 
         return (

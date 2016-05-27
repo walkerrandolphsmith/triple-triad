@@ -67,7 +67,7 @@ export class GameDetails extends React.Component {
                         <div className="col-md-12">
                             <Board cards={board}
                                    validPieces={[]}
-                                   selectedPiece={game.get('selectedPiece')}
+                                   selectedPiece={game.selectedPiece}
                                    completeTurn={() => {}}
                             />
                         </div>

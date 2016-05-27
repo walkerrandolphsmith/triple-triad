@@ -1,16 +1,16 @@
 export const cardPlaced = state => {
     let newGames = state.get('games').update(
         state.get('games').findIndex(
-            game => game.get('id') === state.get('gameRoute')
+            game => game.id === state.get('gameRoute')
         ),
         game => {
-            let deck = game.get('deck');
+            let deck = game.deck;
 
             deck = deck.update(
                 deck.findIndex(
-                    card => card.get('id') === game.get('selectedCard')
+                    card => card.id === game.selectedCard
                 ),
-                card => card.set('boardIndex', game.get('selectedPiece'))
+                card => card.set('boardIndex', game.selectedPiece)
             );
             return game.set('deck', deck);
         }

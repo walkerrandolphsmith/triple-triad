@@ -15,5 +15,5 @@ export const handleDown = () => (dispatch, getState) => {
         }
     };
 
-    cases[currentGame.get('phase')]();
+    cases[currentGame.phase]();
 };

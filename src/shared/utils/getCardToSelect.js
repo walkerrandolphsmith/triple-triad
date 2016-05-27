@@ -3,7 +3,7 @@ export const getCardToSelect = (selectedCard, cards, directionInLoop) => {
         return cards.get(0);
     }
 
-    const i = cards.findIndex(card => card.get('id') === selectedCard);
+    const i = cards.findIndex(card => card.id === selectedCard);
     let amountToIncrement;
     if(directionInLoop === 'down' || directionInLoop === 'right') {
         amountToIncrement = 1;

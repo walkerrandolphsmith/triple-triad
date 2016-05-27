@@ -1,6 +1,7 @@
 import expect from 'expect';
-import { Map, List } from 'immutable';
+import { List } from 'immutable';
 import { getCardToSelect } from './getCardToSelect';
+import { CardRecord } from './../constants/records';
 
 describe('src/shared/actions/utils/getCardToSelect', () => {
     it('should be a function', () => {
@@ -15,11 +16,11 @@ describe('src/shared/actions/utils/getCardToSelect', () => {
         beforeEach(() => {
             selectedCard = 2;
             cards = new List([
-                new Map({ id: 0, name: '1', owner: 1, boardIndex: -1 }),
-                new Map({ id: 1, name: '2', owner: 1, boardIndex: -1 }),
-                new Map({ id: selectedCard, name: '3', owner: 1, boardIndex: -1 }),
-                new Map({ id: 3, name: '4', owner: 1, boardIndex: -1 }),
-                new Map({ id: 4, name: '5', owner: 1, boardIndex: -1 })
+                new CardRecord({ id: 0, name: '1', owner: 1, boardIndex: -1 }),
+                new CardRecord({ id: 1, name: '2', owner: 1, boardIndex: -1 }),
+                new CardRecord({ id: selectedCard, name: '3', owner: 1, boardIndex: -1 }),
+                new CardRecord({ id: 3, name: '4', owner: 1, boardIndex: -1 }),
+                new CardRecord({ id: 4, name: '5', owner: 1, boardIndex: -1 })
             ]);
             directionInLoop = null;
         });

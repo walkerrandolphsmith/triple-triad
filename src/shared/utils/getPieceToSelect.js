@@ -31,11 +31,11 @@ function getNextEmptyPieceVertically(currentIndex, validPieces, direction) {
 }
 
 export function getPieceToSelect(game, keyCode) {
-    const board = getBoard(game.get('deck'));
+    const board = getBoard(game.deck);
 
     let validPieces = getValidPieces(board);
 
-    const selectedPiece = game.get('selectedPiece');
+    const selectedPiece = game.selectedPiece;
 
     let nextEmptyPiece = selectedPiece === -1 ? validPieces.get(0) : selectedPiece;
 

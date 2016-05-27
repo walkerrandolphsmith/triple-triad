@@ -1,1 +1,1 @@
-export const getBoard = (deck) => deck.filter(card => card.get('boardIndex') >= 0);
+export const getBoard = (deck) => deck.filter(card => card.boardIndex >= 0);

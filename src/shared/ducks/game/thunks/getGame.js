@@ -7,9 +7,9 @@ export const getGame = id => (dispatch, getState) => {
         .get('ref')
         .child('games')
         .child(id)
-        .once('value', snapshot => {
-        let game = snapshot.val();
-        game.id = id;
-        dispatch(getGameSuccess(game));
-    });
+        .on('value', snapshot => {
+            let game = snapshot.val();
+            game.id = id;
+            dispatch(getGameSuccess(game));
+        });
 };

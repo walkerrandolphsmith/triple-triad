@@ -1,6 +1,7 @@
 import expect from 'expect';
-import { Map, List } from 'immutable';
+import { List } from 'immutable';
 import { getBoard } from './getBoard';
+import { CardRecord } from './../constants/records';
 
 describe('src/shared/selectors/boardSelector', () => {
     let deck;
@@ -12,12 +13,12 @@ describe('src/shared/selectors/boardSelector', () => {
     let cardInHandTwo;
     describe('given a board has cards', () => {
         beforeEach(() => {
-            zero = new Map({ id: 0, name: 'Tifa', owner: 1, boardIndex: 0 });
-            one = new Map({ id: 1, name: 'Tifa', owner: 1, boardIndex: 1 });
-            two = new Map({ id: 2, name: 'Cloud', owner: 1, boardIndex: 2 });
-            six = new Map({ id: 3, name: 'Cid', owner: 1, boardIndex: 6 });
-            cardInHandOne = new Map({ id: 20, name: 'player', owner: 1, boardIndex: -1 });
-            cardInHandTwo = new Map({ id: 21, name: 'opponent', owner: 2, boardIndex: -1 });
+            zero = new CardRecord({ id: 0, name: 'Tifa', owner: 1, boardIndex: 0 });
+            one = new CardRecord({ id: 1, name: 'Tifa', owner: 1, boardIndex: 1 });
+            two = new CardRecord({ id: 2, name: 'Cloud', owner: 1, boardIndex: 2 });
+            six = new CardRecord({ id: 3, name: 'Cid', owner: 1, boardIndex: 6 });
+            cardInHandOne = new CardRecord({ id: 20, name: 'player', owner: 1, boardIndex: -1 });
+            cardInHandTwo = new CardRecord({ id: 21, name: 'opponent', owner: 2, boardIndex: -1 });
             deck = new List([zero, one, two, six, cardInHandOne, cardInHandTwo]);
         });
 

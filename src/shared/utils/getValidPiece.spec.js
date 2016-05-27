@@ -1,6 +1,7 @@
 import expect from 'expect';
-import { Map, List } from 'immutable';
+import { List } from 'immutable';
 import { getValidPiece, __RewireAPI__ } from './getValidPiece';
+import { GameRecord, CardRecord } from './../constants/records';
 
 describe('src/shared/actions/utils/getValidPiece', () => {
     it('should be a function', () => {
@@ -11,18 +12,18 @@ describe('src/shared/actions/utils/getValidPiece', () => {
         let game;
         let deck;
         deck = new List([
-            new Map({ id: 1, name: '1', owner: 0, boardIndex: 0 }),
-            new Map({ id: 2, name: '2', owner: 0, boardIndex: 1 }),
-            new Map({ id: 3, name: '3', owner: 0, boardIndex: 2 }),
-            new Map({ id: 4, name: '4', owner: 0, boardIndex: 3 }),
-            new Map({ id: 5, name: '5', owner: 0, boardIndex: 4 }),
-            new Map({ id: 6, name: '6', owner: 0, boardIndex: 5 }),
-            new Map({ id: 7, name: '7', owner: 0, boardIndex: 6 }),
-            new Map({ id: 8, name: '8', owner: 1, boardIndex: 7 }),
-            new Map({ id: 9, name: '9', owner: 1, boardIndex: 8 })
+            new CardRecord({ id: 1, name: '1', owner: 0, boardIndex: 0 }),
+            new CardRecord({ id: 2, name: '2', owner: 0, boardIndex: 1 }),
+            new CardRecord({ id: 3, name: '3', owner: 0, boardIndex: 2 }),
+            new CardRecord({ id: 4, name: '4', owner: 0, boardIndex: 3 }),
+            new CardRecord({ id: 5, name: '5', owner: 0, boardIndex: 4 }),
+            new CardRecord({ id: 6, name: '6', owner: 0, boardIndex: 5 }),
+            new CardRecord({ id: 7, name: '7', owner: 0, boardIndex: 6 }),
+            new CardRecord({ id: 8, name: '8', owner: 1, boardIndex: 7 }),
+            new CardRecord({ id: 9, name: '9', owner: 1, boardIndex: 8 })
         ]);
 
-        game = new Map({
+        game = new GameRecord({
             deck: deck
         });
 

@@ -1,6 +1,7 @@
 import expect from 'expect';
-import { Map, List } from 'immutable';
+import { List } from 'immutable';
 import { setHand, __RewireAPI__ } from './setHand';
+import { CardRecord } from './../../../constants/records';
 
 describe('src/shared/reducers/game/thunks/setHand', () => {
     let dispatch;
@@ -20,11 +21,11 @@ describe('src/shared/reducers/game/thunks/setHand', () => {
         __RewireAPI__.__Rewire__('currentGameSelector', () => 'game');
         __RewireAPI__.__Rewire__('getRandomHand', () => {
             return new List([
-                new Map({ id: 1, name: '1', owner: 1, boardIndex: -1 }),
-                new Map({ id: 2, name: '2', owner: 1, boardIndex: -1 }),
-                new Map({ id: 3, name: '3', owner: 1, boardIndex: -1 }),
-                new Map({ id: 4, name: '4', owner: 1, boardIndex: -1 }),
-                new Map({ id: 5, name: '5', owner: 1, boardIndex: -1 })
+                new CardRecord({ id: 1, name: '1', owner: 1, boardIndex: -1 }),
+                new CardRecord({ id: 2, name: '2', owner: 1, boardIndex: -1 }),
+                new CardRecord({ id: 3, name: '3', owner: 1, boardIndex: -1 }),
+                new CardRecord({ id: 4, name: '4', owner: 1, boardIndex: -1 }),
+                new CardRecord({ id: 5, name: '5', owner: 1, boardIndex: -1 })
             ]);
         });
         __RewireAPI__.__Rewire__('addCard', () => 1);

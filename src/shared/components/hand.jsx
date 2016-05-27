@@ -14,20 +14,20 @@ export class Hand extends React.Component {
         for(var i = 0; i < 5; i++){
             const card = cards.get(i);
             if(card) {
-                let name = showBack ? 'back' : card.get('name');
+                let name = showBack ? 'back' : card.name;
 
                 const cardStyle = {
-                    cursor: card.get('owner') === 1 ? 'pointer' : 'default'
+                    cursor: card.owner === 1 ? 'pointer' : 'default'
                 };
 
-                const classes = card.get('id') === selectedCard ? 'selected' : '';
+                const classes = card.id === selectedCard ? 'selected' : '';
 
                 cardMarkup = (
-                    <Card key={card.get('id')}
+                    <Card key={card.id}
                           card={card.set('name', name)}
                           classes={classes}
                           cardStyle={cardStyle}
-                          clickAction={this.click.bind(this, card.get('id'))}
+                          clickAction={this.click.bind(this, card.id)}
                     />
                 );
             }else {

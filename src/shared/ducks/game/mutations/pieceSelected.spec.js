@@ -1,6 +1,7 @@
 import expect from 'expect';
 import { Map, List } from 'immutable';
 import { pieceSelected } from './pieceSelected';
+import { GameRecord } from './../../../constants/records';
 
 describe('src/shared/reducers/game/mutations/pieceSelected', () => {
     describe('Given game state and a payload containing the index of a piece', () => {
@@ -8,7 +9,7 @@ describe('src/shared/reducers/game/mutations/pieceSelected', () => {
         let payload;
         beforeEach(() => {
             let gameId = 20;
-            let game = new Map({
+            let game = new GameRecord({
                 id: gameId,
                 selectedPiece: -1
             });
@@ -28,7 +29,7 @@ describe('src/shared/reducers/game/mutations/pieceSelected', () => {
             });
 
             it('should set the selectedPiece to the index in the payload', () => {
-                expect(actual.get('games').first().get('selectedPiece')).toEqual(payload.index);
+                expect(actual.get('games').first().selectedPiece).toEqual(payload.index);
             });
         });
     });

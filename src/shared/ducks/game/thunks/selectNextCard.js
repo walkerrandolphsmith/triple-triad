@@ -5,14 +5,14 @@ import { getCardToSelect } from './../../../utils/getCardToSelect';
 
 export const selectNextCard = (selectFrom, directionInLoop) => (dispatch, getState) => {
     const currentGame = currentGameSelector(getState());
-    let selectedCard = currentGame.get('selectedCard');
+    let selectedCard = currentGame.selectedCard;
 
     let cardsToSelectFrom;
     if(selectFrom === 'hand') {
-        cardsToSelectFrom = getAvailableDeck(currentGame.get('deck'));
+        cardsToSelectFrom = getAvailableDeck(currentGame.deck);
     } else {
-        cardsToSelectFrom = getHand(currentGame.get('deck'), 1);
+        cardsToSelectFrom = getHand(currentGame.deck, 1);
     }
     const card = getCardToSelect(selectedCard, cardsToSelectFrom, directionInLoop);
-    dispatch(selectCard(card.get('id')));
+    dispatch(selectCard(card.id));
 };

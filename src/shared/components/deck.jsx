@@ -5,18 +5,18 @@ import Slider from 'react-slick';
 export class Deck extends React.Component {
 
     click(card) {
-        let owner = card.get('owner') === 0 ? 1 : 0;
-        this.props.addCard(card.get('id'), owner);
+        let owner = card.owner === 0 ? 1 : 0;
+        this.props.addCard(card.id, owner);
     };
 
     render() {
         const {cards, selectedCard, isHandSelected} = this.props;
 
         const cardsMarkup = cards.map((card, i) => {
-            const isSelectable = (card.get('owner') === 1) || (!isHandSelected && card.get('owner') === 0);
-            const classes = card.get('id') === selectedCard ? 'selected' : '';
+            const isSelectable = (card.owner === 1) || (!isHandSelected && card.owner === 0);
+            const classes = card.id === selectedCard ? 'selected' : '';
             const cardStyle = {
-                opacity: card.get('owner') === 0 ? '1' : '0.5',
+                opacity: card.owner === 0 ? '1' : '0.5',
                 cursor: isSelectable ? 'pointer' : 'default'
             };
             const action = isSelectable ? this.click.bind(this, card) : ()=> {};

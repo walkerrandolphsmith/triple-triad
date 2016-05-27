@@ -12,28 +12,28 @@ function mapStateToProps(state) {
         let owner;
         let opponent;
         let canDelete;
-        if(game.get('owner') === loggedInUser) {
+        if(game.owner === loggedInUser) {
             owner = state.auth.get('user').get('username');
-            opponent = game.get('opponent');
+            opponent = game.opponent;
             canDelete = true;
         } else {
             owner = 'AI';
             opponent = state.auth.get('user').get('username');
             canDelete = false;
         }
-        const blue = getScoreForOwner(game.get('deck'), 1);
-        const red = getScoreForOwner(game.get('deck'), 2);
-        let isMyTurn = isCurrentPlayerMe(game.get('currentPlayer'), loggedInUser);
+        const blue = getScoreForOwner(game.deck, 1);
+        const red = getScoreForOwner(game.deck, 2);
+        let isMyTurn = isCurrentPlayerMe(game.currentPlayer, loggedInUser);
         return {
             isMyTurn: isMyTurn,
-            id: game.get('id'),
+            id: game.id,
             owner: owner,
             canDelete: canDelete,
             opponent: opponent,
-            currentPlayer: game.get('currentPlayer'),
+            currentPlayer: game.currentPlayer,
             blue: blue,
             red: red,
-            phase: game.get('phase')
+            phase: game.phase
         }
     });
     return {

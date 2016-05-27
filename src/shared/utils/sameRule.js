@@ -5,10 +5,10 @@ function shouldApplySameRule(card, firstCard, secondCard, d1, d2, d3, d4) {
     return (
         firstCard
         && secondCard
-        && firstCard.get('owner') !== card.get('owner')
-        && secondCard.get('owner') !== card.get('owner')
-        && card.get('rank').get(d1) === firstCard.get('rank').get(d3)
-        && card.get('rank').get(d2) === secondCard.get('rank').get(d4)
+        && firstCard.owner !== card.owner
+        && secondCard.owner !== card.owner
+        && card.rank[d1] === firstCard.rank[d3]
+        && card.rank[d2] === secondCard.rank[d4]
     );
 }
 
@@ -18,7 +18,7 @@ export function sameRule(i, deck) {
     const row = i / 3;
     const column = i % 3;
 
-    const card = board.filter(c => c && c.get('boardIndex') === i).get(0);
+    const card = board.filter(c => c && c.boardIndex === i).get(0);
 
     const above = i - 3;
     const below = i + 3;
@@ -30,10 +30,10 @@ export function sameRule(i, deck) {
     const isNotFirstColumn = column > 0;
     const isNotLastColumn = column < 2;
 
-    const cardAbove = isNotFirstRow ? board.filter(ca => ca.get('boardIndex') === above).get(0) : null;
-    const cardBelow = isNotLastRow ? board.filter(cb => cb.get('boardIndex') === below).get(0) : null;
-    const cardAtLeft = isNotFirstColumn ? board.filter(cl => cl.get('boardIndex') === left).get(0) : null;
-    const cardAtRight = isNotLastColumn ? board.filter(cr => cr.get('boardIndex') === right).get(0) : null;
+    const cardAbove = isNotFirstRow ? board.filter(ca => ca.boardIndex === above).get(0) : null;
+    const cardBelow = isNotLastRow ? board.filter(cb => cb.boardIndex === below).get(0) : null;
+    const cardAtLeft = isNotFirstColumn ? board.filter(cl => cl.boardIndex === left).get(0) : null;
+    const cardAtRight = isNotLastColumn ? board.filter(cr => cr.boardIndex === right).get(0) : null;
 
     let indexes = [];
 
@@ -61,6 +61,6 @@ export function sameRule(i, deck) {
         indexes = indexes.concat([below, right]);
     }
 
-    let tuples = indexes.map(index => ({ index: index, owner: card.get('owner') }));
+    let tuples = indexes.map(index => ({ index: index, owner: card.owner }));
     return sort(tuples);
 }

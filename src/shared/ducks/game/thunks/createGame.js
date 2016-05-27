@@ -1,24 +1,20 @@
-import deck from './../../../constants/deck';
-import PHASES from './../../../constants/phases';
+import { GameRecord } from './../../../constants/records';
 
 export const createGame = () => (dipatch, getState) => {
-    const state = getState();
-    const ownerId = state.auth.get('user').get('id');
-    const game = {
+    const ownerId = getState().auth.get('user').get('id');
+
+    const game = new GameRecord({
         userId: ownerId,
-        deck: deck.toJS(),
-        phase: PHASES.SETTINGS_SELECTION,
         owner: ownerId,
-        opponent: 'AI',
-        currentPlayer: ownerId,
-        accepted: false,
-        selectedCard: -1,
-        selectedPiece: -1
-    };
+        currentPlayer: ownerId
+    });
+
+    let serializedGame = game.toJS();
+    serializedGame.deck = serializedGame.deck.map(card => card.toJS());
 
     getState()
         .firebase
         .get('ref')
         .child('games')
-        .push(game);
+        .push(serializedGame);
 };

@@ -5,14 +5,9 @@ import { createGame, __RewireAPI__ } from './createGame';
 describe('src/shared/reducers/game/thunks/createGame', () => {
     let dispatch;
     let getState;
-    let deck;
-    let phase;
     let ownerId;
     beforeEach(() => {
-        deck = [1, 2, 3];
-        phase = 'S';
-        __RewireAPI__.__Rewire__('deck', deck);
-        __RewireAPI__.__Rewire__('PHASES', { SETTINGS_SELECTION: phase });
+        __RewireAPI__.__Rewire__('GameRecord', () => 1);
         ownerId = 20;
         dispatch = expect.createSpy();
         getState = () => ({
@@ -22,10 +17,6 @@ describe('src/shared/reducers/game/thunks/createGame', () => {
                 })
             })
         });
-
-        __RewireAPI__.__Rewire__('createGameRequest', () => 1);
-        __RewireAPI__.__Rewire__('createGameSuccess', () => 2);
-        __RewireAPI__.__Rewire__('createGameFailure', () => 3);
     });
 
     it('should be a function', () => {

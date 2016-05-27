@@ -2,7 +2,7 @@ import { List } from 'immutable';
 import { convertGame } from './../../../utils/convertGameToImmutable';
 
 export const getGamesSucceeded = (state, payload) => {
-    let games = payload.games.map(game => convertGame(game));
+    const games = payload.games.map(game => convertGame(game));
     return state
         .setIn('getGames.failed'.split('.'), false)
         .setIn('getGames.loading'.split('.'), false)

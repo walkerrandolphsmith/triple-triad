@@ -18,5 +18,5 @@ export const handleUp = () => (dispatch, getState) => {
         }
     };
 
-    cases[currentGame.get('phase')]();
+    cases[currentGame.phase]();
 };

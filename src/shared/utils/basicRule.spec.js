@@ -1,6 +1,7 @@
 import expect from 'expect';
-import { Map, List } from 'immutable';
+import { List } from 'immutable';
 import { basicRule, __RewireAPI__ } from './basicRule';
+import { CardRecord, RankRecord } from './../constants/records';
 
 describe('src/shared/actions/utils/basicRule', () => {
     let index;
@@ -12,7 +13,9 @@ describe('src/shared/actions/utils/basicRule', () => {
         index = 4;
         player = 1;
         opponent = 2;
-        card = new Map({ boardIndex: 4, owner: player, rank: new Map({ left: 4, top: 4, right: 5, bottom: 5 }) });
+        card = new CardRecord({
+            boardIndex: 4, owner: player, rank: new RankRecord({ left: 4, top: 4, right: 5, bottom: 5 }) 
+        });
     });
 
     it('should be a function', () => {
@@ -32,7 +35,9 @@ describe('src/shared/actions/utils/basicRule', () => {
 
     describe('Given one adjacent card with no flips', () => {
         beforeEach(() => {
-            let adjacentCard = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 4, bottom: 5 }) });
+            let adjacentCard = new CardRecord({ 
+                boardIndex: 3, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 4, bottom: 5 }) 
+            });
             deck = [adjacentCard, card];
             __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
@@ -44,7 +49,9 @@ describe('src/shared/actions/utils/basicRule', () => {
 
     describe('Given one adjacent card where you flip', () => {
         beforeEach(() => {
-            let adjacentCard = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 3, bottom: 5 }) });
+            let adjacentCard = new CardRecord({ 
+                boardIndex: 3, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 3, bottom: 5 }) 
+            });
             deck = [adjacentCard, card];
             __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
@@ -59,7 +66,9 @@ describe('src/shared/actions/utils/basicRule', () => {
 
     describe('Given one adjacent card where you get flipped', () => {
         beforeEach(() => {
-            let adjacentCard = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 6, bottom: 5 }) });
+            let adjacentCard = new CardRecord({ 
+                boardIndex: 3, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 6, bottom: 5 }) 
+            });
             deck = [adjacentCard, card];
             __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
@@ -73,8 +82,12 @@ describe('src/shared/actions/utils/basicRule', () => {
 
     describe('Given two adjacent cards with no flips', () => {
         beforeEach(() => {
-            let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 4, bottom: 5 }) });
-            let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5 }) });
+            let adjacentCardOne = new CardRecord({ 
+                boardIndex: 3, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 4, bottom: 5 }) 
+            });
+            let adjacentCardTwo = new CardRecord({ 
+                boardIndex: 5, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 5, bottom: 5 }) 
+            });
             deck = [adjacentCardOne, card, adjacentCardTwo];
             __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
@@ -86,8 +99,8 @@ describe('src/shared/actions/utils/basicRule', () => {
 
     describe('Given two adjacent cards where you flip one', () => {
         beforeEach(() => {
-            let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 3, bottom: 5 }) });
-            let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5 }) });
+            let adjacentCardOne = new CardRecord({ boardIndex: 3, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 3, bottom: 5 }) });
+            let adjacentCardTwo = new CardRecord({ boardIndex: 5, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 5, bottom: 5 }) });
             deck = [adjacentCardOne, card, adjacentCardTwo];
             __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
@@ -101,8 +114,8 @@ describe('src/shared/actions/utils/basicRule', () => {
 
     describe('Given two adjacent cards where you flip two', () => {
         beforeEach(() => {
-            let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 3, bottom: 5 }) });
-            let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 4, top: 5, right: 5, bottom: 5 }) });
+            let adjacentCardOne = new CardRecord({ boardIndex: 3, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 3, bottom: 5 }) });
+            let adjacentCardTwo = new CardRecord({ boardIndex: 5, owner: opponent, rank: new RankRecord({ left: 4, top: 5, right: 5, bottom: 5 }) });
             deck = [adjacentCardOne, card, adjacentCardTwo];
             __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
@@ -117,8 +130,8 @@ describe('src/shared/actions/utils/basicRule', () => {
 
     describe('Given two adjacent cards where you flip one and get flipped', () => {
         beforeEach(() => {
-            let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 3, bottom: 5 }) });
-            let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 6, top: 5, right: 5, bottom: 5 }) });
+            let adjacentCardOne = new CardRecord({ boardIndex: 3, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 3, bottom: 5 }) });
+            let adjacentCardTwo = new CardRecord({ boardIndex: 5, owner: opponent, rank: new RankRecord({ left: 6, top: 5, right: 5, bottom: 5 }) });
             deck = [adjacentCardOne, card, adjacentCardTwo];
             __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
@@ -133,8 +146,8 @@ describe('src/shared/actions/utils/basicRule', () => {
 
     describe('Given two adjacent cards where you only get flipped', () => {
         beforeEach(() => {
-            let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 6, bottom: 5 }) });
-            let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 6, top: 5, right: 5, bottom: 5 }) });
+            let adjacentCardOne = new CardRecord({ boardIndex: 3, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 6, bottom: 5 }) });
+            let adjacentCardTwo = new CardRecord({ boardIndex: 5, owner: opponent, rank: new RankRecord({ left: 6, top: 5, right: 5, bottom: 5 }) });
             deck = [adjacentCardOne, card, adjacentCardTwo];
             __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
@@ -148,9 +161,9 @@ describe('src/shared/actions/utils/basicRule', () => {
 
     describe('Given three adjacent cards with no flips', () => {
         beforeEach(() => {
-            let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 4, bottom: 5 }) });
-            let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5 }) });
-            let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 4 }) });
+            let adjacentCardOne = new CardRecord({ boardIndex: 3, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 4, bottom: 5 }) });
+            let adjacentCardTwo = new CardRecord({ boardIndex: 5, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 5, bottom: 5 }) });
+            let adjacentCardThree = new CardRecord({ boardIndex: 1, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 5, bottom: 4 }) });
             deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo];
             __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
@@ -162,9 +175,9 @@ describe('src/shared/actions/utils/basicRule', () => {
 
     describe('Given three adjacent cards where you flip one', () => {
         beforeEach(() => {
-            let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 3, bottom: 5 }) });
-            let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5 }) });
-            let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 4 }) });
+            let adjacentCardOne = new CardRecord({ boardIndex: 3, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 3, bottom: 5 }) });
+            let adjacentCardTwo = new CardRecord({ boardIndex: 5, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 5, bottom: 5 }) });
+            let adjacentCardThree = new CardRecord({ boardIndex: 1, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 5, bottom: 4 }) });
             deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo];
             __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
@@ -178,9 +191,9 @@ describe('src/shared/actions/utils/basicRule', () => {
 
     describe('Given three adjacent cards where you flip two', () => {
         beforeEach(() => {
-            let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 3, bottom: 5 }) });
-            let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 4, top: 5, right: 5, bottom: 5 }) });
-            let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 4 }) });
+            let adjacentCardOne = new CardRecord({ boardIndex: 3, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 3, bottom: 5 }) });
+            let adjacentCardTwo = new CardRecord({ boardIndex: 5, owner: opponent, rank: new RankRecord({ left: 4, top: 5, right: 5, bottom: 5 }) });
+            let adjacentCardThree = new CardRecord({ boardIndex: 1, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 5, bottom: 4 }) });
             deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo];
             __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
@@ -196,9 +209,9 @@ describe('src/shared/actions/utils/basicRule', () => {
 
     describe('Given three adjacent cards where you flip three', () => {
         beforeEach(() => {
-            let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 3, bottom: 5 }) });
-            let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 3, top: 5, right: 5, bottom: 5 }) });
-            let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 3 }) });
+            let adjacentCardOne = new CardRecord({ boardIndex: 3, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 3, bottom: 5 }) });
+            let adjacentCardTwo = new CardRecord({ boardIndex: 5, owner: opponent, rank: new RankRecord({ left: 3, top: 5, right: 5, bottom: 5 }) });
+            let adjacentCardThree = new CardRecord({ boardIndex: 1, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 5, bottom: 3 }) });
             deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo];
             __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
@@ -214,9 +227,9 @@ describe('src/shared/actions/utils/basicRule', () => {
 
     describe('Given three adjacent cards where you flip one and you get flipped', () => {
         beforeEach(() => {
-            let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 3, bottom: 5 }) });
-            let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 6, top: 5, right: 5, bottom: 5 }) });
-            let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 4 }) });
+            let adjacentCardOne = new CardRecord({ boardIndex: 3, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 3, bottom: 5 }) });
+            let adjacentCardTwo = new CardRecord({ boardIndex: 5, owner: opponent, rank: new RankRecord({ left: 6, top: 5, right: 5, bottom: 5 }) });
+            let adjacentCardThree = new CardRecord({ boardIndex: 1, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 5, bottom: 4 }) });
             deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo];
             __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
@@ -231,9 +244,9 @@ describe('src/shared/actions/utils/basicRule', () => {
 
     describe('Given three adjacent cards where you flip two and you get flipped', () => {
         beforeEach(() => {
-            let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 3, bottom: 5 }) });
-            let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 4, top: 5, right: 5, bottom: 5 }) });
-            let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 6 }) });
+            let adjacentCardOne = new CardRecord({ boardIndex: 3, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 3, bottom: 5 }) });
+            let adjacentCardTwo = new CardRecord({ boardIndex: 5, owner: opponent, rank: new RankRecord({ left: 4, top: 5, right: 5, bottom: 5 }) });
+            let adjacentCardThree = new CardRecord({ boardIndex: 1, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 5, bottom: 6 }) });
             deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo];
             __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
@@ -249,9 +262,9 @@ describe('src/shared/actions/utils/basicRule', () => {
 
     describe('Given three adjacent cards where you only get flipped', () => {
         beforeEach(() => {
-            let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5 }) });
-            let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5 }) });
-            let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 6 }) });
+            let adjacentCardOne = new CardRecord({ boardIndex: 3, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 5, bottom: 5 }) });
+            let adjacentCardTwo = new CardRecord({ boardIndex: 5, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 5, bottom: 5 }) });
+            let adjacentCardThree = new CardRecord({ boardIndex: 1, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 5, bottom: 6 }) });
             deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo];
             __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
@@ -265,10 +278,10 @@ describe('src/shared/actions/utils/basicRule', () => {
 
     describe('Given four adjacent cards with no flips', () => {
         beforeEach(() => {
-            let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 4, bottom: 5 }) });
-            let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5 }) });
-            let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 4 }) });
-            let adjacentCardFour = new Map({ boardIndex: 7, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5 }) });
+            let adjacentCardOne = new CardRecord({ boardIndex: 3, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 4, bottom: 5 }) });
+            let adjacentCardTwo = new CardRecord({ boardIndex: 5, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 5, bottom: 5 }) });
+            let adjacentCardThree = new CardRecord({ boardIndex: 1, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 5, bottom: 4 }) });
+            let adjacentCardFour = new CardRecord({ boardIndex: 7, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 5, bottom: 5 }) });
             deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo, adjacentCardFour];
             __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
@@ -279,10 +292,10 @@ describe('src/shared/actions/utils/basicRule', () => {
     });
     describe('Given four adjacent cards where you flip one', () => {
         beforeEach(() => {
-            let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 3, bottom: 5 }) });
-            let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5 }) });
-            let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 4 }) });
-            let adjacentCardFour = new Map({ boardIndex: 7, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5 }) });
+            let adjacentCardOne = new CardRecord({ boardIndex: 3, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 3, bottom: 5 }) });
+            let adjacentCardTwo = new CardRecord({ boardIndex: 5, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 5, bottom: 5 }) });
+            let adjacentCardThree = new CardRecord({ boardIndex: 1, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 5, bottom: 4 }) });
+            let adjacentCardFour = new CardRecord({ boardIndex: 7, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 5, bottom: 5 }) });
             deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo, adjacentCardFour];
             __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
@@ -296,10 +309,10 @@ describe('src/shared/actions/utils/basicRule', () => {
 
     describe('Given four adjacent cards where you flip two', () => {
         beforeEach(() => {
-            let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 3, bottom: 5 }) });
-            let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 4, top: 5, right: 5, bottom: 5 }) });
-            let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 4 }) });
-            let adjacentCardFour = new Map({ boardIndex: 7, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5 }) });
+            let adjacentCardOne = new CardRecord({ boardIndex: 3, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 3, bottom: 5 }) });
+            let adjacentCardTwo = new CardRecord({ boardIndex: 5, owner: opponent, rank: new RankRecord({ left: 4, top: 5, right: 5, bottom: 5 }) });
+            let adjacentCardThree = new CardRecord({ boardIndex: 1, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 5, bottom: 4 }) });
+            let adjacentCardFour = new CardRecord({ boardIndex: 7, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 5, bottom: 5 }) });
             deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo, adjacentCardFour];
             __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
@@ -315,10 +328,10 @@ describe('src/shared/actions/utils/basicRule', () => {
 
     describe('Given three adjacent cards where you flip three', () => {
         beforeEach(() => {
-            let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 3, bottom: 5 }) });
-            let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 4, top: 5, right: 5, bottom: 5 }) });
-            let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 3 }) });
-            let adjacentCardFour = new Map({ boardIndex: 7, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5 }) });
+            let adjacentCardOne = new CardRecord({ boardIndex: 3, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 3, bottom: 5 }) });
+            let adjacentCardTwo = new CardRecord({ boardIndex: 5, owner: opponent, rank: new RankRecord({ left: 4, top: 5, right: 5, bottom: 5 }) });
+            let adjacentCardThree = new CardRecord({ boardIndex: 1, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 5, bottom: 3 }) });
+            let adjacentCardFour = new CardRecord({ boardIndex: 7, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 5, bottom: 5 }) });
             deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo, adjacentCardFour];
             __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
@@ -334,10 +347,10 @@ describe('src/shared/actions/utils/basicRule', () => {
 
     describe('Given three adjacent cards where you flip four', () => {
         beforeEach(() => {
-            let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 3, bottom: 5 }) });
-            let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 4, top: 5, right: 5, bottom: 5 }) });
-            let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 3 }) });
-            let adjacentCardFour = new Map({ boardIndex: 7, owner: opponent, rank: new Map({ left: 5, top: 4, right: 5, bottom: 5 }) });
+            let adjacentCardOne = new CardRecord({ boardIndex: 3, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 3, bottom: 5 }) });
+            let adjacentCardTwo = new CardRecord({ boardIndex: 5, owner: opponent, rank: new RankRecord({ left: 4, top: 5, right: 5, bottom: 5 }) });
+            let adjacentCardThree = new CardRecord({ boardIndex: 1, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 5, bottom: 3 }) });
+            let adjacentCardFour = new CardRecord({ boardIndex: 7, owner: opponent, rank: new RankRecord({ left: 5, top: 4, right: 5, bottom: 5 }) });
             deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo, adjacentCardFour];
             __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
@@ -354,10 +367,10 @@ describe('src/shared/actions/utils/basicRule', () => {
 
     describe('Given four adjacent cards where you flip one and you get flipped', () => {
         beforeEach(() => {
-            let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 3, bottom: 5 }) });
-            let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 6, top: 5, right: 5, bottom: 5 }) });
-            let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 4 }) });
-            let adjacentCardFour = new Map({ boardIndex: 7, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5 }) });
+            let adjacentCardOne = new CardRecord({ boardIndex: 3, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 3, bottom: 5 }) });
+            let adjacentCardTwo = new CardRecord({ boardIndex: 5, owner: opponent, rank: new RankRecord({ left: 6, top: 5, right: 5, bottom: 5 }) });
+            let adjacentCardThree = new CardRecord({ boardIndex: 1, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 5, bottom: 4 }) });
+            let adjacentCardFour = new CardRecord({ boardIndex: 7, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 5, bottom: 5 }) });
             deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo, adjacentCardFour];
             __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
@@ -372,10 +385,10 @@ describe('src/shared/actions/utils/basicRule', () => {
 
     describe('Given four adjacent cards where you flip two and you get flipped', () => {
         beforeEach(() => {
-            let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 3, bottom: 5 }) });
-            let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 4, top: 5, right: 5, bottom: 5 }) });
-            let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 6 }) });
-            let adjacentCardFour = new Map({ boardIndex: 7, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 5 }) });
+            let adjacentCardOne = new CardRecord({ boardIndex: 3, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 3, bottom: 5 }) });
+            let adjacentCardTwo = new CardRecord({ boardIndex: 5, owner: opponent, rank: new RankRecord({ left: 4, top: 5, right: 5, bottom: 5 }) });
+            let adjacentCardThree = new CardRecord({ boardIndex: 1, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 5, bottom: 6 }) });
+            let adjacentCardFour = new CardRecord({ boardIndex: 7, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 5, bottom: 5 }) });
             deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo, adjacentCardFour];
             __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
@@ -392,10 +405,10 @@ describe('src/shared/actions/utils/basicRule', () => {
 
     describe('Given four adjacent cards where you flip three and you get flipped', () => {
         beforeEach(() => {
-            let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 3, bottom: 5 }) });
-            let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 4, top: 5, right: 5, bottom: 5 }) });
-            let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 3 }) });
-            let adjacentCardFour = new Map({ boardIndex: 7, owner: opponent, rank: new Map({ left: 5, top: 6, right: 5, bottom: 5 }) });
+            let adjacentCardOne = new CardRecord({ boardIndex: 3, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 3, bottom: 5 }) });
+            let adjacentCardTwo = new CardRecord({ boardIndex: 5, owner: opponent, rank: new RankRecord({ left: 4, top: 5, right: 5, bottom: 5 }) });
+            let adjacentCardThree = new CardRecord({ boardIndex: 1, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 5, bottom: 3 }) });
+            let adjacentCardFour = new CardRecord({ boardIndex: 7, owner: opponent, rank: new RankRecord({ left: 5, top: 6, right: 5, bottom: 5 }) });
             deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo, adjacentCardFour];
             __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });
@@ -412,10 +425,10 @@ describe('src/shared/actions/utils/basicRule', () => {
 
     describe('Given four adjacent cards where you only get flipped', () => {
         beforeEach(() => {
-            let adjacentCardOne = new Map({ boardIndex: 3, owner: opponent, rank: new Map({ left: 5, top: 5, right: 6, bottom: 5 }) });
-            let adjacentCardTwo = new Map({ boardIndex: 5, owner: opponent, rank: new Map({ left: 6, top: 5, right: 5, bottom: 5 }) });
-            let adjacentCardThree = new Map({ boardIndex: 1, owner: opponent, rank: new Map({ left: 5, top: 5, right: 5, bottom: 6 }) });
-            let adjacentCardFour = new Map({ boardIndex: 7, owner: opponent, rank: new Map({ left: 5, top: 6, right: 5, bottom: 5 }) });
+            let adjacentCardOne = new CardRecord({ boardIndex: 3, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 6, bottom: 5 }) });
+            let adjacentCardTwo = new CardRecord({ boardIndex: 5, owner: opponent, rank: new RankRecord({ left: 6, top: 5, right: 5, bottom: 5 }) });
+            let adjacentCardThree = new CardRecord({ boardIndex: 1, owner: opponent, rank: new RankRecord({ left: 5, top: 5, right: 5, bottom: 6 }) });
+            let adjacentCardFour = new CardRecord({ boardIndex: 7, owner: opponent, rank: new RankRecord({ left: 5, top: 6, right: 5, bottom: 5 }) });
             deck = [adjacentCardThree, adjacentCardOne, card, adjacentCardTwo, adjacentCardFour];
             __RewireAPI__.__Rewire__('getBoard', () => new List(deck));
         });

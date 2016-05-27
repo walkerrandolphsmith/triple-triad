@@ -1,25 +1,26 @@
 import expect from 'expect';
-import { Map, List } from 'immutable';
+import { List } from 'immutable';
 import { getValidPieces } from './getValidPieces';
+import { CardRecord } from './../constants/records';
 
 describe('src/shared/selectors/validPiecesSelector', () => {
     let deck;
     beforeEach(() => {
         deck = new List([
-            new Map({ id: 1, owner: 1, boardIndex: 0 }),
-            new Map({ id: 2, owner: 1, boardIndex: 1 }),
-            new Map({ id: 3, owner: 1, boardIndex: 2 }),
-            new Map({ id: 4, owner: 1, boardIndex: 3 }),
-            new Map({ id: 5, owner: 1, boardIndex: 4 }),
-            new Map({ id: 6, owner: 1, boardIndex: 5 }),
-            new Map({ id: 7, owner: 1, boardIndex: 6 }),
-            new Map({ id: 8, owner: 1, boardIndex: 7 }),
-            new Map({ id: 9, owner: 1, boardIndex: 8 }),
+            new CardRecord({ id: 1, owner: 1, boardIndex: 0 }),
+            new CardRecord({ id: 2, owner: 1, boardIndex: 1 }),
+            new CardRecord({ id: 3, owner: 1, boardIndex: 2 }),
+            new CardRecord({ id: 4, owner: 1, boardIndex: 3 }),
+            new CardRecord({ id: 5, owner: 1, boardIndex: 4 }),
+            new CardRecord({ id: 6, owner: 1, boardIndex: 5 }),
+            new CardRecord({ id: 7, owner: 1, boardIndex: 6 }),
+            new CardRecord({ id: 8, owner: 1, boardIndex: 7 }),
+            new CardRecord({ id: 9, owner: 1, boardIndex: 8 }),
 
-            new Map({ id: 10, owner: 0, boardIndex: -1 }),
-            new Map({ id: 11, owner: 0, boardIndex: -1 }),
-            new Map({ id: 12, owner: 0, boardIndex: -1 }),
-            new Map({ id: 13, owner: 0, boardIndex: -1 })
+            new CardRecord({ id: 10, owner: 0, boardIndex: -1 }),
+            new CardRecord({ id: 11, owner: 0, boardIndex: -1 }),
+            new CardRecord({ id: 12, owner: 0, boardIndex: -1 }),
+            new CardRecord({ id: 13, owner: 0, boardIndex: -1 })
         ]);
     });
 

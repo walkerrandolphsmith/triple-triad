@@ -1,6 +1,7 @@
 import expect from 'expect';
 import { Map, List } from 'immutable';
 import { cardAdded } from './cardAdded';
+import { GameRecord, CardRecord } from './../../../constants/records';
 
 describe('src/shared/reducers/game/mutations/addCard', () => {
     describe('Given game state and payload containing id and owner of a card', () => {
@@ -11,13 +12,13 @@ describe('src/shared/reducers/game/mutations/addCard', () => {
             let cardId = 20;
             let owner = 2;
 
-            let card = new Map({
+            let card = new CardRecord({
                 id: cardId, owner: owner
             });
 
             let deck = new List([card]);
 
-            let game = new Map({
+            let game = new GameRecord({
                 id: gameId,
                 deck: deck
             });
@@ -40,7 +41,7 @@ describe('src/shared/reducers/game/mutations/addCard', () => {
             });
 
             it('should set a card, in the deck with id equal to payload id, owner to the payload owner ', () => {
-                expect(actual.get('games').first().get('deck').first().get('owner')).toEqual(payload.owner);
+                expect(actual.get('games').first().deck.first().owner).toEqual(payload.owner);
             });
         });
     });

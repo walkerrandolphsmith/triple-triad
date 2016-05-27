@@ -12,7 +12,7 @@ export default function() {
 
     const mapStateToProps = (state) => {
         const currentGame = currentGameSelector(state);
-        const phase = currentGame ? currentGame.get('phase') : PHASE.SETTINGS_SELECTION;
+        const phase = currentGame ? currentGame.phase : PHASE.SETTINGS_SELECTION;
         return {
             phase: phase,
             phases: PHASE,

@@ -12,11 +12,11 @@ import { getWinner } from './../../../utils/getWinner';
 const playerSelector = () => 1;
 const opponentSelector = () => 2;
 
-export const currentGameSelector = state => state.game.get('games').find(game => game.get('id') === state.game.get('gameRoute'));
+export const currentGameSelector = state => state.game.get('games').find(game => game.id === state.game.get('gameRoute'));
 
 export const deckSelector = createSelector(
     [currentGameSelector],
-    game => game.get('deck')
+    game => game.deck
 );
 
 export const availableDeckSelector = createSelector(

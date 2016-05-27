@@ -1,16 +1,17 @@
 import expect from 'expect';
 import { Map, List } from 'immutable';
 import { getIsFullHand } from './getIsFullHand';
+import { CardRecord } from './../constants/records';
 
 describe('src/shared/selectors/ifFullHandSelector', () => {
     let deck;
     beforeEach(() => {
         deck = new List([
-            new Map({ id: 1, owner: 0 }),
-            new Map({ id: 2, owner: 0 }),
-            new Map({ id: 3, owner: 0 }),
-            new Map({ id: 4, owner: 0 }),
-            new Map({ id: 5, owner: 0 })
+            new CardRecord({ id: 1, owner: 0 }),
+            new CardRecord({ id: 2, owner: 0 }),
+            new CardRecord({ id: 3, owner: 0 }),
+            new CardRecord({ id: 4, owner: 0 }),
+            new CardRecord({ id: 5, owner: 0 })
         ]);
     });
 

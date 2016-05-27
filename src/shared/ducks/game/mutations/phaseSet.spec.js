@@ -1,6 +1,7 @@
 import expect from 'expect';
 import { Map, List } from 'immutable';
 import { phaseSet } from './phaseSet';
+import { GameRecord } from './../../../constants/records';
 
 describe('src/shared/reducers/game/phaseSet', () => {
     describe('Given game state and a payload containing the phase of the game', () => {
@@ -8,7 +9,7 @@ describe('src/shared/reducers/game/phaseSet', () => {
         let payload;
         beforeEach(() => {
             let gameId = 20;
-            let game = new Map({
+            let game = new GameRecord({
                 id: gameId,
                 phase: "phase1"
             });
@@ -28,7 +29,7 @@ describe('src/shared/reducers/game/phaseSet', () => {
             });
 
             it('should set the phase to the phase in the payload', () => {
-                expect(actual.get('games').first().get('phase')).toEqual(payload.phase);
+                expect(actual.get('games').first().phase).toEqual(payload.phase);
             });
         });
     });
