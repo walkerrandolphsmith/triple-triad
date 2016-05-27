@@ -7,9 +7,6 @@ describe('src/shared/reducers/game/thunks/deleteGame', () => {
     beforeEach(() => {
         id = 20;
         dispatch = expect.createSpy();
-        __RewireAPI__.__Rewire__('deleteGameRequest', () => 1);
-        __RewireAPI__.__Rewire__('deleteGameSuccess', () => 2);
-        __RewireAPI__.__Rewire__('deleteGameFailure', () => 3);
     });
 
     it('should be a function', () => {
