@@ -12,7 +12,9 @@ export const observeStore = (store, select, onChange) => {
         if(!currentGame) return;
         firebaseRef.child('games').child(currentGame.get('id')).once('value', snapshot => {
             let firebaseGameState = snapshot.val();
-            if(firebaseGameState.currentPlayer === clientAuthenticatedUser && currentState !== currentGame) {
+            const isTwoPlayerAndMyTurn = firebaseGameState.accepted && firebaseGameState.currentPlayer === clientAuthenticatedUser;
+            const stateChanged = currentState !== currentGame;
+            if((isTwoPlayerAndMyTurn && stateChanged) || (!firebaseGameState.accepted && stateChanged)) {
                 changeShouldOccur = true;
             }
         });
@@ -27,7 +29,8 @@ export const observeStore = (store, select, onChange) => {
 };
 
 export const onChange = (game, ref) => {
-    ref.child('games').child(game.get('id')).update(game.toJS());
+    const g = game.toJS();
+    ref.child('games').child(game.get('id')).update(g);
 };
 
 export const select = state => state.game.get('games');
