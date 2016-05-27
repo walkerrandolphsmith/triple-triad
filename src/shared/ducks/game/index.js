@@ -6,15 +6,9 @@ import { boardUpdated } from './mutations/boardUpdated';
 import { cardAdded } from './mutations/cardAdded';
 import { cardPlaced } from './mutations/cardPlaced';
 import { cardSelected } from './mutations/cardSelected';
-import { createGameFailed } from './mutations/createGameFailed';
-import { createGameRequested } from './mutations/createGameRequested';
-import { createGameSucceeded } from './mutations/createGameSucceeded';
 import { currentGameSet } from './mutations/currentGameSet';
 import { currentPlayerMessageShown } from './mutations/currentPlayerMessageShown';
 import { currentPlayerSet } from './mutations/currentPlayerSet';
-import { gameDeletionFailed } from './mutations/gameDeletionFailed';
-import { gameDeletionRequested } from './mutations/gameDeletionRequested';
-import { gameDeletionSucceeded } from './mutations/gameDeletionSucceeded';
 import { getGamesFailed } from './mutations/getGamesFailed';
 import { getGamesRequested } from './mutations/getGamesRequested';
 import { getGamesSucceeded } from './mutations/getGamesSucceeded';
@@ -24,12 +18,6 @@ import { phaseSet } from './mutations/phaseSet';
 import { pieceSelected } from './mutations/pieceSelected';
 
 export const ADD_CARD = 'ADD_CARD';
-export const CREATE_GAME_FAILED = 'CREATE_GAME_FAILED';
-export const CREATE_GAME_REQUEST = 'CREATE_GAME_REQUEST';
-export const CREATE_GAME_SUCCESS = 'CREATE_GAME_SUCCESS';
-export const DELETE_GAME_FAILURE = 'DELETE_GAME_FAILURE';
-export const DELETE_GAME_REQUEST = 'DELETE_GAME_REQUEST';
-export const DELETE_GAME_SUCCESS = 'DELETE_GAME_SUCCESS';
 export const END_AI_TURN = 'END_AI_TURN';
 export const GET_GAME_FAILED = 'GET_GAME_FAILED';
 export const GET_GAME_REQUEST = 'GET_GAME_REQUEST';
@@ -51,13 +39,7 @@ export const SET_PHASE = 'SET_PHASE';
 export const UPDATE_BOARD = 'UPDATE_BOARD';
 
 export { addCard } from './actions/addCard';
-export { deleteGameFailure } from './actions/deleteGameFailure';
-export { deleteGameRequest } from './actions/deleteGameRequest';
-export { deleteGameSuccess } from './actions/deleteGameSuccess';
 export { endAiTurn } from './actions/endAiTurn';
-export { createGameFailure } from './actions/createGameFailure';
-export { createGameRequest } from './actions/createGameRequest';
-export { createGameSuccess } from './actions/createGameSuccess';
 export { getGameFailure } from './actions/getGameFailure';
 export { getGameRequest } from './actions/getGameRequest';
 export { getGameSuccess } from './actions/getGameSuccess';
@@ -128,12 +110,6 @@ export default function(state = INITIAL_STATE, action = {}) {
 
     switch(type) {
         case ADD_CARD: return cardAdded(state, payload);
-        case CREATE_GAME_FAILED: return createGameFailed(state, payload);
-        case CREATE_GAME_REQUEST: return createGameRequested(state, payload);
-        case CREATE_GAME_SUCCESS: return createGameSucceeded(state, payload);
-        case DELETE_GAME_FAILURE: return gameDeletionFailed(state, payload);
-        case DELETE_GAME_REQUEST: return gameDeletionRequested(state, payload);
-        case DELETE_GAME_SUCCESS: return gameDeletionSucceeded(state, payload);
         case END_AI_TURN: return aiTurnEnded(state);
         case GET_GAME_SUCCESS: return getGameSucceeded(state, payload);
         case GET_GAMES_FAILED: return getGamesFailed(state, payload);
