@@ -5,11 +5,11 @@ import { GameClosed } from './gameClosed';
 export class Games extends React.Component {
 
     render() {
-        let { games, isMyTurn, push, deleteGame } = this.props;
+        let { games, isMyTurn, push, setCurrentGame, deleteGame } = this.props;
 
         const gamesList = games.map(game => {
             return game.phase !== 'GAME_OVER'
-                ? (<Game key={game.id} game={game} isMyTurn={isMyTurn} push={push} deleteGame={deleteGame} />)
+                ? (<Game key={game.id} game={game} isMyTurn={isMyTurn} push={push} setCurrentGame={setCurrentGame} deleteGame={deleteGame} />)
                 : (<GameClosed key={game.id} game={game} />);
         });
 

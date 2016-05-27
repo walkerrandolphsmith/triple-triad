@@ -2,7 +2,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Games } from './../components';
 import { push } from 'react-router-redux';
-import { createGame, deleteGame } from './../ducks/game';
+import { createGame, deleteGame, setCurrentGame } from './../ducks/game';
 import { getScoreForOwner } from './../utils/getScoreForOwner';
 import { isCurrentPlayerMe } from './../utils/isCurrentPlayerMe';
 
@@ -43,7 +43,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ createGame, deleteGame, push }, dispatch);
+    return bindActionCreators({ createGame, deleteGame, setCurrentGame, push }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Games);
