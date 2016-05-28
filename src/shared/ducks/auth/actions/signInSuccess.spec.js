@@ -7,7 +7,7 @@ describe('src/shared/reducers/auth/actions/signInSuccess', () => {
         let expectedAction;
         beforeEach(() => {
             user = {
-                name: 'walker',
+                username: 'walker',
                 email: 'tester@gmail.com',
                 id: 12,
                 isVerified: true,

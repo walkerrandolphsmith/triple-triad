@@ -15,17 +15,15 @@ describe('src/shared/reducers/auth/mutations/signInSucceeded', () => {
 
         describe('When signing in is successful', () => {
             let actual;
-            let name;
-            let id;
+            let payload;
             beforeEach(() => {
-                name = 'a';
-                id = 'b';
-                actual = signInSucceeded(state, {
+                payload = {
                     user: {
-                        id: id,
-                        name: name
+                        id: '1',
+                        username: 'user'
                     }
-                });
+                };
+                actual = signInSucceeded(state, payload);
             });
 
             it('should set the signingIn state to true', () => {
@@ -33,11 +31,11 @@ describe('src/shared/reducers/auth/mutations/signInSucceeded', () => {
             });
 
             it('should set the username to the payload name', () => {
-                expect(actual.get('user').username).toEqual(name);
+                expect(actual.get('user').username).toEqual(payload.user.username);
             });
 
             it('should set the user id to the payload id', () => {
-                expect(actual.get('user').id).toEqual(id);
+                expect(actual.get('user').id).toEqual(payload.user.id);
             });
         });
     });
