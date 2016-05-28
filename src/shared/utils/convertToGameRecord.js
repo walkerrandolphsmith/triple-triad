@@ -1,7 +1,7 @@
 import { List } from 'immutable';
 import { GameRecord, CardRecord, RankRecord } from './../constants/records';
 
-export const convertGame = game => {
+export const convertToGameRecord = game => {
     const cards = game.deck.map(card => new CardRecord({
         id: card.id,
         boardIndex: card.boardIndex,

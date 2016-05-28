@@ -1,4 +1,4 @@
-import { convertGame } from './../../../utils/convertGameToImmutable';
+import { convertToGameRecord } from './../../../utils/convertToGameRecord';
 
 export const getGameSucceeded = (state, payload) => {
     const id = payload.game.id;
@@ -7,7 +7,7 @@ export const getGameSucceeded = (state, payload) => {
     const isKnownGame = state.get('games').find(game => game.id === id);
     let newGames;
 
-    const newGame = convertGame(payload.game);
+    const newGame = convertToGameRecord(payload.game);
 
     if(isKnownGame) {
         newGames = state.get('games').update(

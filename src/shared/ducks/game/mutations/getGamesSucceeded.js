@@ -1,8 +1,8 @@
 import { List } from 'immutable';
-import { convertGame } from './../../../utils/convertGameToImmutable';
+import { convertToGameRecord } from './../../../utils/convertToGameRecord';
 
 export const getGamesSucceeded = (state, payload) => {
-    const games = payload.games.map(game => convertGame(game));
+    const games = payload.games.map(game => convertToGameRecord(game));
     return state
         .setIn('getGames.failed'.split('.'), false)
         .setIn('getGames.loading'.split('.'), false)
