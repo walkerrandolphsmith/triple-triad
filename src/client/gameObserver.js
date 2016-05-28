@@ -7,7 +7,7 @@ export const observeStore = (store, select, onChange) => {
         let changeShouldOccur = false;
 
         const firebaseRef = state.firebase.get('ref');
-        const clientAuthenticatedUser = state.auth.get('user').get('id');
+        const clientAuthenticatedUser = state.auth.get('user').id;
         const currentGame = currentGameSelector(state);
         if(!currentGame) return;
         firebaseRef.child('games').child(currentGame.id).once('value', snapshot => {
