@@ -6,7 +6,7 @@ import {
     isValidEmail
 } from './formValidation';
 
-describe('src/shared/utils/formValidation/formValidation', () => {
+describe('src/shared/utils/formValidation', () => {
     describe('Password validation', () => {
         describe('Given a password between 6 and 25 digits, when validating password', () => {
             it('should return false', () => {

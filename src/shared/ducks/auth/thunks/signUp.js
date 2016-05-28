@@ -1,6 +1,6 @@
 import {
     isValidUsername, isValidPassword, passwordsMatch, isValidEmail
-} from './../../../utils/formValidation/formValidation';
+} from './../../../utils/formValidation';
 import { push } from 'react-router-redux';
 import { setFormError } from './../../forms/actions/setFormError';
 import { signUpRequest } from './../actions/signUpRequest';
