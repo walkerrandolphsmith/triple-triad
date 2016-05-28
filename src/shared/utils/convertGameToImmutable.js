@@ -20,6 +20,7 @@ export const convertGame = game => {
         phase: game.phase,
         accepted: game.accepted,
         currentPlayer: game.currentPlayer,
+        currentPlayerMessage: game.currentPlayerMessage,
         selectedCard: game.selectedCard,
         selectedPiece: game.selectedPiece
     });

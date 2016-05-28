@@ -5,7 +5,7 @@ import { Hand } from './hand';
 export class Round extends React.Component {
 
     render() {
-        let { game, isMyTurn, board, hand, opponentHand, settings, currentPlayerMessage, validPieces, score } = this.props;
+        let { game, isMyTurn, board, hand, opponentHand, settings, validPieces, score } = this.props;
         let { selectCard, completeTurn } = this.props;
 
         if(!isMyTurn) {
@@ -14,14 +14,14 @@ export class Round extends React.Component {
         }
 
         const messageStyles = {
-            display: currentPlayerMessage ? 'block' : 'none'
+            display: game.currentPlayerMessage ? 'block' : 'none'
         };
 
         return (
             <div id="round">
                 <div className="currentPlayerMessage"
                      style={messageStyles}>
-                    {currentPlayerMessage}
+                    {game.currentPlayerMessage}
                 </div>
                 <div className="row">
                     <div className="col-xl-1 col-lg-2 col-md-2 col-sm-2 col-xs-12">

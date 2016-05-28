@@ -11,12 +11,11 @@ function mapStateToProps(state) {
     let message = game.currentPlayerMessage;
     let isMyTurn = isCurrentPlayerMe(game.currentPlayer, state.auth.get('user').get('id'));
     return {
-        game: currentGameSelector(state),
+        game: game,
         isMyTurn: isMyTurn,
         settings: settings,
         board: boardSelector(state),
         hand: handSelector(state),
-        currentPlayerMessage: message,
         opponentHand: opponentHandSelector(state),
         validPieces: validPiecesSelector(state),
         score: scoreSelector(state)
