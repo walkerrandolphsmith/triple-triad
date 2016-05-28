@@ -12,7 +12,7 @@ export default {
             domain: process.env.MAILGUN_DOMAIN
         },
         firebase: {
-            apiKey: process.env.FIREBASE_API_KEY
+            apiKey: 'AIzaSyDo4MhUNzGxnaT1IxYKBOHbsK1ixCB7zCs'
         }
     },
     firebase: {

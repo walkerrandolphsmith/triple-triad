@@ -4,7 +4,7 @@ import { LeaderBoard } from './../components/leaderBoard';
 
 function mapStateToProps(state) {
     return {
-        id: state.auth.get('user').get('id')
+        id: state.auth.get('user').id
     }
 }
 

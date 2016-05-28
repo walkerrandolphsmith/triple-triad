@@ -8,7 +8,7 @@ import { getValidPieces } from './../../../utils/getValidPieces';
 import { getWinner } from './../../../utils/getWinner';
 import WINNER from './../../../constants/winner';
 
-export const meSelector = state => state.auth.get('user').get('id');
+export const meSelector = state => state.auth.get('user').id;
 export const gamesSelector = state => state.game.get('games');
 
 export const getGamesAssociatedWithMeSelector = createSelector(

@@ -4,7 +4,7 @@ export const signInSuccess = user => ({
     payload: {
         user: {
             avatar: user.avatar,
-            name: user.name,
+            username: user.username,
             email: user.email,
             id: user.id,
             isVerified: user.isVerified

@@ -1,6 +1,7 @@
 import expect from 'expect';
 import { Map } from 'immutable';
 import { signOutSucceeded } from './signOutSucceeded';
+import { UserRecord } from './../records';
 
 describe('src/shared/reducers/auth/mutations/signOutSucceeded', () => {
     describe('Given authentication state', () => {
@@ -8,10 +9,7 @@ describe('src/shared/reducers/auth/mutations/signOutSucceeded', () => {
         beforeEach(() => {
             state = new Map({
                 signingOut: false,
-                user: new Map({
-                    username: null,
-                    id: null
-                })
+                user: new UserRecord()
             });
         });
 
@@ -26,11 +24,11 @@ describe('src/shared/reducers/auth/mutations/signOutSucceeded', () => {
             });
 
             it('should set the username to null', () => {
-                expect(actual.get('user').get('username')).toEqual(null);
+                expect(actual.get('user').username).toEqual(null);
             });
 
             it('should set the user id to null', () => {
-                expect(actual.get('user').get('id')).toEqual(null);
+                expect(actual.get('user').id).toEqual(null);
             });
         });
     });

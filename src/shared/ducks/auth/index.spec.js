@@ -2,6 +2,7 @@ import expect from 'expect';
 import { Map } from 'immutable';
 import reducer from './index';
 import {
+    UserRecord,
     AUTH_SIGNIN,
     AUTH_SIGNIN_SUCCESS,
     AUTH_SIGNIN_FAIL,
@@ -24,13 +25,7 @@ describe('src/shared/reducers/auth', () => {
                 signingIn: false,
                 signingOut: false,
                 signingUp: false,
-                user: new Map({
-                    id: null,
-                    email: null,
-                    username: null,
-                    isVerified: false,
-                    avatar: null
-                })
+                user: new UserRecord()
             });
         });
 

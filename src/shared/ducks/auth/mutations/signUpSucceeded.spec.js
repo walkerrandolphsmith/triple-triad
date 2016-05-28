@@ -1,6 +1,7 @@
 import expect from 'expect';
 import { Map } from 'immutable';
 import { signUpSucceeded } from './signUpSucceeded';
+import { UserRecord } from './../records';
 
 describe('src/shared/reducers/auth/mutations/signUpSucceeded', () => {
     describe('Given authentication state', () => {
@@ -8,10 +9,7 @@ describe('src/shared/reducers/auth/mutations/signUpSucceeded', () => {
         beforeEach(() => {
             state = new Map({
                 signingUp: false,
-                user: new Map({
-                    username: null,
-                    id: null
-                })
+                user: new UserRecord()
             });
         });
 
@@ -35,11 +33,11 @@ describe('src/shared/reducers/auth/mutations/signUpSucceeded', () => {
             });
 
             it('should set the username to null', () => {
-                expect(actual.get('user').get('username')).toEqual(name);
+                expect(actual.get('user').username).toEqual(name);
             });
 
             it('should set the user id to true', () => {
-                expect(actual.get('user').get('id')).toEqual(id);
+                expect(actual.get('user').id).toEqual(id);
             });
         });
     });

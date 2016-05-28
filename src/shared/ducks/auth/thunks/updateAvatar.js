@@ -11,7 +11,7 @@ export const updateAvatar = file => (dispatch, getState) => {
     }, () => {
         const downloadURL = uploadTask.snapshot.downloadURL;
 
-        const id = getState().auth.get('user').get('id');
+        const id = getState().auth.get('user').id;
         const firebaseAuth = getState().firebase.get('ref');
         firebaseAuth.child('users').child(id).child('avatar').set(downloadURL);
 

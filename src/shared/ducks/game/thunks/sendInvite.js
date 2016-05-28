@@ -6,7 +6,7 @@ export function sendInvite(gameId, email) {
         dispatch(sendInviteRequest());
 
         const state = getState();
-        const gameOwner = state.auth.get('user').get('id');
+        const gameOwner = state.auth.get('user').id;
 
         const data = {
             gameId: gameId,

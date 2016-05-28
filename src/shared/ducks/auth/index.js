@@ -40,19 +40,20 @@ export { updateAvatarSuccess } from './actions/updateAvatarSuccess'
 export { updateAvatar } from './thunks/updateAvatar';
 export { deleteUser } from './thunks/deleteUser';
 
+import { UserRecord } from './records';
+
+export { NameRecord } from './records';
+export { UserRecord } from './records';
+export { convertUserToRecord } from './records';
+
+
 const INITIAL_STATE = new Map({
     loading: false,
     loaded: false,
     signingIn: false,
     signingOut: false,
     signingUp: false,
-    user: new Map({
-        id: null,
-        email: null,
-        username: null,
-        isVerified: false,
-        avatar: null
-    })
+    user: new UserRecord()
 });
 
 export default function auth(state = INITIAL_STATE, action = {}) {

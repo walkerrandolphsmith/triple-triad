@@ -1,6 +1,7 @@
 import expect from 'expect';
 import { Map } from 'immutable';
 import { sendInvite, __RewireAPI__ } from './sendInvite';
+import { UserRecord } from './../../auth/records';
 
 describe('src/shared/reducers/game/thunks/sendInvite', () => {
     let dispatch;
@@ -21,11 +22,13 @@ describe('src/shared/reducers/game/thunks/sendInvite', () => {
 
         getState = () => ({
             auth: new Map({
-                user: new Map({
+                user: new UserRecord({
                     id: gameOwner
                 })
             })
         });
+
+        console.log(new UserRecord().id);
 
         request = __RewireAPI__.__Rewire__('request', {
             post: function() {

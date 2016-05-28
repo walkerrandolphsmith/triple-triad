@@ -13,7 +13,7 @@ export const listenToAuth = () => (dispatch, getState) => {
                     const u = snapshot.val();
                     dispatch(signInSuccess({
                         id: user.uid,
-                        name: u.name,
+                        username: u.name,
                         avatar: u.avatar,
                         email: user.email,
                         isVerified: u.isVerified

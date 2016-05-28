@@ -8,11 +8,7 @@ import { getScoresSelector } from '../ducks/auth/selectors';
 
 function mapStateToProps(state) {
     return {
-        id: state.auth.get('user').get('id'),
-        username: state.auth.get('user').get('username'),
-        email: state.auth.get('user').get('email'),
-        isVerified: state.auth.get('user').get('isVerified'),
-        avatar: state.auth.get('user').get('avatar'),
+        user: state.auth.get('user'),
         tally: getScoresSelector(state),
         resendingVerificationEmail: state.resendVerificationEmail.get('loading'),
         verificationEmailSent: state.resendVerificationEmail.get('loaded'),

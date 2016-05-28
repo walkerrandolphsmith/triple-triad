@@ -9,7 +9,7 @@ function mapStateToProps(state) {
     const { settings } = state;
     const game = currentGameSelector(state);
     let message = game.currentPlayerMessage;
-    let isMyTurn = isCurrentPlayerMe(game.currentPlayer, state.auth.get('user').get('id'));
+    let isMyTurn = isCurrentPlayerMe(game.currentPlayer, state.auth.get('user').id);
     return {
         game: game,
         isMyTurn: isMyTurn,

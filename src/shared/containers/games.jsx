@@ -7,18 +7,18 @@ import { getScoreForOwner } from './../utils/getScoreForOwner';
 import { isCurrentPlayerMe } from './../utils/isCurrentPlayerMe';
 
 function mapStateToProps(state) {
-    const loggedInUser = state.auth.get('user').get('id');
+    const loggedInUser = state.auth.get('user').id;
     const games = state.game.get('games').map(game => {
         let owner;
         let opponent;
         let canDelete;
         if(game.owner === loggedInUser) {
-            owner = state.auth.get('user').get('username');
+            owner = state.auth.get('user').username;
             opponent = game.opponent;
             canDelete = true;
         } else {
             owner = 'AI';
-            opponent = state.auth.get('user').get('username');
+            opponent = state.auth.get('user').username;
             canDelete = false;
         }
         const blue = getScoreForOwner(game.deck, 1);

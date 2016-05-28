@@ -6,11 +6,9 @@ import { resendEmailVerification } from '../ducks/resendVerificationEmail';
 import { push } from 'react-router-redux';
 
 function mapStateToProps(state) {
+    const { id, username, email, avatar } = state.auth.get('user');
     return {
-        id: state.auth.get('user').get('id'),
-        username: state.auth.get('user').get('username'),
-        email: state.auth.get('user').get('email'),
-        avatar: state.auth.get('user').get('avatar')
+        id, username, email, avatar
     }
 }
 
