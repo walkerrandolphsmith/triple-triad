@@ -1,7 +1,7 @@
 import expect from 'expect';
 import { Map, List } from 'immutable';
 import { cardAdded } from './cardAdded';
-import { GameRecord, CardRecord } from './../../../constants/records';
+import { GameRecord, CardRecord } from './../../../ducks/game/records';
 
 describe('src/shared/reducers/game/mutations/addCard', () => {
     describe('Given game state and payload containing id and owner of a card', () => {

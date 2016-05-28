@@ -1,7 +1,7 @@
 import expect from 'expect';
 import { handleEscape, __RewireAPI__ } from './handleEscape';
 import PHASE from './../../../constants/phases';
-import { GameRecord } from './../../../constants/records';
+import { GameRecord } from './../../../ducks/game/records';
 
 describe('src/shared/reducers/game/thunks/handleEscape', () => {
     let getState;

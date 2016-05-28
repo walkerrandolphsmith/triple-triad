@@ -1,5 +1,5 @@
 import { List } from 'immutable';
-import { convertToGameRecord } from './../../../utils/convertToGameRecord';
+import { convertToGameRecord } from './../records';
 
 export const getGamesSucceeded = (state, payload) => {
     const games = payload.games.map(game => convertToGameRecord(game));

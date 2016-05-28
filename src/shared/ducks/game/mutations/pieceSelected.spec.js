@@ -1,7 +1,7 @@
 import expect from 'expect';
 import { Map, List } from 'immutable';
 import { pieceSelected } from './pieceSelected';
-import { GameRecord } from './../../../constants/records';
+import { GameRecord } from './../../../ducks/game/records';
 
 describe('src/shared/reducers/game/mutations/pieceSelected', () => {
     describe('Given game state and a payload containing the index of a piece', () => {

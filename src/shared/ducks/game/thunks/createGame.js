@@ -1,4 +1,4 @@
-import { GameRecord } from './../../../constants/records';
+import { GameRecord } from './../../../ducks/game/records';
 
 export const createGame = () => (dipatch, getState) => {
     const ownerId = getState().auth.get('user').get('id');

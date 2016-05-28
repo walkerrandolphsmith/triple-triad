@@ -1,7 +1,7 @@
 import expect from 'expect';
 import { List } from 'immutable';
 import { getRandomHand, __RewireAPI__ } from './getRandomHand';
-import { GameRecord, CardRecord } from './../constants/records';
+import { GameRecord, CardRecord } from './../ducks/game/records';
 
 describe('src/shared/actions/utils/getRandomHand', () => {
     let game;

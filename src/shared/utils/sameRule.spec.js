@@ -1,7 +1,7 @@
 import expect from 'expect';
-import { Map, List } from 'immutable';
+import { List } from 'immutable';
 import { sameRule, __RewireAPI__ } from './sameRule';
-import { GameRecord, CardRecord, RankRecord } from './../constants/records';
+import { CardRecord, RankRecord } from './../ducks/game/records';
 
 describe('src/shared/actions/utils/sameRule', () => {
     let index;

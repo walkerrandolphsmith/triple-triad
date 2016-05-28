@@ -2,7 +2,7 @@ import expect from 'expect';
 import { Map } from 'immutable';
 import { handleLeft, __RewireAPI__ } from './handleLeft';
 import PHASE from './../../../constants/phases';
-import { GameRecord } from './../../../constants/records';
+import { GameRecord } from './../../../ducks/game/records';
 
 describe('src/shared/reducers/game/thunks/handleLeft', () => {
     describe('Given getState, dispatch', () => {

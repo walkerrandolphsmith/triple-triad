@@ -1,7 +1,7 @@
 import expect from 'expect';
 import { List } from 'immutable';
 import { getAvailableDeck } from './getAvailableDeck';
-import { CardRecord } from './../constants/records';
+import { CardRecord } from './../ducks/game/records';
 
 describe('src/shared/selectors/availableDeckSelector', () => {
     let deck;

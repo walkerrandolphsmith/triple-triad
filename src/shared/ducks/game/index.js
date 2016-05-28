@@ -89,6 +89,11 @@ export { scoreSelector } from './selectors';
 export { validPiecesSelector } from './selectors';
 export { winnerSelector } from './selectors';
 
+export { RankRecord } from './records';
+export { CardRecord } from './records';
+export { GameRecord } from './records';
+export { convertToGameRecord } from './records';
+
 const INITIAL_STATE = new Map({
     getGames: new Map({
         loading: false,

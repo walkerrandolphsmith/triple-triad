@@ -2,7 +2,7 @@ import expect from 'expect';
 import { Map } from 'immutable';
 import { endPhase, __RewireAPI__ } from './endPhase';
 import PHASE from './../../../constants/phases';
-import { GameRecord } from './../../../constants/records';
+import { GameRecord } from './../../../ducks/game/records';
 
 describe('src/shared/reducers/game/thunks/endPhase', () => {
     let dispatch;

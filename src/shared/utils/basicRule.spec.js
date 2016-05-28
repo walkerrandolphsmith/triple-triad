@@ -1,7 +1,7 @@
 import expect from 'expect';
 import { List } from 'immutable';
 import { basicRule, __RewireAPI__ } from './basicRule';
-import { CardRecord, RankRecord } from './../constants/records';
+import { CardRecord, RankRecord } from './../ducks/game/records';
 
 describe('src/shared/actions/utils/basicRule', () => {
     let index;

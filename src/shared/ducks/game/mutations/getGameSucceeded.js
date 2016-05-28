@@ -1,4 +1,4 @@
-import { convertToGameRecord } from './../../../utils/convertToGameRecord';
+import { convertToGameRecord } from './../records';
 
 export const getGameSucceeded = (state, payload) => {
     const id = payload.game.id;

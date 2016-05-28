@@ -1,7 +1,7 @@
 import expect from 'expect';
 import { handleRight, __RewireAPI__ } from './handleRight';
 import PHASE from './../../../constants/phases';
-import { GameRecord } from './../../../constants/records';
+import { GameRecord } from './../../../ducks/game/records';
 
 describe('src/shared/reducers/game/thunks/handleRight', () => {
     describe('Given getState, dispatch', () => {

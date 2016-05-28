@@ -1,7 +1,7 @@
 import expect from 'expect';
 import { Map, List } from 'immutable';
 import { getGamesSucceeded } from './getGamesSucceeded';
-import { GameRecord, CardRecord } from './../../../constants/records';
+import { GameRecord, CardRecord } from './../../../ducks/game/records';
 
 describe('src/shared/reducers/game/mutations/getGamesSucceeded', () => {
     describe('Given games state and a payload containing a game', () => {

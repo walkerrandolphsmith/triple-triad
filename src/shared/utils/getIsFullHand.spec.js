@@ -1,7 +1,7 @@
 import expect from 'expect';
 import { Map, List } from 'immutable';
 import { getIsFullHand } from './getIsFullHand';
-import { CardRecord } from './../constants/records';
+import { CardRecord } from './../ducks/game/records';
 
 describe('src/shared/selectors/ifFullHandSelector', () => {
     let deck;

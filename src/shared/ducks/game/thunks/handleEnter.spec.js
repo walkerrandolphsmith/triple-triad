@@ -2,7 +2,7 @@ import expect from 'expect';
 import { Map, List } from 'immutable';
 import { handleEnter, __RewireAPI__ } from './handleEnter';
 import PHASE from './../../../constants/phases';
-import { GameRecord, CardRecord } from './../../../constants/records';
+import { GameRecord, CardRecord } from './../../../ducks/game/records';
 
 describe('src/shared/reducers/game/thunks/handleEnter', () => {
     let getState;

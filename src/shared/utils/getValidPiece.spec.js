@@ -1,7 +1,7 @@
 import expect from 'expect';
 import { List } from 'immutable';
 import { getValidPiece, __RewireAPI__ } from './getValidPiece';
-import { GameRecord, CardRecord } from './../constants/records';
+import { GameRecord, CardRecord } from './../ducks/game/records';
 
 describe('src/shared/actions/utils/getValidPiece', () => {
     it('should be a function', () => {
