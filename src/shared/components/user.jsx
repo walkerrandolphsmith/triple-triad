@@ -12,10 +12,7 @@ export class User extends React.Component {
 
     render() {
         const { tally } = this.props;
-        const username = this.props.user.username;
-        const email = this.props.user.email;
-        const avatar = this.props.user.avatar;
-        const isVerified = this.props.user.isVerified;
+        const { username, email, avatar, isVerified } = this.props.user;
 
         const wins = tally ? tally.wins : 0;
         const loses = tally ? tally.loses : 0;
