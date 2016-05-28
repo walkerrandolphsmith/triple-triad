@@ -101,8 +101,7 @@ const INITIAL_STATE = new Map({
         failed: false
     }),
     gameRoute: -1,
-    games: new List([]),
-    shiftFactor: 0
+    games: new List([])
 });
 
 export default function(state = INITIAL_STATE, action = {}) {
