@@ -49,7 +49,7 @@ export class SignUp extends React.Component {
     }
 
     render() {
-        
+
         let { username, password, confirmPassword, email } = this.props.errors;
 
         let usernameFormGroupClass = `form-group ${username ? 'has-error': ''}`;
@@ -107,7 +107,7 @@ export class SignUp extends React.Component {
                             value={this.state.password}
                             onChange={this.handleChange.bind(this)}
                         />
-                    {passwordHelpText}
+                        {passwordHelpText}
                     </div>
                     <div className={passwordConfirmFormGroupClass}>
                         <label htmlFor="confirm-password">Confirm Password</label>
@@ -127,7 +127,7 @@ export class SignUp extends React.Component {
                         className="btn btn-main"
                         name="submitButton"
                         type="submit">
-                    Sign Up
+                        Sign Up
                     </button>
                 </form>
 
