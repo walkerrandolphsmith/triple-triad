@@ -57,7 +57,7 @@ describe('src/shared/reducers/game/thunks/sendInvite', () => {
         expect(sendInvite()).toBeA('function');
     });
 
-    it('should be a dispatch endPhase', () => {
+    it('should be a dispatch endPhaseInvite', () => {
         sendInvite()(dispatch, getState);
         expect(dispatch).toHaveBeenCalledWith(1);
     });

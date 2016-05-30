@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Invite } from './../components';
-import { endPhase, sendInvite } from './../ducks/game';
+import { endPhaseInvite, sendInvite } from './../ducks/game';
 import { updateFocusSetting, updateSetting } from '../ducks/settings';
 
 function mapStateToProps(state) {
@@ -12,7 +12,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ endPhase, sendInvite, updateFocusSetting, updateSetting }, dispatch);
+    return bindActionCreators({ endPhaseInvite, sendInvite, updateFocusSetting, updateSetting }, dispatch);
 }
 
 

@@ -23,7 +23,7 @@ export class CardSelection extends React.Component {
                         />
                         <button className="btn btn-main"
                                 disabled={!isHandSelected}
-                                onClick={this.props.endPhase}>
+                                onClick={this.props.endPhaseHandSelection}>
                             Next step
                         </button>
                     </div>
