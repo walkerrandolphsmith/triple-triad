@@ -1,5 +1,4 @@
 import { isValidEmail, isValidPassword } from './../../../utils/formValidation';
-import { push } from 'react-router-redux';
 import { setFormError } from './../../forms/actions/setFormError';
 import { signInRequest } from './../actions/signInRequest';
 import { signInSuccess } from './../actions/signInSuccess';
