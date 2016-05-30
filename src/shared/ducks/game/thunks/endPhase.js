@@ -9,8 +9,9 @@ export const endPhase = () => (dispatch, getState) => {
     const state = getState();
     const currentGame = currentGameSelector(state);
     const randomHand = state.settings.get('randomHand');
+    const multiplayer = state.settings.get('multiplayer');
     const currentPhase = currentGame.phase;
-    const nextPhase = getNextPhase(currentPhase, randomHand);
+    const nextPhase = getNextPhase(currentPhase, { randomHand, multiplayer });
 
     if(willBePhaseHandSelection(nextPhase)) {
         dispatch(selectNextCard('hand'));
