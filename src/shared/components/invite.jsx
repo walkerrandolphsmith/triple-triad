@@ -37,7 +37,7 @@ export class Invite extends React.Component {
     }
 
     update(setting) {
-        this.props.updateSettings(setting);
+        this.props.updateSetting(setting);
     }
 
     focus(setting) {
