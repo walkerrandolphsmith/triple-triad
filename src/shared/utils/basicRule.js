@@ -1,63 +1,51 @@
-import { getBoard } from './getBoard';
+import { getSurroundings } from './getSurroundings';
 import { sort } from './objectsByNumericPropValues';
 
-function shouldFLip(card, otherCard, attackDirection, defenseDirection) {
-    return (
-        card
-        && otherCard
-        && card.owner !== otherCard.owner
-        && card.rank[attackDirection] > otherCard.rank[defenseDirection]
-    );
-}
+const shouldApplyBasicRuleAbove = (card, aboveCard) => shouldApplyBasicRule(
+    card, aboveCard, 'top', 'bottom'
+);
+
+const shouldApplyBasicRuleBelow = (card, belowCard) => shouldApplyBasicRule(
+    card, belowCard, 'bottom', 'top'
+);
+
+const shouldApplyBasicRuleLeft = (card, leftCard) => shouldApplyBasicRule(
+    card, leftCard, 'left', 'right'
+);
+
+const shouldApplyBasicRuleRight = (card, rightCard) => shouldApplyBasicRule(
+    card, rightCard, 'right', 'left'
+);
+
+const shouldApplyBasicRule = (card, otherCard, attackDirection, defenseDirection) => (
+    card
+    && otherCard
+    && card.owner !== otherCard.owner
+    && card.rank[attackDirection] > otherCard.rank[defenseDirection]
+);
 
 export function basicRule(i, deck) {
-    const board = getBoard(deck);
-
-    const row = i / 3;
-    const column = i % 3;
-
-    const card = board.filter(c => c && c.boardIndex === i).get(0);
-
-    const above = i - 3;
-    const below = i + 3;
-    const left = i - 1;
-    const right = i + 1;
-
-    const isNotFirstRow = row > 0;
-    const isNotLastRow = row < 2;
-    const isNotFirstColumn = column > 0;
-    const isNotLastColumn = column < 2;
-
-    const cardAbove = isNotFirstRow ? board.filter(ca => ca.boardIndex === above).get(0) : null;
-    const cardBelow = isNotLastRow ? board.filter(cb => cb.boardIndex === below).get(0) : null;
-    const cardAtLeft = isNotFirstColumn ? board.filter(cl => cl.boardIndex === left).get(0) : null;
-    const cardAtRight = isNotLastColumn ? board.filter(cr => cr.boardIndex === right).get(0) : null;
+    const { card, above, below, left, right } = getSurroundings(i, deck);
 
     let owner = card.owner;
-    let other = owner === 1 ? 2 : 1;
 
     let tuples = [];
 
-    if(shouldFLip(card, cardAbove, 'top', 'bottom')) {
-        tuples.push({ index: above, owner: card.owner });
+    if(!card) {
+        return tuples;
     }
-    if(shouldFLip(card, cardBelow, 'bottom', 'top')) {
-        tuples.push({ index: below, owner: card.owner });
-    }
-    if(shouldFLip(card, cardAtLeft, 'left', 'right')) {
-        tuples.push({ index: left, owner: card.owner });
-    }
-    if(shouldFLip(card, cardAtRight, 'right', 'left')) {
-        tuples.push({ index: right, owner: card.owner });
-    }
-    tuples = sort(tuples);
 
-    if(shouldFLip(cardAbove, card, 'bottom', 'top')
-        || shouldFLip(cardBelow, card, 'top', 'bottom')
-        || shouldFLip(cardAtLeft, card, 'right', 'left')
-        || shouldFLip(cardAtRight, card, 'left', 'right')
-    ) {
-        tuples.push({ index: i, owner: other });
+    if(shouldApplyBasicRuleAbove(card, above.card)) {
+        tuples.push({ index: above.index, owner: owner });
     }
-    return tuples;
+    if(shouldApplyBasicRuleBelow(card, below.card)) {
+        tuples.push({ index: below.index, owner: owner });
+    }
+    if(shouldApplyBasicRuleLeft(card, left.card)) {
+        tuples.push({ index: left.index, owner: owner });
+    }
+    if(shouldApplyBasicRuleRight(card, right.card)) {
+        tuples.push({ index: right.index, owner: owner });
+    }
+    return sort(tuples);
 }
