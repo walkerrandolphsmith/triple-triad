@@ -2,6 +2,7 @@ import expect from 'expect';
 import { ROUTES } from './routes';
 
 //Rewire
+import AcceptInvitation from './../shared/containers/acceptInvitation';
 import ForgotPassword from './../shared/containers/forgotPassword';
 import Games from './../shared/containers/games';
 import LeaderBoard from './../shared/containers/leaderBoard';
@@ -41,6 +42,10 @@ describe('src/shared/routes', () => {
 
         it('should contain a mapping between games path and Games component', () => {
             expect(ROUTES).toInclude({ path: 'games', component: Games, status: 200 });
+        });
+
+        it('should contain a mapping between accept-invitation/:token and AcceptInvitation component', () => {
+            expect(ROUTES).toInclude({ path: 'accept-invitation/:token', component: AcceptInvitation, status: 200 });
         });
 
         it('should contain a mapping between user path and User component', () => {

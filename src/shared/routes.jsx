@@ -9,6 +9,7 @@ import VerifyEmail from './../shared/containers/verify';
 import ForgotPassword from './../shared/containers/forgotPassword';
 import PasswordReset from './../shared/containers/passwordReset';
 import Games from './../shared/containers/games';
+import AcceptInvitation from './../shared/containers/acceptInvitation';
 import User from './../shared/containers/user';
 import UserEdit from './../shared/containers/userEdit';
 import NotFound from './../shared/containers/notFound';
@@ -43,6 +44,11 @@ export const ROUTES = [
       {
             path: 'games',
             component: Games,
+            status: 200
+      },
+      {
+            path: 'accept-invitation/:token',
+            component: AcceptInvitation,
             status: 200
       },
       {

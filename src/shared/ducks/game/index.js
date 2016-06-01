@@ -14,6 +14,7 @@ import { getGamesRequested } from './mutations/getGamesRequested';
 import { getGamesSucceeded } from './mutations/getGamesSucceeded';
 import { getGameRequested } from './mutations/getGamesRequested';
 import { getGameSucceeded } from './mutations/getGameSucceeded';
+import { opponentSet } from './mutations/opponentSet';
 import { phaseSet } from './mutations/phaseSet';
 import { pieceSelected } from './mutations/pieceSelected';
 
@@ -31,6 +32,7 @@ export const SELECT_CARD = 'SELECT_CARD';
 export const SELECT_PIECE = 'SELECT_PIECE';
 export const SET_CURRENT_GAME = 'SET_CURRENT_GAME';
 export const SET_CURRENT_PLAYER = 'SET_CURRENT_PLAYER';
+export const SET_OPPONENT = 'SET_OPPONENT';
 export const SHOW_CURRENT_PLAYER_MESSAGE = 'SHOW_CURRENT_PLAYER_MESSAGE';
 export const SEND_INVITE_REQUEST = 'SEND_INVITE_REQUEST';
 export const SEND_INVITE_SUCCESS = 'SEND_INVITE_SUCCESS';
@@ -56,6 +58,7 @@ export { sendInviteSuccess } from './actions/sendInviteSuccess';
 export { setCurrentGame } from './actions/setCurrentGame';
 export { setCurrentPlayer } from './actions/setCurrentPlayer';
 export { setPhase } from './actions/setPhase';
+export { setOpponent } from './actions/setOpponent';
 export { showCurrentPlayerMessage } from './actions/showCurrentPlayerMessage';
 export { updateBoard } from './actions/updateBoard';
 
@@ -127,6 +130,7 @@ export default function(state = INITIAL_STATE, action = {}) {
         case SELECT_PIECE: return pieceSelected(state, payload);
         case SET_CURRENT_GAME: return currentGameSet(state, payload);
         case SET_CURRENT_PLAYER: return currentPlayerSet(state, payload);
+        case SET_OPPONENT: return opponentSet(state, payload);
         case SET_PHASE: return phaseSet(state, payload);
         case SHOW_CURRENT_PLAYER_MESSAGE: return currentPlayerMessageShown(state, payload);
         case START_AI_TURN: return aiTurnStarted(state);

@@ -1,3 +1,4 @@
+export { AcceptInvitation } from './acceptInvitation';
 export { App } from './app';
 export { Board } from './board';
 export { BreadCrumb } from './breadCrumb';

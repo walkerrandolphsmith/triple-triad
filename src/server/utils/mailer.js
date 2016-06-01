@@ -38,7 +38,7 @@ export function sendInviteEmail(toEmail, fromEmail, token, fn) {
         subject: `${fromEmail} invited you to play Triple Triad`,
         html: `
             Join ${fromEmail} with the following link:
-            http://${env.host}:${env.port}/accept_invitation/${token}.
+            http://${env.host}:${env.port}/accept-invitation/${token}.
         `
     };
     sendEmail(data, fn);

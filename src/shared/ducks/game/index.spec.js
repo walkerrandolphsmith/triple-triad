@@ -12,6 +12,7 @@ import {
     START_AI_TURN,
     SELECT_CARD,
     SELECT_PIECE,
+    SET_OPPONENT,
     SET_CURRENT_GAME,
     SET_CURRENT_PLAYER,
     SHOW_CURRENT_PLAYER_MESSAGE,
@@ -212,6 +213,19 @@ describe('src/shared/reducers/game', () => {
 
             it('should call currentPlayerMessageShown', () => {
                 expect(currentPlayerMessageShown).toHaveBeenCalled();
+            });
+        });
+
+        describe('When handling SET_OPPONENT', () => {
+            let opponentSet = expect.createSpy();
+            __RewireAPI__.__Rewire__('opponentSet', opponentSet);
+
+            reducer(initialState, {
+                type: SET_OPPONENT
+            });
+
+            it('should call opponentSet', () => {
+                expect(opponentSet).toHaveBeenCalled();
             });
         });
 
