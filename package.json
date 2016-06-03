@@ -14,8 +14,7 @@
     "test:watch": "npm run test:unit -- --watch",
     "build:prod": "better-npm-run build:prod",
     "build:prod:client": "better-npm-run build:prod:client",
-    "build:prod:server": "better-npm-run build:prod:server",
-    "deploy": "git push heroku master"
+    "build:prod:server": "better-npm-run build:prod:server"
   },
   "betterScripts": {
     "start": {
