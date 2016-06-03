@@ -67,7 +67,7 @@ export { completeTurn } from './thunks/completeTurn';
 export { createGame } from './thunks/createGame';
 export { deleteGame } from './thunks/deleteGame';
 export { endPhaseHandSelection } from './thunks/endPhaseHandSelection';
-export { endPhaseHold } from './thunks/endPhaseHold';
+export { endPhaseInvitationHold } from './thunks/endPhaseInvitationHold';
 export { endPhaseInvite } from './thunks/endPhaseInvite';
 export { endPhaseSettingsSelection } from './thunks/endPhaseSettingsSelection';
 export { getGame } from './thunks/getGame';

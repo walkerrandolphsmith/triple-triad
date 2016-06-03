@@ -7,7 +7,7 @@ import { setHands } from './setHands';
 import { currentGameSelector } from './../index';
 import { push } from 'react-router-redux';
 
-export const endPhaseHold = (gameId, invitationToken) => (dispatch, getState) => {
+export const endPhaseInvitationHold = (gameId, invitationToken) => (dispatch, getState) => {
     dispatch(setCurrentGame(gameId));
     const state = getState();
     const randomHand = state.settings.get('randomHand');

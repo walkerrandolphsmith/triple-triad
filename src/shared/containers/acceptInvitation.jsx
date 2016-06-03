@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { AcceptInvitation } from './../components';
-import { endPhaseHold } from './../ducks/game';
+import { endPhaseInvitationHold } from './../ducks/game';
 
 function mapStateToProps(state) {
     const invitationToken = state.routing.locationBeforeTransitions.pathname.split('accept-invitation/')[1];
@@ -15,7 +15,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ endPhaseHold }, dispatch);
+    return bindActionCreators({ endPhaseInvitationHold }, dispatch);
 }
 
 
