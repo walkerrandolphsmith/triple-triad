@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { CardSelection } from './../components';
+import { HandSelection } from './../components';
 import { handSelector, isFullHandSelector, availableDeckSelector, currentGameSelector } from '../ducks/game';
 import { addCard, endPhaseHandSelection, selectCard, shiftCardSelectionLeft } from '../ducks/game';
 
@@ -23,4 +23,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(CardSelection);
+export default connect(mapStateToProps, mapDispatchToProps)(HandSelection);

@@ -3,7 +3,7 @@ export { App } from './app';
 export { Board } from './board';
 export { BreadCrumb } from './breadCrumb';
 export { Card } from './card';
-export { CardSelection } from './cardSelection';
+export { HandSelection } from './handSelection';
 export { Deck } from './deck';
 export { ForgotPassword } from './forgotPassword';
 export { Game } from './game';

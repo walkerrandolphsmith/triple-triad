@@ -2,7 +2,7 @@ import React from 'react';
 import { Hand } from './hand';
 import { Deck } from './deck';
 
-export class CardSelection extends React.Component {
+export class HandSelection extends React.Component {
 
     render() {
         let { availableDeck, selectedCard, hand, isHandSelected, addCard, shiftCardSelectionLeft } = this.props;
