@@ -1,10 +1,11 @@
 import { setHand } from './setHand';
+import { currentGameSelector } from './../index';
 
 export const setHands = () => (dispatch, getState) => {
     const state = getState();
-
+    const currentGame = currentGameSelector(state);
     if(state.settings.get('randomHand')) {
-        dispatch(setHand(1));
+        dispatch(setHand(currentGame.owner));
     }
-    dispatch(setHand(2));
+    dispatch(setHand(currentGame.opponent));
 };

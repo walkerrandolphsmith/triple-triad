@@ -4,9 +4,9 @@ export class Card extends React.Component {
 
     render() {
 
-        let { card, classes, cardStyle, clickAction } = this.props;
+        let { gameOwner, card, classes, cardStyle, clickAction } = this.props;
 
-        const backgroundColor = card.owner < 2 ? 'linear-gradient( 45deg, white, #608FC6 )' : 'linear-gradient( 45deg, white, #CC181E )';
+        const backgroundColor = (card.owner === 0 || card.owner === gameOwner) ? 'linear-gradient( 45deg, white, #608FC6 )' : 'linear-gradient( 45deg, white, #CC181E )';
 
         const defaultStyle = {
             backgroundImage: `url(../assets/images/cards/${card.name}.png), ${backgroundColor}`

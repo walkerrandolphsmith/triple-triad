@@ -10,7 +10,9 @@ function mapStateToProps(state) {
     let game = currentGameSelector(state);
 
     return {
+        loggedInUser: state.auth.get('user').id,
         selectedCard: game.selectedCard,
+        gameOwner: game.owner,
         settings: settings,
         availableDeck: availableDeckSelector(state),
         hand: handSelector(state),

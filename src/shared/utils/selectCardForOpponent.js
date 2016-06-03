@@ -1,8 +1,8 @@
 import { getHand } from './getHand';
 import { sample } from './sample';
 
-export function selectCardForOpponent(game) {
-    let opponentHand = getHand(game.deck, 2);
+export const selectCardForOpponent = game => {
+    let opponentHand = getHand(game.deck, game.opponent);
     let card = sample(opponentHand);
     return card.id;
-}
+};

@@ -5,12 +5,12 @@ import Slider from 'react-slick';
 export class Deck extends React.Component {
 
     click(card) {
-        let owner = card.owner === 0 ? 1 : 0;
+        const owner = card.owner === 0 ? this.props.loggedInUser : 0;
         this.props.addCard(card.id, owner);
     };
 
     render() {
-        const {cards, selectedCard, isHandSelected} = this.props;
+        const { gameOwner, cards, selectedCard, isHandSelected } = this.props;
 
         const cardsMarkup = cards.map((card, i) => {
             const isSelectable = (card.owner === 1) || (!isHandSelected && card.owner === 0);
@@ -23,7 +23,7 @@ export class Deck extends React.Component {
             //Adding a key breaks react-slick...
             return (
                 <div>
-                    <Card card={card} cardStyle={cardStyle} classes={classes} clickAction={action} />
+                    <Card gameOwner={gameOwner} card={card} cardStyle={cardStyle} classes={classes} clickAction={action} />
                 </div>
             );
         });

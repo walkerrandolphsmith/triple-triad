@@ -9,10 +9,20 @@ import { getScoreForOwner } from './../../../utils/getScoreForOwner';
 import { getValidPieces } from './../../../utils/getValidPieces';
 import { getWinner } from './../../../utils/getWinner';
 
-const playerSelector = () => 1;
-const opponentSelector = () => 2;
+export const loggedInPlayerSelector = state => state.auth.get('user').id;
+
 
 export const currentGameSelector = state => state.game.get('games').find(game => game.id === state.game.get('gameRoute'));
+
+export const gameOwnerSelector = createSelector(
+    [currentGameSelector],
+    game => game.owner
+);
+
+export const gameOpponentSelector = createSelector(
+    [currentGameSelector],
+    game => game.opponent
+);
 
 export const deckSelector = createSelector(
     [currentGameSelector],
@@ -20,7 +30,7 @@ export const deckSelector = createSelector(
 );
 
 export const availableDeckSelector = createSelector(
-    [deckSelector, opponentSelector],
+    [deckSelector, gameOpponentSelector],
     getAvailableDeck
 );
 
@@ -30,22 +40,22 @@ export const boardSelector = createSelector(
 );
 
 export const handSelector = createSelector(
-    [deckSelector, playerSelector],
+    [deckSelector, loggedInPlayerSelector],
     getHand
 );
 
 export const opponentHandSelector = createSelector(
-    [deckSelector, opponentSelector],
+    [deckSelector, gameOpponentSelector],
     getHand
 );
 
 const blueScoreSelector = createSelector(
-    [deckSelector, playerSelector],
+    [deckSelector, gameOwnerSelector],
     getScoreForOwner
 );
 
 const redScoreSelector = createSelector(
-    [deckSelector, opponentSelector],
+    [deckSelector, gameOpponentSelector],
     getScoreForOwner
 );
 

@@ -21,8 +21,8 @@ function mapStateToProps(state) {
             opponent = state.auth.get('user').username;
             canDelete = false;
         }
-        const blue = getScoreForOwner(game.deck, 1);
-        const red = getScoreForOwner(game.deck, 2);
+        const blue = getScoreForOwner(game.deck, game.owner);
+        const red = getScoreForOwner(game.deck, game.opponent);
         let isMyTurn = isCurrentPlayerMe(game.currentPlayer, loggedInUser);
         return {
             isMyTurn: isMyTurn,

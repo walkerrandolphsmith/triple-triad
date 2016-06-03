@@ -6,14 +6,16 @@ import { Grid, Row, Col, Button } from 'react-bootstrap';
 export class HandSelection extends React.Component {
 
     render() {
-        let { availableDeck, selectedCard, hand, isHandSelected, addCard, shiftCardSelectionLeft } = this.props;
+        let { loggedInUser, gameOwner, availableDeck, selectedCard, hand, isHandSelected, addCard, shiftCardSelectionLeft } = this.props;
 
         return (
             <div id="hand-selection">
                 <Grid>
                     <Row>
                         <Col xs={12} md={12}>
-                            <Deck cards={availableDeck}
+                            <Deck loggedInUser={loggedInUser}
+                                  gameOwner={gameOwner}
+                                  cards={availableDeck}
                                   selectedCard={selectedCard}
                                   isHandSelected={isHandSelected}
                                   addCard={addCard}
@@ -22,7 +24,7 @@ export class HandSelection extends React.Component {
                     </Row>
                     <Row>
                         <Col xs={12} md={12}>
-                            <Hand cards={hand} showBack={false} clickAction={() => {}} />
+                            <Hand loggedInUser={loggedInUser} gameOwner={gameOwner} cards={hand} showBack={false} clickAction={() => {}} />
                         </Col>
                     </Row>
                     <Row>

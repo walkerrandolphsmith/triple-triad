@@ -9,7 +9,7 @@ export class Board extends React.Component {
 
     render() {
 
-        let {validPieces, selectedPiece, cards} = this.props;
+        let { gameOwner, validPieces, selectedPiece, cards } = this.props;
 
         let board = [0,1,2,3,4,5,6,7,8].map(i => {
             let isValidPiece = validPieces.indexOf(i) > -1;
@@ -22,7 +22,7 @@ export class Board extends React.Component {
                 clickHandler: isValidPiece ? this.click.bind(this, i) : function(){}
             };
         }).map((piece, i) => {
-            let card = piece.card ? (<Card card={piece.card} clickAction={()=>{}} />) : (<div></div>);
+            let card = piece.card ? (<Card gameOwner={gameOwner} card={piece.card} clickAction={()=>{}} />) : (<div></div>);
             let className = `piece ${i === selectedPiece ? 'selected' : ''}`;
             return (<div key={i} id={i} className={className} onClick={piece.clickHandler} style={piece.style}>{card}</div>)
         }).reduce((board, piece, i) => {

@@ -8,9 +8,9 @@ import { isCurrentPlayerMe } from './../utils/isCurrentPlayerMe';
 function mapStateToProps(state) {
     const { settings } = state;
     const game = currentGameSelector(state);
-    let message = game.currentPlayerMessage;
-    let isMyTurn = isCurrentPlayerMe(game.currentPlayer, state.auth.get('user').id);
+    const isMyTurn = isCurrentPlayerMe(game.currentPlayer, state.auth.get('user').id);
     return {
+        loggedInUser: state.auth.get('user').id,
         game: game,
         isMyTurn: isMyTurn,
         settings: settings,
