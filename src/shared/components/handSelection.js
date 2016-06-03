@@ -9,7 +9,7 @@ export class HandSelection extends React.Component {
         let { availableDeck, selectedCard, hand, isHandSelected, addCard, shiftCardSelectionLeft } = this.props;
 
         return (
-            <div id="card-selection">
+            <div id="hand-selection">
                 <Grid>
                     <Row>
                         <Col xs={12} md={12}>
