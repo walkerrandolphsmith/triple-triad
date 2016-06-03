@@ -7,6 +7,7 @@ describe('src/shared/reducers/game/thunks/setHands', () => {
     let getState;
     beforeEach(() => {
         dispatch = expect.createSpy();
+        __RewireAPI__.__Rewire__('currentGameSelector', () => ({ owner: 1, opponent: 2 }));
     });
 
     it('should be a function', () => {
