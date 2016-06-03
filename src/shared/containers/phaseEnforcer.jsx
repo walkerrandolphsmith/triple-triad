@@ -3,7 +3,7 @@ import { PhaseEnforcer } from './../components';
 import Settings from './settings';
 import Invite from './invite';
 import Hold from './hold';
-import HandSelection from './cardSelection';
+import HandSelection from './handSelection';
 import Round from './round';
 import GameDetails from './gameDetails';
 import PHASE from './../constants/phases';
