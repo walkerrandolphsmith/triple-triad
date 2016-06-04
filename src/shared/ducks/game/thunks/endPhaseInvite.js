@@ -9,7 +9,7 @@ export const endPhaseInvite = () => (dispatch, getState) => {
     const multiplayer = state.settings.get('multiplayer');
 
     if(multiplayer) {
-        dispatch(setPhase(PHASE.HOLD));
+        dispatch(setPhase(PHASE.INVITATION_HOLD));
     } else if(randomHand) {
         dispatch(setPhase(PHASE.CARD_SELECTION));
         dispatch(setHands());

@@ -6,7 +6,7 @@ export class Hold extends React.Component {
         return (
             <div id="blocking">
                 <span className="fa fa-spinner fa-spin"></span>
-                <p>Waiting to opponent to accept the game...</p>
+                {this.props.children}
             </div>
         )
     }

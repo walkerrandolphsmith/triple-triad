@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { PhaseEnforcer } from './../components';
 import Settings from './settings';
 import Invite from './invite';
-import Hold from './hold';
+import { InvitationHold } from './../components';
 import HandSelection from './handSelection';
 import Round from './round';
 import GameDetails from './gameDetails';
@@ -20,7 +20,7 @@ export default function() {
             componentMap: {
                 [PHASE.SETTINGS_SELECTION]: Settings,
                 [PHASE.INVITE]: Invite,
-                [PHASE.HOLD]: Hold,
+                [PHASE.INVITATION_HOLD]: InvitationHold,
                 [PHASE.HAND_SELECTION]: HandSelection,
                 [PHASE.CARD_SELECTION]: Round,
                 [PHASE.PIECE_SELECTION]: Round,
