@@ -12,6 +12,7 @@ export { Games } from './games';
 export { Hand } from './hand';
 export { Hold } from './hold';
 export { InvitationHold } from './invitationHold';
+export { HandSelectionHold } from './handSelectionHold';
 export { Invite } from './invite';
 export { InviteForm } from './inviteForm';
 export { Navigation } from './navigation';

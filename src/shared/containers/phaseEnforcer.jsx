@@ -3,6 +3,7 @@ import { PhaseEnforcer } from './../components';
 import Settings from './settings';
 import Invite from './invite';
 import { InvitationHold } from './../components';
+import { HandSelectionHold } from './../components';
 import HandSelection from './handSelection';
 import Round from './round';
 import GameDetails from './gameDetails';
@@ -21,6 +22,7 @@ export default function() {
                 [PHASE.SETTINGS_SELECTION]: Settings,
                 [PHASE.INVITE]: Invite,
                 [PHASE.INVITATION_HOLD]: InvitationHold,
+                [PHASE.HAND_SELECTION_HOLD]: HandSelectionHold,
                 [PHASE.HAND_SELECTION]: HandSelection,
                 [PHASE.CARD_SELECTION]: Round,
                 [PHASE.PIECE_SELECTION]: Round,
