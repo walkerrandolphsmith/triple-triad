@@ -1,8 +1,9 @@
 import React from 'react';
+import { Grid, Row, Col, Button} from 'react-bootstrap';
 
 export class AcceptInvitation extends React.Component {
     acceptInvitation() {
-        this.props.endPhaseHold(this.props.gameId, this.props.invitationToken);
+        this.props.endPhaseInvitationHold(this.props.gameId, this.props.invitationToken);
     }
 
     render() {
@@ -11,12 +12,14 @@ export class AcceptInvitation extends React.Component {
         
         return (
             <div id="accept-invitation">
-                <div className="row">
-                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <p>{gameId} : {gameOwner} : altogether now {invitationToken}</p>
-                        <button className="btn btn-main" onClick={this.acceptInvitation.bind(this)}>Accept Invitation</button>
-                    </div>
-                </div>
+                <Grid>
+                    <Row>
+                        <Col xs={12} md={12}>
+                            <p>{gameId} : {gameOwner} : altogether now {invitationToken}</p>
+                            <Button onClick={this.acceptInvitation.bind(this)}>Accept Invitation</Button>
+                        </Col>
+                    </Row>
+                </Grid>
             </div>
         );
     }
