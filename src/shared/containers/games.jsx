@@ -8,7 +8,9 @@ import { isCurrentPlayerMe } from './../utils/isCurrentPlayerMe';
 
 function mapStateToProps(state) {
     const loggedInUser = state.auth.get('user').id;
-    const games = state.game.get('games').map(game => {
+    const games = state.game.get('games')
+        .filter(game => game.owner === loggedInUser || game.opponent === loggedInUser)
+        .map(game => {
         let owner;
         let opponent;
         let canDelete;
@@ -23,7 +25,7 @@ function mapStateToProps(state) {
         }
         const blue = getScoreForOwner(game.deck, game.owner);
         const red = getScoreForOwner(game.deck, game.opponent);
-        let isMyTurn = isCurrentPlayerMe(game.currentPlayer, loggedInUser);
+        const isMyTurn = isCurrentPlayerMe(game.currentPlayer, loggedInUser);
         return {
             isMyTurn: isMyTurn,
             id: game.id,
