@@ -17,6 +17,8 @@ import { getGameSucceeded } from './mutations/getGameSucceeded';
 import { opponentSet } from './mutations/opponentSet';
 import { phaseSet } from './mutations/phaseSet';
 import { pieceSelected } from './mutations/pieceSelected';
+import { settingUpdated } from './mutations/settingUpdated';
+import { focusSettingUpdated } from './mutations/focusSettingUpdated';
 
 export const ADD_CARD = 'ADD_CARD';
 export const END_AI_TURN = 'END_AI_TURN';
@@ -39,6 +41,8 @@ export const SEND_INVITE_SUCCESS = 'SEND_INVITE_SUCCESS';
 export const SEND_INVITE_FAILED = 'SEND_INVITE_FAILED';
 export const SET_PHASE = 'SET_PHASE';
 export const UPDATE_BOARD = 'UPDATE_BOARD';
+export const UPDATE_FOCUS_SETTING = 'UPDATE_FOCUS_SETTING';
+export const UPDATE_SETTING = 'UPDATE_SETTING';
 
 export { addCard } from './actions/addCard';
 export { endAiTurn } from './actions/endAiTurn';
@@ -61,6 +65,8 @@ export { setPhase } from './actions/setPhase';
 export { setOpponent } from './actions/setOpponent';
 export { showCurrentPlayerMessage } from './actions/showCurrentPlayerMessage';
 export { updateBoard } from './actions/updateBoard';
+export { updateFocusSetting } from './actions/updateFocusSetting';
+export { updateSetting } from './actions/updateSetting';
 
 export { aiTurn } from './thunks/aiTurn';
 export { completeTurn } from './thunks/completeTurn';
@@ -135,6 +141,8 @@ export default function(state = INITIAL_STATE, action = {}) {
         case SHOW_CURRENT_PLAYER_MESSAGE: return currentPlayerMessageShown(state, payload);
         case START_AI_TURN: return aiTurnStarted(state);
         case UPDATE_BOARD: return boardUpdated(state, payload);
+        case UPDATE_SETTING: return settingUpdated(state, payload);
+        case UPDATE_FOCUS_SETTING: return focusSettingUpdated(state, payload);
         default: return state;
     }
 }

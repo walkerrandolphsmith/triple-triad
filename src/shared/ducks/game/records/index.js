@@ -26,6 +26,13 @@ const DECK = CARD_TYPES
         owner: 0
     }));
 
+export const SettingsRecord = new Record({
+    randomHand: false,
+    multiplayer: false,
+    visibleHand: false,
+    focused: -1
+});
+
 export const GameRecord = new Record({
     id: -1,
     userId: -1,
@@ -37,7 +44,8 @@ export const GameRecord = new Record({
     phase: PHASE.SETTINGS_SELECTION,
     selectedCard: -1,
     selectedPiece: -1,
-    currentPlayerMessage: ''
+    currentPlayerMessage: '',
+    settings: new SettingsRecord()
 });
 
 export const convertToGameRecord = game => {
@@ -51,6 +59,8 @@ export const convertToGameRecord = game => {
         element: card.element
     }));
 
+    const settings = new SettingsRecord(game.settings);
+
     return new GameRecord({
         id: game.id,
         owner: game.owner,
@@ -61,6 +71,7 @@ export const convertToGameRecord = game => {
         currentPlayer: game.currentPlayer,
         currentPlayerMessage: game.currentPlayerMessage,
         selectedCard: game.selectedCard,
-        selectedPiece: game.selectedPiece
+        selectedPiece: game.selectedPiece,
+        settings: settings
     });
 };

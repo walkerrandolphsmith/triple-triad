@@ -6,14 +6,12 @@ import { selectCard, completeTurn } from '../ducks/game';
 import { isCurrentPlayerMe } from './../utils/isCurrentPlayerMe';
 
 function mapStateToProps(state) {
-    const { settings } = state;
     const game = currentGameSelector(state);
     const isMyTurn = isCurrentPlayerMe(game.currentPlayer, state.auth.get('user').id);
     return {
         loggedInUser: state.auth.get('user').id,
         game: game,
         isMyTurn: isMyTurn,
-        settings: settings,
         board: boardSelector(state),
         hand: handSelector(state),
         opponentHand: opponentHandSelector(state),

@@ -11,7 +11,7 @@ export const selectNextCard = (selectFrom, directionInLoop) => (dispatch, getSta
     if(selectFrom === 'hand') {
         cardsToSelectFrom = getAvailableDeck(currentGame.deck);
     } else {
-        cardsToSelectFrom = getHand(currentGame.deck, 1);
+        cardsToSelectFrom = getHand(currentGame.deck, getState().auth.get('user').id);
     }
     const card = getCardToSelect(selectedCard, cardsToSelectFrom, directionInLoop);
     dispatch(selectCard(card.id));

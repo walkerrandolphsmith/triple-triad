@@ -10,13 +10,12 @@ import { push } from 'react-router-redux';
 export const endPhaseInvitationHold = (gameId, invitationToken) => (dispatch, getState) => {
     dispatch(setCurrentGame(gameId));
     const state = getState();
-    const randomHand = state.settings.get('randomHand');
     const game = currentGameSelector(state);
 
     if(game.accepted === invitationToken) {
         const loggedInPlayer = state.auth.get('user').id;
         dispatch(setOpponent(loggedInPlayer));
-        if(randomHand) {
+        if(game.settings.randomHand) {
             dispatch(setPhase(PHASE.CARD_SELECTION));
             dispatch(setHands());
             dispatch(selectNextCard('deck'));

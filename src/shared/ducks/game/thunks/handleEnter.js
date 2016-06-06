@@ -1,5 +1,5 @@
 import PHASE from './../../../constants/phases';
-import { updateSetting } from '../../settings';
+import { updateSetting } from './../actions/updateSetting';
 import { selectNextPiece } from './selectNextPiece';
 import { completeTurn } from './completeTurn';
 import { addCard, setPhase, currentGameSelector } from './../index';
@@ -12,7 +12,7 @@ export const handleEnter = () => (dispatch, getState) => {
     
     let cases = {
         [PHASE.SETTINGS_SELECTION]: () => {
-            selectSetting(dispatch, state);
+            selectSetting(dispatch, currentGame);
         },
         [PHASE.HAND_SELECTION]: () => {
             selectCardToAddToHand(dispatch, currentGame);
@@ -39,8 +39,8 @@ function selectCardToAddToHand(dispatch, currentGame) {
     }
 }
 
-function selectSetting(dispatch, state) {
-    const focusedSetting = state.settings.get('focused');
+function selectSetting(dispatch, game) {
+    const focusedSetting = game.settings.focused;
     if(isAnySettingFocused(focusedSetting)) {
         dispatch(updateSetting(focusedSetting));
     }

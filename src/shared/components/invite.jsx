@@ -9,7 +9,7 @@ export class Invite extends React.Component {
         let { settings } = props;
 
         this.state = {
-            multiplayer: settings.get('multiplayer')
+            multiplayer: settings.multiplayer
         };
     }
 
@@ -31,7 +31,7 @@ export class Invite extends React.Component {
             let { settings } = newProps;
 
             this.setState({
-                multiplayer: settings.get('multiplayer')
+                multiplayer: settings.multiplayer
             });
         }
     }

@@ -5,7 +5,7 @@ import { Hand } from './hand';
 export class Round extends React.Component {
 
     render() {
-        let { loggedInUser, game, isMyTurn, board, hand, opponentHand, settings, validPieces, score } = this.props;
+        let { loggedInUser, game, isMyTurn, board, hand, opponentHand, validPieces, score } = this.props;
         let { selectCard, completeTurn } = this.props;
 
         if(!isMyTurn) {
@@ -50,7 +50,7 @@ export class Round extends React.Component {
                               score={score.red}
                               cards={opponentHand}
                               selectedCard={game.selectedCard}
-                              showBack={settings.get('visibleHand')}
+                              showBack={game.settings.visibleHand}
                               clickAction={() => {}}
                         />
                     </div>

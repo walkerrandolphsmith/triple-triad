@@ -1,5 +1,7 @@
 import expect from 'expect';
-import { Map } from 'immutable';
+import { Map, List } from 'immutable';
+import { GameRecord } from './../../game/records';
+import { SettingsRecord } from './../../game/records';
 import { setHands, __RewireAPI__ } from './setHands';
 
 describe('src/shared/reducers/game/thunks/setHands', () => {
@@ -7,7 +9,7 @@ describe('src/shared/reducers/game/thunks/setHands', () => {
     let getState;
     beforeEach(() => {
         dispatch = expect.createSpy();
-        __RewireAPI__.__Rewire__('currentGameSelector', () => ({ owner: 1, opponent: 2 }));
+        __RewireAPI__.__Rewire__('setHand', () => 1);
     });
 
     it('should be a function', () => {
@@ -16,14 +18,15 @@ describe('src/shared/reducers/game/thunks/setHands', () => {
 
     describe('Given random hand is disabled', () => {
         beforeEach(() => {
-            const settings = new Map({ randomHand: false });
-            getState = () => ({
-                settings: settings
-            });
+            __RewireAPI__.__Rewire__('currentGameSelector', () => ({
+                owner: 1,
+                opponent: 2,
+                settings: new SettingsRecord({ randomHand: false })
+            }));
+            getState = () => ({})
         });
 
         it('should dispatch SET_HAND action', () => {
-            __RewireAPI__.__Rewire__('setHand', () => 1);
             setHands()(dispatch, getState);
             expect(dispatch).toHaveBeenCalledWith(1);
         });
@@ -31,14 +34,15 @@ describe('src/shared/reducers/game/thunks/setHands', () => {
 
     describe('Given random hand is enabled', () => {
         beforeEach(() => {
-            const settings = new Map({ randomHand: true });
-            getState = () => ({
-                settings: settings
-            });
+            __RewireAPI__.__Rewire__('currentGameSelector', () => ({
+                owner: 1,
+                opponent: 2,
+                settings: new SettingsRecord({ randomHand: true })
+            }));
+            getState = () => ({})
         });
 
         it('should dispatch SET_HAND action given the player in the payload', () => {
-            __RewireAPI__.__Rewire__('setHand', () => 1);
             setHands()(dispatch, getState);
             expect(dispatch).toHaveBeenCalledWith(1);
             expect(dispatch).toHaveBeenCalledWith(1);

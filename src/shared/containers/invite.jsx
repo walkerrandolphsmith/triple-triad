@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Invite } from './../components';
-import { endPhaseInvite, sendInvite } from './../ducks/game';
-import { updateFocusSetting, updateSetting } from '../ducks/settings';
+import { endPhaseInvite, sendInvite, updateFocusSetting, updateSetting, currentGameSelector } from './../ducks/game';
 
 function mapStateToProps(state) {
+    const currentGame = currentGameSelector(state);
     return {
-        settings: state.settings,
+        settings: currentGame.settings,
         gameId: state.routing.locationBeforeTransitions.pathname.split('game/')[1]
     }
 }

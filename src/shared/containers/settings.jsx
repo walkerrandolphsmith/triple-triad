@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Settings } from './../components';
-import { endPhaseSettingsSelection } from './../ducks/game';
-import { updateFocusSetting, updateSetting } from '../ducks/settings';
+import { endPhaseSettingsSelection, updateFocusSetting, updateSetting, currentGameSelector } from './../ducks/game';
 
 function mapStateToProps(state) {
+    const currentGame = currentGameSelector(state);
     return {
-        settings: state.settings
+        settings: currentGame.settings
     }
 }
 

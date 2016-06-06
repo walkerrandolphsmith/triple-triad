@@ -2,11 +2,11 @@ import PHASE from './../../../constants/phases';
 import { setPhase } from './../actions/setPhase';
 import { selectNextCard } from './selectNextCard';
 import { setHands } from './setHands';
+import { currentGameSelector } from './../index';
 
 export const endPhaseInvite = () => (dispatch, getState) => {
     const state = getState();
-    const randomHand = state.settings.get('randomHand');
-    const multiplayer = state.settings.get('multiplayer');
+    const { randomHand, multiplayer } = currentGameSelector(state).settings;
 
     if(multiplayer) {
         dispatch(setPhase(PHASE.INVITATION_HOLD));

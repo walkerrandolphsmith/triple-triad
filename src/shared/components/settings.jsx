@@ -8,8 +8,8 @@ export class Settings extends React.Component {
         let { settings } = props;
 
         this.state = {
-            randomHand: settings.get('randomHand'),
-            visibleHand: settings.get('visibleHand')
+            randomHand: settings.randomHand,
+            visibleHand: settings.visibleHand
         };
     }
 
@@ -31,8 +31,8 @@ export class Settings extends React.Component {
             let { settings } = newProps;
 
             this.setState({
-                randomHand: settings.get('randomHand'),
-                visibleHand: settings.get('visibleHand')
+                randomHand: settings.randomHand,
+                visibleHand: settings.visibleHand
             });
         }
     }

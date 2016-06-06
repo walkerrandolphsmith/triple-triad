@@ -2,7 +2,7 @@ import expect from 'expect';
 import { Map, List } from 'immutable';
 import { handleEnter, __RewireAPI__ } from './handleEnter';
 import PHASE from './../../../constants/phases';
-import { GameRecord, CardRecord } from './../../../ducks/game/records';
+import { GameRecord, CardRecord, SettingsRecord } from './../../../ducks/game/records';
 
 describe('src/shared/reducers/game/thunks/handleEnter', () => {
     let getState;
@@ -25,13 +25,10 @@ describe('src/shared/reducers/game/thunks/handleEnter', () => {
 
     describe('given it is settings selection phase and no setting is focused', () => {
         beforeEach(() => {
-            game = new GameRecord({ phase: PHASE.SETTINGS_SELECTION });
-            __RewireAPI__.__Rewire__('currentGameSelector', () => game);
-            getState = () => ({
-                settings: new Map({
-                    focused: -1
-                })
-            });
+            __RewireAPI__.__Rewire__('currentGameSelector', () => new GameRecord({
+                phase: PHASE.SETTINGS_SELECTION
+            }));
+            getState = () => ({});
         });
 
         it('should do nothing', () => {
@@ -42,12 +39,11 @@ describe('src/shared/reducers/game/thunks/handleEnter', () => {
 
     describe('given it is settings selection phase and a setting is focused', () => {
         beforeEach(() => {
-            __RewireAPI__.__Rewire__('currentGameSelector', () => new GameRecord({ phase: PHASE.SETTINGS_SELECTION }));
-            getState = () => ({
-                settings: new Map({
-                    focused: 'randomHand'
-                })
-            });
+            __RewireAPI__.__Rewire__('currentGameSelector', () => new GameRecord({ 
+                phase: PHASE.SETTINGS_SELECTION,
+                settings: new SettingsRecord({ focused: 'randomHand' })
+            }));
+            getState = () => ({});
         });
 
         it('should dispatch the UPDATE_SETTINGS action', () => {

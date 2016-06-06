@@ -4,7 +4,7 @@ import { AcceptInvitation } from './../components';
 import { endPhaseInvitationHold } from './../ducks/game';
 
 function mapStateToProps(state) {
-    const invitationToken = state.routing.locationBeforeTransitions.pathname.split('accept-invitation/')[1];
+    const invitationToken = (state.routing.locationBeforeTransitions || {pathname: 'accept-invitation/a'}).pathname.split('accept-invitation/')[1];
     const gameId = invitationToken.substring(0, 20);
     const gameOwner = invitationToken.substring(20, invitationToken.length);
     return {

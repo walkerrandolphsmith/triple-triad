@@ -1,5 +1,6 @@
 import expect from 'expect';
-import { Map } from 'immutable';
+import { Map, List } from 'immutable';
+import { GameRecord } from './../../game/records';
 import { focusSettingUpdated } from './focusSettingUpdated';
 
 describe('src/shared/reducers/settings/mutations/focusSettingUpdated', () => {
@@ -8,8 +9,12 @@ describe('src/shared/reducers/settings/mutations/focusSettingUpdated', () => {
         let payload;
         let setting = 'randomHand';
         beforeEach(() => {
+            const currentGameId = 20;
             state = new Map({
-                focused: -1
+                gameRoute: currentGameId,
+                games: new List([
+                    new GameRecord({ id: currentGameId })
+                ])
             });
             payload = {
                 setting: setting
@@ -23,7 +28,7 @@ describe('src/shared/reducers/settings/mutations/focusSettingUpdated', () => {
             });
 
             it('should set the focused state to the given setting', () => {
-                expect(actual.get('focused')).toEqual(setting);
+                expect(actual.get('games').first().settings.focused).toEqual(setting);
             });
         });
     });

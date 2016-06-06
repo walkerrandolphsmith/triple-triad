@@ -7,9 +7,8 @@ import { getIsFullHand } from './../../../utils/getIsFullHand';
 
 export const endPhaseHandSelection = () => (dispatch, getState) => {
     const state = getState();
-    const multiplayer = state.settings.get('mulitplayer');
     const currentGame = currentGameSelector(state);
-    if(multiplayer) {
+    if(currentGame.settings.multiplayer) {
         const other = state.auth.get('user').id === currentGame.owner ? currentGame.opponent : currentGame.owner;
         const hand = getHand(currentGame.deck, other);
         if(getIsFullHand(hand)) {
