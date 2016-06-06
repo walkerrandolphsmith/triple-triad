@@ -55,6 +55,13 @@ export const signUp = user => (dispatch, getState) => {
     }
     
     firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then(user => {
+            const firebaseAuth = getState().firebase.get('ref');
+            firebaseAuth
+                .child('users')
+                .child(user.uid)
+                .update({ name: username, avatar: '', isVerified: false });
+        })
         .catch(error => {
             if (error) {
                 const message = {
