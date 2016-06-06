@@ -10,10 +10,10 @@ export class Deck extends React.Component {
     };
 
     render() {
-        const { gameOwner, cards, selectedCard, isHandSelected } = this.props;
+        const { loggedInUser, gameOwner, cards, selectedCard, isHandSelected } = this.props;
 
         const cardsMarkup = cards.map((card, i) => {
-            const isSelectable = (card.owner === 1) || (!isHandSelected && card.owner === 0);
+            const isSelectable = (card.owner === loggedInUser) || (!isHandSelected && card.owner === 0);
             const classes = card.id === selectedCard ? 'selected' : '';
             const cardStyle = {
                 opacity: card.owner === 0 ? '1' : '0.5',
