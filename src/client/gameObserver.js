@@ -4,27 +4,16 @@ export const observeStore = (store, select, onChange) => {
     let currentState;
     const handleChange = () => {
         const state = store.getState();
-        let changeShouldOccur = false;
-
-        const firebaseRef = state.firebase.get('ref');
-        const clientAuthenticatedUser = state.auth.get('user').id;
         const currentGame = currentGameSelector(state);
         if(!currentGame) return;
-        firebaseRef.child('games').child(currentGame.id).once('value', snapshot => {
-            let firebaseGameState = snapshot.val();
-            const isTwoPlayerAndMyTurn = firebaseGameState.accepted && firebaseGameState.currentPlayer === clientAuthenticatedUser;
-            const stateChanged = currentState !== currentGame;
-            if((isTwoPlayerAndMyTurn && stateChanged) || (!firebaseGameState.accepted && stateChanged)) {
-                changeShouldOccur = true;
-            }
-        });
 
-        if (changeShouldOccur) {
+        const firebaseRef = state.firebase.get('ref');
+        const stateChanged = currentState !== currentGame;
+        if (stateChanged) {
             currentState = currentGame;
             onChange(currentGame, firebaseRef);
         }
     };
-
     return store.subscribe(handleChange);
 };
 
