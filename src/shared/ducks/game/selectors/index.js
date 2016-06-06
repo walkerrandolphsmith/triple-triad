@@ -24,13 +24,18 @@ export const gameOpponentSelector = createSelector(
     game => game.opponent
 );
 
+export const otherPlayerSelector = createSelector(
+    [currentGameSelector, loggedInPlayerSelector],
+    (game, id) => game.owner === id ? game.opponent : game.owner
+);
+
 export const deckSelector = createSelector(
     [currentGameSelector],
     game => game.deck
 );
 
 export const availableDeckSelector = createSelector(
-    [deckSelector, gameOpponentSelector],
+    [deckSelector, otherPlayerSelector],
     getAvailableDeck
 );
 
