@@ -52,7 +52,6 @@ var ref = firebase.database().ref();
 
 store.dispatch(setRef(ref));
 store.dispatch(listenToAuth());
-store.dispatch(listenToGames());
 
 observeStore(store, select, onChange);
 
