@@ -12,23 +12,32 @@ export class Game extends React.Component {
     }
 
     render() {
-        let { id, owner, opponent, red, blue, phase, canDelete } = this.props.game;
+        let {
+            id, settings, owner, ownerAvatar, opponent, opponentAvatar, red, blue, phase, canDelete
+        } = this.props.game;
         let waitingOnPlayerText = this.props.isMyTurn ? 'you' : 'opponent';
         let gameAction = canDelete ? (<i className="fa fa-trash-o" onClick={this.deleteGame.bind(this, id)}></i>) : (<i></i>);
-
+        let gameIcon = settings.multiplayer ? 'users' : 'user';
         return (
             <div id={id} className="game">
                 <div className="header">
                     <h3 className="title">
-                        <i className="fa fa-star-o"></i>
-                        <span onClick={this.selectGame.bind(this, id)}>Game</span>
+                        <i className={`fa fa-${gameIcon}`}></i>
+                        <span onClick={this.selectGame.bind(this, id)}>{id}</span>
                         {gameAction}
                     </h3>
                 </div>
                 <div className="detail">
                     <div className="content">
-                        <p>Game {id} is in progress</p>
-                        <p>...waiting on {waitingOnPlayerText}</p>
+                        <span className="owner">
+                            <img src={ownerAvatar} />
+                            {owner}
+                        </span>
+                        <span className="vs"> VS </span>
+                        <span className="opponent">
+                            <img src={opponentAvatar} />
+                            {opponent}
+                        </span>
                     </div>
                     <div className="content-info">
                         <div className="sub-note">
@@ -39,9 +48,7 @@ export class Game extends React.Component {
                         </div>
                     </div>
                     <div className="footer">
-                        <span>{owner}</span>
-                        <span> VS </span>
-                        <span>{opponent}</span>
+                        <p>...waiting on {waitingOnPlayerText}</p>
                     </div>
                 </div>
                 <div className="more" onClick={this.selectGame.bind(this, id)}>

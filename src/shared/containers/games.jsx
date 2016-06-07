@@ -11,33 +11,34 @@ function mapStateToProps(state) {
     const games = state.game.get('games')
         .filter(game => game.owner === loggedInUser || game.opponent === loggedInUser)
         .map(game => {
-        let owner;
-        let opponent;
-        let canDelete;
-        if(game.owner === loggedInUser) {
-            owner = state.auth.get('user').username;
-            opponent = game.opponent;
-            canDelete = true;
-        } else {
-            owner = 'AI';
-            opponent = state.auth.get('user').username;
-            canDelete = false;
-        }
-        const blue = getScoreForOwner(game.deck, game.owner);
-        const red = getScoreForOwner(game.deck, game.opponent);
-        const isMyTurn = isCurrentPlayerMe(game.currentPlayer, loggedInUser);
-        return {
-            isMyTurn: isMyTurn,
-            id: game.id,
-            owner: owner,
-            canDelete: canDelete,
-            opponent: opponent,
-            currentPlayer: game.currentPlayer,
-            blue: blue,
-            red: red,
-            phase: game.phase
-        }
-    });
+            let owner;
+            let opponent;
+            let avatar = state.auth.get('user').avatar;
+            let canDelete;
+            if(game.owner === loggedInUser) {
+                owner = state.auth.get('user').username;
+                opponent = game.opponent;
+                canDelete = true;
+            } else {
+                owner = 'AI';
+                opponent = state.auth.get('user').username;
+                canDelete = false;
+            }
+            const blue = getScoreForOwner(game.deck, game.owner);
+            const red = getScoreForOwner(game.deck, game.opponent);
+            const isMyTurn = isCurrentPlayerMe(game.currentPlayer, loggedInUser);
+            return Object.assign({}, game.toJS(), {
+                isMyTurn: isMyTurn,
+                canDelete: canDelete,
+                owner: owner,
+                ownerAvatar: avatar,
+                opponent: opponent,
+                opponentAvatar: avatar,
+                blue: blue,
+                red: red
+            });
+        });
+    
     return {
         id: loggedInUser,
         games: games
