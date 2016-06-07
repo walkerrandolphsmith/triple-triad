@@ -3,7 +3,7 @@ export const settingUpdated = (state, payload) => {
         state.get('games').findIndex(
             game => game.id === state.get('gameRoute')
         ),
-        game => game.setIn(`settings.${payload.setting}`.split('.'), !game[payload.setting])
+        game => game.setIn(`settings.${payload.setting}`.split('.'), !game.settings[payload.setting])
     );
     return state.set('games', newGames);
 };

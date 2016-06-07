@@ -1,12 +1,13 @@
 import React from 'react';
 import { InviteForm } from './inviteForm';
+import { Checkbox } from './checkbox';
 
 export class Invite extends React.Component {
 
     constructor(props){
         super(props);
 
-        let { settings } = props;
+        const { settings } = props;
 
         this.state = {
             multiplayer: settings.multiplayer
@@ -26,9 +27,9 @@ export class Invite extends React.Component {
     }
 
     componentWillReceiveProps(newProps) {
-        if (newProps !=  this.state) {
+        if (newProps != this.state) {
 
-            let { settings } = newProps;
+            const { settings } = newProps;
 
             this.setState({
                 multiplayer: settings.multiplayer
@@ -50,21 +51,21 @@ export class Invite extends React.Component {
 
         let focus = isMounted ? this.focus : () => {};
 
-        let inviteForm = multiplayer ? (<InviteForm gameId={this.props.gameId} sendInvite={this.props.sendInvite} />) : (<button className="btn btn-main" onClick={this.props.endPhaseInvite}> Next step</button>);
+        let inviteForm = multiplayer 
+            ? (<InviteForm gameId={this.props.gameId} sendInvite={this.props.sendInvite} />) 
+            : (<button className="btn btn-main" onClick={this.props.endPhaseInvite}> Next step</button>);
 
         return (
             <div id="settings-selection">
                 <div className="row">
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div className="settings">
-                            <div className="control-group">
-                                <input type="checkbox" id="two-player" checked={multiplayer}
-                                    onChange={this.update.bind(this, 'multiplayer')}
-                                    onFocus={focus.bind(this, 'multiplayer')}>
-                                </input>
-                                <label htmlFor="two-player"></label>
-                                <label className="text" htmlFor="two-player">2 Player</label>
-                            </div>
+                            <Checkbox id="two-player"
+                                      label="2 Player"
+                                      checked={multiplayer}
+                                      onChange={this.update.bind(this, 'multiplayer')}
+                                      onFocus={focus.bind(this, 'multiplayer')}
+                            />
                             {inviteForm}
                         </div>
 

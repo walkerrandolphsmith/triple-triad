@@ -1,11 +1,12 @@
 import React from 'react';
 import { Game } from './game';
 import { GameClosed } from './gameClosed';
+import { Checkbox } from './checkbox';
 
 export class Games extends React.Component {
 
     render() {
-        let { games, isMyTurn, push, setCurrentGame, deleteGame } = this.props;
+        let { games, isMyTurn, push, setCurrentGame, deleteGame, closedGameShown } = this.props;
 
         const gamesList = games.map(game => {
             return game.phase !== 'GAME_OVER'
@@ -19,13 +20,12 @@ export class Games extends React.Component {
                     <button className="btn btn-main" onClick={this.props.createGame}> New Game </button>
                 </div>
                 <div className="filters" style={{display: 'inline-block', marginLeft: '2em'}}>
-                    <div className="control-group">
-                        <input type="checkbox" id="show-closed"
-                               onChange={this.props.showClosed}>
-                        </input>
-                        <label htmlFor="show-closed"></label>
-                        <label className="text" htmlFor="show-closed">Show Closed</label>
-                    </div>
+                    <Checkbox id="show-closed" 
+                              label="Show Closed"
+                              checked={closedGameShown}
+                              onChange={this.props.showClosed} 
+                              onFocus={() => {}} 
+                    />
                 </div>
                 <div id="games">
                     {gamesList}

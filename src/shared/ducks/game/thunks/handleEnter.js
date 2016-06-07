@@ -14,6 +14,9 @@ export const handleEnter = () => (dispatch, getState) => {
         [PHASE.SETTINGS_SELECTION]: () => {
             selectSetting(dispatch, currentGame);
         },
+        [PHASE.INVITE]: () => {
+            selectSetting(dispatch, currentGame);
+        },
         [PHASE.HAND_SELECTION]: () => {
             selectCardToAddToHand(dispatch, currentGame);
         },

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Checkbox } from './checkbox';
 
 export class Settings extends React.Component {
 
@@ -56,22 +57,18 @@ export class Settings extends React.Component {
                 <div className="row">
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div className="settings">
-                            <div className="control-group">
-                                <input type="checkbox" id="random-hand" checked={randomHand}
-                                    onChange={this.update.bind(this, 'randomHand')}
-                                    onFocus={focus.bind(this, 'randomHand')}>
-                                </input>
-                                <label htmlFor="random-hand"></label>
-                                <label className="text" htmlFor="random-hand">Random Hand</label>
-                            </div>
-                            <div className="control-group">
-                                <input type="checkbox" id="hidden-hand" checked={visibleHand}
-                                    onChange={this.update.bind(this, 'visibleHand')}
-                                    onFocus={focus.bind(this, 'visibleHand')}>
-                                </input>
-                                <label htmlFor="hidden-hand"></label>
-                                <label className="text" htmlFor="hidden-hand">Hide opponent's hand</label>
-                            </div>
+                            <Checkbox id="random-hand"
+                                      label="Random Hand"
+                                      checked={randomHand}
+                                      onChange={this.update.bind(this, 'randomHand')}
+                                      onFocus={focus.bind(this, 'randomHand')}
+                            />
+                            <Checkbox id="hidden-hand"
+                                      label="Hide Opponent's Hand"
+                                      checked={visibleHand}
+                                      onChange={this.update.bind(this, 'visibleHand')}
+                                      onFocus={focus.bind(this, 'visibleHand')}
+                            />
                         </div>
                         <button className="btn btn-main" onClick={this.props.endPhaseSettingsSelection}> Next step</button>
                     </div>
