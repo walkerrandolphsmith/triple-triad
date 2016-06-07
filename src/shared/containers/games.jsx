@@ -5,11 +5,15 @@ import { push } from 'react-router-redux';
 import { createGame, deleteGame, setCurrentGame } from './../ducks/game';
 import { getScoreForOwner } from './../utils/getScoreForOwner';
 import { isCurrentPlayerMe } from './../utils/isCurrentPlayerMe';
+import { showClosed } from './../ducks/filters';
+import PHASE from '../constants/phases';
 
 function mapStateToProps(state) {
     const loggedInUser = state.auth.get('user').id;
+    const closedGamesShown = state.filters.get('showClosed');
     const games = state.game.get('games')
         .filter(game => game.owner === loggedInUser || game.opponent === loggedInUser)
+        .filter(game => closedGamesShown || game.phase !== PHASE.GAME_OVER)
         .map(game => {
             let owner;
             let opponent;
@@ -46,7 +50,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ createGame, deleteGame, setCurrentGame, push }, dispatch);
+    return bindActionCreators({ showClosed, createGame, deleteGame, setCurrentGame, push }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Games);

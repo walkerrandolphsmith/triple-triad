@@ -15,8 +15,17 @@ export class Games extends React.Component {
 
         return (
             <div id="game-selection">
-                <div id="new-game">
+                <div id="new-game" style={{display: 'inline-block'}}>
                     <button className="btn btn-main" onClick={this.props.createGame}> New Game </button>
+                </div>
+                <div className="filters" style={{display: 'inline-block', marginLeft: '2em'}}>
+                    <div className="control-group">
+                        <input type="checkbox" id="show-closed"
+                               onChange={this.props.showClosed}>
+                        </input>
+                        <label htmlFor="show-closed"></label>
+                        <label className="text" htmlFor="show-closed">Show Closed</label>
+                    </div>
                 </div>
                 <div id="games">
                     {gamesList}

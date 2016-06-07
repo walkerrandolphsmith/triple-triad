@@ -1,0 +1,1 @@
+export const closedShown = (state, payload) => state.set('showClosed', !state.get('showClosed'));
