@@ -2,7 +2,7 @@ import React from 'react';
 
 export class GameClosed extends React.Component {
     render() {
-        let { id, owner, opponent, red, blue, phase } = this.props.game;
+        let { id, owner, ownerAvatar, opponent, opponentAvatar, red, blue, phase } = this.props.game;
         let winner;
         if(blue === red) {
             winner = 'tie';
@@ -15,13 +15,21 @@ export class GameClosed extends React.Component {
                 <div className={ribbonClasses}>{winner}</div>
                 <div className="header">
                     <h3 className="title">
-                        <i className="fa fa-star-o"></i>
-                        <span>Game</span>
+                        <i className="fa fa-trophy"></i>
+                        <span>{id}</span>
                     </h3>
                 </div>
                 <div className="detail">
                     <div className="content">
-                        <p>Game {id}</p>
+                        <span className="owner">
+                            <img src={ownerAvatar} />
+                            {owner}
+                        </span>
+                        <span className="vs"> VS </span>
+                        <span className="opponent">
+                            <img src={opponentAvatar} />
+                            {opponent}
+                        </span>
                     </div>
                     <div className="content-info">
                         <div className="sub-note">
@@ -32,9 +40,7 @@ export class GameClosed extends React.Component {
                         </div>
                     </div>
                     <div className="footer">
-                        <span>{owner}</span>
-                        <span> VS </span>
-                        <span>{opponent}</span>
+                        <span>...game over</span>
                     </div>
                 </div>
             </div>
