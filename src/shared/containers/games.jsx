@@ -64,7 +64,8 @@ function mapStateToProps(state) {
     return {
         id: loggedInUser,
         games: games,
-        closedGameShown: closedGamesShown
+        closedGameShown: closedGamesShown,
+        winnerType: winnerType
     }
 }
 

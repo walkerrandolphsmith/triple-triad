@@ -11,7 +11,7 @@ export class Games extends React.Component {
     }
 
     render() {
-        let { games, isMyTurn, push, setCurrentGame, deleteGame, closedGameShown, filterWinnerType } = this.props;
+        let { games, isMyTurn, push, setCurrentGame, deleteGame, closedGameShown, winnerType } = this.props;
 
         const gamesList = games.map(game => {
             return game.phase !== 'GAME_OVER'
@@ -32,7 +32,7 @@ export class Games extends React.Component {
                               onFocus={() => {}} 
                     />
                     <SplitButton bsStyle={'default'}
-                                 title='Default'
+                                 title={winnerType}
                                  key={0}
                                  id="split-button-basic"
                                  onSelect={this.setWinnerTypeFilter.bind(this)}>
