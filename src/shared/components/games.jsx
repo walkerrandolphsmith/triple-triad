@@ -3,6 +3,8 @@ import { SplitButton, MenuItem } from 'react-bootstrap';
 import { Game } from './game';
 import { GameClosed } from './gameClosed';
 import { Checkbox } from './checkbox';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+
 
 export class Games extends React.Component {
 
@@ -31,7 +33,9 @@ export class Games extends React.Component {
         return (
             <div id="game-selection">
                 <div id="new-game">
-                    <button className="btn btn-main" onClick={this.props.createGame}> New Game </button>
+                    <FloatingActionButton onMouseDown={this.props.createGame} backgroundColor="#0082BF">
+                        <i className="fa fa-plus"></i>
+                    </FloatingActionButton>
                 </div>
                 <div id="filters">
                     <Checkbox id="show-closed" 
