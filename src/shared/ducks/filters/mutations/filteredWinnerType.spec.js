@@ -19,7 +19,6 @@ describe('src/shared/reducers/filters/mutations/filterWinnerType', () => {
         describe('When changing winner type filter', () => {
             let actual;
             beforeEach(() => {
-                console.log(payload);
                 actual = filteredWinnerType(state, payload);
             });
 

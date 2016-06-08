@@ -4,6 +4,7 @@ import reducer from './index';
 import {
     SHOW_CLOSED,
     FILTER_WINNER_TYPE,
+    FILTER_PHASE,
     __RewireAPI__
 } from './index';
 
@@ -12,8 +13,9 @@ describe('src/shared/reducers/filters', () => {
         let initialState;
         beforeEach(() => {
             initialState = new Map({
-                showClosed: false,
-                winnerType: 'all'
+                showClosed: true,
+                winnerType: 'all',
+                phase: 'all'
             });
         });
 
@@ -49,6 +51,22 @@ describe('src/shared/reducers/filters', () => {
 
             it('should call filteredWinnerType', () => {
                 expect(filteredWinnerType).toHaveBeenCalled();
+            });
+        });
+
+        describe('When handling FILTER_PHASE', () => {
+            let filteredPhase = expect.createSpy();
+            __RewireAPI__.__Rewire__('filteredPhase', filteredPhase);
+
+            reducer(initialState, {
+                type: FILTER_PHASE,
+                payload: {
+                    winnerType: 'winner'
+                }
+            });
+
+            it('should call filteredPhase', () => {
+                expect(filteredPhase).toHaveBeenCalled();
             });
         });
     });
