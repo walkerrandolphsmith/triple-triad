@@ -1,0 +1,1 @@
+export const filteredPhase = (state, payload) => state.set('phase', payload.phase);
