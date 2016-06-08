@@ -5,12 +5,22 @@ import { push } from 'react-router-redux';
 import { createGame, deleteGame, setCurrentGame } from './../ducks/game';
 import { getScoreForOwner } from './../utils/getScoreForOwner';
 import { isCurrentPlayerMe } from './../utils/isCurrentPlayerMe';
-import { showClosed } from './../ducks/filters';
+import { showClosed, filterWinnerType } from './../ducks/filters';
 import PHASE from '../constants/phases';
 
 function mapStateToProps(state) {
     const loggedInUser = state.auth.get('user').id;
     const closedGamesShown = state.filters.get('showClosed');
+    const winnerType = state.filters.get('winnerType');
+    let winnerFilter = game => game;
+    const winnerFilterMap = {
+        'all': winnerFilter,
+        'winner': game => game.winner === 'winner',
+        'loser': game => game.winner === 'loser'
+    };
+    if(winnerFilterMap[winnerType]) {
+        winnerFilter = winnerFilterMap[winnerType]
+    }
     const games = state.game.get('games')
         .filter(game => game.owner === loggedInUser || game.opponent === loggedInUser)
         .filter(game => closedGamesShown || game.phase !== PHASE.GAME_OVER)
@@ -30,6 +40,12 @@ function mapStateToProps(state) {
             }
             const blue = getScoreForOwner(game.deck, game.owner);
             const red = getScoreForOwner(game.deck, game.opponent);
+            let winner;
+            if(blue === red) {
+                winner = 'tie';
+            } else {
+                winner = blue > red ? 'winner' : 'loser';
+            }
             const isMyTurn = isCurrentPlayerMe(game.currentPlayer, loggedInUser);
             return Object.assign({}, game.toJS(), {
                 isMyTurn: isMyTurn,
@@ -39,9 +55,11 @@ function mapStateToProps(state) {
                 opponent: opponent,
                 opponentAvatar: avatar,
                 blue: blue,
-                red: red
+                red: red,
+                winner: winner
             });
-        });
+        })
+        .filter(winnerFilter);
     
     return {
         id: loggedInUser,
@@ -51,7 +69,14 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ showClosed, createGame, deleteGame, setCurrentGame, push }, dispatch);
+    return bindActionCreators({ 
+        showClosed,
+        filterWinnerType,
+        createGame,
+        deleteGame,
+        setCurrentGame,
+        push 
+    }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Games);

@@ -2,13 +2,7 @@ import React from 'react';
 
 export class GameClosed extends React.Component {
     render() {
-        let { id, owner, ownerAvatar, opponent, opponentAvatar, red, blue, phase } = this.props.game;
-        let winner;
-        if(blue === red) {
-            winner = 'tie';
-        } else {
-            winner = blue > red ? 'winner' : 'loser';
-        }
+        let { id, owner, ownerAvatar, opponent, opponentAvatar, red, blue, winner, phase } = this.props.game;
         let ribbonClasses = `corner-ribbon top-right sticky shadow ${winner}`;
         return (
             <div id={id} className="game">
