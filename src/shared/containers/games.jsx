@@ -3,15 +3,17 @@ import { connect } from 'react-redux';
 import { Games } from './../components';
 import { push } from 'react-router-redux';
 import { createGame, deleteGame, setCurrentGame } from './../ducks/game';
+import { showClosed, filterWinnerType, filterPhase } from './../ducks/filters';
 import { getScoreForOwner } from './../utils/getScoreForOwner';
 import { isCurrentPlayerMe } from './../utils/isCurrentPlayerMe';
-import { showClosed, filterWinnerType } from './../ducks/filters';
 import PHASE from '../constants/phases';
 
 function mapStateToProps(state) {
     const loggedInUser = state.auth.get('user').id;
     const closedGamesShown = state.filters.get('showClosed');
     const winnerType = state.filters.get('winnerType');
+    const phaseFilterValue = state.filters.get('phase');
+
     let winnerFilter = game => game;
     const winnerFilterMap = {
         'all': winnerFilter,
@@ -20,6 +22,17 @@ function mapStateToProps(state) {
     };
     if(winnerFilterMap[winnerType]) {
         winnerFilter = winnerFilterMap[winnerType]
+    }
+
+    let phaseFilter = game => game;
+    const phaseFilterMap = {
+        'all': phaseFilter
+    };
+    for(const phase in PHASE) {
+        phaseFilterMap[phase] = game => game.phase === phase
+    }
+    if(phaseFilterMap[phaseFilterValue]) {
+        phaseFilter = phaseFilterMap[phaseFilterValue];
     }
     const games = state.game.get('games')
         .filter(game => game.owner === loggedInUser || game.opponent === loggedInUser)
@@ -59,13 +72,16 @@ function mapStateToProps(state) {
                 winner: winner
             });
         })
-        .filter(winnerFilter);
+        .filter(winnerFilter)
+        .filter(phaseFilter);
     
     return {
         id: loggedInUser,
         games: games,
+        phases: PHASE,
         closedGameShown: closedGamesShown,
-        winnerType: winnerType
+        winnerType: winnerType,
+        phaseFilterValue: phaseFilterValue
     }
 }
 
@@ -73,6 +89,7 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({ 
         showClosed,
         filterWinnerType,
+        filterPhase,
         createGame,
         deleteGame,
         setCurrentGame,
