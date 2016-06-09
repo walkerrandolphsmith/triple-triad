@@ -9,7 +9,7 @@ import { fromJS } from 'immutable';
 import firebase from 'firebase';
 import Routes from './../shared/routes';
 import configureStore from './../shared/store/store';
-import { setRef, listenToGames, listenToAuth } from './../shared/ducks/firebase';
+import { setRef, listenToAuth } from './../shared/ducks/firebase';
 import { observeStore, onChange, select } from './gameObserver';
 import env from './../shared/config/environment';
 import './../assets/stylesheets/index.less';
