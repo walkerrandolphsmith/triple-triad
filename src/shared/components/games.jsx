@@ -33,7 +33,8 @@ export class Games extends React.Component {
         return (
             <div id="game-selection">
                 <div id="new-game">
-                    <FloatingActionButton onMouseDown={this.props.createGame} backgroundColor="#0082BF">
+                    <FloatingActionButton onMouseDown={this.props.createGame}
+                                          backgroundColor={this.context.muiTheme.floatingActionButton.backgroundColor}>
                         <i className="fa fa-plus"></i>
                     </FloatingActionButton>
                 </div>
@@ -72,3 +73,7 @@ export class Games extends React.Component {
         );
     }
 }
+
+Games.contextTypes = {
+    muiTheme: React.PropTypes.object.isRequired
+};

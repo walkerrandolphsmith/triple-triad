@@ -1,7 +1,13 @@
 import React from 'react';
 import { Navigation } from './navigation';
+import { baseTheme } from './../constants/themes';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 export class App extends React.Component {
+
+    getChildContext() {
+        return { muiTheme: getMuiTheme(baseTheme) };
+    }
 
     KeyDownListener(board, event) {
         const { handleUp, handleDown, handleRight, handleLeft, handleEnter, handleEscape } = board.props;
@@ -42,3 +48,7 @@ export class App extends React.Component {
         );
     }
 }
+
+App.childContextTypes = {
+    muiTheme: React.PropTypes.object.isRequired
+};
