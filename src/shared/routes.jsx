@@ -74,7 +74,7 @@ export const ROUTES = [
 ];
 
 export const getRoutesForRouteDefinitions = routeDefinitions => routeDefinitions.map(
-    route => <Route path={route.path} component={route.component} status={route.status} />
+    (route, i) => <Route key={i} path={route.path} component={route.component} status={route.status} />
 );
 
 export const RouterFactory = routeDefinitions => {
