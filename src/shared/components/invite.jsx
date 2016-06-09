@@ -1,4 +1,5 @@
 import React from 'react';
+import RaisedButton from 'material-ui/RaisedButton';
 import { InviteForm } from './inviteForm';
 import { Checkbox } from './checkbox';
 
@@ -53,7 +54,10 @@ export class Invite extends React.Component {
 
         let inviteForm = multiplayer 
             ? (<InviteForm gameId={this.props.gameId} sendInvite={this.props.sendInvite} />) 
-            : (<button className="btn btn-main" onClick={this.props.endPhaseInvite}> Next step</button>);
+            : (<RaisedButton label="Next Step"
+                                labelColor={'white'}
+                                backgroundColor={this.context.muiTheme.baseTheme.palette.backgroundColor}
+                                onMouseDown={this.props.endPhaseInvite} />);
 
         return (
             <div id="settings-selection">
@@ -75,3 +79,7 @@ export class Invite extends React.Component {
         );
     }
 }
+
+Invite.contextTypes = {
+    muiTheme: React.PropTypes.object.isRequired
+};

@@ -1,4 +1,5 @@
 import React from 'react';
+import RaisedButton from 'material-ui/RaisedButton';
 import { Checkbox } from './checkbox';
 
 export class Settings extends React.Component {
@@ -47,7 +48,6 @@ export class Settings extends React.Component {
     }
 
     render() {
-
         let { isMounted, randomHand, visibleHand } = this.state;
 
         let focus = isMounted ? this.focus : () => {};
@@ -70,10 +70,19 @@ export class Settings extends React.Component {
                                       onFocus={focus.bind(this, 'visibleHand')}
                             />
                         </div>
-                        <button className="btn btn-main" onClick={this.props.endPhaseSettingsSelection}> Next step</button>
+                        <RaisedButton
+                            label="Next Step"
+                            labelColor={'white'}
+                            backgroundColor={this.context.muiTheme.baseTheme.palette.backgroundColor}
+                            style={{ backgroundColor: this.context.muiTheme.baseTheme.palette.backgroundColor}}
+                            onMouseDown={this.props.endPhaseSettingsSelection} />
                     </div>
                 </div>
             </div>
         );
     }
 }
+
+Settings.contextTypes = {
+    muiTheme: React.PropTypes.object.isRequired
+};

@@ -1,4 +1,5 @@
 import React from 'react';
+import RaisedButton from 'material-ui/RaisedButton';
 
 export class InviteForm extends React.Component {
 
@@ -21,8 +22,16 @@ export class InviteForm extends React.Component {
                         onChange={this.update.bind(this)}>
                     </input>
                 </div>
-                <button className="btn btn-main" onClick={this.invite.bind(this)}> Invite</button>
+                <RaisedButton
+                    label="Invite"
+                    labelColor={'white'}
+                    backgroundColor={this.context.muiTheme.baseTheme.palette.backgroundColor}
+                    onMouseDown={this.invite.bind(this)} />
             </div>
         );
     }
 }
+
+InviteForm.contextTypes = {
+    muiTheme: React.PropTypes.object.isRequired
+};
