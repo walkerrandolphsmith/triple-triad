@@ -1,6 +1,6 @@
 import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
-import { Link } from 'react-router';
+import TextField from 'material-ui/TextField';
 
 export class PasswordReset extends React.Component {
 
@@ -11,9 +11,7 @@ export class PasswordReset extends React.Component {
             confirmPassword: ''
         };
     }
-    componentDidMount() {
 
-    }
     handleChange(event) {
         const { name, value } = event.target;
 
@@ -41,42 +39,46 @@ export class PasswordReset extends React.Component {
         let passwordConfirmFormGroupClass = `form-group ${confirmPassword ? 'has-error': ''}`;
         let passwordConfirmHelpText = !confirmPassword ? (<span></span>) : (<span className="help-block">{confirmPassword}</span>);
 
+        const mainColor = this.context.muiTheme.floatingActionButton.backgroundColor;
+
+        const floatingLabelStyle = {
+            color: mainColor
+        };
+
+        const underlineFocusStyle = {
+            borderColor: mainColor
+        };
+
         return (
             <div id="reset-password">
                 <form onSubmit={this.handleSubmit.bind(this)}>
-                    <div className={passwordFormGroupClass}>
-                        <label htmlFor="password">Password</label>
-                        <input
-                            className="form-control"
-                            labelFor="password"
-                            ref="passwordInput"
-                            type="text"
-                            name="password"
-                            placeholder="Enter password"
-                            value={this.state.password}
-                            onChange={this.handleChange.bind(this)}
-                        />
-                        {passwordHelpText}
-                    </div>
-                    <div className={passwordConfirmFormGroupClass}>
-                        <label htmlFor="confirmPassword">Password</label>
-                        <input
-                            className="form-control"
-                            labelFor="confirmPassword"
-                            ref="confirmPasswordInput"
-                            type="text"
-                            name="confirmPassword"
-                            placeholder="Confirm password"
-                            value={this.state.confirmPassword}
-                            onChange={this.handleChange.bind(this)}
-                        />
-                        {passwordConfirmHelpText}
-                    </div>
+                    <TextField
+                        hintText="Password"
+                        floatingLabelText="Password"
+                        name="password"
+                        type="password"
+                        floatingLabelFocusStyle={floatingLabelStyle}
+                        underlineFocusStyle={underlineFocusStyle}
+                        value={this.state.password}
+                        onChange={this.handleChange.bind(this)}
+                    />
+                    <TextField
+                        hintText="Confirm Password"
+                        floatingLabelText="Confirm Password"
+                        name="confirmPassword"
+                        type="confirmPassword"
+                        floatingLabelFocusStyle={floatingLabelStyle}
+                        underlineFocusStyle={underlineFocusStyle}
+                        value={this.state.confirmPassword}
+                        onChange={this.handleChange.bind(this)}
+                    />
                     <RaisedButton
                         label="Reset Password"
                         labelColor={'white'}
                         backgroundColor={this.context.muiTheme.baseTheme.palette.backgroundColor}
-                        onMouseDown={this.invite.bind(this)} />
+                        type="submit"
+                        style={{ margin: '2em' }}
+                    />
                 </form>
             </div>
         );
