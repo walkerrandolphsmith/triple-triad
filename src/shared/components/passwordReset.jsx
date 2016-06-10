@@ -1,4 +1,5 @@
 import React from 'react';
+import RaisedButton from 'material-ui/RaisedButton';
 import { Link } from 'react-router';
 
 export class PasswordReset extends React.Component {
@@ -71,14 +72,17 @@ export class PasswordReset extends React.Component {
                         />
                         {passwordConfirmHelpText}
                     </div>
-                    <button
-                        className="btn btn-main"
-                        name="submitButton"
-                        type="submit">
-                        Reset Password
-                    </button>
+                    <RaisedButton
+                        label="Reset Password"
+                        labelColor={'white'}
+                        backgroundColor={this.context.muiTheme.baseTheme.palette.backgroundColor}
+                        onMouseDown={this.invite.bind(this)} />
                 </form>
             </div>
         );
     }
 }
+
+PasswordReset.contextTypes = {
+    muiTheme: React.PropTypes.object.isRequired
+};

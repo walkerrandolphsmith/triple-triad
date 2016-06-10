@@ -1,4 +1,5 @@
 import React from 'react';
+import RaisedButton from 'material-ui/RaisedButton';
 import { Link } from 'react-router';
 
 export class ForgotPassword extends React.Component {
@@ -49,12 +50,12 @@ export class ForgotPassword extends React.Component {
                         />
                         {emailHelpText}
                     </div>
-                    <button
-                        className="btn btn-main"
+                    <RaisedButton
                         name="submitButton"
-                        type="submit">
-                        Send email
-                    </button>
+                        type="submit"
+                        label="Send Email"
+                        labelColor={'white'}
+                        backgroundColor={this.context.muiTheme.raisedButton.backgroundColor} />
                 </form>
                 <Link to="/signin">
                     <span>I remember, sign in</span>
@@ -63,3 +64,7 @@ export class ForgotPassword extends React.Component {
         );
     }
 }
+
+ForgotPassword.contextTypes = {
+    muiTheme: React.PropTypes.object.isRequired
+};
