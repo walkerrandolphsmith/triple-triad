@@ -1,4 +1,5 @@
 import React from 'react';
+import RaisedButton from 'material-ui/RaisedButton';
 import { Link } from 'react-router';
 
 export class SignIn extends React.Component {
@@ -72,12 +73,12 @@ export class SignIn extends React.Component {
                         />
                         {passwordHelpText}
                     </div>
-                    <button className="btn btn-main"
+                    <RaisedButton
                         name="submitButton"
-                        type="submit">
-                    Sign In
-                    </button>
-
+                        type="submit"
+                        label="Sign In"
+                        labelColor={'white'}
+                        backgroundColor={this.context.muiTheme.raisedButton.backgroundColor} />
                 </form>
 
                 <Link to="/signup">
@@ -91,3 +92,7 @@ export class SignIn extends React.Component {
         );
     }
 }
+
+SignIn.contextTypes = {
+    muiTheme: React.PropTypes.object.isRequired
+};
