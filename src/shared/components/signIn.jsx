@@ -1,6 +1,6 @@
 import React from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
+import { Button } from './button';
+import { Input } from './textField';
 import { Link } from 'react-router';
 
 export class SignIn extends React.Component {
@@ -43,45 +43,29 @@ export class SignIn extends React.Component {
         let passwordFormGroupClass = `form-group ${password ? 'has-error': ''}`;
         let passwordHelpText = !password ? (<span></span>) : (<span className="help-block">{password}</span>);
 
-        const mainColor = this.context.muiTheme.floatingActionButton.backgroundColor;
-
-        const floatingLabelStyle = {
-            color: mainColor
-        };
-
-        const underlineFocusStyle = {
-            borderColor: mainColor
-        };
-
         return (
             <div id="signin">
                 <form onSubmit={this.handleSubmit.bind(this)}>
-                    <TextField
+                    <Input
                         hintText="Email"
                         floatingLabelText="Email"
                         name="username"
                         type="text"
-                        floatingLabelFocusStyle={floatingLabelStyle}
-                        underlineFocusStyle={underlineFocusStyle}
                         value={this.state.username}
                         onChange={this.handleChange.bind(this)}
                     />
-                    <TextField
+                    <Input
                         hintText="Password"
                         floatingLabelText="Password"
                         name="password"
                         type="password"
-                        floatingLabelFocusStyle={floatingLabelStyle}
-                        underlineFocusStyle={underlineFocusStyle}
                         value={this.state.password}
                         onChange={this.handleChange.bind(this)}
                     />
-                    <RaisedButton
+                    <Button
                         name="submitButton"
                         type="submit"
                         label="Sign In"
-                        labelColor={'white'}
-                        backgroundColor={this.context.muiTheme.raisedButton.backgroundColor}
                         style={{ margin: '2em' }}
                     />
                 </form>
@@ -97,7 +81,3 @@ export class SignIn extends React.Component {
         );
     }
 }
-
-SignIn.contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired
-};

@@ -1,7 +1,6 @@
 import React from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
-
+import { Button } from './button';
+import { Input } from './textField';
 export class PasswordReset extends React.Component {
 
     constructor(props, context) {
@@ -39,52 +38,28 @@ export class PasswordReset extends React.Component {
         let passwordConfirmFormGroupClass = `form-group ${confirmPassword ? 'has-error': ''}`;
         let passwordConfirmHelpText = !confirmPassword ? (<span></span>) : (<span className="help-block">{confirmPassword}</span>);
 
-        const mainColor = this.context.muiTheme.floatingActionButton.backgroundColor;
-
-        const floatingLabelStyle = {
-            color: mainColor
-        };
-
-        const underlineFocusStyle = {
-            borderColor: mainColor
-        };
-
         return (
             <div id="reset-password">
                 <form onSubmit={this.handleSubmit.bind(this)}>
-                    <TextField
+                    <Input
                         hintText="Password"
                         floatingLabelText="Password"
                         name="password"
                         type="password"
-                        floatingLabelFocusStyle={floatingLabelStyle}
-                        underlineFocusStyle={underlineFocusStyle}
                         value={this.state.password}
                         onChange={this.handleChange.bind(this)}
                     />
-                    <TextField
+                    <Input
                         hintText="Confirm Password"
                         floatingLabelText="Confirm Password"
                         name="confirmPassword"
                         type="confirmPassword"
-                        floatingLabelFocusStyle={floatingLabelStyle}
-                        underlineFocusStyle={underlineFocusStyle}
                         value={this.state.confirmPassword}
                         onChange={this.handleChange.bind(this)}
                     />
-                    <RaisedButton
-                        label="Reset Password"
-                        labelColor={'white'}
-                        backgroundColor={this.context.muiTheme.baseTheme.palette.backgroundColor}
-                        type="submit"
-                        style={{ margin: '2em' }}
-                    />
+                    <Button label="Reset Password" type="submit" style={{ margin: '2em' }} />
                 </form>
             </div>
         );
     }
 }
-
-PasswordReset.contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired
-};

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
-import RaisedButton from 'material-ui/RaisedButton';
+import { Button } from './button';
 
 export class AcceptInvitation extends React.Component {
     acceptInvitation() {
@@ -17,11 +17,7 @@ export class AcceptInvitation extends React.Component {
                     <Row>
                         <Col xs={12} md={12}>
                             <p>{gameId} : {gameOwner} : altogether now {invitationToken}</p>
-                            <RaisedButton
-                                label="Accept Invitation"
-                                labelColor={'white'}
-                                backgroundColor={this.context.muiTheme.raisedButton.backgroundColor}
-                                onMouseDown={this.acceptInvitation.bind(this)}/>
+                            <Button label="Accept Invitation" onMouseDown={this.acceptInvitation.bind(this)} />
                         </Col>
                     </Row>
                 </Grid>
@@ -29,7 +25,3 @@ export class AcceptInvitation extends React.Component {
         );
     }
 }
-
-AcceptInvitation.contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired
-};
