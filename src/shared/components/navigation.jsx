@@ -1,64 +1,55 @@
 import React from 'react';
-import { Link } from 'react-router'
-import Navbar from 'react-bootstrap/lib/Navbar';
-import Nav from 'react-bootstrap/lib/Nav';
-import NavItem from 'react-bootstrap/lib/NavItem';
-import MenuItem from 'react-bootstrap/lib/MenuItem';
-import NavDropdown from 'react-bootstrap/lib/NavDropdown';
-import LinkContainer from 'react-router-bootstrap/lib/LinkContainer';
+import AppBar from 'material-ui/AppBar';
+import Drawer from 'material-ui/Drawer';
+import IconButton from 'material-ui/IconButton';
+import MenuItem from 'material-ui/MenuItem';
+import NavigationOpen from 'material-ui/svg-icons/navigation/menu';
+import NavigationClose from 'material-ui/svg-icons/navigation/close';
 
 export class Navigation extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {open: false};
+    }
 
     isActive(activeRoute, link) {
         return link === activeRoute ? 'active' : 'passive';
     }
 
+    handleToggle() {
+        this.setState({open: !this.state.open});
+    }
+
+    push(route) {
+        this.props.push(route);
+    }
+
     render() {
 
-        let { user } = this.props;
-
-        const navLinks = user ? ['games', 'leaderboard'] : [];
-
-        let links = navLinks.map((link, index) => (
-            <LinkContainer key={index} to={{ pathname: `/${link}` }}>
-                <NavItem eventKey={index}>
-                    <span>{link}</span>
-                </NavItem>
-            </LinkContainer>
-        ));
-
-        let userLink = user
-            ? (
-                <LinkContainer to={{ pathname: '/user' }}>
-                    <NavItem eventKey={1}>
-                        <img src={user.get('avatar')}/>
-                        <span>{user.get('username')}</span>
-                    </NavItem>
-                </LinkContainer>
-            )
-            : (
-                <LinkContainer to={{ pathname: '/signin' }}>
-                    <NavItem eventKey={1}><span>SignIn</span></NavItem>
-                </LinkContainer>
-            );
-
-        return (
-            <Navbar inverse>
-                <Navbar.Header>
-                    <Navbar.Brand>
-                        <Link to="/" eventKey={1}>Triple Triad</Link>
-                    </Navbar.Brand>
-                    <Navbar.Toggle />
-                </Navbar.Header>
-                <Navbar.Collapse>
-                    <Nav>
-                        {links}
-                    </Nav>
-                    <Nav pullRight>
-                        {userLink}
-                    </Nav>
-                </Navbar.Collapse>
-            </Navbar>
+        return (<div>
+                <AppBar
+                    title="Title"
+                    iconClassNameRight="muidocs-icon-navigation-expand-more"
+                    iconElementLeft={<IconButton onClick={this.handleToggle.bind(this)}><NavigationOpen /></IconButton>}
+                    style={{ backgroundColor: this.context.muiTheme.floatingActionButton.backgroundColor}}
+                />
+                <Drawer open={this.state.open}>
+                    <AppBar
+                        title="Title"
+                        iconClassNameRight="muidocs-icon-navigation-expand-more"
+                        iconElementLeft={<IconButton onClick={this.handleToggle.bind(this)}><NavigationClose /></IconButton>}
+                        style={{ backgroundColor: this.context.muiTheme.floatingActionButton.backgroundColor}}
+                    />
+                    <MenuItem onClick={this.push.bind(this, '/games')}>Games</MenuItem>
+                    <MenuItem onClick={this.push.bind(this, '/leaderboard')}>LeaderBoard</MenuItem>
+                    <MenuItem onClick={this.push.bind(this, '/signin')}>SignIn</MenuItem>
+                </Drawer>
+            </div>
         );
     }
 }
+
+Navigation.contextTypes = {
+    muiTheme: React.PropTypes.object.isRequired
+};

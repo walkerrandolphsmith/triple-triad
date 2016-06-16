@@ -6,6 +6,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { App } from './../components';
 import KEY_CODE from './../constants/keyCodes';
 import { handleDown, handleEnter, handleEscape, handleLeft, handleRight, handleUp } from './../ducks/game';
+import { push } from 'react-router-redux';
 
 class Root extends React.Component {
     render() {
@@ -26,7 +27,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ handleDown, handleEnter, handleEscape, handleLeft, handleRight, handleUp },dispatch);
+    return bindActionCreators({ handleDown, handleEnter, handleEscape, handleLeft, handleRight, handleUp, push },dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Root);

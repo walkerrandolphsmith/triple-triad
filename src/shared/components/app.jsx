@@ -34,7 +34,7 @@ export class App extends React.Component {
     render() {
         return (
             <div>
-                <Navigation user={this.props.user} activeRoute={this.props.activeRoute} signOut={this.props.signOut}/>
+                <Navigation {...this.props} />
                 <div id="content">
                     <div className="container-fluid">
                         <div className="row">
