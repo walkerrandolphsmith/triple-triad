@@ -96,7 +96,7 @@ export class SignUp extends React.Component {
                     <Input
                         hintText="Confirm Password"
                         floatingLabelText="Confirm Password"
-                        name="confirmPassword"
+                        name="confirm-password"
                         type="password"
                         value={this.state.confirmPassword}
                         onChange={this.handleChange.bind(this)}
