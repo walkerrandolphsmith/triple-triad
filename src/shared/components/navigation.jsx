@@ -26,12 +26,27 @@ export class Navigation extends React.Component {
     }
 
     render() {
+        const avatarStyles = {
+            width: '32px',
+            borderRadius: '50%',
+            marginRight: '1em',
+            transform: 'translateY(25%)'
+        };
+        const usernameStyles = {
+            verticalAlign: 'bottom'
+        };
+        const userTab = (
+            <div style={{ cursor: 'pointer' }} onClick={this.push.bind(this, '/user')}>
+                <img src={this.props.user.get('avatar')} style={avatarStyles}/>
+                <span style={usernameStyles}>{this.props.user.get('username')}</span>
+            </div>
+        );
 
         return (<div>
                 <AppBar
                     title="Title"
-                    iconClassNameRight="muidocs-icon-navigation-expand-more"
                     iconElementLeft={<IconButton onClick={this.handleToggle.bind(this)}><NavigationOpen /></IconButton>}
+                    iconElementRight={userTab}
                     style={{ backgroundColor: this.context.muiTheme.floatingActionButton.backgroundColor}}
                 />
                 <Drawer open={this.state.open}>
