@@ -1,4 +1,5 @@
 #game-selection {
+  margin-top: 2em;
 
   #new-game {
     position: fixed;
@@ -9,7 +10,8 @@
 
   #filters {
     display: inline-block;
-    margin-left: 2em;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.5);
     .control-group { width: auto; margin: 20px; }
     div { display: inline-block; }
     .dropdown.btn-group button:first-letter {
@@ -18,6 +20,8 @@
   }
 
   #games {
+    background: @paper;
+    padding: 1em;
 
     .game {
       display: inline-block;
