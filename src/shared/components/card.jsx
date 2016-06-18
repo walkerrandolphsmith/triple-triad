@@ -19,7 +19,7 @@ export class Card extends React.Component {
 
         return (
             <div id={cardId} className={className} onClick={clickAction}>
-                <div className='card'>
+                <div className={`card ${card.flipDirection}`}>
                     <div className="front" style={finalStyles}></div>
                     <div className="back"></div>
                 </div>
