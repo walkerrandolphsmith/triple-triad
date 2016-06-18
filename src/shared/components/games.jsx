@@ -1,18 +1,19 @@
 import React from 'react';
-import { SplitButton, MenuItem } from 'react-bootstrap';
 import { Game } from './game';
 import { GameClosed } from './gameClosed';
 import { Checkbox } from './checkbox';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
+import DropDownMenu from 'material-ui/DropDownMenu';
+import MenuItem from 'material-ui/MenuItem';
 
 
 export class Games extends React.Component {
 
-    setWinnerTypeFilter(winnerType) {
+    setWinnerTypeFilter(event, index, winnerType) {
         this.props.filterWinnerType(winnerType);
     }
 
-    setPhaseFilter(phase) {
+    setPhaseFilter(event, index, phase) {
         this.props.filterPhase(phase);
     }
 
@@ -27,7 +28,7 @@ export class Games extends React.Component {
 
         let phaseMenuItems = [];
         for(var phase in phases){
-            phaseMenuItems.push(<MenuItem eventKey={phase}>{phase}</MenuItem>);
+            phaseMenuItems.push(<MenuItem value={phase} primaryText={phase}></MenuItem>);
         }
 
         return (
@@ -45,26 +46,20 @@ export class Games extends React.Component {
                               onChange={this.props.showClosed} 
                               onFocus={() => {}} 
                     />
-                    <SplitButton bsStyle={'default'}
-                                 title={winnerType}
-                                 key={0}
-                                 id="split-button-basic-winner-type"
-                                 onSelect={this.setWinnerTypeFilter.bind(this)}>
-                        <MenuItem eventKey="all">All</MenuItem>
-                        <MenuItem divider />
-                        <MenuItem eventKey="winner">Winner</MenuItem>
-                        <MenuItem eventKey="loser">Loser</MenuItem>
-                        <MenuItem eventKey="tie">Tie</MenuItem>
-                    </SplitButton>
-                    <SplitButton bsStyle={'default'}
-                                 title={phaseFilterValue}
-                                 key={1}
-                                 id="split-button-basic-phases"
-                                 onSelect={this.setPhaseFilter.bind(this)}>
-                        <MenuItem eventKey="all">All</MenuItem>
-                        <MenuItem divider />
+                    <DropDownMenu value={winnerType} onChange={this.setWinnerTypeFilter.bind(this)}
+                                  iconStyle={{ fill: this.context.muiTheme.floatingActionButton.backgroundColor}}
+                                  underlineStyle={{ borderTopColor: this.context.muiTheme.floatingActionButton.backgroundColor }}>
+                        <MenuItem value={'all'} primaryText="All" />
+                        <MenuItem value={'winner'} primaryText="Winner" />
+                        <MenuItem value={'loser'} primaryText="Loser" />
+                        <MenuItem value={'tie'} primaryText="Tie" />
+                    </DropDownMenu>
+                    <DropDownMenu value={phaseFilterValue} onChange={this.setPhaseFilter.bind(this)}
+                                  iconStyle={{ fill: this.context.muiTheme.floatingActionButton.backgroundColor}}
+                                  underlineStyle={{ borderTopColor: this.context.muiTheme.floatingActionButton.backgroundColor }}>
+                        <MenuItem value="all" primaryText="All"></MenuItem>
                         {phaseMenuItems}
-                    </SplitButton>
+                    </DropDownMenu>
                 </div>
                 <div id="games">
                     {gamesList}
