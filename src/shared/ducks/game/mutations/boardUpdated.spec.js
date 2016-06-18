@@ -27,7 +27,8 @@ describe('src/shared/reducers/game/mutations/boardUpdated', () => {
             });
             payload = {
                 index: index,
-                owner: 1
+                owner: 1,
+                flipDirection: 2
             };
         });
 
@@ -37,8 +38,12 @@ describe('src/shared/reducers/game/mutations/boardUpdated', () => {
                 actual = boardUpdated(state, payload);
             });
 
-            it('should set the owner of the card whose boardIndex is equal to the payload owner', () => {
+            it('should set the owner of the card whose boardIndex is equal to the payload index', () => {
                 expect(actual.get('games').first().deck.first().owner).toEqual(payload.owner);
+            });
+
+            it('should set the flipDirection of the card whose boardIndex is equal to the payload index', () => {
+                expect(actual.get('games').first().deck.first().flipDirection).toEqual(payload.flipDirection);
             });
         });
     });

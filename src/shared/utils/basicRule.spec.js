@@ -53,7 +53,7 @@ describe('src/shared/actions/utils/basicRule', () => {
         });
 
         it('should contain a tuple with the index of the above card and owner of card', () => {
-            expect(basicRule(index, deck)).toInclude({ index: flippedIndex, owner: card.owner });
+            expect(basicRule(index, deck)).toInclude({ index: flippedIndex, owner: card.owner, flipDirection: "flipped-up" });
         });
     });
 
@@ -72,8 +72,8 @@ describe('src/shared/actions/utils/basicRule', () => {
             }));
         });
 
-        it('should contain a tuple with the index of the above card and owner of card', () => {
-            expect(basicRule(index, deck)).toInclude({ index: flippedIndex, owner: card.owner });
+        it('should contain a tuple with the index of the below card and owner of card', () => {
+            expect(basicRule(index, deck)).toInclude({ index: flippedIndex, owner: card.owner, flipDirection: "flipped-down" });
         });
     });
 
@@ -92,12 +92,12 @@ describe('src/shared/actions/utils/basicRule', () => {
             }));
         });
 
-        it('should contain a tuple with the index of the above card and owner of card', () => {
-            expect(basicRule(index, deck)).toInclude({ index: flippedIndex, owner: card.owner });
+        it('should contain a tuple with the index of the left card and owner of card', () => {
+            expect(basicRule(index, deck)).toInclude({ index: flippedIndex, owner: card.owner, flipDirection: "flipped-left" });
         });
     });
 
-    describe('Given the card to the left should be flipped', () => {
+    describe('Given the card to the right should be flipped', () => {
         beforeEach(() => {
             __RewireAPI__.__Rewire__('shouldApplyBasicRuleAbove', () => false);
             __RewireAPI__.__Rewire__('shouldApplyBasicRuleBelow', () => false);
@@ -112,8 +112,8 @@ describe('src/shared/actions/utils/basicRule', () => {
             }));
         });
 
-        it('should contain a tuple with the index of the above card and owner of card', () => {
-            expect(basicRule(index, deck)).toInclude({ index: flippedIndex, owner: card.owner });
+        it('should contain a tuple with the index of the right card and owner of card', () => {
+            expect(basicRule(index, deck)).toInclude({ index: flippedIndex, owner: card.owner, flipDirection: "flipped-right" });
         });
     });
 });
