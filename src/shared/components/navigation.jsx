@@ -31,7 +31,10 @@ export class Navigation extends React.Component {
     render() {
         const avatar = <Avatar src={this.props.user.get('avatar')} />;
         const userTab = (
-            <List style={{marginTop: '-4px', paddingTop: '0', paddingBottom: '0'}}>
+            <List
+                style={{ cursor: 'pointer', marginTop: '-4px', paddingTop: '0', paddingBottom: '0' }}
+                onClick={this.push.bind(this, '/user')}
+            >
                 <ListItem
                     disabled={true}
                     leftAvatar={avatar}>
