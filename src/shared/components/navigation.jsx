@@ -1,6 +1,9 @@
 import React from 'react';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
+import Avatar from 'material-ui/Avatar';
+import List from 'material-ui/List/List';
+import ListItem from 'material-ui/List/ListItem';
 import IconButton from 'material-ui/IconButton';
 import MenuItem from 'material-ui/MenuItem';
 import NavigationOpen from 'material-ui/svg-icons/navigation/menu';
@@ -26,20 +29,15 @@ export class Navigation extends React.Component {
     }
 
     render() {
-        const avatarStyles = {
-            width: '32px',
-            borderRadius: '50%',
-            marginRight: '1em',
-            transform: 'translateY(25%)'
-        };
-        const usernameStyles = {
-            verticalAlign: 'bottom'
-        };
+        const avatar = <Avatar src={this.props.user.get('avatar')} />;
         const userTab = (
-            <div style={{ cursor: 'pointer' }} onClick={this.push.bind(this, '/user')}>
-                <img src={this.props.user.get('avatar')} style={avatarStyles}/>
-                <span style={usernameStyles}>{this.props.user.get('username')}</span>
-            </div>
+            <List style={{marginTop: '-4px', paddingTop: '0', paddingBottom: '0'}}>
+                <ListItem
+                    disabled={true}
+                    leftAvatar={avatar}>
+                    {this.props.user.get('username')}
+                </ListItem>
+            </List>
         );
 
         return (<div>
