@@ -11,7 +11,8 @@ export const CardRecord = new Record({
     level: -1,
     element: -1,
     boardIndex: -1,
-    owner: -1
+    owner: -1,
+    flipDirection: ''
 });
 
 const DECK = CARD_TYPES
@@ -22,7 +23,6 @@ const DECK = CARD_TYPES
         rank: new RankRecord(card.rank),
         level: card.level,
         element: card.element,
-        boardIndex: -1,
         owner: 0
     }));
 
@@ -56,7 +56,8 @@ export const convertToGameRecord = game => {
         rank: new RankRecord(card.rank),
         name: card.name,
         level: card.level,
-        element: card.element
+        element: card.element,
+        flipDirection: card.flipDirection
     }));
 
     const settings = new SettingsRecord(game.settings);

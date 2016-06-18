@@ -23,7 +23,7 @@ export const completeTurn = (indexOfPiece, isPlayer) => (dispatch, getState) => 
     const deck = currentGame.deck;
 
     getFlips(i, deck).forEach(tuple => {
-        dispatch(updateBoard(tuple.index, tuple.owner));
+        dispatch(updateBoard(tuple.index, tuple.owner, tuple.flipDirection));
     });
 
     dispatch(selectCard(-1));

@@ -10,7 +10,11 @@ export const boardUpdated = (state, payload) => {
                 deck.findIndex(
                     card => card.boardIndex === payload.index
                 ),
-                card => card.set('owner', payload.owner)
+                card => {
+                    return card
+                        .set('owner', payload.owner)
+                        .set('flipDirection', payload.flipDirection)
+                }
             );
             return game.set('deck', deck);
         }

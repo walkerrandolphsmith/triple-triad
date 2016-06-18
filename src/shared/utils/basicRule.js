@@ -36,16 +36,16 @@ export function basicRule(i, deck) {
     }
 
     if(shouldApplyBasicRuleAbove(card, above.card)) {
-        tuples.push({ index: above.index, owner: owner });
+        tuples.push({ index: above.index, owner: owner, flipDirection: 'flipped-up' });
     }
     if(shouldApplyBasicRuleBelow(card, below.card)) {
-        tuples.push({ index: below.index, owner: owner });
+        tuples.push({ index: below.index, owner: owner, flipDirection: 'flipped-down' });
     }
     if(shouldApplyBasicRuleLeft(card, left.card)) {
-        tuples.push({ index: left.index, owner: owner });
+        tuples.push({ index: left.index, owner: owner, flipDirection: 'flipped-left' });
     }
     if(shouldApplyBasicRuleRight(card, right.card)) {
-        tuples.push({ index: right.index, owner: owner });
+        tuples.push({ index: right.index, owner: owner, flipDirection: 'flipped-right' });
     }
     return sort(tuples);
 }

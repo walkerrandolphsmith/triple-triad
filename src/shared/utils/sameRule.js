@@ -37,32 +37,37 @@ const shouldApplySameRule = (card, firstCard, secondCard, d1, d2, d3, d4) => (
 export function sameRule(i, deck) {
     const { card, above, below, left, right } = getSurroundings(i, deck);
 
-    let indexes = [];
+    let tuples = [];
 
     if(shouldApplySameRuleLeftAndRight(card, left.card, right.card)) {
-        indexes = indexes.concat([right.index, left.index]);
+        tuples.push({ index: left.index, owner: card.owner, flipDirection: 'flipped-left' });
+        tuples.push({ index: right.index, owner: card.owner, flipDirection: 'flipped-right' });
     }
 
     if(shouldApplySameRuleAboveAndBelow(card, above.card, below.card)) {
-        indexes = indexes.concat([above.index, below.index]);
+        tuples.push({ index: above.index, owner: card.owner, flipDirection: 'flipped-up' });
+        tuples.push({ index: below.index, owner: card.owner, flipDirection: 'flipped-down' });
     }
 
     if(shouldApplySameRuleAboveAndLeft(card, above.card, left.card)) {
-        indexes = indexes.concat([above.index, left.index]);
+        tuples.push({ index: above.index, owner: card.owner, flipDirection: 'flipped-up' });
+        tuples.push({ index: left.index, owner: card.owner, flipDirection: 'flipped-left' });
     }
 
     if(shouldApplySameRuleBelowAndLeft(card, below.card, left.card)) {
-        indexes = indexes.concat([below.index, left.index]);
+        tuples.push({ index: below.index, owner: card.owner, flipDirection: 'flipped-down' });
+        tuples.push({ index: left.index, owner: card.owner, flipDirection: 'flipped-left' });
     }
 
     if(shouldApplySameRuleAboveAndRight(card, above.card, right.card)) {
-        indexes = indexes.concat([above.index, right.index]);
+        tuples.push({ index: above.index, owner: card.owner, flipDirection: 'flipped-up' });
+        tuples.push({ index: right.index, owner: card.owner, flipDirection: 'flipped-right' });
     }
 
     if(shouldApplySameRuleBelowAndRight(card, below.card, right.card)) {
-        indexes = indexes.concat([below.index, right.index]);
+        tuples.push({ index: below.index, owner: card.owner, flipDirection: 'flipped-down' });
+        tuples.push({ index: right.index, owner: card.owner, flipDirection: 'flipped-right' });
     }
 
-    let tuples = indexes.map(index => ({ index: index, owner: card.owner }));
     return sort(tuples);
 }

@@ -1,9 +1,10 @@
 import { UPDATE_BOARD } from './../index';
 
-export const updateBoard = (index, owner) => ({
+export const updateBoard = (index, owner, flipDirection) => ({
     type: UPDATE_BOARD,
     payload: {
         index: index,
-        owner: owner
+        owner: owner,
+        flipDirection: flipDirection
     }
 });
