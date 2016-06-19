@@ -1,4 +1,5 @@
 import React from 'react';
+import { Card } from 'material-ui/Card';
 
 export class User extends React.Component {
 
@@ -28,7 +29,7 @@ export class User extends React.Component {
         message = this.props.failedToSendVerificationEmail ? 'Failed to send verification email' : message;
 
         return (
-            <div id="profile">
+            <Card id="profile">
                 <div id="user">
                     <div className="header">
                         <h3 className="title">
@@ -62,7 +63,7 @@ export class User extends React.Component {
                         <span>SignOut</span>
                     </div>
                 </div>
-            </div>
+            </Card>
         )
     }
 }

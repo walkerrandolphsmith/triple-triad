@@ -1,4 +1,5 @@
 import React from 'react';
+import { Card } from 'material-ui/Card';
 
 export class Game extends React.Component {
 
@@ -18,8 +19,9 @@ export class Game extends React.Component {
         let waitingOnPlayerText = this.props.isMyTurn ? 'you' : 'opponent';
         let gameAction = canDelete ? (<i className="fa fa-trash-o" onClick={this.deleteGame.bind(this, id)}></i>) : (<i></i>);
         let gameIcon = settings.multiplayer ? 'users' : 'user';
+
         return (
-            <div id={id} className="game">
+            <Card className="game">
                 <div className="header">
                     <h3 className="title">
                         <i className={`fa fa-${gameIcon}`}></i>
@@ -33,7 +35,7 @@ export class Game extends React.Component {
                             <img src={ownerAvatar} />
                             {owner}
                         </span>
-                        <span className="vs"> VS </span>
+                            <span className="vs"> VS </span>
                         <span className="opponent">
                             <img src={opponentAvatar} />
                             {opponent}
@@ -54,7 +56,7 @@ export class Game extends React.Component {
                 <div className="more" onClick={this.selectGame.bind(this, id)}>
                     <span>Play</span>
                 </div>
-            </div>
+            </Card>
         );
     }
 }

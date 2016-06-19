@@ -1,11 +1,12 @@
 import React from 'react';
+import { Card } from 'material-ui/Card';
 
 export class GameClosed extends React.Component {
     render() {
         let { id, owner, ownerAvatar, opponent, opponentAvatar, red, blue, winner, phase } = this.props.game;
         let ribbonClasses = `corner-ribbon top-right sticky shadow ${winner}`;
         return (
-            <div id={id} className="game">
+            <Card className="game">
                 <div className={ribbonClasses}>{winner}</div>
                 <div className="header">
                     <h3 className="title">
@@ -37,7 +38,7 @@ export class GameClosed extends React.Component {
                         <span>...game over</span>
                     </div>
                 </div>
-            </div>
+            </Card>
         );
     }
 }
