@@ -1,6 +1,9 @@
 import React from 'react';
 import { Button } from './button';
+import {Card, CardText} from 'material-ui/Card';
 import { Input } from './textField';
+import FormStyles from './styles/forms';
+
 export class PasswordReset extends React.Component {
 
     constructor(props, context) {
@@ -39,27 +42,29 @@ export class PasswordReset extends React.Component {
         let passwordConfirmHelpText = !confirmPassword ? (<span></span>) : (<span className="help-block">{confirmPassword}</span>);
 
         return (
-            <div id="reset-password">
-                <form onSubmit={this.handleSubmit.bind(this)}>
-                    <Input
-                        hintText="Password"
-                        floatingLabelText="Password"
-                        name="password"
-                        type="password"
-                        value={this.state.password}
-                        onChange={this.handleChange.bind(this)}
-                    />
-                    <Input
-                        hintText="Confirm Password"
-                        floatingLabelText="Confirm Password"
-                        name="confirmPassword"
-                        type="confirmPassword"
-                        value={this.state.confirmPassword}
-                        onChange={this.handleChange.bind(this)}
-                    />
-                    <Button label="Reset Password" type="submit" style={{ margin: '2em' }} />
-                </form>
-            </div>
+            <Card style={FormStyles}>
+                <CardText>
+                    <form onSubmit={this.handleSubmit.bind(this)}>
+                        <Input
+                            hintText="Password"
+                            floatingLabelText="Password"
+                            name="password"
+                            type="password"
+                            value={this.state.password}
+                            onChange={this.handleChange.bind(this)}
+                        />
+                        <Input
+                            hintText="Confirm Password"
+                            floatingLabelText="Confirm Password"
+                            name="confirmPassword"
+                            type="confirmPassword"
+                            value={this.state.confirmPassword}
+                            onChange={this.handleChange.bind(this)}
+                        />
+                        <Button label="Reset Password" type="submit" style={{ margin: '2em' }} />
+                    </form>
+                </CardText>
+            </Card>
         );
     }
 }

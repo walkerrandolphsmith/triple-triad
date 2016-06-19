@@ -1,7 +1,9 @@
 import React from 'react';
 import { Button } from './button';
+import {Card, CardActions, CardText} from 'material-ui/Card';
 import { Input } from './textField';
 import { Link } from 'react-router';
+import FormStyles from './styles/forms';
 
 export class SignIn extends React.Component {
 
@@ -44,40 +46,43 @@ export class SignIn extends React.Component {
         let passwordHelpText = !password ? (<span></span>) : (<span className="help-block">{password}</span>);
 
         return (
-            <div id="signin">
-                <form onSubmit={this.handleSubmit.bind(this)}>
-                    <Input
-                        hintText="Email"
-                        floatingLabelText="Email"
-                        name="username"
-                        type="text"
-                        value={this.state.username}
-                        onChange={this.handleChange.bind(this)}
-                    />
-                    <Input
-                        hintText="Password"
-                        floatingLabelText="Password"
-                        name="password"
-                        type="password"
-                        value={this.state.password}
-                        onChange={this.handleChange.bind(this)}
-                    />
-                    <Button
-                        name="submitButton"
-                        type="submit"
-                        label="Sign In"
-                        style={{ margin: '2em' }}
-                    />
-                </form>
+            <Card style={FormStyles}>
+                <CardText>
+                    <form onSubmit={this.handleSubmit.bind(this)}>
+                        <Input
+                            hintText="Email"
+                            floatingLabelText="Email"
+                            name="username"
+                            type="text"
+                            value={this.state.username}
+                            onChange={this.handleChange.bind(this)}
+                        />
+                        <Input
+                            hintText="Password"
+                            floatingLabelText="Password"
+                            name="password"
+                            type="password"
+                            value={this.state.password}
+                            onChange={this.handleChange.bind(this)}
+                        />
+                        <Button
+                            name="submitButton"
+                            type="submit"
+                            label="Sign In"
+                            style={{ margin: '2em' }}
+                        />
+                    </form>
+                </CardText>
+                <CardActions>
+                    <Link to="/signup">
+                        <span> Or Sign Up </span>
+                    </Link>
 
-                <Link to="/signup">
-                    <span> Or Sign Up </span>
-                </Link>
-
-                <Link to="/forgot">
-                    <span>forgot your password</span>
-                </Link>
-            </div>
+                    <Link to="/forgot">
+                        <span>forgot your password</span>
+                    </Link>
+                </CardActions>
+            </Card>
         );
     }
 }

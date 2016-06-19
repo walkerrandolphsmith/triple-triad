@@ -1,7 +1,9 @@
 import React from 'react';
 import { Button } from './button';
+import {Card, CardActions, CardText} from 'material-ui/Card';
 import { Input } from './textField';
 import { Link } from 'react-router';
+import FormStyles from './styles/forms';
 
 export class SignUp extends React.Component {
 
@@ -67,52 +69,55 @@ export class SignUp extends React.Component {
         let passwordConfirmHelpText = !confirmPassword ? (<span></span>) : (<span className="help-block">{confirmPassword}</span>);
 
         return (
-            <div id="signup">
-                <form onSubmit={this.handleSubmit.bind(this)}>
-                    <Input
-                        hintText="Username"
-                        floatingLabelText="Username"
-                        name="username"
-                        type="text"
-                        value={this.state.username}
-                        onChange={this.handleChange.bind(this)}
-                    />
-                    <Input
-                        hintText="Email"
-                        floatingLabelText="Email"
-                        name="email"
-                        type="text"
-                        value={this.state.email}
-                        onChange={this.handleChange.bind(this)}
-                    />
-                    <Input
-                        hintText="Password"
-                        floatingLabelText="Password"
-                        name="password"
-                        type="password"
-                        value={this.state.password}
-                        onChange={this.handleChange.bind(this)}
-                    />
-                    <Input
-                        hintText="Confirm Password"
-                        floatingLabelText="Confirm Password"
-                        name="confirm-password"
-                        type="password"
-                        value={this.state.confirmPassword}
-                        onChange={this.handleChange.bind(this)}
-                    />
-                    <Button
-                        name="submitButton"
-                        type="submit"
-                        label="Sign Up"
-                        style={{ margin: '2em' }}
-                    />
-                </form>
-
-                <Link to="/signin">
-                    <span> Already a user, Sign In </span>
-                </Link>
-            </div>
+            <Card style={FormStyles}>
+                <CardText>
+                    <form onSubmit={this.handleSubmit.bind(this)}>
+                        <Input
+                            hintText="Username"
+                            floatingLabelText="Username"
+                            name="username"
+                            type="text"
+                            value={this.state.username}
+                            onChange={this.handleChange.bind(this)}
+                        />
+                        <Input
+                            hintText="Email"
+                            floatingLabelText="Email"
+                            name="email"
+                            type="text"
+                            value={this.state.email}
+                            onChange={this.handleChange.bind(this)}
+                        />
+                        <Input
+                            hintText="Password"
+                            floatingLabelText="Password"
+                            name="password"
+                            type="password"
+                            value={this.state.password}
+                            onChange={this.handleChange.bind(this)}
+                        />
+                        <Input
+                            hintText="Confirm Password"
+                            floatingLabelText="Confirm Password"
+                            name="confirm-password"
+                            type="password"
+                            value={this.state.confirmPassword}
+                            onChange={this.handleChange.bind(this)}
+                        />
+                        <Button
+                            name="submitButton"
+                            type="submit"
+                            label="Sign Up"
+                            style={{ margin: '2em' }}
+                        />
+                    </form>
+                </CardText>
+                <CardActions>
+                    <Link to="/signin">
+                        <span> Already a user, Sign In </span>
+                    </Link>
+                </CardActions>
+            </Card>
         );
     }
 }
