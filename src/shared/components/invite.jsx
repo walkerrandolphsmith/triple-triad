@@ -56,7 +56,7 @@ export class Invite extends React.Component {
             ? (<InviteForm gameId={this.props.gameId} sendInvite={this.props.sendInvite} />) 
             : (<RaisedButton label="Next Step"
                                 labelColor={'white'}
-                                backgroundColor={this.context.muiTheme.baseTheme.palette.backgroundColor}
+                                backgroundColor={this.context.muiTheme.floatingActionButton.backgroundColor}
                                 onMouseDown={this.props.endPhaseInvite} />);
 
         return (
